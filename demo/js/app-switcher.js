@@ -109,15 +109,15 @@ jQuery(document).ready(function() { // You wish you could use jQuery
       var app = jQuery(this).attr('data-app-name');
       // if(icon !== "undefined") {
         jQuery('.esri-global-nav__app-icon-image').attr('src', icon);
-        var appHeader = jQuery('.esri-global-nav__wrapper');
+        var appHeader = jQuery('.esri-global-nav-wrapper');
         var classes = jQuery(appHeader).attr('class').split(' ');
         jQuery.each(classes, function(i, class_name){
             console.log(class_name);
             jQuery(appHeader).removeClass(class_name);
-            jQuery(appHeader).addClass('esri-global-nav__wrapper');
+            jQuery(appHeader).addClass('esri-global-nav-wrapper');
             jQuery(appHeader).addClass(color);
         });
-        // jQuery('.esri-global-nav__wrapper').css('background-color', color);
+        // jQuery('.esri-global-nav-wrapper').css('background-color', color);
       // }
       jQuery('.esri-global-nav__app-name').html(app);
     });

@@ -2,10 +2,10 @@ $generate-css: false;
 
 $font-path: '../node_modules/calcite-web/dist/fonts';
 
-@import "../node_modules/calcite-web/dist/sass/calcite-web.scss";
-@import "vars";
-@import "mixins";
-@import "animations";
+@import "../../node_modules/calcite-web/dist/sass/calcite-web.scss";
+@import "../../scss/vars";
+@import "../../scss/mixins";
+@import "../../scss/animations";
 
 body,
 html {
