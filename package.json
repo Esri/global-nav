@@ -10,6 +10,9 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "calcite-web": "github:esri/calcite-web#v1.0.0-beta.30"
+    "calcite-web": "github:esri/calcite-web#v1.0.0-beta.30",
+    "grunt": "~0.4.5",
+    "grunt-contrib-sass": "^1.0.0",
+    "grunt-contrib-watch": "^1.0.0"
   }
 }
