@@ -1,0 +1,405 @@
+
+/////////////////////////
+// APP HEADER
+@mixin globalNav() {
+  height: $size - $border_size;
+  width: $app_header_width;
+  background-color: $Calcite_Gray_050;
+  border-bottom: 1px solid $border_color;
+  overflow: hidden;
+  @include flexDisplay();
+  @include alignItems(stretch);
+  @include justifyContent(flex-start);
+  // -webkit-transition: border-color 250ms ease-in-out; 
+  // -moz-transition: border-color 250ms ease-in-out; 
+  // -ms-transition: border-color 250ms ease-in-out; 
+  // -o-transition: border-color 250ms ease-in-out; 
+  // transition: border-color 250ms ease-in-out; 
+  a {
+    color: $Calcite_Gray_550;
+    &:hover {
+      text-decoration: none;
+    }
+    // transition($prop, $time, $ease, $delay:0ms)
+    @include transition(all, 125ms, ease-in-out);
+  }
+  li:hover a {
+      color: $Calcite_Highlight_Blue_350;
+  }
+  // .esri-global-nav__menu {
+  //   margin: 0;
+  //   padding: 0;
+  //   height: 100%;
+  //   @include flexDisplay();
+  //   @include alignItems(center);
+  //   li {
+  //     list-style: none;
+  //     margin: 0;
+  //     padding: 0 0.5rem;
+  //   }
+  // }
+}
+
+@mixin appBrand() {
+  @include flexDisplay();
+  @include alignItems(center);
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+@mixin appName() {
+  position: absolute;
+  left: 0;
+  color: $Calcite_Gray_650;
+  overflow: hidden;
+  @include alignSelf(center);
+}
+
+@mixin appIcon() {
+  width: $size;
+  height: $size;
+  // margin-right: 0.5rem;
+  // border-right: 1px solid $border_color;
+  @include flexDisplay();
+  @include alignItems(center);
+  @include justifyContent(center);
+}
+
+// @mixin navLeft() {
+// }
+
+// @mixin navRight() {
+//   height: 100%;
+//   margin-left: auto;
+//   padding-right: 1rem;
+//   border-right: 1px solid $border_color;
+// }
+
+// @mixin navRightItem() {
+//   height: 100%;
+// }
+
+// @mixin navRightLink() {
+//   height: 100%;
+//   margin-left: 0.5rem;
+//   margin-right: 0.5rem;
+//   @include flexDisplay();
+//   @include alignItems(center);
+//   @include justifyContent(center);
+//   &:hover {
+//     @include topNavHover();
+//   }
+// }
+
+
+@mixin appSwitcherTrigger() {
+  position: relative;
+  // height: 100%;
+  padding-right: 1.25rem;
+  padding-left: 1.25rem;
+  border-left: 1px solid $border_color;
+  @include flexDisplay();
+  @include alignItems(center);
+  @include justifyContent(center);
+  .app-switcher-path {
+    fill: $Calcite_Gray_550;
+  }
+  svg {
+    width: 24px;
+    height: 24px;
+  }
+  &:hover {
+    @include topNavHover();
+    .app-switcher-path {
+      fill: $Calcite_Highlight_Blue_350;
+    }
+  }
+}
+
+@mixin userProfile() {
+  // height: 100%;
+  margin-right: 1rem;
+  margin-left: 0.5rem;
+  @include flexDisplay();
+  @include alignItems(center);
+  @include justifyContent(center);
+  &:hover {
+    @include topNavHover();
+  }
+}
+
+@mixin userProfileImage() {
+  height: 32px;
+  width: auto;
+  border: 2px solid $Calcite_Gray_250;
+  -webkit-border-radius: 50px;
+  border-radius: 50%;
+}
+
+@mixin userProfileId() {
+  margin-left: 0.5rem;
+  @include flexDisplay();
+  @include flexFlow(column);
+  .user-profile__name {
+    color: $Calcite_Gray_650;
+    font-weight: 600;
+    line-height: 1rem;
+  }
+  .user-profile__username {
+    color: $Calcite_Gray_550;
+    line-height: 1rem;
+  }
+}
+
+@mixin breadcrumbs() {
+  .breadcrumb {
+    padding-left: 0;
+    a {
+      color: $Calcite_Gray_450;
+      &:hover {
+        color: $Calcite_Gray_650;
+      }
+      &:after {
+        color: $Calcite_Gray_350;
+        content: "/";
+        padding-left: 0.5rem;
+        padding-right: 0.25rem;
+      }
+    }
+  }
+  .breadcrumb--current {
+    color: $Calcite_Gray_650;
+  }
+}
+
+@mixin navLeft() {
+  position: relative;
+  overflow: hidden;
+  white-space: nowrap;
+  -ms-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+  @include flexDisplay();
+  @include alignItems(stretch);
+  @include justifyContent(space-between);
+  @include flex(1 0);
+}
+
+
+/////////////////////////
+// App ITEMS
+
+@mixin appItems() {
+  @include flexDisplay();
+  @include alignItems(center);
+  @include justifyContent(center);
+  margin-top: 1rem;
+  height: 100%;
+}
+
+@mixin mediaQueries($hide_class: "esri-global-nav--hide", $show_class: "esri-global-nav--show", $show_def: flex) {
+  @media screen and (min-width: 1025px) {
+    .#{$hide_class}-large {
+      display: none;
+    }
+  }
+  @media screen and (max-width: 1024px) {
+    .#{$hide_class}-medium {
+      display: none;
+    }
+    .#{$show_class}-medium {
+      @if $show_def == flex {
+        @include flexDisplay();
+      } @else {
+        display: $show_def;
+      }
+    }
+    .esri-global-nav__app-icon {
+      border-right: none;
+      margin-right: 0;
+    }
+    // .esri-global-nav__nav-right {
+    //   border-left: none;
+    // }
+  }
+  @media screen and (max-width: 540px) {
+    .#{$hide_class}-small {
+      display: none;
+    }
+    .#{$show_class}-small {
+      display: #{$show_def};
+    }
+  }
+}
+
+//////////////////////////////////////////////////
+// CSS
+.esri-global-nav__wrapper {
+  width: 100%;
+  padding-top: $border_size;
+  // background-color: #fff;
+  // border-bottom: 1px solid $border_color;
+  -webkit-transition: background-color 500ms ease-in-out;
+  -moz-transition: background-color 500ms ease-in-out;
+  -ms-transition: background-color 500ms ease-in-out;
+  -o-transition: background-color 500ms ease-in-out;
+  transition: background-color 500ms ease-in-out;
+  @include gradientBackground(#FBB400);
+  @include flexDisplay();
+  @include justifyContent(center);
+  
+  &.app-color-ops {
+    @include gradientBackground(#FBB400);
+  }
+  &.app-color-insights {
+    @include gradientBackground(#FF9F33);
+  }
+  &.app-color-workforce {
+    @include gradientBackground(#E04F1D);
+  }
+  &.app-color-survey {
+    @include gradientBackground(#50AD4E);
+  }
+  &.app-map-viewer {
+    @include gradientBackground(#0079c1);
+  }
+}
+
+.esri-global-nav__menu {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  @include flexDisplay();
+  @include alignItems(center);
+  li {
+    list-style: none;
+    margin: 0;
+    padding: 0 0.5rem;
+  }
+}
+
+
+.esri-global-nav__app-icon-image {
+  position: relative;
+  -webkit-transition: all 125ms ease-in-out; 
+  -moz-transition: all 125ms ease-in-out; 
+  -ms-transition: all 125ms ease-in-out; 
+  -o-transition: all 125ms ease-in-out; 
+  transition: all 125ms ease-in-out; 
+}
+
+.esri-global-nav__app-brand:hover {
+  .esri-global-nav__app-icon-image {
+    -webkit-transform: translate(0, -2px) scale(1); 
+    -moz-transform: translate(0, -2px) scale(1); 
+    -ms-transform: translate(0, -2px) scale(1); 
+    -o-transform: translate(0, -2px) scale(1); 
+    transform: translate(0, -2px) scale(1); 
+  }
+}
+
+
+.esri-global-nav {
+  @include globalNav();
+}
+
+.esri-global-nav__app-brand {
+  @include appBrand();
+}
+
+.esri-global-nav__app-name {
+  @include appName();
+}
+
+.esri-global-nav__app-icon {
+  @include appIcon();
+}
+
+// .esri-global-nav__nav-left {
+//   @include navLeft();
+// }
+
+// .esri-global-nav__nav-right {
+//   @include navRight();
+// }
+
+// .nav-right__item {
+//   @include navRightItem();
+// }
+
+// .nav-right__link {
+//   @include navRightLink();
+// }
+
+.esri-global-nav__nav-left {
+  @include navLeft();
+}
+
+.nav-left__secondary-nav {
+  margin-right: 1rem;
+  margin-left: auto;
+}
+
+.secondary-nav__item {
+  @include flexDisplay();
+  @include alignSelf(stretch);
+  @include alignItems(center);
+  &:hover {
+    @include topNavHover();
+  }
+}
+
+// .secondary-nav__link {
+//   @include alignItems(center);
+// }
+
+.esri-global-nav__nav-right {
+  margin-left: auto;
+  // border-left: 1px solid $border_color;
+  @include flexDisplay();
+  @include alignItems(stretch);
+}
+
+.esri-global-nav__user-profile {
+  @include userProfile();
+}
+
+.user-profile__button {
+  @include userProfileImage();
+}
+
+.user-profile__id {
+  @include userProfileId();
+}
+
+.breadcrumbs {
+  @include breadcrumbs();
+}
+
+.app-switcher-trigger {
+  @include appSwitcherTrigger();
+}
+
+.nav-right__icon-item {
+  @include flexDisplay();
+  @include justifyContent(center);
+  @include alignItems(center);
+  padding: 0 0.5rem;
+  &:hover {
+    @include topNavHover();
+  }
+}
+
+
+.app-items {
+  @include appItems();
+}
+
+.app-switcher--visible .app-switcher-trigger {
+    @include topNavHover();
+    .app-switcher-path {
+      fill: $Calcite_Highlight_Blue_350;
+    }
+}
+
+@include mediaQueries();
