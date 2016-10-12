@@ -36,8 +36,8 @@
 }
 
 @mixin appName() {
-  position: absolute;
-  left: 0;
+  // position: absolute;
+  // left: 0;
   color: $Calcite_Gray_650;
   overflow: hidden;
   @include alignSelf(center);
@@ -273,12 +273,12 @@
   @include navLeft();
 }
 
-.nav-left__secondary-nav {
+.nav-left__menu {
   margin-right: 1rem;
-  margin-left: auto;
+  // margin-left: auto;
 }
 
-.secondary-nav__item {
+.menu__item {
   @include flexDisplay();
   @include alignSelf(stretch);
   @include alignItems(center);

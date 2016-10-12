@@ -2,7 +2,7 @@ $generate-css: false;
 
 $font-path: '../node_modules/calcite-web/dist/fonts';
 
-@import "../../node_modules/calcite-web/dist/sass/calcite-web.scss";
+@import "../../node_modules/calcite-web/dist/sass/calcite-web";
 @import "../../scss/vars";
 @import "../../scss/mixins";
 @import "../../scss/animations";
@@ -37,7 +37,7 @@ html {
 
 // Dashboard
 // .show-item,
-.esri-global-nav__menu.nav-left__primary-nav,
+.nav-left__app-menu,
 .project-thing {
     display: none;
 }
@@ -58,26 +58,26 @@ html {
     .project-thing {
         display: block;
     }
-    .nav-left__primary-nav {
+    .nav-left__app-menu {
         // display: block;
         @include flexDisplay();
-        -webkit-animation: show-item-nav 500ms ease-out;
-        -moz-animation: show-item-nav 500ms ease-out;
-        -o-animation: show-item-nav 500ms ease-out;
-        animation: show-item-nav 500ms ease-out;
+        // -webkit-animation: show-item-nav 500ms ease-out;
+        // -moz-animation: show-item-nav 500ms ease-out;
+        // -o-animation: show-item-nav 500ms ease-out;
+        // animation: show-item-nav 500ms ease-out;
     }
     // .show-launch {
     //     display: none;
     // }
     .esri-global-nav__app-name {
-        // display:  none;
+        display:  none;
         // width: 0;
-        @include translate(0, -200px);
+        // @include translate(0, -200px);
         // top: -100px;
-        -webkit-animation: hide-app-name 500ms ease-in;
-        -moz-animation: hide-app-name 500ms ease-in;
-        -o-animation: hide-app-name 500ms ease-in;
-        animation: hide-app-name 500ms ease-in;
+        // -webkit-animation: hide-app-name 500ms ease-in;
+        // -moz-animation: hide-app-name 500ms ease-in;
+        // -o-animation: hide-app-name 500ms ease-in;
+        // animation: hide-app-name 500ms ease-in;
     }
 }
 
