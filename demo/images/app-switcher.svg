@@ -1,1 +1,11 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M0 0v4h4V0H0zm6 0v4h4V0H6zm6 0v4h4V0h-4zM0 6v4h4V6H0zm6 0v4h4V6H6zm6 0v4h4V6h-4zM0 12v4h4v-4H0zm6 0v4h4v-4H6zm6 0v4h4v-4h-4z"/></svg>
+<svg version="1.1" id="icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 24 24" enable-background="new 0 0 24 24" xml:space="preserve">
+    <rect x="1" y="1" width="4" height="4" />
+    <rect x="10" y="1" width="4" height="4" />
+    <rect x="19" y="1" width="4" height="4" />
+    <rect x="1" y="10" width="4" height="4" />
+    <rect x="10" y="10" width="4" height="4" />
+    <rect x="19" y="10" width="4" height="4" />
+    <rect x="1" y="19" width="4" height="4" />
+    <rect x="10" y="19" width="4" height="4" />
+    <rect x="19" y="19" width="4" height="4" />
+</svg>

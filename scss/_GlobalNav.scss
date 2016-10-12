@@ -62,7 +62,7 @@
   @include flexDisplay();
   @include alignItems(center);
   @include justifyContent(center);
-  .app-switcher-path {
+  .app-switcher-icon {
     fill: $Calcite_Gray_550;
   }
   svg {
@@ -71,11 +71,14 @@
   }
   &:hover {
     @include topNavHover();
-    .app-switcher-path {
+    .app-switcher-icon {
       fill: $Calcite_Highlight_Blue_350;
     }
   }
+
 }
+
+
 
 @mixin userProfile() {
   margin-right: 1rem;
@@ -219,7 +222,7 @@
   }
 }
 
-.esri-global-nav__menu {
+.nav-left__menu {
   margin: 0;
   padding: 0;
   height: 100%;
@@ -242,7 +245,7 @@
   transition: all 125ms ease-in-out; 
 }
 
-.esri-global-nav__app-brand:hover {
+.esri-global-nav__brand:hover {
   .esri-global-nav__app-icon-image {
     -webkit-transform: translate(0, -2px) scale(1); 
     -moz-transform: translate(0, -2px) scale(1); 
@@ -257,7 +260,7 @@
   @include globalNav();
 }
 
-.esri-global-nav__app-brand {
+.esri-global-nav__brand {
   @include appBrand();
 }
 
