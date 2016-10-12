@@ -1,6 +1,6 @@
 # Esri Global Nav (draft)
 
-At its core **esri-global-nav** is the presentation layer of the top-level navigation for Esri's web pages and SAAS applications.  It consists of HTML and styles (Sass and CSS).  It should eventually also include framework integrations.
+At its core **esri-global-nav** is the presentation layer of the top-level navigation for Esri's web pages and SAAS applications.  It consists of HTML, styles (Sass and CSS), and a little Javascript for light-weight UI interactions.  It should eventually also include framework integrations.
 
 ## Using Esri Global Nav
 **Phase 1** requires developers to wire HTML and stylesheets as needed.
