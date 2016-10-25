@@ -17,6 +17,7 @@
   @include justifyContent(flex-start);
   a {
     color: $Calcite_Gray_550;
+    @include flexDisplay();
     &:hover {
       text-decoration: none;
     }
@@ -44,8 +45,9 @@
 }
 
 @mixin appIcon() {
-  width: $size;
+  width: $size - 1; // minus one for the border
   height: $size;
+  border-right: 1px solid $border_color;
   @include flexDisplay();
   @include alignItems(center);
   @include justifyContent(center);
@@ -160,12 +162,16 @@
 @mixin mediaQueries($hide_class: "esri-global-nav--hide", $show_class: "esri-global-nav--show", $show_def: flex) {
   @media screen and (min-width: 1025px) {
     .#{$hide_class}-large {
-      display: none;
+      visibility: hidden;
+      width: 0;
+      height: 0;
     }
   }
   @media screen and (max-width: 1024px) {
     .#{$hide_class}-medium {
-      display: none;
+      visibility: hidden;
+      width: 0;
+      height: 0;
     }
     .#{$show_class}-medium {
       @if $show_def == flex {
@@ -181,7 +187,9 @@
   }
   @media screen and (max-width: 540px) {
     .#{$hide_class}-small {
-      display: none;
+      visibility: hidden;
+      width: 0;
+      height: 0;
     }
     .#{$show_class}-small {
       display: #{$show_def};
@@ -221,7 +229,7 @@
 }
 
 .nav-left__menu {
-  margin: 0;
+  margin: 0 0.5rem;
   padding: 0;
   height: 100%;
   @include flexDisplay();
@@ -229,7 +237,7 @@
   li {
     list-style: none;
     margin: 0;
-    padding: 0 1rem 0 0;
+    padding: 0 0.5rem;
   }
 }
 
@@ -275,7 +283,7 @@
 }
 
 .nav-left__site-nav {
-  margin-right: 1rem;
+  // margin-right: 1rem;
   // margin-left: auto;
 }
 
