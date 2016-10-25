@@ -10,6 +10,7 @@ Secondary reasons are to allow for more shared ownership and more rapid iteratio
 The two main ways to use esri-global-nav are using a package manager or using the static HTML and CSS files.  We recommend using a package manager as it is the most manageable approach and reduces duplication of work.
 
 ## Structure
+![Global Nav structure](https://github.com/ArcGIS/esri-global-nav/raw/master/readme-assets/esri-global-nav-concepts.png)
 The component has three sections:
 * Branding
 * Navigation
