@@ -30,11 +30,11 @@ The **Globally-shared** section should receive little to no customization within
 ## Differences between Site Pages & SAAS Apps
 ![Site Pages and SAAS Apps](https://github.com/ArcGIS/esri-global-nav/raw/master/readme-assets/esri-global-nav-site-v-saas.png)
 
-### Site Pages
+### Site Page
 * Use 1440 Grid
 * Show "global" search button/icon
 
-### SAAS Apps
+### SAAS App
 * Use full-width
 * Not use "global" search button/icon
 * Top border with app-branded color
