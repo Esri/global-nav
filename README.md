@@ -18,13 +18,14 @@ The component has three sections:
 
 The **Navigation** section has the greatest flexibility.  That being said, the default styles applied to this section should require little and possibly no customization to address individual needs.
 
+This section also includes some nice styles and animations for the sub-nav elements.
+
 The **Branding** section contains styles for SAAS applications which are distinct from site pages.
 
 The **Globally-shared** section should receive little to no customization within your implementation.  It contains the following:
 * Search link
 * App Switcher
-* User Profile
-     * User Profile dropdown
+* User Profile and profile dropdown
 
 ## Integrations
 Integrations for frameworks such as [Ember.js](http://emberjs.com/) and [AngularJS](https://angularjs.org/) would be a great addition and contributions are welcome.
