@@ -10,7 +10,7 @@ Secondary reasons are to encourage shared ownership and allow for rapid iteratio
 The two main ways to use esri-global-nav are using a package manager or using the static HTML and CSS files.  We recommend using a package manager as it is the most manageable approach and reduces duplication of work.
 
 ## Structure
-![Global Nav structure](https://github.com/ArcGIS/esri-global-nav/raw/master/readme-assets/esri-global-nav-concepts.png)
+![Global Nav structure](https://github.com/ArcGIS/esri-global-nav/raw/master/readme-assets/esri-global-nav-structure.png)
 The component has three sections:
 * Branding
 * Navigation
@@ -26,6 +26,18 @@ The **Globally-shared** section should receive little to no customization within
 * Search link
 * App Switcher
 * User Profile and profile dropdown
+
+## Differences between Site Pages & SAAS Apps
+![Site Pages and SAAS Apps](https://github.com/ArcGIS/esri-global-nav/raw/master/readme-assets/esri-global-nav-site-v-saas.png)
+
+### Site Pages
+* Use 1440 Grid
+* Show "global" search button/icon
+
+### SAAS Apps
+* Use full-width
+* Not use "global" search button/icon
+* Top border with app-branded color
 
 ## Integrations
 Integrations for frameworks such as [Ember.js](http://emberjs.com/) and [AngularJS](https://angularjs.org/) would be a great addition and contributions are welcome.
