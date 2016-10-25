@@ -4,7 +4,7 @@ At its core **esri-global-nav** is the presentation layer of the top-level navig
 
 The primary reasons for this component are to achieve greater platform-wide alignment and reduce the amount of duplicated work any given developer needs to do.
 
-Secondary reasons are to allow for more shared ownership and more rapid iterations.
+Secondary reasons are to encourage shared ownership and allow for rapid iterations.
 
 ## Using Esri Global Nav
 The two main ways to use esri-global-nav are using a package manager or using the static HTML and CSS files.  We recommend using a package manager as it is the most manageable approach and reduces duplication of work.
