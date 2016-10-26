@@ -30,15 +30,25 @@ The **Globally-shared** section should receive little to no customization within
 ## Differences between Site Pages & SAAS Apps
 ![Site Pages and SAAS Apps](https://github.com/ArcGIS/esri-global-nav/raw/master/readme-assets/esri-global-nav-site-v-saas.png)
 
-### Site Page
-* Use 1440 Grid
+### Site Page (.esri-global-nav--site-nav)
+Style/Structure
+
+* Uses 1440 Grid
+* Uses standard Calcite `:hover` styles `li`s in the **Navigation** section
+
+Usage differences
+
 * Show "global" search button/icon
 
-### SAAS App
-* Use full-width
-* Not use "global" search button/icon
-* Top border with app-branded color
+### SAAS App (no additional modifier required)
+Style/Structure
 
+* Uses full-width
+* No defined `:hover` styles `li`s in the **Navigation** section
+* Top border with app-branded color (with additional node)
+Usage differences
+
+* Not use "global" search button/icon
 ## Integrations
 Integrations for frameworks such as [Ember.js](http://emberjs.com/) and [AngularJS](https://angularjs.org/) would be a great addition and contributions are welcome.
 
