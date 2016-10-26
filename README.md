@@ -27,10 +27,10 @@ The **Globally-shared** section should receive little to no customization within
 * App Switcher
 * User Profile and profile dropdown
 
-## Differences between Site Pages & SAAS Apps
+## Differences between Site Page & SAAS App
 ![Site Pages and SAAS Apps](https://github.com/ArcGIS/esri-global-nav/raw/master/readme-assets/esri-global-nav-site-v-saas.png)
 
-|             | Site Pages | SAAS App |
+|             | Site Page | SAAS App |
 |-------------|----------|------------|
 | modifier class | `.esri-global-nav--site-nav` | none required |
 | grid | 1440 | full width |
