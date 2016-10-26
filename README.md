@@ -30,13 +30,14 @@ The **Globally-shared** section should receive little to no customization within
 ## Differences between Site Pages & SAAS Apps
 ![Site Pages and SAAS Apps](https://github.com/ArcGIS/esri-global-nav/raw/master/readme-assets/esri-global-nav-site-v-saas.png)
 
-|             | SAAS App | Site Pages | 
+|             | Site Pages | SAAS App |
 |-------------|----------|------------|
-| modifier class | none required | `.esri-global-nav--site-nav` | 
-| grid | full width | 1440 |
-| `li:hover` | Calcite styles | unstyled |
-| border branding | NO | YES (with additional node) | 
-| global search | NO | YES |
+| modifier class | `.esri-global-nav--site-nav` | none required |
+| grid | 1440 | full width |
+| `li:hover` |Calcite styles | unstyled | 
+| border branding | NO | YES (with additional n|ode) 
+| global search | YES | NO |
+
 
 ## Integrations
 Integrations for frameworks such as [Ember.js](http://emberjs.com/) and [AngularJS](https://angularjs.org/) would be a great addition and contributions are welcome.
