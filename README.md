@@ -30,7 +30,7 @@ The **Globally-shared** section should receive little to no customization within
 ## Differences between Site Pages & SAAS Apps
 ![Site Pages and SAAS Apps](https://github.com/ArcGIS/esri-global-nav/raw/master/readme-assets/esri-global-nav-site-v-saas.png)
 
-| Differences | SAAS App | Site Pages | 
+|             | SAAS App | Site Pages | 
 |-------------|----------|------------|
 | modifier class | none required | `.esri-global-nav--site-nav` | 
 | grid | full width | 1440 |
