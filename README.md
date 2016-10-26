@@ -35,7 +35,7 @@ The **Globally-shared** section should receive little to no customization within
 | modifier class | `.esri-global-nav--site-nav` | none required |
 | grid | 1440 | full width |
 | `li:hover` |Calcite styles | unstyled | 
-| border branding | NO | YES (with additional n|ode) 
+| border branding | NO | YES (with additional node) | 
 | global search | YES | NO |
 
 
