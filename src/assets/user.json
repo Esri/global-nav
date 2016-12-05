@@ -1,0 +1,13 @@
+{
+  "account": {
+    "name": "Matthew",
+    "login": "MJP@mysandiego"
+  },
+  "apps": [
+    {
+      "label": "Some App",
+      "href": "//esri.com",
+      "image": "//placehold.it/32x32"
+    }
+  ]
+}

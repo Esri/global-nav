@@ -1,0 +1,39 @@
+{
+  "branding": {
+    "href":  "//esri.com",
+    "image": "//placehold.it/100x50"
+  },
+  "navigation": [
+    {
+      "label": "Main Item 1",
+      "href":  "#",
+      "children": [
+        {
+          "label": "Sub Item 1 1",
+          "href":  "#"
+        },
+        {
+          "label": "Sub Item 1 2",
+          "href":  "#"
+        },
+        {
+          "label": "Sub Item 1 3",
+          "href":  "#"
+        }
+      ]
+    },
+    {
+      "label": "Main Item 2",
+      "href":  "#"
+    },
+    {
+      "label": "Main Item 3",
+      "href":  "#"
+    }
+  ],
+  "labels": {
+    "search": "Search",
+    "login": "Sign In",
+    "applications": "Applications"
+  }
+}

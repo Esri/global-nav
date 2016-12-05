@@ -1,0 +1,45 @@
+body {
+	background-color: #f9f9f9;
+	font: 300 100%/1 "Avenir Next LT Pro", sans-serif;
+}
+
+.globnav {
+	box-shadow: 0 1px 0 0 #dedede;
+	color: #333 #fff;
+	height: 64px;
+	position: absolute 0 0 *;
+
+	& > .globnav-list {
+		display: flex;
+	}
+
+	&, & * {
+		box-sizing: border-box;
+	}
+}
+
+.globnav-list {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.globnav-item {
+	color: #4c4c4c;
+	position: relative;
+}
+
+.globnav-link {
+	color: #4c4c4c;
+	font-size: 17px/18px;
+	display: block;
+	padding: 25px 10px;
+	text-decoration: none;
+}
+
+.globnav-child {
+	display: none;
+	position: absolute 100% * * 0;
+	width: 150%;
+	z-index: 1;
+}
