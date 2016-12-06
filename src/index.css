@@ -5,7 +5,7 @@ body {
 
 .globnav {
 	box-shadow: 0 1px 0 0 #dedede;
-	color: #333 #fff;
+	color: #333333 #ffffff;
 	height: 64px;
 	position: absolute 0 0 *;
 
@@ -33,13 +33,18 @@ body {
 	color: #4c4c4c;
 	font-size: 17px/18px;
 	display: block;
-	padding: 25px 10px;
+	padding: 23px 10px;
 	text-decoration: none;
 }
 
 .globnav-child {
-	display: none;
-	position: absolute 100% * * 0;
+	background-color: #ffffff;
+	box-shadow: 0 0 0 1px #dedede;
+	position: absolute calc(100% + 1px) * * 0;
 	width: 150%;
 	z-index: 1;
+
+	@nest .globnav-item:not(:hover, [aria-expanded="true"]) & {
+		display: none;
+	}
 }
