@@ -30,7 +30,7 @@ module.exports = {
 			}),
 			require('postcss-easings')(),
 			require('postcss-short')(),
-			require('postcss-svg-fragments')(),
+			require('postcss-svg-fragments')({}),
 			require('cssnano')({
 				autoprefixer: false
 			})
