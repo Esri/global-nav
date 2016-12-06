@@ -1,3 +1,5 @@
+import createMenu from './list.js';
+
 export default class GlobNav {
 	// default Site CDN
 	static defaultSiteCDN = '/assets/site.json';
@@ -15,7 +17,7 @@ export default class GlobNav {
 	static defaultSiteObject = {
 		branding: {
 			href:  '//esri.com',
-			image: '//placehold.it/100x50'
+			image: '/assets/logo.svg'
 		},
 		navigation: [
 			{
@@ -39,12 +41,12 @@ export default class GlobNav {
 	};
 
 	static defaultClassNames = {
-		main:  'globnav',
-		list:  'globnav-list',
-		item:  'globnav-item',
-		link:  'globnav-link',
-		image: 'globnav-image',
-		child: 'globnav-child'
+		main: 'globnav',
+		list: 'globnav-list',
+		item: 'globnav-item',
+		link: 'globnav-link',
+		menu: 'globnav-menu',
+		img:  'globnav-image'
 	};
 
 	// Import Site Details from a CDN
@@ -92,54 +94,58 @@ export default class GlobNav {
 	}
 
 	static constructNavigationDOM(navigation, isChild) {
-		const div = document.createElement('div');
+		return createMenu(navigation, GlobNav.defaultClassNames, false);
 
-		div.classList.add(isChild ? GlobNav.defaultClassNames.child : GlobNav.defaultClassNames.main);
+		// const div = document.createElement('div');
 
-		const ul = div.appendChild(document.createElement('ul'));
+		// div.classList.add(isChild ? GlobNav.defaultClassNames.child : GlobNav.defaultClassNames.main);
 
-		ul.classList.add(GlobNav.defaultClassNames.list);
+		// const ul = div.appendChild(document.createElement('ul'));
 
-		ul.append(...navigation.map(
-			(item) => {
-				const li = document.createElement('li');
+		// ul.classList.add(GlobNav.defaultClassNames.list);
 
-				li.classList.add(GlobNav.defaultClassNames.item);
+		// ul.append(...navigation.map(
+		// 	(item) => {
+		// 		const li = document.createElement('li');
 
-				let label;
+		// 		li.classList.add(GlobNav.defaultClassNames.item);
 
-				if (item.image) {
-					label = li.appendChild(document.createElement('img'));
+		// 		let label;
 
-					label.classList.add(GlobNav.defaultClassNames.image);
+		// 		if (item.image) {
+		// 			label = li.appendChild(document.createElement('img'));
 
-					img.src = item.image;
+		// 			label.classList.add(GlobNav.defaultClassNames.image);
 
-					img.setAttribute('alt', item.label);
-				} else {
-					label = item.label;
-				}
+		// 			img.src = item.image;
 
-				if (item.href) {
-					const a = li.appendChild(document.createElement('a'));
+		// 			img.setAttribute('alt', item.label);
+		// 		} else {
+		// 			label = item.label;
+		// 		}
 
-					a.classList.add(GlobNav.defaultClassNames.link);
+		// 		if (item.href) {
+		// 			const a = li.appendChild(document.createElement('a'));
 
-					a.href = item.href;
+		// 			a.classList.add(GlobNav.defaultClassNames.link);
 
-					a.append(label);
-				} else {
-					li.append(label);
-				}
+		// 			a.href = item.href;
 
-				if (item.children) {
-					li.append(GlobNav.constructNavigationDOM(item.children, true));
-				}
+		// 			a.append(label);
+		// 		} else {
+		// 			li.append(label);
+		// 		}
 
-				return li;
-			}
-		));
+		// 		if (item.children) {
+		// 			a.setAttribute('[aria-controls]');
 
-		return div;
+		// 			li.append(GlobNav.constructNavigationDOM(item.children, true));
+		// 		}
+
+		// 		return li;
+		// 	}
+		// ));
+
+		// return div;
 	}
 }
