@@ -29,6 +29,14 @@ The **Globally-shared** section should receive little to no customization within
 
 ## Tablet
 ![Global Nav structure](https://github.com/ArcGIS/esri-global-nav/raw/master/readme-assets/esri-global-nav-concepts-mobile.png)
+SAAS Apps
+* Nav items are condensed and hidden under the ellipses icon and lives on the right.
+* App name/Project name remains
+* Logo remains (takes you to dashboard)
+
+Website
+* Nav items are condensed and hidden under the burger icon and lives on the left.
+* Logo remains (takes you home)
 
 ## Integrations
 Integrations for frameworks such as [Ember.js](http://emberjs.com/) and [AngularJS](https://angularjs.org/) would be a great addition and contributions are welcome.
