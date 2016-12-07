@@ -27,6 +27,9 @@ The **Globally-shared** section should receive little to no customization within
 * App Switcher
 * User Profile and profile dropdown
 
+## Tablet
+![Global Nav structure](https://github.com/ArcGIS/esri-global-nav/raw/master/readme-assets/esri-global-nav-concepts-mobile.png)
+
 ## Integrations
 Integrations for frameworks such as [Ember.js](http://emberjs.com/) and [AngularJS](https://angularjs.org/) would be a great addition and contributions are welcome.
 
