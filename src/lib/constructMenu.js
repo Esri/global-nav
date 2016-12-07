@@ -1,37 +1,43 @@
-export default function createMenu(entries, classNames, isChild) {
+// tooling
+import defaults from './defaults';
+
+const { className } = defaults;
+
+// plugin
+export default function constructMenu(entries, isChild) {
 	const menu = document.createElement('div');
 
-	menu.classList.add(isChild ? classNames.menu : classNames.main);
+	menu.classList.add(isChild ? className.menu : className.main);
 
 	const list = menu.appendChild(document.createElement('ul'));
 
-	list.classList.add(classNames.list);
+	list.classList.add(className.list);
 
 	entries.map(
 		(entry, index) => {
 			// ...
 			const item = list.appendChild(document.createElement('li'));
 
-			item.classList.add(classNames.item);
+			item.classList.add(className.item);
 
 			// ...
 			const link = item.appendChild(document.createElement('a'));
 
-			link.classList.add(classNames.link);
+			link.classList.add(className.link);
 
 			// ...
 			const label = link.appendChild(entry.image ? document.createElement('img') : document.createTextNode(entry.label));
 
 			// ...
-			const linkId = [createMenu.prefix, ++createMenu.uuid, 'link'].join('-');
-			const menuId = [createMenu.prefix, ++createMenu.uuid, 'menu'].join('-');
+			const linkId = [constructMenu.prefix, ++constructMenu.uuid, 'link'].join('-');
+			const menuId = [constructMenu.prefix, ++constructMenu.uuid, 'menu'].join('-');
 
 			// ...
 			if (entry.image) {
 				label.setAttribute('src', entry.image);
 				label.setAttribute('alt', entry.label);
 
-				label.classList.add(classNames.img);
+				label.classList.add(className.img);
 			}
 
 			// ...
@@ -42,7 +48,7 @@ export default function createMenu(entries, classNames, isChild) {
 				link.setAttribute('aria-haspopup', true);
 
 				// ...
-				const submenu = item.appendChild(createMenu(entry.children, classNames, true));
+				const submenu = item.appendChild(constructMenu(entry.children, true));
 
 				// ...
 				submenu.setAttribute('id', menuId);
@@ -57,7 +63,7 @@ export default function createMenu(entries, classNames, isChild) {
 }
 
 // prefix
-createMenu.prefix = 'globnav';
+constructMenu.prefix = 'globnav';
 
 // unique id
-createMenu.uuid = Date.now();
+constructMenu.uuid = Date.now();

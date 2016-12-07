@@ -5,7 +5,7 @@
   },
   "navigation": [
     {
-      "label": "Main Item 1",
+      "label": "Main Item A",
       "href":  "#",
       "children": [
         {
