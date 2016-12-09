@@ -2,6 +2,9 @@
   "name": "esri-global-nav",
   "private": true,
   "version": "1.0.0",
+  "scripts": {
+    "start": "rapid"
+  },
   "engines": {
     "node": ">=6.5.0"
   },
