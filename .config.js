@@ -1,9 +1,6 @@
 module.exports = {
 	name: 'global-nav',
-	dist: 'dist',
-	src:  'src',
 	html: {
-		dir:   'src',
 		from:  'src/index.jsx',
 		to:    'dist/index.html',
 		data:  'src/index.json',
@@ -18,10 +15,10 @@ module.exports = {
 		].join('')
 	},
 	css: {
-		dir:   'src',
 		from:  'src/index.css',
 		to:    'dist/index.css',
 		map:   'dist/index.css.map',
+		lint:  'src/**.css',
 		watch: /\.css$/,
 		plugins: [
 			require('postcss-partial-import')({
@@ -39,10 +36,10 @@ module.exports = {
 		]
 	},
 	js: {
-		dir:   'src',
 		from:  'src/index.js',
 		to:    'dist/index.js',
 		map:   'dist/index.js.map',
+		lint:  'src/**.js',
 		watch: /\.js$/,
 		plugins: [
 			require('rollup-plugin-node-resolve')({
