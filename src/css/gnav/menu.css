@@ -1,0 +1,32 @@
+/* Global Navigation: Menu section
+/* ========================================================================== */
+
+.esri-gnav-menu-list {
+	display: flex;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.esri-gnav-menu-item {
+	color: #4c4c4c;
+	position: relative;
+}
+
+.esri-gnav-menu-link {
+	color: #4c4c4c;
+	cursor: pointer;
+	display: block;
+	font-size: 17px/20px;
+	outline-offset: -.375em;
+	padding: 22px 10px;
+	text-decoration: none;
+
+	&:matches(:hover, :focus) {
+		color: #0079c1;
+	}
+
+	&:active {
+		box-shadow: inset 0 -5px 0 0 #0079c1;
+	}
+}

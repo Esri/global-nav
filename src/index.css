@@ -1,51 +1,22 @@
-body {
+html {
 	background-color: #f9f9f9;
-	font: 300 100%/1 "Avenir Next LT Pro", sans-serif;
 }
 
-.globnav {
-	box-shadow: 0 1px 0 0 #dedede;
-	color: #333333 #ffffff;
-	height: 64px;
-	position: absolute 0 0 *;
-
-	& > .globnav-list {
-		display: flex;
-	}
-
-	&, & * {
-		box-sizing: border-box;
-	}
-}
-
-.globnav-list {
+body {
 	margin: 0;
-	padding: 0;
-	list-style: none;
 }
 
-.globnav-item {
-	color: #4c4c4c;
-	position: relative;
-}
+@import "css/gnav";
 
-.globnav-link {
-	color: #4c4c4c;
-	cursor: pointer;
-	font-size: 17px/18px;
-	display: block;
-	padding: 23px 10px;
-	text-decoration: none;
-}
-
-.globnav-menu {
+/* .gnav-menu {
 	background-color: #ffffff;
 	box-shadow: 0 0 0 1px #dedede;
 	position: absolute calc(100% + 1px) * * 0;
 	width: 150%;
 	z-index: 1;
 
-	@nest .globnav-item:not(:hover, [aria-expanded="true"]) & {
+	@nest .gnav-item:not(:hover, [aria-expanded="true"]) & {
 		display: none;
 	}
 }
+ */
