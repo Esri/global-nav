@@ -23,4 +23,8 @@ function siteObject({
 	};
 }
 
-export { siteCDN, siteURL, siteObject }
+export {
+	siteCDN,
+	siteURL,
+	siteObject
+};

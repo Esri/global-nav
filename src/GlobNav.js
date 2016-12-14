@@ -13,4 +13,4 @@ export default class GlobNav {
 
 	// Globnav constructors
 	static constructMenu = constructMenu;
-};
+}

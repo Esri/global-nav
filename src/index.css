@@ -1,22 +1,10 @@
-html {
-	background-color: #f9f9f9;
-}
+/* Scaffolding (to be removed)
+/* ========================================================================== */
 
-body {
-	margin: 0;
-}
+@import "css/scaffolding";
+
+/* Global Navigation
+/* ========================================================================== */
 
 @import "css/gnav";
-
-/* .gnav-menu {
-	background-color: #ffffff;
-	box-shadow: 0 0 0 1px #dedede;
-	position: absolute calc(100% + 1px) * * 0;
-	width: 150%;
-	z-index: 1;
-
-	@nest .gnav-item:not(:hover, [aria-expanded="true"]) & {
-		display: none;
-	}
-}
- */
+@import "css/gnav/*.css";

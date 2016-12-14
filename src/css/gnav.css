@@ -67,11 +67,3 @@
 	line-height: 24px;
 	padding: 20px 16px;
 }
-
-/* Global Navigation: Special types
-/* ========================================================================== */
-
-@import "gnav/branding.css";
-@import "gnav/site.css";
-@import "gnav/user.css";
-@import "gnav/menu.css";

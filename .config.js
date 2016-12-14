@@ -1,46 +1,22 @@
 module.exports = {
 	name: 'global-nav',
-	html: {
-		from:  'src/index.jsx',
-		to:    'dist/index.html',
-		data:  'src/index.json',
-		watch: /\.jsx$|index\.json$/,
-		before: [
-			'<!doctype html>',
-			'<meta charset="utf-8">',
-			'<meta name="viewport" content="width=device-width,initial-scale=1">',
-			'<meta http-equiv="X-UA-Compatible" content="IE=edge">',
-			'<script src="index.js"></script>',
-			'<link href="index.css" rel="stylesheet">'
-		].join('')
-	},
+	html: {},
 	css: {
-		from:  'src/index.css',
-		to:    'dist/index.css',
-		map:   'dist/index.css.map',
-		lint:  'src/**.css',
-		watch: /\.css$/,
 		plugins: [
-			require('postcss-partial-import')({
-				prefix: ''
-			}),
+			require('postcss-partial-import')(),
 			require('postcss-cssnext')({
 				autoprefixer: false
 			}),
 			require('postcss-easings')(),
 			require('postcss-short')(),
-			require('postcss-svg-fragments')({}),
+			require('postcss-svg-fragments')(),
 			require('cssnano')({
 				autoprefixer: false
 			})
 		]
 	},
 	js: {
-		from:  'src/index.js',
-		to:    'dist/index.js',
-		map:   'dist/index.js.map',
-		lint:  'src/**.js',
-		watch: /\.js$/,
+		name: 'GlobNav',
 		plugins: [
 			require('rollup-plugin-node-resolve')({
 				jsnext: true
@@ -57,12 +33,7 @@ module.exports = {
 				]
 			}),
 			require('rollup-plugin-uglify')()
-		],
-		name: 'GlobNav'
+		]
 	},
-	assets: {
-		from:  'src/assets',
-		to:    'dist/assets',
-		watch: /^assets/
-	}
+	assets: {}
 };

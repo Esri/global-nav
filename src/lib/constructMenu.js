@@ -1,7 +1,9 @@
 // tooling
 import defaults from './defaults';
 
-const { className } = defaults;
+const {
+	className
+} = defaults;
 
 // plugin
 export default function constructMenu(entries, isChild) {
@@ -14,7 +16,7 @@ export default function constructMenu(entries, isChild) {
 	list.classList.add(className.list);
 
 	entries.map(
-		(entry, index) => {
+		(entry) => {
 			// ...
 			const item = list.appendChild(document.createElement('li'));
 
