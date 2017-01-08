@@ -1,0 +1,37 @@
+{
+  "brandingImage": "assets/gnav.svg#logo",
+  "globalMenus": [
+    [
+      {
+        "label": "ArcGIS",
+        "href": "#"
+      },
+      {
+        "label": "Industries",
+        "href": "#"
+      },
+      {
+        "label": "About",
+        "href": "#"
+      },
+      {
+        "label": "Support",
+        "href": "#"
+      }
+    ],
+    [
+      {
+        "label": "Special",
+        "href": "#"
+      }
+    ]
+  ],
+  "searchImage": "assets/gnav.svg#search",
+  "appsImage": "assets/gnav.svg#apps",
+  "loginText": "Sign In",
+  "user": {
+    "avatar": "//placehold.it/64x64",
+    "name": "Matthew",
+    "id": "MJP@mysandiego"
+  }
+}

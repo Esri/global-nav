@@ -30,3 +30,25 @@
 		box-shadow: inset 0 -5px 0 0 #0079c1;
 	}
 }
+
+.esri-gnav-sub {
+	background-color: #ffffff;
+	box-shadow: inset 0 0 0 1px #dedede;
+	min-size: 160px *;
+	position: absolute 100% * * 0;
+
+	&:not([aria-expanded="true"]) {
+		display: none;
+	}
+}
+
+.esri-gnav-sub-list {
+	list-style: none;
+	padding: 0;
+}
+
+.esri-gnav-sub-link {
+	display: block;
+	outline-offset: -.375em;
+	padding: 22px 10px;
+}

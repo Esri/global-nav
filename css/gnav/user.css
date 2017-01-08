@@ -1,0 +1,41 @@
+/* Global Navigation: User section
+/* ========================================================================== */
+
+.esri-gnav-user {
+	display: flex;
+	flex-grow: 0;
+
+	& > :first-child {
+		box-shadow: -1px 0 0 0 #e0e0e0;
+	}
+}
+
+.esri-gnav-account {
+	display: block;
+	line-height: 1;
+	padding: 16px *;
+	padding-left: calc(32px + 16px + 12px);
+	position: relative;
+	text-align: left;
+}
+
+.esri-gnav-account-avatar {
+	border-radius: 50%;
+	position: absolute calc(50% - 32px / 2) * * 16px;
+	size: 32px;
+}
+
+.esri-gnav-account-name,
+.esri-gnav-account-id {
+	display: block;
+}
+
+.esri-gnav-account-name {
+	color: rgb(50, 50, 50);
+	font-size: 15px/16px;
+	font-weight: 700;
+}
+
+.esri-gnav-account-id {
+	font-size: 14px/16px;
+}
