@@ -5,7 +5,7 @@
   "main": "index.js",
   "context": "index.json",
   "style": "index.css",
-  "template": "index.jsx",
+  "template": "index.html",
   "scripts": {
     "lint": "npm run lint:ec && npm run lint:css && npm run lint:js",
     "lint:ec": "echint",
