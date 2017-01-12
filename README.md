@@ -1,8 +1,8 @@
 # Esri Global Navigation [<img src="https://upload.wikimedia.org/wikipedia/commons/5/52/WHATWG_DOM_logo.svg" alt="WHATWG DOM logo" width="90" height="90" align="right">][Esri Global Navigation]
 
 [![Build Status][cli-img]][cli-url]
-[![Licensing][lic-image]][lic-url]
-[![Changelog][log-image]][log-url]
+[![Licensing][lic-img]][lic-url]
+[![Changelog][log-img]][log-url]
 
 [Esri Global Navigation] is the presentation layer of the top-level navigation for Esri's web pages and SAAS applications. It consists of the markup (HTML), styles (CSS), and functionality for UI interactions.
 
@@ -20,16 +20,10 @@ We recommend using **Esri Global Navigation** with a package manager, as it is t
 npm install ArcGIS/esri-global-nav --save-dev
 ```
 
-Build the source of this component into a `dist` directory.
+Once installed, host the component.
 
 ```sh
-npm start dist
-```
-
-Alternatively, host the `dist` directory as a local website at [http://localhost:8080](http://localhost:8080).
-
-```sh
-npm start host
+npm start
 ```
 
 ## Structure
@@ -81,6 +75,6 @@ Contributions are welcome in all forms: issues, pull requests, concepts, inquiri
 [cli-url]: https://travis-ci.com/ArcGIS/esri-global-nav
 [cli-img]: https://api.travis-ci.com/ArcGIS/esri-global-nav.svg?token=mqvp34VgHUamyk5XDa9d
 [lic-url]: LICENSE.md
-[lic-image]: https://img.shields.io/badge/license-CC0--1.0-blue.svg
+[lic-img]: https://img.shields.io/badge/license-CC0--1.0-blue.svg
 [log-url]: CHANGELOG.md
-[log-image]: https://img.shields.io/badge/changelog-md-blue.svg
+[log-img]: https://img.shields.io/badge/changelog-md-blue.svg
