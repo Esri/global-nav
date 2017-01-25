@@ -25,6 +25,9 @@
     "stylelint": "^7.7.1",
     "stylelint-config-dev": "^1.0.0"
   },
+  "echint": {
+    "extends": "dev"
+  },
   "eslintConfig": {
     "extends": "dev"
   },
