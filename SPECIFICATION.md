@@ -93,7 +93,12 @@ This document details the elements used to present the Global Navigation compone
 
 ## GlobNav Events
 
-This section details the events emitted by Global Navigation component during user interaction. All events are prefixed with `esriglobnav:` (e.g. `esriglobnav:click`).
+This section details the events emitted by Global Navigation component during user interaction.
+
+- Events are prefixed with `esriglobnav:`.
+- Events bubble up to the window.
+- Events `target` is the deepest applicable element
+- Events `currentTarget` is the components outermost container.
 
 ### `click`
 
@@ -102,7 +107,7 @@ Returns the element within the global nav that is clicked.
 ```js
 addEventListener(
   'esriglobnav:click',
-  (event.target) => console.log('clicked:', event.target)
+  (event) => console.log('clicked:', event.target)
 )
 ```
 
@@ -113,7 +118,7 @@ Returns the login element within the global nav that is clicked.
 ```js
 addEventListener(
   'esriglobnav:login',
-  (event.target) => console.log('clicked login:', event.target)
+  (event) => console.log('clicked login:', event.target)
 )
 ```
 
@@ -124,7 +129,7 @@ Returns the menu element within the global nav that is clicked.
 ```js
 addEventListener(
   'esriglobnav:menu',
-  (event.target) => console.log('clicked menu:', event.target)
+  (event) => console.log('clicked menu:', event.target)
 )
 ```
 
@@ -135,7 +140,7 @@ Returns the element within the global nav that has triggered an expand.
 ```js
 addEventListener(
   'esriglobnav:expand',
-  (event.target) => console.log('expand from:', event.target)
+  (event) => console.log('expand from:', event.target)
 )
 ```
 
@@ -146,7 +151,7 @@ Returns the element within the global nav that has been expanded.
 ```js
 addEventListener(
   'esriglobnav:expanded',
-  (event.target) => console.log('expanded element:', event.target)
+  (event) => console.log('expanded element:', event.target)
 )
 ```
 
