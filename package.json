@@ -15,13 +15,13 @@
     "test": "npm run lint"
   },
   "devDependencies": {
-    "echint": "^2.1.0",
+    "echint": "^2.1.1",
     "echint-config-dev": "1.0.0",
-    "eslint": "^3.8.1",
+    "eslint": "^3.14.0",
     "eslint-config-dev": "^1.0.0",
     "pre-commit": "^1.2.2",
-    "rapid": "github:jonathantneal/rapid",
-    "rapid-config-dev": "github:jonathantneal/rapid-config-dev",
+    "rapid": "^1.0.0",
+    "rapid-config-dev": "^1.0.0",
     "stylelint": "^7.7.1",
     "stylelint-config-dev": "^1.0.0"
   },
