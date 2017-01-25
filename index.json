@@ -4,7 +4,21 @@
     [
       {
         "label": "ArcGIS",
-        "href": "#1"
+        "href": "#1",
+        "menus": [
+          {
+            "label": "ArcGIS Child 1",
+            "href": "#1-1"
+          },
+          {
+            "label": "ArcGIS Child 2",
+            "href": "#1-2"
+          },
+          {
+            "label": "ArcGIS Child 3",
+            "href": "#1-3"
+          }
+        ]
       },
       {
         "label": "Industries",

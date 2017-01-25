@@ -9,6 +9,15 @@
 					${ menu.map(
 						(item) => `<li class="esri-gnav-menu-item">
 							<a class="esri-gnav-menu-link" href="${ item.href }">${ item.label }</a>
+							${ item.menus && item.menus.length ? `<div class="esri-gnav-sub" aria-expanded="true">
+								<ul class="esri-gnav-sub-list">
+									${ item.menus.map(
+										(item) => `<li class="esri-gnav-sub-item">
+											<a class="esri-gnav-sub-link" href="${ item.href }">${ item.label }</a>
+										</li>`
+									) }
+								</ul>
+							</div>` : '' }
 						</li>`
 					) }
 				</ul>

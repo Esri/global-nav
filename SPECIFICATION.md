@@ -96,15 +96,12 @@ This document details the elements used to present the Global Navigation compone
 ```json
 {
   "search": {
-    "label": "hidden accessible label",
-    "image": "/path/to/image"
+    "label": "hidden accessible label"
   }
 }
 ```
 
 - If `search` is not specified, then it will not appear.
-- `image` may also be the hash id (e.g. `#search`) to the bundled globnav icon.
-@jonathantneal Does `image` here have a default value that points to the bundled icon?
 
 ### GlobNav Account
 
@@ -159,6 +156,17 @@ Returns the login element within the global nav that is clicked.
 addEventListener(
   'esriglobnav:login',
   (event) => console.log('clicked login:', event.target)
+)
+```
+
+### `click:search`
+
+Returns the search element within the global nav that is clicked.
+
+```js
+addEventListener(
+  'esriglobnav:search',
+  (event) => console.log('clicked search:', event.target)
 )
 ```
 
