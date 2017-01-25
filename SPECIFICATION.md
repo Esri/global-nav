@@ -51,18 +51,28 @@ This document details the elements used to present the Global Navigation compone
 | menus | [GlobNav Menus] | -          |   | 1+ | 
 
 ```json
-{
-  "label": "visible label",
-  "href":  "//domain/path/to/destination",
-  "menus": [ ... ]
-}
+[
+  {
+    "label": "visible label",
+    "href":  "//domain/path/to/destination",
+    "menus": [ ... ]
+  },
+  { ... }
+],
+[
+  {
+    "label": "a second navigation",
+    "href":  "//domain/path/to/destination"
+  },
+  { ... }
+]
 ```
 
 ### GlobNav Search
 
 | Element | Uses | From | Required | Restrictions |
 |:------- |:---- |:----:|:--------:|:------------:|
-| label | plain text    | input text | • | 1  |
+| label | plain text | input text | • | 1 |
 
 ```json
 {
@@ -79,7 +89,66 @@ This document details the elements used to present the Global Navigation compone
 | id     | plain text | input text | • | 1 |
 | avatar | image url  | input url  | • | 1 |
 
-- `label` is used to display the “Sign In” text.
+- `label` is used to display the “*Login*” text.
+
+## GlobNav Events
+
+This section details the events emitted by Global Navigation component during user interaction. All events are prefixed with `esriglobnav:` (e.g. `esriglobnav:click`).
+
+### `click`
+
+Returns the element within the global nav that is clicked.
+
+```js
+addEventListener(
+  'esriglobnav:click',
+  (event.target) => console.log('clicked:', event.target)
+)
+```
+
+### `click:login`
+
+Returns the login element within the global nav that is clicked.
+
+```js
+addEventListener(
+  'esriglobnav:login',
+  (event.target) => console.log('clicked login:', event.target)
+)
+```
+
+### `click:menu`
+
+Returns the menu element within the global nav that is clicked.
+
+```js
+addEventListener(
+  'esriglobnav:menu',
+  (event.target) => console.log('clicked menu:', event.target)
+)
+```
+
+### `expand`
+
+Returns the element within the global nav that has triggered an expand.
+
+```js
+addEventListener(
+  'esriglobnav:expand',
+  (event.target) => console.log('expand from:', event.target)
+)
+```
+
+### `expanded`
+
+Returns the element within the global nav that has been expanded.
+
+```js
+addEventListener(
+  'esriglobnav:expanded',
+  (event.target) => console.log('expanded element:', event.target)
+)
+```
 
 [GlobNav]: #globnav
 [GlobNav Brand]: #globnav-brand
