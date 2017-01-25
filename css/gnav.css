@@ -6,7 +6,7 @@
 	color: #4c4c4c #ffffff;
 	cursor: default;
 	display: flex;
-	font: 300 16px/1 "Avenir Next LT Pro";
+	font: 300 16px/1 "Avenir Next LT Pro", "Century Gothic", sans-serif;
 	justify-content: space-between;
 	size: * 64px;
 
