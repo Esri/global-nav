@@ -36,9 +36,11 @@ This document details the elements used to present the Global Navigation compone
 
 ```json
 {
-  "label": "hidden accessible label",
-  "image": "//domain/path/to/image",
-  "href":  "//domain/path/to/destination"
+  "brand": {
+    "label": "hidden accessible label",
+    "image": "//domain/path/to/image",
+    "href":  "//domain/path/to/destination"
+  }
 }
 ```
 
@@ -51,21 +53,29 @@ This document details the elements used to present the Global Navigation compone
 | menus | [GlobNav Menus] | -          |   | 1+ | 
 
 ```json
-[
-  {
-    "label": "visible label",
-    "href":  "//domain/path/to/destination",
-    "menus": [ ... ]
-  },
-  { ... }
-],
-[
-  {
-    "label": "a second navigation",
-    "href":  "//domain/path/to/destination"
-  },
-  { ... }
-]
+{
+  "menus": [
+    {
+      "label": "visible item name",
+      "href":  "/path/to/destination"
+    },
+    { ... }
+  ],
+  [
+    {
+      "label": "secondary navigation",
+      "href":  "/path/to/destination",
+      "menus": [
+        {
+          "label": "child item",
+          "href":  "/path/to/destination"
+        },
+        ...
+      ]
+    },
+    { ... }
+  ]
+}
 ```
 
 ### GlobNav Search
@@ -73,12 +83,18 @@ This document details the elements used to present the Global Navigation compone
 | Element | Uses | From | Required | Restrictions |
 |:------- |:---- |:----:|:--------:|:------------:|
 | label | plain text | input text | • | 1 |
+| image | image url  | input url  | • | 1 |
 
 ```json
 {
-  "label": "hidden accessible label"
+  "search": {
+    "label": "hidden accessible label"
+    "image": "/path/to/image"
+  }
 }
 ```
+
+- `image` may also be the hash id (e.g. `#search`) to the bundled globnav icon.
 
 ### GlobNav Account
 
@@ -88,6 +104,17 @@ This document details the elements used to present the Global Navigation compone
 | name   | plain text | input text | • | 1 |
 | id     | plain text | input text | • | 1 |
 | avatar | image url  | input url  | • | 1 |
+
+```json
+{
+  "account": {
+    "label":  "Sign In"
+    "name":   "Bruce Campbell",
+    "id":     "GroovyBruce",
+    "avatar": "/path/to/avatar"
+  }
+}
+```
 
 - `label` is used to display the “*Login*” text.
 
