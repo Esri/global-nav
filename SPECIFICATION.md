@@ -55,25 +55,27 @@ This document details the elements used to present the Global Navigation compone
 ```json
 {
   "menus": [
-    {
-      "label": "visible item name",
-      "href":  "/path/to/destination"
-    },
-    { ... }
-  ],
-  [
-    {
-      "label": "secondary navigation",
-      "href":  "/path/to/destination",
-      "menus": [
-        {
-          "label": "child item",
-          "href":  "/path/to/destination"
-        },
-        ...
-      ]
-    },
-    { ... }
+    [
+      {
+        "label": "visible item name",
+        "href":  "/path/to/destination"
+      },
+      { ... }
+    ],
+    [
+      {
+        "label": "secondary navigation",
+        "href":  "/path/to/destination",
+        "menus": [
+          {
+            "label": "child item",
+            "href":  "/path/to/destination"
+          },
+          ...
+        ]
+      },
+      { ... }
+    ]
   ]
 }
 ```
