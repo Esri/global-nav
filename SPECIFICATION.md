@@ -104,6 +104,7 @@ This document details the elements used to present the Global Navigation compone
 
 - If `search` is not specified, then it will not appear.
 - `image` may also be the hash id (e.g. `#search`) to the bundled globnav icon.
+@jonathantneal Does `image` here have a default value that points to the bundled icon?
 
 ### GlobNav Account
 
