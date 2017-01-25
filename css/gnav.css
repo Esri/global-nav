@@ -10,7 +10,10 @@
 	justify-content: space-between;
 	size: * 64px;
 
-	&, & * {
+	/* selectively sanitize sub-elements */
+
+	&,
+	& * {
 		box-sizing: border-box;
 	}
 
@@ -29,41 +32,13 @@
 	}
 }
 
+/* Global Navigation: Variations
+/* ========================================================================== */
+
 .esri-gnav--absolute {
 	position: absolute 0 0 *;
 }
 
 .esri-gnav--fixed {
 	position: fixed 0 0 *;
-}
-
-/* Global Navigation: General types
-/* ========================================================================== */
-
-.esri-gnav-link {
-	color: #4c4c4c;
-	cursor: pointer;
-	outline-offset: -.375em;
-	padding: 0;
-
-	&:matches(:hover, :focus) {
-		color: #0079c1;
-	}
-}
-
-.esri-gnav-icon {
-	margin: 20px 28px;
-	size: 24px;
-}
-
-.esri-gnav-text {
-	display: flex;
-	line-height: 24px;
-	margin: 20px 16px;
-}
-
-.esri-gnav-button {
-	display: flex;
-	line-height: 24px;
-	padding: 20px 16px;
 }
