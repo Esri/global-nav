@@ -91,7 +91,6 @@ This document details the elements used to present the Global Navigation compone
 | Element | Uses | From | Required | Restrictions |
 |:------- |:---- |:----:|:--------:|:------------:|
 | label | plain text | input text | • | 1 |
-| image | image url  | input url  | • | 1 |
 
 ```json
 {
