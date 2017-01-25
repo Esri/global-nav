@@ -44,6 +44,8 @@ This document details the elements used to present the Global Navigation compone
 }
 ```
 
+- If `brand` is not specified, then it will not appear.
+
 ### GlobNav Menus
 
 | Element | Uses | From | Required | Restrictions |
@@ -80,6 +82,10 @@ This document details the elements used to present the Global Navigation compone
 }
 ```
 
+- If no `menus` are specified, then they will not appear.
+- If `menus` contains more than one item, they will be visually justified.
+- While `menus` may nest infinitly, only the top and child items will be used.
+
 ### GlobNav Search
 
 | Element | Uses | From | Required | Restrictions |
@@ -96,6 +102,7 @@ This document details the elements used to present the Global Navigation compone
 }
 ```
 
+- If `search` is not specified, then it will not appear.
 - `image` may also be the hash id (e.g. `#search`) to the bundled globnav icon.
 
 ### GlobNav Account
@@ -118,7 +125,10 @@ This document details the elements used to present the Global Navigation compone
 }
 ```
 
+- If `account` is not specified, then it will not appear.
 - `label` is used to display the “*Login*” text.
+
+---
 
 ## GlobNav Events
 
