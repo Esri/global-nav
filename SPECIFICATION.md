@@ -96,7 +96,7 @@ This document details the elements used to present the Global Navigation compone
 ```json
 {
   "search": {
-    "label": "hidden accessible label"
+    "label": "hidden accessible label",
     "image": "/path/to/image"
   }
 }
@@ -117,7 +117,7 @@ This document details the elements used to present the Global Navigation compone
 ```json
 {
   "account": {
-    "label":  "Sign In"
+    "label":  "Sign In",
     "name":   "Bruce Campbell",
     "id":     "GroovyBruce",
     "avatar": "/path/to/avatar"
