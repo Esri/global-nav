@@ -1,6 +1,12 @@
-# Global Navigation (gnav) Component
+# Esri Global Navigation [<img src="https://upload.wikimedia.org/wikipedia/commons/5/52/WHATWG_DOM_logo.svg" alt="WHATWG DOM logo" width="90" height="90" align="right">][Esri Global Navigation]
 
-This document details the elements used to present the Global Navigation component.
+[![Build Status][cli-img]][cli-url]
+[![Licensing][lic-img]][lic-url]
+[![Changelog][log-img]][log-url]
+
+This document details the elements used to present the [Esri Global Navigation] \(gnav) component.
+
+![Global Navigation: desktop view](readme-assets/esri-global-nav-desktop.png)
 
 | Element | Uses | From | Required | Limitations |
 |:------- |:---- |:----:|:--------:|:-----------:|
@@ -14,6 +20,7 @@ This document details the elements used to present the Global Navigation compone
   "brand":   { ... },
   "menus":   [ ... ],
   "search":  { ... },
+  "apps":    { ... },
   "account": { ... }
 }
 ```
@@ -22,9 +29,12 @@ This document details the elements used to present the Global Navigation compone
 - If no `menus` are specified, then they will not appear.
 - If `menus` contains more than one item, they will be visually justified.
 - If `search` is not specified, then it will not appear.
+- If `apps` is not specified, then it will not appear.
 - If `account` is not specified, then it will not appear.
 
 ### Gnav Brand
+
+![Global Navigation: brand](readme-assets/esri-global-nav-brand.png)
 
 | Element | Uses | From | Required | Limitations |
 |:------- |:---- |:----:|:--------:|:-----------:|
@@ -45,6 +55,8 @@ This document details the elements used to present the Global Navigation compone
 - If `brand` is not specified, then it will not appear.
 
 ### Gnav Menus
+
+![Global Navigation: menus](readme-assets/esri-global-nav-menus.png)
 
 | Element | Uses | From | Required | Limitations |
 |:------- |:---- |:----:|:--------:|:-----------:|
@@ -86,6 +98,8 @@ This document details the elements used to present the Global Navigation compone
 
 ### Gnav Search
 
+![Global Navigation: search](readme-assets/esri-global-nav-search.png)
+
 | Element | Uses | From | Required | Limitations |
 |:------- |:---- |:----:|:--------:|:-----------:|
 | label | plain text | input text | • | 1 |
@@ -100,7 +114,34 @@ This document details the elements used to present the Global Navigation compone
 
 - If `search` is not specified, then it will not appear.
 
+### Gnav Apps
+
+![Global Navigation: apps](readme-assets/esri-global-nav-apps.png)
+
+| Element | Uses | From | Required | Limitations |
+|:------- |:---- |:----:|:--------:|:-----------:|
+| label  | plain text | input text    | • | 1 |
+| image  | image url  | image gallery | • | 1 |
+| href   | url        | input url     | • | 1 |
+
+```json
+{
+  "apps": [
+    {
+      "label": "Application Name",
+      "image": "/path/to/image",
+      "href":  "/path/to/destination"
+    },
+    ...
+  ]
+}
+```
+
+- If `apps` is not specified, then it will not appear.
+
 ### Gnav Account
+
+![Global Navigation: account](readme-assets/esri-global-nav-account.png)
 
 | Element | Uses | From | Required | Limitations |
 |:------- |:---- |:----:|:--------:|:-----------:|
@@ -236,6 +277,15 @@ SAAS Apps
 Website
 * Nav items are condensed and hidden under the burger icon and lives on the left.
 * Logo remains (takes you home)
+
+[Esri Global Navigation]: https://github.com/ArcGIS/esri-global-nav
+
+[cli-url]: https://travis-ci.com/ArcGIS/esri-global-nav
+[cli-img]: https://api.travis-ci.com/ArcGIS/esri-global-nav.svg?token=mqvp34VgHUamyk5XDa9d
+[lic-url]: LICENSE.md
+[lic-img]: https://img.shields.io/badge/license-CC0--1.0-blue.svg
+[log-url]: CHANGELOG.md
+[log-img]: https://img.shields.io/badge/changelog-md-blue.svg
 
 [Gnav]: #global-navigation-gnav-component
 [Gnav Brand]: #gnav-brand
