@@ -34,7 +34,7 @@ This document details the elements used to present the [Esri Global Navigation] 
 
 ### Gnav Brand
 
-![Global Navigation: brand](readme-assets/esri-global-nav-brand.png)
+![Global Navigation: brand](readme-assets/esri-global-nav-element-brand.png)
 
 | Element | Uses | From | Required | Limitations |
 |:------- |:---- |:----:|:--------:|:-----------:|
@@ -56,7 +56,7 @@ This document details the elements used to present the [Esri Global Navigation] 
 
 ### Gnav Menus
 
-![Global Navigation: menus](readme-assets/esri-global-nav-menus.png)
+![Global Navigation: menus](readme-assets/esri-global-nav-element-menus.png)
 
 | Element | Uses | From | Required | Limitations |
 |:------- |:---- |:----:|:--------:|:-----------:|
@@ -98,7 +98,7 @@ This document details the elements used to present the [Esri Global Navigation] 
 
 ### Gnav Search
 
-![Global Navigation: search](readme-assets/esri-global-nav-search.png)
+![Global Navigation: search](readme-assets/esri-global-nav-element-search.png)
 
 | Element | Uses | From | Required | Limitations |
 |:------- |:---- |:----:|:--------:|:-----------:|
@@ -116,7 +116,7 @@ This document details the elements used to present the [Esri Global Navigation] 
 
 ### Gnav Apps
 
-![Global Navigation: apps](readme-assets/esri-global-nav-apps.png)
+![Global Navigation: apps](readme-assets/esri-global-nav-element-apps.png)
 
 | Element | Uses | From | Required | Limitations |
 |:------- |:---- |:----:|:--------:|:-----------:|
@@ -141,7 +141,7 @@ This document details the elements used to present the [Esri Global Navigation] 
 
 ### Gnav Account
 
-![Global Navigation: account](readme-assets/esri-global-nav-account.png)
+![Global Navigation: account](readme-assets/esri-global-nav-element-account.png)
 
 | Element | Uses | From | Required | Limitations |
 |:------- |:---- |:----:|:--------:|:-----------:|
