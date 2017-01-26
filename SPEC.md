@@ -10,10 +10,10 @@ This document details the elements used to present the [Esri Global Navigation] 
 
 | Element | Uses | From | Required | Limitations |
 |:------- |:---- |:----:|:--------:|:-----------:|
-| brand   | [Gnav Brand]   | - | | 1  |
-| menus   | [Gnav Menus]   | - | | 1+ |
-| search  | [Gnav Search]  | - | | 1  |
-| account | [Gnav Account] | - | | 1  |
+| brand   | [Gnav Brand]   | | | 1  |
+| menus   | [Gnav Menus]   | | | 1+ |
+| search  | [Gnav Search]  | | | 1  |
+| account | [Gnav Account] | | | 1  |
 
 ```json
 {
@@ -62,7 +62,7 @@ This document details the elements used to present the [Esri Global Navigation] 
 |:------- |:---- |:----:|:--------:|:-----------:|
 | label | plain text      | input text | • | 1  |
 | href  | url             | input url  |   | 1  |
-| menus | [Gnav Menus] | -          |   | 1+ | 
+| menus | [Gnav Menus]    |            |   | 1+ | 
 
 ```json
 {
