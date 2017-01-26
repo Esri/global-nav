@@ -20,45 +20,29 @@ We recommend using **Esri Global Navigation** with a package manager, as it is t
 npm install ArcGIS/esri-global-nav --save-dev
 ```
 
-Once installed, host the component.
+## Development
+
+Clone this repository to your computer.
+
+```sh
+git clone git@github.com:ArcGIS/esri-global-nav.git
+```
+
+Install the component locally.
+
+```sh
+npm install
+```
+
+Host the component as a local web server. This will let you preview the component as well as any changes you make to it.
 
 ```sh
 npm start
 ```
 
-## Structure
+## Specification
 
-![Global Nav structure](readme-assets/esri-global-nav-concepts.png)
-
-The component has three sections:
-
-* Branding
-* Navigation
-* Globally-shared
-
-The **Navigation** section has the greatest flexibility.  That being said, the default styles applied to this section should require little and possibly no customization to address individual needs.
-
-This section also includes some nice styles and animations for the sub-nav elements.
-
-The **Branding** section contains styles for SAAS applications which are distinct from site pages.
-
-The **Globally-shared** section should receive little to no customization within your implementation.  It contains the following:
-* Search link
-* App Switcher
-* User Profile and profile dropdown
-
-#### Tablet
-
-![global navigation structure](readme-assets/esri-global-nav-concepts-mobile.png)
-
-SAAS Apps
-* Nav items are condensed and hidden under the ellipses icon and lives on the right.
-* App name/Project name remains
-* Logo remains (takes you to dashboard)
-
-Website
-* Nav items are condensed and hidden under the burger icon and lives on the left.
-* Logo remains (takes you home)
+To understand the structure and break down of the Global Navigation component, see [SPEC.md].
 
 ## Integrations
 
@@ -71,6 +55,7 @@ Contributions are welcome in all forms: issues, pull requests, concepts, inquiri
 [Esri Global Navigation]: https://github.com/ArcGIS/esri-global-nav
 [Ember]: http://emberjs.com/
 [AngularJS]: https://angularjs.org/
+[SPEC.md]: SPEC.md
 
 [cli-url]: https://travis-ci.com/ArcGIS/esri-global-nav
 [cli-img]: https://api.travis-ci.com/ArcGIS/esri-global-nav.svg?token=mqvp34VgHUamyk5XDa9d

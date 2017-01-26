@@ -1,15 +1,13 @@
-# Global Navigation Component Specification
+# Global Navigation (gnav) Component
 
 This document details the elements used to present the Global Navigation component.
 
-## GlobNav
-
-| Element | Uses | From | Required | Restrictions |
-|:------- |:---- |:----:|:--------:|:------------:|
-| brand   | [GlobNav Brand]   | - | | 1  |
-| menus   | [GlobNav Menus]   | - | | 1+ |
-| search  | [GlobNav Search]  | - | | 1  |
-| account | [GlobNav Account] | - | | 1  |
+| Element | Uses | From | Required | Limitations |
+|:------- |:---- |:----:|:--------:|:-----------:|
+| brand   | [Gnav Brand]   | - | | 1  |
+| menus   | [Gnav Menus]   | - | | 1+ |
+| search  | [Gnav Search]  | - | | 1  |
+| account | [Gnav Account] | - | | 1  |
 
 ```json
 {
@@ -26,10 +24,10 @@ This document details the elements used to present the Global Navigation compone
 - If `search` is not specified, then it will not appear.
 - If `account` is not specified, then it will not appear.
 
-### GlobNav Brand
+### Gnav Brand
 
-| Element | Uses | From | Required | Restrictions |
-|:------- |:---- |:----:|:--------:|:------------:|
+| Element | Uses | From | Required | Limitations |
+|:------- |:---- |:----:|:--------:|:-----------:|
 | label | plain text | input text | • | 1 |
 | image | image url  | input url  | • | 1 |
 | href  | url        | input url  | | 1 |
@@ -46,13 +44,13 @@ This document details the elements used to present the Global Navigation compone
 
 - If `brand` is not specified, then it will not appear.
 
-### GlobNav Menus
+### Gnav Menus
 
-| Element | Uses | From | Required | Restrictions |
-|:------- |:---- |:----:|:--------:|:------------:|
+| Element | Uses | From | Required | Limitations |
+|:------- |:---- |:----:|:--------:|:-----------:|
 | label | plain text      | input text | • | 1  |
 | href  | url             | input url  |   | 1  |
-| menus | [GlobNav Menus] | -          |   | 1+ | 
+| menus | [Gnav Menus] | -          |   | 1+ | 
 
 ```json
 {
@@ -86,10 +84,10 @@ This document details the elements used to present the Global Navigation compone
 - If `menus` contains more than one item, they will be visually justified.
 - While `menus` may nest infinitly, only the top and child items will be used.
 
-### GlobNav Search
+### Gnav Search
 
-| Element | Uses | From | Required | Restrictions |
-|:------- |:---- |:----:|:--------:|:------------:|
+| Element | Uses | From | Required | Limitations |
+|:------- |:---- |:----:|:--------:|:-----------:|
 | label | plain text | input text | • | 1 |
 
 ```json
@@ -102,10 +100,10 @@ This document details the elements used to present the Global Navigation compone
 
 - If `search` is not specified, then it will not appear.
 
-### GlobNav Account
+### Gnav Account
 
-| Element | Uses | From | Required | Restrictions |
-|:------- |:---- |:----:|:--------:|:------------:|
+| Element | Uses | From | Required | Limitations |
+|:------- |:---- |:----:|:--------:|:-----------:|
 | label  | plain text | input text | • | 1 |
 | name   | plain text | input text | • | 1 |
 | id     | plain text | input text | • | 1 |
@@ -127,11 +125,11 @@ This document details the elements used to present the Global Navigation compone
 
 ---
 
-## GlobNav Events
+## Gnav Events
 
 This section details the events emitted by Global Navigation component during user interaction.
 
-- Events are prefixed with `esriglobnav:`.
+- Events are prefixed with `esri-gnav:`.
 - Events bubble up to the window.
 - Events `target` is the deepest applicable element
 - Events `currentTarget` is the components outermost container.
@@ -142,7 +140,7 @@ Returns the element within the global nav that is clicked.
 
 ```js
 addEventListener(
-  'esriglobnav:click',
+  'esri-gnav:click',
   (event) => console.log('clicked:', event.target)
 )
 ```
@@ -153,7 +151,7 @@ Returns the login element within the global nav that is clicked.
 
 ```js
 addEventListener(
-  'esriglobnav:login',
+  'esri-gnav:login',
   (event) => console.log('clicked login:', event.target)
 )
 ```
@@ -164,7 +162,7 @@ Returns the search element within the global nav that is clicked.
 
 ```js
 addEventListener(
-  'esriglobnav:search',
+  'esri-gnav:search',
   (event) => console.log('clicked search:', event.target)
 )
 ```
@@ -175,7 +173,7 @@ Returns the menu element within the global nav that is clicked.
 
 ```js
 addEventListener(
-  'esriglobnav:menu',
+  'esri-gnav:menu',
   (event) => console.log('clicked menu:', event.target)
 )
 ```
@@ -186,7 +184,7 @@ Returns the element within the global nav that has triggered an expand.
 
 ```js
 addEventListener(
-  'esriglobnav:expand',
+  'esri-gnav:expand',
   (event) => console.log('expand from:', event.target)
 )
 ```
@@ -197,13 +195,51 @@ Returns the element within the global nav that has been expanded.
 
 ```js
 addEventListener(
-  'esriglobnav:expanded',
+  'esri-gnav:expanded',
   (event) => console.log('expanded element:', event.target)
 )
 ```
 
-[GlobNav]: #globnav
-[GlobNav Brand]: #globnav-brand
-[GlobNav Menus]: #globnav-menus
-[GlobNav Search]: #globnav-search
-[GlobNav Account]: #globnav-account
+---
+
+
+## Structure
+
+![Global Nav structure](readme-assets/esri-global-nav-concepts.png)
+
+The component has three sections:
+
+* Branding
+* Navigation
+* Globally-shared
+
+The **Navigation** section has the greatest flexibility.  That being said, the default styles applied to this section should require little and possibly no customization to address individual needs.
+
+This section also includes some nice styles and animations for the sub-nav elements.
+
+The **Branding** section contains styles for SAAS applications which are distinct from site pages.
+
+The **Globally-shared** section should receive little to no customization within your implementation.  It contains the following:
+* Search link
+* App Switcher
+* User Profile and profile dropdown
+
+#### Tablet
+
+![global navigation structure](readme-assets/esri-global-nav-concepts-mobile.png)
+
+SAAS Apps
+* Nav items are condensed and hidden under the ellipses icon and lives on the right.
+* App name/Project name remains
+* Logo remains (takes you to dashboard)
+
+Website
+* Nav items are condensed and hidden under the burger icon and lives on the left.
+* Logo remains (takes you home)
+
+[Gnav]: #global-navigation-gnav-component
+[Gnav Brand]: #gnav-brand
+[Gnav Menus]: #gnav-menus
+[Gnav Search]: #gnav-search
+[Gnav Account]: #gnav-account
+[Gnav Events]: #gnav-events
