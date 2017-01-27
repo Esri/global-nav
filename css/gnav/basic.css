@@ -5,7 +5,6 @@
 	color: #4c4c4c;
 	cursor: pointer;
 	outline-offset: -.375em;
-	padding: 0;
 
 	&:matches(:hover, :focus) {
 		color: #0079c1;
