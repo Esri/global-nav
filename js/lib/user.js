@@ -10,7 +10,7 @@ export default function (apps, user) {
 		user ? user.name
 		? $('div', { class: 'esri-gnav-user-loggedin' }, [
 			$('button', { class: 'esri-gnav-link esri-gnav-user-link' }, [
-				$('img', { class: 'esri-gnav-user-avatar', src: user.avatar }),
+				$('img', { class: 'esri-gnav-user-image', src: user.image }),
 				$('span', { class: 'esri-gnav-user-name' }, [
 					document.createTextNode(user.name)
 				]),

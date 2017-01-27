@@ -21,7 +21,7 @@
 	text-align: start;
 }
 
-.esri-gnav-user-avatar {
+.esri-gnav-user-image {
 	border-radius: 50%;
 	position: absolute calc(50% - 32px / 2) * * 16px;
 	size: 32px;
