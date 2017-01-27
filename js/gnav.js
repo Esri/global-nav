@@ -65,6 +65,7 @@ export default function (data) {
 
 					if ($controlled) {
 						$controlled.setAttribute('aria-expanded', toExpand);
+						$controlled.setAttribute('aria-hidden', !toExpand);
 					}
 				}
 			}

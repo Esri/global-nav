@@ -13,6 +13,7 @@ This document details the elements used to present the [Esri Global Navigation] 
 | brand  | [Gnav Brand]  | | | 1  |
 | menus  | [Gnav Menus]  | | | 1+ |
 | search | [Gnav Search] | | | 1  |
+| apps   | [Gnav apps]   | | | 1  |
 | user   | [Gnav User]   | | | 1  |
 
 ```json
@@ -120,24 +121,32 @@ This document details the elements used to present the [Esri Global Navigation] 
 
 | Element | Uses | From | Required | Limitations |
 |:------- |:---- |:----:|:--------:|:-----------:|
+| label | plain text  | input text | • | 1 |
+| apps  | [Gnav apps] | | | 1+ |
+
+- If `apps` is not specified, then it will not appear.
+
+| Element | Uses | From | Required | Limitations |
+|:------- |:---- |:----:|:--------:|:-----------:|
 | label  | plain text | input text    | • | 1 |
 | image  | image url  | image gallery | • | 1 |
 | href   | url        | input url     | • | 1 |
 
 ```json
 {
-  "apps": [
-    {
-      "label": "Application Name",
-      "image": "/path/to/image",
-      "href":  "/path/to/destination"
-    },
-    ...
-  ]
+  "apps": {
+    "label": "Applications",
+    "apps": [
+      {
+        "label": "Application Name",
+        "image": "/path/to/image",
+        "href":  "/path/to/destination"
+      },
+      ...
+    ]
+  }
 }
 ```
-
-- If `apps` is not specified, then it will not appear.
 
 ### Gnav User
 
