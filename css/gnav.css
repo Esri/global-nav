@@ -3,7 +3,7 @@
 
 .esri-gnav {
 	box-shadow: 0 1px 0 0 #dedede;
-	color: #4c4c4c #ffffff;
+	color: #595959 #ffffff;
 	cursor: default;
 	display: flex;
 	font: 300 16px/1 "Avenir Next LT Pro", "Century Gothic", sans-serif;
@@ -18,16 +18,18 @@
 	}
 
 	& button {
+		-webkit-appearance: none;
 		background-color: transparent;
 		border: none;
+		display: block;
 		font-family: inherit;
 		font-size: inherit;
 		font-style: inherit;
 		font-weight: inherit;
-		outline-offset: -.375em;
 	}
 
 	& svg {
+		display: block;
 		fill: currentColor;
 	}
 }

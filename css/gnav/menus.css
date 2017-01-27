@@ -1,0 +1,79 @@
+/* Global Navigation: Menus
+/* ========================================================================== */
+
+.esri-gnav-menus {
+	display: flex;
+	flex-grow: 1;
+	justify-content: space-between;
+}
+
+/* Global Navigation: Menus
+/* ========================================================================== */
+
+.esri-gnav-menus-list {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.esri-gnav-menus-item {
+	color: #4c4c4c;
+	position: relative;
+}
+
+.esri-gnav-menus-link {
+	color: #4c4c4c;
+	cursor: pointer;
+	display: block;
+	text-decoration: none;
+
+	&:matches(:hover, :focus) {
+		color: #0079c1;
+	}
+
+	&:active {
+		box-shadow: inset 0 -5px 0 0 #0079c1;
+	}
+}
+
+/* Global Navigation: Top Menus
+/* ========================================================================== */
+
+.esri-gnav-menus-list--top {
+	display: flex;
+}
+
+
+.esri-gnav-menus-link--top {
+	font-size: 17px/20px;
+	outline-offset: -.375em;
+	padding: 22px 24px;
+}
+
+/* Global Navigation: Sub Menus
+/* ========================================================================== */
+
+.esri-gnav-menus-menu--sub {
+	background-color: #f8f8f8;
+	box-shadow: inset 0 0 0 1px #dedede;
+	min-size: 440px *;
+	padding: 24px 48px 48px;
+	position: absolute 100% * * -80px;
+
+	&:not([aria-expanded="true"]) {
+		display: none;
+	}
+}
+
+.esri-gnav-menus-link--sub {
+	box-shadow: inset 0 -1px 0 0 #e0e0e0;
+	display: block;
+	font-size: 16px/20px;
+	padding: 20px 0;
+	text-decoration: none;
+
+	&:focus,
+	&:hover {
+		box-shadow: inset 0 -1px 0 0 #0079c1;
+	}
+}

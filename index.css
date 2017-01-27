@@ -7,4 +7,7 @@
 /* ========================================================================== */
 
 @import "css/gnav";
-@import "css/gnav/*.css";
+@import "css/gnav/basic";
+@import "css/gnav/brand";
+@import "css/gnav/menus";
+@import "css/gnav/user";

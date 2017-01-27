@@ -1,7 +1,7 @@
-/* Global Navigation: Branding section
+/* Global Navigation: Brand
 /* ========================================================================== */
 
-.esri-gnav-branding {
+.esri-gnav-brand {
 	align-items: center;
 	color: #000000;
 	display: flex;
@@ -9,6 +9,6 @@
 	padding: * 24px;
 }
 
-.esri-gnav-branding-svg {
+.esri-gnav-brand-svg {
 	size: 60px 30px;
 }

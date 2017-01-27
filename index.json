@@ -1,6 +1,9 @@
 {
-  "brandingImage": "assets/gnav.svg#logo",
-  "globalMenus": [
+  "brand": {
+    "label": "Esri",
+    "image": "assets/gnav.svg#logo"
+  },
+  "menus": [
     [
       {
         "label": "ArcGIS",
@@ -40,10 +43,14 @@
       }
     ]
   ],
-  "searchImage": "assets/gnav.svg#search",
-  "appsImage": "assets/gnav.svg#apps",
-  "loginText": "Sign In",
+  "search": {
+    "label": "Search"
+  },
+  "apps": {
+    "label": "Applications"
+  },
   "user": {
+    "label": "Sign In",
     "avatar": "//placehold.it/64x64",
     "name": "Matthew",
     "id": "MJP@mysandiego"

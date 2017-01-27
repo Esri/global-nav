@@ -10,18 +10,18 @@ This document details the elements used to present the [Esri Global Navigation] 
 
 | Element | Uses | From | Required | Limitations |
 |:------- |:---- |:----:|:--------:|:-----------:|
-| brand   | [Gnav Brand]   | | | 1  |
-| menus   | [Gnav Menus]   | | | 1+ |
-| search  | [Gnav Search]  | | | 1  |
-| account | [Gnav Account] | | | 1  |
+| brand  | [Gnav Brand]  | | | 1  |
+| menus  | [Gnav Menus]  | | | 1+ |
+| search | [Gnav Search] | | | 1  |
+| user   | [Gnav User]   | | | 1  |
 
 ```json
 {
-  "brand":   { ... },
-  "menus":   [ ... ],
-  "search":  { ... },
-  "apps":    { ... },
-  "account": { ... }
+  "brand":  { ... },
+  "menus":  [ ... ],
+  "search": { ... },
+  "apps":   { ... },
+  "user":   { ... }
 }
 ```
 
@@ -30,7 +30,7 @@ This document details the elements used to present the [Esri Global Navigation] 
 - If `menus` contains more than one item, they will be visually justified.
 - If `search` is not specified, then it will not appear.
 - If `apps` is not specified, then it will not appear.
-- If `account` is not specified, then it will not appear.
+- If `user` is not specified, then it will not appear.
 
 ### Gnav Brand
 
@@ -139,9 +139,9 @@ This document details the elements used to present the [Esri Global Navigation] 
 
 - If `apps` is not specified, then it will not appear.
 
-### Gnav Account
+### Gnav User
 
-![Global Navigation: account](readme-assets/esri-global-nav-element-account.png)
+![Global Navigation: user](readme-assets/esri-global-nav-element-user.png)
 
 | Element | Uses | From | Required | Limitations |
 |:------- |:---- |:----:|:--------:|:-----------:|
@@ -152,7 +152,7 @@ This document details the elements used to present the [Esri Global Navigation] 
 
 ```json
 {
-  "account": {
+  "user": {
     "label":  "Sign In",
     "name":   "Bruce Campbell",
     "id":     "GroovyBruce",
@@ -161,7 +161,7 @@ This document details the elements used to present the [Esri Global Navigation] 
 }
 ```
 
-- If `account` is not specified, then it will not appear.
+- If `user` is not specified, then it will not appear.
 - `label` is used to display the “*Login*” text.
 
 ---
@@ -291,5 +291,5 @@ Website
 [Gnav Brand]: #gnav-brand
 [Gnav Menus]: #gnav-menus
 [Gnav Search]: #gnav-search
-[Gnav Account]: #gnav-account
+[Gnav User]: #gnav-user
 [Gnav Events]: #gnav-events

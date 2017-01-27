@@ -1,8 +1,0 @@
-/* Global Navigation: Site section
-/* ========================================================================== */
-
-.esri-gnav-site {
-	display: flex;
-	flex-grow: 1;
-	justify-content: space-between;
-}
