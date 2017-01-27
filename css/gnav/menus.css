@@ -31,7 +31,8 @@
 		color: #0079c1;
 	}
 
-	&:active {
+	&:active,
+	&[aria-expanded="true"] {
 		box-shadow: inset 0 -5px 0 0 #0079c1;
 	}
 }
@@ -42,7 +43,6 @@
 .esri-gnav-menus-list--top {
 	display: flex;
 }
-
 
 .esri-gnav-menus-link--top {
 	font-size: 17px/20px;
