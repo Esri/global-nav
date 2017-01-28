@@ -7,6 +7,10 @@
 	display: flex;
 	outline-offset: -.375em;
 	padding: * 24px;
+
+	&:matches(:hover, :focus) {
+		color: #0079c1;
+	}
 }
 
 .esri-gnav-brand-svg {

@@ -7,9 +7,9 @@
 	cursor: default;
 	display: flex;
 	font: 300 16px/1 "Avenir Next LT Pro", "Century Gothic", sans-serif;
-	font-size: 16px;
 	justify-content: space-between;
 	size: * 64px;
+	user-select: none;
 
 	/* selectively sanitize sub-elements */
 
@@ -19,7 +19,6 @@
 	}
 
 	& button {
-		-webkit-appearance: none;
 		background-color: transparent;
 		border: none;
 		font-family: inherit;

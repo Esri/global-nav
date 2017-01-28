@@ -5,11 +5,3 @@ html {
 body {
 	margin: 0;
 }
-
-.esri-gnav {
-	& .esri-gnav-brand:hover {
-		& svg {
-			fill: #0079c1;
-		}
-	}
-}

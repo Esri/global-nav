@@ -30,6 +30,7 @@
 .esri-gnav-user-name,
 .esri-gnav-user-id {
 	display: block;
+	user-select: text;
 }
 
 .esri-gnav-user-name {

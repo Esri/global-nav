@@ -26,7 +26,7 @@
 	cursor: pointer;
 	display: block;
 	text-decoration: none;
-	transition: box-shadow 125ms ease-out, color 125ms ease-in-out;
+	transition: box-shadow 125ms ease-in-out, color 125ms ease-in-out;
 
 	&:matches(:hover, :focus) {
 		color: #0079c1;
@@ -45,9 +45,9 @@
 }
 
 .esri-gnav-menus-link--top {
-	font-size: 1em;
+	font-size: 16px/20px;
 	outline-offset: -.375em;
-	padding: 24px 24px;
+	padding: 22px 24px;
 }
 
 /* Global Navigation: Sub Menus
@@ -56,29 +56,24 @@
 .esri-gnav-menus-menu--sub {
 	background-color: #f8f8f8;
 	box-shadow: inset 0 0 0 1px #dedede;
-	height: auto;
 	min-size: 440px *;
-	opacity: 1;
 	padding: 24px 46px 46px;
 	position: absolute 100% * * -80px;
-	transition: opacity 250ms ease-in-out 75ms;
+	transition: opacity 250ms ease-in-out;
 
 	&:not([aria-expanded="true"]) {
-		height: 0;
+		clip: rect(0 0 0 0);
 		opacity: 0;
-		overflow: hidden;
-		padding: 0;
-		transition: none;
+		visibility: hidden;
 	}
 }
 
 .esri-gnav-menus-link--sub {
 	box-shadow: inset 0 -1px 0 0 #e0e0e0;
 	display: block;
-	font-size: 0.9em;
+	font-size: 14px/20px;
 	padding: 20px 0;
 	text-decoration: none;
-	transition: all 125ms ease-in-out;
 
 	&:focus,
 	&:hover {
