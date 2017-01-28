@@ -7,9 +7,9 @@ body {
 }
 
 .esri-gnav {
-  & .esri-gnav-brand:hover {
-    & svg {
-      fill: #0079c1;
-    }
-  }
+	& .esri-gnav-brand:hover {
+		& svg {
+			fill: #0079c1;
+		}
+	}
 }
