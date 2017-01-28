@@ -15,7 +15,7 @@
 }
 
 .esri-gnav-user-link {
-	padding: 16px;
+	padding: 16px 32px;
 	padding-left: calc(32px + 16px + 12px);
 	position: relative;
 	text-align: start;

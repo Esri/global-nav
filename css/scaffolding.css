@@ -1,7 +1,15 @@
 html {
-	background-color: #595959;
+	background-color: #7f7f7f;
 }
 
 body {
 	margin: 0;
+}
+
+.esri-gnav {
+  & .esri-gnav-brand:hover {
+    & svg {
+      fill: #0079c1;
+    }
+  }
 }
