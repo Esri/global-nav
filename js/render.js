@@ -1,13 +1,13 @@
-// ...
+// tooling
 import $ from './lib/create-element';
 
-// ...
+// element renders
 import $brand from './render-brand';
 import $menus from './render-menus';
 import $search from './render-search';
 import $client from './render-client';
 
-// ...
+// render the gnav
 export default function (data) {
 	const $target = document.body.appendChild(
 		$( 'div', { class: 'esri-gnav' }, [].concat(
@@ -18,7 +18,7 @@ export default function (data) {
 		))
 	);
 
-	// temporary code from here...
+	// stop-gap functionality from here on out...
 
 	function closeAll() {
 		Array.from($target.querySelectorAll('[aria-expanded]')).forEach(

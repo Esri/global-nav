@@ -1,12 +1,15 @@
+// tooling
 import $ from './lib/create-element';
 
+// render user element
 export default (user) => $('div', { class: 'esri-gnav-user' },
 	user.name ? [
+		// logged in experience
 		$('button', {
-			class: 'esri-gnav-link esri-gnav-user-link',
-			id: 'esri-gnav-control',
+			class: 'esri-gnav-link esri-gnav-button esri-gnav-user-link esri-gnav-user-link--loggedin',
+			id: 'esri-gnav-user-control',
 			ariaControls: 'esri-gnav-user-menu',
-			ariaExpanded: true,
+			ariaExpanded: false,
 			ariaHaspopup: true,
 			ariaLabel: user.label
 		}, [
@@ -22,9 +25,9 @@ export default (user) => $('div', { class: 'esri-gnav-user' },
 			class: 'esri-gnav-user-menu',
 			id: 'esri-gnav-user-menu',
 			role: 'group',
-			ariaExpanded: true,
-			ariaHidden: false,
-			ariaLabelledby: 'esri-gnav-control'
+			ariaExpanded: false,
+			ariaHidden: true,
+			ariaLabelledby: 'esri-gnav-user-control'
 		}, [
 			$('img', {
 				class: 'esri-gnav-user-menu-image',
@@ -32,7 +35,8 @@ export default (user) => $('div', { class: 'esri-gnav-user' },
 			})
 		])
 	] : [
-		$('button', { class: 'esri-gnav-link esri-gnav-user-login' }, [
+		// logged out experience
+		$('button', { class: 'esri-gnav-link esri-gnav-button esri-gnav-user-link esri-gnav-user-link--loggedout' }, [
 			document.createTextNode(user.label)
 		])
 	]

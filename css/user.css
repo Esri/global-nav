@@ -1,15 +1,8 @@
-/* Global Navigation: Client
+/* Global Navigation: User
 /* ========================================================================== */
 
-.esri-gnav-user-login {
-	padding: * 24px;
-}
-
-.esri-gnav-user-link {
-	padding: 16px 32px;
-	padding-left: calc(32px + 16px + 12px);
+.esri-gnav-user {
 	position: relative;
-	text-align: start;
 }
 
 .esri-gnav-user-image {
@@ -33,14 +26,22 @@
 	font-size: 14px/16px;
 }
 
-/* Global Navigation: Sub Menus
+/* Global Navigation: Logged In / Logged Out
 /* ========================================================================== */
 
-.esri-gnav-user {
+.esri-gnav-user-link--loggedin {
+	padding: 16px 32px;
+	padding-left: calc(32px + 16px + 12px);
 	position: relative;
+	text-align: start;
 }
 
-/* Global Navigation: Sub Menus
+.esri-gnav-user-link--loggedout {
+	line-height: 20px;
+	padding: 22px 24px;
+}
+
+/* Global Navigation: User Sub Menus
 /* ========================================================================== */
 
 .esri-gnav-user-menu {

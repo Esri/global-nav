@@ -1,0 +1,24 @@
+/* Global Navigation: Apps
+/* ========================================================================== */
+
+.esri-gnav-apps {
+	position: relative;
+}
+
+/* Global Navigation: Apps Sub Menus
+/* ========================================================================== */
+
+.esri-gnav-apps-menu {
+	background-color: #f8f8f8;
+	box-shadow: inset 0 0 0 1px #dedede;
+	min-size: 410px calc(130px + 48px + 48px);
+	padding: 48px 28px 0 42px;
+	position: absolute 100% 0 * *;
+	transition: opacity 250ms ease-in-out;
+
+	&:not([aria-expanded="true"]) {
+		clip: rect(0 0 0 0);
+		opacity: 0;
+		visibility: hidden;
+	}
+}

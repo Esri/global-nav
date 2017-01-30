@@ -6,7 +6,7 @@
 	color: #595959 #ffffff;
 	cursor: default;
 	display: flex;
-	font: 300 16px/1 "Avenir Next LT Pro", "Century Gothic", sans-serif;
+	font: 300 16px/calc(20 / 16) "Avenir Next LT Pro", "Century Gothic", sans-serif;
 	justify-content: space-between;
 	size: * 64px;
 	user-select: none;
@@ -16,20 +16,6 @@
 	&,
 	& * {
 		box-sizing: border-box;
-	}
-
-	& button {
-		background-color: transparent;
-		border: none;
-		font-family: inherit;
-		font-size: inherit;
-		font-style: inherit;
-		font-weight: inherit;
-	}
-
-	& svg {
-		display: block;
-		fill: currentColor;
 	}
 }
 
@@ -47,6 +33,16 @@
 /* Global Navigation: General types
 /* ========================================================================== */
 
+.esri-gnav-button {
+	background-color: transparent;
+	border-style: none;
+	font-family: inherit;
+	font-size: inherit;
+	font-style: inherit;
+	font-weight: inherit;
+	padding: 0;
+}
+
 .esri-gnav-link {
 	color: #4c4c4c;
 	cursor: pointer;
@@ -58,6 +54,8 @@
 }
 
 .esri-gnav-icon {
+	display: block;
+	fill: currentColor;
 	margin: 20px 28px;
 	size: 24px;
 }
