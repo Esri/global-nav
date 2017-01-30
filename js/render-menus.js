@@ -1,26 +1,29 @@
 // tooling
 import $ from './lib/create-element';
 
+// prefix
+const prefix = 'esri-gnav-menus';
+
 // render menus element
-export default (menus) => $('div', { class: '-menus' }, menus.map(
+export default (menus) => $('div', { class: prefix }, menus.map(
 	(menu) => $('div', {
-		class: '-menus-menu',
+		class: `${ prefix }-menu`,
 		role: 'group'
 	}, [
 		// top-level experience
 		$('ul', {
-			class: '-menus-list',
+			class: `${ prefix }-list`,
 			role: 'navigation'
 		}, menu.map(
-			(item) => $('li', { class: '-menus-item' }, [
+			(item) => $('li', { class: `${ prefix }-item` }, [
 				$('a', Object.assign(
 					{
-						class: '-menus-link',
-						id: `-${ ++uuid }`,
+						class: `${ prefix }-link`,
+						id: `${ prefix }-link-${ ++uuid }`,
 						href: item.href || 'javascript:;',
 					},
 					item.menus && item.menus.length ? {
-						ariaControls: `-${ uuid }--sub`,
+						ariaControls: `${ prefix }-submenu-${ uuid }`,
 						ariaExpanded: false,
 						ariaHaspopup: true
 					} : {}
@@ -29,20 +32,20 @@ export default (menus) => $('div', { class: '-menus' }, menus.map(
 				])
 			].concat(
 				item.menus && item.menus.length ? $('div', {
-					class: '-menus-submenu',
-					id: `-${ uuid }--sub`,
+					class: `${ prefix }-submenu`,
+					id: `${ prefix }-submenu-${ uuid }`,
 					role: 'group',
 					ariaHidden: true,
 					ariaExpanded: false
 				}, [
 					// sub-level experience
 					$('ul', {
-						class: '-menus-sublist',
+						class: `${ prefix }-sublist`,
 						role: 'navigation',
 						ariaLabelledby: `-${ uuid }`
 					}, item.menus.map(
-						(childitem) => $('li', { class: '-menus-subitem' }, [
-							$('a', { class: '-menus-sublink', id: `-${ ++uuid }`, href: childitem.href }, [
+						(childitem) => $('li', { class: `${ prefix }-subitem` }, [
+							$('a', { class: `${ prefix }-sublink`, id: `-${ ++uuid }`, href: childitem.href }, [
 								document.createTextNode(childitem.label)
 							])
 						])

@@ -1,36 +1,39 @@
 // tooling
 import $ from './lib/create-element';
 
+// prefix
+const prefix = 'esri-gnav-apps';
+
 // render apps element
-export default (apps, user) => $('div', { class: '-apps' }, [
+export default (apps, user) => $('div', { class: prefix }, [
 	$('button', {
-		class: '-apps-link',
-		id: '-apps-link',
-		ariaControls: '-apps-menu',
+		class: `${ prefix }-link`,
+		id: `${ prefix }-link`,
+		ariaControls: `${ prefix }-menu`,
 		ariaExpanded: false,
 		ariaHaspopup: true,
 		ariaLabel: apps.label
 	}, [
-		$('svg', { class: '-apps-icon' }, [
+		$('svg', { class: `${ prefix }-icon` }, [
 			$('use', { href: 'assets/gnav.svg#apps' })
 		])
 	]),
 	$('div', {
-		class: '-apps-menu',
-		id: '-apps-menu',
+		class: `${ prefix }-menu`,
+		id: `${ prefix }-menu`,
 		role: 'group',
 		ariaExpanded: false,
 		ariaHidden: true,
-		ariaLabelledby: '-apps-link'
+		ariaLabelledby: `${ prefix }-link`
 	}, [
-		$('ul', { class: '-apps-menu-list' }, [
-			$('li', { class: '-apps-menu-item' }, [
+		$('ul', { class: `${ prefix }-list` }, [
+			$('li', { class: `${ prefix }-item` }, [
 				document.createTextNode('App #1')
 			]),
-			$('li', { class: '-apps-menu-item' }, [
+			$('li', { class: `${ prefix }-item` }, [
 				document.createTextNode('App #2')
 			]),
-			$('li', { class: '-apps-menu-item' }, [
+			$('li', { class: `${ prefix }-item` }, [
 				document.createTextNode('App #3')
 			])
 		])

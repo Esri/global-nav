@@ -1,9 +1,7 @@
 // tooling
-import $ from './lib/create-element';
-
-// element renders
-import $brand from './render-brand';
-import $menus from './render-menus';
+import $       from './lib/create-element';
+import $brand  from './render-brand';
+import $menus  from './render-menus';
 import $search from './render-search';
 import $client from './render-client';
 

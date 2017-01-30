@@ -1,42 +1,45 @@
 // tooling
 import $ from './lib/create-element';
 
+// prefix
+const prefix = 'esri-gnav-user';
+
 // render user element
-export default (user) => $('div', { class: '-user' },
+export default (user) => $('div', { class: prefix },
 	user.name ? [
 		// logged in experience
 		$('button', {
-			class: '-user-link--loggedin',
-			id: '-user-link',
-			ariaControls: '-user-menu',
+			class: `${ prefix }-link--loggedin`,
+			id: `${ prefix }-link`,
+			ariaControls: `${ prefix }-menu`,
 			ariaExpanded: false,
 			ariaHaspopup: true,
 			ariaLabel: user.label
 		}, [
-			$('img', { class: '-user-image', src: user.image }),
-			$('span', { class: '-user-name' }, [
+			$('img', { class: `${ prefix }-image`, src: user.image }),
+			$('span', { class: `${ prefix }-name` }, [
 				document.createTextNode(user.name)
 			]),
-			$('span', { class: '-user-id' }, [
+			$('span', { class: `${ prefix }-id` }, [
 				document.createTextNode(user.id)
 			])
 		]),
 		$('div', {
-			class: '-user-menu',
-			id: '-user-menu',
+			class: `${ prefix }-menu`,
+			id: `${ prefix }-menu`,
 			role: 'group',
 			ariaExpanded: false,
 			ariaHidden: true,
-			ariaLabelledby: '-user-link'
+			ariaLabelledby: `${ prefix }-link`
 		}, [
 			$('img', {
-				class: '-user-menu-image',
+				class: `${ prefix }-menu-image`,
 				src: '//placehold.it/260x260'
 			})
 		])
 	] : [
 		// logged out experience
-		$('button', { class: '-user-link--loggedout' }, [
+		$('button', { class: `${ prefix }-link--loggedout` }, [
 			document.createTextNode(user.label)
 		])
 	]
