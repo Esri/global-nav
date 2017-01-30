@@ -42,7 +42,7 @@ export default (menus) => $('div', { class: prefix }, menus.map(
 					$('ul', {
 						class: `${ prefix }-sublist`,
 						role: 'navigation',
-						ariaLabelledby: `-${ uuid }`
+						ariaLabelledby: `${ prefix }-${ uuid }`
 					}, item.menus.map(
 						(childitem) => $('li', { class: `${ prefix }-subitem` }, [
 							$('a', { class: `${ prefix }-sublink`, id: `-${ ++uuid }`, href: childitem.href }, [
@@ -57,4 +57,4 @@ export default (menus) => $('div', { class: prefix }, menus.map(
 ));
 
 // unique id initialized
-const uuid = Date.now();
+const uuid = 0;

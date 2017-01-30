@@ -77,8 +77,9 @@
   },
   "user": {
     "label": "Sign In",
-    "image": "//placehold.it/64x64",
+    "image": "//placehold.it/300x300",
     "name": "JSON",
-    "id": "json@data"
+    "id": "json@data",
+    "group": "My San Diego"
   }
 }

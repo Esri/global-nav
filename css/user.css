@@ -58,14 +58,52 @@
 .esri-gnav-user-menu {
 	@apply --submenu;
 
+	display: flex;
 	min-size: 410px calc(130px + 48px + 48px);
 	padding: 48px 28px 0 42px;
 	right: 0;
 }
 
+.esri-gnav-user-menu-info {
+	display: flex;
+	flex-direction: column;
+	margin-bottom: 16px;
+	size: calc(130px - 4px * 2) *;
+	text-align: center;
+}
+
 .esri-gnav-user-menu-image {
 	border-radius: 50%;
 	box-shadow: 0 0 0 4px var(--blue);
-	position: absolute 48px * *;
+	margin-bottom: 20px;
 	size: calc(130px - 4px * 2);
+}
+
+.esri-gnav-user-menu-name {
+	color: var(--mono-0);
+	font-size: 18px/calc(15 / 18);
+	margin-bottom: 10px;
+}
+
+.esri-gnav-user-menu-id {
+	font-size: 13px/calc(15 / 13);
+	margin-bottom: 5px;
+}
+
+.esri-gnav-user-menu-group {
+	font-size: 13px/calc(15 / 13);
+}
+
+.esri-gnav-user-menu-list {
+	@apply --list;
+
+	margin-left: 50px;
+}
+
+.esri-gnav-user-menu-link {
+	@apply --link;
+
+	font-size: 14px/calc(20 / 14);
+	outline-offset: 0;
+	padding: 5px 0;
 }
