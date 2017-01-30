@@ -1,8 +1,30 @@
-/* Global Navigation: User
+/* Tooling */
+
+@import "lib/custom-properties";
+
+/* Global Navigation: User: Logged Out
 /* ========================================================================== */
 
-.esri-gnav-user {
+.esri-gnav-user-link--loggedout {
+	@apply --button;
+
+	padding: 22px 24px;
+}
+
+/* Global Navigation: User: Logged In
+/* ========================================================================== */
+
+.esri-gnav-user-link--loggedin {
+	@apply --button;
+
+	padding: 16px 32px;
+	padding-left: calc(32px + 16px + 12px);
 	position: relative;
+	text-align: start;
+}
+
+.esri-gnav-user {
+	@apply --item--top;
 }
 
 .esri-gnav-user-image {
@@ -26,36 +48,15 @@
 	font-size: 14px/16px;
 }
 
-/* Global Navigation: Logged In / Logged Out
-/* ========================================================================== */
-
-.esri-gnav-user-link--loggedin {
-	padding: 16px 32px;
-	padding-left: calc(32px + 16px + 12px);
-	position: relative;
-	text-align: start;
-}
-
-.esri-gnav-user-link--loggedout {
-	padding: 22px 24px;
-}
-
-/* Global Navigation: User Sub Menus
+/* Global Navigation: User: Logged In: Menu
 /* ========================================================================== */
 
 .esri-gnav-user-menu {
-	background-color: #f8f8f8;
-	box-shadow: inset 0 0 0 1px #dedede;
+	@apply --menu--sub;
+
 	min-size: 410px calc(130px + 48px + 48px);
 	padding: 48px 28px 0 42px;
-	position: absolute 100% 0 * *;
-	transition: opacity 250ms ease-in-out;
-
-	&:not([aria-expanded="true"]) {
-		clip: rect(0 0 0 0);
-		opacity: 0;
-		visibility: hidden;
-	}
+	right: 0;
 }
 
 .esri-gnav-user-menu-image {

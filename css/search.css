@@ -1,0 +1,14 @@
+/* Tooling */
+
+@import "lib/custom-properties";
+
+/* Global Navigation: Search
+/* ========================================================================== */
+
+.esri-gnav-search-link {
+	@apply --button;
+}
+
+.esri-gnav-search-icon {
+	@apply --icon;
+}

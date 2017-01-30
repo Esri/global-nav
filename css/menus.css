@@ -1,3 +1,7 @@
+/* Tooling */
+
+@import "lib/custom-properties";
+
 /* Global Navigation: Menus
 /* ========================================================================== */
 
@@ -7,11 +11,20 @@
 	justify-content: space-between;
 }
 
+.esri-gnav-menus-list {
+	@apply --list;
+
+	display: flex;
+}
+
 .esri-gnav-menus-item {
-	color: #4c4c4c;
+	@apply --item--top;
 }
 
 .esri-gnav-menus-link {
+	@apply --link;
+
+	padding: 22px 24px;
 	transition: box-shadow 125ms ease-in-out, color 125ms ease-in-out;
 
 	&[aria-expanded="true"] {
@@ -19,34 +32,30 @@
 	}
 }
 
-/* Global Navigation: Top Menus
+/* Global Navigation: Menus: Submenu
 /* ========================================================================== */
 
-.esri-gnav-menus-list--top {
-	display: flex;
-}
+.esri-gnav-menus-submenu {
+	@apply --menu--sub;
 
-.esri-gnav-menus-link--top {
-	padding: 22px 24px;
-}
-
-/* Global Navigation: Sub Menus
-/* ========================================================================== */
-
-.esri-gnav-menus-menu--sub {
 	left: -80px;
 	min-size: 440px *;
 	padding: 24px 46px 46px;
 }
 
-.esri-gnav-menus-link--sub {
+.esri-gnav-menus-sublist {
+	@apply --list;
+}
+
+.esri-gnav-menus-sublink {
+	@apply --link;
+
 	box-shadow: inset 0 -1px 0 0 #e0e0e0;
 	font-size: 14px/calc(20 / 14);
 	outline-offset: 0;
 	padding: 20px 0;
 
-	&:focus,
-	&:hover {
+	&:matches(:focus, :hover) {
 		box-shadow: inset 0 -1px 0 0 #0079c1;
 	}
 }

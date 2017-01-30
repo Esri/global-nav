@@ -2,25 +2,25 @@
 import $ from './lib/create-element';
 
 // render menus element
-export default (menus) => $('div', { class: 'esri-gnav-menus' }, menus.map(
+export default (menus) => $('div', { class: '-menus' }, menus.map(
 	(menu) => $('div', {
-		class: 'esri-gnav-menu esri-gnav-menu--top esri-gnav-menus-menu esri-gnav-menus-menu--top',
+		class: '-menus-menu',
 		role: 'group'
 	}, [
-		// top level experience
+		// top-level experience
 		$('ul', {
-			class: 'esri-gnav-list esri-gnav-menus-list esri-gnav-menus-list--top',
+			class: '-menus-list',
 			role: 'navigation'
 		}, menu.map(
-			(item) => $('li', { class: 'esri-gnav-item esri-gnav-menus-item esri-gnav-menus-item--top' }, [
+			(item) => $('li', { class: '-menus-item' }, [
 				$('a', Object.assign(
 					{
-						class: 'esri-gnav-link esri-gnav-menus-link esri-gnav-menus-link--top',
-						id: `esri-gnav-${ ++uuid }`,
+						class: '-menus-link',
+						id: `-${ ++uuid }`,
 						href: item.href || 'javascript:;',
 					},
 					item.menus && item.menus.length ? {
-						ariaControls: `esri-gnav-${ uuid }--sub`,
+						ariaControls: `-${ uuid }--sub`,
 						ariaExpanded: false,
 						ariaHaspopup: true
 					} : {}
@@ -29,20 +29,20 @@ export default (menus) => $('div', { class: 'esri-gnav-menus' }, menus.map(
 				])
 			].concat(
 				item.menus && item.menus.length ? $('div', {
-					class: 'esri-gnav-menu esri-gnav-menu--sub esri-gnav-menus-menu esri-gnav-menus-menu--sub',
-					id: `esri-gnav-${ uuid }--sub`,
+					class: '-menus-submenu',
+					id: `-${ uuid }--sub`,
 					role: 'group',
 					ariaHidden: true,
 					ariaExpanded: false
 				}, [
-					// sub level experience
+					// sub-level experience
 					$('ul', {
-						class: 'esri-gnav-list esri-gnav-menus-list esri-gnav-menus-list--sub',
+						class: '-menus-sublist',
 						role: 'navigation',
-						ariaLabelledby: `esri-gnav-${ uuid }`
+						ariaLabelledby: `-${ uuid }`
 					}, item.menus.map(
-						(childitem) => $('li', { class: 'esri-gnav-item esri-gnav-menus-item esri-gnav-menus-item--sub' }, [
-							$('a', { class: 'esri-gnav-link esri-gnav-menus-link esri-gnav-menus-link--sub', id: `esri-gnav-${ ++uuid }`, href: childitem.href }, [
+						(childitem) => $('li', { class: '-menus-subitem' }, [
+							$('a', { class: '-menus-sublink', id: `-${ ++uuid }`, href: childitem.href }, [
 								document.createTextNode(childitem.label)
 							])
 						])

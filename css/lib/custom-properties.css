@@ -1,0 +1,68 @@
+/* Custom Properties
+/* ========================================================================== */
+
+:root {
+	--item--top: {
+		position: relative;
+	};
+
+	--menu--sub: {
+		background-color: #f8f8f8;
+		box-shadow: inset 0 0 0 1px #dedede;
+		position: absolute 100% * *;
+		transition: opacity 250ms ease-in-out;
+
+		&:not([aria-expanded="true"]) {
+			clip: rect(0 0 0 0);
+			opacity: 0;
+			visibility: hidden;
+		}
+	};
+
+	--list {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	};
+
+	--clickable {
+		color: #4c4c4c;
+		cursor: pointer;
+		display: block;
+		outline-offset: -.375em;
+
+		&:matches(:hover, :focus) {
+			color: #0079c1;
+		}
+	}
+
+	--link {
+		@apply --clickable;
+
+		text-decoration: none;
+	};
+
+	--button {
+		@apply --clickable;
+
+		background-color: transparent;
+		border-style: none;
+		font-family: inherit;
+		font-size: inherit;
+		font-style: inherit;
+		font-weight: inherit;
+		padding: 0;
+	};
+
+	--fillable {
+		fill: currentColor;
+	}
+
+	--icon {
+		@apply --fillable;
+
+		display: block;
+		margin: 20px 28px;
+		size: 24px;
+	};
+}

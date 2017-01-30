@@ -1,17 +1,21 @@
+/* Tooling */
+
+@import "lib/custom-properties";
+
 /* Global Navigation: Brand
 /* ========================================================================== */
 
 .esri-gnav-brand {
+	@apply --link;
+
 	align-items: center;
 	display: flex;
 	padding: * 24px;
-
-	&:matches(:hover, :focus) {
-		color: #0079c1;
-	}
 }
 
-.esri-gnav-brand-svg {
+.esri-gnav-brand-image {
+	@apply --svg;
+
 	display: block;
 	size: 60px 30px;
 }

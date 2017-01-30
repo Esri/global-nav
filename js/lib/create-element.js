@@ -3,7 +3,7 @@ export default function (name, attrs, children) {
 	const target = document.createElementNS(`http://www.w3.org/${ namespace }`, name);
 
 	for (let key in attrs) {
-		target.setAttribute(key.replace(/[A-Z]/g, '-$&').toLowerCase(), attrs[key]);
+		target.setAttribute(key.replace(/[A-Z]/g, '-$&').toLowerCase(), String(attrs[key]).replace(/(^|\s)-/g, '$1esri-gnav-'));
 	}
 
 	while (children && children.length) {
