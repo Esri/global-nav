@@ -33,6 +33,25 @@
 /* Global Navigation: General types
 /* ========================================================================== */
 
+.esri-gnav-menu--sub {
+	background-color: #f8f8f8;
+	box-shadow: inset 0 0 0 1px #dedede;
+	position: absolute 100% * *;
+	transition: opacity 250ms ease-in-out;
+
+	&:not([aria-expanded="true"]) {
+		clip: rect(0 0 0 0);
+		opacity: 0;
+		visibility: hidden;
+	}
+}
+
+.esri-gnav-list {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
 .esri-gnav-button {
 	background-color: transparent;
 	border-style: none;
@@ -43,10 +62,16 @@
 	padding: 0;
 }
 
+.esri-gnav-item {
+	position: relative;
+}
+
 .esri-gnav-link {
 	color: #4c4c4c;
 	cursor: pointer;
+	display: block;
 	outline-offset: -.375em;
+	text-decoration: none;
 
 	&:matches(:hover, :focus) {
 		color: #0079c1;

@@ -3,9 +3,7 @@
 
 .esri-gnav-brand {
 	align-items: center;
-	color: #000000;
 	display: flex;
-	outline-offset: -.375em;
 	padding: * 24px;
 
 	&:matches(:hover, :focus) {
@@ -14,5 +12,6 @@
 }
 
 .esri-gnav-brand-svg {
+	display: block;
 	size: 60px 30px;
 }

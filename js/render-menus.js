@@ -4,18 +4,18 @@ import $ from './lib/create-element';
 // render menus element
 export default (menus) => $('div', { class: 'esri-gnav-menus' }, menus.map(
 	(menu) => $('div', {
-		class: 'esri-gnav-menus-menu esri-gnav-menus-menu--top',
+		class: 'esri-gnav-menu esri-gnav-menu--top esri-gnav-menus-menu esri-gnav-menus-menu--top',
 		role: 'group'
 	}, [
 		// top level experience
 		$('ul', {
-			class: 'esri-gnav-menus-list esri-gnav-menus-list--top',
+			class: 'esri-gnav-list esri-gnav-menus-list esri-gnav-menus-list--top',
 			role: 'navigation'
 		}, menu.map(
-			(item) => $('li', { class: 'esri-gnav-menus-item esri-gnav-menus-item--top' }, [
+			(item) => $('li', { class: 'esri-gnav-item esri-gnav-menus-item esri-gnav-menus-item--top' }, [
 				$('a', Object.assign(
 					{
-						class: 'esri-gnav-menus-link esri-gnav-menus-link--top',
+						class: 'esri-gnav-link esri-gnav-menus-link esri-gnav-menus-link--top',
 						id: `esri-gnav-${ ++uuid }`,
 						href: item.href || 'javascript:;',
 					},
@@ -29,7 +29,7 @@ export default (menus) => $('div', { class: 'esri-gnav-menus' }, menus.map(
 				])
 			].concat(
 				item.menus && item.menus.length ? $('div', {
-					class: 'esri-gnav-menus-menu esri-gnav-menus-menu--sub',
+					class: 'esri-gnav-menu esri-gnav-menu--sub esri-gnav-menus-menu esri-gnav-menus-menu--sub',
 					id: `esri-gnav-${ uuid }--sub`,
 					role: 'group',
 					ariaHidden: true,
@@ -37,12 +37,12 @@ export default (menus) => $('div', { class: 'esri-gnav-menus' }, menus.map(
 				}, [
 					// sub level experience
 					$('ul', {
-						class: 'esri-gnav-menus-list esri-gnav-menus-list--sub',
+						class: 'esri-gnav-list esri-gnav-menus-list esri-gnav-menus-list--sub',
 						role: 'navigation',
 						ariaLabelledby: `esri-gnav-${ uuid }`
 					}, item.menus.map(
-						(childitem) => $('li', { class: 'esri-gnav-menus-item esri-gnav-menus-item--sub' }, [
-							$('a', { class: 'esri-gnav-menus-link esri-gnav-menus-link--sub', id: `esri-gnav-${ ++uuid }`, href: childitem.href }, [
+						(childitem) => $('li', { class: 'esri-gnav-item esri-gnav-menus-item esri-gnav-menus-item--sub' }, [
+							$('a', { class: 'esri-gnav-link esri-gnav-menus-link esri-gnav-menus-link--sub', id: `esri-gnav-${ ++uuid }`, href: childitem.href }, [
 								document.createTextNode(childitem.label)
 							])
 						])
