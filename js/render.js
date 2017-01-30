@@ -1,20 +1,20 @@
-import $ from './create-element';
+// ...
+import $ from './lib/create-element';
 
-import $brand from './lib/brand';
+// ...
+import $brand from './render-brand';
+import $menus from './render-menus';
+import $search from './render-search';
+import $client from './render-client';
 
-import $menus from './lib/menus';
-
-import $user from './lib/user';
-
-import $search from './lib/search';
-
+// ...
 export default function (data) {
 	const $target = document.body.appendChild(
 		$( 'div', { class: 'esri-gnav' }, [].concat(
 			data.brand ? $brand(data.brand) : [],
 			data.menus && data.menus.length ? $menus(data.menus) : [],
 			data.search ? $search(data.search) : [],
-			data.apps || data.user ? $user(data.apps, data.user) : []
+			data.apps || data.user ? $client(data.apps, data.user) : []
 		))
 	);
 

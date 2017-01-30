@@ -1,4 +1,4 @@
-import $ from '../create-element';
+import $ from './lib/create-element';
 
 const uuid = Date.now();
 

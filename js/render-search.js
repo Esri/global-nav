@@ -1,4 +1,4 @@
-import $ from '../create-element';
+import $ from './lib/create-element';
 
 export default function (search) {
 	return $('button', { class: 'esri-gnav-link esri-gnav-search', ariaLabel: search.label }, [

@@ -1,0 +1,66 @@
+/* Global Navigation: Client
+/* ========================================================================== */
+
+.esri-gnav-user-login {
+	padding: * 24px;
+}
+
+.esri-gnav-user-link {
+	padding: 16px 32px;
+	padding-left: calc(32px + 16px + 12px);
+	position: relative;
+	text-align: start;
+}
+
+.esri-gnav-user-image {
+	border-radius: 50%;
+	position: absolute calc(50% - 32px / 2) * * 16px;
+	size: 32px;
+}
+
+.esri-gnav-user-name,
+.esri-gnav-user-id {
+	display: block;
+	user-select: text;
+}
+
+.esri-gnav-user-name {
+	font-size: 15px/16px;
+	font-weight: 700;
+}
+
+.esri-gnav-user-id {
+	font-size: 14px/16px;
+}
+
+/* Global Navigation: Sub Menus
+/* ========================================================================== */
+
+.esri-gnav-user {
+	position: relative;
+}
+
+/* Global Navigation: Sub Menus
+/* ========================================================================== */
+
+.esri-gnav-user-menu {
+	background-color: #f8f8f8;
+	box-shadow: inset 0 0 0 1px #dedede;
+	min-size: 410px calc(130px + 48px + 48px);
+	padding: 48px 28px 0 42px;
+	position: absolute 100% 0 * *;
+	transition: opacity 250ms ease-in-out;
+
+	&:not([aria-expanded="true"]) {
+		clip: rect(0 0 0 0);
+		opacity: 0;
+		visibility: hidden;
+	}
+}
+
+.esri-gnav-user-menu-image {
+	border-radius: 50%;
+	box-shadow: 0 0 0 4px #007ac2;
+	position: absolute 48px * *;
+	size: calc(130px - 4px * 2);
+}

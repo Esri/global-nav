@@ -1,13 +1,9 @@
-/* Scaffolding (to be removed)
-/* ========================================================================== */
-
-@import "css/scaffolding";
-
 /* Global Navigation
 /* ========================================================================== */
 
-@import "css/gnav";
-@import "css/gnav/basic";
-@import "css/gnav/brand";
-@import "css/gnav/menus";
-@import "css/gnav/user";
+@import "css/basic";
+@import "css/brand";
+@import "css/client";
+@import "css/menus";
+@import "css/apps";
+@import "css/user";

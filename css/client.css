@@ -1,0 +1,11 @@
+/* Global Navigation: Client
+/* ========================================================================== */
+
+.esri-gnav-client {
+	display: flex;
+	flex-grow: 0;
+
+	& > :first-child {
+		box-shadow: -1px 0 0 0 #e0e0e0;
+	}
+}
