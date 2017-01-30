@@ -3,10 +3,9 @@
   "version": "1.0.0",
   "private": true,
   "main": "index.js",
-  "context": "index.json",
   "style": "index.css",
-  "template": "index.html",
   "scripts": {
+    "clean": "git clean -X -d -f",
     "lint": "npm run lint:ec && npm run lint:css && npm run lint:js",
     "lint:ec": "echint",
     "lint:css": "stylelint *.css css/*.css",
@@ -15,13 +14,13 @@
     "test": "npm run lint"
   },
   "devDependencies": {
-    "echint": "^2.1.1",
+    "echint": "^3.0.0",
     "echint-config-dev": "1.0.0",
-    "eslint": "^3.14.0",
+    "eslint": "^3.14.1",
     "eslint-config-dev": "^1.0.0",
     "pre-commit": "^1.2.2",
-    "rapid": "^1.0.0",
-    "rapid-config-dev": "^1.0.0",
+    "rapid": "^1.1.0",
+    "rapid-config-dev": "^1.1.0",
     "stylelint": "^7.7.1",
     "stylelint-config-dev": "^1.0.0"
   },
@@ -35,7 +34,16 @@
     "lint"
   ],
   "rapid": {
-    "extends": "dev"
+    "extends": "dev",
+    "html": {
+      "from": "demo/index.html"
+    },
+    "css": {
+      "from": "demo/index.css"
+    },
+    "js": {
+      "from": "demo/index.js"
+    }
   },
   "stylelint": {
     "extends": "stylelint-config-dev"
