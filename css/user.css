@@ -24,7 +24,7 @@
 }
 
 .esri-gnav-user {
-	@apply --item--top;
+	@apply --submenu-control;
 }
 
 .esri-gnav-user-image {
@@ -52,7 +52,7 @@
 /* ========================================================================== */
 
 .esri-gnav-user-menu {
-	@apply --menu--sub;
+	@apply --submenu;
 
 	min-size: 410px calc(130px + 48px + 48px);
 	padding: 48px 28px 0 42px;
@@ -61,7 +61,7 @@
 
 .esri-gnav-user-menu-image {
 	border-radius: 50%;
-	box-shadow: 0 0 0 4px #007ac2;
+	box-shadow: 0 0 0 4px var(--blue);
 	position: absolute 48px * *;
 	size: calc(130px - 4px * 2);
 }

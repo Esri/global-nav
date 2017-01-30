@@ -1,14 +1,26 @@
-/* Custom Properties
+/* Custom Properties: Color
 /* ========================================================================== */
 
 :root {
-	--item--top: {
+	--mono-0:   #000000;
+	--mono-35:  #595959;
+	--mono-87:  #dedede;
+	--mono-97:  #f8f8f8;
+	--mono-100: #ffffff;
+	--blue:     #0079c1;
+}
+
+/* Custom Properties: Apply
+/* ========================================================================== */
+
+:root {
+	--submenu-control: {
 		position: relative;
 	};
 
-	--menu--sub: {
-		background-color: #f8f8f8;
-		box-shadow: inset 0 0 0 1px #dedede;
+	--submenu: {
+		background-color: var(--mono-97);
+		box-shadow: inset 0 0 0 1px var(--mono-87);
 		position: absolute 100% * *;
 		transition: opacity 250ms ease-in-out;
 
@@ -26,13 +38,13 @@
 	};
 
 	--clickable {
-		color: #4c4c4c;
+		color: var(--mono-35);
 		cursor: pointer;
 		display: block;
 		outline-offset: -.375em;
 
 		&:matches(:hover, :focus) {
-			color: #0079c1;
+			color: var(--blue);
 		}
 	}
 
@@ -55,13 +67,13 @@
 	};
 
 	--fillable {
+		display: block;
 		fill: currentColor;
 	}
 
 	--icon {
 		@apply --fillable;
 
-		display: block;
 		margin: 20px 28px;
 		size: 24px;
 	};

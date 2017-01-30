@@ -18,7 +18,7 @@
 }
 
 .esri-gnav-menus-item {
-	@apply --item--top;
+	@apply --submenu-control;
 }
 
 .esri-gnav-menus-link {
@@ -28,7 +28,7 @@
 	transition: box-shadow 125ms ease-in-out, color 125ms ease-in-out;
 
 	&[aria-expanded="true"] {
-		box-shadow: inset 0 -4px 0 0 #0079c1;
+		box-shadow: inset 0 -4px 0 0 var(--blue);
 	}
 }
 
@@ -36,7 +36,7 @@
 /* ========================================================================== */
 
 .esri-gnav-menus-submenu {
-	@apply --menu--sub;
+	@apply --submenu;
 
 	left: -80px;
 	min-size: 440px *;
@@ -50,12 +50,12 @@
 .esri-gnav-menus-sublink {
 	@apply --link;
 
-	box-shadow: inset 0 -1px 0 0 #e0e0e0;
+	box-shadow: inset 0 -1px 0 0 var(--mono-87);
 	font-size: 14px/calc(20 / 14);
 	outline-offset: 0;
 	padding: 20px 0;
 
 	&:matches(:focus, :hover) {
-		box-shadow: inset 0 -1px 0 0 #0079c1;
+		box-shadow: inset 0 -1px 0 0 var(--blue);
 	}
 }

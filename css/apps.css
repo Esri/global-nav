@@ -6,7 +6,7 @@
 /* ========================================================================== */
 
 .esri-gnav-apps {
-	@apply --item--top;
+	@apply --submenu-control;
 
 	position: relative;
 }
@@ -23,7 +23,7 @@
 /* ========================================================================== */
 
 .esri-gnav-apps-menu {
-	@apply --menu--sub;
+	@apply --submenu;
 
 	min-size: 410px calc(130px + 48px + 48px);
 	padding: 48px 28px 0 42px;

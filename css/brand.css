@@ -9,13 +9,13 @@
 	@apply --link;
 
 	align-items: center;
+	color: var(--mono-0);
 	display: flex;
 	padding: * 24px;
 }
 
 .esri-gnav-brand-image {
-	@apply --svg;
+	@apply --fillable;
 
-	display: block;
 	size: 60px 30px;
 }
