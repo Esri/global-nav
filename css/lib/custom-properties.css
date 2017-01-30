@@ -14,23 +14,6 @@
 /* ========================================================================== */
 
 :root {
-	--submenu-control: {
-		position: relative;
-	};
-
-	--submenu: {
-		background-color: var(--mono-97);
-		box-shadow: inset 0 0 0 1px var(--mono-87);
-		position: absolute 100% * *;
-		transition: opacity 250ms ease-in-out;
-
-		&:not([aria-expanded="true"]) {
-			clip: rect(0 0 0 0);
-			opacity: 0;
-			visibility: hidden;
-		}
-	};
-
 	--list {
 		list-style: none;
 		margin: 0;
@@ -76,5 +59,30 @@
 
 		margin: 20px 28px;
 		size: 24px;
+	};
+
+	--submenu: {
+		background-color: var(--mono-97);
+		box-shadow: inset 0 0 0 1px var(--mono-87);
+		position: absolute 100% * *;
+		transition: opacity 250ms ease-in-out;
+
+		&:not([aria-expanded="true"]) {
+			clip: rect(0 0 0 0);
+			opacity: 0;
+			visibility: hidden;
+		}
+	};
+
+	--submenu-parent: {
+		position: relative;
+	};
+
+	--submenu-link {
+		transition: box-shadow 125ms ease-in-out;
+
+		&[aria-expanded="true"] {
+			box-shadow: inset 0 -4px 0 0 var(--blue);
+		}
 	};
 }

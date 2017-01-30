@@ -6,13 +6,14 @@
 /* ========================================================================== */
 
 .esri-gnav-apps {
-	@apply --submenu-control;
+	@apply --submenu-parent;
 
 	position: relative;
 }
 
 .esri-gnav-apps-link {
 	@apply --button;
+	@apply --submenu-link;
 }
 
 .esri-gnav-apps-icon {

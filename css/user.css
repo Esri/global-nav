@@ -2,6 +2,13 @@
 
 @import "lib/custom-properties";
 
+/* Global Navigation: User
+/* ========================================================================== */
+
+.esri-gnav-user {
+	@apply --submenu-parent;
+}
+
 /* Global Navigation: User: Logged Out
 /* ========================================================================== */
 
@@ -16,15 +23,12 @@
 
 .esri-gnav-user-link--loggedin {
 	@apply --button;
+	@apply --submenu-link;
 
 	padding: 16px 32px;
 	padding-left: calc(32px + 16px + 12px);
 	position: relative;
 	text-align: start;
-}
-
-.esri-gnav-user {
-	@apply --submenu-control;
 }
 
 .esri-gnav-user-image {
