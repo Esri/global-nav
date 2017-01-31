@@ -13,7 +13,7 @@ This document details the elements used to present the [Esri Global Navigation] 
 | brand  | [Gnav Brand]  | | | 1  |
 | menus  | [Gnav Menus]  | | | 1+ |
 | search | [Gnav Search] | | | 1  |
-| apps   | [Gnav apps]   | | | 1  |
+| apps   | [Gnav Apps]   | | | 1  |
 | user   | [Gnav User]   | | | 1  |
 
 ```json
@@ -122,7 +122,7 @@ This document details the elements used to present the [Esri Global Navigation] 
 | Element | Uses | From | Required | Limitations |
 |:------- |:---- |:----:|:--------:|:-----------:|
 | label | plain text  | input text | • | 1 |
-| apps  | [Gnav apps] | | | 1+ |
+| apps  | [Gnav Apps] | | | 1+ |
 
 - If `apps` is not specified, then it will not appear.
 
@@ -297,8 +297,9 @@ Website
 [log-img]: https://img.shields.io/badge/changelog-md-blue.svg
 
 [Gnav]: #global-navigation-gnav-component
+[Gnav Apps]: #gnav-apps
 [Gnav Brand]: #gnav-brand
+[Gnav Events]: #gnav-events
 [Gnav Menus]: #gnav-menus
 [Gnav Search]: #gnav-search
 [Gnav User]: #gnav-user
-[Gnav Events]: #gnav-events
