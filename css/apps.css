@@ -26,7 +26,29 @@
 .esri-gnav-apps-menu {
 	@apply --submenu;
 
-	min-size: 410px calc(130px + 48px + 48px);
-	padding: 48px 28px 0 42px;
+	min-size: 500px *;
+	padding: 0;
 	right: 0;
+}
+
+.esri-gnav-apps-menu-list {
+	@apply --list;
+
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.esri-gnav-apps-menu-link {
+	@apply --button;
+
+	font-size: 12px/15px;
+	padding: 25px;
+	size: calc(75px + 25px * 2) 125px;
+	text-align: center;
+}
+
+.esri-gnav-apps-menu-image {
+	display: block;
+	margin: * auto 5px;
+	size: 48px;
 }

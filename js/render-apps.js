@@ -24,17 +24,38 @@ export default (apps, user) => $('div', { class: prefix }, [
 		role: 'group',
 		ariaExpanded: false,
 		ariaHidden: true,
-		ariaLabelledby: `${ prefix }-link`
+		ariaLabelledby: `${ prefix }-menu-link`
 	}, [
-		$('ul', { class: `${ prefix }-list` }, [
-			$('li', { class: `${ prefix }-item` }, [
-				document.createTextNode('App #1')
+		$('ul', { class: `${ prefix }-menu-list` }, [
+			$('li', { class: `${ prefix }-menu-item` }, [
+				$('button', { class: `${ prefix }-menu-link` }, [
+					$('img', { class: `${ prefix }-menu-image`, src: '//placehold.it/256x256' }),
+					document.createTextNode('App #1')
+				])
 			]),
-			$('li', { class: `${ prefix }-item` }, [
-				document.createTextNode('App #2')
+			$('li', { class: `${ prefix }-menu-item` }, [
+				$('button', { class: `${ prefix }-menu-link` }, [
+					$('img', { class: `${ prefix }-menu-image`, src: '//placehold.it/256x256' }),
+					document.createTextNode('App #2 with a long name')
+				])
 			]),
-			$('li', { class: `${ prefix }-item` }, [
-				document.createTextNode('App #3')
+			$('li', { class: `${ prefix }-menu-item` }, [
+				$('button', { class: `${ prefix }-menu-link` }, [
+					$('img', { class: `${ prefix }-menu-image`, src: '//placehold.it/256x256' }),
+					document.createTextNode('App #3 shorter')
+				])
+			]),
+			$('li', { class: `${ prefix }-menu-item` }, [
+				$('button', { class: `${ prefix }-menu-link` }, [
+					$('img', { class: `${ prefix }-menu-image`, src: '//placehold.it/256x256' }),
+					document.createTextNode('App #4')
+				])
+			]),
+			$('li', { class: `${ prefix }-menu-item` }, [
+				$('button', { class: `${ prefix }-menu-link` }, [
+					$('img', { class: `${ prefix }-menu-image`, src: '//placehold.it/256x256' }),
+					document.createTextNode('App #5')
+				])
 			])
 		])
 	])
