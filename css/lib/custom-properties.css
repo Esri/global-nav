@@ -10,6 +10,13 @@
 	--blue:     #0079c1;
 }
 
+/* Custom Properties: Font
+/* ========================================================================== */
+
+:root {
+	--font-stack: "Avenir Next LT Pro", "Century Gothic", sans-serif;
+}
+
 /* Custom Properties: Apply
 /* ========================================================================== */
 

@@ -15,7 +15,7 @@
 	color: var(--mono-35) var(--mono-100);
 	cursor: default;
 	display: flex;
-	font: 300 16px/calc(20 / 16) "Avenir Next LT Pro", "Century Gothic", sans-serif;
+	font: 300 16px/calc(20 / 16) var(--font-stack);
 	justify-content: space-between;
 	size: * 64px;
 	user-select: none;
