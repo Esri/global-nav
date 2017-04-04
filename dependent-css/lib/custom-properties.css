@@ -8,6 +8,7 @@
 	--mono-97:  #f8f8f8;
 	--mono-100: #ffffff;
 	--blue:     #0079c1;
+	--blue-50:  rgba(0, 121, 193, 0.5);
 }
 
 /* Custom Properties: Font
@@ -34,7 +35,8 @@
 		outline-offset: -.375em;
 
 		&:matches(:hover, :focus) {
-			color: var(--blue);
+			color: var(--mono-0);
+			box-shadow: inset 0 -4px 0 0 var(--blue-50);
 		}
 	}
 
@@ -53,6 +55,7 @@
 		font-size: inherit;
 		font-style: inherit;
 		font-weight: inherit;
+		margin: 0 20px;
 		padding: 0;
 	};
 
@@ -64,7 +67,7 @@
 	--icon {
 		@apply --fillable;
 
-		margin: 20px 28px;
+		margin: 20px 8px;
 		size: 24px;
 	};
 
@@ -86,8 +89,6 @@
 	};
 
 	--submenu-link {
-		transition: box-shadow 125ms ease-in-out;
-
 		&[aria-expanded="true"] {
 			box-shadow: inset 0 -4px 0 0 var(--blue);
 		}

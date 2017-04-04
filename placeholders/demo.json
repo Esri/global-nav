@@ -1,7 +1,7 @@
 {
   "brand": {
     "label": "Esri",
-    "image": "images/logo.svg",
+    "image": "images/gnav-esri-logo-globe.svg",
     "href": "#brand"
   },
   "menus": [
@@ -78,8 +78,8 @@
   "user": {
     "label": "Sign In",
     "image": "//placehold.it/300x300",
-    "name": "JSON",
-    "id": "json@data",
+    "name": "Matthew",
+    "id": "MJP@mysandiego.com",
     "group": "My San Diego"
   }
 }
