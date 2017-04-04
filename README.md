@@ -42,7 +42,7 @@ npm start
 
 ## Specification
 
-To understand the structure and break down of the Global Navigation component, see [SPEC.md].
+To understand the structure and break down of the Global Navigation component, see [README-SPEC.md].
 
 ## Integrations
 
@@ -55,7 +55,7 @@ Contributions are welcome in all forms: issues, pull requests, concepts, inquiri
 [Esri Global Navigation]: https://github.com/ArcGIS/esri-global-nav
 [Ember]: http://emberjs.com/
 [AngularJS]: https://angularjs.org/
-[SPEC.md]: SPEC.md
+[README-SPEC.md]: README-SPEC.md
 
 [cli-url]: https://travis-ci.com/ArcGIS/esri-global-nav
 [cli-img]: https://api.travis-ci.com/ArcGIS/esri-global-nav.svg?token=mqvp34VgHUamyk5XDa9d
