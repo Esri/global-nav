@@ -19,12 +19,12 @@
   "devDependencies": {
     "echint": "^4.0.1",
     "echint-config-dev": "1.0.0",
-    "eslint": "^3.18.0",
+    "eslint": "^3.19.0",
     "eslint-config-dev": "^2.0.0",
     "pre-commit": "^1.2.2",
-    "rapid": "^3.0.0",
-    "rapid-config-dev": "^1.1.4",
-    "stylelint": "^7.9.0",
+    "rapid": "^3.1.0",
+    "rapid-config-dev": "^1.2.0",
+    "stylelint": "^7.10.1",
     "stylelint-config-dev": "^1.0.0"
   },
   "echint": {
