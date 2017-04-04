@@ -6,7 +6,7 @@
 
 [Esri Global Navigation] is the presentation layer of the top-level navigation for Esri's web pages and SAAS applications. It consists of the markup (HTML), styles (CSS), and functionality for UI interactions.
 
-![Global Navigation: desktop view](readme-assets/esri-global-nav-desktop.png)
+![Global Navigation: desktop view](readme-screenshots/esri-global-nav-desktop.png)
 
 The primary reasons for this component are to achieve greater platform-wide alignment and reduce the amount of duplicated work any given developer needs to do.
 

@@ -6,7 +6,7 @@
 
 This document details the elements used to present the [Esri Global Navigation] \(gnav) component.
 
-![Global Navigation: desktop view](readme-assets/esri-global-nav-desktop.png)
+![Global Navigation: desktop view](readme-screenshots/esri-global-nav-desktop.png)
 
 | Element | Uses | From | Required | Limitations |
 |:------- |:---- |:----:|:--------:|:-----------:|
@@ -35,7 +35,7 @@ This document details the elements used to present the [Esri Global Navigation] 
 
 ### Gnav Brand
 
-![Global Navigation: brand](readme-assets/esri-global-nav-element-brand.png)
+![Global Navigation: brand](readme-screenshots/esri-global-nav-element-brand.png)
 
 | Element | Uses | From | Required | Limitations |
 |:------- |:---- |:----:|:--------:|:-----------:|
@@ -57,7 +57,7 @@ This document details the elements used to present the [Esri Global Navigation] 
 
 ### Gnav Menus
 
-![Global Navigation: menus](readme-assets/esri-global-nav-element-menus.png)
+![Global Navigation: menus](readme-screenshots/esri-global-nav-element-menus.png)
 
 | Element | Uses | From | Required | Limitations |
 |:------- |:---- |:----:|:--------:|:-----------:|
@@ -99,7 +99,7 @@ This document details the elements used to present the [Esri Global Navigation] 
 
 ### Gnav Search
 
-![Global Navigation: search](readme-assets/esri-global-nav-element-search.png)
+![Global Navigation: search](readme-screenshots/esri-global-nav-element-search.png)
 
 | Element | Uses | From | Required | Limitations |
 |:------- |:---- |:----:|:--------:|:-----------:|
@@ -117,7 +117,7 @@ This document details the elements used to present the [Esri Global Navigation] 
 
 ### Gnav Apps
 
-![Global Navigation: apps](readme-assets/esri-global-nav-element-apps.png)
+![Global Navigation: apps](readme-screenshots/esri-global-nav-element-apps.png)
 
 | Element | Uses | From | Required | Limitations |
 |:------- |:---- |:----:|:--------:|:-----------:|
@@ -150,7 +150,7 @@ This document details the elements used to present the [Esri Global Navigation] 
 
 ### Gnav User
 
-![Global Navigation: user](readme-assets/esri-global-nav-element-user.png)
+![Global Navigation: user](readme-screenshots/esri-global-nav-element-user.png)
 
 | Element | Uses | From | Required | Limitations |
 |:------- |:---- |:----:|:--------:|:-----------:|
@@ -255,7 +255,7 @@ addEventListener(
 
 ## Structure
 
-![Global Nav structure](readme-assets/esri-global-nav-concepts.png)
+![Global Nav structure](readme-screenshots/esri-global-nav-concepts.png)
 
 The component has three sections:
 
@@ -276,7 +276,7 @@ The **Globally-shared** section should receive little to no customization within
 
 #### Tablet
 
-![global navigation structure](readme-assets/esri-global-nav-concepts-mobile.png)
+![global navigation structure](readme-screenshots/esri-global-nav-concepts-mobile.png)
 
 SAAS Apps
 * Nav items are condensed and hidden under the ellipses icon and lives on the right.
