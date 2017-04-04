@@ -14,9 +14,7 @@ export default (apps, user) => $('div', { class: prefix }, [
 		ariaHaspopup: true,
 		ariaLabel: apps.label
 	}, [
-		$('svg', { class: `${ prefix }-icon` }, [
-			$('use', { href: 'assets/gnav.svg#apps' })
-		])
+		$('img', { class: `${ prefix }-icon`, src: 'images/apps.svg' })
 	]),
 	$('div', {
 		class: `${ prefix }-menu`,

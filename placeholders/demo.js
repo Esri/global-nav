@@ -1,5 +1,5 @@
 import gnav from '..';
-import data from './index.json';
+import data from './demo.json';
 
 document.addEventListener(
 	'DOMContentLoaded',

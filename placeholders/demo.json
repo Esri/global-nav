@@ -1,7 +1,7 @@
 {
   "brand": {
     "label": "Esri",
-    "image": "assets/gnav.svg#logo",
+    "image": "images/logo.svg",
     "href": "#brand"
   },
   "menus": [

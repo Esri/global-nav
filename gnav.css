@@ -1,11 +1,11 @@
 /* Imports */
 
-@import "css/apps";
-@import "css/brand";
-@import "css/client";
-@import "css/menus";
-@import "css/search";
-@import "css/user";
+@import "dependent-css/apps";
+@import "dependent-css/brand";
+@import "dependent-css/client";
+@import "dependent-css/menus";
+@import "dependent-css/search";
+@import "dependent-css/user";
 
 /* Global Navigation
 /* ========================================================================== */

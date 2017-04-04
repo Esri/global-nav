@@ -1,8 +1,8 @@
 // tooling
 import 'element-closest';
-import render from './js/render';
-import defaults from './js/defaults';
-import * as importFrom from './js/importFrom';
+import render from './dependent-js/render';
+import defaults from './dependent-js/defaults';
+import * as importFrom from './dependent-js/importFrom';
 
 // class
 export default Object.assign(class GlobNav {}, {

@@ -2,8 +2,8 @@
   "name": "esri-global-nav",
   "version": "1.0.0",
   "private": true,
-  "main": "index.js",
-  "style": "index.css",
+  "main": "gnav.js",
+  "style": "gnav.css",
   "scripts": {
     "clean": "git clean -X -d -f",
     "lint": "npm run lint:ec && npm run lint:css && npm run lint:js",
@@ -39,13 +39,13 @@
   "rapid": {
     "extends": "dev",
     "html": {
-      "from": "demo/index.html"
+      "from": "placeholders/demo.html"
     },
     "css": {
-      "from": "demo/index.css"
+      "from": "placeholders/demo.css"
     },
     "js": {
-      "from": "demo/index.js"
+      "from": "placeholders/demo.js"
     }
   },
   "stylelint": {
