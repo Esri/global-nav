@@ -1,5 +1,6 @@
 // tooling
 import 'element-closest';
+import './dependent-js/lib/object-assign';
 import render from './dependent-js/render';
 import defaults from './dependent-js/defaults';
 import * as importFrom from './dependent-js/importFrom';
