@@ -13,7 +13,7 @@ export default {
 		branding: {
 			color: '#ff0000',
 			href: '//esri.com',
-			image: '/assets/logo.svg'
+			image: '/assets/gnav-esri-logo-globe.svg'
 		},
 		navigation: [],
 		labels: {

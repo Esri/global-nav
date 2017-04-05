@@ -12,10 +12,14 @@
 	color: var(--mono-0);
 	display: flex;
 	padding: * 24px;
+
+  &:matches(:hover, :focus) {
+    box-shadow: none;
+  }
 }
 
 .esri-gnav-brand-image {
 	@apply --fillable;
 
-	size: 60px 30px;
+	size: auto 30px;
 }
