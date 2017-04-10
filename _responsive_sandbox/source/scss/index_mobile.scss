@@ -1,0 +1,15 @@
+/* Medium Devices, Desktops */
+@media only screen and (max-width: 992px) {
+    .esri-gnav-menus {
+        display: none;
+    }
+}
+
+/* Extra Small Devices, Phones */
+@media only screen and (max-width: 480px) {
+    .esri-gnav-client{
+        display: none;
+    }
+
+}
+

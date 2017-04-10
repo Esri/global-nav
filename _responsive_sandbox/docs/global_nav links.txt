@@ -1,0 +1,5 @@
+repo for global-nav
+https://github.com/ArcGIS/esri-global-nav
+
+demo page for global nav
+https://arcgis.github.io/esri-global-nav/
