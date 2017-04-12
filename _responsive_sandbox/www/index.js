@@ -113,26 +113,62 @@
         },
         drawerIX: 0,
         menuIX: 0,
+        mobileNavigationWidth: 300,
+        navigationBurgerWidth: 70,
+        navigationHeight: 64,
+        assignBurgerToggler: function assignBurgerToggler(node) {
+            node.addEventListener('click', function (e) {
+                try {
+                    if (e.target.checked) {
+                        navMgr.mobileNavigationOpener();
+                    } else {
+                        navMgr.mobileNavigationCloser();
+                    }
+                } catch (e) {
+                    console.log(e);
+                }
+            });
+        },
         assignDrawerOpener: function assignDrawerOpener(node, drawer_ix) {
-            try {
-                node.getElementsByTagName('a')[0].addEventListener('click', function (e) {
+            node.getElementsByTagName('a')[0].addEventListener('click', function (e) {
+                try {
                     e.preventDefault();
                     var drawer = document.getElementById("mobile-nav-drawer-" + drawer_ix);
                     console.log(drawer);
+                } catch (e) {
+                    console.log(e);
+                }
+            });
+        },
+        assignUniversalMobileCloser: function assignUniversalMobileCloser() {
+
+            var $body = document.getElementsByTagName('body')[0];
+            if ($body) {
+                $body.addEventListener('click', function (e) {
+                    try {
+                        if (e.clientX > navMgr.mobileNavigationWidth && e.clientY > navMgr.navigationHeight || e.clientX > navMgr.navigationBurgerWidth && e.clientY <= navMgr.navigationHeight) {
+                            navMgr.mobileNavigationCloser();
+                        }
+                    } catch (e) {
+                        console.log(e);
+                    }
                 });
-            } catch (e) {
-                console.log(e);
             }
         },
-        assignBurgerToggler: function assignBurgerToggler(node) {
-            try {
-                node.addEventListener('click', function (e) {
-                    document.getElementById('esri-gnav-mobile').setAttribute('aria-expanded', e.target.checked.toString());
-                    document.getElementById('esri-gnav-mobile-toggle-label').setAttribute('data-mobilie-nav-active', e.target.checked.toString());
-                });
-            } catch (e) {
-                console.log(e);
-            }
+        mobileNavigationCloser: function mobileNavigationCloser() {
+            document.getElementById('esri-gnav-mobile-toggle-label').setAttribute('data-mobilie-nav-active', 'false');
+            document.getElementById('esri-gnav-mobile').setAttribute('aria-expanded', 'false');
+        },
+        mobileNavigationOpener: function mobileNavigationOpener() {
+
+            //close any open item in the global navigation
+            document.querySelector('#esri-gnav').querySelectorAll('[aria-expanded="true"]').forEach(function ($el) {
+                $el.setAttribute('aria-expanded', 'false');
+            });
+
+            //open the mobile navigation components
+            document.getElementById('esri-gnav-mobile-toggle-label').setAttribute('data-mobilie-nav-active', 'true');
+            document.getElementById('esri-gnav-mobile').setAttribute('aria-expanded', 'true');
         }
     };
 
@@ -413,12 +449,13 @@
         }
 
         var $global_nav = document.getElementById("esri-gnav");
+        navMgr.assignUniversalMobileCloser();
 
         // stop-gap functionality from here on out...
 
         function closeAll() {
-            Array.from($global_nav.querySelectorAll('[aria-expanded]')).forEach(function ($expanded) {
-                return $expanded.removeAttribute('aria-expanded');
+            $global_nav.querySelectorAll('[aria-expanded="true"]').forEach(function ($el) {
+                $el.setAttribute('aria-expanded', 'false');
             });
         }
 

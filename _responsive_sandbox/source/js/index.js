@@ -110,26 +110,65 @@
         },
         drawerIX: 0,
         menuIX: 0,
+        mobileNavigationWidth: 300,
+        navigationBurgerWidth: 70,
+        navigationHeight: 64,
+        assignBurgerToggler: function (node) {
+            node.addEventListener('click', function (e) {
+                try {
+                    if (e.target.checked) {
+                        navMgr.mobileNavigationOpener();
+                    } else {
+                        navMgr.mobileNavigationCloser();
+                    }
+                } catch (e) {
+                    console.log(e);
+                }
+            });
+        },
         assignDrawerOpener: function (node, drawer_ix) {
-            try {
-                node.getElementsByTagName('a')[0].addEventListener('click', function (e) {
+            node.getElementsByTagName('a')[0].addEventListener('click', function (e) {
+                try {
                     e.preventDefault();
                     var drawer = document.getElementById("mobile-nav-drawer-" + drawer_ix);
                     console.log(drawer);
+                } catch (e) {
+                    console.log(e);
+                }
+            });
+        },
+        assignUniversalMobileCloser: function () {
+
+            var $body = document.getElementsByTagName('body')[0];
+            if ($body) {
+                $body.addEventListener('click', function (e) {
+                    try {
+                        if ((e.clientX > navMgr.mobileNavigationWidth && e.clientY  > navMgr.navigationHeight) ||
+                            (e.clientX > navMgr.navigationBurgerWidth && e.clientY  <= navMgr.navigationHeight)){
+                            navMgr.mobileNavigationCloser()
+                        }
+                    } catch (e) {
+                        console.log(e);
+                    }
                 });
-            } catch (e) {
-                console.log(e);
             }
         },
-        assignBurgerToggler: function (node) {
-            try {
-                node.addEventListener('click', function (e) {
-                    document.getElementById('esri-gnav-mobile').setAttribute('aria-expanded', (e.target.checked).toString());
-                    document.getElementById('esri-gnav-mobile-toggle-label').setAttribute('data-mobilie-nav-active', (e.target.checked).toString());
+        mobileNavigationCloser: function () {
+            document.getElementById('esri-gnav-mobile-toggle-label').setAttribute('data-mobilie-nav-active', 'false');
+            document.getElementById('esri-gnav-mobile').setAttribute('aria-expanded', 'false');
+        },
+        mobileNavigationOpener: function () {
+
+            //close any open item in the global navigation
+            document.querySelector('#esri-gnav')
+                .querySelectorAll('[aria-expanded="true"]')
+                .forEach(function($el){
+                    $el.setAttribute('aria-expanded', 'false')
                 });
-            } catch (e) {
-                console.log(e);
-            }
+
+            //open the mobile navigation components
+            document.getElementById('esri-gnav-mobile-toggle-label').setAttribute('data-mobilie-nav-active', 'true');
+            document.getElementById('esri-gnav-mobile').setAttribute('aria-expanded', 'true');
         }
     };
 
@@ -435,17 +474,17 @@
 
         //build the global navigation components and append them to the document fragment
         nav_frag.appendChild($('nav',
-                {
-                    "id": "esri-gnav",
-                    "class": "esri-gnav"
-                },
-                [
-                    $burger(),
-                    data.brand ? $brand(data.brand) : document.createTextNode(''),
-                    data.menus && data.menus.length ? $menus(data.menus) : document.createTextNode(''),
-                    data.search ? $search(data.search) : document.createTextNode(''),
-                    data.apps || data.user ? $client(data.apps, data.user) : document.createTextNode('')
-                ]
+            {
+                "id": "esri-gnav",
+                "class": "esri-gnav"
+            },
+            [
+                $burger(),
+                data.brand ? $brand(data.brand) : document.createTextNode(''),
+                data.menus && data.menus.length ? $menus(data.menus) : document.createTextNode(''),
+                data.search ? $search(data.search) : document.createTextNode(''),
+                data.apps || data.user ? $client(data.apps, data.user) : document.createTextNode('')
+            ]
             )
         );
 
@@ -461,13 +500,15 @@
         }
 
         var $global_nav = document.getElementById("esri-gnav");
+        navMgr.assignUniversalMobileCloser();
 
         // stop-gap functionality from here on out...
 
         function closeAll() {
-            Array.from($global_nav.querySelectorAll('[aria-expanded]')).forEach(function ($expanded) {
-                return $expanded.removeAttribute('aria-expanded');
-            });
+            $global_nav.querySelectorAll('[aria-expanded="true"]')
+                .forEach(function($el){
+                    $el.setAttribute('aria-expanded', 'false')
+                });
         }
 
         $global_nav.addEventListener('keydown', function (event) {
