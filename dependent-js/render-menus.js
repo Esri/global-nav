@@ -57,4 +57,4 @@ export default (menus) => $('div', { class: prefix }, menus.map(
 ));
 
 // unique id initialized
-const uuid = 0;
+let uuid = 0;
