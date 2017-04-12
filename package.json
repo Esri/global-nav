@@ -1,40 +1,42 @@
 {
   "name": "esri-global-nav",
   "version": "1.0.0",
-  "private": true,
   "main": "gnav.js",
   "style": "gnav.css",
   "scripts": {
     "clean": "git clean -X -d -f",
-    "lint": "npm run lint:ec && npm run lint:css && npm run lint:js",
-    "lint:ec": "echint",
-    "lint:css": "stylelint *.css css/*.css",
-    "lint:js": "eslint *.js --cache --ignore-pattern .gitignore",
-    "start": "rapid",
-    "test": "npm run lint"
+    "rapid": "rapid",
+    "start": "gulp",
+    "test": "npm run test:css && npm run test:js",
+    "test:css": "stylelint *.css css/*.css",
+    "test:js": "eslint *.js --cache --ignore-pattern .gitignore"
   },
   "dependencies": {
     "element-closest": "^2.0.2"
   },
   "devDependencies": {
-    "echint": "^4.0.1",
-    "echint-config-dev": "1.0.0",
     "eslint": "^3.19.0",
     "eslint-config-dev": "^2.0.0",
+    "eslit": "^4.1.0",
+    "gulp": "^3.9.1",
+    "gulp-connect": "^5.0.0",
+    "gulp-postcss": "^6.4.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-sourcemaps": "^2.6.0",
     "pre-commit": "^1.2.2",
     "rapid": "^3.1.0",
     "rapid-config-dev": "^1.2.0",
+    "rollup-stream": "^1.19.0",
     "stylelint": "^7.10.1",
-    "stylelint-config-dev": "^1.0.0"
-  },
-  "echint": {
-    "extends": "dev"
+    "stylelint-config-dev": "^1.2.0",
+    "vinyl-buffer": "^1.0.0",
+    "vinyl-source-stream": "^1.1.0"
   },
   "eslintConfig": {
     "extends": "dev"
   },
   "pre-commit": [
-    "lint"
+    "test"
   ],
   "rapid": {
     "extends": "dev",
@@ -50,5 +52,6 @@
   },
   "stylelint": {
     "extends": "stylelint-config-dev"
-  }
+  },
+  "private": true
 }
