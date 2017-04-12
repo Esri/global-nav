@@ -1,7 +1,6 @@
 (function () {
     'use strict';
 
-
     /* POLYFILLS */
 
     // element-closest | CC0-1.0 | github.com/jonathantneal/closest
@@ -103,9 +102,8 @@
         classPrefixes: {
             app: 'esri-gnav-apps',
             brand: 'esri-gnav-brand',
-            burger: 'esri-gnav-burger',
             client: 'esri-gnav-client',
-            drawers: 'esri-gnav-mobile',
+            mobile_nav: 'esri-gnav-mobile',
             menus: 'esri-gnav-menus',
             search: 'esri-gnav-search',
             user: 'esri-gnav-user'
@@ -116,15 +114,24 @@
             try {
                 node.getElementsByTagName('a')[0].addEventListener('click', function (e) {
                     e.preventDefault();
-                    var drawer = document.querySelector("div[data-nav-drawer-index=" + drawer_ix + "]");
+                    var drawer = document.getElementById("mobile-nav-drawer-" + drawer_ix);
                     console.log(drawer);
+                });
+            } catch (e) {
+                console.log(e);
+            }
+        },
+        assignBurgerToggler: function (node) {
+            try {
+                node.addEventListener('click', function (e) {
+                    document.getElementById('esri-gnav-mobile').setAttribute('aria-expanded', (e.target.checked).toString());
+                    document.getElementById('esri-gnav-mobile-toggle-label').setAttribute('data-mobilie-nav-active', (e.target.checked).toString());
                 });
             } catch (e) {
                 console.log(e);
             }
         }
     };
-
 
     var $ = function (name, attrs, children) {
         var namespace = /^(use|svg)$/.test(name) ? '2000/svg' : '1999/xhtml';
@@ -149,21 +156,40 @@
     /* ELEMENT RENDERERS */
 
 // render brand element
-    var $burger = (function (brand) {
-        return $('input', {type: 'checkbox', class: clsPrefix.burger + '-checkbox'}, [$('img', {
-            class: clsPrefix.burger + '-image',
-            ariaLabel: brand.label,
-            src: brand.image
-        })]);
+    var $burger = (function () {
+        var burger_frag = document.createDocumentFragment();
+        var toggler = burger_frag.appendChild($('input',
+            {
+                type: 'checkbox',
+                class: clsPrefix.mobile_nav + '-toggle',
+                id: clsPrefix.mobile_nav + '-toggle'
+            },
+            []));
+        burger_frag.appendChild($('label',
+            {
+                for: clsPrefix.mobile_nav + '-toggle',
+                id: clsPrefix.mobile_nav + '-toggle-label'
+            },
+            []));
+
+        navMgr.assignBurgerToggler(toggler);
+        return burger_frag;
     });
 
 // render brand element
     var $brand = (function (brand) {
-        return $('input', {type: 'checkbox', class: clsPrefix.brand + '-checkbox'}, [$('img', {
-            class: clsPrefix.brand + '-image',
-            ariaLabel: brand.label,
-            src: brand.image
-        })]);
+        return $('a',
+            {
+                class: clsPrefix.brand,
+                href: brand.href
+            },
+            [$('img', {
+                class: clsPrefix.brand + '-image',
+                ariaLabel: brand.label,
+                src: brand.image
+            })])
+
+            ;
     });
 
 // render menus element
@@ -228,14 +254,14 @@
 
                 //create a node for the navigation item
                 var nav_node = $('li',
-                    {"class": clsPrefix.drawers + '-drawer-item'},
+                    {"class": clsPrefix.mobile_nav + '-drawer-item'},
                     option.href ?
                         [$('a',
-                            {"class": clsPrefix.drawers + '-drawer-link', "href": option.href},
+                            {"class": clsPrefix.mobile_nav + '-drawer-link', "href": option.href},
                             [document.createTextNode(option.label)]
                         )] :
                         [$('a',
-                            {"class": clsPrefix.drawers + '-drawer-opener',  "href": '#option' + ++navMgr.drawerIX},
+                            {"class": clsPrefix.mobile_nav + '-drawer-opener', "href": '#option' + ++navMgr.drawerIX},
                             [document.createTextNode(option.label)]
                         )]
                 );
@@ -252,11 +278,13 @@
                     //create a sub-navigation drawer referenced by this navigation item
                     var nav_drawer = $('div',
                         {
-                            "class": clsPrefix.drawers + '-drawer-secondary',
-                            "data-nav-drawer-index": navMgr.drawerIX
+                            "class": clsPrefix.mobile_nav + '-drawer-secondary',
+                            "id": "mobile-nav-drawer-" + navMgr.drawerIX,
+                            "data-nav-drawer-index": navMgr.drawerIX,
+                            "aria-hidden": "true"
                         },
                         [$('ul',
-                            {"class": clsPrefix.drawers + "-sublist"},
+                            {"class": clsPrefix.mobile_nav + "-sublist"},
                             []
                         )]
                     );
@@ -284,7 +312,6 @@
             src: 'images/search.svg'
         })]);
     });
-
 
 // render apps element
     var $apps = (function (apps, user) {
@@ -372,61 +399,84 @@
 
 // render the gnav
     var render = function (data) {
+        var nav_frag = document.createDocumentFragment();
 
-        //TODO: this selector will need to reference the main content wrapper
-        var main_content_warpper = document.getElementsByClassName('esri-main')[0] || document.body;
-
-        var $target = main_content_warpper.appendChild(
-            $('div',
-                {class: 'esri-gnav'},
-                [].concat(
-                    data.brand ? $brand(data.brand) : [],
-                    data.menus && data.menus.length ? $menus(data.menus) : [],
-                    data.search ? $search(data.search) : [],
-                    data.apps || data.user ? $client(data.apps, data.user) : []
-                )
-            )
-        );
-
-
+        //build the mobile global navigation components and append them to the document fragment
         if (data.menus && data.menus.length) {
-            var mobile_nav_frag = document.createDocumentFragment();
-            var primary_drawer = $('div',
-                {"class": clsPrefix.drawers + "-drawer", "data-nav-drawer-index": 0},
-                [$('ul',
-                    {"class": clsPrefix.drawers + "-list"},
-                    []
-                )]);
 
+            var mobile_nav = $('nav',
+                {
+                    "id": "esri-gnav-mobile",
+                    "class": "esri-gnav-mobile",
+                    "aria-expanded": "false"
+                },
+                [$('div',
+                    {
+                        "class": clsPrefix.mobile_nav + '-drawer-primary',
+                        "id": "mobile-nav-drawer-" + 0,
+                        "data-nav-drawer-index": 0,
+                        "aria-hidden": "false"
+                    },
+                    [$('ul',
+                        {"class": clsPrefix.mobile_nav + "-list"},
+                        []
+                    )]
+                )]
+            );
 
-            mobile_nav_frag.appendChild(primary_drawer);
+            nav_frag.appendChild(mobile_nav);
 
             $drawers({
                 menu_options: data.menus,
-                root_node: mobile_nav_frag,
-                parent_node: primary_drawer.getElementsByTagName('ul')[0]
+                root_node: nav_frag.getElementById('esri-gnav-mobile'),
+                parent_node: mobile_nav.getElementsByTagName('ul')[0]
             });
-
-            var drawer_nav_wrapper = document.getElementsByClassName('esri-gnav-mobile')[0] || document.body;
-            drawer_nav_wrapper.appendChild(mobile_nav_frag);
         }
+
+        //build the global navigation components and append them to the document fragment
+        nav_frag.appendChild($('nav',
+                {
+                    "id": "esri-gnav",
+                    "class": "esri-gnav"
+                },
+                [
+                    $burger(),
+                    data.brand ? $brand(data.brand) : document.createTextNode(''),
+                    data.menus && data.menus.length ? $menus(data.menus) : document.createTextNode(''),
+                    data.search ? $search(data.search) : document.createTextNode(''),
+                    data.apps || data.user ? $client(data.apps, data.user) : document.createTextNode('')
+                ]
+            )
+        );
+
+        //insert the navigation elements into the DOM
+        _insertNav(nav_frag);
+
+        function _insertNav(nav) {
+            //NOTE: navigation rendering looks for an existing div container, #esri-main-container
+            var pageWrapper = document.getElementById('esri-main-container') || document.body;
+            (pageWrapper.childNodes && pageWrapper.childNodes.length) ?
+                pageWrapper.insertBefore(nav, pageWrapper.childNodes[0]) :
+                pageWrapper.appendChild(nav);
+        }
+
+        var $global_nav = document.getElementById("esri-gnav");
 
         // stop-gap functionality from here on out...
 
-
         function closeAll() {
-            Array.from($target.querySelectorAll('[aria-expanded]')).forEach(function ($expanded) {
+            Array.from($global_nav.querySelectorAll('[aria-expanded]')).forEach(function ($expanded) {
                 return $expanded.removeAttribute('aria-expanded');
             });
         }
 
-        $target.addEventListener('keydown', function (event) {
+        $global_nav.addEventListener('keydown', function (event) {
             if (event.keyCode === 27) {
                 closeAll();
             }
         });
 
-        $target.addEventListener('click', function (event) {
+        $global_nav.addEventListener('click', function (event) {
             var $clickable = event.target.closest('a,button');
 
             if ($clickable) {
@@ -455,7 +505,7 @@
             }
         });
 
-        $target.addEventListener('esri-gnav:click', function (event) {
+        $global_nav.addEventListener('esri-gnav:click', function (event) {
             return console.log(['event', event.type], ['target', event.detail.target]);
         });
     };

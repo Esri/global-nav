@@ -1,15 +1,158 @@
+html, body {
+  height: 100%;
+  overflow: hidden;
+}
+
+.esri-gnav-mobile-drawer-primary[aria-hidden="true"],
+.esri-gnav-mobile-drawer-secondary[aria-hidden="true"] {
+  display: none;
+}
+
+#esri-gnav-mobile-toggle {
+  position: absolute;
+  opacity: 0;
+}
+
+#esri-gnav-mobile-toggle-label {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  left: 0px;
+  width: 30px;
+  height: 41px;
+  margin: 24px 0 0 24px;
+  display: block;
+  background: rgba(255, 255, 255, .0);
+  z-index: 1;
+  cursor: pointer;
+  &[data-mobilie-nav-active="true"]{
+    box-shadow: inset 0 -4px 0 0 #0079c1;
+  }
+}
+
+#esri-gnav-mobile-toggle-label:before {
+  content: '';
+  display: block;
+  //position: absolute;
+  height: 3px;
+  width: 30px;
+  background: #8d8d8d;
+  left: 13px;
+  top: 22px;
+  box-shadow: 0 8px 0 #8d8d8d, 0 16px 0 #8d8d8d;
+}
+
+#esri-main {
+  margin-left: 0;
+  width: 100%;
+  height: calc(100% - 50px);
+  overflow-x: hidden;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  //padding: 20px;
+  &[aria-expanded="true"] {
+    margin-left: 0;
+    width: 100%;
+    //margin-left: 300px;
+    //width: calc(100% - 300px);
+  }
+}
+
+#esri-gnav-mobile {
+  position: fixed;
+  top: 64px;
+  left: 0;
+  height: 100%;
+  width: 260px;
+  background: #efefef;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  padding: 20px;
+  -webkit-overflow-scrolling: touch;
+  -webkit-transition: width .25s ease-in-out;
+  -moz-transition: width .25s ease-in-out;
+  -o-transition: width .25s ease-in-out;
+  transition: width .25s ease-in-out;
+  z-index: 10;
+
+  &[aria-expanded="true"] {
+    width: 260px;
+    padding: 20px;
+    opacity: 100;
+  }
+  &[aria-expanded="false"] {
+    width: 0;
+    padding: 0;
+    opacity: 0;
+  }
+  ::before{
+    content:'';
+    position: fixed;
+    top: 64px;
+    left: 300px;
+    right: 0;
+    bottom: 0;
+    cursor: pointer;
+    display: block;
+    background-color: rgb(119, 119, 119);
+    opacity: 0.1;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+  }
+}
+
+.esri-gnav-mobile-list {
+  padding-left: 0;
+  li {
+    border-bottom: 1px solid #999;
+    list-style-type: none;
+    padding: 15px 0;
+    position: relative;
+    cursor: pointer;
+    a {
+      //display: block;
+      font-family: "Avenir Next LT Pro", "Century Gothic", sans-serif;
+      text-decoration: none;
+      color: black;
+      }
+      &::after {
+        content: " ";
+        background-image: url('images/right.svg');
+        opacity: 0.7;
+        -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=70)";
+        filter: alpha(opacity=70);
+        -webkit-background-size: .75rem .75rem;
+        -moz-background-size: .75rem .75rem;
+        background-size: .75rem .75rem;
+        background-position: 50% 50%;
+        background-repeat: no-repeat;
+        width: .75rem;
+        height: 100%;
+        position: absolute;
+        right: .8125rem;
+        top: 0;
+    }
+  }
+}
+
 /* Medium Devices, Desktops */
 @media only screen and (max-width: 992px) {
-    .esri-gnav-menus {
-        display: none;
-    }
+  .esri-gnav-menus {
+    display: none;
+  }
 }
 
 /* Extra Small Devices, Phones */
 @media only screen and (max-width: 480px) {
-    .esri-gnav-client{
-        display: none;
-    }
-
+  .esri-gnav-client {
+    display: none;
+  }
 }
 
+.esri-gnav-brand {
+  //margin-left: 50px;
+}
