@@ -41,7 +41,8 @@
   "rapid": {
     "extends": "dev",
     "html": {
-      "from": "placeholders/demo.html"
+      "from": "placeholders/demo.html",
+      "before": ""
     },
     "css": {
       "from": "placeholders/demo.css"

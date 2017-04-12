@@ -49,6 +49,21 @@ export default (menus) => $('div', { class: prefix }, menus.map(
 								document.createTextNode(childitem.label)
 							])
 						])
+					)),
+					// sub-tile experience
+					$('ul', {
+						class: `${ prefix }-sublist--tiles`,
+						role: 'navigation',
+						ariaLabelledby: `${ prefix }-${ uuid }`
+					}, item.menus.map(
+						(childitem) => $('li', { class: `${ prefix }-subitem--tiles` }, [
+							$('a', { class: `${ prefix }-sublink--tiles`, id: `-${ ++uuid }`, href: childitem.href }, [
+								$('svg', { class: `${ prefix }-sublink-image` }),
+								$('span', { class: `${ prefix }-sublink-text` }, [
+									document.createTextNode(childitem.label)
+								])
+							])
+						])
 					))
 				]) : []
 			))
