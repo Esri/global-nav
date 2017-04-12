@@ -129,12 +129,26 @@
                 }
             });
         },
+        assignDrawerCloser: function assignDrawerCloser(node, drawer_ix) {
+            node.addEventListener('click', function (e) {
+                try {
+                    e.preventDefault();
+                    document.getElementById("mobile-nav-drawer-" + drawer_ix).setAttribute('aria-expanded', 'false');
+                } catch (e) {
+                    console.log(e);
+                }
+            });
+        },
         assignDrawerOpener: function assignDrawerOpener(node, drawer_ix) {
             node.getElementsByTagName('a')[0].addEventListener('click', function (e) {
                 try {
                     e.preventDefault();
-                    var drawer = document.getElementById("mobile-nav-drawer-" + drawer_ix);
-                    console.log(drawer);
+
+                    document.querySelector('#esri-gnav-mobile').querySelectorAll('[aria-expanded="true"]').forEach(function ($el) {
+                        $el.setAttribute('aria-expanded', 'false');
+                    });
+
+                    document.getElementById("mobile-nav-drawer-" + drawer_ix).setAttribute('aria-expanded', 'true');
                 } catch (e) {
                     console.log(e);
                 }
@@ -158,6 +172,10 @@
         mobileNavigationCloser: function mobileNavigationCloser() {
             document.getElementById('esri-gnav-mobile-toggle-label').setAttribute('data-mobilie-nav-active', 'false');
             document.getElementById('esri-gnav-mobile').setAttribute('aria-expanded', 'false');
+            //close any open item in the global navigation
+            document.querySelector('#esri-gnav-mobile').querySelectorAll('[aria-expanded="true"]').forEach(function ($el) {
+                $el.setAttribute('aria-expanded', 'false');
+            });
         },
         mobileNavigationOpener: function mobileNavigationOpener() {
 
@@ -298,9 +316,12 @@
                     var nav_drawer = $('div', {
                         "class": clsPrefix.mobile_nav + '-drawer-secondary',
                         "id": "mobile-nav-drawer-" + navMgr.drawerIX,
-                        "data-nav-drawer-index": navMgr.drawerIX,
-                        "aria-hidden": "true"
-                    }, [$('ul', { "class": clsPrefix.mobile_nav + "-sublist" }, [])]);
+                        "aria-expanded": "false",
+                        "data-nav-drawer-index": navMgr.drawerIX
+                    }, [$('ul', { "class": clsPrefix.mobile_nav + "-sublist" }, [$('li', { "class": clsPrefix.mobile_nav + "-drawer-closer" }, [$('span', {}, [document.createTextNode(option.label)])])])]);
+
+                    //attach the drawer closer to the closer list item
+                    navMgr.assignDrawerCloser(nav_drawer.getElementsByTagName('li')[0], navMgr.drawerIX);
 
                     //append the sub-navigation drawer to the root node
                     params.root_node.appendChild(nav_drawer);
