@@ -82,7 +82,7 @@
 		position: relative;
 	};
 
-	--submenu-link {
+	--menu-link {
 		transition: box-shadow 125ms ease-in-out;
 
 		&:matches(:hover, [aria-expanded="true"]) {
