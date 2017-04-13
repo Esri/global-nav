@@ -319,7 +319,6 @@
                     var nav_drawer = $('div', {
                         "class": clsPrefix.mobile_nav + '-drawer-secondary',
                         "id": "mobile-nav-drawer-" + navMgr.drawerIX,
-                        "aria-expanded": "false",
                         "data-nav-drawer-index": navMgr.drawerIX
                     }, [$('ul', { "class": clsPrefix.mobile_nav + "-sublist" }, [$('li', { "class": clsPrefix.mobile_nav + "-drawer-closer" }, [$('a', { "href": "#" }, [document.createTextNode(option.label)])])])]);
 

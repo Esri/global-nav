@@ -348,7 +348,6 @@
                         {
                             "class": clsPrefix.mobile_nav + '-drawer-secondary',
                             "id": "mobile-nav-drawer-" + navMgr.drawerIX,
-                            "aria-expanded": "false",
                             "data-nav-drawer-index": navMgr.drawerIX
                         },
                         [$('ul',
