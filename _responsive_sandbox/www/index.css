@@ -560,25 +560,25 @@ body {
   margin: 0;
 }
 
-/* line 556, D:/_source/esri-global-nav/_responsive_sandbox/source/scss/index.css */
+/* line 558, D:/_source/esri-global-nav/_responsive_sandbox/source/scss/index.css */
 html, body {
   height: 100%;
   overflow: hidden;
 }
 
-/* line 561, D:/_source/esri-global-nav/_responsive_sandbox/source/scss/index.css */
-.esri-gnav-mobile-drawer-primary[aria-hidden="true"],
-.esri-gnav-mobile-drawer-secondary[aria-hidden="true"] {
+/* line 563, D:/_source/esri-global-nav/_responsive_sandbox/source/scss/index.css */
+.esri-gnav-mobile-drawer-primary[aria-expanded="false"],
+.esri-gnav-mobile-drawer-secondary[aria-expanded="false"] {
   display: none;
 }
 
-/* line 566, D:/_source/esri-global-nav/_responsive_sandbox/source/scss/index.css */
+/* line 568, D:/_source/esri-global-nav/_responsive_sandbox/source/scss/index.css */
 #esri-gnav-mobile-toggle {
   position: absolute;
   opacity: 0;
 }
 
-/* line 571, D:/_source/esri-global-nav/_responsive_sandbox/source/scss/index.css */
+/* line 573, D:/_source/esri-global-nav/_responsive_sandbox/source/scss/index.css */
 #esri-gnav-mobile-toggle-label {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
@@ -596,12 +596,12 @@ html, body {
   cursor: pointer;
 }
 
-/* line 586, D:/_source/esri-global-nav/_responsive_sandbox/source/scss/index.css */
+/* line 588, D:/_source/esri-global-nav/_responsive_sandbox/source/scss/index.css */
 #esri-gnav-mobile-toggle-label[data-mobilie-nav-active="true"] {
   box-shadow: inset 0 -4px 0 0 #0079c1;
 }
 
-/* line 591, D:/_source/esri-global-nav/_responsive_sandbox/source/scss/index.css */
+/* line 593, D:/_source/esri-global-nav/_responsive_sandbox/source/scss/index.css */
 #esri-gnav-mobile-toggle-label:before {
   content: '';
   display: block;
@@ -613,23 +613,7 @@ html, body {
   box-shadow: 0 8px 0 #8d8d8d, 0 16px 0 #8d8d8d;
 }
 
-/* line 603, D:/_source/esri-global-nav/_responsive_sandbox/source/scss/index.css */
-#esri-main {
-  margin-left: 0;
-  width: 100%;
-  height: calc(100% - 50px);
-  overflow-x: hidden;
-  overflow-y: hidden;
-  -webkit-overflow-scrolling: touch;
-}
-
-/* line 611, D:/_source/esri-global-nav/_responsive_sandbox/source/scss/index.css */
-#esri-main[aria-expanded="true"] {
-  margin-left: 0;
-  width: 100%;
-}
-
-/* line 619, D:/_source/esri-global-nav/_responsive_sandbox/source/scss/index.css */
+/* line 605, D:/_source/esri-global-nav/_responsive_sandbox/source/scss/index.css */
 #esri-gnav-mobile {
   position: fixed;
   top: 64px;
@@ -648,22 +632,22 @@ html, body {
   z-index: 10;
 }
 
-/* line 636, D:/_source/esri-global-nav/_responsive_sandbox/source/scss/index.css */
+/* line 622, D:/_source/esri-global-nav/_responsive_sandbox/source/scss/index.css */
 #esri-gnav-mobile[aria-expanded="true"] {
   width: 260px;
   padding: 20px;
   opacity: 100;
 }
 
-/* line 641, D:/_source/esri-global-nav/_responsive_sandbox/source/scss/index.css */
+/* line 627, D:/_source/esri-global-nav/_responsive_sandbox/source/scss/index.css */
 #esri-gnav-mobile[aria-expanded="false"] {
   width: 0;
   padding: 0;
   opacity: 0;
 }
 
-/* line 646, D:/_source/esri-global-nav/_responsive_sandbox/source/scss/index.css */
-#esri-gnav-mobile ::before {
+/* line 632, D:/_source/esri-global-nav/_responsive_sandbox/source/scss/index.css */
+#esri-gnav-mobile::before {
   content: '';
   position: fixed;
   top: 64px;
@@ -673,18 +657,18 @@ html, body {
   cursor: pointer;
   display: block;
   background-color: #777777;
-  opacity: 0.1;
+  opacity: 0.7;
   width: 100%;
   height: 100%;
   z-index: 10;
 }
 
-/* line 663, D:/_source/esri-global-nav/_responsive_sandbox/source/scss/index.css */
+/* line 649, D:/_source/esri-global-nav/_responsive_sandbox/source/scss/index.css */
 .esri-gnav-mobile-list {
   padding-left: 0;
 }
 
-/* line 665, D:/_source/esri-global-nav/_responsive_sandbox/source/scss/index.css */
+/* line 651, D:/_source/esri-global-nav/_responsive_sandbox/source/scss/index.css */
 .esri-gnav-mobile-list li {
   border-bottom: 1px solid #999;
   list-style-type: none;
@@ -693,15 +677,15 @@ html, body {
   cursor: pointer;
 }
 
-/* line 671, D:/_source/esri-global-nav/_responsive_sandbox/source/scss/index.css */
+/* line 657, D:/_source/esri-global-nav/_responsive_sandbox/source/scss/index.css */
 .esri-gnav-mobile-list li a {
   font-family: "Avenir Next LT Pro", "Century Gothic", sans-serif;
   text-decoration: none;
   color: black;
 }
 
-/* line 677, D:/_source/esri-global-nav/_responsive_sandbox/source/scss/index.css */
-.esri-gnav-mobile-list li::after {
+/* line 666, D:/_source/esri-global-nav/_responsive_sandbox/source/scss/index.css */
+.esri-gnav-mobile-drawer-item::after {
   content: " ";
   background-image: url("images/right.svg");
   opacity: 0.7;
@@ -719,9 +703,64 @@ html, body {
   top: 0;
 }
 
+/* line 684, D:/_source/esri-global-nav/_responsive_sandbox/source/scss/index.css */
+.esri-gnav-mobile-sublist {
+  padding-left: 0;
+}
+
+/* line 686, D:/_source/esri-global-nav/_responsive_sandbox/source/scss/index.css */
+.esri-gnav-mobile-sublist li {
+  border-bottom: 1px solid #999;
+  list-style-type: none;
+  padding: 15px 0;
+  position: relative;
+  cursor: pointer;
+}
+
+/* line 692, D:/_source/esri-global-nav/_responsive_sandbox/source/scss/index.css */
+.esri-gnav-mobile-sublist li a {
+  font-family: "Avenir Next LT Pro", "Century Gothic", sans-serif;
+  text-decoration: none;
+  color: black;
+}
+
+/* line 700, D:/_source/esri-global-nav/_responsive_sandbox/source/scss/index.css */
+.esri-gnav-mobile-drawer-closer {
+  background-color: #ffffff;
+  padding: 10px;
+  left: -20px;
+  width: 300px;
+  text-align: center;
+}
+
+/* line 706, D:/_source/esri-global-nav/_responsive_sandbox/source/scss/index.css */
+.esri-gnav-mobile-drawer-closer span {
+  font-size: 1.4em;
+  font-family: "Avenir Next LT Pro", "Century Gothic", sans-serif;
+}
+
+/* line 710, D:/_source/esri-global-nav/_responsive_sandbox/source/scss/index.css */
+.esri-gnav-mobile-drawer-closer::before {
+  content: " ";
+  background-image: url("images/left.svg");
+  opacity: 0.7;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=70)";
+  filter: alpha(opacity=70);
+  -webkit-background-size: .75rem .75rem;
+  -moz-background-size: .75rem .75rem;
+  background-size: .75rem .75rem;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  width: .75rem;
+  height: 100%;
+  position: absolute;
+  left: .8125rem;
+  top: .15em;
+}
+
 /* Medium Devices, Desktops */
 @media only screen and (max-width: 992px) {
-  /* line 699, D:/_source/esri-global-nav/_responsive_sandbox/source/scss/index.css */
+  /* line 731, D:/_source/esri-global-nav/_responsive_sandbox/source/scss/index.css */
   .esri-gnav-menus {
     display: none;
   }
@@ -729,7 +768,7 @@ html, body {
 
 /* Extra Small Devices, Phones */
 @media only screen and (max-width: 480px) {
-  /* line 706, D:/_source/esri-global-nav/_responsive_sandbox/source/scss/index.css */
+  /* line 738, D:/_source/esri-global-nav/_responsive_sandbox/source/scss/index.css */
   .esri-gnav-client {
     display: none;
   }

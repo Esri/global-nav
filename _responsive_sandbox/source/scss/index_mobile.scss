@@ -1,10 +1,12 @@
+$font-family:  "Avenir Next LT Pro", "Century Gothic", sans-serif;
+
 html, body {
   height: 100%;
   overflow: hidden;
 }
 
-.esri-gnav-mobile-drawer-primary[aria-hidden="true"],
-.esri-gnav-mobile-drawer-secondary[aria-hidden="true"] {
+.esri-gnav-mobile-drawer-primary[aria-expanded="false"],
+.esri-gnav-mobile-drawer-secondary[aria-expanded="false"] {
   display: none;
 }
 
@@ -28,7 +30,7 @@ html, body {
   background: rgba(255, 255, 255, .0);
   z-index: 1;
   cursor: pointer;
-  &[data-mobilie-nav-active="true"]{
+  &[data-mobilie-nav-active="true"] {
     box-shadow: inset 0 -4px 0 0 #0079c1;
   }
 }
@@ -43,22 +45,6 @@ html, body {
   left: 13px;
   top: 22px;
   box-shadow: 0 8px 0 #8d8d8d, 0 16px 0 #8d8d8d;
-}
-
-#esri-main {
-  margin-left: 0;
-  width: 100%;
-  height: calc(100% - 50px);
-  overflow-x: hidden;
-  overflow-y: hidden;
-  -webkit-overflow-scrolling: touch;
-  //padding: 20px;
-  &[aria-expanded="true"] {
-    margin-left: 0;
-    width: 100%;
-    //margin-left: 300px;
-    //width: calc(100% - 300px);
-  }
 }
 
 #esri-gnav-mobile {
@@ -88,8 +74,8 @@ html, body {
     padding: 0;
     opacity: 0;
   }
-  ::before{
-    content:'';
+  &::before {
+    content: '';
     position: fixed;
     top: 64px;
     left: 300px;
@@ -98,7 +84,7 @@ html, body {
     cursor: pointer;
     display: block;
     background-color: rgb(119, 119, 119);
-    opacity: 0.1;
+    opacity: 0.7;
     width: 100%;
     height: 100%;
     z-index: 10;
@@ -114,28 +100,74 @@ html, body {
     position: relative;
     cursor: pointer;
     a {
-      //display: block;
-      font-family: "Avenir Next LT Pro", "Century Gothic", sans-serif;
+      font-family: $font-family;
       text-decoration: none;
       color: black;
-      }
-      &::after {
-        content: " ";
-        background-image: url('images/right.svg');
-        opacity: 0.7;
-        -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=70)";
-        filter: alpha(opacity=70);
-        -webkit-background-size: .75rem .75rem;
-        -moz-background-size: .75rem .75rem;
-        background-size: .75rem .75rem;
-        background-position: 50% 50%;
-        background-repeat: no-repeat;
-        width: .75rem;
-        height: 100%;
-        position: absolute;
-        right: .8125rem;
-        top: 0;
     }
+
+  }
+}
+
+.esri-gnav-mobile-drawer-item::after {
+  content: " ";
+  background-image: url('images/right.svg');
+  opacity: 0.7;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=70)";
+  filter: alpha(opacity=70);
+  -webkit-background-size: .75rem .75rem;
+  -moz-background-size: .75rem .75rem;
+  background-size: .75rem .75rem;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  width: .75rem;
+  height: 100%;
+  position: absolute;
+  right: .8125rem;
+  top: 0;
+}
+
+.esri-gnav-mobile-sublist {
+  padding-left: 0;
+  li {
+    border-bottom: 1px solid #999;
+    list-style-type: none;
+    padding: 15px 0;
+    position: relative;
+    cursor: pointer;
+    a {
+      font-family: $font-family;
+      text-decoration: none;
+      color: black;
+    }
+  }
+}
+
+.esri-gnav-mobile-drawer-closer {
+  background-color: #ffffff;
+  padding: 10px;
+  left: -20px;
+  width: 300px;
+  text-align: center;
+  span{
+    font-size: 1.4em;
+    font-family: $font-family;
+  }
+  &::before {
+    content: " ";
+    background-image: url('images/left.svg');
+    opacity: 0.7;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=70)";
+    filter: alpha(opacity=70);
+    -webkit-background-size: .75rem .75rem;
+    -moz-background-size: .75rem .75rem;
+    background-size: .75rem .75rem;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    width: .75rem;
+    height: 100%;
+    position: absolute;
+    left: .8125rem;
+    top: .15em;
   }
 }
 
@@ -156,3 +188,4 @@ html, body {
 .esri-gnav-brand {
   //margin-left: 50px;
 }
+
