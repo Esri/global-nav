@@ -72,8 +72,8 @@
 .esri-gnav-menus-sublink--tiles {
 	@apply --link;
 
-	background-color: #ffffff;
-	box-shadow: inset 0 0 0 1px #cecece;
+	background-color: var(--mono-100);
+	box-shadow: inset 0 0 0 1px var(--mono-81);
 	margin-bottom: -1px;
 	padding: 10px 10px 24px;
 	position: relative;
