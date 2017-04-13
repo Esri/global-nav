@@ -107,11 +107,13 @@
             brand: 'esri-gnav-brand',
             client: 'esri-gnav-client',
             mobile_nav: 'esri-gnav-mobile',
+            mobile_user: 'esri-gnav-mobile-user',
             menus: 'esri-gnav-menus',
             search: 'esri-gnav-search',
             user: 'esri-gnav-user'
         },
         drawerIX: 0,
+        loginUrl: 'https://oath.esri.com/dummy',
         menuIX: 0,
         mobileNavigationWidth: 300,
         navigationBurgerWidth: 70,
@@ -211,6 +213,52 @@
 
     /* ELEMENT RENDERERS */
 
+    // render apps element
+    var $apps = function $apps(apps, user) {
+        return $('div', { class: clsPrefix.app }, [$('button', {
+            class: clsPrefix.app + '-link',
+            id: clsPrefix.app + '-link',
+            ariaControls: clsPrefix.app + '-menu',
+            ariaExpanded: false,
+            ariaHaspopup: true,
+            ariaLabel: apps.label
+        }, [$('img', { class: clsPrefix.app + '-icon', src: 'images/apps.svg' })]), $('div', {
+            class: clsPrefix.app + '-menu',
+            id: clsPrefix.app + '-menu',
+            role: 'group',
+            ariaExpanded: false,
+            ariaHidden: true,
+            ariaLabelledby: clsPrefix.app + '-menu-link'
+        }, [$('ul', { class: clsPrefix.app + '-menu-list' }, [$('li', { class: clsPrefix.app + '-menu-item' }, [$('button', { class: clsPrefix.app + '-menu-link' }, [$('img', {
+            class: clsPrefix.app + '-menu-image',
+            src: '//placehold.it/256x256'
+        }), document.createTextNode('App #1')])]), $('li', { class: clsPrefix.app + '-menu-item' }, [$('button', { class: clsPrefix.app + '-menu-link' }, [$('img', {
+            class: clsPrefix.app + '-menu-image',
+            src: '//placehold.it/256x256'
+        }), document.createTextNode('App #2 with a long name')])]), $('li', { class: clsPrefix.app + '-menu-item' }, [$('button', { class: clsPrefix.app + '-menu-link' }, [$('img', {
+            class: clsPrefix.app + '-menu-image',
+            src: '//placehold.it/256x256'
+        }), document.createTextNode('App #3 shorter')])]), $('li', { class: clsPrefix.app + '-menu-item' }, [$('button', { class: clsPrefix.app + '-menu-link' }, [$('img', {
+            class: clsPrefix.app + '-menu-image',
+            src: '//placehold.it/256x256'
+        }), document.createTextNode('App #4')])]), $('li', { class: clsPrefix.app + '-menu-item' }, [$('button', { class: clsPrefix.app + '-menu-link' }, [$('img', {
+            class: clsPrefix.app + '-menu-image',
+            src: '//placehold.it/256x256'
+        }), document.createTextNode('App #5')])])])])]);
+    };
+
+    // render brand element
+    var $brand = function $brand(brand) {
+        return $('a', {
+            class: clsPrefix.brand,
+            href: brand.href
+        }, [$('img', {
+            class: clsPrefix.brand + '-image',
+            ariaLabel: brand.label,
+            src: brand.image
+        })]);
+    };
+
     // render brand element
     var $burger = function $burger() {
         var burger_frag = document.createDocumentFragment();
@@ -228,59 +276,9 @@
         return burger_frag;
     };
 
-    // render brand element
-    var $brand = function $brand(brand) {
-        return $('a', {
-            class: clsPrefix.brand,
-            href: brand.href
-        }, [$('img', {
-            class: clsPrefix.brand + '-image',
-            ariaLabel: brand.label,
-            src: brand.image
-        })]);
-    };
-
-    // render menus element
-    var $menus = function $menus(menus) {
-        return $('div', { class: clsPrefix.menus }, menus.map(function (menu) {
-            return $('div', {
-                class: clsPrefix.menus + '-menu',
-                role: 'group'
-            }, [
-            // top-level experience
-            $('ul', {
-                class: clsPrefix.menus + '-list',
-                role: 'navigation'
-            }, menu.map(function (item) {
-                return $('li', { class: clsPrefix.menus + '-item' }, [$('a', Object.assign({
-                    class: clsPrefix.menus + '-link',
-                    id: clsPrefix.menus + '-link-' + ++navMgr.menuIX,
-                    href: item.href || 'javascript:;'
-                }, item.menus && item.menus.length ? {
-                    ariaControls: clsPrefix.menus + '-submenu-' + navMgr.menuIX,
-                    ariaExpanded: false,
-                    ariaHaspopup: true
-                } : {}), [document.createTextNode(item.label)])].concat(item.menus && item.menus.length ? $('div', {
-                    class: clsPrefix.menus + '-submenu',
-                    id: clsPrefix.menus + '-submenu-' + navMgr.menuIX,
-                    role: 'group',
-                    ariaHidden: true,
-                    ariaExpanded: false
-                }, [
-                // sub-level experience
-                $('ul', {
-                    class: clsPrefix.menus + '-sublist',
-                    role: 'navigation',
-                    ariaLabelledby: clsPrefix.menus + '-' + navMgr.menuIX
-                }, item.menus.map(function (childitem) {
-                    return $('li', { class: clsPrefix.menus + '-subitem' }, [$('a', {
-                        class: clsPrefix.menus + '-sublink',
-                        id: '-' + ++navMgr.menuIX,
-                        href: childitem.href
-                    }, [document.createTextNode(childitem.label)])]);
-                }))]) : []));
-            }))]);
-        }));
+    // render client container
+    var $client = function $client(apps, user) {
+        return $('div', { class: clsPrefix.client }, [].concat(apps ? $apps(apps) : [], user ? $user(user) : []));
     };
 
     // render drawers element
@@ -339,46 +337,55 @@
         });
     };
 
+    // render menus element
+    var $menus = function $menus(menus) {
+        return $('div', { class: clsPrefix.menus }, menus.map(function (menu) {
+            return $('div', {
+                class: clsPrefix.menus + '-menu',
+                role: 'group'
+            }, [
+            // top-level experience
+            $('ul', {
+                class: clsPrefix.menus + '-list',
+                role: 'navigation'
+            }, menu.map(function (item) {
+                return $('li', { class: clsPrefix.menus + '-item' }, [$('a', Object.assign({
+                    class: clsPrefix.menus + '-link',
+                    id: clsPrefix.menus + '-link-' + ++navMgr.menuIX,
+                    href: item.href || 'javascript:;'
+                }, item.menus && item.menus.length ? {
+                    ariaControls: clsPrefix.menus + '-submenu-' + navMgr.menuIX,
+                    ariaExpanded: false,
+                    ariaHaspopup: true
+                } : {}), [document.createTextNode(item.label)])].concat(item.menus && item.menus.length ? $('div', {
+                    class: clsPrefix.menus + '-submenu',
+                    id: clsPrefix.menus + '-submenu-' + navMgr.menuIX,
+                    role: 'group',
+                    ariaHidden: true,
+                    ariaExpanded: false
+                }, [
+                // sub-level experience
+                $('ul', {
+                    class: clsPrefix.menus + '-sublist',
+                    role: 'navigation',
+                    ariaLabelledby: clsPrefix.menus + '-' + navMgr.menuIX
+                }, item.menus.map(function (childitem) {
+                    return $('li', { class: clsPrefix.menus + '-subitem' }, [$('a', {
+                        class: clsPrefix.menus + '-sublink',
+                        id: '-' + ++navMgr.menuIX,
+                        href: childitem.href
+                    }, [document.createTextNode(childitem.label)])]);
+                }))]) : []));
+            }))]);
+        }));
+    };
+
     // render search element
     var $search = function $search(search) {
         return $('button', { class: clsPrefix.search + '-link', ariaLabel: search.label }, [$('img', {
             class: clsPrefix.search + '-image',
             src: 'images/search.svg'
         })]);
-    };
-
-    // render apps element
-    var $apps = function $apps(apps, user) {
-        return $('div', { class: clsPrefix.app }, [$('button', {
-            class: clsPrefix.app + '-link',
-            id: clsPrefix.app + '-link',
-            ariaControls: clsPrefix.app + '-menu',
-            ariaExpanded: false,
-            ariaHaspopup: true,
-            ariaLabel: apps.label
-        }, [$('img', { class: clsPrefix.app + '-icon', src: 'images/apps.svg' })]), $('div', {
-            class: clsPrefix.app + '-menu',
-            id: clsPrefix.app + '-menu',
-            role: 'group',
-            ariaExpanded: false,
-            ariaHidden: true,
-            ariaLabelledby: clsPrefix.app + '-menu-link'
-        }, [$('ul', { class: clsPrefix.app + '-menu-list' }, [$('li', { class: clsPrefix.app + '-menu-item' }, [$('button', { class: clsPrefix.app + '-menu-link' }, [$('img', {
-            class: clsPrefix.app + '-menu-image',
-            src: '//placehold.it/256x256'
-        }), document.createTextNode('App #1')])]), $('li', { class: clsPrefix.app + '-menu-item' }, [$('button', { class: clsPrefix.app + '-menu-link' }, [$('img', {
-            class: clsPrefix.app + '-menu-image',
-            src: '//placehold.it/256x256'
-        }), document.createTextNode('App #2 with a long name')])]), $('li', { class: clsPrefix.app + '-menu-item' }, [$('button', { class: clsPrefix.app + '-menu-link' }, [$('img', {
-            class: clsPrefix.app + '-menu-image',
-            src: '//placehold.it/256x256'
-        }), document.createTextNode('App #3 shorter')])]), $('li', { class: clsPrefix.app + '-menu-item' }, [$('button', { class: clsPrefix.app + '-menu-link' }, [$('img', {
-            class: clsPrefix.app + '-menu-image',
-            src: '//placehold.it/256x256'
-        }), document.createTextNode('App #4')])]), $('li', { class: clsPrefix.app + '-menu-item' }, [$('button', { class: clsPrefix.app + '-menu-link' }, [$('img', {
-            class: clsPrefix.app + '-menu-image',
-            src: '//placehold.it/256x256'
-        }), document.createTextNode('App #5')])])])])]);
     };
 
     // render user element
@@ -424,9 +431,68 @@
         $('button', { class: clsPrefix.user + '-link--loggedout' }, [document.createTextNode(user.label)])]);
     };
 
-    // render client container
-    var $client = function $client(apps, user) {
-        return $('div', { class: clsPrefix.client }, [].concat(apps ? $apps(apps) : [], user ? $user(user) : []));
+    // render the mobile user elements
+
+    var $userMobile = function $userMobile(mobile_nav, user) {
+
+        try {
+            mobile_nav.querySelector('.' + clsPrefix.mobile_nav + '-drawer-primary').appendChild(_$userTile(user));
+            if (user && user.name) {
+                mobile_nav.appendChild(_$userDrawer(user));
+            }
+        } catch (e) {
+            console.log(e);
+        }
+
+        function _$userTile(user) {
+            return $('div', { "class": clsPrefix.mobile_nav + '-user' }, user && user.name ? [$('button', {
+                "class": clsPrefix.mobile_nav + "-user-link--loggedin",
+                "id": clsPrefix.mobile_nav + "-user-link",
+                "aria-controls": clsPrefix.mobile_nav + '-user-menu',
+                "aria-haspopup": "true",
+                "aria-label": 'Sign In'
+            }, [$('img', {
+                "class": clsPrefix.mobile_nav + "-user-image",
+                "src": "//placehold.it/300x300"
+            }, []), $('span', {
+                "class": clsPrefix.mobile_nav + "-user-name"
+            }, [document.createTextNode('JSON')]), $('span', {
+                "class": clsPrefix.mobile_nav + "-user-id"
+            }, [document.createTextNode('json@data')])])] : [$('button', {
+                "class": clsPrefix.mobile_nav + "-user-link--loggedout",
+                "id": clsPrefix.mobile_nav + "-user-login",
+                "aria-haspopup": "false",
+                "aria-label": 'Sign In'
+            }, [])]);
+        }
+
+        function _$userDrawer(user) {
+            return $('div', {
+                class: clsPrefix.mobile_user + '-menu',
+                id: clsPrefix.mobile_user + '-menu',
+                role: 'group',
+                ariaExpanded: false,
+                ariaHidden: true
+            }, [$('div', { class: clsPrefix.mobile_user + '-menu-info' }, [].concat(user.image ? $('img', {
+                class: clsPrefix.mobile_user + '-menu-image',
+                src: user.image
+            }, []) : [], user.name ? $('span', { class: clsPrefix.mobile_user + '-menu-name' }, [document.createTextNode(user.name)]) : [], user.id ? $('span', { class: clsPrefix.mobile_user + '-menu-id' }, [document.createTextNode(user.id)]) : [], user.group ? $('span', { class: clsPrefix.mobile_user + '-menu-group' }, [document.createTextNode(user.group)]) : [])), $('ul', {
+                class: clsPrefix.mobile_user + '-menu-list',
+                ariaLabelledby: clsPrefix.mobile_user + '-link'
+            }, [$('li', { class: clsPrefix.mobile_user + '-menu-item' }, [$('a', {
+                class: clsPrefix.mobile_user + '-menu-link',
+                href: '#user-menu-link'
+            }, [document.createTextNode('Profile & Settings')])]), $('li', { class: clsPrefix.mobile_user + '-menu-item' }, [$('a', {
+                class: clsPrefix.mobile_user + '-menu-link',
+                href: '#user-menu-link'
+            }, [document.createTextNode('My Esri')])]), $('li', { class: clsPrefix.mobile_user + '-menu-item' }, [$('a', {
+                class: clsPrefix.mobile_user + '-menu-link',
+                href: '#user-menu-link'
+            }, [document.createTextNode('Training')])]), $('li', { class: clsPrefix.mobile_user + '-menu-item' }, [$('a', {
+                class: clsPrefix.mobile_user + '-menu-link',
+                href: '#user-menu-link'
+            }, [document.createTextNode('Community & Forums')])])])]);
+        }
     };
 
     // render the gnav
@@ -454,6 +520,8 @@
                 root_node: nav_frag.getElementById('esri-gnav-mobile'),
                 parent_node: mobile_nav.getElementsByTagName('ul')[0]
             });
+
+            $userMobile(mobile_nav, data.user);
         }
 
         //build the global navigation components and append them to the document fragment
