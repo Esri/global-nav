@@ -58,7 +58,9 @@ export default (menus) => $('div', { class: prefix }, menus.map(
 					}, item.menus.map(
 						(childitem) => $('li', { class: `${ prefix }-subitem--tiles` }, [
 							$('a', { class: `${ prefix }-sublink--tiles`, id: `-${ ++uuid }`, href: childitem.href }, [
-								$('svg', { class: `${ prefix }-sublink-image` }),
+								$('svg', { class: `${ prefix }-sublink-image` }, [
+									$('use', { 'href': childitem.icon })
+								]),
 								$('span', { class: `${ prefix }-sublink-text` }, [
 									document.createTextNode(childitem.label)
 								])

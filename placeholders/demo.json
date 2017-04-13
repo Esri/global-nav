@@ -11,21 +11,60 @@
         "menus": [
           {
             "label": "ArcGIS Child 1",
-            "href": "#1-1"
+            "href": "#1-1",
+            "icon": "./images/icons/apps-48.svg#icon"
           },
           {
             "label": "ArcGIS Child 2 with a really long title that causes a new line to be made",
-            "href": "#1-2"
+            "href": "#1-2",
+            "icon": "./images/icons/arcgis-desktop-48.svg#icon"
           },
           {
             "label": "ArcGIS Child 3",
-            "href": "#1-3"
+            "href": "#1-3",
+            "icon": "./images/icons/arcgis-enterprise-48.svg#icon"
           }
         ]
       },
       {
         "label": "Industries",
         "menus": [
+          {
+            "label": "Industries 1",
+            "href": "#2-1"
+          },
+          {
+            "label": "Industries 2",
+            "href": "#2-2"
+          },
+          {
+            "label": "Industries 3",
+            "href": "#3-3"
+          },
+          {
+            "label": "Industries 1",
+            "href": "#2-1"
+          },
+          {
+            "label": "Industries 2",
+            "href": "#2-2"
+          },
+          {
+            "label": "Industries 3",
+            "href": "#3-3"
+          },
+          {
+            "label": "Industries 1",
+            "href": "#2-1"
+          },
+          {
+            "label": "Industries 2",
+            "href": "#2-2"
+          },
+          {
+            "label": "Industries 3",
+            "href": "#3-3"
+          },
           {
             "label": "Industries 1",
             "href": "#2-1"
