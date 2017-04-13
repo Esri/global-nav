@@ -64,14 +64,18 @@
 .esri-gnav-menus-sublink {
 	@apply --link;
 
-	box-shadow: inset 0 -1px 0 0 var(--mono-88);
+	background-image: linear-gradient(90deg, var(--blue) 50%, var(--mono-88) 50%);
+	background-repeat: no-repeat;
+	background-position: 100% 100%;
+	background-size: 200% 1px;
 	font-size: 16px/20px;
 	outline-offset: 0;
 	padding: 20px 0;
+	transition: background-position 250ms;
 	width: 350px;
 
 	&:matches(:focus, :hover) {
-		box-shadow: inset 0 -1px 0 0 var(--blue);
+		background-position-x: 0%;
 		color: var(--mono-0);
 	}
 }
