@@ -23,7 +23,7 @@
 
 .esri-gnav-user-link--loggedin {
 	@apply --button;
-	@apply --submenu-link;
+	@apply --menu-link;
 
 	padding: 16px 32px;
 	padding-left: calc(32px + 16px + 12px);

@@ -8,7 +8,7 @@ import $client from './render-client';
 // render the gnav
 export default function (data) {
 	const $target = document.body.appendChild(
-		$( 'div', { class: 'esri-gnav' }, [].concat(
+		$( 'div', { class: `esri-gnav -${ data.theme || 'web' }` }, [].concat(
 			data.brand ? $brand(data.brand) : [],
 			data.menus && data.menus.length ? $menus(data.menus) : [],
 			data.search ? $search(data.search) : [],
