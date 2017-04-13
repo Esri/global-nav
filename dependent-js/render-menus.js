@@ -36,7 +36,8 @@ export default (menus) => $('div', { class: prefix }, menus.map(
 					id: `${ prefix }-submenu-${ uuid }`,
 					role: 'group',
 					ariaHidden: true,
-					ariaExpanded: false
+					ariaExpanded: false,
+					moreThanEight: `${ item.menus.length > 8 }`
 				}, [
 					// sub-level experience
 					$('ul', {
@@ -55,10 +56,12 @@ export default (menus) => $('div', { class: prefix }, menus.map(
 						class: `${ prefix }-sublist--tiles`,
 						role: 'navigation',
 						ariaLabelledby: `${ prefix }-${ uuid }`
-					}, item.menus.map(
+					}, item.menus.slice(0, 3).map(
 						(childitem) => $('li', { class: `${ prefix }-subitem--tiles` }, [
 							$('a', { class: `${ prefix }-sublink--tiles`, id: `-${ ++uuid }`, href: childitem.href }, [
-								$('svg', { class: `${ prefix }-sublink-image` }),
+								$('svg', { class: `${ prefix }-sublink-image` }, [
+									$('use', { 'href': childitem.icon })
+								]),
 								$('span', { class: `${ prefix }-sublink-text` }, [
 									document.createTextNode(childitem.label)
 								])

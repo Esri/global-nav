@@ -1,4 +1,5 @@
 // tooling
+import 'custom-event-polyfill';
 import 'element-closest';
 import './dependent-js/lib/object-assign';
 import render from './dependent-js/render';

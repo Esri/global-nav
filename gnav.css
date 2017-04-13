@@ -11,17 +11,23 @@
 /* ========================================================================== */
 
 .esri-gnav {
-	box-shadow: 0 1px 0 0 var(--mono-87);
+	box-shadow: 0 1px 0 0 var(--mono-88);
 	color: var(--mono-35) var(--mono-100);
 	cursor: default;
 	display: flex;
-	font: 300 16px/calc(20 / 16) var(--font-stack);
+	font: 300 17px/20px var(--font-stack);
 	justify-content: space-between;
 	size: * 64px;
 	user-select: none;
 
 	&, & * {
 		box-sizing: border-box;
+	}
+
+	&.-web {
+		@media (width > 1440px) {
+			padding: * calc(50vw - 1440px / 2);
+		}
 	}
 }
 

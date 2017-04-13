@@ -13,7 +13,7 @@
 
 .esri-gnav-apps-link {
 	@apply --button;
-	@apply --submenu-link;
+	@apply --menu-link;
 }
 
 .esri-gnav-apps-icon {
