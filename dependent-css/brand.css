@@ -17,5 +17,5 @@
 .esri-gnav-brand-image {
 	@apply --fillable;
 
-	size: 60px 30px;
+	height: 30px;
 }
