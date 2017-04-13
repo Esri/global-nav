@@ -82,6 +82,7 @@
 .esri-gnav-user-menu-name {
 	color: var(--mono-0);
 	font-size: 18px/calc(15 / 18);
+	font-weight: 500;
 	margin-bottom: 10px;
 }
 
