@@ -24,48 +24,52 @@ export default function (data) {
 		);
 	}
 
+	window.addEventListener(
+		'click',
+		(event) => {
+			if ($target.contains(event.target)) {
+				const $clickable = event.target.closest('a,button');
+
+				if ($clickable) {
+					event.target.dispatchEvent(
+						new CustomEvent(
+							'esri-gnav:click',
+							{
+								bubbles: true,
+								detail: {
+									target: $clickable
+								}
+							}
+						)
+					);
+
+					const controls = $clickable.getAttribute('aria-controls');
+
+					if (controls) {
+						const toExpand = $clickable.getAttribute('aria-expanded') !== 'true';
+						const $controlled = document.getElementById(controls);
+
+						closeAll();
+
+						$clickable.setAttribute('aria-expanded', toExpand);
+
+						if ($controlled) {
+							$controlled.setAttribute('aria-expanded', toExpand);
+							$controlled.setAttribute('aria-hidden', !toExpand);
+						}
+					}
+				}
+			} else {
+				closeAll();
+			}
+		}
+	)
+
 	$target.addEventListener(
 		'keydown',
 		(event) => {
 			if (event.keyCode === 27) {
 				closeAll();
-			}
-		}
-	);
-
-	$target.addEventListener(
-		'click',
-		(event) => {
-			const $clickable = event.target.closest('a,button');
-
-			if ($clickable) {
-				event.target.dispatchEvent(
-					new CustomEvent(
-						'esri-gnav:click',
-						{
-							bubbles: true,
-							detail: {
-								target: $clickable
-							}
-						}
-					)
-				);
-
-				const controls = $clickable.getAttribute('aria-controls');
-
-				if (controls) {
-					const toExpand = $clickable.getAttribute('aria-expanded') !== 'true';
-					const $controlled = document.getElementById(controls);
-
-					closeAll();
-
-					$clickable.setAttribute('aria-expanded', toExpand);
-
-					if ($controlled) {
-						$controlled.setAttribute('aria-expanded', toExpand);
-						$controlled.setAttribute('aria-hidden', !toExpand);
-					}
-				}
 			}
 		}
 	);
