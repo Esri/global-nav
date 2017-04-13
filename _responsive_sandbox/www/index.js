@@ -301,7 +301,10 @@
             } else {
 
                 //create a node for the navigation item
-                var nav_node = $('li', { "class": clsPrefix.mobile_nav + '-drawer-item' }, option.href ? [$('a', { "class": clsPrefix.mobile_nav + '-drawer-link', "href": option.href }, [document.createTextNode(option.label)])] : [$('a', { "class": clsPrefix.mobile_nav + '-drawer-opener', "href": '#option' + ++navMgr.drawerIX }, [document.createTextNode(option.label)])]);
+                var nav_node = typeof option.menus == 'undefined' ? $('li', { "class": clsPrefix.mobile_nav + '-drawer-item' }, [$('a', { "class": clsPrefix.mobile_nav + '-drawer-link', "href": option.href }, [document.createTextNode(option.label)])]) : $('li', { "class": clsPrefix.mobile_nav + '-drawer-opener-item' }, [$('a', {
+                    "class": clsPrefix.mobile_nav + '-drawer-opener',
+                    "href": '#option-' + ++navMgr.drawerIX
+                }, [document.createTextNode(option.label)])]);
 
                 //append the node to the parent node
                 params.parent_node.appendChild(nav_node);
@@ -318,10 +321,10 @@
                         "id": "mobile-nav-drawer-" + navMgr.drawerIX,
                         "aria-expanded": "false",
                         "data-nav-drawer-index": navMgr.drawerIX
-                    }, [$('ul', { "class": clsPrefix.mobile_nav + "-sublist" }, [$('li', { "class": clsPrefix.mobile_nav + "-drawer-closer" }, [$('span', {}, [document.createTextNode(option.label)])])])]);
+                    }, [$('ul', { "class": clsPrefix.mobile_nav + "-sublist" }, [$('li', { "class": clsPrefix.mobile_nav + "-drawer-closer" }, [$('a', { "href": "#" }, [document.createTextNode(option.label)])])])]);
 
                     //attach the drawer closer to the closer list item
-                    navMgr.assignDrawerCloser(nav_drawer.getElementsByTagName('li')[0], navMgr.drawerIX);
+                    navMgr.assignDrawerCloser(nav_drawer.getElementsByTagName('a')[0], navMgr.drawerIX);
 
                     //append the sub-navigation drawer to the root node
                     params.root_node.appendChild(nav_drawer);

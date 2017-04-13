@@ -159,8 +159,8 @@
             if ($body) {
                 $body.addEventListener('click', function (e) {
                     try {
-                        if ((e.clientX > navMgr.mobileNavigationWidth && e.clientY  > navMgr.navigationHeight) ||
-                            (e.clientX > navMgr.navigationBurgerWidth && e.clientY  <= navMgr.navigationHeight)){
+                        if ((e.clientX > navMgr.mobileNavigationWidth && e.clientY > navMgr.navigationHeight) ||
+                            (e.clientX > navMgr.navigationBurgerWidth && e.clientY <= navMgr.navigationHeight)) {
                             navMgr.mobileNavigationCloser()
                         }
                     } catch (e) {
@@ -184,7 +184,7 @@
             //close any open item in the global navigation
             document.querySelector('#esri-gnav')
                 .querySelectorAll('[aria-expanded="true"]')
-                .forEach(function($el){
+                .forEach(function ($el) {
                     $el.setAttribute('aria-expanded', 'false')
                 });
 
@@ -314,18 +314,25 @@
             } else {
 
                 //create a node for the navigation item
-                var nav_node = $('li',
-                    {"class": clsPrefix.mobile_nav + '-drawer-item'},
-                    option.href ?
+                var nav_node = (typeof option.menus == 'undefined') ?
+
+                    $('li',
+                        {"class": clsPrefix.mobile_nav + '-drawer-item'},
                         [$('a',
                             {"class": clsPrefix.mobile_nav + '-drawer-link', "href": option.href},
                             [document.createTextNode(option.label)]
-                        )] :
+                        )]
+                    ) :
+                    $('li',
+                        {"class": clsPrefix.mobile_nav + '-drawer-opener-item'},
                         [$('a',
-                            {"class": clsPrefix.mobile_nav + '-drawer-opener', "href": '#option' + ++navMgr.drawerIX},
+                            {
+                                "class": clsPrefix.mobile_nav + '-drawer-opener',
+                                "href": '#option-' + ++navMgr.drawerIX
+                            },
                             [document.createTextNode(option.label)]
                         )]
-                );
+                    );
 
                 //append the node to the parent node
                 params.parent_node.appendChild(nav_node);
@@ -348,15 +355,15 @@
                             {"class": clsPrefix.mobile_nav + "-sublist"},
                             [$('li',
                                 {"class": clsPrefix.mobile_nav + "-drawer-closer"},
-                                [$('span',
-                                    {},
+                                [$('a',
+                                    {"href": "#"},
                                     [document.createTextNode(option.label)])]
                             )]
                         )]
                     );
 
                     //attach the drawer closer to the closer list item
-                    navMgr.assignDrawerCloser(nav_drawer.getElementsByTagName('li')[0], navMgr.drawerIX);
+                    navMgr.assignDrawerCloser(nav_drawer.getElementsByTagName('a')[0], navMgr.drawerIX);
 
                     //append the sub-navigation drawer to the root node
                     params.root_node.appendChild(nav_drawer);
@@ -536,7 +543,7 @@
 
         function closeAll() {
             $global_nav.querySelectorAll('[aria-expanded="true"]')
-                .forEach(function($el){
+                .forEach(function ($el) {
                     $el.setAttribute('aria-expanded', 'false')
                 });
         }
