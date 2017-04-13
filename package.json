@@ -5,7 +5,6 @@
   "style": "gnav.css",
   "scripts": {
     "clean": "git clean -X -d -f",
-    "rapid": "rapid",
     "start": "gulp",
     "test": "npm run test:css && npm run test:js",
     "test:css": "stylelint *.css css/*.css",
@@ -22,9 +21,9 @@
     "gulp-connect": "^5.0.0",
     "gulp-postcss": "^6.4.0",
     "gulp-rename": "^1.2.2",
+    "gulp-sass": "^3.1.0",
     "gulp-sourcemaps": "^2.6.0",
     "pre-commit": "^1.2.2",
-    "rapid": "^3.1.0",
     "rapid-config-dev": "^1.2.0",
     "rollup-stream": "^1.19.0",
     "stylelint": "^7.10.1",
@@ -32,6 +31,9 @@
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0"
   },
+  "browserslist": [
+    "last 2 versions"
+  ],
   "eslintConfig": {
     "extends": "dev"
   },
