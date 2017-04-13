@@ -19,7 +19,7 @@ export default function (data) {
 	// stop-gap functionality from here on out...
 
 	function closeAll() {
-		Array.from($target.querySelectorAll('[aria-expanded]')).forEach(
+		Array.prototype.slice.call($target.querySelectorAll('[aria-expanded]')).forEach(
 			($expanded) => $expanded.removeAttribute('aria-expanded')
 		);
 	}
