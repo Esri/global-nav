@@ -71,12 +71,29 @@
 	font-size: 16px/20px;
 	outline-offset: 0;
 	padding: 20px 0;
+	padding-right: 30px;
+	position: relative;
 	transition: background-position 250ms;
 	width: 350px;
 
 	&:matches(:focus, :hover) {
 		background-position-x: 0%;
 		color: var(--mono-0);
+	}
+
+	&::after {
+		content: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' width='16' height='16'%3E%3Cpath d='M8 14.3l5.3-5.3H0V8h13.3L8 2.7V1.3L15.2 8.5 8 15.7V14.3z' fill='%230079c1'/%3E%3C/svg%3E");
+		opacity: 0;
+		position: absolute calc(50% - 16px / 2) 20px * *;
+		size: 16px;
+		transition: opacity 250ms, transform 250ms;
+	}
+
+	&:matches(:hover, :focus) {
+		&::after {
+			opacity: 1;
+			transform: translateX(10px);
+		}
 	}
 }
 
