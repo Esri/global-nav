@@ -11,6 +11,7 @@
     "test:js": "eslint *.js --cache --ignore-pattern .gitignore"
   },
   "dependencies": {
+    "custom-event-polyfill": "^0.3.0",
     "element-closest": "^2.0.2"
   },
   "devDependencies": {
