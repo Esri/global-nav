@@ -31,15 +31,18 @@
         "menus": [
           {
             "label": "Industries 1",
-            "href": "#2-1"
+            "href": "#2-1",
+            "icon": "./images/icons/arcgis-online-48.svg#icon"
           },
           {
             "label": "Industries 2",
-            "href": "#2-2"
+            "href": "#2-2",
+            "icon": "./images/icons/education-48.svg#icon"
           },
           {
             "label": "Industries 3",
-            "href": "#3-3"
+            "href": "#3-3",
+            "icon": "./images/icons/location-strategy-48.svg#icon"
           },
           {
             "label": "Industries 1",
