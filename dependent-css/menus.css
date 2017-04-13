@@ -72,6 +72,7 @@
 
 	&:matches(:focus, :hover) {
 		box-shadow: inset 0 -1px 0 0 var(--blue);
+		color: var(--mono-0);
 	}
 }
 
@@ -109,7 +110,7 @@
 
 	&:hover {
 		box-shadow: inset 0 0 0 1px var(--blue);
-		fill: var(--blue);
+		color: var(--blue);
 		z-index: 1;
 	}
 }
