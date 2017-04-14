@@ -14,7 +14,6 @@
                     while (elements[index] && elements[index] !== element) {
                         ++index;
                     }
-
                     return Boolean(elements[index]);
                 };
         }
@@ -27,10 +26,8 @@
                     if (element.matches(selector)) {
                         return element;
                     }
-
                     element = element.parentNode;
                 }
-
                 return null;
             };
         }
@@ -133,6 +130,7 @@
                 try {
                     e.preventDefault();
                     document.getElementById("mobile-nav-drawer-" + drawer_ix).setAttribute('aria-expanded', 'false');
+                    document.getElementById("mobile-nav-drawer-" + drawer_ix).setAttribute('aria-hidden', 'true');
                 } catch (e) {
                     console.log(e);
                 }
@@ -142,11 +140,11 @@
             node.getElementsByTagName('a')[0].addEventListener('click', function (e) {
                 try {
                     e.preventDefault();
-
                     document.querySelector('#esri-gnav-mobile')
                         .querySelectorAll('[aria-expanded="true"]')
                         .forEach(function ($el) {
-                            $el.setAttribute('aria-expanded', 'false')
+                            $el.setAttribute('aria-expanded', 'false');
+                            $el.setAttribute('aria-hidden', 'true');
                         });
 
                     document.getElementById("mobile-nav-drawer-" + drawer_ix).setAttribute('aria-expanded', 'true');
@@ -155,14 +153,22 @@
                 }
             });
         },
-        assignUniversalMobileCloser: function () {
+        assignMobileToggler: function () {
 
             var $body = document.getElementsByTagName('body')[0];
             if ($body) {
                 $body.addEventListener('click', function (e) {
                     try {
-                        if ((e.clientX > navMgr.mobileNavigationWidth && e.clientY > navMgr.navigationHeight) ||
-                            (e.clientX > navMgr.navigationBurgerWidth && e.clientY <= navMgr.navigationHeight)) {
+                        if(e.target.id == clsPrefix.mobile_nav + '-toggle'){
+                            if (e.target.checked) {
+                                navMgr.mobileNavigationOpener();
+                            } else {
+                                navMgr.mobileNavigationCloser();
+                            }
+                        } else if (e.target.id == clsPrefix.mobile_nav + '-toggle-label') {
+                            return true;
+                        }
+                        else if (e.clientX > navMgr.mobileNavigationWidth) {
                             navMgr.mobileNavigationCloser()
                         }
                     } catch (e) {
@@ -171,6 +177,35 @@
                 });
             }
         },
+        assignSignInHandler: function(node){
+            node.addEventListener('click', function(e){
+                console.log('The ' + node.getAttribute('id') + ' button was clicked, and this should navigate to the login page, e.g., ->' + navMgr.loginUrl);
+            });
+        },
+        assignUserMenuToggler: function(node){
+            node.addEventListener('click', function (e) {
+                try {
+
+                    e.preventDefault();
+                    var is_closed = (document.getElementById(clsPrefix.mobile_user + '-menu').getAttribute('aria-expanded') == 'false');
+
+                    document.querySelector('#esri-gnav-mobile')
+                        .querySelectorAll('[aria-expanded="true"]')
+                        .forEach(function ($el) {
+                            $el.setAttribute('aria-expanded', 'false');
+                            $el.setAttribute('aria-hidden', 'true');
+                        });
+
+                    if (is_closed){
+                        document.getElementById(clsPrefix.mobile_user + '-menu').setAttribute('aria-expanded', 'true');
+                        document.getElementById(clsPrefix.mobile_user + '-menu').setAttribute('aria-hidden', 'false');
+                    }
+
+                } catch (e) {
+                    console.log(e);
+                }
+            });
+        },
         mobileNavigationCloser: function () {
             document.getElementById('esri-gnav-mobile-toggle-label').setAttribute('data-mobilie-nav-active', 'false');
             document.getElementById('esri-gnav-mobile').setAttribute('aria-expanded', 'false');
@@ -178,8 +213,9 @@
             document.querySelector('#esri-gnav-mobile')
                 .querySelectorAll('[aria-expanded="true"]')
                 .forEach(function ($el) {
-                    $el.setAttribute('aria-expanded', 'false')
+                    $el.setAttribute('aria-expanded', 'false');
                 });
+            document.querySelector('#' +clsPrefix.mobile_nav + '-toggle').checked = false;
         },
         mobileNavigationOpener: function () {
 
@@ -284,7 +320,7 @@
             },
             []));
 
-        navMgr.assignBurgerToggler(toggler);
+        navMgr.assignMobileToggler();
         return burger_frag;
     });
 
@@ -474,9 +510,18 @@
     var $userMobile = function (mobile_nav, user) {
 
         try {
+            //render the appropriate user tile for the primary mobile navigation drawer
             mobile_nav.querySelector('.' + clsPrefix.mobile_nav + '-drawer-primary').appendChild(_$userTile(user));
+
+            //if the user is logged in render the user menu drawer and assign the opener method to the user tile
             if (user && user.name) {
-                mobile_nav.appendChild(_$userDrawer(user))
+                mobile_nav.appendChild(_$userDrawer(user));
+                navMgr.assignUserMenuToggler(mobile_nav.querySelector('.' + clsPrefix.mobile_nav + "-user-link--loggedin"));
+                navMgr.assignUserMenuToggler(mobile_nav.querySelector('.' + clsPrefix.mobile_nav + "-user-menu-info li:nth-child(1) a"));
+
+            //otherwise assign a click handler to the user tile to open the login page
+            } else {
+                navMgr.assignSignInHandler(mobile_nav.querySelector('.' + clsPrefix.mobile_nav + "-user-link--loggedout"));
             }
         }
         catch (e) {
@@ -522,7 +567,7 @@
                                 "aria-haspopup": "false",
                                 "aria-label": 'Sign In'
                             },
-                            []
+                            [document.createTextNode('Sign In')]
                         )]
             );
         }
@@ -530,7 +575,7 @@
         function _$userDrawer(user) {
             return $('div',
                 {
-                    class: clsPrefix.mobile_user + '-menu',
+                    class: clsPrefix.mobile_user + '-drawer-secondary',
                     id: clsPrefix.mobile_user + '-menu',
                     role: 'group',
                     ariaExpanded: false,
@@ -539,6 +584,15 @@
                 [$('div',
                     {class: clsPrefix.mobile_user + '-menu-info'},
                     [].concat(
+                        $('ul',
+                            {"class": clsPrefix.mobile_nav + "-sublist"},
+                            [$('li',
+                                {"class": clsPrefix.mobile_nav + "-drawer-closer"},
+                                [$('a',
+                                    {"href": "#"},
+                                    [document.createTextNode('Account Profile')])]
+                            )]
+                        ),
                         user.image ?
                             $('img',
                                 {
@@ -650,9 +704,7 @@
                 root_node: nav_frag.getElementById('esri-gnav-mobile'),
                 parent_node: mobile_nav.getElementsByTagName('ul')[0]
             });
-
             $userMobile(mobile_nav, data.user);
-
         }
 
         //build the global navigation components and append them to the document fragment
@@ -683,8 +735,6 @@
         }
 
         var $global_nav = document.getElementById("esri-gnav");
-        navMgr.assignUniversalMobileCloser();
-
         // stop-gap functionality from here on out...
 
         function closeAll() {
