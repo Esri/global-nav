@@ -7,8 +7,8 @@
     "clean": "git clean -X -d -f",
     "start": "gulp --cwd . --gulpfile node_modules/gulp-config-dev",
     "test": "npm run test:css && npm run test:js",
-    "test:css": "stylelint *.css css/*.css",
-    "test:js": "eslint *.js --cache --ignore-pattern .gitignore"
+    "test:css": "stylelint *.css dependent-css/*.css",
+    "test:js": "eslint *.js dependent-js/*.js --cache --ignore-pattern .gitignore"
   },
   "dependencies": {
     "custom-event-polyfill": "^0.3.0",
@@ -17,7 +17,7 @@
   "devDependencies": {
     "eslint": "^3.19.0",
     "eslint-config-dev": "^2.0.0",
-    "gulp-config-dev": "^1.0.0",
+    "gulp-config-dev": "^1.2.2",
     "stylelint": "^7.10.1",
     "stylelint-config-dev": "^1.2.0"
   },
@@ -26,6 +26,12 @@
   ],
   "eslintConfig": {
     "extends": "dev"
+  },
+  "gulpConfig": {
+    "css": "placeholders/demo.css",
+    "js": "placeholders/demo.js",
+    "html": "placeholders/demo.html",
+    "use-sass": false
   },
   "pre-commit": [
     "test"

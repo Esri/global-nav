@@ -9,5 +9,5 @@ const prefix = 'esri-gnav-client';
 // render client container
 export default (apps, user) => $('div', { class: prefix }, [].concat(
 	apps ? $apps(apps) : [],
-	user ? $user(user) : [],
+	user ? $user(user) : []
 ));

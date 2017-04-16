@@ -5,7 +5,7 @@ import $ from './lib/create-element';
 const prefix = 'esri-gnav-user';
 
 // render user element
-export default (user) => $('div', { class: prefix },
+export default (user) => $('div', { class: prefix, id: prefix },
 	user.name ? [
 		// logged in experience
 		$('button', { class: `${ prefix }-link--loggedin`, id: `${ prefix }-link`, ariaControls: `${ prefix }-menu`, ariaExpanded: false, ariaHaspopup: true, ariaLabel: user.label }, [
@@ -18,6 +18,12 @@ export default (user) => $('div', { class: prefix },
 			])
 		]),
 		$('div', { class: `${ prefix }-menu`, id: `${ prefix }-menu`, role: 'group', ariaExpanded: false, ariaHidden: true }, [
+			$('button', {
+				class: `${ prefix }-menu-toggle`,
+				dataRelated: 'esri-gnav-menus-content'
+			}, [
+				document.createTextNode('Account Profile')
+			]),
 			$('div', { class: `${ prefix }-menu-info` }, [].concat(
 				user.image ? $('img', { class: `${ prefix }-menu-image`, src: user.image }) : [],
 				user.name ? $('span', { class: `${ prefix }-menu-name` }, [

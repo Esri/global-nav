@@ -5,7 +5,7 @@ import $ from './lib/create-element';
 const prefix = 'esri-gnav-apps';
 
 // render apps element
-export default (apps, user) => $('div', { class: prefix }, [
+export default (apps) => $('div', { class: prefix }, [
 	$('button', {
 		class: `${ prefix }-link`,
 		id: `${ prefix }-link`,

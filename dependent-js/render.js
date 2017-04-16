@@ -16,11 +16,42 @@ export default function (data) {
 		))
 	);
 
+	const user = document.getElementById('esri-gnav-user');
+	const userControl = user.querySelector('a,button');
+	const content = document.getElementById('esri-gnav-menus-content');
+
+	const media = window.matchMedia('(max-width: 767.999px)');
+
+	media.addListener(onmediachange);
+
+	onmediachange();
+
+	function onmediachange() {
+		if (media.matches) {
+			content.appendChild(user);
+
+			userControl.setAttribute('data-related', 'esri-gnav-menus-content');
+		} else {
+			$target.appendChild(user);
+
+			userControl.removeAttribute('data-related');
+		}
+	}
+
 	// stop-gap functionality from here on out...
 
-	function closeAll() {
-		Array.prototype.slice.call($target.querySelectorAll('[aria-expanded]')).forEach(
-			($expanded) => $expanded.removeAttribute('aria-expanded')
+	function closeAll(scope) {
+		const $scope = scope || $target;
+
+		Array.prototype.slice.call($scope.querySelectorAll('[aria-controls]')).forEach(
+			($controls) => {
+				const $expanded = document.getElementById($controls.getAttribute('aria-controls'));
+
+				$controls.setAttribute('aria-expanded', false);
+
+				$expanded.setAttribute('aria-expanded', false);
+				$expanded.setAttribute('aria-hidden', true);
+			}
 		);
 	}
 
@@ -44,18 +75,23 @@ export default function (data) {
 					);
 
 					const controls = $clickable.getAttribute('aria-controls');
+					const related = $clickable.getAttribute('data-related');
 
-					if (controls) {
+					if (controls || related) {
 						const toExpand = $clickable.getAttribute('aria-expanded') !== 'true';
-						const $controlled = document.getElementById(controls);
+						const $related = related && document.getElementById(related);
 
-						closeAll();
+						closeAll($related);
 
-						$clickable.setAttribute('aria-expanded', toExpand);
+						if (controls) {
+							const $controlled = document.getElementById(controls);
 
-						if ($controlled) {
-							$controlled.setAttribute('aria-expanded', toExpand);
-							$controlled.setAttribute('aria-hidden', !toExpand);
+							$clickable.setAttribute('aria-expanded', toExpand);
+
+							if ($controlled) {
+								$controlled.setAttribute('aria-expanded', toExpand);
+								$controlled.setAttribute('aria-hidden', !toExpand);
+							}
 						}
 					}
 				}

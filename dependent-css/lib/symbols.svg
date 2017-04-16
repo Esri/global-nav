@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg">
+	<symbol id="toggle" viewBox="0 0 24 24">
+		<path stroke="#000" stroke-miterlimit="10" stroke-width="2" d="M2 12h20M2 6h20M2 18h20"/>
+	</symbol>
+	<symbol id="right-arrow" viewBox="0 0 16 16">
+		<path d="M8 14.3l5.3-5.3H0V8h13.3L8 2.7V1.3L15.2 8.5 8 15.7V14.3z"/>
+	</symbol>
+	<symbol id="right-chevron" viewBox="0 0 32 32">
+		<path d="M7 4h5l12 12-12 12H7l12-12L7 4z"/>
+	</symbol>
+	<symbol id="left-chevron" viewBox="0 0 32 32">
+		<path d="M25 28h-5L8 16 20 4h5L13 16l12 12z"/>
+	</symbol>
+</svg>

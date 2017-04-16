@@ -6,7 +6,14 @@
 /* ========================================================================== */
 
 .esri-gnav-user {
-	@apply --submenu-parent;
+	@media (--gnav-s) {
+		box-shadow: inset 0 1px 0 0 #e0e0e0;
+		margin-top: auto;
+	}
+
+	@media (--gnav-ml) {
+		@apply --submenu-parent;
+	}
 }
 
 /* Global Navigation: User: Logged Out
@@ -29,6 +36,10 @@
 	padding-left: calc(32px + 16px + 12px);
 	position: relative;
 	text-align: start;
+
+	@media (--gnav-s) {
+		width: 100%;
+	}
 }
 
 .esri-gnav-user-image {
@@ -56,20 +67,78 @@
 /* ========================================================================== */
 
 .esri-gnav-user-menu {
-	@apply --submenu;
+	@media (--gnav-s) {
+		background-color: var(--mono-100);
+		box-shadow: inset 0 1px 0 0 var(--mono-88), 0 0 20px 0 color(var(--mono-0) a(30%));
+		min-height: 100vh;
+		position: absolute 0 * * 0;
+		transition: transform 300ms ease-in-out;
+		width: calc(100vw - 64px);
+		z-index: 1;
+	}
 
-	display: flex;
-	min-size: 410px calc(130px + 48px + 48px);
-	padding: 48px 28px 0 42px;
-	right: 0;
+	@media (--gnav-ml) {
+		@apply --submenu;
+
+		display: flex;
+		min-size: 410px calc(130px + 48px + 48px);
+		padding: 48px 28px 0 42px;
+		right: 0;
+	}
+
+	&[aria-hidden="true"] {
+		@media (--gnav-s) {
+			overflow: hidden;
+			transform: translateX(100vw);
+			transition: transform 300ms ease-in-out, visibility 0s 300ms;
+			visibility: hidden;
+		}
+	}
+}
+
+.esri-gnav-user-menu-toggle {
+	@apply --button;
+
+	box-shadow: inset 0 -1px 0 #e0e0e0;
+	font-size: 16px/20px;
+	padding: 22px 10px;
+	position: relative;
+	text-align: center;
+	width: 100%;
+
+	&:matches(:hover, :focus) {
+		color: var(--mono-0);
+
+		&::before {
+			left: 15px;
+		}
+	}
+
+	&::before {
+		content: url(./lib/symbols.svg#left-chevron); /* stylelint-disable-line */
+		position: absolute calc(50% - 16px / 2) * * 24px;
+		size: 16px;
+		transition: left 300ms ease-in-out;
+	}
+
+	@media (--gnav-ml) {
+		display: none;
+	}
 }
 
 .esri-gnav-user-menu-info {
 	display: flex;
 	flex-direction: column;
 	margin-bottom: 16px;
-	size: calc(130px - 4px * 2) *;
 	text-align: center;
+
+	@media (--gnav-s) {
+		margin-top: 16px;
+	}
+
+	@media (--gnav-ml) {
+		width: calc(130px - 4px * 2);
+	}
 }
 
 .esri-gnav-user-menu-image {
@@ -77,6 +146,10 @@
 	box-shadow: 0 0 0 4px var(--blue);
 	margin-bottom: 20px;
 	size: calc(130px - 4px * 2);
+
+	@media (--gnav-s) {
+		margin: 4px auto *;
+	}
 }
 
 .esri-gnav-user-menu-name {

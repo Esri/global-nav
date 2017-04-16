@@ -11,7 +11,15 @@
 	align-items: center;
 	color: var(--mono-0);
 	display: flex;
-	padding: * 24px;
+
+	@media (--gnav-sm) {
+		margin-right: auto;
+		padding: * 12px;
+	}
+
+	@media (--gnav-l) {
+		padding: * 24px;
+	}
 }
 
 .esri-gnav-brand-image {

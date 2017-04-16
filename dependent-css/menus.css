@@ -6,44 +6,222 @@
 /* ========================================================================== */
 
 .esri-gnav-menus {
-	display: flex;
-	flex-grow: 1;
-	justify-content: space-between;
+	@media (--gnav-sm) {
+		order: -1;
+		position: relative;
+	}
+
+	@media (--gnav-l) {
+		flex-grow: 1;
+	}
+}
+
+.esri-gnav-menus-toggle {
+	@apply --button;
+	@apply --menu-link;
+
+	@media (--gnav-s) {
+		background-color: #ffffff;
+		left: 0;
+		position: relative;
+		transition: left 300ms ease-in-out;
+		z-index: 1;
+	}
+
+	@media (--gnav-l) {
+		display: none;
+	}
+
+	&[aria-expanded="true"] {
+		@media (--gnav-s) {
+			background-color: var(--mono-88);
+			left: calc(100vw - 64px);
+		}
+	}
+
+	&::before {
+		content: url(./lib/symbols.svg#toggle);
+		display: block;
+		margin: 16px;
+		size: 32px;
+	}
+}
+
+.esri-gnav-menus-content {
+	@media (--gnav-sm) {
+		background-color: var(--mono-100);
+		box-shadow: inset 0 1px 0 0 var(--mono-88);
+		display: flex;
+		flex-direction: column;
+		left: 0;
+		-webkit-overflow-scrolling: touch;
+		-ms-overflow-style: -ms-autohiding-scrollbar;
+		overflow-x: hidden;
+		overflow-y: auto;
+		position: absolute;
+		transition: transform 300ms ease-in-out;
+		z-index: 1;
+	}
+
+	@media (--gnav-s) {
+		size: calc(100vw - 64px) 100vh;
+		top: 0;
+	}
+
+	@media (--gnav-m) {
+		size: 320px calc(100vh - 64px);
+		top: 100%;
+	}
+
+	@media (--gnav-l) {
+		display: flex;
+		justify-content: space-between;
+	}
+
+	&[aria-hidden="true"] {
+		@media (--gnav-sm) {
+			transition: transform 300ms ease-in-out, visibility 0s 300ms;
+			visibility: hidden;
+		}
+
+		@media (--gnav-s) {
+			transform: translateX(-100vw);
+		}
+
+		@media (--gnav-m) {
+			transform: translateX(-320px);
+		}
+	}
 }
 
 .esri-gnav-menus-list {
 	@apply --list;
 
-	display: flex;
+	@media (--gnav-l) {
+		display: flex;
+	}
 }
 
 .esri-gnav-menus-item {
-	@apply --submenu-parent;
+	@media (--gnav-l) {
+		@apply --submenu-parent;
+	}
 }
 
 .esri-gnav-menus-link {
 	@apply --link;
-	@apply --menu-link;
 
 	padding: 22px 24px;
+
+	@media (--gnav-sm) {
+		box-shadow: inset 0 -1px 0 0 #e9e9e9;
+		position: relative;
+
+		&::after {
+			content: url(./lib/symbols.svg#right-chevron);
+			fill: #595959;
+			position: absolute calc(50% - 12px / 2) 20px * *;
+			size: 12px;
+			transition: opacity 250ms, right 250ms, transform 250ms ease-in-out;
+		}
+
+		&:matches(:focus, :hover) {
+			color: var(--mono-0);
+
+			&::after {
+				right: 15px;
+			}
+		}
+	}
+
+	@media (--gnav-l) {
+		@apply --menu-link;
+	}
 }
 
 /* Global Navigation: Menus: Submenu
 /* ========================================================================== */
 
 .esri-gnav-menus-submenu {
-	@apply --submenu;
+	@media (--gnav-sm) {
+		background-color: var(--mono-100);
+		box-shadow: inset 0 1px 0 0 var(--mono-88), 0 0 20px 0 color(var(--mono-0) a(30%));
+		position: absolute 0 * * 0;
+		transition: transform 300ms ease-in-out;
+		z-index: 1;
+	}
 
-	left: -80px;
-	max-height: calc(100vh - 64px);
-	min-width: 350px;
-	-ms-overflow-style: none;
-	-webkit-overflow-scrolling: touch;
-	overflow-y: auto;
-	padding: 25px 45px 45px;
+	@media (--gnav-s) {
+		min-height: 100vh;
+		width: calc(100vw - 64px);
+	}
 
-	&[more-than-eight="true"] {
-		min-width: calc(350px * 2 + 20px);
+	@media (--gnav-m) {
+		min-height: calc(100vh - 64px);
+		width: 320px;
+	}
+
+	@media (--gnav-l) {
+		@apply --submenu;
+
+		left: -80px;
+		max-height: calc(100vh - 64px);
+		min-width: 350px;
+		-webkit-overflow-scrolling: touch;
+		-ms-overflow-style: -ms-autohiding-scrollbar;
+		overflow-y: auto;
+		padding: 25px 45px 45px;
+
+		&[more-than-eight="true"] {
+			min-width: calc(350px * 2 + 20px);
+		}
+	}
+
+	&[aria-hidden="true"] {
+		@media (--gnav-sm) {
+			height: 0;
+			overflow: hidden;
+			transition: transform 300ms ease-in-out, height 0s 300ms, visibility 0s 300ms;
+			visibility: hidden;
+		}
+
+		@media (--gnav-s) {
+			transform: translateX(100vw);
+		}
+
+		@media (--gnav-m) {
+			transform: translateX(320px);
+		}
+	}
+}
+
+.esri-gnav-menus-submenu-toggle {
+	@apply --button;
+
+	box-shadow: inset 0 -1px 0 var(--mono-88);
+	font-size: 16px/20px;
+	padding: 22px 10px;
+	position: relative;
+	text-align: center;
+	width: 100%;
+
+	&:matches(:hover, :focus) {
+		color: var(--mono-0);
+
+		&::before {
+			left: 15px;
+		}
+	}
+
+	&::before {
+		content: url(./lib/symbols.svg#left-chevron); /* stylelint-disable-line */
+		position: absolute calc(50% - 16px / 2) * * 24px;
+		size: 16px;
+		transition: left 300ms ease-in-out;
+	}
+
+	@media (--gnav-l) {
+		display: none;
 	}
 }
 
@@ -52,12 +230,14 @@
 }
 
 .esri-gnav-menus-subitem {
-	@nest :nth-last-child(n+8) ~ &:nth-child(7) {
-		margin-top: calc(-60px * 6);
-	}
+	@media (--gnav-l) {
+		@nest :nth-last-child(n+8) ~ &:nth-child(7) {
+			margin-top: calc(-60px * 6);
+		}
 
-	@nest :nth-last-child(n+8) ~ &:nth-child(n+7) {
-		margin-left: calc(350px + 20px);
+		@nest :nth-last-child(n+8) ~ &:nth-child(n+7) {
+			margin-left: calc(350px + 20px);
+		}
 	}
 }
 
@@ -65,16 +245,29 @@
 	@apply --link;
 
 	background-image: linear-gradient(90deg, var(--blue) 50%, var(--mono-88) 50%);
-	background-repeat: no-repeat;
 	background-position: 100% 100%;
+	background-repeat: no-repeat;
 	background-size: 200% 1px;
 	font-size: 16px/20px;
 	outline-offset: 0;
-	padding: 20px 0;
-	padding-right: 30px;
 	position: relative;
 	transition: background-position 250ms;
-	width: 350px;
+
+	@media (--gnav-sm) {
+		box-shadow: inset 0 -1px 0 0 #e9e9e9;
+		padding: 22px 24px;
+		position: relative;
+
+		&:matches(:hover, :focus) {
+			box-shadow: inset 0 -1px 0 0 var(--blue);
+		}
+	}
+
+	@media (--gnav-l) {
+		padding: 20px 0;
+		padding-right: 30px;
+		width: 350px;
+	}
 
 	&:matches(:focus, :hover) {
 		background-position-x: 0%;
@@ -101,9 +294,13 @@
 	@apply --list;
 
 	display: flex;
+	flex-wrap: wrap;
 	margin: 30px * *;
 	max-width: 350px;
-	flex-wrap: wrap;
+
+	@media (--gnav-sm) {
+		padding: * 24px;
+	}
 
 	@nest [more-than-eight="true"] & {
 		max-width: calc(20px + 350px * 2);
@@ -111,10 +308,16 @@
 }
 
 .esri-gnav-menus-subitem--tiles {
-	width: 175px;
+	@media (--gnav-sm) {
+		width: 136px;
+	}
 
-	@nest [more-than-eight="true"] & {
-		width: 240px;
+	@media (--gnav-l) {
+		width: 175px;
+
+		@nest [more-than-eight="true"] & {
+			width: 240px;
+		}
 	}
 }
 
@@ -124,8 +327,8 @@
 	background-color: var(--mono-100);
 	box-shadow: inset 0 0 0 1px var(--mono-81);
 	margin-bottom: -1px;
-	margin-left: -0.5px;
-	margin-right: -0.5px;
+	margin-left: -.5px;
+	margin-right: -.5px;
 	padding: 10px 10px 24px;
 	position: relative;
 

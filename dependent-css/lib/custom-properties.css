@@ -15,8 +15,17 @@
 /* ========================================================================== */
 
 :root {
-	--font-stack: "Avenir Next LT Pro", "Century Gothic", sans-serif;
+	--font-stack: "Avenir Next", "Avenir Next LT Pro", "Century Gothic", sans-serif;
 }
+
+/* Custom Properties: Breakpoints
+/* ========================================================================== */
+
+@custom-media --gnav-l (width >= 1024px);
+@custom-media --gnav-ml (width >= 768px);
+@custom-media --gnav-m (width >= 768px) and (width < 1024px);
+@custom-media --gnav-sm (width < 1024px);
+@custom-media --gnav-s (width < 768px);
 
 /* Custom Properties: Apply
 /* ========================================================================== */
