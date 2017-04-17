@@ -6,7 +6,7 @@
   "scripts": {
     "clean": "git clean -X -d -f",
     "start": "gulp --cwd . --gulpfile node_modules/gulp-config-dev",
-    "test": "echo 'Running pre-commit checks...'; npm run test:css && npm run test:js",
+    "test": "echo 'Running tests...'; npm run test:css && npm run test:js",
     "test:css": "stylelint *.css dependent-css/*.css",
     "test:js": "eslint *.js dependent-js/*.js --cache --ignore-pattern .gitignore"
   },
