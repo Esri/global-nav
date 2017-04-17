@@ -7,9 +7,13 @@
 /* ========================================================================== */
 
 html {
-	background-color: #7f7f7f;
+	background-color: #f9f9f9;
 }
 
 body {
 	margin: 0;
+}
+
+main {
+	margin: 1.5em;
 }

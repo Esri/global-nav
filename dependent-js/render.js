@@ -7,13 +7,14 @@ import $client from './render-client';
 
 // render the gnav
 export default function (data) {
-	const $target = document.body.appendChild(
+	const $target = document.body.insertBefore(
 		$( 'div', { class: `esri-gnav -${ data.theme || 'web' }` }, [].concat(
 			data.brand ? $brand(data.brand) : [],
 			data.menus && data.menus.length ? $menus(data.menus) : [],
 			data.search ? $search(data.search) : [],
 			data.apps || data.user ? $client(data.apps, data.user) : []
-		))
+		)),
+		document.body.firstChild
 	);
 
 	const user = document.getElementById('esri-gnav-user');
@@ -25,6 +26,8 @@ export default function (data) {
 	media.addListener(onmediachange);
 
 	onmediachange();
+
+	window.data = data;
 
 	function onmediachange() {
 		if (media.matches) {
@@ -53,6 +56,10 @@ export default function (data) {
 				$expanded.setAttribute('aria-hidden', true);
 			}
 		);
+
+		if (!scope) {
+			$target.setAttribute('is-open', false);
+		}
 	}
 
 	window.addEventListener(
@@ -92,6 +99,8 @@ export default function (data) {
 								$controlled.setAttribute('aria-expanded', toExpand);
 								$controlled.setAttribute('aria-hidden', !toExpand);
 							}
+
+							$target.setAttribute('is-open', toExpand);
 						}
 					}
 				}
