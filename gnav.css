@@ -17,8 +17,10 @@
 	display: flex;
 	font: 300 17px/20px var(--font-stack);
 	justify-content: space-between;
+	position: relative;
 	size: * 64px;
 	user-select: none;
+	z-index: 100;
 
 	&, & * {
 		box-sizing: border-box;
