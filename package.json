@@ -17,7 +17,7 @@
   "devDependencies": {
     "eslint": "^3.19.0",
     "eslint-config-dev": "^2.0.0",
-    "gulp-config-dev": "^1.5.1",
+    "gulp-config-dev": "^1.6.0",
     "pre-commit": "^1.2.2",
     "stylelint": "^7.10.1",
     "stylelint-config-dev": "^1.2.0"
@@ -34,9 +34,6 @@
     "html": "placeholders/demo.html",
     "use-sass": false
   },
-  "pre-commit": [
-    "test"
-  ],
   "stylelint": {
     "extends": "stylelint-config-dev"
   },
