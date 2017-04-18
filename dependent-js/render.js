@@ -21,7 +21,7 @@ export default function (data) {
 	const userControl = user.querySelector('a,button');
 	const content = document.getElementById('esri-gnav-menus-content');
 
-	const media = window.matchMedia('(max-width: 767.999px)');
+	const media = window.matchMedia('(max-width: 767px)');
 
 	media.addListener(onmediachange);
 
