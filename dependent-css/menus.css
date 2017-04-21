@@ -166,7 +166,7 @@
 	@media (--gnav-l) {
 		@apply --submenu;
 
-		left: -80px;
+		left: calc(-45px + 24px);
 		max-height: calc(100vh - 64px);
 		min-width: 350px;
 		-webkit-overflow-scrolling: touch;
