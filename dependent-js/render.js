@@ -27,10 +27,23 @@ export default function (data) {
 	const viewportIsSmall = window.matchMedia('(max-width: 767px)');
 	const viewportIsSmallMedium = window.matchMedia('(max-width: 1023px)');
 
-	viewportIsSmall.addListener(onmediachange);
+	viewportIsSmall.addListener(onSmallChange);
+	viewportIsSmallMedium.addListener(onSmallMediumChange);
 
-	onmediachange();
+	onSmallChange();
 	onSmallMediumChange();
+
+	function onSmallChange() {
+		if (viewportIsSmall.matches) {
+			content.appendChild(user);
+
+			userControl.setAttribute('data-related', 'esri-gnav-menus-content');
+		} else {
+			client.appendChild(user);
+
+			userControl.removeAttribute('data-related');
+		}
+	}
 
 	function onSmallMediumChange() {
 		menuLinks.forEach(
@@ -42,18 +55,6 @@ export default function (data) {
 				}
 			}
 		);
-	}
-
-	function onmediachange() {
-		if (viewportIsSmall.matches) {
-			content.appendChild(user);
-
-			userControl.setAttribute('data-related', 'esri-gnav-menus-content');
-		} else {
-			client.appendChild(user);
-
-			userControl.removeAttribute('data-related');
-		}
 	}
 
 	// stop-gap functionality from here on out...

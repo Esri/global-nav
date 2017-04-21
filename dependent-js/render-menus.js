@@ -8,8 +8,7 @@ const prefix = 'esri-gnav-menus';
 export default (menus) => $('div', { class: prefix, id: `${ prefix }` }, [
 	$('button', {
 		class: `${ prefix }-toggle`, id: `${ prefix }-toggle`,
-		ariaControls: `${ prefix }-content`, ariaExpanded: false, ariaHaspopup: true,
-		dataRelated: `${ prefix }`
+		ariaControls: `${ prefix }-content`, ariaExpanded: false, ariaHaspopup: true
 	}),
 	$('div', {
 		class: `${ prefix }-content`, id: `${ prefix }-content`,
