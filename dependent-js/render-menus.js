@@ -39,7 +39,7 @@ export default (menus) => $('div', { class: prefix, id: `${ prefix }` }, [
 						document.createTextNode(item.label)
 					])
 				].concat(
-					item.menus && item.menus.length ? $('div', {
+					item.menus && item.menus.length || item.tiles && item.tiles.length ? $('div', {
 						class: `${ prefix }-submenu`, id: `${ prefix }-submenu-${ uuid }`,
 						role: 'group', ariaHidden: true, ariaExpanded: false,
 						moreThanEight: `${ item.menus.length > 8 }`
@@ -49,37 +49,42 @@ export default (menus) => $('div', { class: prefix, id: `${ prefix }` }, [
 							dataRelated: `${ prefix }-list`
 						}, [
 							document.createTextNode(item.label)
-						]),
-						// sub-level experience
-						$('ul', {
-							class: `${ prefix }-sublist`,
-							role: 'navigation',
-							ariaLabelledby: `${ prefix }-${ uuid }`
-						}, item.menus.map(
-							(childitem) => $('li', { class: `${ prefix }-subitem` }, [
-								$('a', { class: `${ prefix }-sublink`, id: `-${ ++uuid }`, href: childitem.href }, [
-									document.createTextNode(childitem.label)
-								])
-							])
-						)),
-						// sub-tile experience
-						$('ul', {
-							class: `${ prefix }-sublist--tiles`,
-							role: 'navigation',
-							ariaLabelledby: `${ prefix }-${ uuid }`
-						}, item.menus.slice(0, 3).map(
-							(childitem) => $('li', { class: `${ prefix }-subitem--tiles` }, [
-								$('a', { class: `${ prefix }-sublink--tiles`, id: `-${ ++uuid }`, href: childitem.href }, [
-									$('svg', { class: `${ prefix }-sublink-image` }, [
-										$('use', { 'href': childitem.icon })
-									]),
-									$('span', { class: `${ prefix }-sublink-text` }, [
+						])
+					].concat(
+						item.menus && item.menus.length ? [
+							// sub-level experience
+							$('ul', {
+								class: `${ prefix }-sublist`,
+								role: 'navigation',
+								ariaLabelledby: `${ prefix }-${ uuid }`
+							}, item.menus.map(
+								(childitem) => $('li', { class: `${ prefix }-subitem` }, [
+									$('a', { class: `${ prefix }-sublink`, id: `-${ ++uuid }`, href: childitem.href }, [
 										document.createTextNode(childitem.label)
 									])
 								])
-							])
-						))
-					]) : []
+							))
+						] : [],
+						item.tiles && item.tiles.length ? [
+							// sub-tile experience
+							$('ul', {
+								class: `${ prefix }-sublist--tiles`,
+								role: 'navigation',
+								ariaLabelledby: `${ prefix }-${ uuid }`
+							}, item.tiles.slice(0, 3).map(
+								(childitem) => $('li', { class: `${ prefix }-subitem--tiles` }, [
+									$('a', { class: `${ prefix }-sublink--tiles`, id: `-${ ++uuid }`, href: childitem.href }, [
+										$('svg', { class: `${ prefix }-sublink-image` }, [
+											$('use', { 'href': childitem.icon })
+										]),
+										$('span', { class: `${ prefix }-sublink-text` }, [
+											document.createTextNode(childitem.label)
+										])
+									])
+								])
+							))
+						] : []
+					)) : []
 				))
 			))
 		])
