@@ -31,14 +31,12 @@
 			padding: * calc(50vw - 1440px / 2);
 		}
 	}
-}
 
-/* Global Navigation: Variations */
+	&.-absolute {
+		position: absolute 0 0 *;
+	}
 
-.esri-gnav--absolute {
-	position: absolute 0 0 *;
-}
-
-.esri-gnav--fixed {
-	position: fixed 0 0 *;
+	&.-fixed {
+		position: fixed 0 0 *;
+	}
 }
