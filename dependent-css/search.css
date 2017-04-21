@@ -7,8 +7,9 @@
 
 .esri-gnav-search-link {
 	@apply --button;
+	@apply --menu-link;
 }
 
-.esri-gnav-search-image {
+.esri-gnav-search-icon {
 	@apply --icon;
 }

@@ -113,10 +113,12 @@
     ]
   ],
   "search": {
-    "label": "Search"
+    "label": "Search",
+    "image": "images/search.svg#search"
   },
   "apps": {
-    "label": "Applications"
+    "label": "Applications",
+    "image": "images/apps.svg#apps"
   },
   "user": {
     "label": "Sign In",
