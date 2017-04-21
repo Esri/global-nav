@@ -27,8 +27,7 @@ export default (menus) => $('div', { class: prefix, id: `${ prefix }` }, [
 				(item) => $('li', { class: `${ prefix }-item` }, [
 					$('a', Object.assign(
 						{
-							class: `${ prefix }-link`,
-							id: `${ prefix }-link-${ ++uuid }`,
+							class: `${ prefix }-link`, id: `${ prefix }-link-${ ++uuid }`,
 							href: item.href || 'javascript:;' // eslint-disable-line no-script-url
 						},
 						item.menus && item.menus.length ? {
@@ -55,8 +54,7 @@ export default (menus) => $('div', { class: prefix, id: `${ prefix }` }, [
 							// sub-level experience
 							$('ul', {
 								class: `${ prefix }-sublist`,
-								role: 'navigation',
-								ariaLabelledby: `${ prefix }-${ uuid }`
+								role: 'navigation', ariaLabelledby: `${ prefix }-${ uuid }`
 							}, item.menus.map(
 								(childitem) => $('li', { class: `${ prefix }-subitem` }, [
 									$('a', { class: `${ prefix }-sublink`, id: `-${ ++uuid }`, href: childitem.href }, [
@@ -69,8 +67,7 @@ export default (menus) => $('div', { class: prefix, id: `${ prefix }` }, [
 							// sub-tile experience
 							$('ul', {
 								class: `${ prefix }-sublist--tiles`,
-								role: 'navigation',
-								ariaLabelledby: `${ prefix }-${ uuid }`
+								role: 'navigation', ariaLabelledby: `${ prefix }-${ uuid }`
 							}, item.tiles.slice(0, 3).map(
 								(childitem) => $('li', { class: `${ prefix }-subitem--tiles` }, [
 									$('a', { class: `${ prefix }-sublink--tiles`, id: `-${ ++uuid }`, href: childitem.href }, [

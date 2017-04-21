@@ -7,24 +7,16 @@ const prefix = 'esri-gnav-apps';
 // render apps element
 export default (apps) => $('div', { class: prefix }, [
 	$('button', {
-		class: `${ prefix }-link`,
-		id: `${ prefix }-link`,
-		ariaControls: `${ prefix }-menu`,
-		ariaExpanded: false,
-		ariaHaspopup: true,
-		ariaLabel: apps.label
+		class: `${ prefix }-link`, id: `${ prefix }-link`,
+		ariaControls: `${ prefix }-menu`, ariaExpanded: false, ariaHaspopup: true, ariaLabel: apps.label
 	}, [
 		$('svg', { class: `${ prefix }-icon` }, [
 			$('use', { 'href': apps.image })
 		])
 	]),
 	$('div', {
-		class: `${ prefix }-menu`,
-		id: `${ prefix }-menu`,
-		role: 'group',
-		ariaExpanded: false,
-		ariaHidden: true,
-		ariaLabelledby: `${ prefix }-menu-link`
+		class: `${ prefix }-menu`, id: `${ prefix }-menu`,
+		role: 'group', ariaExpanded: false, ariaHidden: true, ariaLabelledby: `${ prefix }-menu-link`
 	}, [
 		$('ul', { class: `${ prefix }-menu-list` }, [
 			$('li', { class: `${ prefix }-menu-item` }, [
