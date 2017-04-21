@@ -15,7 +15,6 @@
 	color: var(--mono-35) var(--mono-100);
 	cursor: default;
 	display: flex;
-	font: 300 17px/20px var(--font-stack);
 	justify-content: space-between;
 	position: relative;
 	size: * 64px;
