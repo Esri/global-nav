@@ -20,17 +20,30 @@ export default function (data) {
 	const user = document.getElementById('esri-gnav-user');
 	const userControl = user.querySelector('a,button');
 	const content = document.getElementById('esri-gnav-menus-content');
+	const menuLinks = Array.prototype.slice.call($target.querySelectorAll('.esri-gnav-menus-link'));
 
-	const media = window.matchMedia('(max-width: 767px)');
+	const viewportIsSmall = window.matchMedia('(max-width: 767px)');
+	const viewportIsSmallMedium = window.matchMedia('(max-width: 1023px)');
 
-	media.addListener(onmediachange);
+	viewportIsSmall.addListener(onmediachange);
 
 	onmediachange();
+	onSmallMediumChange();
 
-	window.data = data;
+	function onSmallMediumChange() {
+		menuLinks.forEach(
+			(link) => {
+				if (viewportIsSmallMedium.matches) {
+					link.setAttribute('data-related', 'esri-gnav-menus-content');
+				} else {
+					link.removeAttribute('data-related');
+				}
+			}
+		);
+	}
 
 	function onmediachange() {
-		if (media.matches) {
+		if (viewportIsSmall.matches) {
 			content.appendChild(user);
 
 			userControl.setAttribute('data-related', 'esri-gnav-menus-content');
