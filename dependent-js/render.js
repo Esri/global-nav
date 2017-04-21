@@ -12,11 +12,13 @@ export default function (data) {
 			data.brand ? $brand(data.brand) : [],
 			data.menus && data.menus.length ? $menus(data.menus) : [],
 			data.search ? $search(data.search) : [],
-			data.apps || data.user ? $client(data.apps, data.user) : []
+			// data.apps || data.user ? $client(data.apps, data.user) : []
+			data.user ? $client(data.user) : []
 		)),
 		document.body.firstChild
 	);
 
+	const client = document.getElementById('esri-gnav-client');
 	const user = document.getElementById('esri-gnav-user');
 	const userControl = user.querySelector('a,button');
 	const content = document.getElementById('esri-gnav-menus-content');
@@ -48,7 +50,7 @@ export default function (data) {
 
 			userControl.setAttribute('data-related', 'esri-gnav-menus-content');
 		} else {
-			$target.appendChild(user);
+			client.appendChild(user);
 
 			userControl.removeAttribute('data-related');
 		}
