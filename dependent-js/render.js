@@ -8,12 +8,13 @@ import $client from './render-client';
 // render the gnav
 export default function (target, data) {
 	const $target = target.insertBefore(
-		$( 'div', { class: `esri-gnav -${ data.theme || 'web' }` }, [].concat(
+		$('div', { id: 'esri-gnav', class: `esri-gnav -${ data.theme || 'web' }` }, [].concat(
 			data.brand ? $brand(data.brand) : [],
 			data.menus && data.menus.length ? $menus(data.menus) : [],
 			data.search ? $search(data.search) : [],
 			// data.apps || data.user ? $client(data.apps, data.user) : []
-			data.user ? $client(data.user) : []
+			data.user ? $client(data.user) : [],
+			$('a', { class: 'esri-gnav-canvas', dataRelated: 'esri-gnav' })
 		)),
 		target.firstChild
 	);
