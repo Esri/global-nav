@@ -2,7 +2,7 @@
   "theme": "web",
   "brand": {
     "label": "Esri",
-    "image": "images/logo--globe.svg",
+    "image": "images/logo.svg#logo",
     "href": "#brand"
   },
   "menus": [

@@ -9,8 +9,9 @@
 	@apply --link;
 
 	align-items: center;
-	color: var(--mono-0);
+	color: var(--mono-20);
 	display: flex;
+	fill: currentColor;
 
 	@media (--gnav-sm) {
 		margin-right: auto;
@@ -19,6 +20,10 @@
 
 	@media (--gnav-l) {
 		padding: * 24px;
+	}
+
+	&:matches(:hover, :focus) {
+		color: var(--mono-0);
 	}
 }
 
