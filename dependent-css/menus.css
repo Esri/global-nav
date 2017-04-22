@@ -176,14 +176,14 @@
 		left: calc(-45px + 24px);
 		max-height: calc(100vh - 64px);
 		max-height: calc(var(--vh) - 64px);
-		min-width: 350px;
 		-webkit-overflow-scrolling: touch;
 		-ms-overflow-style: -ms-autohiding-scrollbar;
 		overflow-y: auto;
 		padding: 25px 45px 45px;
+		width: 350px;
 
 		&[item-full="true"] {
-			min-width: calc(350px * 2 + 20px);
+			width: calc(350px * 2 + 20px);
 		}
 	}
 
