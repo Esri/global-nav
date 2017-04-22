@@ -3,7 +3,9 @@
   "brand": {
     "label": "Esri",
     "image": "images/logo.svg#logo",
-    "href": "#brand"
+    "href": "#brand",
+    "width": 80,
+    "height": 30
   },
   "menus": [
     [

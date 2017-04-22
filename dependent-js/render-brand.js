@@ -8,7 +8,8 @@ const prefix = 'esri-gnav-brand';
 export default (brand) => $('a', { class: prefix, href: brand.href }, [
 	$('svg', {
 		class: `${ prefix }-image`,
-		ariaLabel: brand.label
+		ariaLabel: brand.label,
+		width: brand.width, height: brand.height
 	}, [
 		$('use', { 'href': brand.image })
 	])
