@@ -3,7 +3,7 @@ import data from './demo.json';
 
 document.addEventListener(
 	'DOMContentLoaded',
-	() => gnav.render(data)
+	() => gnav.render(document.body, data)
 );
 
 // document.addEventListener('DOMContentLoaded', () => {

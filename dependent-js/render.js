@@ -6,8 +6,8 @@ import $search from './render-search';
 import $client from './render-client';
 
 // render the gnav
-export default function (data) {
-	const $target = document.body.insertBefore(
+export default function (target, data) {
+	const $target = target.insertBefore(
 		$( 'div', { class: `esri-gnav -${ data.theme || 'web' }` }, [].concat(
 			data.brand ? $brand(data.brand) : [],
 			data.menus && data.menus.length ? $menus(data.menus) : [],
@@ -15,7 +15,7 @@ export default function (data) {
 			// data.apps || data.user ? $client(data.apps, data.user) : []
 			data.user ? $client(data.user) : []
 		)),
-		document.body.firstChild
+		target.firstChild
 	);
 
 	const client = document.getElementById('esri-gnav-client');
