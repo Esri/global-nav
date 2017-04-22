@@ -40,6 +40,11 @@
             "label": "ArcGIS Tile 3",
             "href": "#1-3--featured",
             "icon": "./images/icons/arcgis-enterprise-48.svg#icon"
+          },
+          {
+            "label": "ArcGIS Tile 4",
+            "href": "#1-4--featured",
+            "icon": "./images/icons/apps-48.svg#icon"
           }
         ]
       },
@@ -110,17 +115,17 @@
         "tiles": [
           {
             "label": "Industries Tile 1",
-            "href": "#2-1--tile",
+            "href": "#industries-tile-1",
             "icon": "./images/icons/arcgis-online-48.svg#icon"
           },
           {
             "label": "Industries Tile 1",
-            "href": "#2-2--tile",
+            "href": "#industries-tile-2",
             "icon": "./images/icons/education-48.svg#icon"
           },
           {
             "label": "Industries Tile 1",
-            "href": "#2-3--tile",
+            "href": "#industries-tile-3",
             "icon": "./images/icons/location-strategy-48.svg#icon"
           }
         ]

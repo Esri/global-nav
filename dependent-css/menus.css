@@ -203,8 +203,8 @@
 
 	background-color: var(--mono-100);
 	box-shadow: inset 0 -1px 0 var(--mono-88), inset 0 1px 0 var(--mono-88);
-	font-size: 16px/20px;
-	padding: 22px 10px;
+	font-size: 20px/24px;
+	padding: 20px 10px;
 	position: relative;
 	text-align: center;
 	width: 100%;
@@ -266,7 +266,7 @@
 			margin-left: calc(350px + 20px);
 		}
 
-		@nest [item-full="true"] &:last-child:nth-child(odd) {
+		@nest .esri-gnav-menus-submenu[item-full="true"] &:last-child:nth-child(odd) {
 			margin-bottom: 60px;
 		}
 	}
@@ -327,29 +327,20 @@
 	display: flex;
 	flex-wrap: wrap;
 	margin: 30px * *;
-	max-width: 350px;
 
 	@media (--gnav-sm) {
 		margin-bottom: 30px;
 		padding: * 24px;
 	}
-
-	@nest [item-full="true"] & {
-		max-width: calc(20px + 350px * 2);
-	}
 }
 
 .esri-gnav-menus-subitem--tiles {
-	@media (--gnav-sm) {
-		width: 136px;
+	@nest .esri-gnav-menus-sublist--tiles:matches([item-count="2"], [item-count="4"]) & {
+		width: calc(100% / 2);
 	}
 
-	@media (--gnav-l) {
-		width: 175px;
-
-		@nest [item-full="true"] & {
-			width: 240px;
-		}
+	@nest .esri-gnav-menus-sublist--tiles[item-count="3"] & {
+		width: calc(100% / 3);
 	}
 }
 
@@ -357,7 +348,7 @@
 	@apply --link;
 
 	background-color: var(--mono-100);
-	box-shadow: inset 0 0 0 1px var(--mono-81);
+	box-shadow: inset 0 0 0 1px var(--mono-35);
 	margin-bottom: -1px;
 	margin-left: -.5px;
 	margin-right: -.5px;
@@ -365,7 +356,7 @@
 	position: relative;
 
 	&:hover {
-		box-shadow: inset 0 0 0 1px var(--blue);
+		box-shadow: inset 0 0 0 1px var(--mono-0);
 		color: var(--blue);
 		z-index: 1;
 	}

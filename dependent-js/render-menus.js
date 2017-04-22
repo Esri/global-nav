@@ -40,7 +40,7 @@ export default (menus) => $('div', { class: prefix, id: `${ prefix }` }, [
 					item.menus && item.menus.length || item.tiles && item.tiles.length ? $('div', {
 						class: `${ prefix }-submenu`, id: `${ prefix }-submenu-${ uuid }`,
 						role: 'group', ariaHidden: true, ariaExpanded: false,
-						itemCount: `${ item.menus.slice(0, 16).length }`, itemFull: `${ item.menus.length > 6 }`
+						itemCount: `${ item.menus.slice(0, 16).length }`
 					}, [
 						$('button', {
 							class: `${ prefix }-submenu-toggle`,
@@ -66,8 +66,9 @@ export default (menus) => $('div', { class: prefix, id: `${ prefix }` }, [
 							// sub-tile experience
 							$('ul', {
 								class: `${ prefix }-sublist--tiles`,
-								role: 'navigation', ariaLabelledby: `${ prefix }-${ uuid }`
-							}, item.tiles.slice(0, 3).map(
+								role: 'navigation', ariaLabelledby: `${ prefix }-${ uuid }`,
+								itemCount: `${ item.tiles.slice(0, 4).length }`, itemFull: `${ item.menus.length > 6 }`
+							}, item.tiles.slice(0, 4).map(
 								(childitem) => $('li', { class: `${ prefix }-subitem--tiles` }, [
 									$('a', { class: `${ prefix }-sublink--tiles`, id: `-${ ++uuid }`, href: childitem.href }, [
 										$('svg', { class: `${ prefix }-sublink-image` }, [
