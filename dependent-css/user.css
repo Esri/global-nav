@@ -73,6 +73,7 @@
 	@media (--gnav-s) {
 		box-shadow: inset 0 1px 0 0 var(--mono-88), 0 0 20px 0 color(var(--mono-0) a(30%));
 		min-height: 100vh;
+		min-height: var(--vh);
 		position: absolute 0 * * 0;
 		transition: transform 300ms ease-in-out;
 		width: calc(100vw - 64px);

@@ -64,12 +64,14 @@
 	}
 
 	@media (--gnav-s) {
-		size: calc(100vw - 64px) 100vh;
+		height: 100vh;
+		size: calc(100vw - 64px) var(--vh);
 		top: 0;
 	}
 
 	@media (--gnav-m) {
-		size: 320px calc(100vh - 64px);
+		height: calc(100vh - 64px);
+		size: 320px calc(var(--vh) - 64px);
 		top: 100%;
 	}
 
@@ -156,11 +158,13 @@
 
 	@media (--gnav-s) {
 		min-height: 100vh;
+		min-height: var(--vh);
 		width: calc(100vw - 64px);
 	}
 
 	@media (--gnav-m) {
 		min-height: calc(100vh - 64px);
+		min-height: calc(var(--vh) - 64px);
 		width: 320px;
 	}
 
@@ -169,6 +173,7 @@
 
 		left: calc(-45px + 24px);
 		max-height: calc(100vh - 64px);
+		max-height: calc(var(--vh) - 64px);
 		min-width: 350px;
 		-webkit-overflow-scrolling: touch;
 		-ms-overflow-style: -ms-autohiding-scrollbar;

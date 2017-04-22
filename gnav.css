@@ -59,5 +59,8 @@
 }
 
 html[is-open] {
+	height: 100vh;
+	height: var(--vh);
 	overflow: hidden;
+	position: fixed;
 }

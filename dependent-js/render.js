@@ -151,4 +151,12 @@ export default function (data) {
 			['target', event.detail.target]
 		)
 	);
+
+	window.addEventListener('resize', onresize);
+
+	onresize();
+
+	function onresize() {
+		document.documentElement.style.setProperty('--vh', `${ window.innerHeight }px`);
+	}
 }
