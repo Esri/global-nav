@@ -26,6 +26,7 @@
 .esri-gnav-apps-menu {
 	@apply --submenu;
 
+	background-color: var(--mono-97);
 	min-size: 500px *;
 	padding: 0;
 	right: 0;

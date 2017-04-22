@@ -7,6 +7,7 @@
 	--mono-35:  #595959;
 	--mono-81:  #cecece;
 	--mono-88:  #e0e0e0;
+	--mono-91:  #e9e9e9;
 	--mono-97:  #f8f8f8;
 	--mono-100: #ffffff;
 	--blue:     #0079c1;
@@ -69,7 +70,6 @@
 	};
 
 	--submenu: {
-		background-color: var(--mono-97);
 		box-shadow: inset 0 0 0 1px var(--mono-88);
 		position: absolute 100% * *;
 		transition: opacity 250ms ease-in-out;

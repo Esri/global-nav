@@ -49,8 +49,8 @@
 
 .esri-gnav-menus-content {
 	@media (--gnav-sm) {
-		background-color: var(--mono-100);
-		box-shadow: inset 0 1px 0 0 var(--mono-88);
+		background-color: var(--mono-97);
+		box-shadow: inset 0 1px 0 0 var(--mono-88), 1px 0 0 0 var(--mono-88);
 		display: flex;
 		flex-direction: column;
 		left: 0;
@@ -112,7 +112,7 @@
 	@apply --link;
 
 	@media (--gnav-sm) {
-		box-shadow: inset 0 -1px 0 0 #e9e9e9;
+		box-shadow: inset 0 -1px 0 0 var(--mono-91);
 		margin-left: 24px;
 		padding: 28px 24px 28px *;
 		position: relative;
@@ -145,8 +145,9 @@
 /* ========================================================================== */
 
 .esri-gnav-menus-submenu {
+	background-color: var(--mono-97);
+
 	@media (--gnav-sm) {
-		background-color: var(--mono-100);
 		box-shadow: inset 0 1px 0 0 var(--mono-88), 0 0 20px 0 color(var(--mono-0) a(30%));
 		position: absolute 0 * * 0;
 		transition: transform 300ms ease-in-out;
@@ -200,7 +201,8 @@
 .esri-gnav-menus-submenu-toggle {
 	@apply --button;
 
-	box-shadow: inset 0 -1px 0 var(--mono-88);
+	background-color: var(--mono-100);
+	box-shadow: inset 0 -1px 0 var(--mono-88), inset 0 1px 0 var(--mono-88);
 	font-size: 16px/20px;
 	padding: 22px 10px;
 	position: relative;
@@ -283,7 +285,7 @@
 	transition: background-position 250ms;
 
 	@media (--gnav-sm) {
-		box-shadow: inset 0 -1px 0 0 #e9e9e9;
+		box-shadow: inset 0 -1px 0 0 var(--mono-91);
 		padding: 22px 24px;
 		position: relative;
 
@@ -328,6 +330,7 @@
 	max-width: 350px;
 
 	@media (--gnav-sm) {
+		margin-bottom: 30px;
 		padding: * 24px;
 	}
 
