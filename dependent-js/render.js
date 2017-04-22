@@ -33,6 +33,8 @@ export default function (data) {
 	onSmallChange();
 	onSmallMediumChange();
 
+	$target.setAttribute('is-open', false);
+
 	function onSmallChange() {
 		if (viewportIsSmall.matches) {
 			content.appendChild(user);
@@ -75,6 +77,7 @@ export default function (data) {
 
 		if (!scope) {
 			$target.setAttribute('is-open', false);
+			document.documentElement.removeAttribute('is-open');
 		}
 	}
 
@@ -117,6 +120,12 @@ export default function (data) {
 							}
 
 							$target.setAttribute('is-open', toExpand);
+
+							if (toExpand) {
+								document.documentElement.setAttribute('is-open', '');
+							} else {
+								document.documentElement.removeAttribute('is-open');
+							}
 						}
 					}
 				}

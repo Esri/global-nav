@@ -38,4 +38,26 @@
 	&.-fixed {
 		position: fixed 0 0 *;
 	}
+
+	&::before {
+		background-color: color(var(--mono-0) a(50%));
+		content: "";
+		position: fixed 64px 0 0;
+		transition: opacity 300ms ease-in-out, visibility 0ms 300ms;
+		z-index: -1;
+	}
+
+	&[is-open="false"]::before {
+		opacity: 0;
+		visibility: hidden;
+	}
+
+	&[is-open="true"]::before {
+		opacity: 1;
+		transition: opacity 300ms ease-in-out;
+	}
+}
+
+html[is-open] {
+	overflow: hidden;
 }
