@@ -40,7 +40,7 @@ export default (menus) => $('div', { class: prefix, id: `${ prefix }` }, [
 					item.menus && item.menus.length || item.tiles && item.tiles.length ? $('div', {
 						class: `${ prefix }-submenu`, id: `${ prefix }-submenu-${ uuid }`,
 						role: 'group', ariaHidden: true, ariaExpanded: false,
-						moreThanEight: `${ item.menus.length > 8 }`
+						itemCount: `${ item.menus.slice(0, 16).length }`, itemFull: `${ item.menus.length > 6 }`
 					}, [
 						$('button', {
 							class: `${ prefix }-submenu-toggle`,
@@ -54,7 +54,7 @@ export default (menus) => $('div', { class: prefix, id: `${ prefix }` }, [
 							$('ul', {
 								class: `${ prefix }-sublist`,
 								role: 'navigation', ariaLabelledby: `${ prefix }-${ uuid }`
-							}, item.menus.map(
+							}, item.menus.slice(0, 16).map(
 								(childitem) => $('li', { class: `${ prefix }-subitem` }, [
 									$('a', { class: `${ prefix }-sublink`, id: `-${ ++uuid }`, href: childitem.href }, [
 										document.createTextNode(childitem.label)

@@ -174,7 +174,7 @@
 		overflow-y: auto;
 		padding: 25px 45px 45px;
 
-		&[more-than-eight="true"] {
+		&[item-full="true"] {
 			min-width: calc(350px * 2 + 20px);
 		}
 	}
@@ -229,16 +229,43 @@
 
 .esri-gnav-menus-sublist {
 	@apply --list;
+
+	overflow: hidden;
 }
 
 .esri-gnav-menus-subitem {
 	@media (--gnav-l) {
-		@nest :nth-last-child(n+8) ~ &:nth-child(7) {
+		@nest :matches([item-count="7"], [item-count="8"]) &:nth-child(5) {
+			margin-top: calc(-60px * 4);
+		}
+
+		@nest :matches([item-count="9"], [item-count="10"]) &:nth-child(6) {
+			margin-top: calc(-60px * 5);
+		}
+
+		@nest :matches([item-count="11"], [item-count="12"]) &:nth-child(7) {
 			margin-top: calc(-60px * 6);
 		}
 
-		@nest :nth-last-child(n+8) ~ &:nth-child(n+7) {
+		@nest :matches([item-count="13"], [item-count="14"]) &:nth-child(8) {
+			margin-top: calc(-60px * 7);
+		}
+
+		@nest :matches([item-count="15"], [item-count="16"]) &:nth-child(9) {
+			margin-top: calc(-60px * 9);
+		}
+
+		@nest
+		:matches([item-count="7"], [item-count="8"]) &:nth-child(n+5),
+		:matches([item-count="9"], [item-count="10"]) &:nth-child(n+6),
+		:matches([item-count="11"], [item-count="12"]) &:nth-child(n+7),
+		:matches([item-count="13"], [item-count="14"]) &:nth-child(n+8),
+		:matches([item-count="15"], [item-count="16"]) &:nth-child(n+9) {
 			margin-left: calc(350px + 20px);
+		}
+
+		@nest [item-full="true"] &:last-child:nth-child(odd) {
+			margin-bottom: 60px;
 		}
 	}
 }
@@ -304,7 +331,7 @@
 		padding: * 24px;
 	}
 
-	@nest [more-than-eight="true"] & {
+	@nest [item-full="true"] & {
 		max-width: calc(20px + 350px * 2);
 	}
 }
@@ -317,7 +344,7 @@
 	@media (--gnav-l) {
 		width: 175px;
 
-		@nest [more-than-eight="true"] & {
+		@nest [item-full="true"] & {
 			width: 240px;
 		}
 	}

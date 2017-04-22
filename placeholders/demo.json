@@ -59,40 +59,52 @@
             "href": "#3-3"
           },
           {
-            "label": "Industries 1",
-            "href": "#2-1"
+            "label": "Industries 4",
+            "href": "#2-4"
           },
           {
-            "label": "Industries 2",
-            "href": "#2-2"
+            "label": "Industries 5",
+            "href": "#2-5"
           },
           {
-            "label": "Industries 3",
-            "href": "#3-3"
+            "label": "Industries 6",
+            "href": "#3-6"
           },
           {
-            "label": "Industries 1",
-            "href": "#2-1"
+            "label": "Industries 7",
+            "href": "#2-7"
           },
           {
-            "label": "Industries 2",
-            "href": "#2-2"
+            "label": "Industries 8",
+            "href": "#3-8"
           },
           {
-            "label": "Industries 3",
-            "href": "#3-3"
+            "label": "Industries 9",
+            "href": "#3-9"
           },
           {
-            "label": "Industries 1",
-            "href": "#2-1"
+            "label": "Industries 10",
+            "href": "#3-10"
           },
           {
-            "label": "Industries 2",
-            "href": "#2-2"
+            "label": "Industries 11",
+            "href": "#3-11"
           },
           {
-            "label": "Industries 3",
-            "href": "#3-3"
+            "label": "Industries 12",
+            "href": "#3-12"
+          },
+          {
+            "label": "Industries 13",
+            "href": "#3-13"
+          },
+          {
+            "label": "Industries 14",
+            "href": "#3-14"
+          },
+          {
+            "label": "Industries 15",
+            "href": "#3-15"
           }
         ],
         "tiles": [
