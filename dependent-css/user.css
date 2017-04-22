@@ -56,6 +56,7 @@
 }
 
 .esri-gnav-user-name {
+	color: var(--mono-35);
 	font-size: 15px/16px;
 	font-weight: 700;
 }
@@ -72,6 +73,8 @@
 
 	@media (--gnav-s) {
 		box-shadow: inset 0 1px 0 0 var(--mono-88), 0 0 20px 0 color(var(--mono-0) a(30%));
+		display: flex;
+		flex-direction: column;
 		min-height: 100vh;
 		min-height: var(--vh);
 		position: absolute 0 * * 0;
@@ -84,8 +87,9 @@
 		@apply --submenu;
 
 		display: flex;
+		flex-wrap: wrap;
 		min-size: 410px calc(130px + 48px + 48px);
-		padding: 48px 28px 0 42px;
+		padding-top: 48px;
 		right: 0;
 	}
 
@@ -133,22 +137,22 @@
 .esri-gnav-user-menu-info {
 	display: flex;
 	flex-direction: column;
-	margin-bottom: 16px;
+	margin-bottom: 40px;
 	text-align: center;
 
 	@media (--gnav-s) {
-		margin-top: 16px;
+		margin-top: 40px;
 	}
 
 	@media (--gnav-ml) {
-		width: calc(130px - 4px * 2);
+		width: 50%;
 	}
 }
 
 .esri-gnav-user-menu-image {
 	border-radius: 50%;
 	box-shadow: 0 0 0 4px var(--blue);
-	margin-bottom: 20px;
+	margin: * auto 20px;
 	size: calc(130px - 4px * 2);
 
 	@media (--gnav-s) {
@@ -158,7 +162,7 @@
 
 .esri-gnav-user-menu-name {
 	color: var(--mono-0);
-	font-size: 18px/calc(15 / 18);
+	font-size: 18px/25px;
 	font-weight: 500;
 	margin-bottom: 10px;
 }
@@ -175,13 +179,79 @@
 .esri-gnav-user-menu-list {
 	@apply --list;
 
-	margin-left: 50px;
+	padding-left: 10px;
+
+	@media (--gnav-s) {
+		text-align: center;
+	}
+
+	@media (--gnav-ml) {
+		width: 50%;
+	}
 }
 
 .esri-gnav-user-menu-link {
 	@apply --link;
 
-	font-size: 14px/calc(20 / 14);
+	color: var(--blue);
+	font-size: 16px/20px;
 	outline-offset: 0;
 	padding: 5px 0;
+
+	&:matches(:hover, :focus) {
+		color: var(--blue-dark);
+	}
+}
+
+.esri-gnav-user-login-menu {
+	@apply --list;
+
+	width: 100%;
+
+	@media (--gnav-s) {
+		margin: auto * 30px;
+	}
+
+	@media (--gnav-ml) {
+		display: flex;
+	}
+}
+
+.esri-gnav-user-login-item {
+	@media (--gnav-s) {
+		margin: 10px *;
+	}
+
+	@media (--gnav-ml) {
+		width: 50%;
+	}
+}
+
+.esri-gnav-user-login-control {
+	@apply --button;
+
+	box-shadow: inset 0 0 0 1px var(--blue);
+	font-size: 17px/20px;
+	padding: 15px;
+
+	@media (--gnav-s) {
+		margin: * auto;
+		width: 200px;
+	}
+
+	@media (--gnav-ml) {
+		width: 100%;
+	}
+
+	&:matches(:hover, :focus) {
+		color: var(--mono-0);
+	}
+
+	&.-switch {
+		color: var(--mono-100) var(--blue);
+
+		&:matches(:hover, :focus) {
+			background-color: var(--blue-dark);
+		}
+	}
 }

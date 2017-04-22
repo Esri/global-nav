@@ -11,6 +11,6 @@ export default (brand) => $('a', { class: prefix, href: brand.href }, [
 		ariaLabel: brand.label,
 		width: brand.width, height: brand.height
 	}, [
-		$('use', { 'href': brand.image })
+		$('use', { 'xlink:href': brand.image })
 	])
 ]);

@@ -76,7 +76,19 @@ export default (user) => $('div', { class: prefix, id: prefix },
 						href: '#user-menu-link'
 					}, [ document.createTextNode('Community & Forums') ])
 				])
-			])
+			]),
+			$('ul', { class: `${ prefix }-login-menu` }, [
+				$('li', { class: `${ prefix }-login-item` }, [
+					$('button', { class: `${ prefix }-login-control -switch` }, [
+						document.createTextNode('Switch Account')
+					])
+				]),
+				$('li', { class: `${ prefix }-login-item` }, [
+					$('button', { class: `${ prefix }-login-control -logout` }, [
+						document.createTextNode('Sign Out')
+					])
+				])
+			]),
 		])
 	] : [
 		// logged out experience

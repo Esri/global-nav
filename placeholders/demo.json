@@ -2,7 +2,7 @@
   "theme": "web",
   "brand": {
     "label": "Esri",
-    "image": "images/logo.svg#logo",
+    "image": "gnav.svg#logo",
     "href": "#brand",
     "width": 80,
     "height": 30
@@ -161,17 +161,17 @@
   ],
   "search": {
     "label": "Search",
-    "image": "images/search.svg#search"
+    "image": "gnav.svg#search"
   },
   "apps": {
     "label": "Applications",
-    "image": "images/apps.svg#apps"
+    "image": "gnav.svg#apps"
   },
   "user": {
     "label": "Sign In",
     "image": "//placehold.it/300x300",
-    "name": "JSON",
-    "id": "json@data",
-    "group": "My San Diego"
+    "name": "Cassidy Bishop",
+    "id": "cassidy_riverside",
+    "group": "Riverside City Mgmt."
   }
 }
