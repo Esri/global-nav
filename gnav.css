@@ -44,6 +44,7 @@
 	background-color: color(var(--mono-0) a(50%));
 	content: "";
 	position: fixed 64px 0 0;
+	-webkit-tap-highlight-color: transparent;
 	transition: opacity 300ms ease-in-out, visibility 0ms 300ms;
 	z-index: -1;
 

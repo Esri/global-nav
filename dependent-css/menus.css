@@ -20,7 +20,7 @@
 	@apply --button;
 	@apply --menu-link;
 
-	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+	-webkit-tap-highlight-color: transparent;
 
 	@media (--gnav-s) {
 		background-color: #ffffff;

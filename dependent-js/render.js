@@ -15,7 +15,9 @@ export default function (target, data) {
 			// data.apps || data.user ? $client(data.apps, data.user) : []
 			data.user ? $client(data.user) : [],
 			$('a', {
+				href: 'javascript:;', // eslint-disable-line no-script-url
 				class: 'esri-gnav-canvas',
+				tabindex: '-1',
 				dataRelated: 'esri-gnav'
 			})
 		)),
