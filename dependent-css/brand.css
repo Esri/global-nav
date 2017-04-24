@@ -13,7 +13,12 @@
 	display: flex;
 	fill: currentColor;
 
-	@media (--gnav-sm) {
+	@media (--gnav-s) {
+		margin: * auto;
+		padding: * 12px;
+	}
+
+	@media (--gnav-m) {
 		margin-right: auto;
 		padding: * 12px;
 	}

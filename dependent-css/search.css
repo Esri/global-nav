@@ -12,4 +12,8 @@
 
 .esri-gnav-search-icon {
 	@apply --icon;
+
+	@media (--gnav-s) {
+		margin: * 20px;
+	}
 }
