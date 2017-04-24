@@ -36,4 +36,5 @@
 	@apply --fillable;
 
 	height: 30px;
+	max-width: 100%;
 }
