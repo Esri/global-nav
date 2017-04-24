@@ -1,9 +1,13 @@
 export default function (name, attrs, children) {
-	const namespace = /^(use|svg)$/.test(name) ? '2000/svg' : '1999/xhtml';
-	const target = document.createElementNS(`http://www.w3.org/${ namespace }`, name);
+	const namespace = `http://www.w3.org/${ /^(use|svg)$/.test(name) ? '2000/svg' : '1999/xhtml' }`;
+	const target = document.createElementNS(namespace, name);
 
 	for (let key in attrs) {
-		target.setAttribute(key.replace(/[A-Z]/g, '-$&').toLowerCase(), attrs[key]);
+		if (name === 'use' && key === 'href') {
+			target.setAttributeNS('http://www.w3.org/1999/xlink', key, attrs[key]);
+		} else {
+			target.setAttribute(key.replace(/[A-Z]/g, '-$&').toLowerCase(), attrs[key]);
+		}
 	}
 
 	while (children && children.length) {
