@@ -163,6 +163,6 @@ export default function (target, data) {
 	onresize();
 
 	function onresize() {
-		document.documentElement.style.setProperty('--vh', `${ window.innerHeight }px`);
+		document.documentElement.style.setProperty('--gnav-vh', `${ window.innerHeight }px`);
 	}
 }
