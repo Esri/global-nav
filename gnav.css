@@ -87,4 +87,5 @@ html[is-open] {
 	height: var(--gnav-vh);
 	overflow: hidden;
 	position: fixed;
+	width: 100vw;
 }
