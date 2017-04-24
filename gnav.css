@@ -17,9 +17,20 @@
 	display: flex;
 	justify-content: space-between;
 	position: relative;
-	size: * 64px;
 	user-select: none;
 	z-index: 100;
+
+	@media (--gnav-s) {
+		height: 50px;
+	}
+
+	@media (--gnav-m) {
+		height: 56px;
+	}
+
+	@media (--gnav-l) {
+		height: 64px;
+	}
 
 	&, & * {
 		box-sizing: border-box;
@@ -43,10 +54,22 @@
 .esri-gnav-canvas {
 	background-color: color(var(--mono-0) a(50%));
 	content: "";
-	position: fixed 64px 0 0;
+	position: fixed * 0 0;
 	-webkit-tap-highlight-color: transparent;
 	transition: opacity 300ms ease-in-out, visibility 0ms 300ms;
 	z-index: -1;
+
+	@media (--gnav-s) {
+		top: 50px;
+	}
+
+	@media (--gnav-m) {
+		top: 56px;
+	}
+
+	@media (--gnav-l) {
+		top: 64px;
+	}
 
 	@nest .esri-gnav[is-open="false"] & {
 		opacity: 0;

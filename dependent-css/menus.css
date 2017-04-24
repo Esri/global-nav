@@ -37,7 +37,7 @@
 	&[aria-expanded="true"] {
 		@media (--gnav-s) {
 			background-color: var(--mono-88);
-			left: calc(100vw - 64px);
+			left: calc(100vw - 50px);
 		}
 	}
 
@@ -46,6 +46,14 @@
 		display: block;
 		margin: 16px;
 		size: 32px;
+
+		@media (--gnav-s) {
+			margin: 9px;
+		}
+
+		@media (--gnav-m) {
+			margin: 12px;
+		}
 	}
 }
 
@@ -67,13 +75,13 @@
 
 	@media (--gnav-s) {
 		height: 100vh;
-		size: calc(100vw - 64px) var(--vh);
+		size: calc(100vw - 50px) var(--vh);
 		top: 0;
 	}
 
 	@media (--gnav-m) {
-		height: calc(100vh - 64px);
-		size: 320px calc(var(--vh) - 64px);
+		height: calc(100vh - 56px);
+		size: 320px calc(var(--vh) - 56px);
 		top: 100%;
 	}
 
@@ -161,12 +169,12 @@
 	@media (--gnav-s) {
 		min-height: 100vh;
 		min-height: var(--vh);
-		width: calc(100vw - 64px);
+		width: calc(100vw - 50px);
 	}
 
 	@media (--gnav-m) {
-		min-height: calc(100vh - 64px);
-		min-height: calc(var(--vh) - 64px);
+		min-height: calc(100vh - 56px);
+		min-height: calc(var(--vh) - 56px);
 		width: 320px;
 	}
 

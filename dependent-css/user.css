@@ -41,6 +41,10 @@
 	@media (--gnav-s) {
 		width: 100%;
 	}
+
+	@media (--gnav-m) {
+		padding: 12px *;
+	}
 }
 
 .esri-gnav-user-image {
@@ -79,7 +83,7 @@
 		min-height: var(--vh);
 		position: absolute 0 * * 0;
 		transition: transform 300ms ease-in-out;
-		width: calc(100vw - 64px);
+		width: calc(100vw - 50px);
 		z-index: 1;
 	}
 
