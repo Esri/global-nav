@@ -188,10 +188,13 @@
 		-ms-overflow-style: -ms-autohiding-scrollbar;
 		overflow-y: auto;
 		padding: 25px 45px 45px;
-		width: 350px;
+
+		&:not([item-full="true"]) {
+			width: calc(350px + 45px * 2);
+		}
 
 		&[item-full="true"] {
-			width: calc(350px * 2 + 20px);
+			width: calc(350px * 2 + 20px + 45px * 2);
 		}
 	}
 
