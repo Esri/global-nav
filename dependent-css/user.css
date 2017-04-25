@@ -31,7 +31,6 @@
 
 .esri-gnav-user-link--loggedin {
 	@apply --button;
-	@apply --menu-link;
 
 	padding: 16px 32px;
 	padding-left: calc(32px + 16px + 12px);
@@ -40,6 +39,26 @@
 
 	@media (--gnav-s) {
 		width: 100%;
+
+		&::after {
+			content: url(./lib/symbols.svg#right-chevron);
+			fill: #595959;
+			position: absolute calc(50% - 12px / 2) 20px * *;
+			size: 12px;
+			transition: opacity 250ms, right 250ms, transform 250ms ease-in-out;
+		}
+
+		&:matches(:focus, :hover) {
+			color: var(--mono-0);
+
+			&::after {
+				right: 15px;
+			}
+		}
+	}
+
+	@media (--gnav-ml) {
+		@apply --menu-link;
 	}
 
 	@media (--gnav-m) {
