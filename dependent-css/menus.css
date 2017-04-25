@@ -221,12 +221,23 @@
 	@apply --button;
 
 	background-color: var(--mono-100);
-	box-shadow: inset 0 -1px 0 var(--mono-88), inset 0 1px 0 var(--mono-88);
 	font-size: 20px/24px;
 	padding: 20px 10px;
 	position: relative;
 	text-align: center;
 	width: 100%;
+
+	@media (--gnav-s) {
+		box-shadow: inset 0 -1px 0 var(--mono-88);
+	}
+
+	@media (--gnav-m) {
+		box-shadow: inset 0 -1px 0 var(--mono-88), inset 0 1px 0 var(--mono-88);
+	}
+
+	@media (--gnav-l) {
+		display: none;
+	}
 
 	&:matches(:hover, :focus) {
 		color: var(--mono-0);
@@ -241,10 +252,6 @@
 		position: absolute calc(50% - 16px / 2) * * 24px;
 		size: 16px;
 		transition: left 300ms ease-in-out;
-	}
-
-	@media (--gnav-l) {
-		display: none;
 	}
 }
 
