@@ -32,7 +32,7 @@
 .esri-gnav-user-link--loggedin {
 	@apply --button;
 
-	padding: 16px 32px;
+	padding: 14px 32px;
 	padding-left: calc(32px + 16px + 12px);
 	position: relative;
 	text-align: start;
@@ -79,8 +79,8 @@
 }
 
 .esri-gnav-user-name {
-	font-size: 15px/16px;
-	font-weight: 700;
+	font-size: 15px/20px;
+	font-weight: 600;
 
 	@nest .esri-gnav-user-link--loggedin:not(:hover, :focus) & {
 		color: var(--mono-35);
