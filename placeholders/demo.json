@@ -112,10 +112,6 @@
             "href": "https://www.esri.com/industries/retail"
           },
           {
-            "label": "Sustainable Development",
-            "href": "https://www.esri.com/industries/sustainable-development"
-          },
-          {
             "label": "Telecommunications",
             "href": "https://www.esri.com/industries/telecom"
           },
@@ -130,6 +126,10 @@
           {
             "label": "Water Resources",
             "href": "https://www.esri.com/industries/water-resources"
+          },
+          {
+            "label": "See all industries",
+            "href": "https://www.esri.com/industries"
           }
         ],
         "tiles": [
