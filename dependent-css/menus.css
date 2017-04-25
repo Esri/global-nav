@@ -36,7 +36,6 @@
 
 	&[aria-expanded="true"] {
 		@media (--gnav-s) {
-			background-color: var(--mono-88);
 			left: calc(100vw - 50px);
 		}
 	}
