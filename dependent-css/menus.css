@@ -75,13 +75,14 @@
 
 	@media (--gnav-s) {
 		height: 100vh;
-		size: calc(100vw - 50px) var(--vh);
+		height: var(--gnav-vh);
 		top: 0;
+		width: calc(100vw - 50px);
 	}
 
 	@media (--gnav-m) {
 		height: calc(100vh - 56px);
-		size: 320px calc(var(--vh) - 56px);
+		size: 320px calc(var(--gnav-vh) - 56px);
 		top: 100%;
 	}
 
@@ -168,13 +169,13 @@
 
 	@media (--gnav-s) {
 		min-height: 100vh;
-		min-height: var(--vh);
+		min-height: var(--gnav-vh);
 		width: calc(100vw - 50px);
 	}
 
 	@media (--gnav-m) {
 		min-height: calc(100vh - 56px);
-		min-height: calc(var(--vh) - 56px);
+		min-height: calc(var(--gnav-vh) - 56px);
 		width: 320px;
 	}
 
@@ -183,7 +184,7 @@
 
 		left: calc(-45px + 24px);
 		max-height: calc(100vh - 64px);
-		max-height: calc(var(--vh) - 64px);
+		max-height: calc(var(--gnav-vh) - 64px);
 		-webkit-overflow-scrolling: touch;
 		-ms-overflow-style: -ms-autohiding-scrollbar;
 		overflow-y: auto;
