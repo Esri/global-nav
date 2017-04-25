@@ -164,7 +164,7 @@
 	text-align: center;
 
 	@media (--gnav-s) {
-		margin-top: 40px;
+		margin-top: 20px;
 	}
 
 	@media (--gnav-ml) {
