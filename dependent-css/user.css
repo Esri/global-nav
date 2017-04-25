@@ -259,6 +259,7 @@
 	box-shadow: inset 0 0 0 1px var(--blue);
 	font-size: 17px/20px;
 	padding: 15px;
+	transition: background-color 150ms ease-in-out, box-shadow 150ms ease-in-out;
 
 	@media (--gnav-s) {
 		margin: * auto;
@@ -278,6 +279,12 @@
 
 		&:matches(:hover, :focus) {
 			background-color: var(--blue-dark);
+		}
+	}
+
+	&.-logout {
+		&:matches(:hover, :focus) {
+			box-shadow: inset 0 0 0 3px var(--blue);
 		}
 	}
 }
