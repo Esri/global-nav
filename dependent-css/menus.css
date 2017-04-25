@@ -305,7 +305,8 @@
 
 	@media (--gnav-sm) {
 		box-shadow: inset 0 -1px 0 0 var(--mono-91);
-		padding: 22px 24px;
+		margin-left: 24px;
+		padding: 22px 24px 22px *;
 		position: relative;
 
 		&:matches(:hover, :focus) {
