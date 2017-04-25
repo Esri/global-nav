@@ -372,7 +372,7 @@
 	margin-bottom: -1px;
 	margin-left: -.5px;
 	margin-right: -.5px;
-	padding: 10px 10px 24px;
+	padding: 10px;
 	position: relative;
 
 	&:hover {
@@ -391,9 +391,9 @@
 
 .esri-gnav-menus-sublink-text {
 	display: block;
-	font-size: 12px/15px;
+	font-size: 14px/20px;
+	height: 40px;
 	margin: 16px * *;
 	overflow: hidden;
 	text-align: center;
-	white-space: nowrap;
 }
