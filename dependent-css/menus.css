@@ -263,10 +263,6 @@
 
 .esri-gnav-menus-subitem {
 	@media (--gnav-l) {
-		@nest :matches([item-count="7"], [item-count="8"]) &:nth-child(5) {
-			margin-top: calc(-60px * 4);
-		}
-
 		@nest :matches([item-count="9"], [item-count="10"]) &:nth-child(6) {
 			margin-top: calc(-60px * 5);
 		}
@@ -284,7 +280,6 @@
 		}
 
 		@nest
-		:matches([item-count="7"], [item-count="8"]) &:nth-child(n+5),
 		:matches([item-count="9"], [item-count="10"]) &:nth-child(n+6),
 		:matches([item-count="11"], [item-count="12"]) &:nth-child(n+7),
 		:matches([item-count="13"], [item-count="14"]) &:nth-child(n+8),

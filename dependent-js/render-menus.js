@@ -40,7 +40,7 @@ export default (menus) => $('div', { class: prefix, id: `${ prefix }` }, [
 					item.menus && item.menus.length || item.tiles && item.tiles.length ? $('div', {
 						class: `${ prefix }-submenu`, id: `${ prefix }-submenu-${ uuid }`,
 						role: 'group', ariaHidden: true, ariaExpanded: false,
-						itemCount: `${ item.menus.slice(0, 16).length }`, itemFull: `${ item.menus.length > 6 }`
+						itemCount: `${ item.menus.slice(0, 16).length }`, itemFull: `${ item.menus.length > 8 }`
 					}, [
 						$('button', {
 							class: `${ prefix }-submenu-toggle`,
