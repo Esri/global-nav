@@ -273,7 +273,7 @@
 		}
 
 		@nest :matches([item-count="15"], [item-count="16"]) &:nth-child(9) {
-			margin-top: calc(-60px * 9);
+			margin-top: calc(-60px * 8);
 		}
 
 		@nest
