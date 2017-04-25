@@ -48,7 +48,7 @@
 			transition: opacity 250ms, right 250ms, transform 250ms ease-in-out;
 		}
 
-		&:matches(:focus, :hover) {
+		&:matches(:focus, :hover, [aria-expanded="true"]) {
 			color: var(--mono-0);
 
 			&::after {
