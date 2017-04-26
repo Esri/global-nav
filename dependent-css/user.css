@@ -82,7 +82,7 @@
 	font-size: 15px/20px;
 	font-weight: 600;
 
-	@nest .esri-gnav-user-link--loggedin:not(:hover, :focus) & {
+	@nest .esri-gnav-user-link--loggedin:not(:hover, :focus, [aria-expanded="true"]) & {
 		color: var(--mono-35);
 	}
 }
