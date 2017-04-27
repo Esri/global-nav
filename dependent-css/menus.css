@@ -356,12 +356,18 @@
 }
 
 .esri-gnav-menus-subitem--tiles {
-	@nest .esri-gnav-menus-sublist--tiles:matches([item-count="2"], [item-count="4"]) & {
+	@media (--gnav-sm) {
 		width: calc(100% / 2);
 	}
 
-	@nest .esri-gnav-menus-sublist--tiles[item-count="3"] & {
-		width: calc(100% / 3);
+	@media (--gnav-l) {
+		@nest .esri-gnav-menus-sublist--tiles:matches([item-count="2"], [item-count="4"]) & {
+			width: calc(100% / 2);
+		}
+
+		@nest .esri-gnav-menus-sublist--tiles[item-count="3"] & {
+			width: calc(100% / 3);
+		}
 	}
 }
 
