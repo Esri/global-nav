@@ -177,7 +177,7 @@
 
 .esri-gnav-user-menu-image {
 	border-radius: 50%;
-	box-shadow: 0 0 0 4px var(--blue);
+	box-shadow: 0 0 0 2px var(--mono-100), 0 0 0 6px var(--blue);
 	margin: * auto 20px;
 	size: calc(130px - 4px * 2);
 
