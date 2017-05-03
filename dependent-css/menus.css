@@ -41,7 +41,7 @@
 	}
 
 	&::before {
-		content: url(./lib/symbols.svg#toggle);
+		content: url(./lib/symbols.svg#c-menu-open);
 		display: block;
 		margin: 16px;
 		size: 32px;
@@ -52,6 +52,12 @@
 
 		@media (--gnav-m) {
 			margin: 12px;
+		}
+	}
+
+	&[aria-expanded="true"] {
+		&::before {
+			content: url(./lib/symbols.svg#c-menu-close);
 		}
 	}
 }
