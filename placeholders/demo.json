@@ -159,7 +159,7 @@
           },
           {
             "label": "WhereNext Magazine",
-            "href": "https://www.esri.com/newsroom/publications/where-next"
+            "href": "https://www.esri.com/about/newsroom/publications/wherenext/"
           },
           {
             "label": "Newsroom",
@@ -180,10 +180,6 @@
           {
             "label": "Contact Esri",
             "href": "https://www.esri.com/about-esri/contact"
-          },
-          {
-            "label": "Newsroom",
-            "href": "https://www.esri.com/esri-news"
           }
         ],
         "tiles": [
