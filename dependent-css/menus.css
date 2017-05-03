@@ -280,6 +280,17 @@
 	overflow: hidden;
 }
 
+.esri-gnav-menus-sublist,
+.esri-gnav-menus-sublist--tiles {
+	@nest :not([item-full="true"]) > & {
+		width: 350px;
+	}
+
+	@nest [item-full="true"] > & {
+		width: calc(350px * 2 + 20px);
+	}
+}
+
 .esri-gnav-menus-subitem {
 	@media (--gnav-l) {
 		@nest :matches([item-count="9"], [item-count="10"]) &:nth-child(6) {
