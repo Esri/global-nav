@@ -1,12 +1,12 @@
 <svg xmlns="http://www.w3.org/2000/svg">
+	<symbol id="c-arrow-right" viewBox="0 0 16 16">
+		<path d="M8 14.3l5.3-5.3H0V8h13.3L8 2.7V1.3L15.2 8.5 8 15.7V14.3z"/>
+	</symbol>
 	<symbol id="c-menu-open" viewBox="0 0 24 24">
 		<path stroke-miterlimit="10" stroke-width="2" d="M2 12h20M2 6h20M2 18h20"/>
 	</symbol>
 	<symbol id="c-menu-close" viewBox="0 0 24 24">
 		<path d="M21.723 3.691l-1.414-1.414L12 10.586 3.691 2.277 2.277 3.691 10.586 12l-8.309 8.309 1.414 1.414L12 13.414l8.309 8.309 1.414-1.414L13.414 12z"/>
-	</symbol>
-	<symbol id="right-arrow" viewBox="0 0 16 16">
-		<path d="M8 14.3l5.3-5.3H0V8h13.3L8 2.7V1.3L15.2 8.5 8 15.7V14.3z"/>
 	</symbol>
 	<symbol id="right-chevron" viewBox="0 0 32 32">
 		<path d="M7 4h5l12 12-12 12H7l12-12L7 4z"/>

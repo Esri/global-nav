@@ -358,7 +358,8 @@
 	}
 
 	&::after {
-		content: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' width='16' height='16'%3E%3Cpath d='M8 14.3l5.3-5.3H0V8h13.3L8 2.7V1.3L15.2 8.5 8 15.7V14.3z' fill='%230079c1'/%3E%3C/svg%3E");
+		content: url(./lib/symbols.svg#c-arrow-right);
+		fill: var(--blue);
 		opacity: 0;
 		position: absolute calc(50% - 16px / 2) 20px * *;
 		size: 16px;
