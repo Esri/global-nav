@@ -41,7 +41,6 @@
 	}
 
 	&::before {
-		content: url(./lib/symbols.svg#c-menu-open);
 		display: block;
 		margin: 16px;
 		size: 32px;
@@ -55,9 +54,24 @@
 		}
 	}
 
+	&:not(:hover, :focus) {
+		&::before {
+			content: url(./lib/symbols.svg#c-menu-open);
+			stroke: #595959;
+		}
+	}
+
+	&:matches(:hover, :focus) {
+		&::before {
+			content: url(./lib/symbols.svg#c-menu-open);
+			stroke: #000000;
+		}
+	}
+
 	&[aria-expanded="true"] {
 		&::before {
 			content: url(./lib/symbols.svg#c-menu-close);
+			fill: #000000;
 		}
 	}
 }
