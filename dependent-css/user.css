@@ -205,13 +205,12 @@
 .esri-gnav-user-menu-list {
 	@apply --list;
 
-	padding-left: 10px;
-
 	@media (--gnav-s) {
 		text-align: center;
 	}
 
 	@media (--gnav-ml) {
+		padding-left: 10px;
 		width: 50%;
 	}
 }
