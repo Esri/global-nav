@@ -283,30 +283,34 @@
 .esri-gnav-menus-sublist,
 .esri-gnav-menus-sublist--tiles {
 	@nest :not([item-full="true"]) > & {
-		width: 350px;
+		@media (--gnav-l) {
+			width: 350px;
+		}
 	}
 
 	@nest [item-full="true"] > & {
-		width: calc(350px * 2 + 20px);
+		@media (--gnav-l) {
+			width: calc(350px * 2 + 20px);
+		}
 	}
 }
 
 .esri-gnav-menus-subitem {
 	@media (--gnav-l) {
 		@nest :matches([item-count="9"], [item-count="10"]) &:nth-child(6) {
-			margin-top: calc(-60px * 5);
+			margin-top: calc(-50px * 5);
 		}
 
 		@nest :matches([item-count="11"], [item-count="12"]) &:nth-child(7) {
-			margin-top: calc(-60px * 6);
+			margin-top: calc(-50px * 6);
 		}
 
 		@nest :matches([item-count="13"], [item-count="14"]) &:nth-child(8) {
-			margin-top: calc(-60px * 7);
+			margin-top: calc(-50px * 7);
 		}
 
 		@nest :matches([item-count="15"], [item-count="16"]) &:nth-child(9) {
-			margin-top: calc(-60px * 8);
+			margin-top: calc(-50px * 8);
 		}
 
 		@nest
