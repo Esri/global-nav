@@ -201,20 +201,20 @@
 	@media (--gnav-l) {
 		@apply --submenu;
 
-		left: calc(-45px + 24px);
+		left: calc(-35px + 24px);
 		max-height: calc(100vh - 64px);
 		max-height: calc(var(--gnav-vh) - 64px);
 		-webkit-overflow-scrolling: touch;
 		-ms-overflow-style: -ms-autohiding-scrollbar;
 		overflow-y: auto;
-		padding: 25px 45px 45px;
+		padding: 25px 35px 35px;
 
 		&:not([item-full="true"]) {
-			width: calc(350px + 45px * 2);
+			width: calc(350px + 35px * 2);
 		}
 
 		&[item-full="true"] {
-			width: calc(350px * 2 + 20px + 45px * 2);
+			width: calc(350px * 2 + 20px + 35px * 2);
 		}
 	}
 
