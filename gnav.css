@@ -57,7 +57,7 @@
 	outline: 0;
 	position: fixed * 0 0;
 	-webkit-tap-highlight-color: transparent;
-	transition: opacity 300ms ease-in-out, visibility 0ms 300ms;
+	transition: opacity var(--gnav-dropdown-speed) ease-in-out, visibility 0ms var(--gnav-dropdown-speed);
 	z-index: -1;
 
 	@media (--gnav-s) {
@@ -79,7 +79,7 @@
 
 	@nest .esri-gnav[is-open="true"] & {
 		opacity: 1;
-		transition: opacity 300ms ease-in-out;
+		transition: opacity var(--gnav-dropdown-speed) ease-in-out;
 	}
 }
 

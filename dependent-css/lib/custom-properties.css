@@ -18,7 +18,8 @@
 /* ========================================================================== */
 
 :root {
-	--submenu-transition-speed: 400ms;
+	--gnav-drawer-speed: 400ms;
+	--gnav-dropdown-speed: 250ms;
 }
 
 /* Custom Properties: Breakpoints
@@ -81,7 +82,7 @@
 	--submenu: {
 		box-shadow: inset 0 0 0 1px var(--mono-88);
 		position: absolute 100% * *;
-		transition: opacity 250ms ease-in-out;
+		transition: opacity var(--gnav-dropdown-speed) ease-in-out;
 
 		&:not([aria-expanded="true"]) {
 			clip: rect(0 0 0 0);

@@ -105,7 +105,7 @@
 		min-height: 100vh;
 		min-height: var(--gnav-vh);
 		position: absolute 0 * * 0;
-		transition: transform var(--submenu-transition-speed) ease-in-out;
+		transition: transform var(--gnav-drawer-speed) ease-in-out;
 		width: calc(100vw - 50px);
 		z-index: 1;
 	}
@@ -125,7 +125,7 @@
 			max-height: 0;
 			overflow: hidden;
 			transform: translateX(100vw);
-			transition: max-height 0s var(--submenu-transition-speed), transform var(--submenu-transition-speed) ease-in-out, visibility 0s var(--submenu-transition-speed);
+			transition: max-height 0s var(--gnav-drawer-speed), transform var(--gnav-drawer-speed) ease-in-out, visibility 0s var(--gnav-drawer-speed);
 			visibility: hidden;
 		}
 	}
@@ -154,7 +154,7 @@
 		content: url(./lib/symbols.svg#left-chevron); /* stylelint-disable-line */
 		position: absolute calc(50% - 16px / 2) * * 24px;
 		size: 16px;
-		transition: left 300ms ease-in-out;
+		transition: left var(--gnav-drawer-speed) ease-in-out;
 	}
 
 	@media (--gnav-ml) {

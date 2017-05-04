@@ -26,7 +26,7 @@
 		background-color: #ffffff;
 		left: 0;
 		position: relative;
-		transition: left 300ms ease-in-out;
+		transition: left var(--gnav-drawer-speed) ease-in-out;
 		z-index: 1;
 	}
 
@@ -88,7 +88,7 @@
 		overflow-x: hidden;
 		overflow-y: auto;
 		position: absolute;
-		transition: transform 300ms ease-in-out;
+		transition: transform var(--gnav-drawer-speed) ease-in-out;
 		z-index: 1;
 	}
 
@@ -112,7 +112,7 @@
 
 	&[aria-hidden="true"] {
 		@media (--gnav-sm) {
-			transition: transform 300ms ease-in-out, visibility 0s 300ms;
+			transition: transform var(--gnav-drawer-speed) ease-in-out, visibility 0s var(--gnav-drawer-speed);
 			visibility: hidden;
 		}
 
@@ -182,7 +182,7 @@
 	@media (--gnav-sm) {
 		box-shadow: inset 0 1px 0 0 var(--mono-88), 0 0 20px 0 color(var(--mono-0) a(30%));
 		position: absolute 0 * * 0;
-		transition: transform var(--submenu-transition-speed) ease-in-out;
+		transition: transform var(--gnav-drawer-speed) ease-in-out;
 		z-index: 1;
 	}
 
@@ -222,7 +222,7 @@
 		@media (--gnav-sm) {
 			height: 0;
 			overflow: hidden;
-			transition: transform var(--submenu-transition-speed) ease-in-out, height 0s var(--submenu-transition-speed), visibility 0s var(--submenu-transition-speed);
+			transition: transform var(--gnav-drawer-speed) ease-in-out, height 0s var(--gnav-drawer-speed), visibility 0s var(--gnav-drawer-speed);
 			visibility: hidden;
 		}
 
@@ -270,7 +270,7 @@
 		content: url(./lib/symbols.svg#left-chevron); /* stylelint-disable-line */
 		position: absolute calc(50% - 16px / 2) * * 24px;
 		size: 16px;
-		transition: left 300ms ease-in-out;
+		transition: left 250ms ease-in-out;
 	}
 }
 
