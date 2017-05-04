@@ -105,7 +105,7 @@
 		min-height: 100vh;
 		min-height: var(--gnav-vh);
 		position: absolute 0 * * 0;
-		transition: transform 300ms ease-in-out;
+		transition: transform var(--submenu-transition-speed) ease-in-out;
 		width: calc(100vw - 50px);
 		z-index: 1;
 	}
@@ -125,7 +125,7 @@
 			max-height: 0;
 			overflow: hidden;
 			transform: translateX(100vw);
-			transition: max-height 0s 300ms, transform 300ms ease-in-out, visibility 0s 300ms;
+			transition: max-height 0s var(--submenu-transition-speed), transform var(--submenu-transition-speed) ease-in-out, visibility 0s var(--submenu-transition-speed);
 			visibility: hidden;
 		}
 	}
