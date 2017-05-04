@@ -54,6 +54,7 @@
 .esri-gnav-canvas {
 	background-color: color(var(--mono-0) a(50%));
 	content: "";
+	outline: 0;
 	position: fixed * 0 0;
 	-webkit-tap-highlight-color: transparent;
 	transition: opacity 300ms ease-in-out, visibility 0ms 300ms;
