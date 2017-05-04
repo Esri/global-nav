@@ -14,6 +14,13 @@
 	--blue-dark: #005e95;
 }
 
+/* Custom Properties: Transitions
+/* ========================================================================== */
+
+:root {
+	--submenu-transition-speed: 400ms;
+}
+
 /* Custom Properties: Breakpoints
 /* ========================================================================== */
 

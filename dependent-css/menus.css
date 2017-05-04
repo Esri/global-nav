@@ -182,7 +182,7 @@
 	@media (--gnav-sm) {
 		box-shadow: inset 0 1px 0 0 var(--mono-88), 0 0 20px 0 color(var(--mono-0) a(30%));
 		position: absolute 0 * * 0;
-		transition: transform 300ms ease-in-out;
+		transition: transform var(--submenu-transition-speed) ease-in-out;
 		z-index: 1;
 	}
 
@@ -222,7 +222,7 @@
 		@media (--gnav-sm) {
 			height: 0;
 			overflow: hidden;
-			transition: transform 300ms ease-in-out, height 0s 300ms, visibility 0s 300ms;
+			transition: transform var(--submenu-transition-speed) ease-in-out, height 0s var(--submenu-transition-speed), visibility 0s var(--submenu-transition-speed);
 			visibility: hidden;
 		}
 
