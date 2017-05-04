@@ -101,6 +101,7 @@
 		box-shadow: inset 0 1px 0 0 var(--mono-88), 0 0 20px 0 color(var(--mono-0) a(30%));
 		display: flex;
 		flex-direction: column;
+		max-height: 200vh;
 		min-height: 100vh;
 		min-height: var(--gnav-vh);
 		position: absolute 0 * * 0;
@@ -121,9 +122,10 @@
 
 	&[aria-hidden="true"] {
 		@media (--gnav-s) {
+			max-height: 0;
 			overflow: hidden;
 			transform: translateX(100vw);
-			transition: transform 300ms ease-in-out, visibility 0s 300ms;
+			transition: max-height 0s 300ms, transform 300ms ease-in-out, visibility 0s 300ms;
 			visibility: hidden;
 		}
 	}
