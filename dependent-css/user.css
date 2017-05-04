@@ -225,10 +225,6 @@
 	padding: 5px 0;
 	position: relative;
 
-	&:matches(:hover, :focus) {
-		color: var(--blue-dark);
-	}
-
 	&::after {
 		content: url(./lib/symbols.svg#c-arrow-right);
 		fill: var(--blue);
