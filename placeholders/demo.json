@@ -45,12 +45,12 @@
           {
             "label": "ArcGIS Pro",
             "href": "https://www.esri.com/arcgis/products/arcgis-pro/Overview",
-            "icon": "./images/icons/apps-48.svg#icon"
+            "icon": "./images/icons/arcgis-desktop-48.svg#icon"
           },
           {
             "label": "ArcGIS Online",
             "href": "https://www.esri.com/software/arcgis/arcgisonline",
-            "icon": "./images/icons/arcgis-desktop-48.svg#icon"
+            "icon": "./images/icons/arcgis-online-48.svg#icon"
           },
           {
             "label": "ArcGIS Enterprise",
@@ -136,17 +136,17 @@
           {
             "label": "Location Strategy",
             "href": "https://www.esri.com/location-strategy",
-            "icon": "./images/icons/arcgis-online-48.svg#icon"
+            "icon": "./images/icons/location-strategy-48.svg#icon"
           },
           {
             "label": "Operational Intelligence",
             "href": "https://www.esri.com/operational-intelligence",
-            "icon": "./images/icons/education-48.svg#icon"
+            "icon": "./images/icons/operational-intelligence-48.svg#icon"
           },
           {
             "label": "Smart Communities",
             "href": "https://www.esri.com/smart-communities",
-            "icon": "./images/icons/location-strategy-48.svg#icon"
+            "icon": "./images/icons/smart-communities-48.svg#icon"
           }
         ]
       },
@@ -185,11 +185,13 @@
         "tiles": [
           {
             "label": "Education",
-            "href": "https://www.esri.com/industries/education"
+            "href": "https://www.esri.com/industries/education",
+            "icon": "./images/icons/education-48.svg#icon"
           },
           {
             "label": "Sustainable Development",
-            "href": "https://www.esri.com/industries/sustainable-development"
+            "href": "https://www.esri.com/industries/sustainable-development",
+            "icon": "./images/icons/sustainable-development-48.svg#icon"
           }
         ]
       },
