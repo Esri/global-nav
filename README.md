@@ -4,58 +4,28 @@
 [![Licensing][lic-img]][lic-url]
 [![Changelog][log-img]][log-url]
 
-[Esri Global Navigation] is the presentation layer of the top-level navigation for Esri's web pages and SAAS applications. It consists of the markup (HTML), styles (CSS), and functionality for UI interactions.
+[Esri Global Navigation] provides platform-wide alignment and brand cohesion,
+allowing visitors to explore new content and products through a familiar and
+consistent experience. As a centralized microapp, this reduces the duplicated
+work any given developer needs to implement a persistent footer, while
+providing a centralized location for distributing rapid updates, new features,
+and resolving issues with shared ownership.
 
-![Global Navigation: desktop view](readme-screenshots/esri-global-nav-desktop.png)
+## [Header]
 
-The primary reasons for this component are to achieve greater platform-wide alignment and reduce the amount of duplicated work any given developer needs to do.
+[Header] is the presentation layer of the top-level navigation for Esri's web
+pages and SAAS applications. It consists of the markup (HTML), styles (CSS),
+and functionality (JS) for UI interactions.
 
-Secondary reasons are to encourage shared ownership and allow for rapid iterations.
+## [Footer]
 
-## Usage
-
-We recommend using **Esri Global Navigation** with a package manager, as it is the most manageable approach and reduces duplication of work.
-
-```sh
-npm install ArcGIS/esri-global-nav --save-dev
-```
-
-## Development
-
-Clone this repository to your computer.
-
-```sh
-git clone git@github.com:ArcGIS/esri-global-nav.git
-```
-
-Install the component locally.
-
-```sh
-npm install
-```
-
-Host the component as a local web server. This will let you preview the component as well as any changes you make to it.
-
-```sh
-npm start
-```
-
-## Specification
-
-To understand the structure and break down of the Global Navigation component, see [README-SPEC.md].
-
-## Integrations
-
-Integrations for frameworks such as [Ember] and [AngularJS] would be a great addition and contributions are welcome.
-
-## Contributing
-
-Contributions are welcome in all forms: issues, pull requests, concepts, inquiries, etc.
+[Footer] is the presentation layer of the bottom-level navigation for Esri's
+web pages and SAAS applications. It consists of the markup (HTML), styles
+(CSS), and functionality (JS) for UI interactions.
 
 [Esri Global Navigation]: https://github.com/ArcGIS/esri-global-nav
-[Ember]: http://emberjs.com/
-[AngularJS]: https://angularjs.org/
-[README-SPEC.md]: README-SPEC.md
+[Header]: https://github.com/ArcGIS/esri-global-nav/tree/master/header
+[Footer]: https://github.com/ArcGIS/esri-global-nav/tree/master/footer
 
 [cli-url]: https://travis-ci.com/ArcGIS/esri-global-nav
 [cli-img]: https://api.travis-ci.com/ArcGIS/esri-global-nav.svg?token=mqvp34VgHUamyk5XDa9d

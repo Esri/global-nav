@@ -1,0 +1,43 @@
+/* Global Footer: Meta */
+/* ========================================================================== */
+
+.gfoot-lang {
+	@media (--gfoot-s) {
+		margin: * * 12px 20px;
+	}
+
+	@media (--gfoot-m) {
+		margin: 12px 30px 6px 24px;
+	}
+
+	@media (--gfoot-l) {
+		margin: 12px * 6px 24px;
+		width: calc(25% - 24px);
+	}
+}
+
+.gfoot-lang-link {
+	@apply --unset-a;
+
+	background-image: url("esri-global-shared#c-globe" param(--fill var(--mono-100)));
+	background-position: calc(100% - 12px) 50%;
+	background-repeat: no-repeat;
+	background-size: 20px 20px;
+	border-style: none;
+	color: #ffffff #0079c1;
+	display: inline-block;
+	font-size: 16px/18px;
+	font-weight: 300;
+	padding: 11px 20px;
+	padding: * 40px * *;
+	white-space: nowrap;
+
+	@nest [dir="rtl"] & {
+		background-position: 12px 50%;
+		padding: * 20px * 40px;
+	}
+
+	&:--enter {
+		background-color: #005e95;
+	}
+}

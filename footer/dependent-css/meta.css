@@ -1,0 +1,76 @@
+/* Global Footer: Meta */
+/* ========================================================================== */
+
+.gfoot-meta {
+	@media (--gfoot-s) {
+		padding: * 15px * 20px;
+	}
+
+	@media (--gfoot-m) {
+		flex-grow: 1;
+	}
+
+	@media (--gfoot-l) {
+		flex-grow: 1;
+	}
+}
+
+.gfoot-meta-list {
+	@apply --unset-l;
+
+	@media (--gfoot-m) {
+		display: flex;
+		flex-wrap: wrap;
+	}
+
+	@media (--gfoot-l) {
+		display: flex;
+	}
+}
+
+.gfoot-meta-item {
+	@media (--gfoot-s) {
+		display: inline-block;
+		white-space: nowrap;
+	}
+
+	@media (--gfoot-l) {
+		width: 20%;
+	}
+}
+
+.gfoot-meta-link {
+	@apply --unset-a;
+	@apply --footer-link-styles;
+
+	display: inline-block;
+	font-weight: 300;
+	transition: font-size 300ms;
+	white-space: nowrap;
+
+	&:--enter {
+		color: #0079c1;
+	}
+
+	@media (--gfoot-s) {
+		font-size: 14px/16px;
+		margin-right: 30px;
+		padding: calc((30px - 16px) / 2) *;
+	}
+
+	@media (--gfoot-m) {
+		font-size: 14px/16px;
+		margin-right: 35px;
+		padding: 2px *;
+	}
+
+	@media (--gfoot-l) {
+		font-size: 14px/16px;
+	}
+
+	@media (--gfoot-ml) {
+		&::after {
+			top: 0;
+		}
+	}
+}

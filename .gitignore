@@ -1,6 +1,7 @@
 .*
 !.editorconfig
 !.gitignore
+!.travis.yml
 *.log*
 node_modules
 dist

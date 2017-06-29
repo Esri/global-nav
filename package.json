@@ -1,38 +1,23 @@
 {
   "name": "esri-global-nav",
   "version": "1.0.0",
-  "main": "gnav.js",
-  "style": "gnav.css",
   "scripts": {
     "clean": "git clean -X -d -f",
-    "start": "gulp --cwd . --gulpfile node_modules/gulp-config-dev",
+    "start": "gulp --gulpfile node_modules/gulp-config-dev --cwd",
     "test": "echo 'Running tests...'; npm run test:css && npm run test:js",
-    "test:css": "stylelint *.css dependent-css/*.css",
-    "test:js": "eslint *.js dependent-js/*.js --cache --ignore-pattern .gitignore"
-  },
-  "dependencies": {
-    "custom-event-polyfill": "^0.3.0",
-    "element-closest": "^2.0.2"
+    "test:css": "stylelint **/*.css **/dependent-css/*.css **/dependent-css/**/*.css --syntax scss",
+    "test:js": "eslint **/*.js **/dependent-js/*.js **/dependent-js/**/*.js --cache --ignore-pattern .gitignore"
   },
   "devDependencies": {
-    "eslint": "^3.19.0",
+    "eslint": "^4.1.1",
     "eslint-config-dev": "^2.0.0",
-    "gulp-config-dev": "^1.7.0",
+    "gulp-config-dev": "^3.8.3",
     "pre-commit": "^1.2.2",
-    "stylelint": "^7.10.1",
-    "stylelint-config-dev": "^1.4.0"
+    "stylelint": "^7.12.0",
+    "stylelint-config-dev": "^1.5.0"
   },
-  "browserslist": [
-    "last 2 versions"
-  ],
   "eslintConfig": {
     "extends": "dev"
-  },
-  "gulpConfig": {
-    "css": "placeholders/demo.css",
-    "js": "placeholders/demo.js",
-    "html": "placeholders/demo.html",
-    "use-sass": false
   },
   "stylelint": {
     "extends": "stylelint-config-dev"

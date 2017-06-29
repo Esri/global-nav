@@ -1,0 +1,29 @@
+@import "search-styles";
+
+.g-search-form {
+	@apply --g-search-form-styles;
+}
+
+.g-search-control {
+	@apply --g-search-control-styles;
+}
+
+.g-search-measure {
+	@apply --g-search-measure-styles;
+}
+
+.g-search-measure-text {
+	@apply --g-search-measure-text-styles;
+}
+
+.g-search-label {
+	@apply --g-search-label-styles;
+}
+
+.g-search-submit {
+	@apply --g-search-submit-styles;
+}
+
+.g-search-cancel {
+	@apply --g-search-cancel-styles;
+}

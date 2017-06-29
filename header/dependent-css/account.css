@@ -1,0 +1,389 @@
+/* Account
+/* ========================================================================== */
+
+.esri-header-account {
+	@media (--width-s) {
+		background-color: var(--mono-100);
+		box-shadow: inset 0 1px 0 0 var(--mono-88);
+		margin-top: auto;
+	}
+
+	@media (--width-ml) {
+		position: relative;
+	}
+}
+
+/* Account: Control: Signin
+/* ========================================================================== */
+
+.esri-header-account-control--signin {
+	@apply --normalize-button;
+	@apply --unset-button;
+
+	display: block;
+	font-size: 16px/20px;
+	padding: 18px 24px;
+	position: relative;
+	text-align: left;
+	width: 100%;
+
+	@nest :dir(rtl) & {
+		text-align: right;
+	}
+
+	@media (--width-s) {
+		padding: 28px 24px;
+
+		&::after {
+			content: url("esri-global-shared#c-chevron-right" param(--fill #595959));
+			position: absolute calc(50% - 12px / 2) 20px * *;
+			size: 12px;
+			transition: left 250ms, opacity 250ms, right 250ms;
+
+			@nest :dir(rtl) & {
+				left: 20px;
+				right: auto;
+				transform: scaleX(-1);
+			}
+		}
+
+		&:matches(:focus, :hover, [aria-expanded="true"]) {
+			color: var(--mono-0);
+
+			&::after {
+				right: 15px;
+
+				@nest :dir(rtl) & {
+					left: 15px;
+					right: auto;
+				}
+			}
+		}
+	}
+
+	@media (--width-ml) {
+		@apply --menu-link-styles;
+	}
+}
+
+/* Account: Control
+/* ========================================================================== */
+
+.esri-header-account-control {
+	@apply --normalize-button;
+	@apply --unset-button;
+
+	padding: * 32px * calc(32px + 16px + 12px);
+	position: relative;
+	text-align: start;
+	width: 100%;
+
+	@nest :dir(rtl) & {
+		padding: * calc(32px + 16px + 12px) * 32px;
+	}
+
+	@media (--width-s) {
+		padding: 20px *;
+
+		&::after {
+			content: url("esri-global-shared#c-chevron-right" param(--fill #595959));
+			position: absolute calc(50% - 12px / 2) 20px * *;
+			size: 12px;
+			transition: left 250ms, opacity 250ms, right 250ms;
+
+			@nest :dir(rtl) & {
+				left: 20px;
+				right: auto;
+				transform: scaleX(-1);
+			}
+		}
+
+		&:matches(:focus, :hover, [aria-expanded="true"]) {
+			color: var(--mono-0);
+
+			&::after {
+				right: 15px;
+
+				@nest :dir(rtl) & {
+					left: 15px;
+					right: auto;
+				}
+			}
+		}
+	}
+
+	@media (--width-ml) {
+		@apply --menu-link-styles;
+
+		padding: calc((var(--header-height-l) - 36px) / 2) *;
+	}
+}
+
+.esri-header-account-image {
+	border-radius: 50%;
+	position: absolute calc(50% - 32px / 2) * * 16px;
+	size: 32px;
+
+	@nest :dir(rtl) & {
+		left: auto;
+		right: 16px;
+	}
+}
+
+.esri-header-account-name,
+.esri-header-account-id {
+	display: block;
+	user-select: text;
+	white-space: nowrap;
+}
+
+.esri-header-account-name {
+	font-size: 15px/20px;
+	font-weight: 600;
+
+	@nest .esri-header-account-link--loggedin:not(:hover, :focus, [aria-expanded="true"]) & {
+		color: var(--mono-35);
+	}
+}
+
+.esri-header-account-id {
+	font-size: 14px/16px;
+}
+
+/* Global Navigation: Account: Logged In: Menu
+/* ========================================================================== */
+
+.esri-header-account-menu {
+	background-color: var(--mono-97);
+
+	@media (--width-s) {
+		box-shadow: inset 0 1px 0 0 var(--mono-88), 0 0 20px 0 color(var(--mono-0) a(30%));
+		display: flex;
+		flex-direction: column;
+		max-height: 200vh;
+		min-height: 100vh;
+		min-height: var(--vh, 100vh);
+		position: absolute 0 * * 0;
+		transition: transform var(--smooth-speed) ease-in-out;
+		width: calc(100vw - 50px);
+		z-index: 1;
+	}
+
+	@media (--width-ml) {
+		@apply --submenu-styles;
+
+		display: flex;
+		flex-wrap: wrap;
+		min-width: 410px;
+		padding-top: 48px;
+		right: 0;
+
+		@nest :dir(rtl) & {
+			left: 0;
+			right: auto;
+		}
+	}
+
+	&[aria-hidden="true"] {
+		@media (--width-s) {
+			max-height: 0;
+			overflow: hidden;
+			transform: translateX(100vw);
+			transition: max-height 0s var(--smooth-speed), transform var(--smooth-speed) ease-in-out, visibility 0s var(--smooth-speed);
+			visibility: hidden;
+		}
+	}
+}
+
+.esri-header-account-content-toggle {
+	@apply --normalize-button;
+	@apply --unset-button;
+
+	background-color: var(--mono-100);
+	box-shadow: inset 0 -1px 0 var(--mono-88);
+	font-size: 20px/24px;
+	padding: 20px 10px;
+	position: relative;
+	text-align: center;
+	width: 100%;
+
+	&:matches(:hover, :focus) {
+		color: var(--mono-0);
+
+		&::before {
+			left: 15px;
+		}
+	}
+
+	&::before {
+		content: url("esri-global-shared#c-chevron-left");
+		position: absolute calc(50% - 16px / 2) * * 24px;
+		size: 16px;
+		transition: left var(--smooth-speed) ease-in-out;
+	}
+
+	@media (--width-ml) {
+		display: none;
+	}
+}
+
+.esri-header-account-content-info {
+	display: flex;
+	flex-direction: column;
+	margin-bottom: 40px;
+	text-align: center;
+
+	@media (--width-s) {
+		margin-top: 20px;
+	}
+
+	@media (--width-ml) {
+		width: 50%;
+	}
+}
+
+.esri-header-account-content-image {
+	border-radius: 50%;
+	box-shadow: 0 0 0 2px var(--mono-100), 0 0 0 6px var(--blue);
+	margin: * auto 20px;
+	size: calc(130px - 4px * 2);
+
+	@media (--width-s) {
+		margin: 4px auto *;
+	}
+}
+
+.esri-header-account-content-name {
+	color: var(--mono-0);
+	font-size: 18px/25px;
+	font-weight: 500;
+	margin-bottom: 10px;
+}
+
+.esri-header-account-content-id {
+	font-size: 13px/calc(15 / 13);
+	margin-bottom: 5px;
+}
+
+.esri-header-account-content-group {
+	font-size: 13px/calc(15 / 13);
+}
+
+/* Header: Account: Menu: List
+/* ========================================================================== */
+
+.esri-header-account-content-menu {
+	@apply --unset-l;
+
+	@media (--width-s) {
+		text-align: center;
+	}
+
+	@media (--width-ml) {
+		padding-left: 10px;
+		width: 50%;
+	}
+}
+
+.esri-header-account-content-link {
+	@apply --unset-a;
+
+	color: var(--blue);
+	display: inline-block;
+	font-size: 16px/20px;
+	outline-offset: 0;
+	padding: 5px 0;
+	position: relative;
+
+	&::after {
+		content: url("esri-global-shared#c-arrow-right" param(--fill var(--blue)));
+		opacity: 0;
+		position: absolute calc(50% - 20px / 2) -8px * *;
+		size: 12px;
+		transition: opacity 250ms, transform 250ms;
+
+		@nest :dir(rtl) & {
+			left: -8px;
+			right: auto;
+			transform: scaleX(-1);
+		}
+	}
+
+	&:matches(:hover, :focus) {
+		&::after {
+			opacity: 1;
+			transform: translateX(10px);
+
+			@nest :dir(rtl) & {
+				transform: scaleX(-1) translateX(10px);
+			}
+		}
+	}
+}
+
+/* Header: Account: Signin: Menu
+/* ========================================================================== */
+
+.esri-header-account-signin-menu {
+	@apply --unset-l;
+
+	width: 100%;
+
+	@media (--width-s) {
+		margin: auto * 30px;
+	}
+
+	@media (--width-ml) {
+		display: flex;
+	}
+}
+
+.esri-header-account-signin-item {
+	@media (--width-s) {
+		margin: 10px *;
+	}
+
+	@media (--width-ml) {
+		width: 50%;
+	}
+}
+
+.esri-header-account-signin-control {
+	@apply --normalize-button;
+	@apply --unset-button;
+
+	box-shadow: inset 0 0 0 1px var(--blue);
+	display: block;
+	font-size: 17px/20px;
+	padding: 15px;
+	transition: background-color 150ms ease-in-out, box-shadow 150ms ease-in-out;
+
+	@media (--width-s) {
+		margin: * auto;
+		width: 200px;
+	}
+
+	@media (--width-ml) {
+		width: 100%;
+	}
+
+	&:matches(:hover, :focus) {
+		color: var(--mono-0);
+	}
+
+	&.-switch {
+		color: var(--mono-100) var(--blue);
+
+		&:matches(:hover, :focus) {
+			background-color: var(--blue-dark);
+		}
+	}
+
+	&.-logout {
+		color: var(--blue);
+
+		&:matches(:hover, :focus) {
+			box-shadow: inset 0 0 0 3px var(--blue);
+		}
+	}
+}
