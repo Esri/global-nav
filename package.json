@@ -1,6 +1,19 @@
 {
   "name": "esri-global-nav",
   "version": "1.0.0",
+  "description": "A centralized microapp for navigation",
+  "author": "Jonathan Neal <jonathantneal@hotmail.com>",
+  "license": "Apache-2.0",
+  "repository": "ArcGIS/esri-global-nav",
+  "homepage": "https://github.com/ArcGIS/esri-global-nav#readme",
+  "bugs": "https://github.com/ArcGIS/esri-global-nav/issues",
+  "main": "header/header.js",
+  "files": [
+    "footer",
+    "header",
+    "search",
+    "shared"
+  ],
   "scripts": {
     "clean": "git clean -X -d -f",
     "start": "gulp --gulpfile node_modules/gulp-config-dev --cwd",
