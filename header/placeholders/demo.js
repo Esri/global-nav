@@ -22,7 +22,8 @@ var $esriHeader = 'object' === typeof esriHeader ? esriHeader.create({
 							that: true,
 							other: true,
 							thing: true
-						}
+						},
+						target: '_blank'
 					},
 					{
 						label: 'Products',
