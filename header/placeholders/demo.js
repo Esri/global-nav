@@ -23,7 +23,7 @@ var $esriHeader = 'object' === typeof esriHeader ? esriHeader.create({
 							other: true,
 							thing: true
 						},
-						target: '_blank'
+						newContext: true
 					},
 					{
 						label: 'Products',

@@ -93,8 +93,9 @@ export default () => {
 													aAttrs[`data-${key}`] = childitem.data[key];
 												});
 
-												if (childitem.target) {
-													aAttrs.target = childitem.target;
+												if (childitem.newContext) {
+													aAttrs.target = '_blank';
+													aAttrs.rel = 'noopener';
 												}
 
 												return $('li', { class: `${prefix}-subitem` }, [
