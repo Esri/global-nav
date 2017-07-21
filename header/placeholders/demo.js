@@ -16,7 +16,13 @@ var $esriHeader = 'object' === typeof esriHeader ? esriHeader.create({
 				menus: [
 					{
 						label: 'About ArcGIS',
-						href: 'https://www.esri.com/arcgis/about-arcgis'
+						href: 'https://www.esri.com/arcgis/about-arcgis',
+						data: {
+							this: true,
+							that: true,
+							other: true,
+							thing: true
+						}
 					},
 					{
 						label: 'Products',
