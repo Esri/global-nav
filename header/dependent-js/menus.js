@@ -93,6 +93,10 @@ export default () => {
 													aAttrs[`data-${key}`] = childitem.data[key];
 												});
 
+												if (childitem.target) {
+													aAttrs.target = childitem.target;
+												}
+
 												return $('li', { class: `${prefix}-subitem` }, [
 													$('a', aAttrs, [ document.createTextNode(childitem.label) ])
 												]);
