@@ -86,9 +86,17 @@ export default () => {
 											class: `${prefix}-sublist`,
 											role: 'navigation', ariaLabelledby: `${prefix}-link-${uuid}-${suuid}`
 										}, item.menus.slice(0, 16).map(
-											(childitem) => $('li', { class: `${prefix}-subitem` }, [
-												$('a', { class: `${prefix}-sublink`, href: childitem.href }, [ document.createTextNode(childitem.label) ])
-											])
+											(childitem) => {
+												const aAttrs = { class: `${prefix}-sublink`, href: childitem.href };
+
+												Object.keys(Object(childitem.data)).forEach((key) => {
+													aAttrs[`data-${key}`] = childitem.data[key];
+												});
+
+												return $('li', { class: `${prefix}-subitem` }, [
+													$('a', aAttrs, [ document.createTextNode(childitem.label) ])
+												]);
+											}
 										))
 									]);
 								}
