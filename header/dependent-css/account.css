@@ -194,6 +194,11 @@
 			transform: translateX(var(--esri-vw));
 			transition: max-height 0s var(--smooth-speed), transform var(--smooth-speed) ease-in-out, visibility 0s var(--smooth-speed);
 			visibility: hidden;
+
+			@nest :dir(rtl) & {
+				transform: translateX(-100vw);
+				transform: translateX(calc(-1 * var(--esri-vw)));
+			}
 		}
 	}
 }

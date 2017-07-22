@@ -34,11 +34,11 @@
 	&[aria-expanded="true"] {
 		@media (--width-s) {
 			left: calc(100vw - 50px);
-			left: calc(var(--esri-vw, 100vw) - 50px);
+			left: calc(var(--esri-vw) - 50px);
 
 			@nest :dir(rtl) & {
 				left: calc(-100vw + 50px);
-				left: calc(-1 * var(--esri-vw, 100vw) + 50px);
+				left: calc(-1 * var(--esri-vw) + 50px);
 			}
 		}
 	}
@@ -90,6 +90,7 @@
 		overflow-x: hidden;
 		overflow-y: auto;
 		position: absolute;
+		transform: translateX(0);
 		transition: transform var(--smooth-speed) ease-in-out;
 		z-index: 1;
 
@@ -99,16 +100,14 @@
 	}
 
 	@media (--width-s) {
-		height: 100vh;
-		height: var(--esri-vh, 100vh);
+		size: calc(100vw - 50px) 100vh;
+		size: calc(var(--esri-vw) - 50px) var(--esri-vh);
 		top: 0;
-		width: calc(100vw - 50px);
-		width: calc(var(--esri-vw, 100vw) - 50px);
 	}
 
 	@media (--width-m) {
 		size: var(--header-width-m) calc(100vh - 56px);
-		size: var(--header-width-m) calc(var(--esri-vh, 100vh) - 56px);
+		size: var(--header-width-m) calc(var(--esri-vh) - 56px);
 		top: 100%;
 	}
 
@@ -125,16 +124,16 @@
 
 		@media (--width-s) {
 			transform: translateX(-100vw);
-			transform: translateX(-1 * var(--esri-vw, 100vw));
+			transform: translateX(calc(-1 * var(--esri-vw)));
 
 			@nest :dir(rtl) & {
 				transform: translateX(100vw);
-				transform: translateX(var(--esri-vw, 100vw));
+				transform: translateX(var(--esri-vw));
 			}
 		}
 
 		@media (--width-m) {
-			transform: translateX(calc(var(--header-width-m) * -1));
+			transform: translateX(calc(-1 * var(--header-width-m)));
 
 			@nest :dir(rtl) & {
 				transform: translateX(var(--header-width-m));
@@ -236,14 +235,14 @@
 
 	@media (--width-s) {
 		min-height: 100vh;
-		min-height: var(--esri-vh, 100vh);
+		min-height: var(--esri-vh);
 		width: calc(100vw - 50px);
-		width: calc(var(--esri-vw, 100vw) - 50px);
+		width: calc(var(--esri-vw) - 50px);
 	}
 
 	@media (--width-m) {
 		min-height: calc(100vh - var(--header-height-l));
-		min-height: calc(var(--esri-vh, 100vh) - var(--header-height-l));
+		min-height: calc(var(--esri-vh) - var(--header-height-l));
 		width: var(--header-width-m);
 	}
 
@@ -252,7 +251,7 @@
 
 		left: calc(-35px + 24px);
 		max-height: calc(100vh - var(--header-height-l));
-		max-height: calc(var(--esri-vh, 100vh) - var(--header-height-l));
+		max-height: calc(var(--esri-vh) - var(--header-height-l));
 		-webkit-overflow-scrolling: touch;
 		-ms-overflow-style: -ms-autohiding-scrollbar;
 		overflow-y: auto;
@@ -282,11 +281,11 @@
 
 		@media (--width-s) {
 			transform: translateX(100vw);
-			transform: translateX(var(--esri-vw, 100vw));
+			transform: translateX(var(--esri-vw));
 
 			@nest :dir(rtl) & {
 				transform: translateX(-100vw);
-				transform: translateX(-1 * var(--esri-vw, 100vw));
+				transform: translateX(calc(-1 * var(--esri-vw)));
 			}
 		}
 
@@ -294,7 +293,7 @@
 			transform: translateX(var(--header-width-m));
 
 			@nest :dir(rtl) & {
-				transform: translateX(calc(var(--header-width-m) * -1));
+				transform: translateX(calc(-1 * var(--header-width-m)));
 			}
 		}
 	}
