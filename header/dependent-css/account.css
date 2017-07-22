@@ -161,11 +161,13 @@
 		display: flex;
 		flex-direction: column;
 		max-height: 200vh;
+		max-height: calc(2 * var(--esri-vh));
 		min-height: 100vh;
-		min-height: var(--vh, 100vh);
+		min-height: var(--esri-vh);
 		position: absolute 0 * * 0;
 		transition: transform var(--smooth-speed) ease-in-out;
 		width: calc(100vw - 50px);
+		width: calc(var(--esri-vw) - 50px);
 		z-index: 1;
 	}
 
@@ -189,6 +191,7 @@
 			max-height: 0;
 			overflow: hidden;
 			transform: translateX(100vw);
+			transform: translateX(var(--esri-vw));
 			transition: max-height 0s var(--smooth-speed), transform var(--smooth-speed) ease-in-out, visibility 0s var(--smooth-speed);
 			visibility: hidden;
 		}

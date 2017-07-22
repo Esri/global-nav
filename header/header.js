@@ -218,7 +218,7 @@ function create(data) {
 				return scrollHeight > height ? 'scroll' : 'visible';
 			});
 
-			$empty($style, [ document.createTextNode(`[data-header-is-open]{width:${width}px;height:${height}px;overflow-y:${overflowY}}`) ]);
+			$empty($style, [ document.createTextNode(`:root{--esri-vw:${width}px;--esri-vh:${width}px}[data-header-is-open]{width:${width}px;height:${height}px;overflow-y:${overflowY}}`) ]);
 		}
 
 		function onViewportIsSmallChange() {

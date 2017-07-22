@@ -34,6 +34,12 @@
 	&[aria-expanded="true"] {
 		@media (--width-s) {
 			left: calc(100vw - 50px);
+			left: calc(var(--esri-vw, 100vw) - 50px);
+
+			@nest :dir(rtl) & {
+				left: calc(-100vw + 50px);
+				left: calc(-1 * var(--esri-vw, 100vw) + 50px);
+			}
 		}
 	}
 
@@ -94,14 +100,15 @@
 
 	@media (--width-s) {
 		height: 100vh;
-		height: var(--width-vh, 100vh);
+		height: var(--esri-vh, 100vh);
 		top: 0;
 		width: calc(100vw - 50px);
+		width: calc(var(--esri-vw, 100vw) - 50px);
 	}
 
 	@media (--width-m) {
-		height: calc(100vh - 56px);
-		size: var(--header-width-m) calc(var(--width-vh, 100vh) - 56px);
+		size: var(--header-width-m) calc(100vh - 56px);
+		size: var(--header-width-m) calc(var(--esri-vh, 100vh) - 56px);
 		top: 100%;
 	}
 
@@ -118,9 +125,11 @@
 
 		@media (--width-s) {
 			transform: translateX(-100vw);
+			transform: translateX(-1 * var(--esri-vw, 100vw));
 
 			@nest :dir(rtl) & {
 				transform: translateX(100vw);
+				transform: translateX(var(--esri-vw, 100vw));
 			}
 		}
 
@@ -227,13 +236,14 @@
 
 	@media (--width-s) {
 		min-height: 100vh;
-		min-height: var(--vh, 100vh);
+		min-height: var(--esri-vh, 100vh);
 		width: calc(100vw - 50px);
+		width: calc(var(--esri-vw, 100vw) - 50px);
 	}
 
 	@media (--width-m) {
 		min-height: calc(100vh - var(--header-height-l));
-		min-height: calc(var(--vh, 100vh) - var(--header-height-l));
+		min-height: calc(var(--esri-vh, 100vh) - var(--header-height-l));
 		width: var(--header-width-m);
 	}
 
@@ -242,7 +252,7 @@
 
 		left: calc(-35px + 24px);
 		max-height: calc(100vh - var(--header-height-l));
-		max-height: calc(var(--vh, 100vh) - var(--header-height-l));
+		max-height: calc(var(--esri-vh, 100vh) - var(--header-height-l));
 		-webkit-overflow-scrolling: touch;
 		-ms-overflow-style: -ms-autohiding-scrollbar;
 		overflow-y: auto;
@@ -272,9 +282,11 @@
 
 		@media (--width-s) {
 			transform: translateX(100vw);
+			transform: translateX(var(--esri-vw, 100vw));
 
 			@nest :dir(rtl) & {
 				transform: translateX(-100vw);
+				transform: translateX(-1 * var(--esri-vw, 100vw));
 			}
 		}
 
