@@ -192,8 +192,6 @@ function create(data) {
 
 			$append($headerDocument.head, [ $style ]);
 
-			overflowY = getComputedStyle($headerDocument.documentElement).overflowY.replace('visible', 'scroll');
-
 			$bind('resize', $headerWindow, onresize);
 
 			onresize();
@@ -214,6 +212,11 @@ function create(data) {
 		function onresize() {
 			const width  = $headerDocument.documentElement.clientWidth;
 			const height = $headerDocument.documentElement.clientHeight;
+			const scrollHeight = $headerDocument.documentElement.scrollHeight;
+
+			overflowY = getComputedStyle($headerDocument.documentElement).overflowY.replace('visible', () => {
+				return scrollHeight > height ? 'scroll' : 'visible';
+			});
 
 			$empty($style, [ document.createTextNode(`[data-header-is-open]{width:${width}px;height:${height}px;overflow-y:${overflowY}}`) ]);
 		}
