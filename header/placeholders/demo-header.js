@@ -309,8 +309,8 @@ var $esriHeader = 'object' === typeof esriHeader ? esriHeader.create({
 			}
 		],
 		user: {
-			name: 'Cassidy Bishop',
-			id: 'cassidy_riverside',
+			name: 'Cassidy Bishop, Bishop of the Science of Where',
+			id: 'iamoktatester@gmail.com_FNEmail',
 			group: 'Riverside City Mgmt.',
 			image: '//placehold.it/300x300'
 		}

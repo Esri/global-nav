@@ -110,11 +110,6 @@
 	src: local("Avenir Next Heavy Italic"), url("https://api2.fonts.com/FontSubsetter.ashx?d44f19a684109620e484157aae90e8188a15480d255609476ecf269dee85203a6d3b8b475a83b3b71dc97a35eba3eeff532a102db908028064a297b71d0604ae8ab132249c907da823cab13acf0bda2854ebee266fcef82c954d41e21fba3b8f129d911a03556f0a138588f75fd54f4650db7e5f123e1311de63573a0dc78982f2c4c6a9ed6e339ed952b3&fctypeId=14&fcId=18d5f732-8628-43bf-801b-ec18f618cf8c&content=0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz!%22%23%24%25%26%27()*%2B%2C-%2E/%3A%3B%3C=%3E%3F@%5B%5C%5D%5E_%60%7B%7C%7D~Â¢Â£Â¤Â¥Â©Â«Â®Â°â€˜â€™â€œâ€&ot=false&projectId=2abe0dd7-8964-459a-9f40-70d8f5504a30") format("woff2"), url("https://api2.fonts.com/FontSubsetter.ashx?d44f19a684109620e484157aae90e8188a15480d255609476ecf269dee85203a6d3b8b475a83b3b71dc97a35eba3eeff532a102db908028064a297b71d0604ae8ab132249c907da823cab13acf0bda2854ebee266fcef82c954d41e21fba3b8f129d911a03556f0a138588f75fd54f4650db7e5f123e1311de63573a0dc78982f2c4c6a9ed6e339ed952b3&fctypeId=3&fcId=18d5f732-8628-43bf-801b-ec18f618cf8c&content=0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz!%22%23%24%25%26%27()*%2B%2C-%2E/%3A%3B%3C=%3E%3F@%5B%5C%5D%5E_%60%7B%7C%7D~Â¢Â£Â¤Â¥Â©Â«Â®Â°â€˜â€™â€œâ€&ot=false&projectId=2abe0dd7-8964-459a-9f40-70d8f5504a30") format("woff");
 }
 
-html { background-color: #f9f9f9; }
-body { font: 300 17px/20px "Avenir Next", "Century Gothic", sans-serif; margin: 0; }
-main { margin: 1.5em; max-width: 40em; }
-
-.esri-search-barrier {
-	margin: 40px auto;
-	max-width: 40em;
-}
+html { background-color: #ffffff; }
+body { background-color: #ffffff; font: 300 17px/30px "Avenir Next", "Century Gothic", sans-serif; margin: 0; }
+main { margin: 0 auto; max-width: 600px; padding: 30px; }
