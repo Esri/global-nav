@@ -15,7 +15,7 @@ export default () => {
 	/* ====================================================================== */
 
 	const $controlSigninText = document.createTextNode('');
-	const $controlSignin = $('button', { class: `${prefix}-control--signin` }, [ $controlSigninText ]);
+	const $controlSignin = $('button', { class: `${prefix}-control ${prefix}-control--signin` }, [ $controlSigninText ]);
 
 	// On Click
 	$bind('click', $controlSignin, (event) => {
@@ -34,7 +34,7 @@ export default () => {
 	const $controlId = $('span', { class: `${prefix}-id` }, [ $controlIdText ]);
 
 	const $control = $('button', {
-		class: `${prefix}-control`, id: `${prefix}-control`,
+		class: `${prefix}-control ${prefix}-control--signedin`, id: `${prefix}-control`,
 		ariaControls: `${prefix}-menu`, ariaExpanded: false, ariaHaspopup: true
 	}, [ $controlImage, $controlName, $controlId ]);
 

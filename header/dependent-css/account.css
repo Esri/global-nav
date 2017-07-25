@@ -69,7 +69,7 @@
 /* Account: Control
 /* ========================================================================== */
 
-.esri-header-account-control {
+.esri-header-account-control--signedin {
 	@apply --normalize-button;
 	@apply --unset-button;
 
