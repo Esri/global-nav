@@ -21,7 +21,8 @@
     "css-dest": "esri-header.css",
     "js-dest": "esri-header.js",
     "js-module-name": "esriHeader",
-    "use-sass": false
+    "use-sass": false,
+    "server-root": "../dist"
   },
   "private": true
 }

@@ -20,7 +20,8 @@
     "css-dest": "esri-search.css",
     "js-dest": "esri-search.js",
     "js-module-name": "esriSearch",
-    "use-sass": false
+    "use-sass": false,
+    "server-root": "../dist"
   },
   "private": true
 }

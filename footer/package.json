@@ -20,7 +20,8 @@
     "css-dest": "esri-footer.css",
     "js-dest": "esri-footer.js",
     "js-module-name": "esriFooter",
-    "use-sass": false
+    "use-sass": false,
+    "server-root": "../dist"
   },
   "private": true
 }
