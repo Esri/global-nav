@@ -35,5 +35,10 @@
   "stylelint": {
     "extends": "stylelint-config-dev"
   },
+  "gulpConfig": {
+    "html": false,
+    "css": false,
+    "js": false
+  },
   "private": true
 }
