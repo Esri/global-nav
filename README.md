@@ -61,6 +61,6 @@ web pages and SAAS applications. It consists of the markup (HTML), styles
 [cli-url]: https://travis-ci.com/ArcGIS/esri-global-nav
 [cli-img]: https://api.travis-ci.com/ArcGIS/esri-global-nav.svg?token=mqvp34VgHUamyk5XDa9d
 [lic-url]: LICENSE.md
-[lic-img]: https://img.shields.io/badge/license-CC0--1.0-blue.svg
+[lic-img]: https://img.shields.io/badge/license-Apache%202.0-blue.svg
 [log-url]: CHANGELOG.md
 [log-img]: https://img.shields.io/badge/changelog-md-blue.svg
