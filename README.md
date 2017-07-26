@@ -2,7 +2,6 @@
 
 [![Build Status][cli-img]][cli-url]
 [![Licensing][lic-img]][lic-url]
-[![Changelog][log-img]][log-url]
 
 [Esri Global Navigation] provides platform-wide alignment and brand cohesion,
 allowing visitors to explore new content and products through a familiar and
@@ -62,5 +61,3 @@ web pages and SAAS applications. It consists of the markup (HTML), styles
 [cli-img]: https://api.travis-ci.com/ArcGIS/esri-global-nav.svg?token=mqvp34VgHUamyk5XDa9d
 [lic-url]: LICENSE.md
 [lic-img]: https://img.shields.io/badge/license-Apache%202.0-blue.svg
-[log-url]: CHANGELOG.md
-[log-img]: https://img.shields.io/badge/changelog-md-blue.svg
