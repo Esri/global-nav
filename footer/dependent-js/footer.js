@@ -1,7 +1,8 @@
 /* Global Footer: Tooling
 /* ========================================================================== */
 
-import { $, $attrs, $bind, $unbind, $dispatch, $rmattrs } from 'esri-global-shared';
+import { $, $append, $attrs, $bind, $unbind, $dispatch, $rmattrs } from 'esri-global-shared';
+import esriLanguage from 'esri-global-language';
 
 /* Global Footer
 /* ========================================================================== */
@@ -9,7 +10,9 @@ import { $, $attrs, $bind, $unbind, $dispatch, $rmattrs } from 'esri-global-shar
 export default (data) => {
 	const links = [];
 
-	const $footer = $('footer', { class: 'gfoot gfoot--fixed', ariaLabel: data.label }, [
+	const $footer = $('footer', { class: 'gfoot gfoot--fixed', ariaLabel: data.label });
+
+	$append($footer, [
 		$('div', { class: 'gfoot-section--1' }, [
 			$('div', { class: 'gfoot-brand' }, [
 				$('a', { class: 'gfoot-brand-link', href: data.brand.href, ariaLabel: data.brand.label }, [
@@ -62,7 +65,69 @@ export default (data) => {
 						$dispatch('gfoot:click:lang', $buttonTarget, data.lang);
 					});
 				})
-			] : []),
+			] : [], ($lang) => {
+				$bind('footer:update', $footer, () => {
+					// ...
+					const prefix = 'gfoot-lang-dialog';
+
+
+					data.lang.prefix = prefix;
+
+					// ...
+					const $dialog = esriLanguage(data.lang);
+
+					// ...
+					const $close = $('button', {
+						class: `${prefix}-close`, id: 'dialog-description',
+						ariaLabel: data.close
+					});
+
+					$bind('click', $close, (event) => {
+						event.preventDefault();
+					});
+
+					$bind('click', $close, onclick);
+
+					// ...
+					$append($dialog, [ $close ]);
+
+					// ...
+					const $canvas = $('button', {
+						class: `${prefix}-canvas`,
+						type: 'button',
+						tabindex: -1
+					});
+
+					// ...
+					const $content = $('div', {
+						class: `${prefix}-content`, id: `${prefix}-content`,
+						ariaExpanded: false, ariaLabelledby: `${prefix}-control`
+					}, [
+						$canvas,
+						$dialog
+					]);
+
+					$bind('click', $canvas, onclick);
+
+					function onclick() {
+						$attrs($content, {
+							ariaExpanded: false
+						});
+					}
+
+					// ...
+					$bind('gfoot:click:lang', $lang, () => {
+						$attrs($content, {
+							ariaExpanded: true
+						});
+					});
+
+					// ...
+					$footer.parentNode.insertBefore($content, $footer.nextSibling);
+				});
+
+				return $lang;
+			}),
 			$('nav', { class: 'gfoot-meta', ariaLabel: data.meta.label }, [
 				$('ul', { class: 'gfoot-meta-list', role: 'presentation' }, data.meta.menu.map(
 					(item, index) => $('li', { class: 'gfoot-meta-item', id: `gfoot-meta-link--${ index }` }, [
@@ -152,6 +217,21 @@ export default (data) => {
 		if (scrollY > window.pageYOffset) {
 			window.scrollTo(0, scrollY);
 		}
+	});
+
+	/* On DOMNodeInserted
+	/* ====================================================================== */
+
+	$bind('DOMNodeInserted', $footer, function onload() {
+		// Get Document and Window
+		const $footerDocument = $footer.ownerDocument;
+		const $footerWindow   = $footerDocument.defaultView;
+
+		// Unbind Node Inserted
+		$unbind('DOMNodeInserted', $footer, onload);
+
+		// Update Header
+		$dispatch('footer:update', $footer, data);
 	});
 
 	return $footer;

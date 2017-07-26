@@ -4,6 +4,7 @@
   "main": "footer.js",
   "style": "footer.css",
   "dependencies": {
+    "esri-global-language": "file:../language",
     "esri-global-shared": "file:../shared"
   },
   "browserslist": [

@@ -63,6 +63,8 @@ export default () => {
 		}
 
 		if (detail.dialog) {
+			detail.dialog.prefix = 'esri-header-search-dialog';
+
 			const $dialog = esriSearch(detail.dialog);
 
 			$empty($content, [ $dialog ]);

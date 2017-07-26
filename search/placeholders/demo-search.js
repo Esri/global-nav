@@ -1,6 +1,6 @@
 // initialize object
 var $esriSearch = 'function' === typeof esriSearch ? esriSearch({
-	prefix: 'g-search',
+	prefix: 'esri-search',
 	action: 'https://pages.codehub.esri.com/marketing/esri-search-page/',
 	label: 'Esri',
 	submitLabel: 'Search',

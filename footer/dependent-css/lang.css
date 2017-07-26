@@ -1,5 +1,7 @@
-/* Global Footer: Meta */
+/* Global Footer: Language */
 /* ========================================================================== */
+
+@import "esri-global-language/language-styles";
 
 .gfoot-lang {
 	@media (--gfoot-s) {
@@ -40,4 +42,54 @@
 	&:--enter {
 		background-color: #005e95;
 	}
+}
+
+.gfoot-lang-dialog-content {
+	position: fixed 0;
+
+	&[aria-expanded="false"] {
+		display: none;
+	}
+}
+
+.gfoot-lang-dialog-canvas {
+	@apply --normalize-button;
+	@apply --unset-button;
+
+	color: * color(var(--mono-0) a(50%));
+	position: fixed 0;
+	size: 100%;
+	z-index: 99;
+}
+
+.gfoot-lang-dialog {
+	@apply --g-language-styles;
+
+	position: fixed;
+	z-index: 100;
+
+	@media (width > 580px) {
+		position: calc(50% - var(--g-language-height) / 2) * * calc(50% - var(--g-language-width) / 2);
+		size: var(--g-language-width) var(--g-language-height);
+	}
+
+	@media (width <= 580px) {
+		position: * * 0;
+	}
+}
+
+.gfoot-lang-dialog-message {
+	@apply --g-language-message-styles;
+}
+
+.gfoot-lang-dialog-choice {
+	@apply --g-language-choice-styles;
+}
+
+.gfoot-lang-dialog-submit {
+	@apply --g-language-submit-styles;
+}
+
+.gfoot-lang-dialog-close {
+	@apply --g-language-close-styles;
 }

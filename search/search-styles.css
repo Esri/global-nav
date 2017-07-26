@@ -127,7 +127,7 @@
 		white-space: nowrap;
 
 		&[data-filled] {
-			animation: g-search-filled-label 300ms;
+			animation: esri-search-filled-label 300ms;
 			color: var(--g-search-label-filled-color);
 			position: absolute -22px * * *;
 
@@ -234,7 +234,7 @@
 /* Global Search: Animation
 /* ========================================================================== */
 
-@keyframes g-search-filled-label {
+@keyframes esri-search-filled-label {
 	0% {
 		opacity: 0;
 		top: -12px;
