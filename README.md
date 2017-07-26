@@ -10,6 +10,8 @@ work any given developer needs to implement a persistent footer, while
 providing a centralized location for distributing rapid updates, new features,
 and resolving issues with shared ownership.
 
+[View it live](arcgis.github.io/esri-global-nav/)
+
 ## Getting Started
 
 To begin, clone this repository to your computer:
@@ -50,6 +52,10 @@ and functionality (JS) for UI interactions.
 [Footer] is the presentation layer of the bottom-level navigation for Esri's
 web pages and SAAS applications. It consists of the markup (HTML), styles
 (CSS), and functionality (JS) for UI interactions.
+
+---
+
+Esri Global Navigation is [Apache 2.0 licensed][lic-url].
 
 [Esri Global Navigation]: https://github.com/ArcGIS/esri-global-nav
 [Header]: https://github.com/ArcGIS/esri-global-nav/tree/master/header
