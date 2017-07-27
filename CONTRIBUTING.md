@@ -26,7 +26,7 @@ scope and avoid unrelated commits.
    cd esri-global-nav
 
    # Assign the original repo to a remote called "upstream"
-   git remote add upstream git@github.com:ArcGIS/esri-global-nav.git
+   git remote add upstream git@github.com:Esri/global-nav.git
 
    # Install the tools necessary for testing
    npm install

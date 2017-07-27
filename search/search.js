@@ -11,7 +11,7 @@ CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and limitations
 under the License. */
 
-import { $, $attrs, $dispatch, $bind, $unbind } from 'esri-global-shared';
+import { $assign as $, $CustomEvent } from 'domose';
 
 /* Search
 /* ========================================================================== */
@@ -20,34 +20,40 @@ export default (data) => {
 	/* Elements
 	/* ====================================================================== */
 
-	const $label = $('label', { class: `${data.prefix}-label`, for: `${data.prefix}-query-control` }, [
-		document.createTextNode(data.queryLabel)
-	]);
+	const $label = $('label', {
+		class: `${data.prefix}-label`,
+		for: `${data.prefix}-query-control`
+	}, data.queryLabel);
+
 	const $control = $('input', {
-		class: `${data.prefix}-control`, id: `${data.prefix}-control`, type: 'search',
-		name: 'q',
+		class: `${data.prefix}-control`, id: `${data.prefix}-control`,
+		type: 'search', name: 'q',
 		autocapitalize: 'off', autocomplete: 'off', autocorrect: 'off', spellcheck: 'false'
 	});
+
 	const $measureTextNode = document.createTextNode('');
+
 	const $measureText = $('div', {
 		class: `${data.prefix}-measure-text`,
-		ariaHidden: 'true'
-	}, [ $measureTextNode ]);
-	const $measure = $('div', { class: `${data.prefix}-measure` }, [ $measureText ]);
+		aria: { hidden: true }
+	}, $measureTextNode);
+
+	const $measure = $('div', { class: `${data.prefix}-measure` }, $measureText);
+
 	const $submit = $('button', {
 		class: `${data.prefix}-submit`, type: 'submit',
-		ariaLabel: data.submitLabel
+		aria: { label: data.submitLabel }
 	});
 
 	const $search = $('form', {
 		class: `${data.prefix}-form`, action: data.action,
-		role: 'search', ariaLabel: data.label
-	}, [ $label, $control, $measure, $submit ]);
+		role: 'search', aria: { label: data.label }
+	}, $label, $control, $measure, $submit);
 
 	/* Focus Event
 	/* ====================================================================== */
 
-	$bind(`${data.prefix}:focus`, $search, () => {
+	$search.addEventListener(`${data.prefix}:focus`, () => {
 		$control.focus();
 	});
 
@@ -73,7 +79,7 @@ export default (data) => {
 		if (newControlValue !== controlValue) {
 			controlValue = newControlValue;
 
-			$dispatch(`${data.prefix}:input`, $search, {
+			$dispatch($search, `${data.prefix}:input`, {
 				value: controlValue,
 				event
 			});
@@ -90,8 +96,8 @@ export default (data) => {
 		} else if (!controlIsFilled && newControlValue) {
 			controlIsFilled = true;
 
-			$attrs($label, { dataFilled: '' });
-			$attrs($submit, { dataFilled: '' });
+			$($label, { data: { filled: '' } });
+			$($submit, { data: { filled: '' } });
 		}
 
 		/* Update Measure UI
@@ -108,7 +114,7 @@ export default (data) => {
 	/* ====================================================================== */
 
 	function onsubmit(event) {
-		$dispatch(`${data.prefix}:submit`, $search, {
+		$dispatch($search, `${data.prefix}:submit`, {
 			value: $control.value,
 			event
 		});
@@ -117,21 +123,21 @@ export default (data) => {
 	/* On DOMNodeInserted
 	/* ====================================================================== */
 
-	$bind('DOMNodeInserted', $search, function onDOMNodeInserted() {
+	$search.addEventListener('DOMNodeInserted', function onDOMNodeInserted() {
 		// If Search now has a parent node
 		if ($search.parentNode) {
 			// Unbind the DOMNodeInserted method
-			$unbind('DOMNodeInserted', $search, onDOMNodeInserted);
+			$search.removeEventListener('DOMNodeInserted', onDOMNodeInserted);
 
 			// Update Search
-			$dispatch(`${data.prefix}:update`, $search, data);
+			$dispatch($search, `${data.prefix}:update`, data);
 		}
 	});
 
 	/* On Update
 	/* ====================================================================== */
 
-	$bind(`${data.prefix}:update`, $search, () => {
+	$search.addEventListener(`${data.prefix}:update`, () => {
 		/* Bind Media Event
 		/* ====================================================================== */
 
@@ -142,11 +148,19 @@ export default (data) => {
 		/* Bind Other Events
 		/* ================================================================== */
 
-		$bind('input', $control, oninput);
-		$bind('reset', $search, oninput);
-		$bind('submit', $search, onsubmit);
-		$bind(`${data.prefix}:unload`, $search, onunload);
+		$control.addEventListener('input', oninput);
+
+		$search.addEventListener('reset', oninput);
+		$search.addEventListener('submit', onsubmit);
+		$search.addEventListener(`${data.prefix}:unload`, onunload);
 	});
 
 	return $search;
 };
+
+/* Dispatch Helper
+/* ========================================================================== */
+
+function $dispatch(target, type, detail) {
+	target.dispatchEvent($CustomEvent(type, { bubbles: true, detail }));
+}

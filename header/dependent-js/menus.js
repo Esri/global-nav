@@ -1,7 +1,7 @@
 /* Tooling
 /* ========================================================================== */
 
-import { $, $append, $empty, $attrs, $bind, $dispatch } from 'esri-global-shared';
+import { $assign as $, $CustomEvent, $replaceAll } from 'domose';
 
 /* Menus
 /* ========================================================================== */
@@ -14,11 +14,11 @@ export default () => {
 
 	const $control = $('button', {
 		class: `${prefix}-toggle`, id: `${prefix}-toggle`,
-		ariaControls: `${prefix}-content`, ariaExpanded: false, ariaHaspopup: true, ariaLabelledby: 'esri-header-brand'
+		aria: { controls: `${prefix}-content`, expanded: false, haspopup: true, labelledby: 'esri-header-brand' }
 	});
 
-	$bind('click', $control, (event) => {
-		$dispatch('header:menu:toggle', $control, {
+	$control.addEventListener('click', (event) => {
+		$dispatch($control, 'header:menu:toggle', {
 			control: $control,
 			content: $content,
 			state:   'menu',
@@ -31,39 +31,46 @@ export default () => {
 	/* ====================================================================== */
 
 	const $content = $('div', { class: `${prefix}-content`,
-		ariaHidden: true, ariaExpanded: false
+		aria: { hidden: true, expanded: false }
 	});
 
 	/* Menus
 	/* ====================================================================== */
 
-	const $target = $('div', { class: prefix, id: prefix }, [ $control, $content ]);
+	const $target = $('div', { class: prefix, id: prefix },
+		$control, $content
+	);
 
 	/* Menus: On Update
 	/* ====================================================================== */
 
-	$bind('header:update:menus', $target, ({ detail }) => {
-		$empty(
+	$target.addEventListener('header:update:menus', ({ detail }) => {
+		$replaceAll(
 			$content,
-			detail.map(
-				(menu, uuid) => $('div', {
-					class: `${prefix}-menu`,
-					role: 'group'
-				}, [
-					$('ul', {
-						class: `${prefix}-list`,
-						role: 'navigation', ariaLabelledby: 'esri-header-brand'
-					}, menu.map(
-						(item, suuid) => $('li', { class: `${prefix}-item` }, [], ($li) => {
+			...detail.map(
+				(menu, uuid) => $('div',
+					{
+						class: `${prefix}-menu`,
+						role: 'group'
+					},
+					$('ul',
+						{
+							class: `${prefix}-list`,
+							role: 'navigation', aria: { labelledby: 'esri-header-brand' }
+						},
+						...menu.map((item, suuid) => {
 							/* Global Navigation: Menus: Link
 							/* ====================================================== */
 
-							const $subcontrol = $('a', {
-								class: `${prefix}-link`, id: `${prefix}-link-${uuid}-${suuid}`,
-								href: item.href || 'javascript:;' // eslint-disable-line no-script-url
-							}, [ document.createTextNode(item.label) ]);
+							const $subcontrol = $('a',
+								{
+									class: `${prefix}-link`, id: `${prefix}-link-${uuid}-${suuid}`,
+									href: item.href || 'javascript:;' // eslint-disable-line no-script-url
+								},
+								item.label
+							);
 
-							$append($li, [ $subcontrol ]);
+							const $li = $('li', { class: `${prefix}-item` }, $subcontrol);
 
 							const hasMenuItems = item.menus && item.menus.length;
 							const hasFeaturedItems = item.tiles && item.tiles.length;
@@ -72,80 +79,96 @@ export default () => {
 								/* Global Navigation: Submenu
 								/* ====================================== */
 
-								const $subtoggle = $('button', { class: `${prefix}-submenu-toggle` }, [ document.createTextNode(item.label) ]);
+								const $subtoggle = $('button', { class: `${prefix}-submenu-toggle` },
+									item.label
+								);
 
-								const $subcontent = $('div', {
-									class: `${prefix}-submenu`, id: `${prefix}-submenu-${uuid}-${suuid}`,
-									role: 'group', ariaHidden: true, ariaExpanded: false,
-									dataFilled: `${item.menus.length > 8 ? item.menus.slice(0, 16).length : ''}`
-								}, [ $subtoggle ]);
+								const $subcontent = $('div',
+									{
+										class: `${prefix}-submenu`, id: `${prefix}-submenu-${uuid}-${suuid}`,
+										role: 'group', aria: { hidden: true, expanded: false },
+										data: { filled: item.menus.length > 8 ? item.menus.slice(0, 16).length : '' }
+									},
+									$subtoggle
+								);
 
 								if (hasMenuItems) {
-									$append($subcontent, [
-										$('ul', {
-											class: `${prefix}-sublist`,
-											role: 'navigation', ariaLabelledby: `${prefix}-link-${uuid}-${suuid}`
-										}, item.menus.slice(0, 16).map(
-											(childitem) => {
-												const aAttrs = { class: `${prefix}-sublink`, href: childitem.href };
+									$($subcontent,
+										$('ul',
+											{
+												class: `${prefix}-sublist`,
+												role: 'navigation', aria: { labelledby: `${prefix}-link-${uuid}-${suuid}` }
+											},
+											/* Global Navigation: Menus: Sublink
+											/* ============================== */
+											...item.menus.slice(0, 16).map(
+												(childitem) => {
+													const aAttrs = { class: `${prefix}-sublink`, href: childitem.href };
 
-												Object.keys(Object(childitem.data)).forEach((key) => {
-													aAttrs[`data-${key}`] = childitem.data[key];
-												});
+													Object.keys(Object(childitem.data)).forEach((key) => {
+														aAttrs[`data-${key}`] = childitem.data[key];
+													});
 
-												if (childitem.newContext) {
-													aAttrs.target = '_blank';
-													aAttrs.rel = 'noopener';
+													if (childitem.newContext) {
+														aAttrs.target = '_blank';
+														aAttrs.rel = 'noopener';
+													}
+
+													return $('li', { class: `${prefix}-subitem` },
+														$('a', aAttrs,
+															childitem.label
+														)
+													);
 												}
-
-												return $('li', { class: `${prefix}-subitem` }, [
-													$('a', aAttrs, [ document.createTextNode(childitem.label) ])
-												]);
-											}
-										))
-									]);
+											)
+										)
+									);
 								}
 
 								if (hasFeaturedItems) {
-									$append($subcontent, [
-										$('ul', {
-											class: `${prefix}-sublist--featured`,
-											role: 'navigation', ariaLabelledby: `${prefix}-link-${uuid}-${suuid}`,
-											dataFilled: `${ item.tiles.slice(0, 4).length }`
-										}, item.tiles.slice(0, 4).map(
-											(childitem) => $('li', { class: `${prefix}-subitem--featured` }, [
-												/* Global Navigation: Menus: Sublink
-												/* ====================================== */
+									// ...
+									$($subcontent,
+										$('ul',
+											{
+												class: `${prefix}-sublist--featured`,
+												role: 'navigation', aria: { labelledby: `${prefix}-link-${uuid}-${suuid}` },
+												data: { filled: `${ item.tiles.slice(0, 4).length }` }
+											},
+											/* Global Navigation: Menus: Sublink
+											/* ============================== */
 
-												$('a', { class: `${prefix}-sublink--featured`, href: childitem.href }, [
-													$('svg', { class: `${prefix}-sublink-image` }, [], ($svg) => {
-														if ('string' === typeof childitem.icon) {
-															$svg.appendChild(
-																$('use', { 'href': childitem.icon })
-															);
-														} else {
-															if (childitem.width && childitem.height) {
-																$attrs($svg, { viewBox: `0 0 ${childitem.width} ${childitem.height}` });
-															}
-
-															if (childitem.icon && childitem.icon.length) {
-																$append($svg, childitem.icon.map(
-																	(d) => $('path', { d })
-																));
-															}
-														}
-													}),
-													$('span', { class: `${prefix}-sublink-text` }, [ document.createTextNode(childitem.label) ])
-												])
-											])
-										))
-									]);
+											...item.tiles.slice(0, 4).map(
+												(childitem) => $('li', { class: `${prefix}-subitem--featured` },
+													$('a', { class: `${prefix}-sublink--featured`, href: childitem.href },
+														$(
+															document.createElementNS('http://www.w3.org/2000/svg', 'svg'),
+															childitem.width && childitem.height ? { viewBox: `0 0 ${childitem.width} ${childitem.height}` } : {},
+															{ class: `${prefix}-sublink-image` },
+															$(document.createDocumentFragment(),
+																...childitem.icon.map(
+																	(d) => $(
+																		document.createElementNS('http://www.w3.org/2000/svg', 'path'),
+																		{ d }
+																	)
+																)
+															)
+														),
+														$('span', { class: `${prefix}-sublink-text` },
+															childitem.label
+														)
+													)
+												)
+											)
+										)
+									);
 								}
 
-								$append($li, [ $subcontent ]);
+								$($li,
+									$subcontent
+								);
 
-								$bind('click', $subcontrol, () => {
-									$dispatch('header:menu:toggle', $subcontrol, {
+								$subcontrol.addEventListener('click', () => {
+									$dispatch($subcontrol, 'header:menu:toggle', {
 										control: $subcontrol,
 										content: $subcontent,
 										submenu: true,
@@ -153,20 +176,29 @@ export default () => {
 									});
 								});
 
-								$bind('click', $subtoggle, () => {
-									$dispatch('header:menu:close', $subtoggle, {
+								$subtoggle.addEventListener('click', () => {
+									$dispatch($subtoggle, 'header:menu:close', {
 										control: $subcontrol,
 										submenu: true,
 										content: $subcontent
 									});
 								});
 							}
+
+							return $li;
 						})
-					))
-				])
+					)
+				)
 			)
 		);
 	});
 
 	return $target;
 };
+
+/* Dispatch Helper
+/* ========================================================================== */
+
+function $dispatch(target, type, detail) {
+	target.dispatchEvent($CustomEvent(type, { bubbles: true, detail }));
+}

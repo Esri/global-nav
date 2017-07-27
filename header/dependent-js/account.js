@@ -1,7 +1,7 @@
 /* Tooling
 /* ========================================================================== */
 
-import { $, $attrs, $empty, $bind, $dispatch } from 'esri-global-shared';
+import { $assign as $, $CustomEvent, $replaceAll } from 'domose';
 
 /* Account
 /* ========================================================================== */
@@ -15,11 +15,13 @@ export default () => {
 	/* ====================================================================== */
 
 	const $controlSigninText = document.createTextNode('');
-	const $controlSignin = $('button', { class: `${prefix}-control ${prefix}-control--signin` }, [ $controlSigninText ]);
+	const $controlSignin = $('button', { class: `${prefix}-control ${prefix}-control--signin` },
+		$controlSigninText
+	);
 
 	// On Click
-	$bind('click', $controlSignin, (event) => {
-		$dispatch('header:click:signin', $controlSignin, { event });
+	$controlSignin.addEventListener('click', (event) => {
+		$dispatch($controlSignin, 'header:click:signin', { event });
 	});
 
 	/* Account: Control
@@ -28,19 +30,28 @@ export default () => {
 	const $controlImage = $('img', { class: `${prefix}-image` });
 
 	const $controlNameText = document.createTextNode('');
-	const $controlName = $('span', { class: `${prefix}-name` }, [ $controlNameText ]);
+	const $controlName = $('span', { class: `${prefix}-name` },
+		$controlNameText
+	);
 
 	const $controlIdText = document.createTextNode('');
-	const $controlId = $('span', { class: `${prefix}-id` }, [ $controlIdText ]);
+	const $controlId = $('span', { class: `${prefix}-id` },
+		$controlIdText
+	);
 
-	const $control = $('button', {
-		class: `${prefix}-control ${prefix}-control--signedin`, id: `${prefix}-control`,
-		ariaControls: `${prefix}-menu`, ariaExpanded: false, ariaHaspopup: true
-	}, [ $controlImage, $controlName, $controlId ]);
+	const $control = $('button',
+		{
+			class: `${prefix}-control ${prefix}-control--signedin`, id: `${prefix}-control`,
+			aria: { controls: `${prefix}-menu`, expanded: false, haspopup: true }
+		},
+		$controlImage,
+		$controlName,
+		$controlId
+	);
 
 	// On Click
-	$bind('click', $control, () => {
-		$dispatch('header:menu:toggle', $control, {
+	$control.addEventListener('click', () => {
+		$dispatch($control, 'header:menu:toggle', {
 			account: true,
 			control: $control,
 			content: $content,
@@ -53,10 +64,12 @@ export default () => {
 
 	// Toggle
 	const $contentToggleText = document.createTextNode('');
-	const $contentToggle = $('button', { class: `${prefix}-content-toggle` }, [ $contentToggleText ]);
+	const $contentToggle = $('button', { class: `${prefix}-content-toggle` },
+		$contentToggleText
+	);
 
-	$bind('click', $contentToggle, () => {
-		$dispatch('header:menu:close', $contentToggle, {
+	$contentToggle.addEventListener('click', () => {
+		$dispatch($contentToggle, 'header:menu:close', {
 			control: $control,
 			content: $content
 		});
@@ -69,57 +82,78 @@ export default () => {
 	const $contentInfoNameText  = document.createTextNode('');
 	const $contentInfoIdText    = document.createTextNode('');
 	const $contentInfoGroupText = document.createTextNode('');
-	const $contentInfo = $('div', { class: `${prefix}-content-info` }, [
+	const $contentInfo = $('div', { class: `${prefix}-content-info` },
 		$contentImage,
-		$('span', { class: `${prefix}-content-name`  }, [ $contentInfoNameText  ]),
-		$('span', { class: `${prefix}-content-id`    }, [ $contentInfoIdText    ]),
-		$('span', { class: `${prefix}-content-group` }, [ $contentInfoGroupText ])
-	]);
+		$('span', { class: `${prefix}-content-name`  },
+			$contentInfoNameText
+		),
+		$('span', { class: `${prefix}-content-id`    },
+			$contentInfoIdText
+		),
+		$('span', { class: `${prefix}-content-group` },
+			$contentInfoGroupText
+		)
+	);
 
 	// Menu
 	const $contentMenu = $('ul', {
 		class: `${prefix}-content-menu`,
-		role: 'navigation', ariaLabelledby: `${prefix}-control`
+		role: 'navigation', aria: { labelledby: `${prefix}-control` }
 	});
 
 	// Switch Control
 	const $contentSigninSwitchText = document.createTextNode('');
-	const $contentSigninSwitch = $('button', { class: `${prefix}-signin-control -switch` }, [ $contentSigninSwitchText ]);
+	const $contentSigninSwitch = $('button', { class: `${prefix}-signin-control -switch` },
+		$contentSigninSwitchText
+	);
 
 	// Switch Control: On Click
-	$bind('click', $contentSigninSwitch, (event) => {
-		$dispatch('header:click:switch', $contentSigninSwitch, { event });
+	$contentSigninSwitch.addEventListener('click', (event) => {
+		$dispatch($contentSigninSwitch, 'header:click:switch', { event });
 	});
 
 	// Signout Control
 	const $contentSigninSignoutText = document.createTextNode('');
-	const $contentSigninSignout = $('button', { class: `${prefix}-signin-control -logout` }, [ $contentSigninSignoutText ]);
+	const $contentSigninSignout = $('button', { class: `${prefix}-signin-control -logout` },
+		$contentSigninSignoutText
+	);
 
 	// Signout Control: On Click
-	$bind('click', $contentSigninSignout, (event) => {
-		$dispatch('header:click:signout', $contentSigninSignout, { event });
+	$contentSigninSignout.addEventListener('click', (event) => {
+		$dispatch($contentSigninSignout, 'header:click:signout', { event });
 	});
 
 	// Signin Menu
-	const $contentSigninMenu = $('ul', {
-		class: `${prefix}-signin-menu`,
-		role: 'group'
-	}, [
-		$('li', { class: `${prefix}-signin-item` }, [ $contentSigninSwitch ]),
-		$('li', { class: `${prefix}-signin-item` }, [ $contentSigninSignout ])
-	]);
+	const $contentSigninMenu = $('ul',
+		{
+			class: `${prefix}-signin-menu`,
+			role: 'group'
+		},
+		$('li', { class: `${prefix}-signin-item` },
+			$contentSigninSwitch
+		),
+		$('li', { class: `${prefix}-signin-item` },
+			$contentSigninSignout
+		)
+	);
 
 	// Content
-	const $content = $('div', {
-		class: `${prefix}-menu`, id: `${prefix}-menu`,
-		role: 'group', ariaExpanded: false, ariaHidden: true
-	}, [ $contentToggle, $contentInfo, $contentMenu, $contentSigninMenu ]);
+	const $content = $('div',
+		{
+			class: `${prefix}-menu`, id: `${prefix}-menu`,
+			role: 'group', aria: { expanded: false, hidden: true }
+		},
+		$contentToggle,
+		$contentInfo,
+		$contentMenu,
+		$contentSigninMenu
+	);
 
 	/* Account: On Update
 	/* ====================================================================== */
 
-	$bind('header:update:account', $target, ({ detail }) => {
-		$attrs($control, { ariaLabel: detail.label });
+	$target.addEventListener('header:update:account', ({ detail }) => {
+		$($control, { aria: { label: detail.label } });
 
 		// Update the control text
 		$contentToggleText.nodeValue        = detail.label;
@@ -135,19 +169,30 @@ export default () => {
 			$controlImage.src          = $contentImage.src              = detail.user.image;
 
 			// Update the content menu
-			$empty($contentMenu, detail.menus.map(
-				(item) => $('li', { class: `${prefix}-content-item` }, [
-					$('a', { class: `${prefix}-content-link`, href: item.href }, [ document.createTextNode(item.label) ])
-				])
-			));
+			$replaceAll($contentMenu,
+				...detail.menus.map(
+					(item) => $('li', { class: `${prefix}-content-item` },
+						$('a', { class: `${prefix}-content-link`, href: item.href },
+							item.label
+						)
+					)
+				)
+			);
 
 			// Use the control and content
-			$empty($target, [ $control, $content ]);
+			$replaceAll($target, $control, $content);
 		} else {
 			// Otherwise, use the signin control
-			$empty($target, [ $controlSignin ]);
+			$replaceAll($target, $controlSignin);
 		}
 	});
 
 	return $target;
+}
+
+/* Dispatch Helper
+/* ========================================================================== */
+
+function $dispatch(target, type, detail) {
+	target.dispatchEvent($CustomEvent(type, { bubbles: true, detail }));
 }

@@ -4,6 +4,7 @@
   "main": "search.js",
   "style": "search.css",
   "dependencies": {
+    "domose": "^0.4.0",
     "esri-global-shared": "file:../shared"
   },
   "browserslist": [

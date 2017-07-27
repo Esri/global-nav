@@ -1,11 +1,9 @@
 {
-  "name": "esri-global-footer",
+  "name": "esri-global-language",
   "version": "1.0.0",
-  "main": "footer.js",
-  "style": "footer.css",
+  "main": "language.js",
+  "style": "language.css",
   "dependencies": {
-    "domose": "^0.4.0",
-    "esri-global-language": "file:../language",
     "esri-global-shared": "file:../shared"
   },
   "browserslist": [
@@ -19,9 +17,9 @@
   ],
   "gulpConfig": {
     "html": false,
-    "css-dest": "esri-footer.css",
-    "js-dest": "esri-footer.js",
-    "js-module-name": "esriFooter",
+    "css-dest": "esri-language.css",
+    "js-dest": "esri-language.js",
+    "js-module-name": "esriLanguage",
     "use-sass": false,
     "server-root": "../dist"
   },

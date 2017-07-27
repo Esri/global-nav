@@ -11,7 +11,7 @@ CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and limitations
 under the License. */
 
-import { $, $attrs, $rmattrs, $append, $empty, $bind, $unbind, $dispatch, $fetch } from 'esri-global-shared';
+import { $assign as $, $CustomEvent, $fetch, $replaceAll } from 'domose';
 
 /* Header
 /* ========================================================================== */
@@ -55,11 +55,11 @@ function create(data) {
 	const $headerCanvas = $('button', {
 		class: 'esri-header-canvas',
 		tabindex: '-1',
-		dataOpen: false
+		data: { open: false }
 	});
 
-	$bind('click', $headerCanvas, () => {
-		$dispatch('header:menu:close', $headerCanvas);
+	$headerCanvas.addEventListener('click', () => {
+		$dispatch($headerCanvas, 'header:menu:close');
 	});
 
 	/* Elements
@@ -67,67 +67,70 @@ function create(data) {
 
 	const $brand   = createBrand();
 	const $account = createAccount();
-	const $client  = $('div', { class: 'esri-header-client' }, [ $account ]);
 	const $menus   = createMenus();
 	const $search  = createSearch();
 
-	const $header = $('div', { class: `esri-header -${data.theme || 'web'}` }, [
+	const $client  = $('div', { class: 'esri-header-client' },
+		$account
+	);
+
+	const $header = $('div', { class: `esri-header -${data.theme || 'web'}` },
 		$headerCanvas,
 		$brand,
 		$menus,
 		$search,
 		$client
-	]);
+	);
 
 	/* On Header Update
 	/* ====================================================================== */
 
-	$bind('header:update', $header, ({ detail }) => {
+	$header.addEventListener('header:update', ({ detail }) => {
 		if (detail.brand) {
-			$dispatch('header:update:brand', $brand, detail.brand);
+			$dispatch($brand, 'header:update:brand', detail.brand);
 		}
 
 		if (detail.menus) {
-			$dispatch('header:update:menus', $menus, detail.menus);
+			$dispatch($menus, 'header:update:menus', detail.menus);
 		}
 
 		if (detail.search) {
-			$dispatch('header:update:search', $search, detail.search);
+			$dispatch($search, 'header:update:search', detail.search);
 		}
 
 		if (detail.account) {
-			$dispatch('header:update:account', $client.lastChild, detail.account);
+			$dispatch($client.lastChild, 'header:update:account', detail.account);
 		}
 	});
 
 	/* On Header Menu Toggle
 	/* ====================================================================== */
 
-	$bind('header:menu:toggle', $header, ({ detail }) => {
+	$header.addEventListener('header:menu:toggle', ({ detail }) => {
 		const submenuShouldOpen = 'true' !== detail.control.getAttribute('aria-expanded');
 		const eventType = submenuShouldOpen ? 'header:menu:open' : 'header:menu:close';
 
-		$dispatch(eventType, detail.control, detail);
+		$dispatch(detail.control, eventType, detail);
 	});
 
 	/* On Header Menu Open
 	/* ====================================================================== */
 
-	$bind('header:menu:open', $header, ({ detail }) => {
+	$header.addEventListener('header:menu:open', ({ detail }) => {
 		if (detail) {
 			if (lastDetail) {
-				$dispatch('header:menu:close', lastDetail.control, lastDetail);
+				$dispatch(lastDetail.control, 'header:menu:close', lastDetail);
 			}
 
 			// Update Control, Content
-			$attrs(detail.control, { ariaExpanded: true });
-			$attrs(detail.content, { ariaExpanded: true, ariaHidden: false });
+			$(detail.control, { aria: { expanded: true } });
+			$(detail.content, { aria: { expanded: true, hidden: false } });
 
 			// Update Canvas
-			$attrs($headerCanvas, { dataOpen: true, dataState: detail.state });
+			$($headerCanvas, { data: { open: true, state: detail.state } });
 
 			// Update HTML
-			$attrs($header.ownerDocument.documentElement, { dataHeaderIsOpen: '' });
+			$($header.ownerDocument.documentElement, { data: { 'header-is-open': true } });
 
 			if (detail.root) {
 				rootDetail = detail;
@@ -140,48 +143,48 @@ function create(data) {
 	/* On Header Menu Close
 	/* ====================================================================== */
 
-	$bind('header:menu:close', $header, ({ detail }) => {
+	$header.addEventListener('header:menu:close', ({ detail }) => {
 		if (detail) {
 			// Close the Detail
-			$attrs(detail.control, { ariaExpanded: false });
-			$attrs(detail.content, { ariaExpanded: false, ariaHidden: true });
+			$(detail.control, { aria: { expanded: false } });
+			$(detail.content, { aria: { expanded: false, hidden: true } });
 
 			if (!rootDetail || detail.root || 'search' === detail.state) {
 				// Close the Canvas
-				$attrs($headerCanvas, { dataOpen: false });
+				$($headerCanvas, { data: { open: false } });
 
 				// Update HTML
-				$rmattrs($header.ownerDocument.documentElement, 'dataHeaderIsOpen');
+				$header.ownerDocument.documentElement.removeAttribute('data-header-is-open');
 			}
 		} else {
 			if (lastDetail) {
 				// Close the Detail
-				$attrs(lastDetail.control, { ariaExpanded: false });
-				$attrs(lastDetail.content, { ariaExpanded: false, ariaHidden: true });
+				$(lastDetail.control, { aria: { expanded: false } });
+				$(lastDetail.content, { aria: { expanded: false, hidden: true } });
 
 				lastDetail = null;
 			}
 
 			if (rootDetail) {
 				// Close the Detail
-				$attrs(rootDetail.control, { ariaExpanded: false });
-				$attrs(rootDetail.content, { ariaExpanded: false, ariaHidden: true });
+				$(rootDetail.control, { aria: { expanded: false } });
+				$(rootDetail.content, { aria: { expanded: false, hidden: true } });
 
 				rootDetail = null;
 			}
 
 			// Close the Canvas
-			$attrs($headerCanvas, { dataOpen: false });
+			$($headerCanvas, { data: { open: false } });
 
 			// Update HTML
-			$rmattrs($header.ownerDocument.documentElement, 'dataHeaderIsOpen');
+			$header.ownerDocument.documentElement.removeAttribute('data-header-is-open');
 		}
 	});
 
 	/* On DOMNodeInserted
 	/* ====================================================================== */
 
-	$bind('DOMNodeInserted', $header, function onload() {
+	$header.addEventListener('DOMNodeInserted', function onload() {
 		// Get Document and Window
 		const $headerDocument = $header.ownerDocument;
 		const $headerWindow   = $headerDocument.defaultView;
@@ -192,18 +195,20 @@ function create(data) {
 
 		if ($header.parentNode) {
 			// Unbind Node Inserted
-			$unbind('DOMNodeInserted', $header, onload);
+			$header.removeEventListener('DOMNodeInserted', onload);
 
 			// Update Header
-			$dispatch('header:update', $header, data);
+			$dispatch($header, 'header:update', data);
 
 			/* On Resize
 			/* ============================================================== */
 
-			$append($headerDocument.head, [ $style ]);
+			$($headerDocument.head,
+				$style
+			);
 
-			$bind('orientationchange', $headerWindow, onresize);
-			$bind('resize', $headerWindow, onresize);
+			$headerWindow.addEventListener('orientationchange', onresize);
+			$headerWindow.addEventListener('resize', onresize);
 
 			onresize();
 
@@ -229,16 +234,18 @@ function create(data) {
 				return scrollHeight > height ? 'scroll' : 'visible';
 			});
 
-			$empty($style, [ document.createTextNode(`:root{--esri-vw:${width}px;--esri-vh:${height}px}[data-header-is-open]{width:${width}px;height:${height}px;overflow-y:${overflowY}}`) ]);
+			$replaceAll($style,
+				`:root{--esri-vw:${width}px;--esri-vh:${height}px}[data-header-is-open]{width:${width}px;height:${height}px;overflow-y:${overflowY}}`
+			);
 		}
 
 		function onViewportIsSmallChange() {
 			if (viewportIsSmall.matches) {
-				$dispatch('header:breakpoint:s', $header);
+				$dispatch($header, 'header:breakpoint:s');
 
 				$menus.lastChild.appendChild($account);
 			} else {
-				$dispatch('header:breakpoint:not:s', $header);
+				$dispatch($header, 'header:breakpoint:not:s');
 
 				$client.appendChild($account);
 			}
@@ -246,13 +253,13 @@ function create(data) {
 
 		function onViewportIsSmallMediumChange() {
 			if (viewportIsSmallMedium.matches) {
-				$dispatch('header:breakpoint:sm', $header);
+				$dispatch($header, 'header:breakpoint:sm');
 
-				$attrs($menus.lastChild, { ariaHidden: 'false' === $menus.lastChild.getAttribute('aria-expanded') });
+				$($menus.lastChild, { aria: { hidden: 'false' === $menus.lastChild.getAttribute('aria-expanded') } });
 			} else {
-				$dispatch('header:breakpoint:not:sm', $header);
+				$dispatch($header, 'header:breakpoint:not:sm');
 
-				$attrs($menus.lastChild, { ariaHidden: false });
+				$($menus.lastChild, { aria: { hidden: false } });
 			}
 		}
 	});
@@ -265,3 +272,10 @@ export default {
 	createFromURL,
 	createFromDefault
 };
+
+/* Dispatch Helper
+/* ========================================================================== */
+
+function $dispatch(target, type, detail) {
+	target.dispatchEvent($CustomEvent(type, { bubbles: true, detail }));
+}

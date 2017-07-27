@@ -43,10 +43,10 @@ Website
 * Nav items are condensed and hidden under the burger icon and lives on the left.
 * Logo remains (takes you home)
 
-[Esri Global Navigation]: https://github.com/ArcGIS/esri-global-nav
+[Esri Global Navigation]: https://github.com/Esri/global-nav
 
-[cli-url]: https://travis-ci.com/ArcGIS/esri-global-nav
-[cli-img]: https://api.travis-ci.com/ArcGIS/esri-global-nav.svg?token=mqvp34VgHUamyk5XDa9d
+[cli-url]: https://travis-ci.com/Esri/global-nav
+[cli-img]: https://api.travis-ci.com/Esri/global-nav.svg?token=mqvp34VgHUamyk5XDa9d
 [lic-url]: LICENSE.md
 [lic-img]: https://img.shields.io/badge/license-CC0--1.0-blue.svg
 [log-url]: CHANGELOG.md

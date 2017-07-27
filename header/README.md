@@ -16,7 +16,7 @@ We recommend using **Esri Global Navigation** with a package manager. This is a
 manageable approach and reduces the duplication or forking of work.
 
 ```sh
-npm install ArcGIS/esri-global-nav --save-dev
+npm install Esri/global-nav --save-dev
 ```
 
 This will give you access to the source code within this project. From there,
@@ -44,7 +44,7 @@ document.contentLoaded.then(() => {
 Clone this repository to your computer.
 
 ```sh
-git clone git@github.com:ArcGIS/esri-global-nav.git
+git clone git@github.com:Esri/global-nav.git
 ```
 
 Install the component locally.
@@ -80,13 +80,13 @@ Integrations for frameworks such as [Ember] and [AngularJS] would be a great add
 
 Contributions are welcome in all forms: issues, pull requests, concepts, inquiries, etc.
 
-[Esri Global Navigation]: https://github.com/ArcGIS/esri-global-nav
+[Esri Global Navigation]: https://github.com/Esri/global-nav
 [Ember]: http://emberjs.com/
 [AngularJS]: https://angularjs.org/
 [README-SPEC.md]: README-SPEC.md
 
-[cli-url]: https://travis-ci.com/ArcGIS/esri-global-nav
-[cli-img]: https://api.travis-ci.com/ArcGIS/esri-global-nav.svg?token=mqvp34VgHUamyk5XDa9d
+[cli-url]: https://travis-ci.com/Esri/global-nav
+[cli-img]: https://api.travis-ci.com/Esri/global-nav.svg?token=mqvp34VgHUamyk5XDa9d
 [lic-url]: LICENSE.md
 [lic-img]: https://img.shields.io/badge/license-CC0--1.0-blue.svg
 [log-url]: CHANGELOG.md

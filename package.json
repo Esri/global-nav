@@ -4,9 +4,9 @@
   "description": "A centralized microapp for navigation",
   "author": "Jonathan Neal <jonathantneal@hotmail.com>",
   "license": "Apache-2.0",
-  "repository": "ArcGIS/esri-global-nav",
-  "homepage": "https://github.com/ArcGIS/esri-global-nav#readme",
-  "bugs": "https://github.com/ArcGIS/esri-global-nav/issues",
+  "repository": "Esri/global-nav",
+  "homepage": "https://github.com/Esri/global-nav#readme",
+  "bugs": "https://github.com/Esri/global-nav/issues",
   "main": "header/header.js",
   "files": [
     "footer",
@@ -20,6 +20,9 @@
     "test": "echo 'Running tests...'; npm run test:js && npm run test:css",
     "test:css": "stylelint {footer,header,language,shared}/*.css **/dependent-css/*.css **/dependent-css/**/*.css --syntax scss",
     "test:js": "eslint {footer,header,language,search,shared}/*.js **/dependent-js/*.js **/dependent-js/**/*.js --cache --ignore-pattern .gitignore"
+  },
+  "dependencies": {
+    "domose": "^0.4.0"
   },
   "devDependencies": {
     "eslint": "^4.3.0",

@@ -1,7 +1,8 @@
 /* Tooling
 /* ========================================================================== */
 
-import { $, $empty, $attrs, $rmattrs, $bind, $dispatch } from 'esri-global-shared';
+import { $assign as $, $CustomEvent, $replaceAll } from 'domose';
+
 import esriSearch from 'esri-global-search';
 
 /* Search
@@ -13,17 +14,23 @@ export default () => {
 	/* Search: Control
 	/* ====================================================================== */
 
-	const $controlImage = $('svg', { class: `${prefix}-image`, id: `${prefix}-image` });
+	const $controlImage = $(
+		document.createElementNS('http://www.w3.org/2000/svg', 'svg'),
+		{ class: `${prefix}-image`, id: `${prefix}-image` }
+	);
 
-	const $control = $('button', {
-		class: `${prefix}-control`, id: `${prefix}-control`,
-		ariaExpanded: false, ariaControls: `${prefix}-content`
-	}, [ $controlImage ]);
+	const $control = $('button',
+		{
+			class: `${prefix}-control`, id: `${prefix}-control`,
+			aria: { expanded: false, controls: `${prefix}-content` }
+		},
+		$controlImage
+	);
 
-	$bind('click', $control, (event) => {
-		$dispatch('header:click:search', $control, { event });
+	$control.addEventListener('click', (event) => {
+		$dispatch($control, 'header:click:search', { event });
 
-		$dispatch('header:menu:toggle', $control, {
+		$dispatch($control, 'header:menu:toggle', {
 			control: $control,
 			content: $content,
 			state:   'search',
@@ -36,30 +43,37 @@ export default () => {
 
 	const $content = $('div', {
 		class: `${prefix}-content`, id: `${prefix}-content`,
-		ariaExpanded: false, ariaLabelledby: `${prefix}-control`
+		aria: { expanded: false, labelledby: `${prefix}-control` }
 	});
 
 	/* Search: Target
 	/* ====================================================================== */
 
-	const $target = $('div', { class: prefix }, [ $control, $content ]);
+	const $target = $('div', { class: prefix },
+		$control, $content
+	);
 
 	/* Search: On Update
 	/* ====================================================================== */
 
-	$bind('header:update:search', $target, ({ detail }) => {
-		$attrs($control, { ariaLabel: detail.label });
+	$target.addEventListener('header:update:search', ({ detail }) => {
+		$($control, { aria: { label: detail.label } });
 
 		if ('string' === typeof detail.image) {
-			$rmattrs($controlImage, 'viewBox');
+			$controlImage.removeAttribute('viewBox');
 
-			$empty($controlImage, [
+			$replaceAll($controlImage,
 				$('use', { 'href': detail.image })
-			]);
+			);
 		} else {
-			$empty($controlImage, detail.image.map(
-				(d) => $('path', { d })
-			));
+			$replaceAll($controlImage,
+				...detail.image.map(
+					(d) => $(
+						document.createElementNS('http://www.w3.org/2000/svg', 'path'),
+						{ d }
+					)
+				)
+			);
 		}
 
 		if (detail.dialog) {
@@ -67,11 +81,13 @@ export default () => {
 
 			const $dialog = esriSearch(detail.dialog);
 
-			$empty($content, [ $dialog ]);
+			$replaceAll($content,
+				$dialog
+			);
 
-			$bind('click', $control, (event) => {
+			$control.addEventListener('click', (event) => {
 				if ('true' === $control.getAttribute('aria-expanded')) {
-					$dispatch(`${detail.dialog.prefix}:focus`, $dialog, { event });
+					$dispatch($dialog, `${detail.dialog.prefix}:focus`, { event });
 				}
 			});
 		}
@@ -79,3 +95,10 @@ export default () => {
 
 	return $target;
 };
+
+/* Dispatch Helper
+/* ========================================================================== */
+
+function $dispatch(target, type, detail) {
+	target.dispatchEvent($CustomEvent(type, { bubbles: true, detail }));
+}
