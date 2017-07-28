@@ -1,7 +1,9 @@
-/* Global Footer: Meta */
+@import "./footer--media";
+
+/* Footer Info */
 /* ========================================================================== */
 
-.gfoot-meta {
+.esri-footer-info {
 	@media (--gfoot-s) {
 		padding: * 15px * 20px;
 	}
@@ -15,7 +17,7 @@
 	}
 }
 
-.gfoot-meta-list {
+.esri-footer-info-list {
 	@apply --unset-l;
 
 	@media (--gfoot-m) {
@@ -28,7 +30,7 @@
 	}
 }
 
-.gfoot-meta-item {
+.esri-footer-info-item {
 	@media (--gfoot-s) {
 		display: inline-block;
 		white-space: nowrap;
@@ -39,38 +41,26 @@
 	}
 }
 
-.gfoot-meta-link {
+.esri-footer-info-link {
 	@apply --unset-a;
 	@apply --footer-link-styles;
 
 	display: inline-block;
+	font-size: 14px/16px;
 	font-weight: 300;
+	padding: 4px *;
 	transition: font-size 300ms;
 	white-space: nowrap;
 
-	&:--enter {
+	&:hover, &:focus {
 		color: #0079c1;
 	}
 
 	@media (--gfoot-s) {
-		font-size: 14px/16px;
 		margin-right: 30px;
-		padding: calc((30px - 16px) / 2) *;
 	}
 
 	@media (--gfoot-m) {
-		font-size: 14px/16px;
 		margin-right: 35px;
-		padding: 2px *;
-	}
-
-	@media (--gfoot-l) {
-		font-size: 14px/16px;
-	}
-
-	@media (--gfoot-ml) {
-		&::after {
-			top: 0;
-		}
 	}
 }

@@ -141,16 +141,15 @@
 
 		&::after {
 			content: url("esri-global-shared#c-arrow-right" param(--fill var(--blue)));
-			display: inline-block;
+			line-height: 10px;
 			margin: * * * -.25em;
 			opacity: 0;
-			position: absolute .5em * 0 100%;
+			position: absolute calc(50% - 5px) * *;
 			size: 10px;
 			transition: margin-left 300ms, opacity 300ms;
-			vertical-align: top;
 		}
 
-		&:--enter {
+		&:hover, &:focus {
 			&::after {
 				margin: * * * .25em;
 				opacity: 1;

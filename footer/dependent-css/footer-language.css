@@ -1,9 +1,10 @@
-/* Global Footer: Language */
+@import "esri-global-language/language-styles";
+@import "./footer--media";
+
+/* Footer Language */
 /* ========================================================================== */
 
-@import "esri-global-language/language-styles";
-
-.gfoot-lang {
+.esri-footer-language {
 	@media (--gfoot-s) {
 		margin: * * 12px 20px;
 	}
@@ -18,8 +19,8 @@
 	}
 }
 
-.gfoot-lang-link {
-	@apply --unset-a;
+.esri-footer-language-control {
+	@apply --unset-button;
 
 	background-image: url("esri-global-shared#c-globe" param(--fill var(--mono-100)));
 	background-position: calc(100% - 12px) 50%;
@@ -44,7 +45,10 @@
 	}
 }
 
-.gfoot-lang-dialog-content {
+/* Footer Language Dialog Barrier */
+/* ========================================================================== */
+
+.esri-footer-language-dialog-barrier {
 	position: fixed 0;
 
 	&[aria-expanded="false"] {
@@ -52,7 +56,7 @@
 	}
 }
 
-.gfoot-lang-dialog-canvas {
+.esri-footer-language-dialog-cancel-canvas {
 	@apply --normalize-button;
 	@apply --unset-button;
 
@@ -62,7 +66,10 @@
 	z-index: 99;
 }
 
-.gfoot-lang-dialog {
+/* Footer Language Dialog */
+/* ========================================================================== */
+
+.esri-footer-language-dialog {
 	@apply --g-language-styles;
 
 	position: fixed;
@@ -78,18 +85,18 @@
 	}
 }
 
-.gfoot-lang-dialog-message {
+.esri-footer-language-dialog-message {
 	@apply --g-language-message-styles;
 }
 
-.gfoot-lang-dialog-choice {
+.esri-footer-language-dialog-choice {
 	@apply --g-language-choice-styles;
 }
 
-.gfoot-lang-dialog-submit {
+.esri-footer-language-dialog-submit {
 	@apply --g-language-submit-styles;
 }
 
-.gfoot-lang-dialog-close {
+.esri-footer-language-dialog-close {
 	@apply --g-language-close-styles;
 }

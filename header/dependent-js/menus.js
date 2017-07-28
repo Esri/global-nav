@@ -1,7 +1,7 @@
 /* Tooling
 /* ========================================================================== */
 
-import { $assign as $, $CustomEvent, $replaceAll } from 'domose';
+import { $assign as $, $dispatch, $replaceAll } from 'esri-global-shared';
 
 /* Menus
 /* ========================================================================== */
@@ -195,10 +195,3 @@ export default () => {
 
 	return $target;
 };
-
-/* Dispatch Helper
-/* ========================================================================== */
-
-function $dispatch(target, type, detail) {
-	target.dispatchEvent($CustomEvent(type, { bubbles: true, detail }));
-}

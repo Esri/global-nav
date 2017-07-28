@@ -1,21 +1,4 @@
-/* Custom Properties: Apply
-/* ========================================================================== */
-
-:root {
-	--fillable: {
-		display: block;
-		fill: currentColor;
-	};
-
-	--icon: {
-		@apply --fillable;
-
-		margin: 20px 28px;
-		size: 24px;
-	};
-}
-
-/* Custom Properties: Media
+/* Custom Media
 /* ========================================================================== */
 
 @custom-media --gfoot-xs (width < 420px);

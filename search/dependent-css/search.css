@@ -1,0 +1,243 @@
+/* Global Search: Dependencies
+/* ========================================================================== */
+
+@import "esri-global-shared";
+
+/* Global Search: Custom Properties
+/* ========================================================================== */
+
+:root {
+	--g-search-color: #323232;
+	--g-search-label-color: #828282;
+	--g-search-label-filled-color: #6e6e6e;
+	--g-search-active-color: #0079c1;
+	--g-search-search-color: #595959;
+	--g-search-enter-color: #005e95;
+	--g-search-underline-color: #cccccc;
+	--g-search-underline-highlight-color: #0079c1;
+	--g-search-cancel-enter-color: #000000;
+	--g-search-text-size-s: 28px;
+	--g-search-text-size-l: 60px;
+	--g-search-height-s: 50px;
+	--g-search-height-l: 90px;
+	--g-search-measure-speed: 300ms;
+}
+
+/* Global Search: Custom Property Sets
+/* ========================================================================== */
+
+:root {
+	--g-search-text-styles: {
+		white-space: nowrap;
+
+		@media (--g-search-s) {
+			font-size: var(--g-search-text-size-s) / var(--g-search-height-s);
+		}
+
+		@media (--g-search-l) {
+			font-size: var(--g-search-text-size-l) / var(--g-search-height-l);
+		}
+	};
+
+	--g-search-size-styles: {
+		position: absolute 0 * 0 0;
+
+		@media (--g-search-s) {
+			width: calc(100% - var(--g-search-height-s));
+		}
+
+		@media (--g-search-l) {
+			width: calc(100% - var(--g-search-height-l));
+		}
+	};
+
+	/* Global Search: Form
+	/* ====================================================================== */
+
+	--g-search-form-styles: {
+		box-shadow: inset 0 -1px 0 0 var(--g-search-underline-color);
+		position: relative;
+
+		@media (--g-search-s) {
+			height: var(--g-search-height-s);
+		}
+
+		@media (--g-search-l) {
+			height: var(--g-search-height-l);
+		}
+	};
+
+	/* Global Search: Control
+	/* ====================================================================== */
+
+	--g-search-control-styles: {
+		@apply --g-search-text-styles;
+		@apply --g-search-size-styles;
+		@apply --normalize-input-type-search;
+
+		background-color: transparent;
+		border-width: 0;
+		color: var(--g-search-color);
+		font-family: inherit;
+		font-weight: inherit;
+		padding: 0;
+		z-index: 1;
+	};
+
+	/* Global Search: Measure
+	/* ====================================================================== */
+
+	--g-search-measure-size-styles: {
+		@apply --g-search-text-styles;
+
+		max-width: 100%;
+		position: absolute 0 * 0 0;
+		width: 0;
+	};
+
+	--g-search-measure-styles: {
+		@apply --g-search-measure-size-styles;
+		@apply --g-search-text-styles;
+
+		box-shadow: inset 0 -1px 0 0 var(--g-search-underline-highlight-color);
+		transition: width var(--g-search-measure-speed);
+		user-select: none;
+	};
+
+	--g-search-measure-text-styles: {
+		@apply --g-search-measure-size-styles;
+
+		clip: rect(0, 0, 0, 0);
+		white-space: pre;
+	};
+
+	/* Global Search: Label
+	/* ====================================================================== */
+
+	--g-search-label-styles: {
+		@apply --g-search-text-styles;
+		@apply --g-search-size-styles;
+
+		color: var(--g-search-label-color);
+		overflow: hidden;
+		white-space: nowrap;
+
+		&[data-filled] {
+			animation: esri-search-filled-label 300ms;
+			color: var(--g-search-label-filled-color);
+			position: absolute -22px * * *;
+
+			@media (--g-search-s) {
+				font-size: 14px / 25px;
+				margin-top: 5px;
+			}
+
+			@media (--g-search-l) {
+				font-size: 16px / 25px;
+			}
+		}
+	};
+
+	/* Global Search: Submit
+	/* ====================================================================== */
+
+	--g-search-submit-styles: {
+		@apply --normalize-button;
+
+		background-color: transparent;
+		border-width: 0;
+		cursor: pointer;
+		position: absolute 0 0 0 *;
+
+		&::before {
+			content: url("esri-global-shared#c-search" param(--fill var(--g-search-search-color)));
+			display: block;
+
+			@media (--g-search-s) {
+				margin: * calc((var(--g-search-height-s) - 24px) / 2);
+				size: 24px;
+			}
+
+			@media (--g-search-l) {
+				margin: * calc((var(--g-search-height-l) - 32px) / 2);
+				size: 32px;
+			}
+		}
+
+		&[data-filled] {
+			&::before {
+				content: url("esri-global-shared#c-search" param(--fill var(--g-search-active-color)));
+			}
+
+			&:hover, &:focus {
+				&::before {
+					content: url("esri-global-shared#c-search" param(--fill var(--g-search-enter-color)));
+				}
+			}
+		}
+	};
+
+	/* Global Search Demo: Cancel Button
+	/* ========================================================================== */
+
+	--g-search-cancel-styles: {
+		@apply --normalize-button;
+
+		background-color: transparent;
+		border-width: 0;
+		color: var(--g-search-search-color);
+		cursor: pointer;
+		padding: 0;
+		position: absolute * 0 -45px *;
+
+		@media (--g-search-s) {
+			font-size: 16px/20px;
+			padding: * 10px;
+		}
+
+		@media (--g-search-l) {
+			font-size: 16px/20px;
+			padding: * 30px;
+		}
+
+		& span {
+			background-image: linear-gradient(90deg, var(--g-search-cancel-enter-color) 50%, transparent 50%);
+			background-position: 100% 100%;
+			background-repeat: no-repeat;
+			background-size: 200% 1px;
+			display: block;
+			margin-bottom: 10px;
+			padding: 10px * 5px;
+			transition: background-position 300ms;
+		}
+
+		&:hover, &:focus {
+			color: var(--g-search-cancel-enter-color);
+
+			& span {
+				background-position: 0 100%;
+			}
+		}
+	};
+}
+
+/* Global Search: Custom Media
+/* ========================================================================== */
+
+@custom-media --g-search-s (width < 720px);
+@custom-media --g-search-l (width >= 720px);
+
+/* Global Search: Animation
+/* ========================================================================== */
+
+@keyframes esri-search-filled-label {
+	0% {
+		opacity: 0;
+		top: -12px;
+	}
+
+	100% {
+		opacity: 1;
+		top: -22px;
+	}
+}

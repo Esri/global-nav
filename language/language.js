@@ -11,42 +11,39 @@ CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and limitations
 under the License. */
 
-import { $, $attrs, $dispatch, $bind, $unbind } from 'esri-global-shared';
+import { $assign as $ } from 'esri-global-shared';
 
 /* Language
 /* ========================================================================== */
 
 export default (data) => {
-	const $choice = $('select', {
-		class: `${data.prefix}-choice`,
-		autofocus: '',
-		ariaLabel: data.optionsLabel
-	}, data.options.map(
-		(option) => $('option', { value: option.value }, [
-			document.createTextNode(option.label)
-		])
-	));
+	const $choice = $('select',
+		{
+			class: `${data.prefix}-choice`,
+			autofocus: '',
+			aria: { label: data.optionsLabel }
+		},
+		...data.options.map(
+			(option) => $('option', { value: option.value }, option.label)
+		)
+	);
 
 	const $language = $('form', {
 		class: data.prefix,
-		ariaLabelledby: `${data.prefix}-message`, ariaDescribedby: 'dialog-description'
-	}, [
-		$('p', { class: `${data.prefix}-message`, id: `${data.prefix}-message` }, [
-			$('strong', {}, [
-				document.createTextNode(data.greeting)
-			]),
-			document.createTextNode(' '),
-			document.createTextNode(data.message)
-		]),
+		aria: { labelledby: `${data.prefix}-message`, describedby: 'dialog-description' }
+	},
+		$('p', { class: `${data.prefix}-message`, id: `${data.prefix}-message` },
+			$('strong', data.greetingLabel),
+			' ',
+			data.messageLabel
+		),
 		$choice,
 		$('button', {
 			class: `${data.prefix}-submit`,
 			type: 'submit',
-			ariaLabel: `${ data.submit } ${ data.optionsLabel }`
-		}, [
-			document.createTextNode(data.submit)
-		])
-	]);
+			aria: { label: `${ data.submitLabel } ${ data.optionsLabel }` }
+		}, data.submitLabel)
+	);
 
 	$language.addEventListener('submit', (event) => {
 		event.preventDefault();

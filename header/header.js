@@ -11,7 +11,7 @@ CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and limitations
 under the License. */
 
-import { $assign as $, $CustomEvent, $fetch, $replaceAll } from 'domose';
+import { $assign as $, $dispatch, $fetch, $replaceAll } from 'esri-global-shared';
 
 /* Header
 /* ========================================================================== */
@@ -272,10 +272,3 @@ export default {
 	createFromURL,
 	createFromDefault
 };
-
-/* Dispatch Helper
-/* ========================================================================== */
-
-function $dispatch(target, type, detail) {
-	target.dispatchEvent($CustomEvent(type, { bubbles: true, detail }));
-}

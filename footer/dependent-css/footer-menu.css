@@ -1,7 +1,9 @@
-/* Global Footer: Menu */
+@import "./footer--media";
+
+/* Footer Menu */
 /* ========================================================================== */
 
-.gfoot-menu {
+.esri-footer-menu {
 	@media (--gfoot-s) {
 		flex-basis: 100%;
 		padding: * 15px * 20px;
@@ -12,7 +14,7 @@
 	}
 }
 
-.gfoot-menu-list {
+.esri-footer-menu-list {
 	@apply --unset-l;
 
 	@media (--gfoot-m) {
@@ -25,7 +27,7 @@
 	}
 }
 
-.gfoot-menu-item {
+.esri-footer-menu-item {
 	@media (--gfoot-m) {
 		flex-basis: calc(100% / 3);
 	}
@@ -35,7 +37,7 @@
 	}
 }
 
-.gfoot-menu-link {
+.esri-footer-menu-link {
 	font-size: 12px/12px;
 	font-weight: 500;
 	letter-spacing: 1.5px;
@@ -52,7 +54,7 @@
 		display: block;
 		padding: 30px * calc(30px - 14px);
 
-		&:--enter {
+		&:hover, &:focus {
 			color: #0079c1;
 		}
 
@@ -77,7 +79,10 @@
 	}
 }
 
-.gfoot-menu--sub {
+/* Footer Submenu */
+/* ========================================================================== */
+
+.esri-footer-menu--sub {
 	@media (--gfoot-s) {
 		&:not([aria-hidden="false"]) {
 			display: none;
@@ -85,7 +90,7 @@
 	}
 }
 
-.gfoot-menu-list--sub {
+.esri-footer-menu-list--sub {
 	@apply --unset-l;
 
 	@media (--gfoot-s) {
@@ -97,13 +102,13 @@
 	}
 }
 
-.gfoot-menu-link--sub {
+.esri-footer-menu-link--sub {
 	@apply --unset-a;
 
 	font-size: 13px/16px;
 	padding: 4px *;
 
-	&:--enter {
+	&:hover, &:focus {
 		color: #0079c1;
 	}
 
@@ -122,7 +127,7 @@
 	@media (--gfoot-l) {
 		display: inline-block;
 		font-weight: 300;
-		padding: calc((32px - 16px) / 2) *;
+		padding: 8px *;
 	}
 
 	@media (--gfoot-ml) {

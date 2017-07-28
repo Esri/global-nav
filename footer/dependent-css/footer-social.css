@@ -1,14 +1,16 @@
-/* Global Footer: Social */
+@import "./footer--media";
+
+/* Footer Social */
 /* ========================================================================== */
 
-.gfoot-social {
+.esri-footer-social {
 	@media (--gfoot-s) {
 		align-self: flex-end;
 		flex-basis: 100%;
 	}
 }
 
-.gfoot-social-list {
+.esri-footer-social-list {
 	@apply --unset-l;
 
 	display: flex;
@@ -28,7 +30,7 @@
 	}
 }
 
-.gfoot-social-item {
+.esri-footer-social-item {
 	margin-top: var(--footer-social-gutter);
 
 	@media (--gfoot-s) {
@@ -50,7 +52,7 @@
 	}
 }
 
-.gfoot-social-link {
+.esri-footer-social-link {
 	align-items: center;
 	color: #ffffff #adadad;
 	display: flex;
@@ -84,6 +86,6 @@
 	}
 }
 
-.gfoot-social-image {
+.esri-footer-social-image {
 	size: 20px;
 }

@@ -1,25 +1,27 @@
-/* Global Footer: Brand */
+@import "./footer--media";
+
+/* Footer Brand */
 /* ========================================================================== */
 
-.gfoot-brand {
+.esri-footer-brand {
 	@media (--gfoot-ml) {
 		padding: * * 20px *;
 	}
 }
 
-.gfoot-brand-link {
+.esri-footer-brand-link {
 	cursor: pointer;
 	display: inline-block;
 	transition: fill 150ms;
 	vertical-align: top;
 }
 
-.gfoot-brand-image {
+.esri-footer-brand-image {
 	display: block;
 	fill: #6e6e6e;
 	size: calc(var(--footer-social-size) * 3 + var(--footer-social-gutter) * 2);
 
-	&:--enter {
+	&:focus, &:hover {
 		fill: #000000;
 	}
 }

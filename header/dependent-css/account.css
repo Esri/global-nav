@@ -387,8 +387,8 @@
 		color: var(--mono-100) var(--blue);
 
 		&:matches(:hover, :focus) {
-			box-shadow: inset 0 0 0 1px var(--blue-dark);
 			background-color: var(--blue-dark);
+			box-shadow: inset 0 0 0 1px var(--blue-dark);
 		}
 	}
 

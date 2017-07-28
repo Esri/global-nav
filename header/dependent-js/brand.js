@@ -1,7 +1,7 @@
 /* Tooling
 /* ========================================================================== */
 
-import { $assign as $, $CustomEvent, $fetch, $replaceAll } from 'domose';
+import { $assign as $, $dispatch, $replaceAll } from 'esri-global-shared';
 
 /* Brand
 /* ========================================================================== */
@@ -48,11 +48,4 @@ export default () => {
 	});
 
 	return $target;
-}
-
-/* Dispatch Helper
-/* ========================================================================== */
-
-function $dispatch(target, type, detail) {
-	target.dispatchEvent($CustomEvent(type, { bubbles: true, detail }));
 }
