@@ -18,8 +18,8 @@
     "clean": "git clean -X -d -f",
     "start": "gulp --gulpfile node_modules/gulp-config-dev --cwd",
     "test": "echo 'Running tests...'; npm run test:js && npm run test:css",
-    "test:css": "stylelint {footer,header,language,shared}/*.css **/dependent-css/*.css **/dependent-css/**/*.css --syntax scss",
-    "test:js": "eslint {footer,header,language,search,shared}/*.js **/dependent-js/*.js **/dependent-js/**/*.js --cache --ignore-pattern .gitignore"
+    "test:css": "stylelint {footer,header,language,search,shared}/*.css {footer,header,shared}/dependent-css/*.css --syntax scss",
+    "test:js": "eslint {footer,header,language,search,shared}/*.js **/dependent-js/*.js --cache --ignore-pattern .gitignore"
   },
   "dependencies": {
     "domose": "^0.4.0"
