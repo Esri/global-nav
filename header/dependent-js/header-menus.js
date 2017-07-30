@@ -70,6 +70,12 @@ export default () => {
 								item.label
 							);
 
+							if (item.data) {
+								$subcontrol({
+									data: item.data
+								});
+							}
+
 							const $li = $('li', { class: `${prefix}-item` }, $subcontrol);
 
 							const hasMenuItems = item.menus && item.menus.length;
@@ -103,21 +109,29 @@ export default () => {
 											/* ============================== */
 											...item.menus.slice(0, 16).map(
 												(childitem) => {
-													const aAttrs = { class: `${prefix}-sublink`, href: childitem.href };
+													const $sublink = $('a',
+														{
+															class: `${prefix}-sublink`,
+															href: childitem.href
+														},
+														childitem.label
+													);
 
-													Object.keys(Object(childitem.data)).forEach((key) => {
-														aAttrs[`data-${key}`] = childitem.data[key];
-													});
+													if (childitem.data) {
+														$($sublink, {
+															data: childitem.data
+														});
+													}
 
 													if (childitem.newContext) {
-														aAttrs.target = '_blank';
-														aAttrs.rel = 'noopener';
+														$($sublink, {
+															target: '_blank',
+															rel: 'noopener'
+														});
 													}
 
 													return $('li', { class: `${prefix}-subitem` },
-														$('a', aAttrs,
-															childitem.label
-														)
+														$sublink
 													);
 												}
 											)
@@ -138,8 +152,12 @@ export default () => {
 											/* ============================== */
 
 											...item.tiles.slice(0, 4).map(
-												(childitem) => $('li', { class: `${prefix}-subitem--featured` },
-													$('a', { class: `${prefix}-sublink--featured`, href: childitem.href },
+												(childitem) => {
+													const $sublink = $('a',
+														{
+															class: `${prefix}-sublink--featured`,
+															href: childitem.href
+														},
 														$(
 															document.createElementNS('http://www.w3.org/2000/svg', 'svg'),
 															childitem.width && childitem.height ? { viewBox: `0 0 ${childitem.width} ${childitem.height}` } : {},
@@ -156,8 +174,25 @@ export default () => {
 														$('span', { class: `${prefix}-sublink-text` },
 															childitem.label
 														)
-													)
-												)
+													);
+
+													if (childitem.data) {
+														$($sublink, {
+															data: childitem.data
+														});
+													}
+
+													if (childitem.newContext) {
+														$($sublink, {
+															target: '_blank',
+															rel: 'noopener'
+														});
+													}
+
+													return $('li', { class: `${prefix}-subitem--featured` },
+														$sublink
+													);
+												}
 											)
 										)
 									);
