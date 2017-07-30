@@ -1,7 +1,7 @@
 @import "./footer--animation";
 @import "./footer--media";
 
-/* Footer */
+/* Global Footer */
 /* ========================================================================== */
 
 .esri-footer {
@@ -29,7 +29,7 @@
 	}
 }
 
-/* Footer Barrier */
+/* Global Footer: Barrier */
 /* ========================================================================== */
 
 .esri-footer-barrier {
@@ -49,7 +49,7 @@
 	}
 }
 
-/* Footer Sections */
+/* Global Footer: Sections */
 /* ========================================================================== */
 
 .esri-footer-section--1 {
@@ -110,7 +110,7 @@
 	}
 }
 
-/* Footer Dialog */
+/* Global Footer: Dialog */
 /* ========================================================================== */
 
 .esri-footer-dialog {

@@ -11,4 +11,9 @@ CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and limitations
 under the License. */
 
-@import "dependent-css/header.css"
+@import "./dependent-css/header.css";
+@import "./dependent-css/header-account";
+@import "./dependent-css/header-brand";
+@import "./dependent-css/header-client";
+@import "./dependent-css/header-menus";
+@import "./dependent-css/header-search";

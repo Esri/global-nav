@@ -1,6 +1,7 @@
+@import "esri-global-shared";
 @import "esri-global-search/dependent-css/search";
 
-/* Header: Search
+/* Global Header Search
 /* ========================================================================== */
 
 .esri-header-search-control {
@@ -29,7 +30,7 @@
 	}
 }
 
-/* Header: Search: Content
+/* Global Header Search: Content
 /* ========================================================================== */
 
 .esri-header-search-content {
@@ -64,7 +65,7 @@
 	}
 }
 
-/* Esri Search: Custom Selectors Overrides
+/* Global Header Search: Custom Selectors Overrides
 /* ========================================================================== */
 
 .esri-header-search-dialog-form {

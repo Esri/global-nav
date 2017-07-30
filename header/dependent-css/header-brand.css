@@ -1,4 +1,6 @@
-/* Header: Brand
+@import "esri-global-shared";
+
+/* Global Header Brand
 /* ========================================================================== */
 
 .esri-header-brand {
@@ -20,7 +22,7 @@
 	}
 }
 
-/* Header: Brand: Image
+/* Global Header Brand: Image
 /* ========================================================================== */
 
 .esri-header-brand-image {

@@ -84,7 +84,7 @@
 			}
 		}
 
-		&:--enter {
+		&:hover, &:focus {
 			color: * color(var(--blue) b(50%));
 		}
 	};

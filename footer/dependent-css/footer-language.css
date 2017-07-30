@@ -1,7 +1,7 @@
 @import "esri-global-language/language-styles";
 @import "./footer--media";
 
-/* Footer Language */
+/* Global Footer Language */
 /* ========================================================================== */
 
 .esri-footer-language {
@@ -40,12 +40,12 @@
 		padding: * 20px * 40px;
 	}
 
-	&:--enter {
+	&:hover, &:focus {
 		background-color: #005e95;
 	}
 }
 
-/* Footer Language Dialog Barrier */
+/* Global Footer Language: Dialog Barrier */
 /* ========================================================================== */
 
 .esri-footer-language-dialog-barrier {
@@ -66,7 +66,7 @@
 	z-index: 99;
 }
 
-/* Footer Language Dialog */
+/* Global Footer Language: Dialog */
 /* ========================================================================== */
 
 .esri-footer-language-dialog {

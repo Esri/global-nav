@@ -1,6 +1,6 @@
 @import "./footer--media";
 
-/* Footer Menu */
+/* Global Footer Menu */
 /* ========================================================================== */
 
 .esri-footer-menu {
@@ -79,7 +79,7 @@
 	}
 }
 
-/* Footer Submenu */
+/* Global Footer Submenu */
 /* ========================================================================== */
 
 .esri-footer-menu--sub {

@@ -1,9 +1,4 @@
 @import "esri-global-shared";
-@import "./header-account";
-@import "./header-brand";
-@import "./header-client";
-@import "./header-menus";
-@import "./header-search";
 
 /* Global Header
 /* ========================================================================== */
@@ -37,6 +32,9 @@
 		box-sizing: border-box;
 	}
 }
+
+/* Global Header: Canvas
+/* ========================================================================== */
 
 .esri-header-canvas {
 	border-style: none;
@@ -76,7 +74,7 @@
 	}
 }
 
-/* Global Header Barrier
+/* Global Header: Barrier
 /* ========================================================================== */
 
 .esri-header-barrier {
@@ -89,7 +87,7 @@
 	}
 }
 
-/* Global Header Is Open (used to fix scrolling when the menu is open)
+/* Global Header: "Is Open" (used to fix scrolling when the menu is open)
 /* ========================================================================== */
 
 [data-header-is-open] {
