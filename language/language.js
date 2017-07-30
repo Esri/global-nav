@@ -11,45 +11,6 @@ CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and limitations
 under the License. */
 
-import { $assign as $ } from 'esri-global-shared';
+import create from './dependent-js/language';
 
-/* Language
-/* ========================================================================== */
-
-export default (data) => {
-	const $choice = $('select',
-		{
-			class: `${data.prefix}-choice`,
-			autofocus: '',
-			aria: { label: data.optionsLabel }
-		},
-		...data.options.map(
-			(option) => $('option', { value: option.value }, option.label)
-		)
-	);
-
-	const $language = $('form', {
-		class: data.prefix,
-		aria: { labelledby: `${data.prefix}-message`, describedby: 'dialog-description' }
-	},
-		$('p', { class: `${data.prefix}-message`, id: `${data.prefix}-message` },
-			$('strong', data.greetingLabel),
-			' ',
-			data.messageLabel
-		),
-		$choice,
-		$('button', {
-			class: `${data.prefix}-submit`,
-			type: 'submit',
-			aria: { label: `${ data.submitLabel } ${ data.optionsLabel }` }
-		}, data.submitLabel)
-	);
-
-	$language.addEventListener('submit', (event) => {
-		event.preventDefault();
-
-		window.location.href = $choice.value;
-	});
-
-	return $language;
-};
+export default create;

@@ -12,25 +12,24 @@ See the License for the specific language governing permissions and limitations
 under the License. */
 
 import { $fetch } from 'esri-global-shared';
+import create from './dependent-js/footer';
 
-import footer from './dependent-js/footer';
-
-/* Global Footer
-/* ========================================================================== */
-
-function create(data) {
-	return footer(data);
+function createFromDefault(callback) {
+	createFromURL('/esri-footer.json', callback);
 }
 
-function createFromURL(url) {
+function createFromURL(url, callback) {
 	$fetch(url, (responseText) => {
-		create(
-			JSON.parse(responseText)
+		callback(
+			create(
+				JSON.parse(responseText)
+			)
 		);
 	});
 }
 
 export default {
 	create,
-	createFromURL
-}
+	createFromURL,
+	createFromDefault
+};
