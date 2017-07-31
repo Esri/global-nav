@@ -81,6 +81,14 @@ export default () => {
 
 			const $dialog = esriSearch(detail.dialog);
 
+			$($dialog,
+				$('button', { class: 'esri-header-search-dialog-cancel' },
+					$('span',
+						detail.dialog.cancelLabel
+					)
+				)
+			);
+
 			$replaceAll($content,
 				$dialog
 			);
