@@ -81,12 +81,26 @@ export default () => {
 
 			const $dialog = esriSearch(detail.dialog);
 
-			$($dialog,
-				$('button', { class: 'esri-header-search-dialog-cancel' },
-					$('span',
-						detail.dialog.cancelLabel
-					)
+			const $dialogCancelButton = $('button', {
+				class: 'esri-header-search-dialog-cancel',
+				type: 'reset'
+			},
+				$('span',
+					detail.dialog.cancelLabel
 				)
+			);
+
+			$dialogCancelButton.addEventListener('click', (event) => {
+				$dispatch($control, 'header:menu:close', {
+					control: $control,
+					content: $content,
+					state:   'search',
+					event
+				});
+			});
+
+			$($dialog,
+				$dialogCancelButton
 			);
 
 			$replaceAll($content,
