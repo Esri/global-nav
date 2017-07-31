@@ -29,6 +29,10 @@
 		z-index: 1;
 	}
 
+	@media (--width-m) {
+		@apply --menu-link-styles;
+	}
+
 	@media (--width-l) {
 		display: none;
 	}
