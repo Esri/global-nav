@@ -27,6 +27,10 @@
 		height: 500px;
 		padding: * calc(50% - 1424px / 2) *;
 	}
+
+	&[data-hidden="true"] {
+		visibility: hidden;
+	}
 }
 
 /* Global Footer: Barrier */

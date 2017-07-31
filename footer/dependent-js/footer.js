@@ -89,6 +89,16 @@ export default (data) => {
 		if (detail.social) {
 			$dispatch($footerSocial, 'footer:update:social', detail.social);
 		}
+
+		$footer.ownerDocument.defaultView.addEventListener('scroll', onscroll);
+
+		onscroll();
+
+		function onscroll() {
+			const hidden = 0 >= window.pageYOffset;
+
+			$($footer, { data: { hidden } });
+		}
 	});
 
 	return $footer;
