@@ -3,12 +3,15 @@
 [![Build Status][cli-img]][cli-url]
 [![Licensing][lic-img]][lic-url]
 
-[Esri Global Navigation] provides platform-wide alignment and brand cohesion,
+[Esri Global Navigation] is a branded presentation layer for Esri site and
+account navigation. It provides platform-wide alignment and brand cohesion,
 allowing visitors to explore new content and products through a familiar and
-consistent experience. As a centralized microapp, this reduces the duplicated
-work any given developer needs to implement a persistent footer, while
-providing a centralized location for distributing rapid updates, new features,
-and resolving issues with shared ownership.
+consistent experience
+
+As a centralized microapp, this repo will reduce the duplicated work any given
+developer needs to implement persistent navigation, while providing a
+centralized location for distributing rapid updates, new features, and
+resolving issues with shared ownership.
 
 [View it live](esri.github.io/esri-global-nav/)
 
@@ -57,9 +60,9 @@ web pages and SAAS applications. It consists of the markup (HTML), styles
 
 ## Resources
 
-* [ArcGIS for JavaScript API Resource Center](http://help.arcgis.com/en/webapi/javascript/arcgis/index.html)
-* [ArcGIS Blog](http://blogs.esri.com/esri/arcgis/)
-* [twitter@esri](http://twitter.com/esri)
+- [ArcGIS for JavaScript API Resource Center](https://developers.arcgis.com/javascript/)
+- [ArcGIS Blog](https://blogs.esri.com/esri/arcgis/)
+- [twitter@esri](https://twitter.com/esri)
 
 ## Issues
 
@@ -70,22 +73,16 @@ Find a bug or want to request a new feature?  Please let us know by submitting a
 Esri welcomes contributions from anyone and everyone. Please see our [guidelines for contributing](https://github.com/esri/contributing).
 
 ## Licensing
-Copyright 2017 Esri
 
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
+[Esri Global Navigation] uses the Apache License, Version 2.0 (the "License").
 You may obtain a copy of the License at
+https://www.apache.org/licenses/LICENSE-2.0, which is also available in the
+repository's [license](LICENSE).
 
-   http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
-
-A copy of the license is available in the repository's [license.txt](LICENSE) file.
-
+Unless required by applicable law or agreed to in writing, software distributed
+under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
+CONDITIONS OF ANY KIND, either express or implied. See the License for the
+specific language governing permissions and limitations under the License.
 
 [Esri Global Navigation]: https://github.com/Esri/global-nav
 [Header]: https://github.com/Esri/global-nav/tree/master/header
