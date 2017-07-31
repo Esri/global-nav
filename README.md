@@ -90,7 +90,7 @@ specific language governing permissions and limitations under the License.
 [Search Dialog]: https://github.com/Esri/global-nav/tree/master/search
 [Language Switcher]: https://github.com/Esri/global-nav/tree/master/language
 
-[cli-url]: https://travis-ci.com/Esri/global-nav
-[cli-img]: https://api.travis-ci.com/Esri/global-nav.svg?token=mqvp34VgHUamyk5XDa9d
+[cli-url]: https://travis-ci.org/Esri/global-nav
+[cli-img]: https://travis-ci.org/Esri/global-nav.svg?branch=master
 [lic-url]: LICENSE.md
 [lic-img]: https://img.shields.io/badge/license-Apache%202.0-blue.svg
