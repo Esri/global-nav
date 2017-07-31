@@ -79,6 +79,12 @@ export default (data) => {
 		if (detail.account) {
 			$dispatch($client.lastChild, 'header:update:account', detail.account);
 		}
+
+		$header.addEventListener('keydown', ({ keyCode }) => {
+			if (27 === keyCode) {
+				$dispatch($header, 'header:menu:close');
+			}
+		});
 	});
 
 	/* On Header Menu Toggle
