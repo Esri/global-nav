@@ -17,3 +17,4 @@ under the License. */
 @import "./dependent-css/header-client";
 @import "./dependent-css/header-menus";
 @import "./dependent-css/header-search";
+@import "./dependent-css/header--focus.css";
