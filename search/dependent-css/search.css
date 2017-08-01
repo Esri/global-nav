@@ -184,16 +184,15 @@
 		border-width: 0;
 		color: var(--g-search-search-color);
 		cursor: pointer;
+		font-size: 14px/20px;
 		padding: 0;
 		position: absolute * 0 -45px *;
 
 		@media (--g-search-s) {
-			font-size: 16px/20px;
 			padding: * 10px;
 		}
 
 		@media (--g-search-l) {
-			font-size: 16px/20px;
 			padding: * 30px;
 		}
 
