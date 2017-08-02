@@ -25,7 +25,7 @@
 		margin: 16px;
 	}
 
-	@nest :matches(:hover, :focus) > & {
+	@nest :hover > &, :focus > &, [aria-expanded="true"] > & {
 		fill: var(--mono-0);
 	}
 }
