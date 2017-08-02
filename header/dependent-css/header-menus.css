@@ -66,7 +66,7 @@
 		content: url("esri-global-shared#c-menu" param(--stroke #595959));
 	}
 
-	&:matches(:hover, :focus, [aria-expanded="true"]) {
+	&:hover, &:focus, &[aria-expanded="true"] {
 		&::before {
 			content: url("esri-global-shared#c-menu");
 		}
@@ -204,7 +204,7 @@
 			}
 		}
 
-		&:matches(:focus, :hover) {
+		&:hover, &:focus {
 			color: var(--mono-0);
 
 			&::after {
@@ -328,7 +328,7 @@
 		display: none;
 	}
 
-	&:matches(:hover, :focus) {
+	&:hover, &:focus {
 		color: var(--mono-0);
 
 		&::before {
@@ -374,10 +374,6 @@
 
 .esri-header-menus-subitem {
 	@media (--width-l) {
-		@nest :matches([data-filled="9"], [data-filled="10"]) &:nth-child(6) {
-			margin-top: calc(-50px * 5);
-		}
-
 		@nest :matches([data-filled="11"], [data-filled="12"]) &:nth-child(7) {
 			margin-top: calc(-50px * 6);
 		}
@@ -391,7 +387,6 @@
 		}
 
 		@nest
-		:matches([data-filled="9"], [data-filled="10"]) &:nth-child(n+6),
 		:matches([data-filled="11"], [data-filled="12"]) &:nth-child(n+7),
 		:matches([data-filled="13"], [data-filled="14"]) &:nth-child(n+8),
 		:matches([data-filled="15"], [data-filled="16"]) &:nth-child(n+9) {
@@ -454,7 +449,7 @@
 		padding-right: 30px;
 	}
 
-	&:matches(:focus, :hover) {
+	&:hover, &:focus {
 		background-position-x: 0%;
 		color: var(--mono-0);
 	}
@@ -473,7 +468,7 @@
 		}
 	}
 
-	&:matches(:hover, :focus) {
+	&:hover, &:focus {
 		&::after {
 			opacity: 1;
 			transform: translateX(10px);
@@ -498,7 +493,7 @@
 	padding: 10px;
 	position: relative;
 
-	&:hover {
+	&:hover, &:focus {
 		box-shadow: inset 0 0 0 1px var(--blue);
 		color: var(--mono-0);
 		z-index: 1;
