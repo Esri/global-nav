@@ -1,7 +1,7 @@
 /* Global Footer: Tooling
 /* ========================================================================== */
 
-import { $assign as $, $dispatch } from 'esri-global-shared';
+import { $assign as $, $dispatch, $enableFocusRing } from 'esri-global-shared';
 
 import brand from './footer-brand';
 import language from './footer-language';
@@ -65,6 +65,8 @@ export default (data) => {
 		// Update Header
 		$dispatch($footer, 'footer:update', data);
 	});
+
+	$enableFocusRing($footer);
 
 	/* On Footer Update
 	/* ====================================================================== */

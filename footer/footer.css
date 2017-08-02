@@ -19,3 +19,4 @@ under the License. */
 @import "./dependent-css/footer-language";
 @import "./dependent-css/footer-menu";
 @import "./dependent-css/footer-social";
+@import "./dependent-css/footer--focus.css";
