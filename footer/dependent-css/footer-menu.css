@@ -84,8 +84,14 @@
 
 .esri-footer-menu--sub {
 	@media (--gfoot-s) {
+		max-height: 200vh;
+		overflow: hidden;
+		transition: max-height var(--smooth-speed) ease-in-out;
+
 		&:not([aria-hidden="false"]) {
-			display: none;
+			max-height: 0;
+			transition: max-height var(--smooth-speed), visibility 0s var(--smooth-speed);
+			visibility: hidden;
 		}
 	}
 }
