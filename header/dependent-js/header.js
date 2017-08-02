@@ -104,8 +104,8 @@ export default (data) => {
 
 	$header.addEventListener('header:menu:open', ({ detail }) => {
 		if (detail) {
-			if (lastDetail) {
-				$dispatch(lastDetail.control, 'header:menu:close', lastDetail);
+			if (lastDetail || rootDetail) {
+				$dispatch((lastDetail || rootDetail).control, 'header:menu:close', lastDetail || rootDetail);
 			}
 
 			// Update Control, Content
