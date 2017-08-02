@@ -1,11 +1,11 @@
 var $esriLanguage = 'function' === typeof esriLanguage ? esriLanguage({
 	prefix: 'esri-language',
 	label: 'Switch Languages',
-	button: 'United States (English)',
-	submit: 'Change',
-	greeting: 'Hello!',
-	message: 'You are seeing the English page. Is this correct?',
-	close: 'Close Navigation',
+	buttonLabel: 'United States (English)',
+	submitLabel: 'Change',
+	greetingLabel: 'Hello!',
+	messageLabel: 'You are seeing the English page. Is this correct?',
+	closeLabel: 'Close Navigation',
 	optionsLabel: 'Desired Language',
 	options: [
 		{
