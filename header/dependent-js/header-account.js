@@ -168,6 +168,8 @@ export default () => {
 			$controlIdText.nodeValue   = $contentInfoIdText.nodeValue   = detail.user.id;
 			$controlImage.src          = $contentImage.src              = detail.user.image;
 
+			$contentInfoGroupText.nodeValue = detail.user.group;
+
 			// Update the content menu
 			$replaceAll($contentMenu,
 				...detail.menus.map(
