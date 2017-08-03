@@ -97,7 +97,7 @@ export default (data) => {
 		onscroll();
 
 		function onscroll() {
-			const hidden = 0 >= window.pageYOffset;
+			const hidden = 0 > window.pageYOffset;
 
 			$($footer, { data: { hidden } });
 		}
