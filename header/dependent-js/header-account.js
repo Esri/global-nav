@@ -50,7 +50,9 @@ export default () => {
 	);
 
 	// On Click
-	$control.addEventListener('click', () => {
+	$control.addEventListener('click', (event) => {
+		$dispatch($control, 'header:click:account', { event });
+
 		$dispatch($control, 'header:menu:toggle', {
 			account: true,
 			control: $control,
