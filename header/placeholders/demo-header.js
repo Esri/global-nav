@@ -238,6 +238,10 @@ var $esriHeader = 'object' === typeof esriHeader ? esriHeader.create({
 						href: 'https://www.esri.com/training'
 					},
 					{
+						label: 'Documentation',
+						href: 'https://doc.arcgis.com/en'
+					},
+					{
 						label: 'Consulting Services',
 						href: 'https://www.esri.com/arcgis/services/consulting'
 					},
