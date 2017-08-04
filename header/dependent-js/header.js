@@ -22,8 +22,6 @@ import createSearch  from './header-search';
 /* ====================================================================== */
 
 export default (data) => {
-	let lastDetail;
-	let rootDetail;
 	let viewportIsSmall;
 	let viewportIsSmallMedium;
 
@@ -102,67 +100,74 @@ export default (data) => {
 	/* On Header Menu Open
 	/* ====================================================================== */
 
+	let accountDetail = null;
+	let searchDetail  = null;
+	let menusDetail   = null;
+	let menuDetail   = null;
+
 	$header.addEventListener('header:menu:open', ({ detail }) => {
-		if (detail) {
-			if (lastDetail || rootDetail) {
-				$dispatch((lastDetail || rootDetail).control, 'header:menu:close', lastDetail || rootDetail);
-			}
+		const isMenuToggle = 'menu-toggle' === detail.type;
 
-			// Update Control, Content
-			$(detail.control, { aria: { expanded: true } });
-			$(detail.content, { aria: { expanded: true, hidden: false } });
+		// Update Control, Content
+		$(detail.control, { aria: { expanded: true } });
+		$(detail.content, { aria: { expanded: true, hidden: false } });
 
-			// Update Canvas
-			$($headerCanvas, { data: { open: true, state: detail.state } });
-
-			// Update HTML
-			$($header.ownerDocument.documentElement, { data: { 'header-is-open': true } });
-
-			if (detail.root) {
-				rootDetail = detail;
-			} else {
-				lastDetail = detail;
-			}
+		if (menuDetail && menuDetail.control !== detail.control) {
+			$dispatch(menuDetail.control, 'header:menu:close', menuDetail);
 		}
+
+		if ('menu-toggle' === detail.type) {
+			menuDetail = detail;
+		}
+
+		if ($search === detail.target) {
+			searchDetail = detail;
+		} else if (searchDetail) {
+			$dispatch($search, 'header:menu:close', searchDetail);
+
+			searchDetail = null;
+		}
+
+		if ($menus === detail.target) {
+			menusDetail = detail;
+		} else if (menusDetail && !isMenuToggle && !viewportIsSmall.matches) {
+			$dispatch($menus, 'header:menu:close', menusDetail);
+
+			menusDetail = null;
+		}
+
+		if ($account === detail.target) {
+			accountDetail = detail;
+		} else if (accountDetail) {
+			$dispatch($account, 'header:menu:close', accountDetail);
+
+			accountDetail = null;
+		}
+
+		// Update Canvas
+		$($headerCanvas, { data: { open: true, state: detail.state } });
+
+		// Update Document Root
+		$($header.ownerDocument.documentElement, { data: { 'header-is-open': true } });
 	});
 
 	/* On Header Menu Close
 	/* ====================================================================== */
 
 	$header.addEventListener('header:menu:close', ({ detail }) => {
-		if (detail) {
-			// Close the Detail
-			$(detail.control, { aria: { expanded: false } });
-			$(detail.content, { aria: { expanded: false, hidden: true } });
+		const currentDetail = detail || menusDetail || searchDetail || accountDetail;
 
-			if (!rootDetail || detail.root || 'search' === detail.state) {
-				// Close the Canvas
-				$($headerCanvas, { data: { open: false } });
+		// Close the Detail
+		$(currentDetail.control, { aria: { expanded: false } });
+		$(currentDetail.content, { aria: { expanded: false, hidden: true } });
 
-				// Update HTML
-				$header.ownerDocument.documentElement.removeAttribute('data-header-is-open');
-			}
-		} else {
-			if (lastDetail) {
-				// Close the Detail
-				$(lastDetail.control, { aria: { expanded: false } });
-				$(lastDetail.content, { aria: { expanded: false, hidden: true } });
+		const canvasShouldClose = !viewportIsSmallMedium.matches || 'menu-close' !== currentDetail.type && 'account-close' !== currentDetail.type;
 
-				lastDetail = null;
-			}
-
-			if (rootDetail) {
-				// Close the Detail
-				$(rootDetail.control, { aria: { expanded: false } });
-				$(rootDetail.content, { aria: { expanded: false, hidden: true } });
-
-				rootDetail = null;
-			}
-
+		if (canvasShouldClose) {
 			// Close the Canvas
 			$($headerCanvas, { data: { open: false } });
 
-			// Update HTML
+			// Update Document Root
 			$header.ownerDocument.documentElement.removeAttribute('data-header-is-open');
 		}
 	});

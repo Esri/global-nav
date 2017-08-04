@@ -9,20 +9,22 @@ import { $assign as $, $dispatch, $replaceAll } from 'esri-global-shared';
 const prefix = 'esri-header-menus';
 
 export default () => {
-	/* Menus: Control
+	/* Toggle Menu
 	/* ====================================================================== */
 
-	const $control = $('button', {
+	const $toggle = $('button', {
 		class: `${prefix}-toggle`, id: `${prefix}-toggle`,
 		aria: { controls: `${prefix}-content`, expanded: false, haspopup: true, labelledby: 'esri-header-brand' }
 	});
 
-	$control.addEventListener('click', (event) => {
-		$dispatch($control, 'header:menu:toggle', {
-			control: $control,
+	$toggle.addEventListener('click', (event) => {
+		$dispatch($toggle, 'header:menu:toggle', {
+			control: $toggle,
 			content: $content,
-			state:   'menu',
 			root:    true,
+			state:   'menu',
+			target:  $target,
+			type:    'root-toggle',
 			event
 		});
 	});
@@ -38,7 +40,7 @@ export default () => {
 	/* ====================================================================== */
 
 	const $target = $('div', { class: prefix, id: prefix },
-		$control, $content
+		$toggle, $content
 	);
 
 	/* Menus: On Update
@@ -207,7 +209,8 @@ export default () => {
 										control: $subcontrol,
 										content: $subcontent,
 										submenu: true,
-										state:   'menu'
+										state:   'menu',
+										type:    'menu-toggle'
 									});
 								});
 
@@ -215,7 +218,8 @@ export default () => {
 									$dispatch($subtoggle, 'header:menu:close', {
 										control: $subcontrol,
 										submenu: true,
-										content: $subcontent
+										content: $subcontent,
+										type:    'menu-close'
 									});
 								});
 							}

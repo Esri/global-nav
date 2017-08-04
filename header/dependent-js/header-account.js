@@ -57,7 +57,9 @@ export default () => {
 			account: true,
 			control: $control,
 			content: $content,
-			state:   'menu'
+			state:   'menu',
+			target:  $target,
+			type:    'account-toggle'
 		});
 	});
 
@@ -73,7 +75,8 @@ export default () => {
 	$contentToggle.addEventListener('click', () => {
 		$dispatch($contentToggle, 'header:menu:close', {
 			control: $control,
-			content: $content
+			content: $content,
+			type:    'account-close'
 		});
 	});
 

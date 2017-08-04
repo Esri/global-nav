@@ -34,6 +34,8 @@ export default () => {
 			control: $control,
 			content: $content,
 			state:   'search',
+			target:  $target,
+			type:    'search-toggle',
 			event
 		});
 	});
@@ -95,6 +97,7 @@ export default () => {
 					control: $control,
 					content: $content,
 					state:   'search',
+					type:    'search-close',
 					event
 				});
 			});
