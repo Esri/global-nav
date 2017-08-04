@@ -18,6 +18,8 @@
 	--g-search-height-s: 50px;
 	--g-search-height-l: 90px;
 	--g-search-measure-speed: 300ms;
+	--g-search-submit-size-s: 24px;
+	--g-search-submit-size-l: 32px;
 }
 
 /* Global Search: Custom Property Sets
@@ -151,13 +153,13 @@
 			display: block;
 
 			@media (--g-search-s) {
-				margin: * calc((var(--g-search-height-s) - 24px) / 2);
-				size: 24px;
+				margin: * calc((var(--g-search-height-s) - var(--g-search-submit-size-s)) / 2);
+				size: var(--g-search-submit-size-s);
 			}
 
 			@media (--g-search-l) {
-				margin: * calc((var(--g-search-height-l) - 32px) / 2);
-				size: 32px;
+				margin: * calc((var(--g-search-height-l) - var(--g-search-submit-size-l)) / 2);
+				size: var(--g-search-submit-size-l);
 			}
 		}
 
