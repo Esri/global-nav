@@ -20,6 +20,9 @@
 	--g-search-measure-speed: 300ms;
 	--g-search-submit-size-s: 24px;
 	--g-search-submit-size-l: 32px;
+	--g-search-label-size-s: 14px;
+	--g-search-label-size-l: 16px;
+	--g-search-label-height: 25px;
 }
 
 /* Global Search: Custom Property Sets
@@ -124,15 +127,15 @@
 		&[data-filled] {
 			animation: esri-search-filled-label 300ms;
 			color: var(--g-search-label-filled-color);
-			position: absolute -22px * * *;
+			position: absolute calc(0 - var(--g-search-label-height) + 3px) * * *;
 
 			@media (--g-search-s) {
-				font-size: 14px / 25px;
+				font-size: var(--g-search-label-size-s) / var(--g-search-label-height);
 				margin-top: 5px;
 			}
 
 			@media (--g-search-l) {
-				font-size: 16px / 25px;
+				font-size: var(--g-search-label-size-l) / var(--g-search-label-height);
 			}
 		}
 	};
