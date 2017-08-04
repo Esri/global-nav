@@ -1,0 +1,211 @@
+#AGO__app-switcher p {
+  line-height:17px;
+}
+#AGO__app-switcher a {
+  text-decoration:none;
+  color: #333333;
+}
+#AGO__app-switcher .half-opacity {
+  opacity: .5;
+}
+
+#AGO__app-switcher .appSwitcher-title {
+ font-size:20px;
+}
+
+#AGO__app-switcher .hidden-iframe {
+  display: none;
+}
+
+#AGO__app-switcher .app-switcher-dropdown-menu {
+  padding: 1rem;
+  max-height: 580px;
+  max-width: 600px;
+  -webkit-box-shadow: 0 0 16px 0 rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0 0 16px 0 rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 16px 0 rgba(0, 0, 0, 0.1);
+  margin-right: -64%; /* modified with JS if rightToLeft */
+  top: 64px;
+}
+
+#AGO__app-switcher .app-switcher__pointer {
+  top: -7px;
+  right: 37px; /* modified with JS if rightToLeft */
+  background-color: #fff;
+  content: " ";
+  height: 15px;
+  width: 15px;
+  position: absolute;
+  pointer-events: none;
+  -webkit-transform: scale(0.9, 1) rotate(45deg);
+  -moz-transform: scale(0.9, 1) rotate(45deg);
+  -ms-transform: scale(0.9, 1) rotate(45deg);
+  -o-transform: scale(0.9, 1) rotate(45deg);
+  transform: scale(0.9, 1) rotate(45deg);
+  -webkit-transition: opacity 125ms ease-in-out;
+  -moz-transition: opacity 125ms ease-in-out;
+  -ms-transition: opacity 125ms ease-in-out;
+  -o-transition: opacity 125ms ease-in-out;
+  transition: opacity 125ms ease-in-out;
+  -webkit-box-shadow: -3px -1px 6px -3px rgba(0, 0, 0, 0.2);
+  box-shadow: -3px -1px 6px -3px rgba(0, 0, 0, 0.2); 
+  opacity: 1;
+}
+
+#AGO__app-switcher .app-switcher-svg {
+  fill: #6e6e6e;
+}
+
+#AGO__app-switcher #appSwitcherBtn {
+  max-height:20px;
+  margin-top:-2px;
+}
+
+#AGO__app-switcher .appLinkContainer{
+  font-size: 12px; /* App names text size */
+  margin-bottom: 0; /* Vertical space between app rows */
+  margin-left: 0; /* space between each app icon */
+  max-width: 92px; /* control long app labels */
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+
+#AGO__app-switcher .app-li-icon{
+  display: inline;
+}
+
+/*/////////////////////*/
+/*    FOCUS STYLE      */
+#AGO__app-switcher .top-nav-link .app-switcher-svg:hover, .top-nav-link:focus .app-switcher-svg {
+  fill: #007ac2;
+}
+
+#AGO__app-switcher .dropdown.is-active .dropdown-menu{
+  pointer-events: auto;
+  display: block;
+  overflow: visible;
+}
+
+#AGO__app-switcher .appLink:focus .appIconImage {
+  margin-bottom:7px;
+  -webkit-transform: translate(0, -4px);
+     -moz-transform: translate(0, -4px);
+      -ms-transform: translate(0, -4px);
+       -o-transform: translate(0, -4px);
+          transform: translate(0, -4px);
+}
+#AGO__app-switcher .appLink:focus p{
+  color: #0079c1;
+}
+/*/////////////////////*/
+
+/*/////////////////////*/
+/*    HOVER STYLE      */
+#AGO__app-switcher .appLinkContainer .appIconImage {
+  -webkit-transition: all 220ms ease-in-out;
+     -moz-transition: all 220ms ease-in-out;
+      -ms-transition: all 220ms ease-in-out;
+       -o-transition: all 220ms ease-in-out;
+          transition: all 220ms ease-in-out;
+}
+
+#AGO__app-switcher .appLink:hover .appIconImage {
+  -webkit-transform: translate(0, -4px);
+     -moz-transform: translate(0, -4px);
+      -ms-transform: translate(0, -4px);
+       -o-transform: translate(0, -4px);
+          transform: translate(0, -4px);
+}
+
+#AGO__app-switcher .appLink:hover p{
+  color: #0079c1;
+}
+/*//////////////////////*/
+
+#AGO__app-switcher ::-webkit-scrollbar {
+  -webkit-appearance: none;
+  width: 7px;
+}
+
+#AGO__app-switcher ::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  background-color: rgba(0,0,0,.5);
+  -webkit-box-shadow: 0 0 1px rgba(255,255,255,.5);
+}
+/* app images & placeholder abbreviation images */
+#AGO__app-switcher .appIconImage{
+  height: 48px;
+  width: 48px;
+  margin: 0 auto;
+  margin-bottom:8px;
+  background-size: contain;
+  color: white;
+  background-repeat: no-repeat;
+  font-size: 18px;
+  text-align: center;
+  display: block;
+}
+
+#AGO__app-switcher .appIconPng{
+  height:48px;
+  width:48px;
+}
+
+#AGO__app-switcher #dropdownAppContainer{
+  overflow: auto;
+  max-height: 556px;
+  overflow-x: hidden;
+  padding:0;
+  margin: 0 auto;
+  max-width:700px;
+  min-width:140px;
+}
+
+#AGO__app-switcher .appIconSvgText{
+  position: absolute;
+  width: 48px;
+  color: white;
+  font-size: 17px;
+  line-height: 48px;
+  font-weight: 600;
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 1);
+  -webkit-transform:translate3d(0,0,0); /* prevent text flickering on safari */ 
+}
+
+/* Calcite Styles */
+#AGO__app-switcher .block {
+  font-family: "Avenir Next W01","Avenir Next W00","Avenir Next",Avenir,"Helvetica Neue",Helvetica,Arial,sans-serif;
+  position: relative;
+  display: inline-block;
+  float: none;
+  -webkit-box-sizing: border-box;
+  moz-box-sizing: border-box;
+  box-sizing: border-box;
+  padding-left: .5rem;
+  padding-right: .5rem;
+  letter-spacing: normal;
+  text-align: left;
+  vertical-align: top;
+}
+/* #AGO__app-switcher .block-group-5-up .block { */
+/*   width: 20%; */
+/* } */
+#AGO__app-switcher .block-group {
+  font-family: monospace;
+  letter-spacing: -.65em;
+  margin-left: -.5rem;
+  margin-right: -.5rem;
+  text-align: left;
+  display: block;
+}
+/* Media Queries */
+@media only screen and (max-width: 768px) {
+  #AGO__app-switcher .greater-than-2-apps {
+    min-width: 314px !important;
+  }
+}
+@media only screen and (max-width: 440px) {
+  #AGO__app-switcher .greater-than-2-apps {
+    min-width: 230px !important;
+  }
+}
