@@ -164,7 +164,7 @@ export default (data) => {
 
 			const canvasShouldClose = !viewportIsSmallMedium.matches || 'menu-close' !== currentDetail.type && 'account-close' !== currentDetail.type;
 
-			if (currentDetail.control === searchDetail.control) {
+			if (searchDetail && searchDetail.control === currentDetail.control) {
 				$dispatch(searchDetail.content.lastChild, 'reset');
 			}
 
