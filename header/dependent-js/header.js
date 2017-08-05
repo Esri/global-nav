@@ -155,7 +155,7 @@ export default (data) => {
 	/* ====================================================================== */
 
 	$header.addEventListener('header:menu:close', ({ detail }) => {
-		const currentDetail = detail || menusDetail || searchDetail || accountDetail;
+		const currentDetail = detail || menusDetail || searchDetail || accountDetail || menuDetail;
 
 		// Close the Detail
 		$(currentDetail.control, { aria: { expanded: false } });
