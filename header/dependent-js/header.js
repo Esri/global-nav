@@ -157,18 +157,24 @@ export default (data) => {
 	$header.addEventListener('header:menu:close', ({ detail }) => {
 		const currentDetail = detail || menusDetail || searchDetail || accountDetail || menuDetail;
 
-		// Close the Detail
-		$(currentDetail.control, { aria: { expanded: false } });
-		$(currentDetail.content, { aria: { expanded: false, hidden: true } });
+		if (currentDetail) {
+			// Close the Detail
+			$(currentDetail.control, { aria: { expanded: false } });
+			$(currentDetail.content, { aria: { expanded: false, hidden: true } });
 
-		const canvasShouldClose = !viewportIsSmallMedium.matches || 'menu-close' !== currentDetail.type && 'account-close' !== currentDetail.type;
+			const canvasShouldClose = !viewportIsSmallMedium.matches || 'menu-close' !== currentDetail.type && 'account-close' !== currentDetail.type;
 
-		if (canvasShouldClose) {
-			// Close the Canvas
-			$($headerCanvas, { data: { open: false } });
+			if (currentDetail === searchDetail) {
+				$dispatch(searchDetail.content.lastChild, 'reset');
+			}
 
-			// Update Document Root
-			$header.ownerDocument.documentElement.removeAttribute('data-header-is-open');
+			if (canvasShouldClose) {
+				// Close the Canvas
+				$($headerCanvas, { data: { open: false } });
+
+				// Update Document Root
+				$header.ownerDocument.documentElement.removeAttribute('data-header-is-open');
+			}
 		}
 	});
 
