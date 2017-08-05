@@ -127,7 +127,7 @@
 		&[data-filled] {
 			animation: esri-search-filled-label 300ms;
 			color: var(--g-search-label-filled-color);
-			position: absolute calc(0 - var(--g-search-label-height) + 3px) * * *;
+			position: absolute calc(-1 * var(--g-search-label-height) + 3px) * * *;
 
 			@media (--g-search-s) {
 				font-size: var(--g-search-label-size-s) / var(--g-search-label-height);
