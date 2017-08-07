@@ -13,7 +13,7 @@ developer needs to implement persistent navigation, while providing a
 centralized location for distributing rapid updates, new features, and
 resolving issues with shared ownership.
 
-[View it live](esri.github.io/esri-global-nav/)
+[View it live](https://esri.github.io/global-nav/)
 
 ## Getting Started
 
