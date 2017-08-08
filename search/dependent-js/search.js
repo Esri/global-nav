@@ -61,7 +61,7 @@ export default (data) => {
 		/* Update New Control Value
 		/* ================================================================== */
 
-		const newControlValue = $control.value.trim();
+		const newControlValue = $control.value;
 
 		if (newControlValue !== controlValue) {
 			controlValue = newControlValue;
