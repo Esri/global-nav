@@ -35,7 +35,7 @@ export default () => {
 	$target.addEventListener('header:update:brand', ({ detail }) => {
 		$($target, { href: detail.href, aria: { label: detail.label } });
 
-		$($targetImage, { viewBox: `0 0 ${detail.width} ${detail.height}` });
+		$($targetImage, { viewBox: `0 0 ${detail.width} ${detail.height}`, width: `${detail.width}`, height: `${detail.height}` });
 
 		$replaceAll($targetImage,
 			...detail.image.map(
