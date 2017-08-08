@@ -255,7 +255,7 @@
 	@media (--width-l) {
 		@apply --submenu-styles;
 
-		left: calc(-35px + 24px);
+		left: 0;
 		max-height: calc(100vh - var(--header-height-l));
 		max-height: calc(var(--esri-vh) - var(--header-height-l));
 		-webkit-overflow-scrolling: touch;
