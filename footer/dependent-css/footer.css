@@ -5,6 +5,7 @@
 /* ========================================================================== */
 
 .esri-footer {
+	background-color: #f8f8f8;
 	cursor: default;
 	display: flex;
 	flex-wrap: wrap;
@@ -38,7 +39,6 @@
 
 .esri-footer-barrier {
 	animation: gfoot 4s linear infinite;
-	background-color: #f8f8f8;
 	background-image: linear-gradient(90deg, #29bfff, #a231ff, #0deccd, #29bfff);
 	background-repeat: repeat-x;
 	background-size: 133vw 4px;
