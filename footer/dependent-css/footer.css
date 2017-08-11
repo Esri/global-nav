@@ -101,7 +101,7 @@
 	transition: height 300ms;
 
 	@media (--gfoot-s) {
-		margin-top: 50px;
+		margin-block-start: 50px;
 		padding-block: 30px;
 	}
 

@@ -248,12 +248,12 @@
 
 @keyframes esri-search-filled-label {
 	0% {
+		inset-block-start: calc((-1 * var(--g-search-label-height) + 3px) / 2);
 		opacity: 0;
-		top: calc((-1 * var(--g-search-label-height) + 3px) / 2);
 	}
 
 	100% {
+		inset-block-start: calc(-1 * var(--g-search-label-height) + 3px);
 		opacity: 1;
-		top: calc(-1 * var(--g-search-label-height) + 3px);
 	}
 }
