@@ -6,15 +6,17 @@
 
 .esri-footer-language {
 	@media (--gfoot-s) {
-		margin: * * 12px 20px;
+		margin-block-end: 12px;
+		margin-inline-start: 20px;
 	}
 
 	@media (--gfoot-m) {
-		margin: 12px 30px 6px 24px;
+		margin: logical 12px 24px 6px 30px;
 	}
 
 	@media (--gfoot-l) {
-		margin: 12px * 6px 24px;
+		margin-block: 12px 6px;
+		margin-inline-start: 24px;
 		width: calc(25% - 24px);
 	}
 }
@@ -29,15 +31,15 @@
 	border-style: none;
 	color: #ffffff #0079c1;
 	display: inline-block;
-	font-size: 16px/18px;
+	font-size: 16px / 18px;
 	font-weight: 300;
 	padding: 11px 20px;
-	padding: * 40px * *;
+	padding-inline-end: 40px;
 	white-space: nowrap;
 
 	@nest [dir="rtl"] & {
 		background-position: 12px 50%;
-		padding: * 20px * 40px;
+		padding-inline: 40px 20px;
 	}
 
 	&:hover, &:focus {
@@ -49,7 +51,8 @@
 /* ========================================================================== */
 
 .esri-footer-language-dialog-barrier {
-	position: fixed 0;
+	inset: 0;
+	position: fixed;
 
 	&[aria-expanded="false"] {
 		display: none;
@@ -60,8 +63,9 @@
 	@apply --normalize-button;
 	@apply --unset-button;
 
-	color: * color(var(--mono-0) a(50%));
-	position: fixed 0;
+	background-color: color(var(--mono-0) a(50%));
+	inset: 0;
+	position: fixed;
 	size: 100%;
 	z-index: 99;
 }
@@ -76,12 +80,12 @@
 	z-index: 100;
 
 	@media (width > 580px) {
-		position: calc(50% - var(--g-language-height) / 2) * * calc(50% - var(--g-language-width) / 2);
+		inset-start: calc(50% - var(--g-language-height) / 2) calc(50% - var(--g-language-width) / 2);
 		size: var(--g-language-width) var(--g-language-height);
 	}
 
 	@media (width <= 580px) {
-		position: * * 0;
+		inset-block-end: 0;
 	}
 }
 

@@ -42,7 +42,9 @@
 	};
 
 	--g-search-size-styles: {
-		position: absolute 0 * 0 0;
+		inset-block: 0;
+		inset-inline-start: 0;
+		position: absolute;
 
 		@media (--g-search-s) {
 			width: calc(100% - var(--g-search-height-s));
@@ -92,8 +94,10 @@
 	--g-search-measure-size-styles: {
 		@apply --g-search-text-styles;
 
+		inset-block: 0;
+		inline-inline-start: 0;
 		max-width: 100%;
-		position: absolute 0 * 0 0;
+		position: absolute;
 		width: 0;
 	};
 
@@ -127,11 +131,12 @@
 		&[data-filled] {
 			animation: esri-search-filled-label 300ms;
 			color: var(--g-search-label-filled-color);
-			position: absolute calc(-1 * var(--g-search-label-height) + 3px) * * *;
+			inset-block-start: calc(-1 * var(--g-search-label-height) + 3px);
+			position: absolute;
 
 			@media (--g-search-s) {
 				font-size: var(--g-search-label-size-s) / var(--g-search-label-height);
-				margin-top: 5px;
+				margin-block-start: 5px;
 			}
 
 			@media (--g-search-l) {
@@ -149,19 +154,21 @@
 		background-color: transparent;
 		border-width: 0;
 		cursor: pointer;
-		position: absolute 0 0 0 *;
+		inset-block: 0;
+		inset-inline-end: 0;
+		position: absolute;
 
 		&::before {
 			content: url("esri-global-shared#c-search" param(--fill var(--g-search-search-color)));
 			display: block;
 
 			@media (--g-search-s) {
-				margin: * calc((var(--g-search-height-s) - var(--g-search-submit-size-s)) / 2);
+				margin-inline: calc((var(--g-search-height-s) - var(--g-search-submit-size-s)) / 2);
 				size: var(--g-search-submit-size-s);
 			}
 
 			@media (--g-search-l) {
-				margin: * calc((var(--g-search-height-l) - var(--g-search-submit-size-l)) / 2);
+				margin-inline: calc((var(--g-search-height-l) - var(--g-search-submit-size-l)) / 2);
 				size: var(--g-search-submit-size-l);
 			}
 		}
@@ -189,9 +196,10 @@
 		border-width: 0;
 		color: var(--g-search-search-color);
 		cursor: pointer;
-		font-size: 14px/20px;
+		font-size: 14px / 20px;
+		inset-end: -45px 0;
 		padding: 0;
-		position: absolute * 0 -45px *;
+		position: absolute;
 
 		@media (--g-search-s) {
 			padding: * 10px;
@@ -203,13 +211,20 @@
 
 		& span {
 			background-image: linear-gradient(90deg, var(--g-search-cancel-enter-color) 50%, transparent 50%);
-			background-position: 100% 100%;
 			background-repeat: no-repeat;
 			background-size: 200% 1px;
 			display: block;
-			margin-bottom: 10px;
+			margin-block-end: 10px;
 			padding: 10px * 5px;
 			transition: background-position 300ms;
+
+			&:dir(ltr) {
+				background-position: 100% 100%;
+			}
+
+			&:dir(rtl) {
+				background-position: -100% 100%;
+			}
 		}
 
 		&:hover, &:focus {

@@ -17,7 +17,7 @@
 	flex-wrap: wrap;
 
 	@media (--gfoot-xs) {
-		margin-left: auto;
+		margin-inline-start: auto;
 		max-width: calc(var(--footer-social-size) * 3 + var(--footer-social-gutter) * 3);
 	}
 
@@ -31,22 +31,22 @@
 }
 
 .esri-footer-social-item {
-	margin-top: var(--footer-social-gutter);
+	margin-block-start: var(--footer-social-gutter);
 
 	@media (--gfoot-s) {
-		margin: * * * var(--footer-social-gutter);
+		margin-inline-start: var(--footer-social-gutter);
 
 		@nest [dir="rtl"] & {
-			margin: * var(--footer-social-gutter) * 0;
+			margin-inline: 0 var(--footer-social-gutter);
 		}
 	}
 
 	@media (--gfoot-ml) {
 		&:not(:last-child) {
-			margin: * var(--footer-social-gutter) * *;
+			margin-inline-end: var(--footer-social-gutter);
 
 			@nest [dir="rtl"] & {
-				margin: * 0 * var(--footer-social-gutter);
+				margin-inline: var(--footer-social-gutter) 0;
 			}
 		}
 	}

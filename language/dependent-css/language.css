@@ -29,13 +29,10 @@
 		@apply --normalize-button;
 		@apply --unset-button;
 
-		position: absolute calc(var(--g-language-block-padding) - var(--g-language-close-size) / 2) calc(var(--g-language-inline-padding) - var(--g-language-close-size) / 2) * *;
+		inset-block-start: calc(var(--g-language-block-padding) - var(--g-language-close-size) / 2);
+		inset-inline-end: calc(var(--g-language-inline-padding) - var(--g-language-close-size) / 2);
+		position: absolute;
 		size: var(--g-language-close-size);
-
-		@nest [dir="rtl"] & {
-			left: calc(var(--g-language-inline-padding) - var(--g-language-close-size) / 2);
-			right: auto;
-		}
 
 		&::after {
 			content: url("esri-global-shared#c-close" param(--fill var(--blue)));
@@ -43,7 +40,7 @@
 	};
 
 	--g-language-message-styles: {
-		font-size: 20px/30px;
+		font-size: 20px / 30px;
 	};
 
 	--g-language-choice-styles: {
@@ -51,7 +48,7 @@
 		border-style: none;
 		box-shadow: inset 0 0 0 1px var(--blue);
 		font-size: 12px;
-		padding: * 16px;
+		padding-inline: 16px;
 
 		@media (width <= 580px) {
 			size: 100% 34px;
@@ -70,21 +67,21 @@
 		font-size: 12px;
 
 		@media (width <= 580px) {
-			margin-top: 5px;
+			margin-block-start: 5px;
 			size: 100% 34px;
 		}
 
 		@media (width > 580px) {
-			margin-left: 8px;
+			margin-inline-start: 8px;
 			size: 130px 34px;
 
 			@nest [dir="rtl"] & {
-				margin: * 8px * 0;
+				margin-inline: 0 8px;
 			}
 		}
 
 		&:hover, &:focus {
-			color: * color(var(--blue) b(50%));
+			background-color: color(var(--blue) b(50%));
 		}
 	};
 }

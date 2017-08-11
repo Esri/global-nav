@@ -20,13 +20,15 @@
 	}
 
 	@media (--gfoot-ml) {
-		position: fixed * 0 0;
+		inset-block-end: 0;
+		inset-inline: 0;
+		position: fixed;
 		z-index: -1;
 	}
 
 	@media (--gfoot-l) {
 		height: 500px;
-		padding: * calc(50% - 1424px / 2) *;
+		padding-inline: calc(50% - 1424px / 2);
 	}
 
 	&[data-hidden="true"] {
@@ -45,11 +47,11 @@
 	height: 4px;
 
 	@media (--gfoot-m) {
-		margin-bottom: 600px;
+		margin-block-end: 600px;
 	}
 
 	@media (--gfoot-l) {
-		margin-bottom: 500px;
+		margin-block-end: 500px;
 	}
 }
 
@@ -62,16 +64,18 @@
 	@media (--gfoot-s) {
 		display: flex;
 		flex-basis: 100%;
-		padding: 20px 15px 20px 20px;
+		padding: logical 20px 20px 20px 15px;
 	}
 
 	@media (--gfoot-m) {
-		padding: 36px 12px * 24px;
+		padding-block-start: 36px;
+		padding-inline: 24px 12px;
 		width: 25%;
 	}
 
 	@media (--gfoot-l) {
-		padding: 50px 24px * 24px;
+		padding-block-start: 50px;
+		padding-inline: 24px;
 		width: calc(100% / 4);
 	}
 }
@@ -87,7 +91,7 @@
 
 	@media (--gfoot-l) {
 		flex-grow: 1;
-		padding: 50px * * *;
+		padding-block-start: 50px;
 	}
 }
 
@@ -98,7 +102,7 @@
 
 	@media (--gfoot-s) {
 		margin-top: 50px;
-		padding: 30px *;
+		padding-block: 30px;
 	}
 
 	@media (--gfoot-m) {
