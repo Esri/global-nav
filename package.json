@@ -26,9 +26,9 @@
     "domose": "^0.5.0"
   },
   "devDependencies": {
-    "eslint": "^4.3.0",
+    "eslint": "^4.4.1",
     "eslint-config-dev": "^2.0.0",
-    "gulp-config-dev": "^3.10.1",
+    "gulp-config-dev": "^3.13.0",
     "pre-commit": "^1.2.2",
     "stylelint": "^8.0.0",
     "stylelint-config-dev": "^2.0.0"
