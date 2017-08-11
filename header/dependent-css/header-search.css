@@ -34,24 +34,26 @@
 /* ========================================================================== */
 
 .esri-header-search-content {
-	padding: 150px * 20px;
-	position: fixed * 0 0;
+	inset-block-end: 0;
+	inset-inline: 0;
+	padding-block: 150px 20px;
+	position: fixed;
 	z-index: -1;
 
 	@media (--width-s) {
-		top: var(--header-height-s);
+		inset-block-start: var(--header-height-s);
 	}
 
 	@media (--width-ml) {
-		top: var(--header-height-l);
+		inset-block-start: var(--header-height-l);
 	}
 
 	@media (width <= 1440px) {
-		padding: * 20px;
+		padding-inline: 20px;
 	}
 
 	@media (width > 1440px) {
-		padding: * calc(50% - 1440px / 2 + 20px);
+		padding-inline: calc(50% - 1440px / 2 + 20px);
 	}
 
 	&[aria-expanded="false"] {

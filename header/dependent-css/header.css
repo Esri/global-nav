@@ -24,7 +24,7 @@
 
 	&.-web {
 		@media (width > 1440px) {
-			padding: * calc(50% - 1440px / 2);
+			padding-inline: calc(50% - 1440px / 2);
 		}
 	}
 
@@ -39,19 +39,21 @@
 .esri-header-canvas {
 	border-style: none;
 	content: "";
+	inset-block-end: 0;
+	inset-inline: 0;
 	padding: 0;
-	position: fixed * 0 0;
+	position: fixed;
 	size: 100%;
 	-webkit-tap-highlight-color: transparent;
 	transition: opacity var(--fast-speed) ease-in-out, visibility 0ms var(--fast-speed);
 	z-index: -1;
 
 	@media (--width-s) {
-		top: var(--header-height-s);
+		inset-block-start: var(--header-height-s);
 	}
 
 	@media (--width-ml) {
-		top: var(--header-height-l);
+		inset-block-start: var(--header-height-l);
 	}
 
 	&[data-open="false"] {

@@ -8,17 +8,17 @@
 	display: inline-flex;
 
 	@media (--width-s) {
-		margin: * auto;
-		padding: * 12px;
+		margin-inline: auto;
+		padding-inline: 12px;
 	}
 
 	@media (--width-m) {
-		margin-right: auto;
-		padding: * 12px;
+		margin-inline-end: auto;
+		padding-inline: 12px;
 	}
 
 	@media (--width-l) {
-		padding: * 24px;
+		padding-inline: 24px;
 	}
 }
 

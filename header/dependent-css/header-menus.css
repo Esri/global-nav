@@ -23,9 +23,9 @@
 
 	@media (--width-s) {
 		background-color: #ffffff;
-		left: 0;
+		inset-inline-start: 0;
 		position: relative;
-		transition: left var(--smooth-speed) ease-in-out;
+		transition: left var(--smooth-speed) ease-in-out, right var(--smooth-speed) ease-in-out;
 		z-index: 1;
 	}
 
@@ -39,13 +39,8 @@
 
 	&[aria-expanded="true"] {
 		@media (--width-s) {
-			left: calc(100vw - 50px);
-			left: calc(var(--esri-vw) - 50px);
-
-			@nest :dir(rtl) & {
-				left: calc(-100vw + 50px);
-				left: calc(-1 * var(--esri-vw) + 50px);
-			}
+			inset-inline-start: calc(100vw - 50px);
+			inset-inline-start: calc(var(--esri-vw) - 50px);
 		}
 	}
 
@@ -90,7 +85,7 @@
 		box-shadow: inset 0 1px 0 0 var(--mono-88), 1px 0 0 0 var(--mono-88);
 		display: flex;
 		flex-direction: column;
-		left: 0;
+		inset-inline-start: 0;
 		-webkit-overflow-scrolling: touch;
 		-ms-overflow-style: -ms-autohiding-scrollbar;
 		overflow-x: hidden;
@@ -99,22 +94,18 @@
 		transform: translateX(0);
 		transition: transform var(--smooth-speed) ease-in-out;
 		z-index: 1;
-
-		@nest :dir(rtl) & {
-			right: 0;
-		}
 	}
 
 	@media (--width-s) {
+		inset-block-start: 0;
 		size: calc(100vw - 50px) 100vh;
 		size: calc(var(--esri-vw) - 50px) var(--esri-vh);
-		top: 0;
 	}
 
 	@media (--width-m) {
+		inset-block-start: 100%;
 		size: var(--header-width-m) calc(100vh - 56px);
 		size: var(--header-width-m) calc(var(--esri-vh) - 56px);
-		top: 100%;
 	}
 
 	@media (--width-l) {
@@ -173,11 +164,7 @@
 	cursor: pointer;
 	display: block;
 	font-size: 16px/20px;
-	text-align: left;
-
-	@nest :dir(rtl) & {
-		text-align: right;
-	}
+	text-align: start;
 
 	@media (--width-sm) {
 		background-image: linear-gradient(90deg, transparent 24px, var(--mono-91) 24px);
@@ -193,13 +180,13 @@
 
 		&::after {
 			content: url("esri-global-shared#c-chevron-right" param(--fill #595959));
-			position: absolute calc(50% - 12px / 2) 20px * *;
+			inset-block-start: calc(50% - 12px / 2);
+			inset-inline-end: 20px;
+			position: absolute;
 			size: 12px;
 			transition: left 250ms, opacity 250ms, right 250ms;
 
 			@nest :dir(rtl) & {
-				left: 20px;
-				right: auto;
 				transform: scaleX(-1);
 			}
 		}
@@ -208,12 +195,7 @@
 			color: var(--mono-0);
 
 			&::after {
-				right: 15px;
-
-				@nest :dir(rtl) & {
-					left: 15px;
-					right: auto;
-				}
+				inset-inline-end: 15px;
 			}
 		}
 	}
@@ -234,7 +216,8 @@
 
 	@media (--width-sm) {
 		box-shadow: inset 0 1px 0 0 var(--mono-88), 0 0 20px 0 color(var(--mono-0) a(30%));
-		position: absolute 0 * * 0;
+		inset-start: 0;
+		position: absolute;
 		transition: transform var(--smooth-speed) ease-in-out;
 		z-index: 1;
 	}
@@ -255,18 +238,13 @@
 	@media (--width-l) {
 		@apply --submenu-styles;
 
-		left: 0;
+		inset-inline-start: 0;
 		max-height: calc(100vh - var(--header-height-l));
 		max-height: calc(var(--esri-vh) - var(--header-height-l));
 		-webkit-overflow-scrolling: touch;
 		-ms-overflow-style: -ms-autohiding-scrollbar;
 		overflow-y: auto;
 		padding: 15px 35px 35px;
-
-		@nest :dir(rtl) & {
-			left: auto;
-			right: calc(-35px + 24px);
-		}
 
 		&[data-filled=""] {
 			width: calc(350px + 35px * 2);
@@ -310,7 +288,7 @@
 	@apply --unset-button;
 
 	background-color: var(--mono-100);
-	font-size: 20px/24px;
+	font-size: 20px / 24px;
 	padding: 20px 10px;
 	position: relative;
 	text-align: center;
@@ -332,24 +310,18 @@
 		color: var(--mono-0);
 
 		&::before {
-			left: 15px;
-
-			@nest :dir(rtl) & {
-				left: auto;
-				right: 15px;
-			}
+			inset-inline-start: 15px;
 		}
 	}
 
 	&::before {
 		content: url("esri-global-shared#c-chevron-left");
-		position: absolute calc(50% - 16px / 2) * * 24px;
+		inset-start: calc(50% - 16px / 2) 24px;
+		position: absolute;
 		size: 16px;
 		transition: left 250ms ease-in-out, right 250ms ease-in-out;
 
 		@nest :dir(rtl) & {
-			left: auto;
-			right: 24px;
 			transform: scaleX(-1);
 		}
 	}
@@ -364,38 +336,33 @@
 
 	display: flex;
 	flex-wrap: wrap;
-	margin: 30px * *;
+	margin-block-start: 30px;
 
 	@media (--width-sm) {
-		margin-bottom: 30px;
-		padding: * 24px;
+		margin-block-end: 30px;
+		padding-inline: 24px;
 	}
 }
 
 .esri-header-menus-subitem {
 	@media (--width-l) {
 		@nest :matches([data-filled="11"], [data-filled="12"]) &:nth-child(7) {
-			margin-top: calc(-50px * 6);
+			margin-block-start: calc(-50px * 6);
 		}
 
 		@nest :matches([data-filled="13"], [data-filled="14"]) &:nth-child(8) {
-			margin-top: calc(-50px * 7);
+			margin-block-start: calc(-50px * 7);
 		}
 
 		@nest :matches([data-filled="15"], [data-filled="16"]) &:nth-child(9) {
-			margin-top: calc(-50px * 8);
+			margin-block-start: calc(-50px * 8);
 		}
 
 		@nest
 		:matches([data-filled="11"], [data-filled="12"]) &:nth-child(n+7),
 		:matches([data-filled="13"], [data-filled="14"]) &:nth-child(n+8),
 		:matches([data-filled="15"], [data-filled="16"]) &:nth-child(n+9) {
-			margin-left: calc(50% + 10px);
-
-			@nest :dir(rtl) & {
-				margin-left: 0;
-				margin-right: calc(50% + 10px);
-			}
+			margin-inline-start: calc(50% + 10px);
 		}
 
 		@nest [data-filled]:not([data-filled=""]) & {
@@ -403,7 +370,7 @@
 		}
 
 		@nest [data-filled]:not([data-filled=""]) &:last-child:nth-child(odd) {
-			margin-bottom: 60px;
+			margin-block-end: 60px;
 		}
 	}
 }
@@ -434,19 +401,20 @@
 	color: var(--mono-35);
 	cursor: pointer;
 	display: block;
-	font-size: 15px/20px;
+	font-size: 15px / 20px;
 	position: relative;
 	transition: background-position 250ms;
 
 	@media (--width-sm) {
-		margin-left: 24px;
-		padding: 22px 36px 22px *;
+		margin-inline-start: 24px;
+		padding-block: 22px;
+		padding-inline-end: 36px;
 		position: relative;
 	}
 
 	@media (--width-l) {
 		padding: 15px 0;
-		padding-right: 30px;
+		padding-inline-end: 30px;
 	}
 
 	&:hover, &:focus {
@@ -456,15 +424,15 @@
 
 	&::after {
 		content: url("esri-global-shared#c-arrow-right" param(--fill var(--blue)));
+		inset-block-start: calc(50% - 16px / 2);
+		inset-inline-end: 20px;
 		opacity: 0;
-		position: absolute calc(50% - 16px / 2) 20px * *;
+		position: absolute;
 		size: 16px;
 		transition: opacity 250ms, transform 250ms;
 
 		@nest :dir(rtl) & {
-			left: 20px;
-			right: auto;
-			transform: scale(-1);
+			transform: scaleX(-1);
 		}
 	}
 
@@ -487,9 +455,8 @@
 	color: var(--mono-35) var(--mono-100);
 	cursor: pointer;
 	display: block;
-	margin-bottom: -1px;
-	margin-left: -.5px;
-	margin-right: -.5px;
+	margin-block-end: -1px;
+	margin-inline: -.5px;
 	padding: 10px;
 	position: relative;
 
@@ -509,9 +476,9 @@
 
 .esri-header-menus-sublink-text {
 	display: block;
-	font-size: 14px/20px;
+	font-size: 14px / 20px;
 	height: 40px;
-	margin: 16px * *;
+	margin-block-start: 16px;
 	overflow: hidden;
 	text-align: center;
 }
