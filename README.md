@@ -1,4 +1,4 @@
-# Esri Global Navigation [<img src="https://upload.wikimedia.org/wikipedia/commons/5/52/WHATWG_DOM_logo.svg" alt="WHATWG DOM logo" width="90" height="90" align="right">][Esri Global Navigation]
+# Esri Global Navigation [<img src="https://avatars2.githubusercontent.com/u/628795" alt="" width="90" height="90" align="right">][Esri Global Navigation]
 
 [![Build Status][cli-img]][cli-url]
 [![Licensing][lic-img]][lic-url]
