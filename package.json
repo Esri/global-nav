@@ -33,6 +33,15 @@
     "stylelint": "^8.0.0",
     "stylelint-config-dev": "^2.0.0"
   },
+  "browserslist": [
+    "ie 11",
+    "last 2 android versions",
+    "last 2 chrome versions",
+    "last 2 edge versions",
+    "last 2 firefox versions",
+    "last 2 ios versions",
+    "last 2 safari versions"
+  ],
   "eslintConfig": {
     "extends": "dev"
   },
