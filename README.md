@@ -25,7 +25,13 @@ To begin, clone this repository to your computer:
 git clone git@github.com:Esri/global-nav.git
 ```
 
-From the esri-global-nav directory, start one of the navigation modules:
+From the global-nav directory, install the component’s dependencies:
+
+```sh
+npm install
+```
+
+Next, start one of the navigation modules:
 
 ```sh
 # to launch the global navigation header
