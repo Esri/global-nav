@@ -1,6 +1,3 @@
-/* Global Footer: Tooling
-/* ========================================================================== */
-
 import { $assign as $, $dispatch, $enableFocusRing } from 'esri-global-shared';
 
 import brand from './footer-brand';
