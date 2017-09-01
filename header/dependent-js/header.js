@@ -4,6 +4,7 @@ import createAccount from './header-account';
 import createBrand   from './header-brand';
 import createMenus   from './header-menus';
 import createSearch  from './header-search';
+import createApps    from './header-apps';
 
 /* Header
 /* ====================================================================== */
@@ -32,6 +33,7 @@ export default (data) => {
 	const $account = createAccount();
 	const $menus   = createMenus();
 	const $search  = createSearch();
+  const $apps    = createApps();
 
 	const $client  = $('div', { class: 'esri-header-client' },
 		$account
@@ -42,6 +44,7 @@ export default (data) => {
 		$brand,
 		$menus,
 		$search,
+    $apps,
 		$client
 	);
 
@@ -61,6 +64,10 @@ export default (data) => {
 
 		if (detail.search) {
 			$dispatch($search, 'header:update:search', detail.search);
+		}
+
+		if (detail.apps) {
+			$dispatch($apps, 'header:update:apps', detail.apps);
 		}
 
 		if (detail.account) {
