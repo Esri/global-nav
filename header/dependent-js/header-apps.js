@@ -11,7 +11,7 @@ import esriSearch from 'esri-global-search';
 const prefix = 'esri-header-apps';
 const dropdownClass = "appSwitcherModalContent dropdown js-dropdown padding-right-half padding-left-half";
 const dropdownNavClass = "dropdown-menu dropdown-right app-switcher-dropdown-menu";
-const imgDir = "http://cdndev.arcgis.com/cdn/17E8A24/js/arcgisonline/sharing/dijit/css/images/app-icons/";
+const imgDir = "http://www.arcgis.com/home/js/arcgisonline/sharing/dijit/css/images/app-icons/";
 
 export default () => {
 	/* Search: Control
@@ -26,7 +26,6 @@ export default () => {
     class: `${dropdownClass}`
   });
 
-  $dropdown.innerHTML = '<a href="#" id="appSwitcher__appSwitcherBtn" tabIndex="0" class="js-dropdown-toggle top-nav-link half-opacity" tabindex="-1" aria-haspopup="true" aria-expanded="false" data-modal="appSwitcher" title="App Switcher" aria-label="App Switcher"><svg height="24px" width="24px" class="app-switcher-svg" shape-rendering="crispEdges"><rect x="1" y="1" width="4" height="4"/><rect x="10" y="1" width="4" height="4"/><rect x="19" y="1" width="4" height="4"/><rect x="1" y="10" width="4" height="4"/><rect x="10" y="10" width="4" height="4"/><rect x="19" y="10" width="4" height="4"/><rect x="1" y="19" width="4" height="4"/><rect x="10" y="19" width="4" height="4"/><rect x="19" y="19" width="4" height="4"/></svg></a><nav id="appSwitcher__dropdownAppNav" class="' + `${dropdownNavClass}` + '" role="menu"><div id="appSwitcher__dropdownAppWrapper"></div></nav>';
 
   $controlImage.append($dropdown);
 
@@ -136,6 +135,10 @@ export default () => {
     let nOfApps = detail.apps.length;
     // :::Adjust the size of the Dropdown
     // adjustDropdownWidth(nOfApps);
+
+    let dropdownClassSize = " dropdown-width-" + String((nOfApps < 4 ? (nOfApps) : 4));
+    $dropdown.innerHTML = '<a href="#" id="appSwitcher__appSwitcherBtn" tabIndex="0" class="js-dropdown-toggle top-nav-link half-opacity" tabindex="-1" aria-haspopup="true" aria-expanded="false" data-modal="appSwitcher" title="App Switcher" aria-label="App Switcher"><svg height="24px" width="24px" class="app-switcher-svg" shape-rendering="crispEdges"><rect x="1" y="1" width="4" height="4"/><rect x="10" y="1" width="4" height="4"/><rect x="19" y="1" width="4" height="4"/><rect x="1" y="10" width="4" height="4"/><rect x="10" y="10" width="4" height="4"/><rect x="19" y="10" width="4" height="4"/><rect x="1" y="19" width="4" height="4"/><rect x="10" y="19" width="4" height="4"/><rect x="19" y="19" width="4" height="4"/></svg></a><nav id="appSwitcher__dropdownAppNav" class="' + `${dropdownNavClass}` + dropdownClassSize + '" role="menu"><div id="appSwitcher__dropdownAppWrapper"></div></nav>';
+
 
     // App Icons
     let topAppContainer = $("ul", {

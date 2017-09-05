@@ -28,7 +28,19 @@
   margin-right: -64%; /* modified with JS if rightToLeft */
   right: 24px !important;
   top: 64px;
-  width: 246px/* default to two apps */
+}
+
+.esri-header-apps .dropdown-width-1 {
+  width: 123px;
+}
+.esri-header-apps .dropdown-width-2 {
+  width: 246px;
+}
+.esri-header-apps .dropdown-width-3 {
+  width: 369px;
+}
+.esri-header-apps .dropdown-width-4 {
+  width: 492px;
 }
 
 .esri-header-apps .app-switcher-svg {
@@ -179,12 +191,14 @@
 }
 /* Media Queries */
 @media only screen and (max-width: 768px) {
-  .esri-header-apps .greater-than-2-apps {
+  .esri-header-apps .dropdown-width-3, 
+  .esri-header-apps .dropdown-width-4 {
     min-width: 314px !important;
   }
 }
 @media only screen and (max-width: 440px) {
-  .esri-header-apps .greater-than-2-apps {
+  .esri-header-apps .dropdown-width-3, 
+  .esri-header-apps .dropdown-width-4 {
     min-width: 230px !important;
   }
 }
