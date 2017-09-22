@@ -1,7 +1,7 @@
 /* Tooling
 /* ========================================================================== */
 
-import { $assign as $, $dispatch, $replaceAll } from 'esri-global-shared';
+import {$assign as $, $dispatch, $replaceAll} from 'esri-global-shared';
 
 /* Menus
 /* ========================================================================== */
@@ -14,17 +14,17 @@ export default () => {
 
 	const $toggle = $('button', {
 		class: `${prefix}-toggle`, id: `${prefix}-toggle`,
-		aria: { controls: `${prefix}-content`, expanded: false, haspopup: true, labelledby: 'esri-header-brand' }
+		aria: {controls: `${prefix}-content`, expanded: false, haspopup: true, labelledby: 'esri-header-brand'}
 	});
 
 	$toggle.addEventListener('click', (event) => {
 		$dispatch($toggle, 'header:menu:toggle', {
 			control: $toggle,
 			content: $content,
-			root:    true,
-			state:   'menu',
-			target:  $target,
-			type:    'root-toggle',
+			root: true,
+			state: 'menu',
+			target: $target,
+			type: 'root-toggle',
 			event
 		});
 	});
@@ -32,21 +32,22 @@ export default () => {
 	/* Menus: Content
 	/* ====================================================================== */
 
-	const $content = $('div', { class: `${prefix}-content`,
-		aria: { hidden: true, expanded: false }
+	const $content = $('div', {
+		class: `${prefix}-content`,
+		aria: {hidden: true, expanded: false}
 	});
 
 	/* Menus
 	/* ====================================================================== */
 
-	const $target = $('div', { class: prefix, id: prefix },
+	const $target = $('div', {class: prefix, id: prefix},
 		$toggle, $content
 	);
 
 	/* Menus: On Update
 	/* ====================================================================== */
 
-	$target.addEventListener('header:update:menus', ({ detail }) => {
+	$target.addEventListener('header:update:menus', ({detail}) => {
 		$replaceAll(
 			$content,
 			...detail.map(
@@ -58,7 +59,7 @@ export default () => {
 					$('ul',
 						{
 							class: `${prefix}-list`,
-							role: 'navigation', aria: { labelledby: 'esri-header-brand' }
+							role: 'navigation', aria: {labelledby: 'esri-header-brand'}
 						},
 						...menu.map((item, suuid) => {
 							/* Global Navigation: Menus: Link
@@ -78,7 +79,7 @@ export default () => {
 								});
 							}
 
-							const $li = $('li', { class: `${prefix}-item` }, $subcontrol);
+							const $li = $('li', {class: `${prefix}-item`}, $subcontrol);
 
 							const hasMenuItems = item.menus && item.menus.length;
 							const hasFeaturedItems = item.tiles && item.tiles.length;
@@ -87,15 +88,15 @@ export default () => {
 								/* Global Navigation: Submenu
 								/* ====================================== */
 
-								const $subtoggle = $('button', { class: `${prefix}-submenu-toggle` },
+								const $subtoggle = $('button', {class: `${prefix}-submenu-toggle`},
 									item.label
 								);
 
 								const $subcontent = $('div',
 									{
 										class: `${prefix}-submenu`, id: `${prefix}-submenu-${uuid}-${suuid}`,
-										role: 'group', aria: { hidden: true, expanded: false },
-										data: { filled: item.menus.length > 10 ? item.menus.slice(0, 18).length : '' }
+										role: 'group', aria: {hidden: true, expanded: false},
+										data: {filled: item.menus.length > 10 ? item.menus.slice(0, 18).length : ''}
 									},
 									$subtoggle
 								);
@@ -105,7 +106,7 @@ export default () => {
 										$('ul',
 											{
 												class: `${prefix}-sublist`,
-												role: 'navigation', aria: { labelledby: `${prefix}-link-${uuid}-${suuid}` }
+												role: 'navigation', aria: {labelledby: `${prefix}-link-${uuid}-${suuid}`}
 											},
 											/* Global Navigation: Menus: Sublink
 											/* ============================== */
@@ -132,7 +133,7 @@ export default () => {
 														});
 													}
 
-													return $('li', { class: `${prefix}-subitem` },
+													return $('li', {class: `${prefix}-subitem`},
 														$sublink
 													);
 												}
@@ -147,33 +148,39 @@ export default () => {
 										$('ul',
 											{
 												class: `${prefix}-sublist--featured`,
-												role: 'navigation', aria: { labelledby: `${prefix}-link-${uuid}-${suuid}` },
-												data: { filled: `${ item.tiles.slice(0, 4).length }` }
+												role: 'navigation', aria: {labelledby: `${prefix}-link-${uuid}-${suuid}`},
+												data: {filled: `${ item.tiles.slice(0, 4).length }`}
 											},
 											/* Global Navigation: Menus: Sublink
 											/* ============================== */
 
 											...item.tiles.slice(0, 4).map(
 												(childitem) => {
-													const $sublink = $('a',
-														{
-															class: `${prefix}-sublink--featured`,
-															href: childitem.href
-														},
-														$(
+													const $img = typeof childitem.icon === 'string'
+														? $('img', {
+															src : childitem.icon,
+															class: `${prefix}-sublink-image`
+														})
+														: $(
 															document.createElementNS('http://www.w3.org/2000/svg', 'svg'),
-															childitem.width && childitem.height ? { viewBox: `0 0 ${childitem.width} ${childitem.height}` } : {},
-															{ class: `${prefix}-sublink-image` },
+															childitem.width && childitem.height ? {viewBox: `0 0 ${childitem.width} ${childitem.height}`} : {},
+															{class: `${prefix}-sublink-image`},
 															$(document.createDocumentFragment(),
 																...childitem.icon.map(
 																	(d) => $(
 																		document.createElementNS('http://www.w3.org/2000/svg', 'path'),
-																		{ d }
+																		{d}
 																	)
 																)
 															)
-														),
-														$('span', { class: `${prefix}-sublink-text` },
+														);
+
+													const $sublink = $('a',
+														{
+															class: `${prefix}-sublink--featured`,
+															href: childitem.href
+														}, $img,
+														$('span', {class: `${prefix}-sublink-text`},
 															childitem.label
 														)
 													);
@@ -191,7 +198,7 @@ export default () => {
 														});
 													}
 
-													return $('li', { class: `${prefix}-subitem--featured` },
+													return $('li', {class: `${prefix}-subitem--featured`},
 														$sublink
 													);
 												}
@@ -209,8 +216,8 @@ export default () => {
 										control: $subcontrol,
 										content: $subcontent,
 										submenu: true,
-										state:   'menu',
-										type:    'menu-toggle'
+										state: 'menu',
+										type: 'menu-toggle'
 									});
 								});
 
@@ -219,7 +226,7 @@ export default () => {
 										control: $subcontrol,
 										submenu: true,
 										content: $subcontent,
-										type:    'menu-close'
+										type: 'menu-close'
 									});
 								});
 							}

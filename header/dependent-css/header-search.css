@@ -9,6 +9,7 @@
 	@apply --unset-button;
 	@apply --menu-link-styles;
 
+	cursor: pointer;
 	display: block;
 }
 
