@@ -31,6 +31,14 @@
 	}
 }
 
+.esri-header-search-control img {
+	opacity: .8;
+}
+
+.esri-header-search-control:hover img {
+	opacity: 1;
+}
+
 /* Global Header Search: Content
 /* ========================================================================== */
 
