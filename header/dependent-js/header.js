@@ -99,9 +99,10 @@ export default (data) => {
 	/* ====================================================================== */
 
 	let accountDetail = null;
+	let appsDetail    = null;
 	let searchDetail  = null;
 	let menusDetail   = null;
-	let menuDetail   = null;
+	let menuDetail    = null;
 
 	$header.addEventListener('header:menu:open', ({ detail }) => {
 		const isMenuToggle = 'menu-toggle' === detail.type;
@@ -142,6 +143,14 @@ export default (data) => {
 			accountDetail = null;
 		}
 
+		if ($apps === detail.target) {
+			appsDetail = detail;
+		} else if (appsDetail) {
+			$dispatch($apps, 'header:menu:close', appsDetail);
+
+			appsDetail = null;
+		}
+
 		// Update Canvas
 		$($headerCanvas, { data: { open: true, state: detail.state } });
 
@@ -153,7 +162,7 @@ export default (data) => {
 	/* ====================================================================== */
 
 	$header.addEventListener('header:menu:close', ({ detail }) => {
-		const currentDetail = detail || menusDetail || searchDetail || accountDetail || menuDetail;
+		const currentDetail = detail || menusDetail || searchDetail || accountDetail || appsDetail || menuDetail;
 
 		if (currentDetail) {
 			// Close the Detail

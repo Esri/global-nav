@@ -46,9 +46,11 @@ export default () => {
     $dispatch($control, 'header:click:apps', { event });
 
     $dispatch($control, 'header:menu:toggle', {
+			state: 'menu',
+			target: $target,
+			type: 'root-toggle',
       control: $control,
       content: $content,
-      state:   "menu",
       event
     });
 	});
