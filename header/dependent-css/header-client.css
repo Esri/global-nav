@@ -3,13 +3,9 @@
 /* Global Header Client
 /* ========================================================================== */
 
-.esri-header-client {
+.esri-header-lineBreak {
 	display: flex;
 	flex-grow: 0;
-
-	@media (--width-s) {
-		display: none;
-	}
 
 	@media (--width-ml) {
 		box-shadow: inset 1px 0 0 0 var(--mono-88);
@@ -17,5 +13,14 @@
 		@nest :dir(rtl) & {
 			box-shadow: inset -1px 0 0 0 var(--mono-88);
 		}
+	}
+}
+
+.esri-header-client {
+	display: flex;
+	flex-grow: 0;
+
+	@media (--width-s) {
+		display: none;
 	}
 }

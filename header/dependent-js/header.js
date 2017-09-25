@@ -39,12 +39,16 @@ export default (data) => {
 		$account
 	);
 
+  const $lineBreak = $('div', { class: 'esri-header-lineBreak' }, 
+    $apps
+  ); 
+
 	const $header = $('div', { class: `esri-header -${data.theme || 'web'}` },
 		$headerCanvas,
 		$brand,
 		$menus,
 		$search,
-    $apps,
+    $lineBreak,
 		$client
 	);
 
