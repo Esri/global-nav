@@ -20,6 +20,7 @@
 /* Apps Container */
 
 .esri-header-apps-control {
+	cursor: pointer;
 	padding: 16px 12px 8px 10px;
 }
 
@@ -106,9 +107,8 @@ html[dir="rtl"] .dropdown-menu.dropdown-right {
 
 .esri-header-apps .app-switcher-dropdown-menu {
 	background: #ffffff;
-
-	/* box-shadow: 0 0 16px 0 rgba(0, 0, 0, 0.1); */
 	border: 1px solid #e0e0e0;
+	cursor: default;
 	margin-right: -64%; /* modified with JS if rightToLeft */
 	max-height: 580px;
 	max-width: 600px;

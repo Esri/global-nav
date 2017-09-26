@@ -13,16 +13,17 @@ export default () => {
 	/* ====================================================================== */
 
 	const $content = $('div', {
-		class: `${prefix}-content`, id: `${prefix}-content`,
+		class: `${prefix}-content`, 
+    id: `${prefix}-content`,
 		aria: { expanded: false, labelledby: `${prefix}-control` }
 	});
 
   const $appSwitcherButton = $('a', {
       href: "#",
       tabindex: "0",
-      title: "App Switcher",
+      title: "App Launcher",
       class: "top-nav-link",
-      "aria-label": "App Sitcher"
+      "aria-label": "App Launcher"
   });
 
   $appSwitcherButton.innerHTML = '<svg height="24px" width="24px" class="app-switcher-svg" shape-rendering="crispEdges"><rect x="1" y="1" width="4" height="4"/><rect x="10" y="1" width="4" height="4"/><rect x="19" y="1" width="4" height="4"/><rect x="1" y="10" width="4" height="4"/><rect x="10" y="10" width="4" height="4"/><rect x="19" y="10" width="4" height="4"/><rect x="1" y="19" width="4" height="4"/><rect x="10" y="19" width="4" height="4"/><rect x="19" y="19" width="4" height="4"/></svg>'
@@ -35,15 +36,18 @@ export default () => {
   });
 
   const $dropdown = $('div', {
-    class: "dropdown padding-right-half padding-left-half"
+    class: `${prefix}-prevent-dropdown dropdown padding-right-half padding-left-half`
   });
 
   $controlContainer.append($dropdown);
 
   const $control = $controlContainer;
 
-	$appSwitcherButton.addEventListener('click', (event) => {
+	$controlContainer.addEventListener('click', (event) => {
     $dispatch($control, 'header:click:apps', { event });
+
+    // Elements with following class won't trigger/dispatch the dropdown 
+    if (event.target.classList.contains(`${prefix}-prevent-dropdown`)) return;
 
     $dispatch($control, 'header:menu:toggle', {
 			state: 'menu',
@@ -70,7 +74,7 @@ export default () => {
 
     let listItem = $("li", {
       alt: "",
-      class: "block link-off-black appLinkContainer",
+      class: `${prefix}-prevent-dropdown block link-off-black appLinkContainer`,
       role: "menuitem"
     });
 
@@ -115,7 +119,7 @@ export default () => {
     // App Icons
 
     const $topAppContainer = $("ul", {
-      class: "block-group appContainer js-prevent-dropdown__app-switcher",
+      class: `${prefix}-prevent-dropdown block-group appContainer`,
       role: "menu"
     });
 
@@ -129,12 +133,10 @@ export default () => {
     }
 
     // Container
-    const $dropdownContent = $("div", { style: "width:100%;" }, $topAppContainer);
-
-    const $dropdownWrapper = $('div', {}, $dropdownContent);
+    const $dropdownWrapper = $('div', {class: `${prefix}-prevent-dropdown`}, $topAppContainer);
 
     const $dropdownNav = $('nav', {
-      class: "dropdown-menu dropdown-right app-switcher-dropdown-menu" + dropdownWidth,
+      class: `${prefix}-prevent-dropdown dropdown-menu dropdown-right app-switcher-dropdown-menu` + dropdownWidth,
       role: "menu"
     }, $dropdownWrapper);
 
