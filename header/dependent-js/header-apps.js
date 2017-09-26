@@ -32,11 +32,11 @@ export default () => {
 	/* ====================================================================== */
 
 	const $controlContainer = $('div', { 
-		class: `${prefix}-control`
+		class: `${prefix}-control empty-padding`
 	});
 
 	const $dropdown = $('div', {
-		class: `${prefix}-prevent-dropdown dropdown padding-right-half padding-left-half`
+		class: 'dropdown padding-right-half padding-left-half'
 	});
 
 	$controlContainer.append($dropdown);
@@ -63,7 +63,7 @@ export default () => {
 	/* ====================================================================== */
 
 	const $target = $('div', { class: prefix },
-		$control, $content
+		$control
 	);
 
 	/* Apps: Helper Functions for Update
@@ -74,7 +74,7 @@ export default () => {
 
 		let listItem = $("li", {
 			alt: "",
-			class: `${prefix}-prevent-dropdown block link-off-black appLinkContainer`,
+			class: `${prefix}-prevent-dropdown link-off-black appLinkContainer`,
 			role: "menuitem"
 		});
 
@@ -110,6 +110,8 @@ export default () => {
 	/* ====================================================================== */
 
 	$target.addEventListener('header:update:apps', ({ detail }) => {
+		$target.appendChild($content);
+		$control.className = `${prefix}-control`;
 
 		$($control, { aria: { label: detail.label } });
 
@@ -119,7 +121,7 @@ export default () => {
 		// App Icons
 
 		const $topAppContainer = $("ul", {
-			class: `${prefix}-prevent-dropdown block-group appContainer`,
+			class: `${prefix}-prevent-dropdown appContainer`,
 			role: "menu"
 		});
 

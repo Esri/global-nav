@@ -24,6 +24,10 @@
 	padding: 16px 12px 8px 10px;
 }
 
+.esri-header-apps .empty-padding {
+	padding: 0 1px 25px 0;
+}
+
 .esri-header-apps-control:hover {
 	box-shadow: inset 0 -3px 0 0 rgba(0, 121, 193, .5);
 }
@@ -33,29 +37,6 @@
 }
 
 /* Calcite Styles */
-
-.esri-header-apps .block {
-	box-sizing: border-box;
-	display: inline-block;
-	float: none;
-	font-family: "Avenir Next W01", "Avenir Next W00", "Avenir Next", "Avenir", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
-	letter-spacing: normal;
-	moz-box-sizing: border-box;
-	padding-left: .5rem;
-	padding-right: .5rem;
-	position: relative;
-	text-align: left;
-	vertical-align: top;
-}
-
-.esri-header-apps .block-group {
-	display: block;
-	font-family: monospace;
-	letter-spacing: -.65em;
-	margin-left: -.5rem;
-	margin-right: -.5rem;
-	text-align: left;
-}
 
 .esri-header-apps .dropdown {
 	display: inline-block;
@@ -147,6 +128,7 @@ html[dir="rtl"] .dropdown-menu.dropdown-right {
 	margin-bottom: 0; /* Vertical space between app rows */
 	margin-left: 0; /* space between each app icon */
 	max-width: 92px; /* control long app labels */
+	min-width: 92px;
 	padding-bottom: 8px;
 	padding-top: 8px;
 }
@@ -218,12 +200,16 @@ html[dir="rtl"] .dropdown-menu.dropdown-right {
 }
 
 .esri-header-apps .appContainer {
+	display: flex;
+	flex-direction: row;
+	list-style: none;
 	margin: 0 auto;
 	max-height: 556px;
 	max-width: 700px;
 	overflow: auto;
 	overflow-x: hidden;
 	padding: 0;
+	text-align: left;
 }
 
 .esri-header-apps .appIconSvgText {
