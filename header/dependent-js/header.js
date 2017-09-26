@@ -33,7 +33,7 @@ export default (data) => {
 	const $account = createAccount();
 	const $menus   = createMenus();
 	const $search  = createSearch();
-  const $apps    = createApps();
+	const $apps    = createApps();
 
 	const $client  = $('div', { class: 'esri-header-client' },
 		$account
