@@ -71,8 +71,8 @@ gulp.task('dist:js', () => opts.paths.js ? [].concat(opts.paths.js).map(
 			{
 				entry: jsPath,
 				format: opts.jsModuleFormat,
-				moduleName: opts.jsModuleName,
-				sourceMap: true
+				name: opts.jsModuleName,
+				sourcemap: true
 			},
 			opts.rollupConfig,
 			{
