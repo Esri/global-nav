@@ -396,14 +396,6 @@
 	}
 }
 
-.esri-header-menus-subitem--featured img {
-	opacity: .8;
-}
-
-.esri-header-menus-subitem--featured:hover img {
-	opacity: 1;
-}
-
 .esri-header-menus-sublink {
 	@apply --unset-a;
 
