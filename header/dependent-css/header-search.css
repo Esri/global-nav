@@ -9,7 +9,6 @@
 	@apply --unset-button;
 	@apply --menu-link-styles;
 
-	cursor: pointer;
 	display: block;
 }
 
@@ -29,14 +28,6 @@
 	@nest :hover > &, :focus > &, [aria-expanded="true"] > & {
 		fill: var(--mono-0);
 	}
-}
-
-.esri-header-search-control img {
-	opacity: .8;
-}
-
-.esri-header-search-control:hover img {
-	opacity: 1;
 }
 
 /* Global Header Search: Content

@@ -16,14 +16,6 @@
 	vertical-align: top;
 }
 
-.esri-footer-brand-link img {
-	opacity: .8;
-}
-
-.esri-footer-brand-link:hover img {
-	opacity: 1;
-}
-
 .esri-footer-brand-image {
 	display: block;
 	fill: #6e6e6e;

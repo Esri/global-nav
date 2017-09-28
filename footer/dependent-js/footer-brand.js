@@ -1,31 +1,27 @@
 /* Global Footer
 /* ========================================================================== */
 
-import { $assign as $, $replaceAll } from 'esri-global-shared';
+import { $assign as $ } from 'esri-global-shared';
 
 // Create branding and social sections
-export default (data, prefix) => {
-
-	const $target = $('a', { class: `${prefix}-brand-link`, href: data.href, aria: { label: data.label } });
-	if (typeof data.path === 'string') {
-		const $img = $('img', {src: data.path, class: `${prefix}-brand-image`});
-		$target.appendChild($img);
-	} else {
-		const $targetImage = $(
+export default (data, prefix) => $('div', { class: `${prefix}-brand` },
+	$('a',
+		{
+			class: `${prefix}-brand-link`,
+			href: data.href,
+			aria: { label: data.label }
+		},
+		$(
 			document.createElementNS('http://www.w3.org/2000/svg', 'svg'),
-			{class: `${prefix}-image`, viewBox: `0 0 114 114`, width: 114, height: 114, role: 'presentation' }
-		);
-		$replaceAll($targetImage,
-			...data.path.map(
-				(d) => $(
-					document.createElementNS('http://www.w3.org/2000/svg', 'path'),
-					{ d }
-				)
+			{
+				class: `${prefix}-brand-image`,
+				width: '114', height: '114', viewBox: data.viewBox,
+				role: 'presentation'
+			},
+			$(
+				document.createElementNS('http://www.w3.org/2000/svg', 'path'),
+				{ d: data.path }
 			)
-		);
-		$target.appendChild($targetImage);
-	}
-	return $target;
-}
-
-
+		)
+	)
+);

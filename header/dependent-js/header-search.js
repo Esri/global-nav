@@ -14,11 +14,17 @@ export default () => {
 	/* Search: Control
 	/* ====================================================================== */
 
+	const $controlImage = $(
+		document.createElementNS('http://www.w3.org/2000/svg', 'svg'),
+		{ class: `${prefix}-image`, id: `${prefix}-image` }
+	);
+
 	const $control = $('button',
 		{
 			class: `${prefix}-control`, id: `${prefix}-control`,
 			aria: { expanded: false, controls: `${prefix}-content` }
-		}
+		},
+		$controlImage
 	);
 
 	$control.addEventListener('click', (event) => {
@@ -56,13 +62,12 @@ export default () => {
 		$($control, { aria: { label: detail.label } });
 
 		if ('string' === typeof detail.image) {
-			const $img = $('img', {src:detail.image, class: `${prefix}-image`, id: `${prefix}-image`});
-			$control.appendChild($img);
-		} else {
-			const $controlImage = $(
-				document.createElementNS('http://www.w3.org/2000/svg', 'svg'),
-				{ class: `${prefix}-image`, id: `${prefix}-image` }
+			$controlImage.removeAttribute('viewBox');
+
+			$replaceAll($controlImage,
+				$('use', { 'href': detail.image })
 			);
+		} else {
 			$replaceAll($controlImage,
 				...detail.image.map(
 					(d) => $(
@@ -71,7 +76,6 @@ export default () => {
 					)
 				)
 			);
-			$control.appendChild($controlImage);
 		}
 
 		if (detail.dialog) {
