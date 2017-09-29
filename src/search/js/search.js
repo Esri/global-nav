@@ -1,9 +1,10 @@
-import { $assign as $, $dispatch } from '../../shared/shared';
+import { $assign as $, $dispatch } from '../../shared/js/shared';
 
 /* Search
 /* ========================================================================== */
 
 export default (data) => {
+	alert('search');
 	/* Elements
 	/* ====================================================================== */
 

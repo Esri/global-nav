@@ -1,57 +1,49 @@
 {
   "name": "esri-global-nav",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A centralized microapp for navigation",
-  "author": "Jonathan Neal <jonathantneal@hotmail.com>",
+  "author": "Esri Web Applications <webapps@esri.com>",
   "license": "Apache-2.0",
   "repository": "Esri/global-nav",
   "homepage": "https://github.com/Esri/global-nav#readme",
   "bugs": "https://github.com/Esri/global-nav/issues",
   "main": "header/header.js",
-  "files": [
-    "footer",
-    "header",
-    "language",
-    "search",
-    "shared"
-  ],
   "scripts": {
     "clean": "git clean -X -d -f",
-    "start": "gulp --gulpfile node_modules/gulp-config-dev --cwd",
-    "test": "echo 'Running tests...'; npm run test:js && npm run test:css",
-    "test:css": "stylelint {footer,header,language,search,shared}/*.css {footer,header,shared}/dependent-css/*.css --syntax scss",
-    "test:js": "eslint {footer,header,language,search,shared}/*.js **/dependent-js/*.js --cache --ignore-pattern .gitignore"
+    "start": "gulp",
+    "build": "gulp build",
+    "release": "",
+    "deploy": ""
   },
-  "dependencies": {
-    "domose": "^0.5.0"
-  },
+  "dependencies": {},
   "devDependencies": {
-    "eslint": "^4.4.1",
-    "eslint-config-dev": "^2.0.0",
-    "gulp-config-dev": "^3.13.0",
-    "pre-commit": "^1.2.2",
-    "stylelint": "^8.0.0",
-    "stylelint-config-dev": "^2.0.0"
+    "babel-core": "^6.26.0",
+    "babel-plugin-external-helpers": "^6.22.0",
+    "babel-preset-env": "^1.6.0",
+    "domose": "^0.5.0",
+    "eslint": "^4.8.0",
+    "gulp": "^3.9.1",
+    "require-dir": "^0.3.2",
+    "rollup": "^0.50.0",
+    "rollup-plugin-babel": "^3.0.2",
+    "rollup-plugin-commonjs": "^8.2.1",
+    "rollup-plugin-json": "^2.3.0",
+    "rollup-plugin-node-resolve": "^3.0.0",
+    "rollup-plugin-uglify": "^2.0.1"
   },
-  "browserslist": [
-    "ie 11",
-    "last 2 android versions",
-    "last 2 chrome versions",
-    "last 2 edge versions",
-    "last 2 firefox versions",
-    "last 2 ios versions",
-    "last 2 safari versions"
-  ],
   "eslintConfig": {
     "extends": "dev"
   },
   "stylelint": {
     "extends": "stylelint-config-dev"
   },
-  "gulpConfig": {
-    "html": false,
-    "css": false,
-    "js": false
-  },
-  "private": true
+  "gulp_config": {
+    "server_port": 8080,
+    "src_paths": [
+      "./header",
+      "./footer"
+    ],
+    "build_path": "./_dist",
+    "build_name": "esri-global-nav"
+  }
 }

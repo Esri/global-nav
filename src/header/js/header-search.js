@@ -1,9 +1,8 @@
 /* Tooling
 /* ========================================================================== */
 
-import { $assign as $, $dispatch, $replaceAll } from '../../shared/shared';
-
-import esriSearch from '../../search/search';
+import { $assign as $, $dispatch, $replaceAll } from '../../shared/js/shared';
+import esriSearch from '../../search/js/search';
 
 /* Search
 /* ========================================================================== */
@@ -11,6 +10,7 @@ import esriSearch from '../../search/search';
 const prefix = 'esri-header-search';
 
 export default () => {
+	alert('header-search');
 	/* Search: Control
 	/* ====================================================================== */
 

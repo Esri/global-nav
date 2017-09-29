@@ -1,7 +1,7 @@
 /* Tooling
 /* ========================================================================== */
 
-import { $assign as $, $dispatch, $replaceAll } from '../../shared/shared';
+import { $assign as $, $dispatch, $replaceAll } from '../../shared/js/shared';
 
 /* Brand
 /* ========================================================================== */
@@ -9,6 +9,7 @@ import { $assign as $, $dispatch, $replaceAll } from '../../shared/shared';
 const prefix = 'esri-header-brand';
 
 export default () => {
+	alert('header-brand');
 	/* Brand: Image
 	/* ====================================================================== */
 
