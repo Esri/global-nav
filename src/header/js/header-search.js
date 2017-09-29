@@ -1,9 +1,9 @@
 /* Tooling
 /* ========================================================================== */
 
-import { $assign as $, $dispatch, $replaceAll } from '../../shared/shared';
+import { $assign as $, $dispatch, $replaceAll } from '../../shared/js/shared';
 
-import esriSearch from '../../search/search';
+import esriSearch from '../../search/js/search';
 
 /* Search
 /* ========================================================================== */

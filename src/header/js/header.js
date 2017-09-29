@@ -1,4 +1,4 @@
-import { $assign as $, $dispatch, $enableFocusRing, $replaceAll } from '../../shared/shared';
+import { $assign as $, $dispatch, $enableFocusRing, $replaceAll } from '../../shared/js/shared';
 
 import createAccount from './header-account';
 import createBrand   from './header-brand';

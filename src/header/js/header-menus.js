@@ -1,7 +1,7 @@
 /* Tooling
 /* ========================================================================== */
 
-import { $assign as $, $dispatch, $replaceAll } from '../../shared/shared';
+import { $assign as $, $dispatch, $replaceAll } from '../../shared/js/shared';
 
 /* Menus
 /* ========================================================================== */

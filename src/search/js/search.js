@@ -1,4 +1,4 @@
-import { $assign as $, $dispatch } from '../../shared/shared';
+import { $assign as $, $dispatch } from '../../shared/js/shared';
 
 /* Search
 /* ========================================================================== */
