@@ -9,6 +9,7 @@ import createSearch  from './header-search';
 /* ====================================================================== */
 
 export default (data) => {
+	alert('header');
 	let viewportIsSmall;
 	let viewportIsSmallMedium;
 

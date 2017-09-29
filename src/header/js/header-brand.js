@@ -9,6 +9,7 @@ import { $assign as $, $dispatch, $replaceAll } from '../../shared/js/shared';
 const prefix = 'esri-header-brand';
 
 export default () => {
+	alert('header-brand');
 	/* Brand: Image
 	/* ====================================================================== */
 

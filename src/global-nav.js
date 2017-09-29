@@ -1,3 +1,3 @@
-import create from '../header/dependent-js/header';
+import createHeader from './header/js/header';
 
-create();
+const header = createHeader();

@@ -14,7 +14,7 @@ const jsGlob = pkg.gulp_config.src_paths.map((s_path) => `${s_path}/**/*.js`);
 
 function compileJs() {
 	rollup.rollup({
-		input: './src/header/js/header.js',
+		input: './src/global-nav.js',
 		plugins: [
 			rollup_plugin_json(),
 			rollup_plugin_node_resolve(),
@@ -34,7 +34,7 @@ function compileJs() {
 						}
 					}]]
 			}),
-			rollup_plugin_uglify(true)
+			//rollup_plugin_uglify(false)
 		]
 	}).then((result) => {
 		result.write({
