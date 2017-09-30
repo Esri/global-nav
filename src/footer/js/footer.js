@@ -1,4 +1,4 @@
-import { $assign as $, $dispatch, $enableFocusRing } from 'esri-global-shared';
+import { $assign as $, $dispatch, $enableFocusRing } from '../../shared/js/shared';
 
 import brand from './footer-brand';
 import language from './footer-language';
@@ -10,6 +10,7 @@ import social from './footer-social';
 /* ========================================================================== */
 
 export default (data) => {
+	alert('footer');
 	const prefix = data.prefix || 'esri-footer';
 
 	/* Footer Components

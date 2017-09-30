@@ -1,14 +1,15 @@
 /* Global Footer: Tooling
 /* ========================================================================== */
 
-import { $assign as $, $dispatch } from 'esri-global-shared';
+import { $assign as $, $dispatch } from '../../shared/js/shared';
 
-import languageDialog from 'esri-global-language';
+import languageDialog from './language';
 
 /* Global Footer
 /* ========================================================================== */
 
 export default (data, prefix) => {
+	alert('footer-language');
 	// Language Selection Button
 	const $labelText = document.createTextNode(data.buttonLabel);
 	const $control = $('button', { class: `${prefix}-language-control`, ariaDescribedby: `${prefix}-language` }, $labelText);

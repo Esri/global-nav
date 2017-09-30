@@ -1,9 +1,10 @@
-import { $assign as $ } from 'esri-global-shared';
+import { $assign as $ } from '../../shared/js/shared';
 
 /* Language
 /* ========================================================================== */
 
 export default (data) => {
+	alert('language');
 	const $choice = $('select',
 		{
 			class: `${data.prefix}-choice`,

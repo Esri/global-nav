@@ -1,7 +1,7 @@
 /* Global Footer
 /* ========================================================================== */
 
-import { $assign as $ } from 'esri-global-shared';
+import { $assign as $ } from '../../shared/js/shared';
 
 // Create branding and social sections
 export default (data, prefix) => $('div', { class: `${prefix}-brand` },

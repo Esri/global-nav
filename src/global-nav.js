@@ -1,3 +1,7 @@
 import createHeader from './header/js/header';
+import createFooter from './footer/js/footer';
 
-const header = createHeader();
+export default {
+	createHeader,
+	createFooter
+};

@@ -1,10 +1,11 @@
 /* Global Footer
 /* ========================================================================== */
 
-import { $assign as $, $dispatch } from 'esri-global-shared';
+import { $assign as $, $dispatch } from '../../shared/js/shared';
 
 // Create navigation
 export default (data, prefix) => {
+	alert('menu');
 	// ...
 	const media = matchMedia('(max-width: 719px)');
 
