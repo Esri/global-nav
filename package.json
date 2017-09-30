@@ -7,7 +7,7 @@
   "repository": "Esri/global-nav",
   "homepage": "https://github.com/Esri/global-nav#readme",
   "bugs": "https://github.com/Esri/global-nav/issues",
-  "main": "src/global-nav.js",
+  "main": "src/esri-global-nav.js",
   "scripts": {
     "clean": "git clean -X -d -f",
     "start": "gulp",
@@ -20,6 +20,7 @@
     "babel-core": "^6.26.0",
     "babel-plugin-external-helpers": "^6.22.0",
     "babel-preset-env": "^1.6.0",
+    "browser-sync": "^2.18.13",
     "domose": "^0.5.0",
     "eslint": "^4.8.0",
     "gulp": "^3.9.1",
