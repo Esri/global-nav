@@ -23,6 +23,7 @@ gulp.task('copy-static-files', () => {
 
 gulp.task('watch-static-files', () => {
 	console.log('watching Static Files...');
+	copyStaticFiles(staticGlob);
 	watch(staticGlob, (modFile) => {
 		copyStaticFiles([modFile.path]);
 	});

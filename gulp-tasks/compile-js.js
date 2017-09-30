@@ -78,7 +78,7 @@ gulp.task('compile-js', () => {
 
 gulp.task('watch-js', () => {
 	console.log('watching js...');
-
+	compileJs();
 	const jsGlob = `${pkg.gulp_config.src_path}/**/*.js`;
 	watch(jsGlob, () => {
 		compileJs();
