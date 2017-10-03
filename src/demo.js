@@ -328,7 +328,7 @@ document.addEventListener("DOMContentLoaded", () => {
 				}
 			}
 		},
-		footer : {
+		footer: {
 			label: 'Esri',
 			brand: {
 				label: 'Esri: The Science of Where',
@@ -577,13 +577,5 @@ document.addEventListener("DOMContentLoaded", () => {
 		}
 	};
 
-
-	const $esriHeader = esriGlobalNav.createHeader(menuData.header);
-	const $headerBarrier = document.querySelector('.esri-header-barrier');
-	$headerBarrier.appendChild($esriHeader);
-
-	const $esriFooter = esriGlobalNav.createFooter(menuData.footer);
-	const $footerBarrier = document.querySelector('.esri-footer-barrier');
-	$footerBarrier.appendChild($esriFooter);
-
+	esriGlobalNav.create({headerElm: '.esri-header-barrier', footerElm: '.esri-footer-barrier', menuData});
 });
