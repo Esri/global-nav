@@ -1,7 +1,7 @@
 /* Global Footer
 /* ========================================================================== */
 
-import { $assign as $, $dispatch } from '../../shared/js/shared';
+import {$assign as $, $dispatch} from '../../shared/js/shared';
 
 // Create navigation
 export default (data, prefix) => {
@@ -14,7 +14,7 @@ export default (data, prefix) => {
 
 	// Menu Items
 	const links = data.menu.map(
-		(item, index) => $('li', { class: `${prefix}-menu-item`, id: `${prefix}-menu-link--${index}` },
+		(item, index) => $('li', {class: `${prefix}-menu-item`, id: `${prefix}-menu-link--${index}`},
 			$('span',
 				{
 					class: `${prefix}-menu-link`,
@@ -26,7 +26,7 @@ export default (data, prefix) => {
 			$('nav',
 				{
 					class: `${prefix}-menu--sub`, id: `${prefix}-menu--sub--${index}`,
-					aria: { labelledby: `${prefix}-menu-link--${index}` }
+					aria: {labelledby: `${prefix}-menu-link--${index}`}
 				},
 				$('ul',
 					{
@@ -35,8 +35,8 @@ export default (data, prefix) => {
 					},
 					// Submenu Items
 					...item.menu.map(
-						(subitem) => $('li', { class: `${prefix}-menu-item--sub` },
-							$('a', { class: `${prefix}-menu-link--sub`, href: subitem.href },
+						(subitem) => $('li', {class: `${prefix}-menu-item--sub`},
+							$('a', {class: `${prefix}-menu-link--sub`, href: subitem.href},
 								subitem.label
 							)
 						)
@@ -50,7 +50,7 @@ export default (data, prefix) => {
 	const $target = $('nav',
 		{
 			class: `${prefix}-menu`,
-			aria: { label: data.label }
+			aria: {label: data.label}
 		},
 		$('ul',
 			{
@@ -86,13 +86,13 @@ export default (data, prefix) => {
 
 		$(link, {
 			tabindex: 0,
-			role: 'button', aria: { expanded: !isVisible, haspopup: !isVisible }
+			role: 'button', aria: {expanded: !isVisible, haspopup: !isVisible}
 		});
 
 		link.addEventListener('click', onclick);
 		link.addEventListener('keypress', onkeypress);
 
-		$(link.nextElementSibling, { aria: { hidden: true } });
+		$(link.nextElementSibling, {aria: {hidden: true}});
 	}
 
 	// ...
@@ -115,14 +115,14 @@ export default (data, prefix) => {
 		const nextTarget = currentTarget.nextElementSibling;
 		const isVisible = 'true' !== nextTarget.getAttribute('aria-hidden');
 
-		$(currentTarget, { aria: { expanded: !isVisible, haspopup: !isVisible } });
+		$(currentTarget, {aria: {expanded: !isVisible, haspopup: !isVisible}});
 
-		$(nextTarget, { aria: { hidden: isVisible } });
+		$(nextTarget, {aria: {hidden: isVisible}});
 
 		if (isVisible) {
-			$(currentTarget, { aria: { controls: 0 } });
+			$(currentTarget, {aria: {controls: 0}});
 		} else {
-			$(currentTarget, { aria: { controls: nextTarget.id } });
+			$(currentTarget, {aria: {controls: nextTarget.id}});
 		}
 	}
 

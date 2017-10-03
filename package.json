@@ -13,7 +13,10 @@
     "start": "gulp",
     "build": "gulp build",
     "release": "gh-release",
-    "deploy": "npm run build && gh-pages -d dist -o upstream"
+    "deploy": "npm run build && gh-pages -d dist -o upstream",
+    "test": "echo 'Running tests...'; npm run test:js",
+    "test:css": "stylelint src/**/*.pcss src/**/*.scss --syntax scss",
+    "test:js": "eslint src/**/*.js --cache --ignore-pattern .gitignore"
   },
   "dependencies": {},
   "devDependencies": {
@@ -31,6 +34,7 @@
     "gh-release": "^3.1.1",
     "gulp": "^3.9.1",
     "gulp-cssnano": "^2.1.2",
+    "gulp-eslint": "^4.0.0",
     "gulp-ext": "^1.0.0",
     "gulp-logger": "0.0.2",
     "gulp-postcss": "^7.0.0",
@@ -67,6 +71,7 @@
     "postcss-selector-not": "^3.0.1",
     "postcss-short": "^4.1.0",
     "postcss-svg": "^2.1.0",
+    "pre-commit": "^1.2.2",
     "require-dir": "^0.3.2",
     "rollup": "^0.50.0",
     "rollup-plugin-babel": "^3.0.2",

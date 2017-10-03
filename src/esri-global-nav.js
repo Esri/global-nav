@@ -10,7 +10,7 @@ function buildHeader({targetElm, menuData}) {
 	$headerBarrier.appendChild($esriHeader);
 }
 
-function buildFooter({targetElm, menuData}){
+function buildFooter({targetElm, menuData}) {
 	const $esriFooter = createFooter(menuData.footer);
 	const $footerBarrier = document.querySelector(targetElm);
 	$footerBarrier.appendChild($esriFooter);

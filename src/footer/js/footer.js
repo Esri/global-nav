@@ -1,4 +1,4 @@
-import { $assign as $, $dispatch, $enableFocusRing } from '../../shared/js/shared';
+import {$assign as $, $dispatch, $enableFocusRing} from '../../shared/js/shared';
 
 import brand from './footer-brand';
 import language from './footer-language';
@@ -15,29 +15,29 @@ export default (data) => {
 	/* Footer Components
 	/* ====================================================================== */
 
-	const $footerBrand    = brand(data.brand, prefix);
-	const $footerInfo     = info(data.info, prefix);
+	const $footerBrand = brand(data.brand, prefix);
+	const $footerInfo = info(data.info, prefix);
 	const $footerLanguage = language(data.language, prefix);
-	const $footerMenu     = menu(data.menu, prefix);
-	const $footerSocial   = social(data.social, prefix);
+	const $footerMenu = menu(data.menu, prefix);
+	const $footerSocial = social(data.social, prefix);
 
 	const $footer = $('footer',
 		{
 			class: prefix,
-			aria: { label: data.label }
+			aria: {label: data.label}
 		},
 
 		/* Append Footer Components
 		/* ================================================================== */
 
-		$('div', { class: `${prefix}-section--1` },
+		$('div', {class: `${prefix}-section--1`},
 			$footerBrand,
 			$footerSocial
 		),
-		$('div', { class: `${prefix}-section--2` },
+		$('div', {class: `${prefix}-section--2`},
 			$footerMenu
 		),
-		$('div', { class: `${prefix}-section--3` },
+		$('div', {class: `${prefix}-section--3`},
 			$footerLanguage,
 			$footerInfo
 		)
@@ -68,7 +68,7 @@ export default (data) => {
 	/* On Footer Update
 	/* ====================================================================== */
 
-	$footer.addEventListener('footer:update', function ({ detail }) {
+	$footer.addEventListener('footer:update', ({detail}) => {
 		if (detail.brand) {
 			$dispatch($footerBrand, 'footer:update:brand', detail.brand);
 		}
@@ -96,7 +96,7 @@ export default (data) => {
 		function onscroll() {
 			const hidden = 0 > window.pageYOffset;
 
-			$($footer, { data: { hidden } });
+			$($footer, {data: {hidden}});
 		}
 	});
 

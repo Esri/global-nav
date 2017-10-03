@@ -1,20 +1,20 @@
 /* Global Footer
 /* ========================================================================== */
 
-import { $assign as $ } from '../../shared/js/shared';
+import {$assign as $} from '../../shared/js/shared';
 
 // Create branding and social sections
 export default (data, prefix) => $('nav',
-	{ class: `${prefix}-social`, aria: { label: data.label } },
-	$('ul', { class: `${prefix}-social-list`, role: 'presentation' },
+	{class: `${prefix}-social`, aria: {label: data.label}},
+	$('ul', {class: `${prefix}-social-list`, role: 'presentation'},
 		data.menu.reduce(
 			($fragment, item) => $($fragment,
-				$('li', { class: `${prefix}-social-item` },
+				$('li', {class: `${prefix}-social-item`},
 					$('a',
 						{
 							class: `${prefix}-social-link -${item.label.toLowerCase()}`,
 							href: item.href,
-							aria: { label: item.label }
+							aria: {label: item.label}
 						},
 						$(
 							document.createElementNS('http://www.w3.org/2000/svg', 'svg'),
@@ -25,7 +25,7 @@ export default (data, prefix) => $('nav',
 							},
 							$(
 								document.createElementNS('http://www.w3.org/2000/svg', 'path'),
-								{ d: item.image.path }
+								{d: item.image.path}
 							)
 						)
 					)

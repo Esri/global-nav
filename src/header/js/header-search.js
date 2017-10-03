@@ -1,7 +1,7 @@
 /* Tooling
 /* ========================================================================== */
 
-import { $assign as $, $dispatch, $replaceAll } from '../../shared/js/shared';
+import {$assign as $, $dispatch, $replaceAll} from '../../shared/js/shared';
 
 import esriSearch from '../../search/js/search';
 
@@ -16,26 +16,26 @@ export default () => {
 
 	const $controlImage = $(
 		document.createElementNS('http://www.w3.org/2000/svg', 'svg'),
-		{ class: `${prefix}-image`, id: `${prefix}-image` }
+		{class: `${prefix}-image`, id: `${prefix}-image`}
 	);
 
 	const $control = $('button',
 		{
 			class: `${prefix}-control`, id: `${prefix}-control`,
-			aria: { expanded: false, controls: `${prefix}-content` }
+			aria: {expanded: false, controls: `${prefix}-content`}
 		},
 		$controlImage
 	);
 
 	$control.addEventListener('click', (event) => {
-		$dispatch($control, 'header:click:search', { event });
+		$dispatch($control, 'header:click:search', {event});
 
 		$dispatch($control, 'header:menu:toggle', {
 			control: $control,
 			content: $content,
-			state:   'search',
-			target:  $target,
-			type:    'search-toggle',
+			state: 'search',
+			target: $target,
+			type: 'search-toggle',
 			event
 		});
 	});
@@ -45,34 +45,34 @@ export default () => {
 
 	const $content = $('div', {
 		class: `${prefix}-content`, id: `${prefix}-content`,
-		aria: { expanded: false, labelledby: `${prefix}-control` }
+		aria: {expanded: false, labelledby: `${prefix}-control`}
 	});
 
 	/* Search: Target
 	/* ====================================================================== */
 
-	const $target = $('div', { class: prefix },
+	const $target = $('div', {class: prefix},
 		$control, $content
 	);
 
 	/* Search: On Update
 	/* ====================================================================== */
 
-	$target.addEventListener('header:update:search', ({ detail }) => {
-		$($control, { aria: { label: detail.label } });
+	$target.addEventListener('header:update:search', ({detail}) => {
+		$($control, {aria: {label: detail.label}});
 
 		if ('string' === typeof detail.image) {
 			$controlImage.removeAttribute('viewBox');
 
 			$replaceAll($controlImage,
-				$('use', { 'href': detail.image })
+				$('use', {'href': detail.image})
 			);
 		} else {
 			$replaceAll($controlImage,
 				...detail.image.map(
 					(d) => $(
 						document.createElementNS('http://www.w3.org/2000/svg', 'path'),
-						{ d }
+						{d}
 					)
 				)
 			);
@@ -84,9 +84,9 @@ export default () => {
 			const $dialog = esriSearch(detail.dialog);
 
 			const $dialogCancelButton = $('button', {
-				class: 'esri-header-search-dialog-cancel',
-				type: 'reset'
-			},
+					class: 'esri-header-search-dialog-cancel',
+					type: 'reset'
+				},
 				$('span',
 					detail.dialog.cancelLabel
 				)
@@ -96,8 +96,8 @@ export default () => {
 				$dispatch($control, 'header:menu:close', {
 					control: $control,
 					content: $content,
-					state:   'search',
-					type:    'search-close',
+					state: 'search',
+					type: 'search-close',
 					event
 				});
 			});
@@ -112,7 +112,7 @@ export default () => {
 
 			$control.addEventListener('click', (event) => {
 				if ('true' === $control.getAttribute('aria-expanded')) {
-					$dispatch($dialog, `${detail.dialog.prefix}:focus`, { event });
+					$dispatch($dialog, `${detail.dialog.prefix}:focus`, {event});
 				}
 			});
 		}

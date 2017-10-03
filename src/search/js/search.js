@@ -1,4 +1,4 @@
-import { $assign as $, $dispatch } from '../../shared/js/shared';
+import {$assign as $, $dispatch} from '../../shared/js/shared';
 
 /* Search
 /* ========================================================================== */
@@ -22,19 +22,19 @@ export default (data) => {
 
 	const $measureText = $('div', {
 		class: `${data.prefix}-measure-text`,
-		aria: { hidden: true }
+		aria: {hidden: true}
 	}, $measureTextNode);
 
-	const $measure = $('div', { class: `${data.prefix}-measure` }, $measureText);
+	const $measure = $('div', {class: `${data.prefix}-measure`}, $measureText);
 
 	const $submit = $('button', {
 		class: `${data.prefix}-submit`, type: 'submit',
-		aria: { label: data.submitLabel }
+		aria: {label: data.submitLabel}
 	});
 
 	const $search = $('form', {
 		class: `${data.prefix}-form`, action: data.action,
-		role: 'search', aria: { label: data.label }
+		role: 'search', aria: {label: data.label}
 	}, $label, $control, $measure, $submit);
 
 	/* Focus Event
@@ -83,8 +83,8 @@ export default (data) => {
 		} else if (!controlIsFilled && newControlValue) {
 			controlIsFilled = true;
 
-			$($label, { data: { filled: '' } });
-			$($submit, { data: { filled: '' } });
+			$($label, {data: {filled: ''}});
+			$($submit, {data: {filled: ''}});
 		}
 
 		/* Update Measure UI

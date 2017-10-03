@@ -1,4 +1,4 @@
-import { $assign as $ } from '../../shared/js/shared';
+import {$assign as $} from '../../shared/js/shared';
 
 /* Language
 /* ========================================================================== */
@@ -8,18 +8,18 @@ export default (data) => {
 		{
 			class: `${data.prefix}-choice`,
 			autofocus: '',
-			aria: { label: data.optionsLabel }
+			aria: {label: data.optionsLabel}
 		},
 		...data.options.map(
-			(option) => $('option', { value: option.value }, option.label)
+			(option) => $('option', {value: option.value}, option.label)
 		)
 	);
 
 	const $language = $('form', {
-		class: data.prefix,
-		aria: { labelledby: `${data.prefix}-message`, describedby: 'dialog-description' }
-	},
-		$('p', { class: `${data.prefix}-message`, id: `${data.prefix}-message` },
+			class: data.prefix,
+			aria: {labelledby: `${data.prefix}-message`, describedby: 'dialog-description'}
+		},
+		$('p', {class: `${data.prefix}-message`, id: `${data.prefix}-message`},
 			$('strong', data.greetingLabel),
 			' ',
 			data.messageLabel
@@ -28,7 +28,7 @@ export default (data) => {
 		$('button', {
 			class: `${data.prefix}-submit`,
 			type: 'submit',
-			aria: { label: `${ data.submitLabel } ${ data.optionsLabel }` }
+			aria: {label: `${data.submitLabel} ${data.optionsLabel}`}
 		}, data.submitLabel)
 	);
 

@@ -1,7 +1,7 @@
 /* Global Footer: Tooling
 /* ========================================================================== */
 
-import { $assign as $, $dispatch } from '../../shared/js/shared';
+import {$assign as $, $dispatch} from '../../shared/js/shared';
 
 import languageDialog from './language';
 
@@ -11,8 +11,8 @@ import languageDialog from './language';
 export default (data, prefix) => {
 	// Language Selection Button
 	const $labelText = document.createTextNode(data.buttonLabel);
-	const $control = $('button', { class: `${prefix}-language-control`, ariaDescribedby: `${prefix}-language` }, $labelText);
-	const $barrier = $('div', { class: `${prefix}-language` }, $control);
+	const $control = $('button', {class: `${prefix}-language-control`, ariaDescribedby: `${prefix}-language`}, $labelText);
+	const $barrier = $('div', {class: `${prefix}-language`}, $control);
 
 	$control.addEventListener('click', openDialog);
 
@@ -44,7 +44,7 @@ export default (data, prefix) => {
 		event.preventDefault();
 
 		$($canvas, {
-			aria: { expanded: true }
+			aria: {expanded: true}
 		});
 	}
 
@@ -52,14 +52,14 @@ export default (data, prefix) => {
 		event.preventDefault();
 
 		$($canvas, {
-			aria: { expanded: false }
+			aria: {expanded: false}
 		});
 	}
 
 	// ...
 	const $canvas = $('div', {
 		class: `${prefix}-language-dialog-barrier`,
-		aria: { expanded: false }
+		aria: {expanded: false}
 	}, $languageDialog, $cancelCanvas);
 
 	// ...
@@ -68,14 +68,14 @@ export default (data, prefix) => {
 	});
 
 	// ...
-	$barrier.addEventListener('footer:update:language', ({ detail }) => {
+	$barrier.addEventListener('footer:update:language', ({detail}) => {
 		$labelText.nodeValue = detail.buttonLabel;
 
 		$barrier.ownerDocument.body.appendChild(
 			$canvas
 		);
 
-		$barrier.ownerDocument.defaultView.addEventListener('keydown', ({ keyCode } = event) => {
+		$barrier.ownerDocument.defaultView.addEventListener('keydown', ({keyCode} = event) => {
 			if (27 === keyCode) {
 				closeDialog(event);
 			}

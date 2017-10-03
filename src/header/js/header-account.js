@@ -1,7 +1,7 @@
 /* Tooling
 /* ========================================================================== */
 
-import { $assign as $, $dispatch, $replaceAll } from '../../shared/js/shared';
+import {$assign as $, $dispatch, $replaceAll} from '../../shared/js/shared';
 
 /* Account
 /* ========================================================================== */
@@ -9,40 +9,40 @@ import { $assign as $, $dispatch, $replaceAll } from '../../shared/js/shared';
 const prefix = 'esri-header-account';
 
 export default () => {
-	const $target = $('div', { class: prefix });
+	const $target = $('div', {class: prefix});
 
 	/* Account: Control: Signin
 	/* ====================================================================== */
 
 	const $controlSigninText = document.createTextNode('');
-	const $controlSignin = $('button', { class: `${prefix}-control ${prefix}-control--signin` },
+	const $controlSignin = $('button', {class: `${prefix}-control ${prefix}-control--signin`},
 		$controlSigninText
 	);
 
 	// On Click
 	$controlSignin.addEventListener('click', (event) => {
-		$dispatch($controlSignin, 'header:click:signin', { event });
+		$dispatch($controlSignin, 'header:click:signin', {event});
 	});
 
 	/* Account: Control
 	/* ====================================================================== */
 
-	const $controlImage = $('img', { class: `${prefix}-image` });
+	const $controlImage = $('img', {class: `${prefix}-image`});
 
 	const $controlNameText = document.createTextNode('');
-	const $controlName = $('span', { class: `${prefix}-name` },
+	const $controlName = $('span', {class: `${prefix}-name`},
 		$controlNameText
 	);
 
 	const $controlIdText = document.createTextNode('');
-	const $controlId = $('span', { class: `${prefix}-id` },
+	const $controlId = $('span', {class: `${prefix}-id`},
 		$controlIdText
 	);
 
 	const $control = $('button',
 		{
 			class: `${prefix}-control ${prefix}-control--signedin`, id: `${prefix}-control`,
-			aria: { controls: `${prefix}-menu`, expanded: false, haspopup: true }
+			aria: {controls: `${prefix}-menu`, expanded: false, haspopup: true}
 		},
 		$controlImage,
 		$controlName,
@@ -51,15 +51,15 @@ export default () => {
 
 	// On Click
 	$control.addEventListener('click', (event) => {
-		$dispatch($control, 'header:click:account', { event });
+		$dispatch($control, 'header:click:account', {event});
 
 		$dispatch($control, 'header:menu:toggle', {
 			account: true,
 			control: $control,
 			content: $content,
-			state:   'menu',
-			target:  $target,
-			type:    'account-toggle'
+			state: 'menu',
+			target: $target,
+			type: 'account-toggle'
 		});
 	});
 
@@ -68,7 +68,7 @@ export default () => {
 
 	// Toggle
 	const $contentToggleText = document.createTextNode('');
-	const $contentToggle = $('button', { class: `${prefix}-content-toggle` },
+	const $contentToggle = $('button', {class: `${prefix}-content-toggle`},
 		$contentToggleText
 	);
 
@@ -76,26 +76,26 @@ export default () => {
 		$dispatch($contentToggle, 'header:menu:close', {
 			control: $control,
 			content: $content,
-			type:    'account-close'
+			type: 'account-close'
 		});
 	});
 
 	// Image
-	const $contentImage = $('img', { class: `${prefix}-content-image`, role: 'presentation' });
+	const $contentImage = $('img', {class: `${prefix}-content-image`, role: 'presentation'});
 
 	// Info
-	const $contentInfoNameText  = document.createTextNode('');
-	const $contentInfoIdText    = document.createTextNode('');
+	const $contentInfoNameText = document.createTextNode('');
+	const $contentInfoIdText = document.createTextNode('');
 	const $contentInfoGroupText = document.createTextNode('');
-	const $contentInfo = $('div', { class: `${prefix}-content-info` },
+	const $contentInfo = $('div', {class: `${prefix}-content-info`},
 		$contentImage,
-		$('span', { class: `${prefix}-content-name`  },
+		$('span', {class: `${prefix}-content-name`},
 			$contentInfoNameText
 		),
-		$('span', { class: `${prefix}-content-id`    },
+		$('span', {class: `${prefix}-content-id`},
 			$contentInfoIdText
 		),
-		$('span', { class: `${prefix}-content-group` },
+		$('span', {class: `${prefix}-content-group`},
 			$contentInfoGroupText
 		)
 	);
@@ -103,29 +103,29 @@ export default () => {
 	// Menu
 	const $contentMenu = $('ul', {
 		class: `${prefix}-content-menu`,
-		role: 'navigation', aria: { labelledby: `${prefix}-control` }
+		role: 'navigation', aria: {labelledby: `${prefix}-control`}
 	});
 
 	// Switch Control
 	const $contentSigninSwitchText = document.createTextNode('');
-	const $contentSigninSwitch = $('button', { class: `${prefix}-signin-control -switch` },
+	const $contentSigninSwitch = $('button', {class: `${prefix}-signin-control -switch`},
 		$contentSigninSwitchText
 	);
 
 	// Switch Control: On Click
 	$contentSigninSwitch.addEventListener('click', (event) => {
-		$dispatch($contentSigninSwitch, 'header:click:switch', { event });
+		$dispatch($contentSigninSwitch, 'header:click:switch', {event});
 	});
 
 	// Signout Control
 	const $contentSigninSignoutText = document.createTextNode('');
-	const $contentSigninSignout = $('button', { class: `${prefix}-signin-control -logout` },
+	const $contentSigninSignout = $('button', {class: `${prefix}-signin-control -logout`},
 		$contentSigninSignoutText
 	);
 
 	// Signout Control: On Click
 	$contentSigninSignout.addEventListener('click', (event) => {
-		$dispatch($contentSigninSignout, 'header:click:signout', { event });
+		$dispatch($contentSigninSignout, 'header:click:signout', {event});
 	});
 
 	// Signin Menu
@@ -134,10 +134,10 @@ export default () => {
 			class: `${prefix}-signin-menu`,
 			role: 'group'
 		},
-		$('li', { class: `${prefix}-signin-item` },
+		$('li', {class: `${prefix}-signin-item`},
 			$contentSigninSwitch
 		),
-		$('li', { class: `${prefix}-signin-item` },
+		$('li', {class: `${prefix}-signin-item`},
 			$contentSigninSignout
 		)
 	);
@@ -146,7 +146,7 @@ export default () => {
 	const $content = $('div',
 		{
 			class: `${prefix}-menu`, id: `${prefix}-menu`,
-			role: 'group', aria: { expanded: false, hidden: true }
+			role: 'group', aria: {expanded: false, hidden: true}
 		},
 		$contentToggle,
 		$contentInfo,
@@ -157,29 +157,29 @@ export default () => {
 	/* Account: On Update
 	/* ====================================================================== */
 
-	$target.addEventListener('header:update:account', ({ detail }) => {
-		$($control, { aria: { label: detail.label } });
+	$target.addEventListener('header:update:account', ({detail}) => {
+		$($control, {aria: {label: detail.label}});
 
 		// Update the control text
-		$contentToggleText.nodeValue        = detail.label;
-		$controlSigninText.nodeValue        = detail.controls.signin;
-		$contentSigninSwitchText.nodeValue  = detail.controls.switch;
+		$contentToggleText.nodeValue = detail.label;
+		$controlSigninText.nodeValue = detail.controls.signin;
+		$contentSigninSwitchText.nodeValue = detail.controls.switch;
 		$contentSigninSignoutText.nodeValue = detail.controls.signout;
 
 		// If there is a user object
 		if (detail.user) {
 			// Update the account text + image
 			$controlNameText.nodeValue = $contentInfoNameText.nodeValue = detail.user.name;
-			$controlIdText.nodeValue   = $contentInfoIdText.nodeValue   = detail.user.id;
-			$controlImage.src          = $contentImage.src              = detail.user.image;
+			$controlIdText.nodeValue = $contentInfoIdText.nodeValue = detail.user.id;
+			$controlImage.src = $contentImage.src = detail.user.image;
 
 			$contentInfoGroupText.nodeValue = detail.user.group;
 
 			// Update the content menu
 			$replaceAll($contentMenu,
 				...detail.menus.map(
-					(item) => $('li', { class: `${prefix}-content-item` },
-						$('a', { class: `${prefix}-content-link`, href: item.href },
+					(item) => $('li', {class: `${prefix}-content-item`},
+						$('a', {class: `${prefix}-content-link`, href: item.href},
 							item.label
 						)
 					)
@@ -195,4 +195,4 @@ export default () => {
 	});
 
 	return $target;
-}
+};
