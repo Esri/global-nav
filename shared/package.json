@@ -1,8 +1,0 @@
-{
-  "name": "esri-global-shared",
-  "version": "1.0.0",
-  "main": "shared.js",
-  "style": "shared.css",
-  "media": "shared.svg",
-  "private": true
-}

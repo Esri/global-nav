@@ -34,23 +34,13 @@ npm install
 Next, start one of the navigation modules:
 
 ```sh
-# to launch the global navigation header
-npm start header
-
-# to launch the global navigation footer
-npm start footer
-
-# to launch the global navigation search dialog (included in the header)
-npm start search
-
-# to launch the global navigation language switcher (included in the footer)
-npm start language
+# to launch the global navigation 
+npm start 
 ```
 
 ## Modules
 
-[Esri Global Navigation] is composed of 4 modules; [Header], [Footer],
-[Search Dialog], and [Language Switcher].
+[Esri Global Navigation] is composed of 2 modules; [Header], [Footer].
 
 ### [Header]
 
@@ -90,10 +80,6 @@ https://www.apache.org/licenses/LICENSE-2.0, which is also available in the
 repository's [LICENSE.md][lic-url].
 
 [Esri Global Navigation]: https://github.com/Esri/global-nav
-[Header]: https://github.com/Esri/global-nav/tree/master/header
-[Footer]: https://github.com/Esri/global-nav/tree/master/footer
-[Search Dialog]: https://github.com/Esri/global-nav/tree/master/search
-[Language Switcher]: https://github.com/Esri/global-nav/tree/master/language
 
 [cli-url]: https://travis-ci.org/Esri/global-nav
 [cli-img]: https://travis-ci.org/Esri/global-nav.svg?branch=master
