@@ -49,7 +49,7 @@
   "gulp_config": {
     "server_port": 8080,
     "src_path": "./src",
-    "build_path": "./_dist",
+    "build_path": "./dist",
     "build_name": "esri-global-nav"
   }
 }
