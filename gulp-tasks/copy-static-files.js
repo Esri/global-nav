@@ -4,7 +4,7 @@ const logger = require('gulp-logger');
 
 const pkg = require('../package.json');
 
-const staticGlob = ['html', 'gif', 'jpg', 'png', 'json', 'svg'].map((ext)=>`${pkg.gulp_config.src_path}/**/*.${ext}`);
+const staticGlob = ['html', 'css', 'gif', 'jpg', 'png', 'json', 'svg'].map((ext)=>`${pkg.gulp_config.src_path}/**/*.${ext}`);
 
 function copyStaticFiles(staticPaths) {
 	gulp.src(staticPaths, {base: pkg.gulp_config.src_path})

@@ -10,7 +10,6 @@ import social from './footer-social';
 /* ========================================================================== */
 
 export default (data) => {
-	alert('footer');
 	const prefix = data.prefix || 'esri-footer';
 
 	/* Footer Components

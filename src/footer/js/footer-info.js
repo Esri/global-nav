@@ -7,7 +7,6 @@ import { $assign as $ } from '../../shared/js/shared';
 /* ========================================================================== */
 
 export default (data, prefix) => {
-	alert('footer-info');
 	return $('nav', { class: `${prefix}-info`, aria: { label: data.label } },
 		$('ul', { class: `${prefix}-info-list`, role: 'presentation' },
 			...data.menu.map(

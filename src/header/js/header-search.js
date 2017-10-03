@@ -11,7 +11,6 @@ import esriSearch from '../../search/js/search';
 const prefix = 'esri-header-search';
 
 export default () => {
-	alert('header-search');
 	/* Search: Control
 	/* ====================================================================== */
 

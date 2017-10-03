@@ -9,7 +9,6 @@ import languageDialog from './language';
 /* ========================================================================== */
 
 export default (data, prefix) => {
-	alert('footer-language');
 	// Language Selection Button
 	const $labelText = document.createTextNode(data.buttonLabel);
 	const $control = $('button', { class: `${prefix}-language-control`, ariaDescribedby: `${prefix}-language` }, $labelText);

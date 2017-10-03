@@ -1,7 +1,6 @@
 const gulp = require('gulp');
 const logger = require('gulp-logger');
 const watch = require('gulp-watch');
-const rollup = require('rollup');
 const rollup_stream = require('rollup-stream');
 const buffer = require('vinyl-buffer');
 const rename = require('gulp-rename');
@@ -19,8 +18,13 @@ const size = require('gulp-size');
 const pkg = require('../package.json');
 
 function compileJs() {
+	compileJsFile({rootJs: `./${pkg.main}`, saveAs: `${pkg.gulp_config.build_name}.js`});
+	compileJsFile({rootJs: `./${pkg.gulp_config.src_path}/demo.js`, saveAs: 'demo.js'});
+}
+
+function compileJsFile({rootJs, saveAs}) {
 	rollup_stream({
-		input: `./${pkg.main}`,
+		input: rootJs,
 		format: 'iife',
 		name: 'esriGlobalNav',
 		sourcemap: true,
@@ -43,7 +47,7 @@ function compileJs() {
 						}
 					}]]
 			}),
-			//rollup_plugin_uglify(false)
+			rollup_plugin_uglify(false)
 		]
 	}).pipe(
 		source(`./${pkg.main}`)
@@ -58,7 +62,7 @@ function compileJs() {
 			loadMaps: true
 		})
 	).pipe(
-		rename(`${pkg.gulp_config.build_name}.js`)
+		rename(saveAs)
 	).pipe(
 		size({
 			gzip: true,

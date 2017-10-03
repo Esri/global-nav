@@ -9,7 +9,6 @@ import { $assign as $, $dispatch, $replaceAll } from '../../shared/js/shared';
 const prefix = 'esri-header-menus';
 
 export default () => {
-	alert('header-menu');
 	/* Toggle Menu
 	/* ====================================================================== */
 

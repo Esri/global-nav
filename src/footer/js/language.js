@@ -4,7 +4,6 @@ import { $assign as $ } from '../../shared/js/shared';
 /* ========================================================================== */
 
 export default (data) => {
-	alert('language');
 	const $choice = $('select',
 		{
 			class: `${data.prefix}-choice`,

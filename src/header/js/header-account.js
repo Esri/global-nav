@@ -9,7 +9,6 @@ import { $assign as $, $dispatch, $replaceAll } from '../../shared/js/shared';
 const prefix = 'esri-header-account';
 
 export default () => {
-	alert('header-account');
 	const $target = $('div', { class: prefix });
 
 	/* Account: Control: Signin
