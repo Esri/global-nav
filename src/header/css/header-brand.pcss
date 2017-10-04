@@ -1,0 +1,36 @@
+@import "../../shared/css/shared.pcss";
+
+/* Global Header Brand
+/* ========================================================================== */
+
+.esri-header-brand {
+	align-items: center;
+	display: inline-flex;
+
+	@media (--width-s) {
+		margin-inline: auto;
+		padding-inline: 12px;
+	}
+
+	@media (--width-m) {
+		margin-inline-end: auto;
+		padding-inline: 12px;
+	}
+
+	@media (--width-l) {
+		padding-inline: 24px;
+	}
+}
+
+/* Global Header Brand: Image
+/* ========================================================================== */
+
+.esri-header-brand-image {
+	fill: var(--mono-20);
+	height: 30px;
+	max-width: 100%;
+
+	@nest :matches(:hover, :focus) > & {
+		fill: var(--mono-0);
+	}
+}
