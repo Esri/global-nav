@@ -47,10 +47,44 @@ function $enableFocusRing(target) {
 	}, true);
 }
 
+function $renderSvgOrImg({imgDef, imgClass, imgWidth, imgHeight}) {
+	let $img;
+	if (typeof imgDef === 'string') {
+		if (imgDef.indexOf('.svg') === imgDef.length - 4) {
+			$img = $assign(
+				document.createElementNS('http://www.w3.org/2000/svg', 'svg'),
+				{class: imgClass, viewBox: `0 0 ${imgWidth} ${imgHeight}`, width: imgWidth, height: imgHeight, role: 'presentation'}
+			);
+			$fetch(imgDef, (svgContents) => {
+				$img.innerHTML = svgContents;
+			});
+		} else {
+			$img = $assign('img', {
+				src: imgDef,
+				class: imgClass
+			});
+		}
+	} else {
+		$img = $assign(document.createElementNS('http://www.w3.org/2000/svg', 'svg'),
+			imgWidth && imgHeight ? {viewBox: `0 0 ${imgWidth} ${imgHeight}`, width: imgWidth, height: imgHeight, role: 'presentation'} : {},
+			{class: imgClass},
+			$assign(document.createDocumentFragment(),
+				...imgDef.map(
+					(d) => $assign(
+						document.createElementNS('http://www.w3.org/2000/svg', 'path'),
+						{d}
+					)
+				)
+			));
+	}
+	return $img;
+}
+
 export {
 	$assign,
 	$dispatch,
 	$enableFocusRing,
 	$fetch,
-	$replaceAll
+	$replaceAll,
+	$renderSvgOrImg
 };
