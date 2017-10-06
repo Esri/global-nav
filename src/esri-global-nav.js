@@ -1,8 +1,5 @@
-import base from './base/js/base';
 import createHeader from './header/js/header';
 import createFooter from './footer/js/footer';
-
-base.init();
 
 window.esriHeader = {create: createHeader};
 window.esriFooter = {create: createFooter};
