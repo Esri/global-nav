@@ -22,6 +22,7 @@ function compilePostCss() {
 			require('postcss-media-fn')(),
 			require('postcss-custom-media')(),
 			require('postcss-media-minmax')(),
+			require('postcss-nested'),
 			require('postcss-custom-selectors')(),
 			require('postcss-attribute-case-insensitive')(),
 			require('postcss-color-rebeccapurple')(),
