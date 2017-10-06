@@ -47,7 +47,7 @@ export default (data) => {
 		$menus,
 		$search,
 		$lineBreak,
-    $apps,
+		$apps,
 		$client
 	);
 
