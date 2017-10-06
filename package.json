@@ -63,6 +63,7 @@
     "postcss-logical": "^1.0.2",
     "postcss-media-fn": "^3.0.0",
     "postcss-media-minmax": "^3.0.0",
+    "postcss-nested": "^2.1.2",
     "postcss-nesting": "^4.2.1",
     "postcss-partial-import": "^4.1.0",
     "postcss-pseudo-class-any-link": "^4.0.0",
@@ -90,8 +91,7 @@
   },
   "stylelint": {
     "extends": "stylelint-config-dev",
-    "rules":{
-    }
+    "rules": {}
   },
   "gulp_config": {
     "server_port": 8080,
