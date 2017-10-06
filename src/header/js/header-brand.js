@@ -17,17 +17,6 @@ export default () => {
 
 		$($target, {href: detail.href, aria: {label: detail.label}});
 		$target.appendChild($targetImage);
-
-		// $($targetImage, {viewBox: `0 0 ${detail.width} ${detail.height}`, width: `${detail.width}`, height: `${detail.height}`});
-		//
-		// $replaceAll($targetImage,
-		// 	...detail.image.map(
-		// 		(d) => $(
-		// 			document.createElementNS('http://www.w3.org/2000/svg', 'path'),
-		// 			{d}
-		// 		)
-		// 	)
-		// );
 	});
 
 	return $target;

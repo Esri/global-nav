@@ -47,13 +47,23 @@ function $enableFocusRing(target) {
 	}, true);
 }
 
-function $renderSvgOrImg({imgDef, imgClass, imgWidth, imgHeight}) {
+function $renderSvgOrImg({imgDef = "", imgClass = "", imgWidth, imgHeight, viewBox, id}) {
 	let $img;
+
+	const svgProps = {class: imgClass, role: 'presentation'};
+	if (imgWidth && imgHeight) {
+		svgProps.width = imgWidth;
+		svgProps.height = imgHeight;
+	}
+	if (viewBox) {
+		svgProps.viewBox = viewBox;
+	}
+
 	if (typeof imgDef === 'string') {
 		if (imgDef.indexOf('.svg') === imgDef.length - 4) {
 			$img = $assign(
 				document.createElementNS('http://www.w3.org/2000/svg', 'svg'),
-				{class: imgClass, viewBox: `0 0 ${imgWidth} ${imgHeight}`, width: imgWidth, height: imgHeight, role: 'presentation'}
+				svgProps
 			);
 			$fetch(imgDef, (svgContents) => {
 				$img.innerHTML = svgContents;
@@ -66,8 +76,7 @@ function $renderSvgOrImg({imgDef, imgClass, imgWidth, imgHeight}) {
 		}
 	} else {
 		$img = $assign(document.createElementNS('http://www.w3.org/2000/svg', 'svg'),
-			imgWidth && imgHeight ? {viewBox: `0 0 ${imgWidth} ${imgHeight}`, width: imgWidth, height: imgHeight, role: 'presentation'} : {},
-			{class: imgClass},
+			svgProps,
 			$assign(document.createDocumentFragment(),
 				...imgDef.map(
 					(d) => $assign(
@@ -77,6 +86,10 @@ function $renderSvgOrImg({imgDef, imgClass, imgWidth, imgHeight}) {
 				)
 			));
 	}
+	if (id) {
+		$img.id = id;
+	}
+
 	return $img;
 }
 

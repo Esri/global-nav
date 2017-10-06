@@ -1,10 +1,4 @@
-/* Tooling
-/* ========================================================================== */
-
-import {$assign as $, $dispatch, $replaceAll} from '../../shared/js/shared';
-
-/* Account
-/* ========================================================================== */
+import {$assign as $, $dispatch, $replaceAll, $renderSvgOrImg} from '../../shared/js/shared';
 
 const prefix = 'esri-header-account';
 
@@ -27,7 +21,7 @@ export default () => {
 	/* Account: Control
 	/* ====================================================================== */
 
-	const $controlImage = $('img', {class: `${prefix}-image`});
+	const $controlImage = $('span');
 
 	const $controlNameText = document.createTextNode('');
 	const $controlName = $('span', {class: `${prefix}-name`},
@@ -81,7 +75,7 @@ export default () => {
 	});
 
 	// Image
-	const $contentImage = $('img', {class: `${prefix}-content-image`, role: 'presentation'});
+	const $contentImage = $('span');
 
 	// Info
 	const $contentInfoNameText = document.createTextNode('');
@@ -171,9 +165,10 @@ export default () => {
 			// Update the account text + image
 			$controlNameText.nodeValue = $contentInfoNameText.nodeValue = detail.user.name;
 			$controlIdText.nodeValue = $contentInfoIdText.nodeValue = detail.user.id;
-			$controlImage.src = $contentImage.src = detail.user.image;
+			$controlImage.appendChild($renderSvgOrImg({imgDef: detail.user.image, imgClass: `${prefix}-image`}));
 
 			$contentInfoGroupText.nodeValue = detail.user.group;
+			$contentImage.appendChild($renderSvgOrImg({imgDef: detail.user.image, imgClass: `${prefix}-content-image`}));
 
 			// Update the content menu
 			$replaceAll($contentMenu,

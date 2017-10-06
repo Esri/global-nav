@@ -1,12 +1,5 @@
-/* Tooling
-/* ========================================================================== */
-
-import {$assign as $, $dispatch, $replaceAll} from '../../shared/js/shared';
-
+import {$assign as $, $dispatch, $replaceAll, $renderSvgOrImg} from '../../shared/js/shared';
 import esriSearch from '../../search/js/search';
-
-/* Search
-/* ========================================================================== */
 
 const prefix = 'esri-header-search';
 
@@ -14,17 +7,11 @@ export default () => {
 	/* Search: Control
 	/* ====================================================================== */
 
-	const $controlImage = $(
-		document.createElementNS('http://www.w3.org/2000/svg', 'svg'),
-		{class: `${prefix}-image`, id: `${prefix}-image`}
-	);
-
 	const $control = $('button',
 		{
 			class: `${prefix}-control`, id: `${prefix}-control`,
 			aria: {expanded: false, controls: `${prefix}-content`}
-		},
-		$controlImage
+		}
 	);
 
 	$control.addEventListener('click', (event) => {
@@ -61,22 +48,10 @@ export default () => {
 	$target.addEventListener('header:update:search', ({detail}) => {
 		$($control, {aria: {label: detail.label}});
 
-		if ('string' === typeof detail.image) {
-			$controlImage.removeAttribute('viewBox');
+		const $controlImage = $renderSvgOrImg({imgDef: detail.image, imgClass: `${prefix}-image`, id: `${prefix}-image`});
+		$control.appendChild($controlImage);
 
-			$replaceAll($controlImage,
-				$('use', {'href': detail.image})
-			);
-		} else {
-			$replaceAll($controlImage,
-				...detail.image.map(
-					(d) => $(
-						document.createElementNS('http://www.w3.org/2000/svg', 'path'),
-						{d}
-					)
-				)
-			);
-		}
+
 
 		if (detail.dialog) {
 			detail.dialog.prefix = 'esri-header-search-dialog';
