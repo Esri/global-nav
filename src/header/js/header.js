@@ -4,6 +4,7 @@ import createAccount from './header-account';
 import createBrand from './header-brand';
 import createMenus from './header-menus';
 import createSearch from './header-search';
+import createApps from './header-apps';
 
 /* Header
 /* ====================================================================== */
@@ -32,16 +33,21 @@ export default (data) => {
 	const $account = createAccount();
 	const $menus = createMenus();
 	const $search = createSearch();
+	const $apps = createApps();
 
 	const $client = $('div', {class: 'esri-header-client'},
 		$account
 	);
+
+	const $lineBreak = $('div', {class: 'esri-header-lineBreak'});
 
 	const $header = $('div', {class: `esri-header -${data.theme || 'web'}`},
 		$headerCanvas,
 		$brand,
 		$menus,
 		$search,
+		$lineBreak,
+    $apps,
 		$client
 	);
 
@@ -65,6 +71,14 @@ export default (data) => {
 
 		if (detail.account) {
 			$dispatch($client.lastChild, 'header:update:account', detail.account);
+		}
+
+		if (detail.account) {
+			$dispatch($client.lastChild, 'header:update:account', detail.account);
+		}
+
+		if (detail.apps) {
+			$dispatch($apps, 'header:update:apps', detail.apps);
 		}
 
 		$header.ownerDocument.defaultView.addEventListener('keydown', ({keyCode}) => {
@@ -91,6 +105,7 @@ export default (data) => {
 	let searchDetail = null;
 	let menusDetail = null;
 	let menuDetail = null;
+	let appsDetail = null;
 
 	$header.addEventListener('header:menu:open', ({detail}) => {
 		const isMenuToggle = 'menu-toggle' === detail.type;
@@ -131,6 +146,14 @@ export default (data) => {
 			accountDetail = null;
 		}
 
+		if ($apps === detail.target) {
+			appsDetail = detail;
+		} else if (appsDetail) {
+			$dispatch($apps, 'header:menu:close', appsDetail);
+
+			appsDetail = null;
+		}
+
 		// Update Canvas
 		$($headerCanvas, {data: {open: true, state: detail.state}});
 
@@ -142,7 +165,7 @@ export default (data) => {
 	/* ====================================================================== */
 
 	$header.addEventListener('header:menu:close', ({detail}) => {
-		const currentDetail = detail || menusDetail || searchDetail || accountDetail || menuDetail;
+		const currentDetail = detail || menusDetail || searchDetail || accountDetail || appsDetail || menuDetail;
 
 		if (currentDetail) {
 			// Close the Detail
