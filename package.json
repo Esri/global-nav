@@ -41,6 +41,7 @@
     "gulp-rename": "^1.2.2",
     "gulp-size": "^2.1.0",
     "gulp-sourcemaps": "^2.6.1",
+    "gulp-svgmin": "^1.2.4",
     "gulp-watch": "^4.3.11",
     "postcss-apply": "^0.8.0",
     "postcss-attribute-case-insensitive": "^2.0.0",
@@ -90,8 +91,7 @@
   },
   "stylelint": {
     "extends": "stylelint-config-dev",
-    "rules":{
-    }
+    "rules": {}
   },
   "gulp_config": {
     "server_port": 8080,

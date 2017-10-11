@@ -1,10 +1,4 @@
-/* Tooling
-/* ========================================================================== */
-
-import {$assign as $, $dispatch, $replaceAll} from '../../shared/js/shared';
-
-/* Menus
-/* ========================================================================== */
+import {$assign as $, $dispatch, $replaceAll, $renderSvgOrImg} from '../../shared/js/shared';
 
 const prefix = 'esri-header-menus';
 
@@ -161,19 +155,7 @@ export default () => {
 															class: `${prefix}-sublink--featured`,
 															href: childitem.href
 														},
-														$(
-															document.createElementNS('http://www.w3.org/2000/svg', 'svg'),
-															childitem.width && childitem.height ? {viewBox: `0 0 ${childitem.width} ${childitem.height}`} : {},
-															{class: `${prefix}-sublink-image`},
-															$(document.createDocumentFragment(),
-																...childitem.icon.map(
-																	(d) => $(
-																		document.createElementNS('http://www.w3.org/2000/svg', 'path'),
-																		{d}
-																	)
-																)
-															)
-														),
+														$renderSvgOrImg({imgDef: childitem.icon, imgClass: `${prefix}-sublink-image`, imgWidth: childitem.width, imgHeight:childitem.height}),
 														$('span', {class: `${prefix}-sublink-text`},
 															childitem.label
 														)
