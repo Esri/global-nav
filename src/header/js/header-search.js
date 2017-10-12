@@ -47,11 +47,7 @@ export default () => {
 
 	$target.addEventListener('header:update:search', ({detail}) => {
 		$($control, {aria: {label: detail.label}});
-
-		const $controlImage = $renderSvgOrImg({imgDef: detail.image, imgClass: `${prefix}-image`, id: `${prefix}-image`});
-		$control.appendChild($controlImage);
-
-
+		$renderSvgOrImg({imgDef: detail.image, imgClass: `${prefix}-image`, id: `${prefix}-image`, $targetElm: $control});
 
 		if (detail.dialog) {
 			detail.dialog.prefix = 'esri-header-search-dialog';
