@@ -47,7 +47,7 @@ function $enableFocusRing(target) {
 	}, true);
 }
 
-function $renderSvgOrImg({imgDef = "", imgClass = "", imgWidth, imgHeight, viewBox, id}) {
+function $renderSvgOrImg({imgDef = "", imgClass = "", imgWidth, imgHeight, viewBox, id, $targetElm}) {
 	let $img;
 
 	const svgProps = {class: imgClass, role: 'presentation'};
@@ -88,6 +88,11 @@ function $renderSvgOrImg({imgDef = "", imgClass = "", imgWidth, imgHeight, viewB
 	}
 	if (id) {
 		$img.id = id;
+	}
+
+	if ($targetElm) {
+		$targetElm.innerHTML = '';
+		$targetElm.appendChild($img);
 	}
 
 	return $img;
