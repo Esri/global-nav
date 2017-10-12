@@ -13,10 +13,8 @@ export default () => {
 	/* Brand: On Update
 	/* ====================================================================== */
 	$target.addEventListener('header:update:brand', ({detail}) => {
-		const $targetImage = $renderSvgOrImg({imgDef: detail.image, imgClass: `${prefix}-image`, imgWidth: detail.width, imgHeight:detail.height});
-
 		$($target, {href: detail.href, aria: {label: detail.label}});
-		$target.appendChild($targetImage);
+		$renderSvgOrImg({imgDef: detail.image, imgClass: `${prefix}-image`, imgWidth: detail.width, imgHeight:detail.height, $targetElm:$target});
 	});
 
 	return $target;

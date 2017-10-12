@@ -165,10 +165,10 @@ export default () => {
 			// Update the account text + image
 			$controlNameText.nodeValue = $contentInfoNameText.nodeValue = detail.user.name;
 			$controlIdText.nodeValue = $contentInfoIdText.nodeValue = detail.user.id;
-			$controlImage.appendChild($renderSvgOrImg({imgDef: detail.user.image, imgClass: `${prefix}-image`}));
-
 			$contentInfoGroupText.nodeValue = detail.user.group;
-			$contentImage.appendChild($renderSvgOrImg({imgDef: detail.user.image, imgClass: `${prefix}-content-image`}));
+
+			$renderSvgOrImg({imgDef: detail.user.image, imgClass: `${prefix}-image`, $targetElm: $controlImage});
+			$renderSvgOrImg({imgDef: detail.user.image, imgClass: `${prefix}-content-image`, $targetElm: $contentImage});
 
 			// Update the content menu
 			$replaceAll($contentMenu,
