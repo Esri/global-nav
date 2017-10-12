@@ -2,7 +2,7 @@
 /* ========================================================================== */
 import {$assign as $, $dispatch, $replaceAll} from '../../shared/js/shared';
 
-/* Apps 
+/* Apps
 /* ========================================================================== */
 
 const prefix = 'esri-header-apps';
@@ -12,7 +12,7 @@ export default () => {
 	/* ====================================================================== */
 
 	const $content = $('div', {
-		class: `${prefix}-content`, 
+		class: `${prefix}-content`,
 		id: `${prefix}-content`,
 		aria: {expanded: false, labelledby: `${prefix}-control`}
 	});
@@ -22,12 +22,10 @@ export default () => {
 		"aria-label": "App Launcher Icon"
 	});
 
-	$appSwitcherIcon.innerHTML = '<svg height="24px" width="24px" class="app-switcher-svg" shape-rendering="crispEdges"><rect x="1" y="1" width="4" height="4"/><rect x="10" y="1" width="4" height="4"/><rect x="19" y="1" width="4" height="4"/><rect x="1" y="10" width="4" height="4"/><rect x="10" y="10" width="4" height="4"/><rect x="19" y="10" width="4" height="4"/><rect x="1" y="19" width="4" height="4"/><rect x="10" y="19" width="4" height="4"/><rect x="19" y="19" width="4" height="4"/></svg>';
-
 	/* Apps: Control
 	/* ====================================================================== */
 
-	const $controlContainer = $('button', { 
+	const $controlContainer = $('button', {
 		class: `${prefix}-control empty-padding`, id: `${prefix}-control`
 	});
 
@@ -42,7 +40,7 @@ export default () => {
 	$controlContainer.addEventListener('click', (event) => {
 		$dispatch($control, 'header:click:apps', {event});
 
-		// Elements with following class won't trigger/dispatch the dropdown 
+		// Elements with following class won't trigger/dispatch the dropdown
 		if (event.target.classList.contains(`${prefix}-prevent-dropdown`)) return;
 
 		$dispatch($control, 'header:menu:toggle', {
@@ -118,6 +116,8 @@ export default () => {
 	/* ====================================================================== */
 
 	$target.addEventListener('header:update:apps', ({detail}) => {
+		console.log('appmode', detail);
+
 		if (detail.icons) {
 			$target.appendChild($content);
 			$control.className = `${prefix}-control`;
