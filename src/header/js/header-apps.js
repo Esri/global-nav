@@ -1,6 +1,4 @@
-/* Tooling
-/* ========================================================================== */
-import {$assign as $, $dispatch, $replaceAll} from '../../shared/js/shared';
+import {$assign as $, $dispatch, $replaceAll, $renderSvgOrImg} from '../../shared/js/shared';
 
 /* Apps
 /* ========================================================================== */
@@ -80,14 +78,14 @@ export default () => {
 		// Check if App has Icon
 		if (currentApp.image) {
 			const appImageContainer = $("div", {"class": "appIconImage"});
-			appImageContainer.append($("img", {"class": "appIconPng", "alt": "", src: currentApp.image}));
+			$renderSvgOrImg({imgDef: currentApp.image, imgWidth: 48, imgHeight: 48, $targetElm: appImageContainer});
 			appLink.append(appImageContainer);
 		} else {
 			const stringWidth = Math.round(getTextWidth(currentApp.abbr || "", "avenir") / 5);
 			let abbreviationSize = abbreviationSizes[stringWidth];
 			if (stringWidth > 6) { // Prevent user from exceeding icon width
 				currentApp.abbr = currentApp.abbr.substr(0, 4);
-				abbreviationSize =	abbreviationSizes[4];
+				abbreviationSize = abbreviationSizes[4];
 			}
 			const surfaceDiv = $("div", {"class": "appIconImage"});
 			const surfaceSpan = $("span", {
@@ -95,7 +93,7 @@ export default () => {
 				class: "avenir appIconSvgText"
 			}, currentApp.abbr);
 			surfaceDiv.append(surfaceSpan);
-			surfaceDiv.append($("img", {"src": currentApp.placeHolderIcon, "alt": ""}));
+			surfaceDiv.append($renderSvgOrImg({imgDef: currentApp.placeHolderIcon, imgWidth: 48, imgHeight: 48}));
 			appLink.append(surfaceDiv);
 		}
 		const p = $("p", {style: "margin:0 auto; text-align:center"}, currentApp.label);
@@ -117,6 +115,8 @@ export default () => {
 
 	$target.addEventListener('header:update:apps', ({detail}) => {
 		console.log('appmode', detail);
+
+		$renderSvgOrImg({imgDef: detail.image.path, imgWidth: detail.image.width, imgHeight: detail.image.height, imgClass: `${prefix}-image`, $targetElm: $appSwitcherIcon});
 
 		if (detail.icons) {
 			$target.appendChild($content);

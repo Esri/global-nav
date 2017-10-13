@@ -291,7 +291,11 @@ document.addEventListener("DOMContentLoaded", () => {
 			},
 			apps: {
 				label: 'Applications',
-				image: './img/gnav-app-switcher-icon.svg',
+				image: {
+					path: './img/gnav-app-switcher-icon.svg',
+					width: 24,
+					height: 24
+				},
 				icons: [
 					{
 						abbr: "APP",
