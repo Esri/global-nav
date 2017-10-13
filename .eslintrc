@@ -72,6 +72,6 @@
     "setTimeout":true,
     "getComputedStyle" : true,
     "matchMedia" : true,
-	"XMLHttpRequest" : true
+    "XMLHttpRequest" : true
   }
 }
