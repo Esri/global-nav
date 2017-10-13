@@ -71,6 +71,7 @@
     "clearTimeout" : true,
     "setTimeout":true,
     "getComputedStyle" : true,
-    "matchMedia" : true
+    "matchMedia" : true,
+    "XMLHttpRequest" : true
   }
 }

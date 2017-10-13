@@ -1,4 +1,4 @@
-import {$assign, $fetch, $replaceAll} from 'domose';
+import {$assign, $replaceAll} from 'domose';
 
 /* Dispatch an Custom Event with a detail
 /* ========================================================================== */
@@ -47,8 +47,28 @@ function $enableFocusRing(target) {
 	}, true);
 }
 
+function $fetch(url, callback, onError = () => {
+}) {
+	const xhr = new XMLHttpRequest();
+
+	xhr.addEventListener('readystatechange', () => {
+		if (4 === xhr.readyState) {
+			if (200 === xhr.status) {
+				callback(xhr.responseText); // eslint-disable-line callback-return
+			} else {
+				onError();
+			}
+		}
+	});
+
+	xhr.open('GET', url);
+	xhr.send();
+
+	return xhr;
+}
+
 function $renderSvgOrImg({imgDef = "", imgClass = "", imgWidth, imgHeight, viewBox, id, $targetElm}) {
-	let $img;
+	const $imgWrapper = $assign('span');
 
 	const svgProps = {class: imgClass, role: 'presentation'};
 	if (imgWidth && imgHeight) {
@@ -58,24 +78,27 @@ function $renderSvgOrImg({imgDef = "", imgClass = "", imgWidth, imgHeight, viewB
 	if (viewBox) {
 		svgProps.viewBox = viewBox;
 	}
+	if (id) {
+		svgProps.id = id;
+	}
 
 	if (typeof imgDef === 'string') {
 		if (imgDef.indexOf('.svg') === imgDef.length - 4) {
-			$img = $assign(
-				document.createElementNS('http://www.w3.org/2000/svg', 'svg'),
-				svgProps
-			);
 			$fetch(imgDef, (svgContents) => {
+				const $img = $assign(
+					document.createElementNS('http://www.w3.org/2000/svg', 'svg'),
+					svgProps
+				);
 				$img.innerHTML = svgContents;
+				$imgWrapper.append($img);
+			}, () => {
+				renderImgTag({$imgWrapper, id, imgDef, imgClass, imgWidth, imgHeight});
 			});
 		} else {
-			$img = $assign('img', {
-				src: imgDef,
-				class: imgClass
-			});
+			renderImgTag({$imgWrapper, id, imgDef, imgClass, imgWidth, imgHeight});
 		}
 	} else {
-		$img = $assign(document.createElementNS('http://www.w3.org/2000/svg', 'svg'),
+		const $img = $assign(document.createElementNS('http://www.w3.org/2000/svg', 'svg'),
 			svgProps,
 			$assign(document.createDocumentFragment(),
 				...imgDef.map(
@@ -85,17 +108,24 @@ function $renderSvgOrImg({imgDef = "", imgClass = "", imgWidth, imgHeight, viewB
 					)
 				)
 			));
-	}
-	if (id) {
-		$img.id = id;
+		$imgWrapper.append($img);
 	}
 
 	if ($targetElm) {
 		$targetElm.innerHTML = '';
-		$targetElm.appendChild($img);
+		$targetElm.appendChild($imgWrapper);
 	}
 
-	return $img;
+	return $imgWrapper;
+
+	function renderImgTag({$imgWrapper, id, imgDef, imgClass, imgWidth, imgHeight}) {
+		$imgWrapper.append($assign('img', {
+			id,
+			src: imgDef,
+			class: imgClass,
+			style:  `${imgWidth ? `width:${imgWidth}px` : ''}; ${imgHeight ? `height:${imgHeight}px` : ''}`
+		}));
+	}
 }
 
 export {
