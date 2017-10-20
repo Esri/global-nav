@@ -2,6 +2,7 @@ import {$assign as $, $dispatch, $enableFocusRing, $replaceAll} from '../../shar
 
 import createAccount from './header-account';
 import createBrand from './header-brand';
+import createBrandStripe from './header-branding-stripe';
 import createMenus from './header-menus';
 import createSearch from './header-search';
 import createApps from './header-apps';
@@ -29,6 +30,7 @@ export default (data) => {
 	/* Elements
 	/* ====================================================================== */
 
+	const $brandStripe = createBrandStripe();
 	const $brand = createBrand();
 	const $account = createAccount();
 	const $menus = createMenus();
@@ -43,6 +45,7 @@ export default (data) => {
 
 	const $header = $('div', {class: `esri-header -${data.theme || 'web'}`},
 		$headerCanvas,
+		$brandStripe,
 		$brand,
 		$menus,
 		$search,
@@ -58,6 +61,10 @@ export default (data) => {
 
 	$header.addEventListener('header:update', ({detail}) => {
 		if (detail.brand) {
+			if (detail.brand.topStripe) {
+				$dispatch($brandStripe, 'header:update:brand', detail.brand);
+				$header.style.marginTop = detail.brand.topStripe.height;
+			}
 			$dispatch($brand, 'header:update:brand', detail.brand);
 		}
 
