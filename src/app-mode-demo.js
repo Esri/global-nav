@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
 	const menuData = {
 		header: {
-			theme: 'web',
+			theme: 'app',
 			brand: {
 				label: 'Esri',
 				image: './img/gnav-esri-logo-globe-tm.svg',

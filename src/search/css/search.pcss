@@ -159,7 +159,7 @@
 		position: absolute;
 
 		&::before {
-			content: url("esri-global-shared#c-search" param(--fill var(--g-search-search-color)));
+			content: url("../../shared/shared.svg#c-search" param(--fill var(--g-search-search-color)));
 			display: block;
 
 			@media (--g-search-s) {
@@ -175,12 +175,12 @@
 
 		&[data-filled] {
 			&::before {
-				content: url("esri-global-shared#c-search" param(--fill var(--g-search-active-color)));
+				content: url("../../shared/shared.svg#c-search" param(--fill var(--g-search-active-color)));
 			}
 
 			&:hover, &:focus {
 				&::before {
-					content: url("esri-global-shared#c-search" param(--fill var(--g-search-enter-color)));
+					content: url("../../shared/shared.svg#c-search" param(--fill var(--g-search-enter-color)));
 				}
 			}
 		}
