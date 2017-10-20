@@ -58,19 +58,19 @@
 	}
 
 	&::before {
-		content: url("esri-global-shared#c-menu" param(--stroke #595959));
+	  	content: url("../../shared/shared.svg#c-menu" param(--stroke #595959));
 	}
 
 	&:hover, &:focus, &[aria-expanded="true"] {
 		&::before {
-			content: url("esri-global-shared#c-menu");
+			content: url("../../shared/shared.svg#c-menu");
 		}
 	}
 
 	&[aria-expanded="true"] {
 		&::before {
 			@media (--width-s) {
-				content: url("esri-global-shared#c-close");
+				content: url("../../shared/shared.svg#c-close");
 			}
 		}
 	}
@@ -179,7 +179,7 @@
 		}
 
 		&::after {
-			content: url("esri-global-shared#c-chevron-right" param(--fill #595959));
+			content: url("../../shared/shared.svg#c-chevron-right" param(--fill #595959));
 			inset-block-start: calc(50% - 12px / 2);
 			inset-inline-end: 20px;
 			position: absolute;
@@ -315,7 +315,7 @@
 	}
 
 	&::before {
-		content: url("esri-global-shared#c-chevron-left");
+		content: url("../../shared/shared.svg#c-chevron-left");
 		inset-start: calc(50% - 16px / 2) 24px;
 		position: absolute;
 		size: 16px;
@@ -428,7 +428,7 @@
 	}
 
 	&::after {
-		content: url("esri-global-shared#c-arrow-right" param(--fill var(--blue)));
+		content: url("../../shared/shared.svg#c-arrow-right" param(--fill var(--blue)));
 		inset-block-start: calc(50% - 16px / 2);
 		inset-inline-end: 20px;
 		opacity: 0;
