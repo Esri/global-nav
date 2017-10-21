@@ -33,7 +33,8 @@ export default (data) => {
 	const $brandStripe = createBrandStripe();
 	const $brand = createBrand();
 	const $account = createAccount();
-	const $menus = createMenus();
+	const $mobileMenus = createMenus({variant : 'mobile'});
+	const $desktopMenus = createMenus({variant : 'desktop'});
 	const $search = createSearch();
 	const $apps = createApps();
 
@@ -46,8 +47,9 @@ export default (data) => {
 	const $header = $('div', {class: `esri-header -${data.theme || 'web'}`},
 		$headerCanvas,
 		$brandStripe,
+		$mobileMenus,
 		$brand,
-		$menus,
+		$desktopMenus,
 		$search,
 		$lineBreak,
 		$apps,
@@ -69,7 +71,11 @@ export default (data) => {
 		}
 
 		if (detail.menus) {
-			$dispatch($menus, 'header:update:menus', detail.menus);
+			$dispatch($desktopMenus, 'header:update:menus', detail.menus);
+		}
+
+		if (detail.collapseMenus) {
+			$dispatch($desktopMenus, 'header:update:collapseMenus', detail.collapseMenus);
 		}
 
 		if (detail.search) {
@@ -137,10 +143,10 @@ export default (data) => {
 			searchDetail = null;
 		}
 
-		if ($menus === detail.target) {
+		if ($desktopMenus === detail.target) {
 			menusDetail = detail;
 		} else if (menusDetail && !isMenuToggle && !viewportIsSmall.matches) {
-			$dispatch($menus, 'header:menu:close', menusDetail);
+			$dispatch($desktopMenus, 'header:menu:close', menusDetail);
 
 			menusDetail = null;
 		}
@@ -255,7 +261,7 @@ export default (data) => {
 			if (viewportIsSmall.matches) {
 				$dispatch($header, 'header:breakpoint:s');
 
-				$menus.lastChild.appendChild($account);
+				$desktopMenus.lastChild.appendChild($account);
 			} else {
 				$dispatch($header, 'header:breakpoint:not:s');
 
@@ -267,11 +273,11 @@ export default (data) => {
 			if (viewportIsSmallMedium.matches) {
 				$dispatch($header, 'header:breakpoint:sm');
 
-				$($menus.lastChild, {aria: {hidden: 'false' === $menus.lastChild.getAttribute('aria-expanded')}});
+				$($desktopMenus.lastChild, {aria: {hidden: 'false' === $desktopMenus.lastChild.getAttribute('aria-expanded')}});
 			} else {
 				$dispatch($header, 'header:breakpoint:not:sm');
 
-				$($menus.lastChild, {aria: {hidden: false}});
+				$($desktopMenus.lastChild, {aria: {hidden: false}});
 			}
 		}
 	});
