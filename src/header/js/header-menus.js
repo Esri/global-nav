@@ -59,11 +59,16 @@ export default () => {
 							/* Global Navigation: Menus: Link
 							/* ====================================================== */
 
+							const $linkIcon = item.icon
+								? $renderSvgOrImg({imgDef: item.icon.path, imgClass: `${prefix}-link-icon`, imgWidth: item.icon.width, imgHeight: item.icon.height})
+								: null;
+
 							const $subcontrol = $('a',
 								{
 									class: `${prefix}-link`, id: `${prefix}-link-${uuid}-${suuid}`,
 									href: item.href || 'javascript:;' // eslint-disable-line no-script-url
 								},
+								$linkIcon,
 								item.label
 							);
 
@@ -155,7 +160,7 @@ export default () => {
 															class: `${prefix}-sublink--featured`,
 															href: childitem.href
 														},
-														$renderSvgOrImg({imgDef: childitem.icon, imgClass: `${prefix}-sublink-image`, imgWidth: childitem.width, imgHeight:childitem.height}),
+														$renderSvgOrImg({imgDef: childitem.icon, imgClass: `${prefix}-sublink-image`, imgWidth: childitem.width, imgHeight: childitem.height}),
 														$('span', {class: `${prefix}-sublink-text`},
 															childitem.label
 														)
