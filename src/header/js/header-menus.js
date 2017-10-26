@@ -64,10 +64,10 @@ export default ({variant = 'desktop'}) => {
 
 							const $subcontrol = $('a',
 								{
-									class: `${prefix}-link`, id: `${prefix}-link-${uuid}-${suuid}`,
+									class: `${prefix}-link`, id: `${prefix}-${variant}-link-${uuid}-${suuid}`,
 									href: item.href || 'javascript:;' // eslint-disable-line no-script-url
 								},
-								item.label + '-' + variant.substring(0,1).toUpperCase()
+								`${item.label}-${variant.substring(0,1).toUpperCase()}`
 							);
 
 							if (item.data) {
