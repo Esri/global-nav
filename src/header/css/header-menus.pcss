@@ -74,6 +74,17 @@
 			}
 		}
 	}
+
+  	&.-visible {
+	  @apply --menu-link-styles;
+	  position: relative;
+	  display:block;
+	  left: -50px;
+
+	  &::before {
+		content: url("../../shared/shared.svg#c-menu" param(--stroke #595959));
+	  }
+	}
 }
 
 /* Global Header Menus: Content

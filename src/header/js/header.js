@@ -259,11 +259,11 @@ export default (data) => {
 
 			viewportIsSmallMedium = $headerWindow.matchMedia('(max-width: 1023px)');
 			if (viewportIsSmallMedium.matches) {
-				$desktopMenus.classList.add('hidden');
-				$mobileMenus.classList.remove('hidden');
+				$desktopMenus.querySelector('.esri-header-menus-content').classList.add('hidden');
+				$mobileMenus.querySelector('.esri-header-menus-content').classList.remove('hidden');
 			} else {
-				$desktopMenus.classList.remove('hidden');
-				$mobileMenus.classList.add('hidden');
+				$desktopMenus.querySelector('.esri-header-menus-content').classList.remove('hidden');
+				$mobileMenus.querySelector('.esri-header-menus-content').classList.add('hidden');
 			}
 		}
 

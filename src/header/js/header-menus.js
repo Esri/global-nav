@@ -3,12 +3,12 @@ import {$assign as $, $dispatch, $replaceAll, $renderSvgOrImg} from '../../share
 const prefix = 'esri-header-menus';
 
 export default ({variant = 'desktop'}) => {
-	const $target = $('div', {class: prefix, id: prefix});
+	const $target = $('div', {class: prefix, id: `${prefix}-${variant}`});
 	$target.classList.add(`-${variant}`);
 
 	if (variant === 'mobile') {
 		const $toggle = $('button', {
-			class: `${prefix}-toggle`, id: `${prefix}-toggle`,
+			class: `${prefix}-toggle`, id: `${prefix}-${variant}-toggle`,
 			aria: {controls: `${prefix}-content`, expanded: false, haspopup: true, labelledby: 'esri-header-brand'}
 		});
 
@@ -91,7 +91,7 @@ export default ({variant = 'desktop'}) => {
 
 								const $subcontent = $('div',
 									{
-										class: `${prefix}-submenu`, id: `${prefix}-submenu-${uuid}-${suuid}`,
+										class: `${prefix}-submenu`, id: `${prefix}-${variant}-submenu-${uuid}-${suuid}`,
 										role: 'group', aria: {hidden: true, expanded: false},
 										data: {filled: item.menus.length > 10 ? item.menus.slice(0, 18).length : ''}
 									},
@@ -103,7 +103,7 @@ export default ({variant = 'desktop'}) => {
 										$('ul',
 											{
 												class: `${prefix}-sublist`,
-												role: 'navigation', aria: {labelledby: `${prefix}-link-${uuid}-${suuid}`}
+												role: 'navigation', aria: {labelledby: `${prefix}-${variant}-link-${uuid}-${suuid}`}
 											},
 											/* Global Navigation: Menus: Sublink
 											/* ============================== */
@@ -221,6 +221,7 @@ export default ({variant = 'desktop'}) => {
 	$target.addEventListener('header:update:collapseMenus', ({detail}) => {
 		if (detail && detail.indexOf(true) > -1) {
 			document.querySelector('.esri-header-menus-toggle').classList.add('-visible');
+			document.getElementById('esri-header-brand').classList.add('-fit-burger');
 
 			const menus = [].slice.call($target.querySelectorAll('.esri-header-menus-menu'));
 			detail.forEach((collapse, i) => {
