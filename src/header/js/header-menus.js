@@ -67,7 +67,7 @@ export default ({variant = 'desktop'}) => {
 									class: `${prefix}-link`, id: `${prefix}-link-${uuid}-${suuid}`,
 									href: item.href || 'javascript:;' // eslint-disable-line no-script-url
 								},
-								item.label
+								item.label + '-' + variant.substring(0,1).toUpperCase()
 							);
 
 							if (item.data) {
