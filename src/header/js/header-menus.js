@@ -62,6 +62,10 @@ export default ({variant = 'desktop'}) => {
 							/* Global Navigation: Menus: Link
 							/* ====================================================== */
 
+							const $linkIcon = item.icon
+								? $renderSvgOrImg({imgDef: item.icon.path, imgClass: `${prefix}-link-icon`, imgWidth: item.icon.width, imgHeight: item.icon.height})
+								: null;
+
 							const $subcontrol = $('a',
 								{
 									class: `${prefix}-link`, id: `${prefix}-${variant}-link-${uuid}-${suuid}`,
