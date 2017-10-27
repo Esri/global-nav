@@ -8,10 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
 				href: 'https://www.esri.com/',
 				width: 80,
 				height: 30,
-				topStripe : {
-					color : '#0079c1',
-					height: '3px'
-				}
+				topStripe : '#e8912e'
 			},
 			menus: [
 				[
