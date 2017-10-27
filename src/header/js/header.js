@@ -284,11 +284,9 @@ export default (data) => {
 			if (viewportIsSmallMedium.matches) {
 				$dispatch($header, 'header:breakpoint:sm');
 				$($desktopMenus.lastChild, {aria: {hidden: 'false' === $desktopMenus.lastChild.getAttribute('aria-expanded')}});
-				$($mobileMenus.lastChild, {aria: {hidden: 'false' === $desktopMenus.lastChild.getAttribute('aria-expanded')}});
 			} else {
 				$dispatch($header, 'header:breakpoint:not:sm');
 				$($desktopMenus.lastChild, {aria: {hidden: false}});
-				$($mobileMenus.lastChild, {aria: {hidden: false}});
 			}
 		}
 	});
