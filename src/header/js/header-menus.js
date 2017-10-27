@@ -65,11 +65,11 @@ export default () => {
 
 							const $subcontrol = $('a',
 								{
-									class: `${prefix}-link`, id: `${prefix}-link-${uuid}-${suuid}`,
+									class: `${prefix}-link ${item.icon ? 'custom-icon' : ''}`, id: `${prefix}-link-${uuid}-${suuid}`,
 									href: item.href || 'javascript:;' // eslint-disable-line no-script-url
 								},
-								$linkIcon,
-								item.label
+								item.label,
+								$linkIcon
 							);
 
 							if (item.data) {
