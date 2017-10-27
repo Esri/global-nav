@@ -620,3 +620,26 @@
 	  position: relative;
 	}
 }
+
+/* Global Header Menus: Collapsed menus
+/* ========================================================================== */
+.esri-header-menus {
+  &.-desktop {
+	& .esri-header-menus-menu.-collapsed{
+	  visibility: hidden;
+	}
+  }
+  &.-mobile {
+	& .esri-header-menus-menu{
+	  display:none;
+
+	  &.-collapsed{
+		display:block;
+	  }
+
+	  @media (--width-sm) {
+		display:block;
+	  }
+	}
+  }
+}
