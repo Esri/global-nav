@@ -60,7 +60,7 @@ export default () => {
 							/* ====================================================== */
 
 							const $linkIcon = item.icon
-								? $renderSvgOrImg({imgDef: item.icon.path, imgClass: `${prefix}-link-icon`, imgWidth: item.icon.width, imgHeight: item.icon.height})
+								? $renderSvgOrImg({imgDef: item.icon.path, imgClass: `${prefix}-link-icon`, imgWidth: item.icon.width || '16px', imgHeight: item.icon.height || '16px'})
 								: null;
 
 							const $subcontrol = $('a',
