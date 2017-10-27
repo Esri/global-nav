@@ -49,7 +49,7 @@ export default (data) => {
 		$brandStripe,
 		$brand,
 		$mobileMenus,
-		$desktopMenus,
+		// $desktopMenus,
 		$search,
 		$lineBreak,
 		$apps,
@@ -260,10 +260,10 @@ export default (data) => {
 			viewportIsSmallMedium = $headerWindow.matchMedia('(max-width: 1023px)');
 			if (viewportIsSmallMedium.matches) {
 				$desktopMenus.querySelector('.esri-header-menus-content').classList.add('hidden');
-				$mobileMenus.querySelector('.esri-header-menus-content').classList.remove('hidden');
+				// $mobileMenus.querySelector('.esri-header-menus-content').classList.remove('hidden');
 			} else {
 				$desktopMenus.querySelector('.esri-header-menus-content').classList.remove('hidden');
-				$mobileMenus.querySelector('.esri-header-menus-content').classList.add('hidden');
+				// $mobileMenus.querySelector('.esri-header-menus-content').classList.add('hidden');
 			}
 		}
 
