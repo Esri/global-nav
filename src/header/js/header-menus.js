@@ -60,16 +60,16 @@ export default () => {
 							/* ====================================================== */
 
 							const $linkIcon = item.icon
-								? $renderSvgOrImg({imgDef: item.icon.path, imgClass: `${prefix}-link-icon`, imgWidth: item.icon.width, imgHeight: item.icon.height})
+								? $renderSvgOrImg({imgDef: item.icon.path, imgClass: `${prefix}-link-icon`, imgWidth: item.icon.width || '16px', imgHeight: item.icon.height || '16px'})
 								: null;
 
 							const $subcontrol = $('a',
 								{
-									class: `${prefix}-link`, id: `${prefix}-link-${uuid}-${suuid}`,
+									class: `${prefix}-link ${item.hideLabelInDesktop ? '-hide-label' : ''}`, id: `${prefix}-link-${uuid}-${suuid}`,
 									href: item.href || 'javascript:;' // eslint-disable-line no-script-url
 								},
 								$linkIcon,
-								item.label
+								$('span', {class : `${prefix}-link-label`}, item.label)
 							);
 
 							if (item.data) {

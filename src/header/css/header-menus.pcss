@@ -212,6 +212,24 @@
 		padding: calc(var(--header-height-l) / 2 - 20px / 2) 24px;
 		width: 100%;
 	}
+
+  	&.-hide-label{
+	  & .esri-header-menus-link-label {
+		display:none;
+	  }
+	  & .esri-header-menus-link-icon {
+		margin-right: 0;
+	  }
+
+	  @media (--width-sm) {
+		& .esri-header-menus-link-label {
+		  display:inline-block;
+		}
+		& .esri-header-menus-link-icon {
+		  margin-right: 10px;
+		}
+	  }
+	}
 }
 
 /* Global Header Menus: Submenu
