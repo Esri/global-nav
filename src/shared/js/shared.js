@@ -90,7 +90,7 @@ function $renderSvgOrImg({imgDef = "", imgClass = "", imgWidth, imgHeight, viewB
 					svgProps
 				);
 				$img.innerHTML = svgContents;
-				$imgWrapper.append($img);
+				$imgWrapper.appendChild($img);
 			}, () => {
 				renderImgTag({$imgWrapper, id, imgDef, imgClass, imgWidth, imgHeight});
 			});
@@ -108,7 +108,7 @@ function $renderSvgOrImg({imgDef = "", imgClass = "", imgWidth, imgHeight, viewB
 					)
 				)
 			));
-		$imgWrapper.append($img);
+		$imgWrapper.appendChild($img);
 	}
 
 	if ($targetElm) {
@@ -119,7 +119,7 @@ function $renderSvgOrImg({imgDef = "", imgClass = "", imgWidth, imgHeight, viewB
 	return $imgWrapper;
 
 	function renderImgTag({$imgWrapper, id, imgDef, imgClass, imgWidth, imgHeight}) {
-		$imgWrapper.append($assign('img', {
+		$imgWrapper.appendChild($assign('img', {
 			id,
 			src: imgDef,
 			class: imgClass,

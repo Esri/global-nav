@@ -31,7 +31,7 @@ export default () => {
 		class: 'dropdown'
 	});
 
-	$controlContainer.append($dropdown);
+	$controlContainer.appendChild($dropdown);
 
 	const $control = $controlContainer;
 
@@ -79,7 +79,7 @@ export default () => {
 		if (currentApp.image) {
 			const appImageContainer = $("div", {"class": "appIconImage"});
 			$renderSvgOrImg({imgDef: currentApp.image, imgWidth: 48, imgHeight: 48, $targetElm: appImageContainer});
-			appLink.append(appImageContainer);
+			appLink.appendChild(appImageContainer);
 		} else {
 			const stringWidth = Math.round(getTextWidth(currentApp.abbr || "", "avenir") / 5);
 			let abbreviationSize = abbreviationSizes[stringWidth];
@@ -92,14 +92,14 @@ export default () => {
 				style: `font-size: ${abbreviationSize}`,
 				class: "avenir appIconSvgText"
 			}, currentApp.abbr);
-			surfaceDiv.append(surfaceSpan);
-			surfaceDiv.append($renderSvgOrImg({imgDef: currentApp.placeHolderIcon, imgWidth: 48, imgHeight: 48}));
-			appLink.append(surfaceDiv);
+			surfaceDiv.appendChild(surfaceSpan);
+			surfaceDiv.appendChild($renderSvgOrImg({imgDef: currentApp.placeHolderIcon, imgWidth: 48, imgHeight: 48}));
+			appLink.appendChild(surfaceDiv);
 		}
 		const p = $("p", {style: "margin:0 auto; text-align:center"}, currentApp.label);
-		appLink.append(p);
-		listItem.append(appLink);
-		$topAppContainer.append(listItem);
+		appLink.appendChild(p);
+		listItem.appendChild(appLink);
+		$topAppContainer.appendChild(listItem);
 	};
 
 	const getTextWidth = (text, font) => { // Adds support for app abbreviations in all languages
