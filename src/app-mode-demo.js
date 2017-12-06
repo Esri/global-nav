@@ -29,9 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
 						label: 'Save map',
 						href : '/app-mode-nav.html#save',
 						icon : {
-							path: './img/placeholder_disk.svg',
-							width: '16px',
-							height: '16px'
+							path: './img/placeholder_disk.svg'
 						}
 					},
 					{
