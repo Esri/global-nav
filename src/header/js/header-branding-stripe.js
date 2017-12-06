@@ -8,9 +8,7 @@ export default () => {
 	/* Brand: On Update
 	/* ====================================================================== */
 	$target.addEventListener('header:update:brand', ({detail}) => {
-		$target.style.backgroundColor = detail.topStripe.color;
-		$target.style.height = detail.topStripe.height;
-		$target.style.top = `-${detail.topStripe.height}`;
+		$target.style.backgroundColor = detail.topStripe;
 		$target.classList.add('-visible');
 	});
 
