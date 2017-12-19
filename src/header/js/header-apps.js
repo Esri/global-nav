@@ -114,8 +114,6 @@ export default () => {
 	/* ====================================================================== */
 
 	$target.addEventListener('header:update:apps', ({detail}) => {
-		console.log('appmode', detail);
-
 		$renderSvgOrImg({imgDef: detail.image.path, imgWidth: detail.image.width, imgHeight: detail.image.height, imgClass: `${prefix}-image`, $targetElm: $appSwitcherIcon});
 
 		if (detail.icons) {
