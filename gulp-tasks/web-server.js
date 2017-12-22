@@ -8,7 +8,7 @@ gulp.task('web-server', () => {
 		open: true,
 		port: pkg.gulp_config.server_port,
 		ui:{
-			port : 3003
+			port: 3003
 		},
 		server: {
 			baseDir: pkg.gulp_config.build_path,
