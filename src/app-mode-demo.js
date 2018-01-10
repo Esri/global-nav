@@ -34,6 +34,10 @@ document.addEventListener("DOMContentLoaded", () => {
 					},
 					{
 						label: 'New map',
+						hideLabelInDesktop : true,
+						icon : {
+							path: './img/placeholder_add.svg'
+						},
 						href : '/app-mode-nav.html#new'
 					},
 					{

@@ -65,11 +65,11 @@ export default () => {
 
 							const $subcontrol = $('a',
 								{
-									class: `${prefix}-link ${item.icon ? 'custom-icon' : ''}`, id: `${prefix}-link-${uuid}-${suuid}`,
+									class: `${prefix}-link ${item.hideLabelInDesktop ? '-hide-label' : ''}`, id: `${prefix}-link-${uuid}-${suuid}`,
 									href: item.href || 'javascript:;' // eslint-disable-line no-script-url
 								},
-								item.label,
-								$linkIcon
+								$linkIcon,
+								$('span', {class : `${prefix}-link-label`}, item.label)
 							);
 
 							if (item.data) {
