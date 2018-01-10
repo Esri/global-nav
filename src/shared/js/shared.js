@@ -85,12 +85,9 @@ function $renderSvgOrImg({imgDef = "", imgClass = "", imgWidth, imgHeight, viewB
 	if (typeof imgDef === 'string') {
 		if (imgDef.indexOf('.svg') === imgDef.length - 4) {
 			$fetch(imgDef, (svgContents) => {
-				const $img = $assign(
-					document.createElementNS('http://www.w3.org/2000/svg', 'svg'),
-					svgProps
-				);
-				$img.innerHTML = svgContents;
-				$imgWrapper.append($img);
+				$imgWrapper.innerHTML = svgContents;
+				const $img = $imgWrapper.firstElementChild;
+				$assign($img, svgProps);
 			}, () => {
 				renderImgTag({$imgWrapper, id, imgDef, imgClass, imgWidth, imgHeight});
 			});
@@ -108,7 +105,7 @@ function $renderSvgOrImg({imgDef = "", imgClass = "", imgWidth, imgHeight, viewB
 					)
 				)
 			));
-		$imgWrapper.append($img);
+		$imgWrapper.appendChild($img);
 	}
 
 	if ($targetElm) {
@@ -119,7 +116,7 @@ function $renderSvgOrImg({imgDef = "", imgClass = "", imgWidth, imgHeight, viewB
 	return $imgWrapper;
 
 	function renderImgTag({$imgWrapper, id, imgDef, imgClass, imgWidth, imgHeight}) {
-		$imgWrapper.append($assign('img', {
+		$imgWrapper.appendChild($assign('img', {
 			id,
 			src: imgDef,
 			class: imgClass,

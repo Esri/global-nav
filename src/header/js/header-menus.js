@@ -95,7 +95,7 @@ export default () => {
 									{
 										class: `${prefix}-submenu`, id: `${prefix}-submenu-${uuid}-${suuid}`,
 										role: 'group', aria: {hidden: true, expanded: false},
-										data: {filled: item.menus.length > 10 ? item.menus.slice(0, 18).length : ''}
+										data: {filled: (item.menus && item.menus.length > 10) ? item.menus.slice(0, 18).length : ''}
 									},
 									$subtoggle
 								);
