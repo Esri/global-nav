@@ -78,7 +78,7 @@
   	&.-visible {
 	  @apply --menu-link-styles;
 	  position: relative;
-	  display:block;
+	  display: block;
 	  left: -50px;
 	  top: -3px;
 
@@ -87,11 +87,11 @@
 	  }
 
 	  @media (--width-m) {
-		left: 0 !important;
+		left: 0;
 	  }
 
 	  @media (--width-s) {
-		left: 0 !important;
+		left: 0;
 		top:0;
 	  }
 	}
@@ -528,6 +528,7 @@
 	  -webkit-overflow-scrolling: touch;
 	  -ms-overflow-style: -ms-autohiding-scrollbar;
 	  left: 0;
+	  margin-top: -3px;
 	  overflow-x: hidden;
 	  overflow-y: auto;
 	  position: absolute;
