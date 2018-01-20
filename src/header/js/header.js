@@ -65,7 +65,7 @@ export default (data) => {
 		if (detail.brand) {
 			if (detail.brand.topStripe) {
 				$dispatch($brandStripe, 'header:update:brand', detail.brand);
-				$header.style.marginTop = detail.brand.topStripe.height;
+				$header.style.marginTop = '3px';
 			}
 			$dispatch($brand, 'header:update:brand', detail.brand);
 		}

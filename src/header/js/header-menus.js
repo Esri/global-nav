@@ -63,15 +63,16 @@ export default ({variant = 'desktop'}) => {
 							/* ====================================================== */
 
 							const $linkIcon = item.icon
-								? $renderSvgOrImg({imgDef: item.icon.path, imgClass: `${prefix}-link-icon`, imgWidth: item.icon.width, imgHeight: item.icon.height})
+								? $renderSvgOrImg({imgDef: item.icon.path, imgClass: `${prefix}-link-icon`, imgWidth: item.icon.width || '16px', imgHeight: item.icon.height || '16px'})
 								: null;
 
 							const $subcontrol = $('a',
 								{
-									class: `${prefix}-link`, id: `${prefix}-${variant}-link-${uuid}-${suuid}`,
+									class: `${prefix}-link ${item.hideLabelInDesktop ? '-hide-label' : ''}`, id: `${prefix}-link-${uuid}-${suuid}`,
 									href: item.href || 'javascript:;' // eslint-disable-line no-script-url
 								},
-								`${item.label}`
+								$linkIcon,
+								$('span', {class : `${prefix}-link-label`}, item.label)
 							);
 
 							if (item.data) {
@@ -97,7 +98,7 @@ export default ({variant = 'desktop'}) => {
 									{
 										class: `${prefix}-submenu`, id: `${prefix}-${variant}-submenu-${uuid}-${suuid}`,
 										role: 'group', aria: {hidden: true, expanded: false},
-										data: {filled: item.menus.length > 10 ? item.menus.slice(0, 18).length : ''}
+										data: {filled: (item.menus && item.menus.length > 10) ? item.menus.slice(0, 18).length : ''}
 									},
 									$subtoggle
 								);
