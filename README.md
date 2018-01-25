@@ -67,19 +67,18 @@ web pages and SAAS applications. It consists of the markup (HTML), styles
  ```
 
 Setup Repo for use with Dojo
-- `cd src/header`
 - Open `package.json` with a text editor
-- Add the following line to `gulpConfig`
+- Add the following line to the `gulpConfig` object
 ```json
-"gulpConfig": {
+"gulp_config": {
     ...
     "js-module-format": "amd"
 }
 ```
-- `cd ..`
+- `npm build`
 - `npm start`
 - Verify that the global nav demo is correctly displayed in the browser
-- The file `dist/esri-global-nav.js` should now be ready to import
+- The file `/dist/esri-global-nav.js` should now be ready to import
 
 Example: Import the new AMD Module for use within a Dijit
 
@@ -95,7 +94,7 @@ define([
 
     _getNavStructure: function () {
       return {
-        // See '/dist/demo-header.js' for an example
+        // See '/src/demo.js' for an example
       }
     }
 });
