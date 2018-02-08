@@ -46,46 +46,48 @@ export default () => {
 	/* ====================================================================== */
 
 	$target.addEventListener('header:update:search', ({detail}) => {
-		$($control, {aria: {label: detail.label}});
-		$renderSvgOrImg({imgDef: detail.image, imgClass: `${prefix}-image`, id: `${prefix}-image`, $targetElm: $control});
+		if (!detail.hide) {
+			$($control, {aria: {label: detail.label}});
+			$renderSvgOrImg({imgDef: detail.image, imgClass: `${prefix}-image`, id: `${prefix}-image`, $targetElm: $control});
 
-		if (detail.dialog) {
-			detail.dialog.prefix = 'esri-header-search-dialog';
+			if (detail.dialog) {
+				detail.dialog.prefix = 'esri-header-search-dialog';
 
-			const $dialog = esriSearch(detail.dialog);
+				const $dialog = esriSearch(detail.dialog);
 
-			const $dialogCancelButton = $('button', {
-					class: 'esri-header-search-dialog-cancel',
-					type: 'reset'
-				},
-				$('span',
-					detail.dialog.cancelLabel
-				)
-			);
+				const $dialogCancelButton = $('button', {
+						class: 'esri-header-search-dialog-cancel',
+						type: 'reset'
+					},
+					$('span',
+						detail.dialog.cancelLabel
+					)
+				);
 
-			$dialogCancelButton.addEventListener('click', (event) => {
-				$dispatch($control, 'header:menu:close', {
-					control: $control,
-					content: $content,
-					state: 'search',
-					type: 'search-close',
-					event
+				$dialogCancelButton.addEventListener('click', (event) => {
+					$dispatch($control, 'header:menu:close', {
+						control: $control,
+						content: $content,
+						state: 'search',
+						type: 'search-close',
+						event
+					});
 				});
-			});
 
-			$($dialog,
-				$dialogCancelButton
-			);
+				$($dialog,
+					$dialogCancelButton
+				);
 
-			$replaceAll($content,
-				$dialog
-			);
+				$replaceAll($content,
+					$dialog
+				);
 
-			$control.addEventListener('click', (event) => {
-				if ('true' === $control.getAttribute('aria-expanded')) {
-					$dispatch($dialog, `${detail.dialog.prefix}:focus`, {event});
-				}
-			});
+				$control.addEventListener('click', (event) => {
+					if ('true' === $control.getAttribute('aria-expanded')) {
+						$dispatch($dialog, `${detail.dialog.prefix}:focus`, {event});
+					}
+				});
+			}
 		}
 	});
 
