@@ -23,18 +23,17 @@ export default (data) => {
 
 	const $footer = $('footer',
 		{
-			class: prefix,
+			class: `${prefix} ${data.hideMenus ? 'skinny-footer' : ''}`,
 			aria: {label: data.label}
 		},
 
 		/* Append Footer Components
 		/* ================================================================== */
-
-		$('div', {class: `${prefix}-section--1`},
+		$('div', {class: `${prefix}-section--1 ${data.hideMenus ? 'hidden' : ''}`},
 			$footerBrand,
 			$footerSocial
 		),
-		$('div', {class: `${prefix}-section--2`},
+		$('div', {class: `${prefix}-section--2 ${data.hideMenus ? 'hidden' : ''}`},
 			$footerMenu
 		),
 		$('div', {class: `${prefix}-section--3`},
@@ -58,6 +57,10 @@ export default (data) => {
 				$footer.ownerDocument.defaultView.scrollTo(0, scrollY);
 			}
 		});
+
+		if (data.hideMenus) {
+			document.querySelector('.esri-footer-barrier').classList.add('skinny-footer');
+		}
 
 		// Update Header
 		$dispatch($footer, 'footer:update', data);
