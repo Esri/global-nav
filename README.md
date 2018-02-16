@@ -68,11 +68,11 @@ web pages and SAAS applications. It consists of the markup (HTML), styles
 
 Setup Repo for use with Dojo
 - Open `package.json` with a text editor
-- Add the following line to the `gulpConfig` object
+- Edit the following line in the `gulpConfig` object
 ```json
 "gulp_config": {
     ...
-    "js-module-format": "amd"
+    "js_module_format": "amd"
 }
 ```
 - `npm build`
