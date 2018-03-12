@@ -185,8 +185,13 @@
 
 	@media (--width-sm) {
 	  position: absolute;
-	  right: 18px;
+	  right: 25px;
 	  top: 30px;
+
+		@nest :dir(rtl) & {
+			right: auto;
+			left: 25px;
+		}
 	}
 }
 
