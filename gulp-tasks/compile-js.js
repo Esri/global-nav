@@ -26,7 +26,7 @@ function compileJs() {
 function compileJsFile({rootJs, saveAs}) {
 	rollup_stream({
 		input: rootJs,
-		format: 'iife',
+		format: `${pkg.gulp_config.js_module_format}`,
 		name: 'esriGlobalNav',
 		sourcemap: true,
 		plugins: [

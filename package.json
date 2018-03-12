@@ -97,6 +97,7 @@
     "server_port": 8080,
     "src_path": "./src",
     "build_path": "./dist",
-    "build_name": "esri-global-nav"
+    "build_name": "esri-global-nav",
+    "js_module_format": "iife"
   }
 }
