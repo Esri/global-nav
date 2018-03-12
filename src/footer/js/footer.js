@@ -17,7 +17,7 @@ export default (data) => {
 
 	const $footerBrand = brand(data.brand, prefix);
 	const $footerInfo = info(data.info, prefix);
-	const $footerLanguage = language(data.language, prefix);
+	const $footerLanguage = data.language ? language(data.language, prefix) : $('div', {class: `esri-footer-language`});
 	const $footerMenu = menu(data.menu, prefix);
 	const $footerSocial = social(data.social, prefix);
 
