@@ -27,12 +27,13 @@
 		<a href="./esri-global-nav.html">
 			<div class="card card-wide">
 				<figure class="card-wide-image-wrap">
-					<img class="card-wide-image" src="https://yoho.house.gov/sites/yoho.house.gov/files/featured_image/internet-of-things.gif" alt="Web Navigation">
+					<img class="card-wide-image" src="https://yoho.house.gov/sites/yoho.house.gov/files/featured_image/internet-of-things.gif" alt="Web Navigation" />
 					<div class="card-image-caption">
 						Web Global Navigation Demo
 					</div>
 				</figure>
 				<div class="card-content">
+					<div class="right rtl-link">Right To Left</div>
 					<h4 class="trailer-half">Web Global Navigation Demo</h4>
 					<p class="font-size--1 trailer-half">This is the main navigation for all of Esri's online properties.</p>
 					<p class="font-size--1 trailer-half">If your not using it, you should!</p>
@@ -54,6 +55,7 @@
 					</div>
 				</figure>
 				<div class="card-content">
+					<div class="right rtl-link">Right To Left</div>
 					<h4 class="trailer-half">App Navigation Demo</h4>
 					<p class="font-size--1 trailer-half">This is the main navigation for all of Esri's application type things.</p>
 					<p class="font-size--1 trailer-half">If your app needs some navigation, this is the place you should be looking.</p>
@@ -68,6 +70,15 @@
 	</div>
 </div>
 
+<script>
+	[].slice.call(document.querySelectorAll('.rtl-link')).forEach((el)=>{
+		el.addEventListener('click', (evt)=>{
+			evt.preventDefault();
+			window.location.href = `${el.closest('a').href}?dir=rtl`;
+		})
+	});
+
+</script>
 
 </body>
 </html>
