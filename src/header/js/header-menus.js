@@ -2,26 +2,30 @@ import {$assign as $, $dispatch, $replaceAll, $renderSvgOrImg} from '../../share
 
 const prefix = 'esri-header-menus';
 
-export default () => {
-	/* Toggle Menu
-	/* ====================================================================== */
+export default ({variant = 'desktop'}) => {
+	const $target = $('div', {class: prefix, id: `${prefix}-${variant}`});
+	$target.classList.add(`-${variant}`);
 
-	const $toggle = $('button', {
-		class: `${prefix}-toggle`, id: `${prefix}-toggle`,
-		aria: {controls: `${prefix}-content`, expanded: false, haspopup: true, labelledby: 'esri-header-brand'}
-	});
-
-	$toggle.addEventListener('click', (event) => {
-		$dispatch($toggle, 'header:menu:toggle', {
-			control: $toggle,
-			content: $content,
-			root: true,
-			state: 'menu',
-			target: $target,
-			type: 'root-toggle',
-			event
+	if (variant === 'mobile') {
+		const $toggle = $('button', {
+			class: `${prefix}-toggle`, id: `${prefix}-${variant}-toggle`,
+			aria: {controls: `${prefix}-content`, expanded: false, haspopup: true, labelledby: 'esri-header-brand'}
 		});
-	});
+
+		$toggle.addEventListener('click', (event) => {
+			$dispatch($toggle, 'header:menu:toggle', {
+				control: $toggle,
+				content: $content,
+				root: true,
+				state: 'menu',
+				target: $target,
+				type: 'root-toggle',
+				event
+			});
+		});
+
+		$($target, $toggle);
+	}
 
 	/* Menus: Content
 	/* ====================================================================== */
@@ -31,12 +35,11 @@ export default () => {
 		aria: {hidden: true, expanded: false}
 	});
 
+	$($target, $content);
+
 	/* Menus
 	/* ====================================================================== */
 
-	const $target = $('div', {class: prefix, id: prefix},
-		$toggle, $content
-	);
 
 	/* Menus: On Update
 	/* ====================================================================== */
@@ -93,7 +96,7 @@ export default () => {
 
 								const $subcontent = $('div',
 									{
-										class: `${prefix}-submenu`, id: `${prefix}-submenu-${uuid}-${suuid}`,
+										class: `${prefix}-submenu`, id: `${prefix}-${variant}-submenu-${uuid}-${suuid}`,
 										role: 'group', aria: {hidden: true, expanded: false},
 										data: {filled: (item.menus && item.menus.length > 10) ? item.menus.slice(0, 18).length : ''}
 									},
@@ -105,7 +108,7 @@ export default () => {
 										$('ul',
 											{
 												class: `${prefix}-sublist`,
-												role: 'navigation', aria: {labelledby: `${prefix}-link-${uuid}-${suuid}`}
+												role: 'navigation', aria: {labelledby: `${prefix}-${variant}-link-${uuid}-${suuid}`}
 											},
 											/* Global Navigation: Menus: Sublink
 											/* ============================== */
@@ -218,6 +221,20 @@ export default () => {
 				)
 			)
 		);
+	});
+
+	$target.addEventListener('header:update:collapseMenus', ({detail}) => {
+		if (detail && detail.indexOf(true) > -1) {
+			document.querySelector('.esri-header-menus-toggle').classList.add('-visible');
+			document.getElementById('esri-header-brand').classList.add('-fit-burger');
+
+			const menus = [].slice.call($target.querySelectorAll('.esri-header-menus-menu'));
+			detail.forEach((collapse, i) => {
+				if (collapse) {
+					menus[i].classList.add('-collapsed');
+				}
+			});
+		}
 	});
 
 	return $target;

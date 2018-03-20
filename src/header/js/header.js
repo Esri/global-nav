@@ -33,7 +33,8 @@ export default (data) => {
 	const $brandStripe = createBrandStripe();
 	const $brand = createBrand();
 	const $account = createAccount();
-	const $menus = createMenus();
+	const $mobileMenus = createMenus({variant: 'mobile'});
+	const $desktopMenus = createMenus({variant: 'desktop'});
 	const $search = createSearch();
 	const $apps = createApps();
 
@@ -47,7 +48,8 @@ export default (data) => {
 		$headerCanvas,
 		$brandStripe,
 		$brand,
-		$menus,
+		$mobileMenus,
+		$desktopMenus,
 		$search,
 		$lineBreak,
 		$apps,
@@ -69,7 +71,13 @@ export default (data) => {
 		}
 
 		if (detail.menus) {
-			$dispatch($menus, 'header:update:menus', detail.menus);
+			$dispatch($desktopMenus, 'header:update:menus', detail.menus);
+			$dispatch($mobileMenus, 'header:update:menus', detail.menus);
+		}
+
+		if (detail.collapseMenus) {
+			$dispatch($desktopMenus, 'header:update:collapseMenus', detail.collapseMenus);
+			$dispatch($mobileMenus, 'header:update:collapseMenus', detail.collapseMenus);
 		}
 
 		if (detail.search) {
@@ -133,15 +141,14 @@ export default (data) => {
 			searchDetail = detail;
 		} else if (searchDetail) {
 			$dispatch($search, 'header:menu:close', searchDetail);
-
 			searchDetail = null;
 		}
 
-		if ($menus === detail.target) {
+		if ($desktopMenus === detail.target || $mobileMenus === detail.target) {
 			menusDetail = detail;
 		} else if (menusDetail && !isMenuToggle && !viewportIsSmall.matches) {
-			$dispatch($menus, 'header:menu:close', menusDetail);
-
+			$dispatch($desktopMenus, 'header:menu:close', menusDetail);
+			$dispatch($mobileMenus, 'header:menu:close', menusDetail);
 			menusDetail = null;
 		}
 
@@ -224,8 +231,6 @@ export default (data) => {
 			$headerWindow.addEventListener('orientationchange', onresize);
 			$headerWindow.addEventListener('resize', onresize);
 
-			onresize();
-
 			/* On Match Media Change
 			/* ============================================================== */
 
@@ -237,6 +242,8 @@ export default (data) => {
 
 			onViewportIsSmallChange();
 			onViewportIsSmallMediumChange();
+
+			onresize();
 		}
 
 		function onresize() {
@@ -249,13 +256,23 @@ export default (data) => {
 			$replaceAll($style,
 				`:root{--esri-vw:${width}px;--esri-vh:${height}px}[data-header-is-open]{width:${width}px;height:${height}px;overflow-y:${overflowY}}`
 			);
+
+			viewportIsSmallMedium = $headerWindow.matchMedia('(max-width: 1023px)');
+			if (viewportIsSmallMedium.matches) {
+				$desktopMenus.querySelector('.esri-header-menus-content').classList.add('hidden');
+				$mobileMenus.querySelector('.esri-header-menus-content').classList.remove('hidden');
+			} else {
+				$desktopMenus.querySelector('.esri-header-menus-content').classList.remove('hidden');
+				$mobileMenus.querySelector('.esri-header-menus-content').classList.add('hidden');
+			}
 		}
 
 		function onViewportIsSmallChange() {
 			if (viewportIsSmall.matches) {
 				$dispatch($header, 'header:breakpoint:s');
 
-				$menus.lastChild.appendChild($account);
+				$mobileMenus.lastChild.appendChild($account);
+				$desktopMenus.lastChild.appendChild($account);
 			} else {
 				$dispatch($header, 'header:breakpoint:not:s');
 
@@ -266,12 +283,10 @@ export default (data) => {
 		function onViewportIsSmallMediumChange() {
 			if (viewportIsSmallMedium.matches) {
 				$dispatch($header, 'header:breakpoint:sm');
-
-				$($menus.lastChild, {aria: {hidden: 'false' === $menus.lastChild.getAttribute('aria-expanded')}});
+				$($desktopMenus.lastChild, {aria: {hidden: 'false' === $desktopMenus.lastChild.getAttribute('aria-expanded')}});
 			} else {
 				$dispatch($header, 'header:breakpoint:not:sm');
-
-				$($menus.lastChild, {aria: {hidden: false}});
+				$($desktopMenus.lastChild, {aria: {hidden: false}});
 			}
 		}
 	});

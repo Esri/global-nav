@@ -10,6 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
 				height: 30,
 				topStripe : '#e8912e'
 			},
+			collapseMenus: [true, false],
 			menus: [
 				[
 					{
