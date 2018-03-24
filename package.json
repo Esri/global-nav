@@ -98,6 +98,6 @@
     "src_path": "./src",
     "build_path": "./dist",
     "build_name": "esri-global-nav",
-    "js_module_format": "iife"
+    "js_module_format": "umd"
   }
 }
