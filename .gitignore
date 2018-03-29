@@ -5,4 +5,7 @@
 !.travis.yml
 *.log*
 node_modules
-dist
+dist/*
+!dist/esri-global-nav.js
+!dist/esri-global-nav.css
+!dist/img/

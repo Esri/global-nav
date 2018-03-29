@@ -1,6 +1,6 @@
 {
   "name": "esri-global-nav",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A centralized microapp for navigation",
   "author": "Esri Web Applications <webapps@esri.com>",
   "license": "Apache-2.0",
@@ -98,6 +98,6 @@
     "src_path": "./src",
     "build_path": "./dist",
     "build_name": "esri-global-nav",
-    "js_module_format": "iife"
+    "js_module_format": "umd"
   }
 }

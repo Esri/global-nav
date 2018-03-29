@@ -1,7 +1,6 @@
 # Contributing to Esri Global Navigation
 
-You want to help? You rock! Now, take a moment to be sure your contributions
-make sense to everyone else.
+You want to help? You rock! Now, take a moment to be sure your contributions make sense to everyone else.
 
 ## Reporting Issues
 
@@ -14,8 +13,7 @@ Remember, a bug is a _demonstrable problem_ caused by _our_ code.
 
 ## Submitting Pull Requests
 
-Pull requests are the greatest contributions, so be sure they are focused in
-scope and avoid unrelated commits.
+Pull requests are the greatest contributions, so be sure they are focused in scope and avoid unrelated commits.
 
 1. To begin; [fork this project], clone your fork, and add our upstream.
    ```bash
