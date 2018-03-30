@@ -61,7 +61,7 @@ web pages and SAAS applications. It consists of the markup (HTML), styles
 ### Dojo
  Install Git Repo as a Submodule
  ```sh
- > git submodule add git@github.com:Esri/global-nav.git ./esri-glboal-nav
+ > git submodule add git@github.com:Esri/global-nav.git ./esri-global-nav
  > cd esri-global-nav
  > npm install
  ```
