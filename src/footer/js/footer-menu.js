@@ -23,7 +23,7 @@ export default (data, prefix) => {
 				item.label
 			),
 			// Submenu
-			$('nav',
+			$('div',
 				{
 					class: `${prefix}-menu--sub`, id: `${prefix}-menu--sub--${index}`,
 					aria: {labelledby: `${prefix}-menu-link--${index}`}
@@ -47,7 +47,7 @@ export default (data, prefix) => {
 	);
 
 	// Menu
-	const $target = $('nav',
+	const $target = $('div',
 		{
 			class: `${prefix}-menu`,
 			aria: {label: data.label}

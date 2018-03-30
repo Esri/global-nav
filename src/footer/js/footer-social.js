@@ -16,7 +16,7 @@ export default (data, prefix) => {
 			)
 		)));
 
-	return $('nav',
+	return $('div',
 		{class: `${prefix}-social`, aria: {label: data.label}},
 		$('ul', {class: `${prefix}-social-list`, role: 'presentation'},
 			$socialIcons));
