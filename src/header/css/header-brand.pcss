@@ -7,6 +7,14 @@
 	align-items: center;
 	display: inline-flex;
 
+	&.-fit-burger{
+		position: relative;
+		left: 40px;
+		&:dir(rtl) {
+			left: -50px;
+		}			
+	}
+
 	@media (--width-s) {
 		margin-inline: auto;
 		padding-inline: 12px;

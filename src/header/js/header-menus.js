@@ -227,6 +227,7 @@ export default ({variant = 'desktop'}) => {
 		if (detail && detail.indexOf(true) > -1) {
 			document.querySelector('.esri-header-menus-toggle').classList.add('-visible');
 			document.getElementById('esri-header-brand').classList.add('-fit-burger');
+			document.getElementById('esri-header-menus-mobile').classList.add('-always-visible');
 
 			const menus = [].slice.call($target.querySelectorAll('.esri-header-menus-menu'));
 			detail.forEach((collapse, i) => {

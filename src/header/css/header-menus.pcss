@@ -4,9 +4,25 @@
 /* ========================================================================== */
 
 .esri-header-menus {
+	&.-mobile{
+		display: none;
+		&.-always-visible{
+			display: block;
+			position: relative;
+			left: -80px;
+			&:dir(rtl) {
+				left: 170px;
+			}				
+		}
+	}
+
+
 	@media (--width-sm) {
 		order: -1;
 		position: relative;
+		&.-mobile{
+			display: block;
+		}		
 	}
 
 	@media (--width-l) {
@@ -589,6 +605,9 @@
 		@nest :dir(rtl) & {
 		  transform: translateX(var(--header-width-m));
 		}
+	  }
+	  &:dir(rtl){
+		right: 40px;
 	  }
 	}
 
