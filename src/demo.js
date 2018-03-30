@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
 		header: {
 			theme: 'web',
 			brand: {
-				label: 'Esri',
+				label: 'Esri Global',
 				image: './img/gnav-esri-logo-globe-tm.svg',
 				href: 'https://www.esri.com/',
 				width: 80,
