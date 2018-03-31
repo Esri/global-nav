@@ -1,3 +1,10 @@
+## 1.0.4
+
+### Modified
+- Made a few tweaks to improve screen reader performance
+- Resolved issue with top navigation centering the menu
+
+
 ## 1.0.3
 
 ### Modified
