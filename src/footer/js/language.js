@@ -11,7 +11,12 @@ export default (data) => {
 			aria: {label: data.optionsLabel}
 		},
 		...data.options.map(
-			(option) => $('option', {value: option.value}, option.label)
+			(option) => {
+				const opt = document.createElement('option');
+				opt.value = option.value;
+				opt.innerHTML = option.label;
+				return opt;
+			}
 		)
 	);
 
