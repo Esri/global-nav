@@ -11,7 +11,11 @@ import languageDialog from './language';
 export default (data, prefix) => {
 	// Language Selection Button
 	const $labelText = document.createTextNode(data.buttonLabel);
-	const $control = $('button', {class: `${prefix}-language-control`, ariaDescribedby: `${prefix}-language`}, $labelText);
+	const $control = document.createElement('button');
+	$control.classList.add(`${prefix}-language-control`);
+	$control.setAttribute('ariaDescribedby',`${prefix}-language`);
+	$control.innerHTML = data.buttonLabel;
+
 	const $barrier = $('div', {class: `${prefix}-language`}, $control);
 
 	$control.addEventListener('click', openDialog);
@@ -69,7 +73,7 @@ export default (data, prefix) => {
 
 	// ...
 	$barrier.addEventListener('footer:update:language', ({detail}) => {
-		$labelText.nodeValue = detail.buttonLabel;
+		$control.innerHTML = detail.buttonLabel;
 
 		$barrier.ownerDocument.body.appendChild(
 			$canvas
