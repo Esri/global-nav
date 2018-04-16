@@ -111,7 +111,7 @@ The global nav dispatches custom events to each of its modules (Header and Foote
 ```js
 // You can Listen for events on the element generated from the create method
 globalNav.create(yourGlobalNavStructure);
-var esriHeader = $('.esri-header-barrier')[0];
+var esriHeader = document.querySelector('.esri-header-barrier');
 esriHeader.addEventListener("header:click:search", function () { ... });
 ```
 
