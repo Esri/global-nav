@@ -1,3 +1,9 @@
+## Unreleased
+
+### Fixed
+- fix "app mode" hamburger alignment
+- fix inconsistent spacing
+
 ## 1.0.5
 
 ### Fixed
