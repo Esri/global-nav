@@ -89,7 +89,7 @@ define([
   return {
     init: function () {
       var navStructure = this._getNavStructure();
-      return globalNav.create(navStructure);
+      globalNav.create(navStructure);
     }
 
     _getNavStructure: function () {
@@ -110,7 +110,8 @@ The global nav dispatches custom events to each of its modules (Header and Foote
 
 ```js
 // You can Listen for events on the element generated from the create method
-var esriHeader = globalNav.create(yourGlobalNavStructure);
+globalNav.create(yourGlobalNavStructure);
+var esriHeader = document.querySelector('.esri-header-barrier');
 esriHeader.addEventListener("header:click:search", function () { ... });
 ```
 

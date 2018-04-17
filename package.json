@@ -1,6 +1,6 @@
 {
   "name": "esri-global-nav",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "A centralized microapp for navigation",
   "author": "Esri Web Applications <webapps@esri.com>",
   "license": "Apache-2.0",
