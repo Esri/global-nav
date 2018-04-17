@@ -35,9 +35,7 @@ function $assign(id) {
             element.appendChild(source);
         } else if ('string' === typeof source) {
             // append strings as text nodes
-            element.appendChild(
-                document.createTextNode(source)
-            );
+            element.innerHTML = source;
         } else {
             assignSource(element, source, '');
         }
