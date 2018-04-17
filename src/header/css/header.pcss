@@ -32,7 +32,7 @@
 		box-sizing: border-box;
 	}
 
-	& ul, & li, & label {
+	& li, & label {
 		margin: 0;
 	}
 
@@ -85,6 +85,16 @@
 	&[data-state="search"] {
 		background-color: color(#f8f8f8 a(98%));
 		box-shadow: inset 0 1px 0 0 var(--mono-88);
+	}
+}
+
+.-app .esri-header-canvas {
+	@media (--width-s) {
+		inset-block-start: calc(var(--header-height-s) + 3px);
+	}
+
+	@media (--width-ml) {
+		inset-block-start: calc(var(--header-height-l) + 3px);
 	}
 }
 
