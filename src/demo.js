@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
 						label: 'ArcGIS',
 						menus: [
 							{
-								label: 'About ArcGIS',
+								label: '<u>About ArcGIS</u>',
 								href: 'https://www.esri.com/arcgis/about-arcgis',
 								data: {
 									this: true,

@@ -19,7 +19,7 @@
     "template-curly-spacing": 2,
     "no-useless-escape": 2,
     "wrap-iife": 2,
-    "prefer-rest-params": 2,
+    "prefer-rest-params": 0,
     "no-new-func": 2,
     "no-param-reassign": 2,
     "prefer-spread": 2,
@@ -72,6 +72,9 @@
     "setTimeout":true,
     "getComputedStyle" : true,
     "matchMedia" : true,
-    "XMLHttpRequest" : true
+    "XMLHttpRequest" : true,
+    "Node" : true,
+    "arguments": true,
+    "Event": true
   }
 }

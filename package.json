@@ -26,7 +26,6 @@
     "babel-preset-env": "^1.6.0",
     "browser-sync": "^2.18.13",
     "cssnano": "^3.10.0",
-    "domose": "^0.5.0",
     "eslint": "^4.8.0",
     "eslint-config-dev": "^2.0.0",
     "fs-extra": "^4.0.2",
