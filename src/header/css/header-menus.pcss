@@ -8,11 +8,8 @@
 		display: none;
 		&.-always-visible {
 			display: block;
-			position: relative;
-			left: -80px;
-			&:dir(rtl) {
-				left: 170px;
-			}
+			order: -1;
+			flex-grow: 0;
 		}
 	}
 
@@ -94,7 +91,6 @@
 		@apply --menu-link-styles;
 		position: relative;
 		display: block;
-		left: -50px;
 
 		&::before {
 			content: url("../../shared/shared.svg#c-menu" param(--stroke #595959));
@@ -174,6 +170,11 @@
 	}
 }
 
+
+.-app .esri-header-menus-content {
+	justify-content: flex-end;
+}
+
 /* Global Header Menus: List
 /* ========================================================================== */
 
@@ -193,7 +194,7 @@
 }
 
 .esri-header-menus-link-icon {
-	margin: 0 10px;
+	margin: 0 14px;
 	display: inline-block;
 	vertical-align: middle;
 
@@ -260,7 +261,7 @@
 				inset-inline-end: 15px;
 			}
 
-				&.custom-icon .esri-header-menus-link-icon {
+			&.custom-icon .esri-header-menus-link-icon {
 				right: 10px;
 			}
 		}
@@ -279,6 +280,7 @@
 		}
 		& .esri-header-menus-link-icon {
 			margin-right: 0;
+			margin-left: 0;
 		}
 
 		@media (--width-sm) {
@@ -616,10 +618,10 @@
 		background-position: 0 100%;
 		background-repeat: no-repeat;
 		background-size: 100% 1px;
-		padding: 28px 56px 28px 24px;
+		padding: 28px 60px 28px 24px;
 		position: relative;
 		@nest :dir(rtl) & {
-			padding: * 24px * 56px;
+			padding: * 24px * 60px;
 		}
 
 		&::after {
@@ -693,7 +695,7 @@
 .esri-header-menus {
 	&.-desktop {
 		& .esri-header-menus-menu.-collapsed {
-			visibility: hidden;
+			display: none;
 		}
 	}
 	&.-mobile {
