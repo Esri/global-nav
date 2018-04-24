@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
 			theme: 'app',
 			brand: {
 				label: 'Esri',
+				brandText: 'Lorem ipsum',
 				image: './img/gnav-esri-logo-globe-tm.svg',
 				href: 'https://www.esri.com/',
 				width: 80,
