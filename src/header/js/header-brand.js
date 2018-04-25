@@ -3,7 +3,7 @@ import {$assign as $, $dispatch, $replaceAll, $renderSvgOrImg} from '../../share
 const prefix = 'esri-header-brand';
 
 export default () => {
-	const $target = $('div', {class: `${prefix}-container`});
+	const $target = $('a', {class: prefix, id: prefix});
 	
 	// On Click
 	$target.addEventListener('click', (event) => {
@@ -13,10 +13,10 @@ export default () => {
 	/* Brand: On Update
 	/* ====================================================================== */
 	$target.addEventListener('header:update:brand', ({detail}) => {
+		$($target, {href: detail.href});
 		if (detail.image) {
-			const $link = $('a', {class: prefix, id: prefix, href: detail.href, aria: {label: detail.label}});
-			$renderSvgOrImg({imgDef: detail.image, imgClass: `${prefix}-image`, imgWidth: detail.width, imgHeight:detail.height, $targetElm:$link});
-			$($target, $link);
+			$($target, {aria: {label: detail.label}});
+			$renderSvgOrImg({imgDef: detail.image, imgClass: `${prefix}-image`, imgWidth: detail.width, imgHeight:detail.height, $targetElm:$target});
 		}
 		if (detail.brandText) {
 			const $brandText = $('span', {class: `${prefix}-text`}, detail.brandText);
