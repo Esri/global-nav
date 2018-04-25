@@ -442,7 +442,4 @@ document.addEventListener("DOMContentLoaded", () => {
 	};
 
 	esriGlobalNav.create({headerElm: '.esri-header-barrier', footerElm: '.esri-footer-barrier', menuData});
-
-	var esriHeader = document.querySelector('.esri-header-barrier');
-	esriHeader.addEventListener("header:apps:reorder", function (e) { console.log("apps ", e.detail.icons) });
 });

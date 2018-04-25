@@ -14,7 +14,7 @@
 .esri-header-apps .appLink {
   display: block;
   position: relative;
-  width: 89.5%;
+  /* width: 89.5%; */
   height: 93%;
   padding-right: .5rem;
   padding-left: .5rem;
@@ -146,7 +146,7 @@ html[dir="rtl"] .dropdown-menu.dropdown-right {
 	min-width: 475px;
 	max-width: 600px;
     top: -21px;
-    left: -194px;
+    left: -210px;
 	overflow-x: hidden;
 
 	@media (--width-s) {
@@ -281,10 +281,10 @@ html[dir="rtl"] .dropdown-menu.dropdown-right {
 }
 
 /* Extra support for preventing highlighting while dragging */
-.esri-header-apps div .dragging img, 
-.esri-header-apps div .dragging p,
-.esri-header-apps div .dragging a,
-.esri-header-apps div .dragging span {
+.esri-header-apps div.dragging img, 
+.esri-header-apps div.dragging p,
+.esri-header-apps div.dragging a,
+.esri-header-apps div.dragging span {
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -354,7 +354,7 @@ html[dir="rtl"] .dropdown-menu.dropdown-right {
 .esri-header-apps .app-indicator {
 	height: 18px;
 	width: 18px;
-	right: 50px;
+	right: 46px;
 	clear: both;
 	float: right;
 	border-radius: 10px;
@@ -395,7 +395,7 @@ html[dir="rtl"] .dropdown-menu.dropdown-right {
   cursor: pointer;
   display: block;
 }
-.esri-header-apps .appContainer-secondary div .missing-app-icon {
+.esri-header-apps .appContainer-secondary div.missing-app-icon {
   background: #f8f8f8;
 }
 
@@ -404,26 +404,26 @@ html[dir="rtl"] .dropdown-menu.dropdown-right {
 .esri-header-apps .grabbable a {
   cursor: pointer;
 }
-.esri-header-apps div .dragging ul,
-.esri-header-apps div .dragging li,
-.esri-header-apps div .dragging a {
-  cursor: move !important; /* fallback if grab cursor is unsupported */
-  cursor: grab !important;
-  cursor: -moz-grabbing !important;
-  cursor: -webkit-grabbing !important;
-  cursor: grabbing !important;
+.esri-header-apps div.dragging ul,
+.esri-header-apps div.dragging li,
+.esri-header-apps div.dragging a {
+  cursor: move; /* fallback if grab cursor is unsupported */
+  cursor: grab;
+  cursor: -moz-grabbing;
+  cursor: -webkit-grabbing;
+  cursor: grabbing;
 }
-.esri-header-apps div .dragging .grabbable,
-.esri-header-apps div .dragging .grabbable a,
-.esri-header-apps div .dragging .grabbable li {
-  cursor: move !important; /* fallback if grab cursor is unsupported */
-  cursor: grab !important;
-  cursor: -moz-grabbing !important;
-  cursor: -webkit-grabbing !important;
-  cursor: grabbing !important;
+.esri-header-apps div.dragging .grabbable,
+.esri-header-apps div.dragging .grabbable a,
+.esri-header-apps div.dragging .grabbable li {
+  cursor: move; /* fallback if grab cursor is unsupported */
+  cursor: grab;
+  cursor: -moz-grabbing;
+  cursor: -webkit-grabbing;
+  cursor: grabbing;
 }
 
-.esri-header-apps div .dragging ul .appLinkContainer.with-hover:hover  {
+.esri-header-apps div.dragging ul.appLinkContainer.with-hover:hover  {
   background: inherit;
   outline: none;
 }

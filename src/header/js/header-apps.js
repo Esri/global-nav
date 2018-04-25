@@ -66,6 +66,18 @@ export default () => {
 		$control
 	);
 
+	/* Apps: Strings 
+	/* ====================================================================== */
+
+	let i18n = {
+		clear: "Clear",
+		confirm: "Got it.",
+		dragAppsHere: "Drag apps here that you don't use very often.",
+		intro: "Drag and drop your favorite apps in any order to customize your app launcher",
+		removed: "This app is no longer available.",
+		removedMessage: "Removed app" 
+	}; 
+
 	/* Apps: Secondary Set of Apps 
 	/* ====================================================================== */
 
@@ -202,13 +214,16 @@ export default () => {
 		});
 		$appLink.innerHTML = _getRemoveAppX(); 
 
+		// Displaying Warnings in association with removed apps
+		// - Requires access to orgUrlKey and isAdmin like functionality 
+		// - To be implemented after discussion
 		let $missingIcon = $("div", {
 			"class": "missing-app-icon appIconImage",
 			"tabindex": 0,
 			"blur": _deactivateAccessibilityMode.bind(this, currentApp),
-			// "aria-label": this.i18n.noLongerAvailable,
-			keyup: _showRemovedAppWarning.bind(this, currentApp.uid, $listItem),
-			onclick: _showRemovedAppWarning.bind(this, currentApp.uid, $listItem)
+			title: i18n.removed
+			// keyup: _showRemovedAppWarning.bind(this, currentApp.uid, $listItem),
+			// onclick: _showRemovedAppWarning.bind(this, currentApp.uid, $listItem)
 		});
 		$missingIcon.appendChild(_getAccessibleAppArrowContainer());
 		$listItem.appendChild($appLink);
@@ -284,8 +299,9 @@ export default () => {
 			}
 
 			if (app.canAccess) {
-				// ddState.listenForMouseUp = ddState.dropdownNav.addEventListener("mouseup", $closeAppLauncher);
-				ddState.listenForMouseOver = e.currentTarget.parentNode.addEventListener("mousemove", _simulateDragEvent);
+				ddState.dropdownNav.addEventListener("mouseup", $closeAppLauncher);
+				ddState.listenForMouseOverElement = e.currentTarget.parentNode;
+				ddState.listenForMouseOverElement.addEventListener("mousemove", _simulateDragEvent);
 			} else {
 				var removedAppClass = "app-indicator-removed";
 				if (e.target.classList.contains(removedAppClass) || 
@@ -323,7 +339,7 @@ export default () => {
 		if (!ddState.removedAppWithFoucs && (!e || _verifyKeyPress(e.keyCode))) {
 			// _displayRemovedAppWarning.classList.remove("hide");
 			// _displayGoToSettingsWarning.classList.add("hide");
-			ddState.dropdownNav.scrollTop = 0;
+			// ddState.dropdownNav.scrollTop = 0;
 			ddState.removedAppWithFoucs = {"uid": uid, "el": el};
 		} else {
 			ddState.removedAppWithFoucs = null;
@@ -332,7 +348,7 @@ export default () => {
 	};
 	
 	const _disableLinkHref = (e, disable) => {
-			let link = (e.item.children[1] && e.item.children[1].nodeName === "A") || e.item.children[0];
+			let link = (e.item.children[1] && e.item.children[1].nodeName === "A") ? e.item.children[1] : e.item.children[0];
 			if (disable) {
 				ddState.recentlyRemovedHref = link.href;
 				link.removeAttribute("href");
@@ -344,14 +360,14 @@ export default () => {
 	};
 
 	const _removeMouseUpListener = () => {
-		if (ddState.listenForMouseUp) {
-			ddState.listenForMouseUp.removeEventListener('mouseup', $closeAppLauncher, false);
+		if (ddState.dropdownNav && ddState.dropdownNav.removeEventListener) {
+			ddState.dropdownNav.removeEventListener('mouseup', $closeAppLauncher, false);
 		}
 	};
 
 	const _removeMouseOverListener = () => {
-		if (ddState.listenForMouseOver) {
-			ddState.listenForMouseOver.removeEventListener('mousemove', _simulateDragEvent, false);
+		if (ddState.listenForMouseOverElement) {
+			ddState.listenForMouseOverElement.removeEventListener('mousemove', _simulateDragEvent, false);
 		}
 	};
 
@@ -391,15 +407,14 @@ export default () => {
 					liIndex = _getIndexOfListItem(li),
 					numOfPrimaryApps = ddState.primarySortable.toArray().length;
 
-					console.log(liIndex);
 				expandSecondaryDropdown();
 
 				const combinedIndex = _getCombinedIndexOfApp(liIndex, ul, numOfPrimaryApps);
-				ddState.activeAccessibleListElement = true;
-				
-				ddState.activeAccessibleListElementEvent = li.addEventListener("keydown", 
-					_moveAppWithArrowKeys.bind(this, app, _getArrayOfDirections(combinedIndex, ul), li, ul, liIndex)
+				ddState.activeAccessibleListElement = li;
+				ddState.activeAccessibleListElementEvent = _moveAppWithArrowKeys.bind(
+					this, app, _getArrayOfDirections(combinedIndex, ul), li, ul, liIndex
 				);
+				li.addEventListener("keydown", ddState.activeAccessibleListElementEvent);
 
 				_populateAccessibleArrows(arrowSpan, liIndex, ul, numOfPrimaryApps);
 			}
@@ -414,9 +429,9 @@ export default () => {
 		arrowSpan.classList.remove("arrow-keys-enabled");
 		arrowSpan.classList.add("arrow-keys-disabled");
 
-		ddState.activeAccessibleListElement = false;
-		if (ddState.activeAccessibleListElementEvent) {
-			ddState.activeAccessibleListElementEvent.removeEventListener("keydown", _moveAppWithArrowKeys, false);
+		if (ddState.activeAccessibleListElement) {
+			ddState.activeAccessibleListElement.removeEventListener("keydown", ddState.activeAccessibleListElementEvent, false);
+			ddState.activeAccessibleListElement = null;
 		}
 	};
 
@@ -551,7 +566,6 @@ export default () => {
 			numOfPrimaryApps = ddState.topAppContainer.children.length,
 			numOfSecondaryApps = ddState.bottomAppContainer.children.length,
 			total = numOfPrimaryApps + numOfSecondaryApps;
-		console.log(numOfPrimaryApps, total, n)
 
 		if (n - 1 > 0) dirs.push("left");
 		if ((n + 1 <= total || !numOfSecondaryApps) && n !== numOfPrimaryApps) dirs.push("right");
@@ -583,9 +597,9 @@ export default () => {
 
 		if (detail.ieVersion) _applyDragAndDropAdjustmentsForIE(detail.ieVersion);
 		if (detail.disableDragAndDrop) ddState.disabled = true;
+		if (detail.text) i18n = Object.assign(i18n, detail.text);
 
 		if (detail.primary) {
-
 			$target.appendChild($content);
 			$control.className = `${prefix}-control`;
 
@@ -610,7 +624,7 @@ export default () => {
 			});
 
 			if (!ddState.disabled) {
-				ddState.dragAppsHereText = $("p", {"class": "hide"}, detail.text.dragAppsHere);
+				ddState.dragAppsHereText = $("p", {"class": "hide"}, i18n.dragAppsHere);
 				ddState.bottomAppContainer.appendChild(ddState.dragAppsHereText);
 
 				ddState.primarySortable = Sortable.create(ddState.topAppContainer, Object.assign(defaultOptions, {
