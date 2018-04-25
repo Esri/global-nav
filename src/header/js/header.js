@@ -66,6 +66,7 @@ export default (data) => {
 			if (detail.brand.topStripe) {
 				$dispatch($brandStripe, 'header:update:brand', detail.brand);
 				$header.style.marginTop = '3px';
+        $headerCanvas.style.top = '59px';
 			}
 			$dispatch($brand, 'header:update:brand', detail.brand);
 		}
@@ -102,6 +103,13 @@ export default (data) => {
 			}
 		});
 	});
+
+	/* On Drag & Drop Apps 
+	/* ====================================================================== */
+
+	$header.addEventListener('header:apps:reorder', ({detail}) => {
+    $dispatch($apps, 'header::apps:reorder', detail.icons);
+  });
 
 	/* On Header Menu Toggle
 	/* ====================================================================== */

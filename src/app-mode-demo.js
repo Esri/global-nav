@@ -96,32 +96,67 @@ document.addEventListener("DOMContentLoaded", () => {
 			},
 			apps: {
 				label: 'Applications',
+				disableDragAndDrop: false,
+				text: {
+					clear: "Clear",
+					confirm: "Got it.",
+					dragAppsHere: "Drag apps here that you don't use very often.",
+					intro: "Drag and drop your favorite apps in any order to customize your app launcher",
+					removed: "This app is no longer available.",
+					removedMessage: "Removed app" 
+				},
 				image: {
 					path: './img/gnav-app-switcher-icon.svg',
 					width: 24,
 					height: 24
 				},
-				icons: [
+				primary: [
 					{
 						abbr: "APP",
 						image: "http://www.arcgis.com/home/js/arcgisonline/sharing/dijit/css/images/app-icons/appstudio.png",
 						label: "AppStudio for ArcGIS",
-						url: "//appstudiodev.arcgis.com/apps.html"
+						url: "//appstudiodev.arcgis.com/apps.html",
+						canAccess: true,
+						itemId: "131049582192"
 					},
 					{
 						abbr: "Studio",
 						placeHolderIcon: "http://www.arcgis.com/home/js/arcgisonline/sharing/dijit/css/images/app-icons/svg-app-icon.svg",
 						image: null,
 						label: "Studio for ArcGIS",
-						url: "//appstudiodev.arcgis.com/apps.html"
+						url: "//appstudiodev.arcgis.com/apps.html",
+						canAccess: true,
+						itemId: "131049582193"
 					},
 					{
 						abbr: "Test",
 						placeHolderIcon: "http://www.arcgis.com/home/js/arcgisonline/sharing/dijit/css/images/app-icons/svg-app-circle.svg",
 						image: null,
 						label: "Test App",
-						url: "//appstudiodev.arcgis.com/apps.html"
+						url: "//appstudiodev.arcgis.com/apps.html",
+						canAccess: true,
+						isNew: true,
+						itemId: "131049582194"
 					}
+				],
+				secondary: [
+					{
+						abbr: "APP",
+						image: "http://www.arcgis.com/home/js/arcgisonline/sharing/dijit/css/images/app-icons/appstudio.png",
+						label: "AppStudio for ArcGIS",
+						url: "//appstudiodev.arcgis.com/apps.html",
+						canAccess: true,
+						itemId: "131049582195"
+					},
+					{
+						abbr: "Studio",
+						placeHolderIcon: "http://www.arcgis.com/home/js/arcgisonline/sharing/dijit/css/images/app-icons/svg-app-icon.svg",
+						image: null,
+						label: "Studio for ArcGIS",
+						url: "//appstudiodev.arcgis.com/apps.html",
+						canAccess: false,
+						itemId: "131049582196"
+					},
 				]
 			},
 			account: {
@@ -407,4 +442,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	};
 
 	esriGlobalNav.create({headerElm: '.esri-header-barrier', footerElm: '.esri-footer-barrier', menuData});
+
+	var esriHeader = document.querySelector('.esri-header-barrier');
+	esriHeader.addEventListener("header:apps:reorder", function (e) { console.log("apps ", e.detail.icons) });
 });
