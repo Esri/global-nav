@@ -7,6 +7,8 @@
 	align-items: center;
 	display: inline-flex;
 	height: 100%;
+	text-decoration: none;
+	color: #595959;
 
 	&.-fit-burger{
 		position: relative;
@@ -39,4 +41,12 @@
 	@nest :matches(:hover, :focus) > & {
 		fill: var(--mono-0);
 	}
+}
+
+/* Global Header Brand: Text
+/* ========================================================================== */
+
+.esri-header-brand-text {
+	font-size: 24px;
+	font-weight: 600;
 }
