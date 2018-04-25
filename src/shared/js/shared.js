@@ -1,4 +1,4 @@
-import {$assign, $replaceAll} from 'domose';
+import {$assign, $replaceAll} from './domose';
 
 /* Dispatch an Custom Event with a detail
 /* ========================================================================== */

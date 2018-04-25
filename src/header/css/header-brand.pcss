@@ -6,13 +6,10 @@
 .esri-header-brand {
 	align-items: center;
 	display: inline-flex;
+	height: 100%;
 
 	&.-fit-burger{
 		position: relative;
-		left: 40px;
-		&:dir(rtl) {
-			left: -50px;
-		}			
 	}
 
 	@media (--width-s) {
@@ -37,7 +34,7 @@
 .esri-header-brand-image {
 	fill: var(--mono-20);
 	height: 30px;
-	max-width: 100%;
+	vertical-align: -6px;
 
 	@nest :matches(:hover, :focus) > & {
 		fill: var(--mono-0);

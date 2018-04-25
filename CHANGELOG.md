@@ -1,3 +1,18 @@
+## Unreleased
+
+### Fixed
+- fix "app mode" hamburger alignment
+- fix inconsistent spacing
+
+## 1.0.5
+
+### Fixed
+- fix drawer misalignment
+- fix `sublist--featured` grid missing padding
+- fix input styles when used with Calcite Web
+- fix link styles when used with Calcite Web
+- fix social link color on hover
+
 ## 1.0.4
 
 ### Modified
