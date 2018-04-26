@@ -156,7 +156,7 @@ document.addEventListener("DOMContentLoaded", () => {
 						url: "//appstudiodev.arcgis.com/apps.html",
 						canAccess: false,
 						itemId: "131049582196"
-					},
+					}
 				]
 			},
 			account: {

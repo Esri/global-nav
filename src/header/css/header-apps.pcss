@@ -4,13 +4,13 @@
 /* ========================================================================== */
 
 .esri-header-apps .appLinkContainer p {
-	line-height:17px;
+	line-height: 17px;
 	width: 128px;
 }
 
 .esri-header-apps a {
 	color: #333333;
-	text-decoration:none;
+	text-decoration: none;
 }
 
 .esri-header-apps .appLink {
@@ -24,8 +24,8 @@
 	position: relative;
 }
 
-.esri-header-apps svg *{
-	pointer-events:all;
+.esri-header-apps svg * {
+	pointer-events: all;
 }
 
 .esri-header-apps .hide {
@@ -38,9 +38,11 @@
 
 .esri-header-apps-control {
 	display: block;
+
 	@apply --normalize-button;
 	@apply --unset-button;
 	@apply --menu-link-styles;
+
 	padding: 46px 12px 12px 10px;
 
 	@media (--width-s) {
@@ -67,11 +69,10 @@
 /* Calcite Styles */
 
 .esri-header-apps .block {
-	-webkit-box-sizing: border-box;
 	box-sizing: border-box;
 	display: inline-block;
 	float: none;
-	font-family: "Avenir Next W01","Avenir Next W00","Avenir Next",Avenir,"Helvetica Neue",Helvetica,Arial,sans-serif;
+	font-family: "Avenir Next W01", "Avenir Next W00", "Avenir Next", "Avenir", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
 	letter-spacing: normal;
 	moz-box-sizing: border-box;
 	overflow-wrap: break-word;
@@ -107,10 +108,8 @@
 	position: relative;
 }
 
-
 .esri-header-apps .dropdown-menu {
 	background: #f8f8f8;
-	/* min-width: 200px; */
 	box-shadow: 0 0 16px 0 rgba(0, 0, 0, .05);
 	display: none;
 	overflow: auto;
@@ -213,7 +212,7 @@ html[dir="rtl"] .dropdown-menu.dropdown-right {
 .esri-header-apps .appIconImage {
 	background-repeat: no-repeat;
 	background-size: contain;
-	color: white;
+	color: #ffffff;
 	display: block;
 	font-size: 18px;
 	height: 48px;
@@ -250,7 +249,7 @@ html[dir="rtl"] .dropdown-menu.dropdown-right {
 }
 
 .esri-header-apps .appContainer.secondary hr {
-	border: none; 
+	border: none;
 	border-top: 1px solid #dddddd;
 	margin: 0;
 }
@@ -271,7 +270,7 @@ html[dir="rtl"] .dropdown-menu.dropdown-right {
 	color: #666666;
 	font-size: 14px;
 	margin: 0;
-	padding: 17px 76px 10px 76px;
+	padding: 17px 76px 10px;
 }
 
 .esri-header-apps .dismiss-intro-button {
@@ -280,7 +279,7 @@ html[dir="rtl"] .dropdown-menu.dropdown-right {
 	color: #666666;
 	cursor: pointer;
 	font-size: 14px;
-	padding: 6px 20px 6px 20px;
+	padding: 6px 20px;
 }
 
 .esri-header-apps .dismiss-intro-button:hover {
@@ -290,13 +289,10 @@ html[dir="rtl"] .dropdown-menu.dropdown-right {
 
 /* Extra support for preventing highlighting while dragging */
 
-.esri-header-apps div.dragging img, 
+.esri-header-apps div.dragging img,
 .esri-header-apps div.dragging p,
 .esri-header-apps div.dragging a,
 .esri-header-apps div.dragging span {
-	-webkit-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
 	user-select: none;
 }
 
@@ -319,7 +315,7 @@ html[dir="rtl"] .dropdown-menu.dropdown-right {
 	outline: 1px solid #0079c1;
 }
 
-.esri-header-apps .sortable-drag-class img{ 
+.esri-header-apps .sortable-drag-class img {
 	opacity: 1;
 }
 
@@ -334,12 +330,12 @@ html[dir="rtl"] .dropdown-menu.dropdown-right {
 
 .esri-header-apps .drag-apps-here-box {
 	border: 2px dashed rgb(208, 208, 208);
-	font-family: "Avenir Next W01","Avenir Next W00","Avenir Next",Avenir,"Helvetica Neue",Helvetica,Arial,sans-serif;
+	font-family: "Avenir Next W01", "Avenir Next W00", "Avenir Next", "Avenir", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
 	font-size: 14px;
 	letter-spacing: normal;
-	margin: 12px 24px 12px 24px;
+	margin: 12px 24px;
 	overflow: hidden;
-	padding: 20px 32px 12px 32px;
+	padding: 20px 32px 12px;
 	text-align: center;
 }
 
@@ -349,7 +345,7 @@ html[dir="rtl"] .dropdown-menu.dropdown-right {
 	color: #666c71;
 	cursor: pointer;
 	font-size: 13px;
-	padding: 4px 4px 6px 4px;
+	padding: 4px 4px 6px;
 	width: 100%;
 }
 
@@ -364,7 +360,7 @@ html[dir="rtl"] .dropdown-menu.dropdown-right {
 .esri-header-apps .secondary-dropdown-menu hr {
 	border: none;
 	border-top: 1px solid #dddddd;
-	margin: 0; 
+	margin: 0;
 }
 
 .esri-header-apps .app-indicator {
@@ -447,7 +443,7 @@ html[dir="rtl"] .dropdown-menu.dropdown-right {
 	cursor: grabbing;
 }
 
-.esri-header-apps div.dragging ul.appLinkContainer.with-hover:hover  {
+.esri-header-apps div.dragging ul.appLinkContainer.with-hover:hover {
 	background: inherit;
 	outline: none;
 }
@@ -458,23 +454,23 @@ html[dir="rtl"] .dropdown-menu.dropdown-right {
 	fill: #007ac2;
 }
 
-.esri-header-apps .dropdown.is-active .dropdown-menu{ 
+.esri-header-apps .dropdown.is-active .dropdown-menu {
 	border-top: 1px solid #efefef;
 	box-shadow: inherit;
 	display: block;
 }
 
-.esri-header-apps .half-opacity, 
+.esri-header-apps .half-opacity,
 .esri-header-apps .half-opacity .appIconImage,
 .esri-header-apps .half-opacity p,
 .esri-header-apps .half-opacity a {
 	cursor: default;
-	opacity: 0.5;
+	opacity: .5;
 }
 
 /*    HOVER STYLE      */
 
-.esri-header-apps .appLinkContainer.with-hover:hover, 
+.esri-header-apps .appLinkContainer.with-hover:hover,
 .esri-header-apps .appLinkContainer.with-hover:focus {
 	background: #ffffff;
 	outline: 1px solid #0079c1;
@@ -531,5 +527,3 @@ html[dir="rtl"] .dropdown-menu.dropdown-right {
 	right: 70px;
 	top: 59px;
 }
-
-/* ----------------- */

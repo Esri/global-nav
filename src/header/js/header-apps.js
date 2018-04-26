@@ -1,6 +1,6 @@
 import {$assign as $, $dispatch, $replaceAll, $renderSvgOrImg} from '../../shared/js/shared';
 import Sortable from 'sortablejs';
-import { $remove } from 'domose';
+import {$remove} from 'domose';
 
 /* Apps
 /* ========================================================================== */
@@ -33,8 +33,8 @@ export default () => {
 	// $controlContainer.appendChild($dropdown);
 
 	const $closeAppLauncher = (event) => {
-		_removeMouseUpListener();
-		_removeMouseOverListener();
+		removeMouseUpListener();
+		removeMouseOverListener();
 		// $dispatch($control, 'header:click:apps', {event});
 
 		// Elements with following class won't trigger/dispatch the dropdown
@@ -51,7 +51,7 @@ export default () => {
 			content: $content,
 			event
 		});
-	}
+	};
 
 	const $control = $controlContainer;
 
@@ -92,7 +92,7 @@ export default () => {
   }, $('hr'));
 
   const $dragAndDropIntroText = $('p', {
-    class: `${prefix}-drag-and-drop-intro`,
+    class: `${prefix}-drag-and-drop-intro`
   }, "Drag and drop your favorite apps in any order to customize your App Launcher");
 
   const $dismissIntroButton = $('button', {
@@ -101,7 +101,7 @@ export default () => {
 
   const createDragAndDropIntro = () => {
      
-  }
+  };
 
   const $dragAndDropIntro = $('div', {}, $dragAndDropIntroText, $dismissIntroButton);
 
@@ -124,7 +124,7 @@ export default () => {
 	/* Apps: Parameters that Control the State of Drag & Drop
 	/* ====================================================================== */
 
-	let ddState = {
+	const ddState = {
 		maxDragErrorTollerance: 1
 	};
 
@@ -143,16 +143,16 @@ export default () => {
 	/* ====================================================================== */
 
 	const createDefaultAppLayout = ($topAppContainer, currentApp) => {
-		const abbreviationSizes = ["0px", "32px", "24px", "20px", "18px", "16px", "14px"],
-			selectNoneClass = ddState.browserIsEdge ? "user-select-none" : "",
-			canAccessClass = !currentApp.canAccess ? "no-hover" : "with-hover";
+		const abbreviationSizes = ["0px", "32px", "24px", "20px", "18px", "16px", "14px"];
+		const selectNoneClass = ddState.browserIsEdge ? "user-select-none" : "";
+		const canAccessClass = !currentApp.canAccess ? "no-hover" : "with-hover";
 
 		const $listItem = $("li", {
 			alt: "",
 			"class": `block link-off-black appLinkContainer grabbable ${canAccessClass}`,
-			mousedown: _interactWithAppLi.bind(this, currentApp),
-			keyup: _activateAccessibilityMode.bind(this, currentApp),
-			keydown: _preventBrowserKeyboardDefaults,
+			mousedown: interactWithAppLi.bind(this, currentApp),
+			keyup: activateAccessibilityMode.bind(this, currentApp),
+			keydown: preventBrowserKeyboardDefaults,
 			"role": "menuitem",
 			"data-id": currentApp.itemId
 		});
@@ -164,9 +164,9 @@ export default () => {
 				$listItem.appendChild($("div", {"class": "app-indicator app-indicator-new"}));
 			}
 			const $appLink = $("a", {
-				href: currentApp.url, // + "#username=" + this._currentUser.username,
+				href: currentApp.url,
 				target: "_blank",
-				blur: _deactivateAccessibilityMode.bind(this, currentApp),
+				blur: deactivateAccessibilityMode.bind(this, currentApp),
 				class: "appLink"
 			});
 			$appLink.addEventListener('click', (event) => {
@@ -175,7 +175,7 @@ export default () => {
 			// Check if App has Icon
 			if (currentApp.image) {
 				const $appImageContainer = $("div", {"class": `appIconImage ${selectNoneClass}`});
-				$appImageContainer.appendChild(_getAccessibleAppArrowContainer());
+				$appImageContainer.appendChild(getAccessibleAppArrowContainer());
 				$appImageContainer.appendChild($("img", {"class": "appIconPng", "alt": "", src: currentApp.image}));
 				$appLink.appendChild($appImageContainer);
 			} else {
@@ -186,13 +186,13 @@ export default () => {
 					abbreviationSize = abbreviationSizes[4];
 				}
 				const surfaceDiv = $("div", {"class": "appIconImage"});
-				surfaceDiv.appendChild(_getAccessibleAppArrowContainer());
+				surfaceDiv.appendChild(getAccessibleAppArrowContainer());
 				const surfaceSpan = $("span", {
 					style: `font-size: ${abbreviationSize}`,
 					class: `avenir appIconSvgText ${selectNoneClass}`
 				}, currentApp.abbr);
 				surfaceDiv.appendChild(surfaceSpan);
-				surfaceDiv.appendChild($("img", {"src": currentApp.placeHolderIcon, "alt": "", "class": selectNoneClass}))
+				surfaceDiv.appendChild($("img", {"src": currentApp.placeHolderIcon, "alt": "", "class": selectNoneClass}));
 				// surfaceDiv.appendChild($renderSvgOrImg({imgDef: currentApp.placeHolderIcon, imgWidth: 48, imgHeight: 48}));
 				$appLink.appendChild(surfaceDiv);
 			}
@@ -208,24 +208,24 @@ export default () => {
 		const $appLink = $("div", {
 			"class": "app-indicator app-indicator-removed",
 			"tabindex": 0,
-			onclick: _removeAppFromDropdown.bind(this, currentApp.uid, $listItem),
-			keyup: _removeAppFromDropdown.bind(this, currentApp.uid, $listItem),
-			keydown: _preventBrowserKeyboardDefaults
+			onclick: removeAppFromDropdown.bind(this, currentApp.uid, $listItem),
+			keyup: removeAppFromDropdown.bind(this, currentApp.uid, $listItem),
+			keydown: preventBrowserKeyboardDefaults
 		});
-		$appLink.innerHTML = _getRemoveAppX(); 
+		$appLink.innerHTML = getRemoveAppX(); 
 
 		// Displaying Warnings in association with removed apps
 		// - Requires access to orgUrlKey and isAdmin like functionality 
 		// - To be implemented after discussion
-		let $missingIcon = $("div", {
+		const $missingIcon = $("div", {
 			"class": "missing-app-icon appIconImage",
 			"tabindex": 0,
-			"blur": _deactivateAccessibilityMode.bind(this, currentApp),
+			"blur": deactivateAccessibilityMode.bind(this, currentApp),
 			title: i18n.removed
-			// keyup: _showRemovedAppWarning.bind(this, currentApp.uid, $listItem),
-			// onclick: _showRemovedAppWarning.bind(this, currentApp.uid, $listItem)
+			// keyup: showRemovedAppWarning.bind(this, currentApp.uid, $listItem),
+			// onclick: showRemovedAppWarning.bind(this, currentApp.uid, $listItem)
 		});
-		$missingIcon.appendChild(_getAccessibleAppArrowContainer());
+		$missingIcon.appendChild(getAccessibleAppArrowContainer());
 		$listItem.appendChild($appLink);
 		$listItem.appendChild($missingIcon);
 		$listItem.appendChild($("p", {style: "margin:0 auto; text-align:center", class: selectNoneClass}, currentApp.label));
@@ -234,8 +234,8 @@ export default () => {
 	const saveAppOrderToUserProperties = (primaryApps, secondaryApps, appRevisions) => {
 		$dispatch($control, 'header:apps:reorder', {
 			icons: {
-				primaryApps: primaryApps,
-				secondaryApps: secondaryApps,
+				primaryApps,
+				secondaryApps,
 				revisions: appRevisions || {}
 			}
 		});
@@ -264,29 +264,29 @@ export default () => {
 			return metrics.width;
 	};
 
-	const _getRemoveAppX  = () => {
-		return '<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 32 32"><path d="M18.404 16l9.9 9.9-2.404 2.404-9.9-9.9-9.9 9.9L3.696 25.9l9.9-9.9-9.9-9.898L6.1 3.698l9.9 9.899 9.9-9.9 2.404 2.406-9.9 9.898z"/></svg>';
-	};
+	const getRemoveAppX  = () => '<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 32 32"><path d="M18.404 16l9.9 9.9-2.404 2.404-9.9-9.9-9.9 9.9L3.696 25.9l9.9-9.9-9.9-9.898L6.1 3.698l9.9 9.899 9.9-9.9 2.404 2.406-9.9 9.898z"/></svg>';
 
   const populateAppIds = (idArray, icons) => {
 			// return idArray.map((index) => icons[index]);
 	};
 
-	const _interactWithAppLi = (app, e) => {
+	const interactWithAppLi = (app, e) => {
 		if (e.button === 0) {
 			ddState.startClientX = e.clientX;
 			ddState.startClientY = e.clientY;
 			ddState.startApp = app;
 			ddState.startElement = e.currentTarget;
 
-			setTimeout( (e) => {
+			setTimeout((e) => {
 				ddState.startElement.classList.remove("sortable-drag-class");
 			}, 1);
 
 			if (app.isNew) {
 				const primaryApps = ddState.primarySortable.toArray();
 				// -- Bug occurs where duplicate value gets added to array when clicked
-				if (ddState.duplicateValueIndex) { primaryApps.splice(ddState.duplicateValueIndex, 1); }
+				if (ddState.duplicateValueIndex) {
+					primaryApps.splice(ddState.duplicateValueIndex, 1); 
+				}
 
 				saveAppOrderToUserProperties(
 					primaryApps, 
@@ -301,9 +301,9 @@ export default () => {
 			if (app.canAccess) {
 				ddState.dropdownNav.addEventListener("mouseup", $closeAppLauncher);
 				ddState.listenForMouseOverElement = e.currentTarget.parentNode;
-				ddState.listenForMouseOverElement.addEventListener("mousemove", _simulateDragEvent);
+				ddState.listenForMouseOverElement.addEventListener("mousemove", simulateDragEvent);
 			} else {
-				var removedAppClass = "app-indicator-removed";
+				const removedAppClass = "app-indicator-removed";
 				if (e.target.classList.contains(removedAppClass) || 
 						e.target.parentNode.classList.contains(removedAppClass) || 
 						e.target.parentNode.parentNode.classList.contains(removedAppClass)
@@ -312,74 +312,74 @@ export default () => {
 				}
 			}
 		}
-	}
+	};
 
-  const _generateCustomLinkClick = (app, el, removeApp) => {
+  const generateCustomLinkClick = (app, el, removeApp) => {
 		if (app.canAccess) {
 			$closeAppLauncher();
 			window.open(app.url, "_blank");
 		} else if (removeApp) {
 			ddState.removeStartApp = false;
-			_removeAppFromDropdown(app.itemId || app.title, el);
+			removeAppFromDropdown(app.itemId || app.title, el);
 		} else {
-			_showRemovedAppWarning(app.itemId || app.title, el);
+			showRemovedAppWarning(app.itemId || app.title, el);
 		}
 	};
 
-	const _removeAppFromDropdown = (uid, el, e) => {
-		if (!e || _verifyKeyPress(e.keyCode)) {
+	const removeAppFromDropdown = (uid, el, e) => {
+		if (!e || verifyKeyPress(e.keyCode)) {
 			$remove(el);
-			setTimeout( () => {
+			setTimeout(() => {
 				saveAppOrderToUserProperties(ddState.primarySortable.toArray(), ddState.secondarySortable.toArray());
 			}, 0);
 		}
 	};
 
-  const _showRemovedAppWarning = (uid, el, e) => {
-		if (!ddState.removedAppWithFoucs && (!e || _verifyKeyPress(e.keyCode))) {
-			// _displayRemovedAppWarning.classList.remove("hide");
-			// _displayGoToSettingsWarning.classList.add("hide");
+  const showRemovedAppWarning = (uid, el, e) => {
+		if (!ddState.removedAppWithFoucs && (!e || verifyKeyPress(e.keyCode))) {
+			// displayRemovedAppWarning.classList.remove("hide");
+			// displayGoToSettingsWarning.classList.add("hide");
 			// ddState.dropdownNav.scrollTop = 0;
-			ddState.removedAppWithFoucs = {"uid": uid, "el": el};
+			ddState.removedAppWithFoucs = {uid, el};
 		} else {
 			ddState.removedAppWithFoucs = null;
-			// _displayRemovedAppWarning.classList.add("hide");
+			// displayRemovedAppWarning.classList.add("hide");
 		}
 	};
 	
-	const _disableLinkHref = (e, disable) => {
-			let link = (e.item.children[1] && e.item.children[1].nodeName === "A") ? e.item.children[1] : e.item.children[0];
+	const disableLinkHref = (e, disable) => {
+			const link = (e.item.children[1] && e.item.children[1].nodeName === "A") ? e.item.children[1] : e.item.children[0];
 			if (disable) {
 				ddState.recentlyRemovedHref = link.href;
 				link.removeAttribute("href");
 			} else {
-				setTimeout( () => {
+				setTimeout(() => {
 					link.href = ddState.recentlyRemovedHref;
 				}, 1);
 			}
 	};
 
-	const _removeMouseUpListener = () => {
+	const removeMouseUpListener = () => {
 		if (ddState.dropdownNav && ddState.dropdownNav.removeEventListener) {
 			ddState.dropdownNav.removeEventListener('mouseup', $closeAppLauncher, false);
 		}
 	};
 
-	const _removeMouseOverListener = () => {
+	const removeMouseOverListener = () => {
 		if (ddState.listenForMouseOverElement) {
-			ddState.listenForMouseOverElement.removeEventListener('mousemove', _simulateDragEvent, false);
+			ddState.listenForMouseOverElement.removeEventListener('mousemove', simulateDragEvent, false);
 		}
 	};
 
-	const _simulateDragEvent = (e) => {
+	const simulateDragEvent = (e) => {
 		if (Math.abs(e.clientX - ddState.startClientX) > ddState.maxDragErrorTollerance || Math.abs(e.clientY - ddState.startClientY) > ddState.maxDragErrorTollerance) {
 			ddState.simulatedDragEvent = true;
 			$content.classList.add("dragging");
-			_removeMouseOverListener();
+			removeMouseOverListener();
 		}
 	};
 
-	const _applyDragAndDropAdjustmentsForIE = (ieVersion) => {
+	const applyDragAndDropAdjustmentsForIE = (ieVersion) => {
 		if (ieVersion === "edge") {
 			ddState.browserIsEdge = true;
 		} else if (ieVersion === "ie11") {
@@ -387,44 +387,42 @@ export default () => {
 		}
 	};
 
-	const _verifyKeyPress = (keyCode) => {
-		return !keyCode || (keyCode === 13);
-	};
+	const verifyKeyPress = (keyCode) => !keyCode || (keyCode === 13);
 
   /* Apps: Helper functions for Arrow Key Accessibility  
 	/* ====================================================================== */
 
-	const _activateAccessibilityMode = (app, e) => {
+	const activateAccessibilityMode = (app, e) => {
 		if (!e.target.classList.contains("app-indicator-removed")) {
 			e.preventDefault();
 			if (e.keyCode === keys.SPACE) {
 				if (ddState.activeAccessibleListElement) {
-					return _deactivateAccessibilityMode(app, e);
+					return deactivateAccessibilityMode(app, e);
 				}
-				const arrowSpan = app.canAccess ? e.target.firstChild.firstChild : e.target.firstChild,
-					li = e.target.parentNode,
-					ul = li.parentNode,
-					liIndex = _getIndexOfListItem(li),
-					numOfPrimaryApps = ddState.primarySortable.toArray().length;
+				const arrowSpan = app.canAccess ? e.target.firstChild.firstChild : e.target.firstChild;
+				const li = e.target.parentNode;
+				const	ul = li.parentNode;
+				const	liIndex = getIndexOfListItem(li);
+				const	numOfPrimaryApps = ddState.primarySortable.toArray().length;
 
 				expandSecondaryDropdown();
 
-				const combinedIndex = _getCombinedIndexOfApp(liIndex, ul, numOfPrimaryApps);
+				const combinedIndex = getCombinedIndexOfApp(liIndex, ul, numOfPrimaryApps);
 				ddState.activeAccessibleListElement = li;
-				ddState.activeAccessibleListElementEvent = _moveAppWithArrowKeys.bind(
-					this, app, _getArrayOfDirections(combinedIndex, ul), li, ul, liIndex
+				ddState.activeAccessibleListElementEvent = moveAppWithArrowKeys.bind(
+					this, app, getArrayOfDirections(combinedIndex, ul), li, ul, liIndex
 				);
 				li.addEventListener("keydown", ddState.activeAccessibleListElementEvent);
 
-				_populateAccessibleArrows(arrowSpan, liIndex, ul, numOfPrimaryApps);
+				populateAccessibleArrows(arrowSpan, liIndex, ul, numOfPrimaryApps);
 			}
 		}
 		return false;
 	};
 
-	const _deactivateAccessibilityMode = (app, e) => {
-		var target = e.target || e;
-		var arrowSpan = app.canAccess ? target.firstChild.firstChild : target.firstChild;
+	const deactivateAccessibilityMode = (app, e) => {
+		const target = e.target || e;
+		const arrowSpan = app.canAccess ? target.firstChild.firstChild : target.firstChild;
 
 		arrowSpan.classList.remove("arrow-keys-enabled");
 		arrowSpan.classList.add("arrow-keys-disabled");
@@ -435,60 +433,60 @@ export default () => {
 		}
 	};
 
-	const _getArrowKeyDirection = (e) => {
+	const getArrowKeyDirection = (e) => {
 		if (e.keyCode === keys.DOWN_ARROW)  return "bottom";
 		if (e.keyCode === keys.UP_ARROW) 		return "top";
 		if (e.keyCode === keys.RIGHT_ARROW) return (isRightToLeft ? "left" : "right");
 		if (e.keyCode === keys.LEFT_ARROW)  return (isRightToLeft ? "right" : "left");
 	};
 
-	const _preventBrowserKeyboardDefaults = (e) => {
+	const preventBrowserKeyboardDefaults = (e) => {
 		if (e.keyCode === keys.SPACE || e.keyCode === keys.DOWN_ARROW || e.keyCode === keys.UP_ARROW) {
 			e.preventDefault();
 		}
 	};
 
-	const _moveAppWithArrowKeys = (app, directions, li, ul, liIndex, e) => {
-		const direction = _getArrowKeyDirection(e);
+	const moveAppWithArrowKeys = (app, directions, li, ul, liIndex, e) => {
+		const direction = getArrowKeyDirection(e);
 
 		if (direction === "bottom" && directions.indexOf("bottom") > -1) {
-			_moveAppByNumberOfSpaces(li, liIndex, ul, 3, app, e);
+			moveAppByNumberOfSpaces(li, liIndex, ul, 3, app, e);
 		}
 		if (direction === "top" && directions.indexOf("top") > -1) {
-			_moveAppByNumberOfSpaces(li, liIndex, ul, -3, app, e);
+			moveAppByNumberOfSpaces(li, liIndex, ul, -3, app, e);
 		}
 		if (direction === "right" && directions.indexOf("right") > -1) {
-			_moveAppByNumberOfSpaces(li, liIndex, ul, 1, app, e);
+			moveAppByNumberOfSpaces(li, liIndex, ul, 1, app, e);
 		}
 		if (direction === "left" && directions.indexOf("left") > -1) {
-			_moveAppByNumberOfSpaces(li, liIndex, ul, -1, app, e);
+			moveAppByNumberOfSpaces(li, liIndex, ul, -1, app, e);
 		}
 	};
 
-	const _moveAppByNumberOfSpaces = (li, liIndex, ul, spaces, app, e) => {
-		var newPosition = liIndex + spaces,
-			ulLength = ul === ddState.bottomAppContainer ? ul.children.length - 1 : ul.children.length,
-			ulIsPrimaryApps = ul === ddState.topAppContainer;
+	const moveAppByNumberOfSpaces = (li, liIndex, ul, spaces, app, e) => {
+		const newPosition = liIndex + spaces;
+		const ulLength = ul === ddState.bottomAppContainer ? ul.children.length - 1 : ul.children.length;
+		const ulIsPrimaryApps = ul === ddState.topAppContainer;
 
 		if ((ulIsPrimaryApps && newPosition < ulLength) || (!ulIsPrimaryApps && newPosition <= ulLength && newPosition > 0)) {
-			var node = spaces < 0 ? ul.children[newPosition] : ul.children[newPosition].nextSibling;
+			const node = spaces < 0 ? ul.children[newPosition] : ul.children[newPosition].nextSibling;
 			ul.insertBefore(li, node);
 		} else if (ulIsPrimaryApps) {
-			_moveAppToSecondaryList(li, liIndex, spaces);
+			moveAppToSecondaryList(li, liIndex, spaces);
 			hideOrShowDropAppsHereMessage(ddState.bottomAppContainer);
 		} else {
-			_moveAppToPrimaryList(li, liIndex, spaces);
+			moveAppToPrimaryList(li, liIndex, spaces);
 			hideOrShowDropAppsHereMessage(ddState.topAppContainer);
 		}
 
-		_deactivateAccessibilityMode(app, e);
+		deactivateAccessibilityMode(app, e);
 		if (app.canAccess && !app.isNew) {
 			li.children[0].focus();
 		} else {
 			li.children[1].focus();
 		}
 
-		setTimeout( () => {
+		setTimeout(() => {
 			if (app.isNew) {
 				saveAppOrderToUserProperties(
 					ddState.primarySortable.toArray(), 
@@ -501,11 +499,11 @@ export default () => {
 		}, 0);
 	};
 
-	const _moveAppToPrimaryList = (li, liIndex, spaces) => {
-		var list = ddState.topAppContainer,
-			appPositionInRow = liIndex % 3 || 3,
-			numOfAppsInLastRow = numOfPrimaryApps % 3 || 3,
-			numOfPrimaryApps = ddState.topAppContainer.children.length;
+	const moveAppToPrimaryList = (li, liIndex, spaces) => {
+		const list = ddState.topAppContainer;
+		const appPositionInRow = liIndex % 3 || 3;
+		const numOfAppsInLastRow = numOfPrimaryApps % 3 || 3;
+		const numOfPrimaryApps = ddState.topAppContainer.children.length;
 
 		if (Math.abs(spaces) === 1 || numOfAppsInLastRow === 3) return list.appendChild(li);
 		if (appPositionInRow === 2 && numOfAppsInLastRow > 1) {
@@ -517,10 +515,10 @@ export default () => {
 		list.appendChild(li);
 	};
 
-	const _moveAppToSecondaryList = (li, liIndex, spaces) => {
-		var list = ddState.bottomAppContainer,
-			numOfSecondaryApps = ddState.bottomAppContainer.children.length - 1,
-			appPositionInRow = (liIndex + 1) % 3 || 3;
+	const moveAppToSecondaryList = (li, liIndex, spaces) => {
+		const list = ddState.bottomAppContainer;
+		const numOfSecondaryApps = ddState.bottomAppContainer.children.length - 1;
+		const appPositionInRow = (liIndex + 1) % 3 || 3;
 
 		if (!numOfSecondaryApps) return list.appendChild(li);
 
@@ -530,42 +528,32 @@ export default () => {
 		list.insertBefore(li, list.children[1]);
 	};
 
-	const _getCombinedIndexOfApp = (ind, ul, numOfPrimaryApps) => {
-		return ind + (ul === ddState.bottomAppContainer ? (numOfPrimaryApps + 1): 1);
-	};
+	const getCombinedIndexOfApp = (ind, ul, numOfPrimaryApps) => ind + (ul === ddState.bottomAppContainer ? (numOfPrimaryApps + 1) : 1);
 
-	const _getIndexOfListItem = (li) => {
-		var ul = li.parentNode;
+	const getIndexOfListItem = (li) => {
+		const ul = li.parentNode;
 		return Array.prototype.indexOf.call(ul.children, li);
 	};
 
-	const _getAccessibleAppArrowContainer = () => {
-		return $("span", {"class": "arrow-keys-disabled"});
-	};
+	const getAccessibleAppArrowContainer = () => $("span", {"class": "arrow-keys-disabled"});
 
-	const _populateAccessibleArrows = (arrowSpan, liIndex, ul, numOfPrimaryApps) => {
+	const populateAccessibleArrows = (arrowSpan, liIndex, ul, numOfPrimaryApps) => {
 		arrowSpan.classList.add("arrow-keys-enabled");
 		arrowSpan.classList.remove("arrow-keys-disabled");
 
-		var combinedIndex = _getCombinedIndexOfApp(liIndex, ul, numOfPrimaryApps);
-		arrowSpan.innerHTML = _getAccessibleArrows(_getArrayOfDirections(combinedIndex, ul), ul);
+		const combinedIndex = getCombinedIndexOfApp(liIndex, ul, numOfPrimaryApps);
+		arrowSpan.innerHTML = getAccessibleArrows(getArrayOfDirections(combinedIndex, ul), ul);
 	};
 
-	const _getAccessibleArrows = (arrayOfDirections) => {
-		return arrayOfDirections.reduce( (prev, direction) => {
-			return prev + _getAccessibleArrow(direction);
-		}, "");
-	};
+	const getAccessibleArrows = (arrayOfDirections) => arrayOfDirections.reduce((prev, direction) => prev + getAccessibleArrow(direction), "");
 
-	const _getAccessibleArrow = (direction) => {
-		return `<div class="app-arrow app-arrow-${direction}"></div>`;
-	};
+	const getAccessibleArrow = (direction) => `<div class="app-arrow app-arrow-${direction}"></div>`;
 
-	const _getArrayOfDirections = (n, ul) => {
-		var dirs = [],
-			numOfPrimaryApps = ddState.topAppContainer.children.length,
-			numOfSecondaryApps = ddState.bottomAppContainer.children.length,
-			total = numOfPrimaryApps + numOfSecondaryApps;
+	const getArrayOfDirections = (n, ul) => {
+		const dirs = [];
+		const numOfPrimaryApps = ddState.topAppContainer.children.length;
+		const numOfSecondaryApps = ddState.bottomAppContainer.children.length;
+		const total = numOfPrimaryApps + numOfSecondaryApps;
 
 		if (n - 1 > 0) dirs.push("left");
 		if ((n + 1 <= total || !numOfSecondaryApps) && n !== numOfPrimaryApps) dirs.push("right");
@@ -595,7 +583,7 @@ export default () => {
 	$target.addEventListener('header:update:apps', ({detail}) => {
 		$renderSvgOrImg({imgDef: detail.image.path, imgWidth: detail.image.width, imgHeight: detail.image.height, imgClass: `${prefix}-image`, $targetElm: $appSwitcherIcon});
 
-		if (detail.ieVersion) _applyDragAndDropAdjustmentsForIE(detail.ieVersion);
+		if (detail.ieVersion) applyDragAndDropAdjustmentsForIE(detail.ieVersion);
 		if (detail.disableDragAndDrop) ddState.disabled = true;
 		if (detail.text) i18n = Object.assign(i18n, detail.text);
 
@@ -608,8 +596,8 @@ export default () => {
 			const numberOfApps = detail.primary.length;
 			const dropdownWidth = ` dropdown-width-${(numberOfApps < 3 ? numberOfApps : 3)}`;
       // Variables to Assist with Moving Apps Between Primary and Secondary Groups
-      let primaryAppCount = 6;
-      let primaryAppsOverflowed = false;
+      const primaryAppCount = 6;
+      const primaryAppsOverflowed = false;
 
 			// App Icons
 
@@ -629,14 +617,13 @@ export default () => {
 
 				ddState.primarySortable = Sortable.create(ddState.topAppContainer, Object.assign(defaultOptions, {
 					onStart: (e) => {
-						// domClass.add(this._dragAppsHereText, "hide");
-						_removeMouseUpListener();
-						_disableLinkHref(e, true);
+						removeMouseUpListener();
+						disableLinkHref(e, true);
 					},
 					onEnd: (e) => {
 						e.preventDefault();
-						_removeMouseOverListener();
-						_disableLinkHref(e, false);
+						removeMouseOverListener();
+						disableLinkHref(e, false);
 						$content.classList.remove("dragging");
 						ddState.bottomAppContainer.classList.remove("on-drag-over");
 						hideOrShowDropAppsHereMessage(e.to);
@@ -650,12 +637,10 @@ export default () => {
 						}
 					},
 					store: {
-						get: (sortable) => {
-							return (sortable.options.group.name && sortable.options.group.name.split("!")) || [];
-						},
+						get: (sortable) => (sortable.options.group.name && sortable.options.group.name.split("!")) || [],
 						set: (sortable) => {
 							if (!ddState.simulatedDragEvent) {
-								_generateCustomLinkClick(ddState.startApp, ddState.startElement, ddState.removeStartApp);
+								generateCustomLinkClick(ddState.startApp, ddState.startElement, ddState.removeStartApp);
 							} else {
 								saveAppOrderToUserProperties(sortable.toArray(), ddState.secondarySortable.toArray());
 							}
@@ -671,11 +656,9 @@ export default () => {
 						// primaryAppsOverflowed = false; 
 					},
 					store: {
-						get: (sortable) => {
-							return (sortable.options.group.name && sortable.options.group.name.split('!')) || [];
-						},
+						get: (sortable) => (sortable.options.group.name && sortable.options.group.name.split('!')) || [],
 						set: (sortable) => {
-							const topAppIds = [...ddState.topAppContainer.querySelectorAll("li")].map(l => { return l.attributes["data-id"].value; });
+							const topAppIds = [...ddState.topAppContainer.querySelectorAll("li")].map((l) => l.attributes["data-id"].value);
 							saveAppOrderToUserProperties(topAppIds, sortable.toArray());
 						}
 					}
