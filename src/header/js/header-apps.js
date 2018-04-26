@@ -150,8 +150,8 @@ export default () => {
 		const $listItem = $("li", {
 			alt: "",
 			"class": `block link-off-black appLinkContainer grabbable ${canAccessClass}`,
-			mousedown: interactWithAppLi.bind(this, currentApp),
-			keyup: activateAccessibilityMode.bind(this, currentApp),
+			mousedown: interactWithAppLi.bind(null, currentApp),
+			keyup: activateAccessibilityMode.bind(null, currentApp),
 			keydown: preventBrowserKeyboardDefaults,
 			"role": "menuitem",
 			"data-id": currentApp.itemId
@@ -166,7 +166,7 @@ export default () => {
 			const $appLink = $("a", {
 				href: currentApp.url,
 				target: "_blank",
-				blur: deactivateAccessibilityMode.bind(this, currentApp),
+				blur: deactivateAccessibilityMode.bind(null, currentApp),
 				class: "appLink"
 			});
 			$appLink.addEventListener('click', (event) => {
@@ -208,8 +208,8 @@ export default () => {
 		const $appLink = $("div", {
 			"class": "app-indicator app-indicator-removed",
 			"tabindex": 0,
-			onclick: removeAppFromDropdown.bind(this, currentApp.uid, $listItem),
-			keyup: removeAppFromDropdown.bind(this, currentApp.uid, $listItem),
+			onclick: removeAppFromDropdown.bind(null, currentApp.uid, $listItem),
+			keyup: removeAppFromDropdown.bind(null, currentApp.uid, $listItem),
 			keydown: preventBrowserKeyboardDefaults
 		});
 		$appLink.innerHTML = getRemoveAppX(); 
@@ -220,10 +220,10 @@ export default () => {
 		const $missingIcon = $("div", {
 			"class": "missing-app-icon appIconImage",
 			"tabindex": 0,
-			"blur": deactivateAccessibilityMode.bind(this, currentApp),
+			"blur": deactivateAccessibilityMode.bind(null, currentApp),
 			title: i18n.removed
-			// keyup: showRemovedAppWarning.bind(this, currentApp.uid, $listItem),
-			// onclick: showRemovedAppWarning.bind(this, currentApp.uid, $listItem)
+			// keyup: showRemovedAppWarning.bind(null, currentApp.uid, $listItem),
+			// onclick: showRemovedAppWarning.bind(null, currentApp.uid, $listItem)
 		});
 		$missingIcon.appendChild(getAccessibleAppArrowContainer());
 		$listItem.appendChild($appLink);
@@ -410,7 +410,7 @@ export default () => {
 				const combinedIndex = getCombinedIndexOfApp(liIndex, ul, numOfPrimaryApps);
 				ddState.activeAccessibleListElement = li;
 				ddState.activeAccessibleListElementEvent = moveAppWithArrowKeys.bind(
-					this, app, getArrayOfDirections(combinedIndex, ul), li, ul, liIndex
+					null, app, getArrayOfDirections(combinedIndex, ul), li, ul, liIndex
 				);
 				li.addEventListener("keydown", ddState.activeAccessibleListElementEvent);
 
