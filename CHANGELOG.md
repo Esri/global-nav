@@ -1,4 +1,4 @@
-## Unreleased
+## 1.0.6
 
 ### Fixed
 - fix "app mode" hamburger alignment
