@@ -4,6 +4,9 @@
 - fix "app mode" hamburger alignment
 - fix inconsistent spacing
 
+### Added
+- added ability to set title as text if no logo is available (#27)
+
 ## 1.0.5
 
 ### Fixed
