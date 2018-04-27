@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
 			theme: 'web',
 			brand: {
 				label: 'Esri Global Navigation',
-        brandText: 'Esri Global Navigation',
+				brandText: 'Esri Global Navigation',
 				href: './'
 			},
 			menus: [
