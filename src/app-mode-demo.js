@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
 				brandText: 'Mapping Dashboard',
 				image: './img/dashboard-icon_24.svg',
 				href: 'https://www.esri.com/',
-				width: 80,
+				width: 30,
 				height: 30,
 				topStripe : '#e8912e'
 			},
