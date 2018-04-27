@@ -1,4 +1,4 @@
-## Unreleased
+## 1.0.7
 
 ### Fixed
 - fix `brandText` when used with Calcite Web
