@@ -20,6 +20,7 @@ const pkg = require('../package.json');
 function compileJs() {
 	compileJsFile({rootJs: `./${pkg.main}`, saveAs: `${pkg.gulp_config.build_name}.js`});
 	compileJsFile({rootJs: `./${pkg.gulp_config.src_path}/demo.js`, saveAs: 'demo.js'});
+	compileJsFile({rootJs: `./${pkg.gulp_config.src_path}/home.js`, saveAs: 'home.js'});
 	compileJsFile({rootJs: `./${pkg.gulp_config.src_path}/app-mode-demo.js`, saveAs: 'app-mode-demo.js'});
 }
 
