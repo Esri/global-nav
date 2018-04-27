@@ -1,3 +1,9 @@
+## Unreleased
+
+### Fixed
+- fix `brandText` when used with Calcite Web
+- fix `brandText` spacing if used with brand `image`
+
 ## 1.0.6
 
 ### Fixed
