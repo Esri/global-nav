@@ -97,13 +97,15 @@ document.addEventListener("DOMContentLoaded", () => {
 			apps: {
 				label: 'Applications',
 				disableDragAndDrop: false,
+				displayIntro: true,
 				text: {
 					clear: "Clear",
 					confirm: "Got it.",
 					dragAppsHere: "Drag apps here that you don't use very often.",
 					intro: "Drag and drop your favorite apps in any order to customize your app launcher",
 					removed: "This app is no longer available.",
-					removedMessage: "Removed app" 
+					removedMessage: "Removed app",
+					showMore: "Show More"
 				},
 				image: {
 					path: './img/gnav-app-switcher-icon.svg',

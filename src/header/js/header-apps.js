@@ -30,17 +30,12 @@ export default () => {
 		class: `${prefix}-control empty-padding`, id: `${prefix}-control`
 	}, $appSwitcherIcon);
 
-	// $controlContainer.appendChild($dropdown);
-
 	const $closeAppLauncher = (event) => {
 		removeMouseUpListener();
 		removeMouseOverListener();
-		// $dispatch($control, 'header:click:apps', {event});
 
-		// Elements with following class won't trigger/dispatch the dropdown
-		// if (event.target.classList.contains(`${prefix}-prevent-dropdown`)) return;
-		// Rest bottom container to origional state
-		$showMoreButton.classList.remove("hide");
+		// Reset bottom container to origional state
+		ddState.showMoreButton.classList.remove("hide");
 		$secondaryDropdownMenu.setAttribute('aria-expanded', "false");
 
 		$dispatch($control, 'header:menu:toggle', {
@@ -66,59 +61,16 @@ export default () => {
 		$control
 	);
 
-	/* Apps: Strings 
-	/* ====================================================================== */
-
-	let i18n = {
-		clear: "Clear",
-		confirm: "Got it.",
-		dragAppsHere: "Drag apps here that you don't use very often.",
-		intro: "Drag and drop your favorite apps in any order to customize your app launcher",
-		removed: "This app is no longer available.",
-		removedMessage: "Removed app" 
-	}; 
-
 	/* Apps: Secondary Set of Apps 
 	/* ====================================================================== */
 
-  const $showMoreChevron = $('span', {class: `${prefix} down-arrow`});
-  const $showMoreButton = $('button', {
-    class: `${prefix} show-more-button`
-  }, "Show More", $showMoreChevron);
+	const $secondaryDropdownMenu = $('div', {
+		class: `${prefix} secondary-dropdown-menu`,
+		aria: {expanded: false}
+	}, $('hr'));
 
-  const $secondaryDropdownMenu = $('div', {
-    class: `${prefix} secondary-dropdown-menu`,
-    aria: {expanded: false}
-  }, $('hr'));
-
-  const $dragAndDropIntroText = $('p', {
-    class: `${prefix}-drag-and-drop-intro`
-  }, "Drag and drop your favorite apps in any order to customize your App Launcher");
-
-  const $dismissIntroButton = $('button', {
-    class: `${prefix} dismiss-intro-button` 
-  }, "Got it!");
-
-  const createDragAndDropIntro = () => {
-     
-  };
-
-  const $dragAndDropIntro = $('div', {}, $dragAndDropIntroText, $dismissIntroButton);
-
-  const $bottomContainer = $('div', {
-    class: `${prefix} bottom-container`
-  });
-
-  $dismissIntroButton.addEventListener('click', (event) => {
-    $dragAndDropIntro.classList.add("hide");     
-
-    $dispatch($control, 'header:dismiss:apps:intro', {
-      intro: false
-    });
-  });
-
-  $showMoreButton.addEventListener('click', (event) => {
-		expandSecondaryDropdown();
+	const $bottomContainer = $('div', {
+		class: `${prefix} bottom-container`
 	});
 
 	/* Apps: Parameters that Control the State of Drag & Drop
@@ -193,7 +145,6 @@ export default () => {
 				}, currentApp.abbr);
 				surfaceDiv.appendChild(surfaceSpan);
 				surfaceDiv.appendChild($("img", {"src": currentApp.placeHolderIcon, "alt": "", "class": selectNoneClass}));
-				// surfaceDiv.appendChild($renderSvgOrImg({imgDef: currentApp.placeHolderIcon, imgWidth: 48, imgHeight: 48}));
 				$appLink.appendChild(surfaceDiv);
 			}
 			$listItem.appendChild($appLink);
@@ -208,7 +159,7 @@ export default () => {
 		const $appLink = $("div", {
 			"class": "app-indicator app-indicator-removed",
 			"tabindex": 0,
-			onclick: removeAppFromDropdown.bind(null, currentApp.uid, $listItem),
+			click: removeAppFromDropdown.bind(null, currentApp.uid, $listItem),
 			keyup: removeAppFromDropdown.bind(null, currentApp.uid, $listItem),
 			keydown: preventBrowserKeyboardDefaults
 		});
@@ -221,7 +172,7 @@ export default () => {
 			"class": "missing-app-icon appIconImage",
 			"tabindex": 0,
 			"blur": deactivateAccessibilityMode.bind(null, currentApp),
-			title: i18n.removed
+			title: ddState.i18n.removed
 			// keyup: showRemovedAppWarning.bind(null, currentApp.uid, $listItem),
 			// onclick: showRemovedAppWarning.bind(null, currentApp.uid, $listItem)
 		});
@@ -243,7 +194,7 @@ export default () => {
 
 	const expandSecondaryDropdown = () => {
 		$secondaryDropdownMenu.setAttribute('aria-expanded', "true");
-		$showMoreButton.classList.add("hide"); 
+		ddState.showMoreButton.classList.add("hide"); 
 	};
 
 	const hideOrShowDropAppsHereMessage = (containerAppWasDroppedIn) => {
@@ -257,18 +208,16 @@ export default () => {
 	};
 
 	const getTextWidth = (text, font) => { // Adds support for app abbreviations in all languages
-			const canvas = getTextWidth.canvas || (getTextWidth.canvas = document.createElement("canvas"));
-			const context = canvas.getContext("2d");
-			context.font = font;
-			const metrics = context.measureText(text);
-			return metrics.width;
+		const canvas = getTextWidth.canvas || (getTextWidth.canvas = document.createElement("canvas"));
+		const context = canvas.getContext("2d");
+		context.font = font;
+		const metrics = context.measureText(text);
+		return metrics.width;
 	};
 
 	const getRemoveAppX  = () => '<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 32 32"><path d="M18.404 16l9.9 9.9-2.404 2.404-9.9-9.9-9.9 9.9L3.696 25.9l9.9-9.9-9.9-9.898L6.1 3.698l9.9 9.899 9.9-9.9 2.404 2.406-9.9 9.898z"/></svg>';
 
-  const populateAppIds = (idArray, icons) => {
-			// return idArray.map((index) => icons[index]);
-	};
+	const getDownChevron = () => ' <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 32 32" class="down-carrot-svg js-prevent-dropdown__app-switcher"><path d="M28 9v5L16 26 4 14V9l12 12L28 9z"></path></svg>';
 
 	const interactWithAppLi = (app, e) => {
 		if (e.button === 0) {
@@ -337,13 +286,9 @@ export default () => {
 
   const showRemovedAppWarning = (uid, el, e) => {
 		if (!ddState.removedAppWithFoucs && (!e || verifyKeyPress(e.keyCode))) {
-			// displayRemovedAppWarning.classList.remove("hide");
-			// displayGoToSettingsWarning.classList.add("hide");
-			// ddState.dropdownNav.scrollTop = 0;
 			ddState.removedAppWithFoucs = {uid, el};
 		} else {
 			ddState.removedAppWithFoucs = null;
-			// displayRemovedAppWarning.classList.add("hide");
 		}
 	};
 	
@@ -357,6 +302,11 @@ export default () => {
 					link.href = ddState.recentlyRemovedHref;
 				}, 1);
 			}
+	};
+
+	const dismissIntro = (e) => {
+		ddState.dragAndDropIntro.classList.add("hide");     
+		saveAppOrderToUserProperties(ddState.primarySortable.toArray(), ddState.secondarySortable.toArray());
 	};
 
 	const removeMouseUpListener = () => {
@@ -389,7 +339,7 @@ export default () => {
 
 	const verifyKeyPress = (keyCode) => !keyCode || (keyCode === 13);
 
-  /* Apps: Helper functions for Arrow Key Accessibility  
+	/* Apps: Helper functions for Arrow Key Accessibility  
 	/* ====================================================================== */
 
 	const activateAccessibilityMode = (app, e) => {
@@ -401,9 +351,9 @@ export default () => {
 				}
 				const arrowSpan = app.canAccess ? e.target.firstChild.firstChild : e.target.firstChild;
 				const li = e.target.parentNode;
-				const	ul = li.parentNode;
-				const	liIndex = getIndexOfListItem(li);
-				const	numOfPrimaryApps = ddState.primarySortable.toArray().length;
+				const ul = li.parentNode;
+				const liIndex = getIndexOfListItem(li);
+				const numOfPrimaryApps = ddState.primarySortable.toArray().length;
 
 				expandSecondaryDropdown();
 
@@ -434,10 +384,10 @@ export default () => {
 	};
 
 	const getArrowKeyDirection = (e) => {
-		if (e.keyCode === keys.DOWN_ARROW)  return "bottom";
-		if (e.keyCode === keys.UP_ARROW) 		return "top";
+		if (e.keyCode === keys.DOWN_ARROW) return "bottom";
+		if (e.keyCode === keys.UP_ARROW) return "top";
 		if (e.keyCode === keys.RIGHT_ARROW) return (isRightToLeft ? "left" : "right");
-		if (e.keyCode === keys.LEFT_ARROW)  return (isRightToLeft ? "right" : "left");
+		if (e.keyCode === keys.LEFT_ARROW) return (isRightToLeft ? "right" : "left");
 	};
 
 	const preventBrowserKeyboardDefaults = (e) => {
@@ -562,20 +512,20 @@ export default () => {
 		return dirs;
 	};
 
-  /* Apps: Default Sorting Options
+	/* Apps: Default Sorting Options
 	/* ====================================================================== */
 
-  const defaultOptions = {
-      group: "Apps",  // or { name: "...", pull: [true, false, clone], put: [true, false, array] }
-      sort: true,  // sorting inside list
-      disabled: false, // Disables the sortable if set to true.
-      animation: 150, // ms, animation speed moving items when sorting, `0` — without animation
-      forceFallback: true,
-      delay: 0,
-      fallbackTolerance: 0,
-      ghostClass: "sortable-ghost-class",
-      dragClass: "sortable-drag-class"
-  };
+	const defaultOptions = {
+		group: "Apps",  // or { name: "...", pull: [true, false, clone], put: [true, false, array] }
+		sort: true,  // sorting inside list
+		disabled: false, // Disables the sortable if set to true.
+		animation: 150, // ms, animation speed moving items when sorting, `0` — without animation
+		forceFallback: true,
+		delay: 0,
+		fallbackTolerance: 0,
+		ghostClass: "sortable-ghost-class",
+		dragClass: "sortable-drag-class"
+	};
 
 	/* Apps: On Update
 	/* ====================================================================== */
@@ -585,7 +535,7 @@ export default () => {
 
 		if (detail.ieVersion) applyDragAndDropAdjustmentsForIE(detail.ieVersion);
 		if (detail.disableDragAndDrop) ddState.disabled = true;
-		if (detail.text) i18n = Object.assign(i18n, detail.text);
+		if (detail.text) ddState.i18n = Object.assign({}, detail.text);
 
 		if (detail.primary) {
 			$target.appendChild($content);
@@ -595,9 +545,9 @@ export default () => {
 
 			const numberOfApps = detail.primary.length;
 			const dropdownWidth = ` dropdown-width-${(numberOfApps < 3 ? numberOfApps : 3)}`;
-      // Variables to Assist with Moving Apps Between Primary and Secondary Groups
-      const primaryAppCount = 6;
-      const primaryAppsOverflowed = false;
+			// Variables to Assist with Moving Apps Between Primary and Secondary Groups
+			const primaryAppCount = 6;
+			const primaryAppsOverflowed = false;
 
 			// App Icons
 
@@ -612,11 +562,12 @@ export default () => {
 			});
 
 			if (!ddState.disabled) {
-				ddState.dragAppsHereText = $("p", {"class": "hide"}, i18n.dragAppsHere);
+				ddState.dragAppsHereText = $("p", {"class": "hide"}, ddState.i18n.dragAppsHere);
 				ddState.bottomAppContainer.appendChild(ddState.dragAppsHereText);
 
 				ddState.primarySortable = Sortable.create(ddState.topAppContainer, Object.assign(defaultOptions, {
 					onStart: (e) => {
+						ddState.dragAppsHereText.classList.add("hide");
 						removeMouseUpListener();
 						disableLinkHref(e, true);
 					},
@@ -651,9 +602,19 @@ export default () => {
 				}));
 
 				ddState.secondarySortable = Sortable.create(ddState.bottomAppContainer, Object.assign(defaultOptions, {
-					onRemove: (evt) => {
-						// primaryAppCount += 1;
-						// primaryAppsOverflowed = false; 
+					onStart: (e) => {
+						removeMouseUpListener();
+						disableLinkHref(e, true);
+					},
+					onEnd: (e) => {
+						e.preventDefault();
+						removeMouseOverListener();
+						disableLinkHref(e, false);
+						$content.classList.remove("dragging");
+						if (e.to === ddState.topAppContainer && !ddState.secondarySortable.toArray().length) {
+							ddState.bottomAppContainer.classList.add("drag-apps-here-box");
+							ddState.dragAppsHereText.classList.remove("hide");
+						}
 					},
 					store: {
 						get: (sortable) => (sortable.options.group.name && sortable.options.group.name.split('!')) || [],
@@ -666,22 +627,37 @@ export default () => {
 			}
 
 			const maxAppsPerDialog = numberOfApps >= 100 ? 100 : numberOfApps;
-      detail.primary.forEach((a, i) => { 
-        createDefaultAppLayout(ddState.topAppContainer, a, i);
-      });
-      detail.secondary.forEach((a, i) => { 
-        createDefaultAppLayout(ddState.bottomAppContainer, a, i);
-      });
+			detail.primary.forEach((a, i) => { 
+				createDefaultAppLayout(ddState.topAppContainer, a, i);
+			});
+			detail.secondary.forEach((a, i) => { 
+				createDefaultAppLayout(ddState.bottomAppContainer, a, i);
+			});
 
-			// Container
-      $bottomContainer.append(ddState.bottomAppContainer);
+			$bottomContainer.append(ddState.bottomAppContainer);
 			$secondaryDropdownMenu.append($bottomContainer);
 
 			const $dropdown = $('div', {
 				class: 'dropdown'
 			});
 
-			const $dropdownWrapper = $('div', {}, ddState.topAppContainer, $showMoreButton, $secondaryDropdownMenu);
+			const $dragAndDropIntroText = $('p', {
+				class: `${prefix} drag-and-drop-intro`
+			}, ddState.i18n.intro);
+			const $dismissIntroButton = $('button', {
+				class: `${prefix} dismiss-intro-button`,
+				click: dismissIntro
+			}, ddState.i18n.confirm);
+			ddState.dragAndDropIntro = detail.displayIntro ? $('div', {class: `${prefix} intro-container`}, $dragAndDropIntroText, $dismissIntroButton) : "";
+
+			const $showMoreChevron = $('span');
+			$showMoreChevron.innerHTML = getDownChevron();
+			ddState.showMoreButton = $('button', {
+				class: `${prefix} show-more-button`,
+				click: expandSecondaryDropdown
+			}, ddState.i18n.showMore, $showMoreChevron);
+
+			const $dropdownWrapper = $('div', {}, ddState.dragAndDropIntro, ddState.topAppContainer, ddState.showMoreButton, $secondaryDropdownMenu);
 
 			ddState.dropdownNav = $('nav', {
 				class: `${prefix} dropdown-menu dropdown-right app-switcher-dropdown-menu ${dropdownWidth}`,

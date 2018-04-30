@@ -72,7 +72,6 @@
 	box-sizing: border-box;
 	display: inline-block;
 	float: none;
-	font-family: "Avenir Next W01", "Avenir Next W00", "Avenir Next", "Avenir", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
 	letter-spacing: normal;
 	moz-box-sizing: border-box;
 	overflow-wrap: break-word;
@@ -88,7 +87,6 @@
 
 .esri-header-apps .block-group {
 	display: block;
-	font-family: monospace;
 	letter-spacing: -.65em;
 	margin-left: -.5rem;
 	margin-right: -.5rem;
@@ -228,7 +226,6 @@ html[dir="rtl"] .dropdown-menu.dropdown-right {
 }
 
 .esri-header-apps .appContainer {
-	/* display: flex; */
 	flex-direction: row;
 	flex-wrap: wrap;
 	list-style: none;
@@ -263,6 +260,17 @@ html[dir="rtl"] .dropdown-menu.dropdown-right {
 	text-shadow: 0 1px 8px rgba(0, 0, 0, 1);
 	transform: translate3d(0, 0, 0);
 	width: 48px;
+}
+
+.esri-header-apps .down-carrot-svg {
+  fill: #666c71;
+  position: relative;
+  top: 1px;
+}
+
+.esri-header-apps .intro-container {
+	text-align: center;
+	background: #f8f8f8;
 }
 
 .esri-header-apps .drag-and-drop-intro {
@@ -330,22 +338,31 @@ html[dir="rtl"] .dropdown-menu.dropdown-right {
 
 .esri-header-apps .drag-apps-here-box {
 	border: 2px dashed rgb(208, 208, 208);
-	font-family: "Avenir Next W01", "Avenir Next W00", "Avenir Next", "Avenir", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
 	font-size: 14px;
 	letter-spacing: normal;
 	margin: 12px 24px;
 	overflow: hidden;
-	padding: 20px 32px 12px;
+	padding: 2px 32px 12px;
 	text-align: center;
+	height: 66px;
+}
+
+.esri-header-apps div .drag-apps-here-box li {
+  display: none;
+}
+
+.esri-header-apps .on-drag-over {
+  border-color: #0079c1;
 }
 
 .esri-header-apps .show-more-button {
 	background: #efefef;
 	border: 0;
+	border-radius: 0;
 	color: #666c71;
 	cursor: pointer;
 	font-size: 13px;
-	padding: 4px 4px 6px;
+	padding: 4px;
 	width: 100%;
 }
 
@@ -474,8 +491,6 @@ html[dir="rtl"] .dropdown-menu.dropdown-right {
 .esri-header-apps .appLinkContainer.with-hover:focus {
 	background: #ffffff;
 	outline: 1px solid #0079c1;
-
-	/*         box-shadow: 0px 1px 1px 0px hsl(0, 0%, 85%); */
 }
 
 /* Accessible Arrows */
