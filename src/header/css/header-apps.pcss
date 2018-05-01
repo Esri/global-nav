@@ -220,6 +220,7 @@ html[dir="rtl"] .dropdown-menu.dropdown-right {
 
 .esri-header-apps .appIconPng {
 	height: 48px;
+	pointer-events: none;
 	width: 48px;
 }
 
@@ -330,8 +331,6 @@ html[dir="rtl"] .dropdown-menu.dropdown-right {
 	padding-left: .5rem;
 	padding-right: .5rem;
 	padding-top: .5rem;
-
-	/* outline: none; */
 }
 
 .esri-header-apps .drag-apps-here-box {
@@ -458,7 +457,7 @@ html[dir="rtl"] .dropdown-menu.dropdown-right {
 	cursor: grabbing;
 }
 
-.esri-header-apps div.dragging ul.appLinkContainer.with-hover:hover {
+.esri-header-apps .dragging .appContainer .with-hover:hover {
 	background: inherit;
 	outline: none;
 }

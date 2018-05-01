@@ -98,6 +98,7 @@ document.addEventListener("DOMContentLoaded", () => {
 				label: 'Applications',
 				disableDragAndDrop: false,
 				displayIntro: true,
+				ieVersion: null,
 				text: {
 					clear: "Clear",
 					confirm: "Got it.",

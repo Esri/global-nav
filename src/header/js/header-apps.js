@@ -121,9 +121,6 @@ export default () => {
 				blur: deactivateAccessibilityMode.bind(null, currentApp),
 				class: "appLink"
 			});
-			$appLink.addEventListener('click', (event) => {
-				$closeAppLauncher(event);
-			});
 			// Check if App has Icon
 			if (currentApp.image) {
 				const $appImageContainer = $("div", {"class": `appIconImage ${selectNoneClass}`});
@@ -239,7 +236,7 @@ export default () => {
 
 				saveAppOrderToUserProperties(
 					primaryApps, 
-					ddState.secondarySortable.toArray(), 
+					ddState.secondarySortable.toArray(),
 					{targetUid: e.currentTarget.getAttribute("data-id"), isNew: true, targetValue: null}
 				);
 				e.currentTarget.classList.remove("sortable-drag-class");
@@ -252,10 +249,10 @@ export default () => {
 				ddState.listenForMouseOverElement = e.currentTarget.parentNode;
 				ddState.listenForMouseOverElement.addEventListener("mousemove", simulateDragEvent);
 			} else {
-				const removedAppClass = "app-indicator-removed";
-				if (e.target.classList.contains(removedAppClass) || 
-						e.target.parentNode.classList.contains(removedAppClass) || 
-						e.target.parentNode.parentNode.classList.contains(removedAppClass)
+				const removedAppClass = "app-indicator app-indicator-removed";
+				if (e.target.classList.className === removedAppClass || 
+						e.target.parentNode.className === removedAppClass || 
+						e.target.parentNode.parentNode.className === removedAppClass
 					) {
 					ddState.removeStartApp = true;
 				}
@@ -324,7 +321,7 @@ export default () => {
 	const simulateDragEvent = (e) => {
 		if (Math.abs(e.clientX - ddState.startClientX) > ddState.maxDragErrorTollerance || Math.abs(e.clientY - ddState.startClientY) > ddState.maxDragErrorTollerance) {
 			ddState.simulatedDragEvent = true;
-			$content.classList.add("dragging");
+			ddState.dropdownWrapper.classList.add("dragging");
 			removeMouseOverListener();
 		}
 	};
@@ -333,7 +330,8 @@ export default () => {
 		if (ieVersion === "edge") {
 			ddState.browserIsEdge = true;
 		} else if (ieVersion === "ie11") {
-			defaultOptions.ghostClass = "sortable-ghost-class-with-pointer-events";
+			primarySortableOptions.ghostClass = "sortable-ghost-class-with-pointer-events";
+			secondarySortableOptions.ghostClass = "sortable-ghost-class-with-pointer-events";
 		}
 	};
 
@@ -343,7 +341,7 @@ export default () => {
 	/* ====================================================================== */
 
 	const activateAccessibilityMode = (app, e) => {
-		if (!e.target.classList.contains("app-indicator-removed")) {
+		if (!e.target.className === "app-indicator app-indicator-removed") {
 			e.preventDefault();
 			if (e.keyCode === keys.SPACE) {
 				if (ddState.activeAccessibleListElement) {
@@ -512,10 +510,10 @@ export default () => {
 		return dirs;
 	};
 
-	/* Apps: Default Sorting Options
+	/* Apps: Primary Sortable Options
 	/* ====================================================================== */
 
-	const defaultOptions = {
+	const primarySortableOptions = {
 		group: "Apps",  // or { name: "...", pull: [true, false, clone], put: [true, false, array] }
 		sort: true,  // sorting inside list
 		disabled: false, // Disables the sortable if set to true.
@@ -524,18 +522,93 @@ export default () => {
 		delay: 0,
 		fallbackTolerance: 0,
 		ghostClass: "sortable-ghost-class",
-		dragClass: "sortable-drag-class"
+		dragClass: "sortable-drag-class",
+		onStart: (e) => {
+			ddState.dragAppsHereText.classList.add("hide");
+			removeMouseUpListener();
+			disableLinkHref(e, true);
+		},
+		onEnd: (e) => {
+			e.preventDefault();
+			removeMouseOverListener();
+			disableLinkHref(e, false);
+			ddState.dropdownWrapper.classList.remove("dragging");
+			ddState.bottomAppContainer.classList.remove("on-drag-over");
+			hideOrShowDropAppsHereMessage(e.to);
+			return false;
+		},
+		onMove: (e, oe) => {
+			if (e.to === ddState.bottomAppContainer) {
+				ddState.bottomAppContainer.classList.add("on-drag-over");
+			} else {
+				ddState.bottomAppContainer.classList.remove("on-drag-over");
+			}
+		},
+		store: {
+			get: (sortable) => (sortable.options.group.name && sortable.options.group.name.split("!")) || [],
+			set: (sortable) => {
+				if (!ddState.simulatedDragEvent) {
+					generateCustomLinkClick(ddState.startApp, ddState.startElement, ddState.removeStartApp);
+				} else {
+					saveAppOrderToUserProperties(sortable.toArray(), ddState.secondarySortable.toArray());
+				}
+				ddState.startElement.classList.remove("sortable-drag-class");
+				ddState.simulatedDragEvent = false;
+			}
+		}
+	};
+
+	/* Apps: Secondary Sortable Options
+	/* ====================================================================== */
+
+	const secondarySortableOptions = {
+		group: "Apps",
+		sort: true,
+		disabled: false,
+		animation: 150,
+		forceFallback: true,
+		delay: 0,
+		fallbackTolerance: 0,
+		ghostClass: "sortable-ghost-class",
+		dragClass: "sortable-drag-class",
+		onStart: (e) => {
+			removeMouseUpListener();
+			disableLinkHref(e, true);
+		},
+		onEnd: (e) => {
+			e.preventDefault();
+			removeMouseOverListener();
+			disableLinkHref(e, false);
+			ddState.dropdownWrapper.classList.remove("dragging");
+			if (e.to === ddState.topAppContainer && !ddState.secondarySortable.toArray().length) {
+				ddState.bottomAppContainer.classList.add("drag-apps-here-box");
+				ddState.dragAppsHereText.classList.remove("hide");
+			}
+		},
+		store: {
+			get: (sortable) => (sortable.options.group.name && sortable.options.group.name.split('!')) || [],
+			set: (sortable) => {
+				if (!ddState.simulatedDragEvent) {
+					generateCustomLinkClick(ddState.startApp, ddState.startElement, ddState.removeStartApp);
+				} else {
+					saveAppOrderToUserProperties(ddState.primarySortable.toArray(), sortable.toArray());
+				}
+
+				ddState.startElement.classList.remove("sortable-drag-class");
+				ddState.simulatedDragEvent = false;
+			}
+		}
 	};
 
 	/* Apps: On Update
 	/* ====================================================================== */
 
 	$target.addEventListener('header:update:apps', ({detail}) => {
-		$renderSvgOrImg({imgDef: detail.image.path, imgWidth: detail.image.width, imgHeight: detail.image.height, imgClass: `${prefix}-image`, $targetElm: $appSwitcherIcon});
+		const $gridIcon = $renderSvgOrImg({imgDef: detail.image.path, imgWidth: detail.image.width, imgHeight: detail.image.height, "shape-rendering": "crispEdges", imgClass: `${prefix} svg-grid-icon`, $targetElm: $appSwitcherIcon});
 
 		if (detail.ieVersion) applyDragAndDropAdjustmentsForIE(detail.ieVersion);
 		if (detail.disableDragAndDrop) ddState.disabled = true;
-		if (detail.text) ddState.i18n = Object.assign({}, detail.text);
+		if (detail.text) ddState.i18n = detail.text || {};
 
 		if (detail.primary) {
 			$target.appendChild($content);
@@ -565,65 +638,8 @@ export default () => {
 				ddState.dragAppsHereText = $("p", {"class": "hide"}, ddState.i18n.dragAppsHere);
 				ddState.bottomAppContainer.appendChild(ddState.dragAppsHereText);
 
-				ddState.primarySortable = Sortable.create(ddState.topAppContainer, Object.assign(defaultOptions, {
-					onStart: (e) => {
-						ddState.dragAppsHereText.classList.add("hide");
-						removeMouseUpListener();
-						disableLinkHref(e, true);
-					},
-					onEnd: (e) => {
-						e.preventDefault();
-						removeMouseOverListener();
-						disableLinkHref(e, false);
-						$content.classList.remove("dragging");
-						ddState.bottomAppContainer.classList.remove("on-drag-over");
-						hideOrShowDropAppsHereMessage(e.to);
-						return false;
-					},
-					onMove: (e, oe) => {
-						if (e.to === ddState.bottomAppContainer) {
-							ddState.bottomAppContainer.classList.add("on-drag-over");
-						} else {
-							ddState.bottomAppContainer.classList.remove("on-drag-over");
-						}
-					},
-					store: {
-						get: (sortable) => (sortable.options.group.name && sortable.options.group.name.split("!")) || [],
-						set: (sortable) => {
-							if (!ddState.simulatedDragEvent) {
-								generateCustomLinkClick(ddState.startApp, ddState.startElement, ddState.removeStartApp);
-							} else {
-								saveAppOrderToUserProperties(sortable.toArray(), ddState.secondarySortable.toArray());
-							}
-							ddState.startElement.classList.remove("sortable-drag-class");
-							ddState.simulatedDragEvent = false;
-						}
-					}
-				}));
-
-				ddState.secondarySortable = Sortable.create(ddState.bottomAppContainer, Object.assign(defaultOptions, {
-					onStart: (e) => {
-						removeMouseUpListener();
-						disableLinkHref(e, true);
-					},
-					onEnd: (e) => {
-						e.preventDefault();
-						removeMouseOverListener();
-						disableLinkHref(e, false);
-						$content.classList.remove("dragging");
-						if (e.to === ddState.topAppContainer && !ddState.secondarySortable.toArray().length) {
-							ddState.bottomAppContainer.classList.add("drag-apps-here-box");
-							ddState.dragAppsHereText.classList.remove("hide");
-						}
-					},
-					store: {
-						get: (sortable) => (sortable.options.group.name && sortable.options.group.name.split('!')) || [],
-						set: (sortable) => {
-							const topAppIds = [...ddState.topAppContainer.querySelectorAll("li")].map((l) => l.attributes["data-id"].value);
-							saveAppOrderToUserProperties(topAppIds, sortable.toArray());
-						}
-					}
-				}));
+				ddState.primarySortable = Sortable.create(ddState.topAppContainer, primarySortableOptions);
+				ddState.secondarySortable = Sortable.create(ddState.bottomAppContainer, secondarySortableOptions);
 			}
 
 			const maxAppsPerDialog = numberOfApps >= 100 ? 100 : numberOfApps;
@@ -634,8 +650,8 @@ export default () => {
 				createDefaultAppLayout(ddState.bottomAppContainer, a, i);
 			});
 
-			$bottomContainer.append(ddState.bottomAppContainer);
-			$secondaryDropdownMenu.append($bottomContainer);
+			$bottomContainer.appendChild(ddState.bottomAppContainer);
+			$secondaryDropdownMenu.appendChild($bottomContainer);
 
 			const $dropdown = $('div', {
 				class: 'dropdown'
@@ -657,12 +673,12 @@ export default () => {
 				click: expandSecondaryDropdown
 			}, ddState.i18n.showMore, $showMoreChevron);
 
-			const $dropdownWrapper = $('div', {}, ddState.dragAndDropIntro, ddState.topAppContainer, ddState.showMoreButton, $secondaryDropdownMenu);
+			ddState.dropdownWrapper = $('div', {}, ddState.dragAndDropIntro, ddState.topAppContainer, ddState.showMoreButton, $secondaryDropdownMenu);
 
 			ddState.dropdownNav = $('nav', {
 				class: `${prefix} dropdown-menu dropdown-right app-switcher-dropdown-menu ${dropdownWidth}`,
 				role: "menu"
-			}, $dropdownWrapper);
+			}, ddState.dropdownWrapper);
 
 			$dropdown.appendChild(ddState.dropdownNav);
 			$content.appendChild($dropdown);
