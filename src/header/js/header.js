@@ -272,7 +272,6 @@ export default (data) => {
 				$dispatch($header, 'header:breakpoint:s');
 
 				$mobileMenus.lastChild.appendChild($account);
-				$desktopMenus.lastChild.appendChild($account);
 			} else {
 				$dispatch($header, 'header:breakpoint:not:s');
 
