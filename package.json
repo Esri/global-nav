@@ -18,7 +18,9 @@
     "test:css": "stylelint src/**/*.pcss src/**/*.scss --syntax scss",
     "test:js": "eslint src/**/*.js --cache --ignore-pattern .gitignore"
   },
-  "dependencies": {},
+  "dependencies": {
+    "sortablejs": "^1.7.0"
+  },
   "devDependencies": {
     "autoprefixer": "^7.1.4",
     "babel-core": "^6.26.0",

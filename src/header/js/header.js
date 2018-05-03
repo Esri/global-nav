@@ -103,6 +103,13 @@ export default (data) => {
 		});
 	});
 
+	/* On Drag & Drop Apps 
+	/* ====================================================================== */
+
+	$header.addEventListener('header:apps:reorder', ({detail}) => {
+		$dispatch($apps, 'header::apps:reorder', detail.icons);
+	});
+
 	/* On Header Menu Toggle
 	/* ====================================================================== */
 
