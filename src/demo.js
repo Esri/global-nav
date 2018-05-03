@@ -7,7 +7,10 @@ document.addEventListener("DOMContentLoaded", () => {
 				image: './img/gnav-esri-logo-globe-tm.svg',
 				href: 'https://www.esri.com/',
 				width: 80,
-				height: 30
+				height: 30,
+				distributorImage: './img/dist-logo.jpg',
+				distributorImageWidth: 120,
+				distributorImageHeight: 56			
 			},
 			menus: [
 				[

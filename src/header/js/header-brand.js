@@ -14,9 +14,16 @@ export default () => {
 	/* ====================================================================== */
 	$target.addEventListener('header:update:brand', ({detail}) => {
 		$($target, {href: detail.href});
+		if (detail.distributorImage) {
+			const $distributorImage = $('span', {class: 'distributor-image'});
+			$renderSvgOrImg({imgDef: detail.distributorImage, imgClass: `${prefix}-image`, imgWidth: detail.distributorImageWidth, imgHeight:detail.distributorImageHeight, $targetElm:$distributorImage});			
+			$($target, $distributorImage, $('span', {class: 'distributor-image-border'}));
+		}
 		if (detail.image) {
+			const $brandImage = $('span', {class: 'brand-image'});
 			$($target, {aria: {label: detail.label}});
-			$renderSvgOrImg({imgDef: detail.image, imgClass: `${prefix}-image`, imgWidth: detail.width, imgHeight:detail.height, $targetElm:$target});
+			$renderSvgOrImg({imgDef: detail.image, imgClass: `${prefix}-image`, imgWidth: detail.width, imgHeight:detail.height, $targetElm:$brandImage});
+			$($target, $brandImage);
 		}
 		if (detail.brandText) {
 			const textClass = detail.image ? `${prefix}-text -has-image` : `${prefix}-text`;
