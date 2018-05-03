@@ -1,3 +1,9 @@
+## 1.0.8
+
+### Added
+- Distributor Logo 
+- Drag and Drop in the App Switcher
+
 ## 1.0.7
 
 ### Fixed
