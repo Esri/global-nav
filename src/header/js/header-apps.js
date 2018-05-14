@@ -1,6 +1,6 @@
 import {$assign as $, $dispatch, $replaceAll, $renderSvgOrImg} from '../../shared/js/shared';
 import Sortable from 'sortablejs';
-import {$remove} from 'domose';
+import {$remove} from '../../shared/js/domose';
 
 /* Apps
 /* ========================================================================== */
