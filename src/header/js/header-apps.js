@@ -625,6 +625,7 @@ export default () => {
 	$target.addEventListener('header:update:apps', ({detail}) => {
 		const $gridIcon = $renderSvgOrImg({imgDef: detail.image.path, imgWidth: detail.image.width, imgHeight: detail.image.height, "shape-rendering": "crispEdges", imgClass: `${prefix} svg-grid-icon`, $targetElm: $appSwitcherIcon});
 
+		if (!detail.primary) return;
 		if (detail.ieVersion) applyDragAndDropAdjustmentsForIE(detail.ieVersion);
 		if (detail.disableDragAndDrop) ddState.disabled = true;
 		if (detail.text) ddState.i18n = detail.text || {};
