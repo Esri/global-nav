@@ -50,9 +50,7 @@ export default () => {
 
 	const $control = $controlContainer;
 
-	$controlContainer.addEventListener('click', (event) => {
-		$closeAppLauncher(event);
-	});
+	$controlContainer.addEventListener('click', $closeAppLauncher);
 
 	/* Apps: Target
 	/* ====================================================================== */
@@ -223,6 +221,13 @@ export default () => {
 			ddState.startApp = app;
 			ddState.startElement = e.currentTarget;
 
+			if (ddState.disabled) {
+				if (app.canAccess) {
+					ddState.dropdownNav.addEventListener("mouseup", closeAppLauncherOnClick);
+				}
+				return;
+			}
+
 			setTimeout((e) => {
 				ddState.startElement.classList.remove("sortable-drag-class");
 			}, 1);
@@ -244,10 +249,11 @@ export default () => {
 				e.currentTarget.classList.remove("sortable-drag-class");
 			}
 
+			ddState.listenForMouseOverElement = e.currentTarget.parentNode;
+			ddState.listenForMouseOverElement.addEventListener("mousemove", simulateDragEvent);
+
 			if (app.canAccess) {
 				ddState.dropdownNav.addEventListener("mouseup", $closeAppLauncher);
-				ddState.listenForMouseOverElement = e.currentTarget.parentNode;
-				ddState.listenForMouseOverElement.addEventListener("mousemove", simulateDragEvent);
 			} else {
 				const removedAppClass = "app-indicator app-indicator-removed";
 				if (e.target.classList.className === removedAppClass || 
@@ -260,7 +266,15 @@ export default () => {
 		}
 	};
 
-  const generateCustomLinkClick = (app, el, removeApp) => {
+	const closeAppLauncherOnClick = (e) => {
+		ddState.dropdownNav.removeEventListener("mouseup", closeAppLauncherOnClick, false);
+		if (!dragEventWasSimulated(e.clientX, e.clientY)) {
+			$closeAppLauncher();
+		}
+	};
+
+	const generateCustomLinkClick = (app, el, removeApp) => {
+	  	if (ddState.disabled) return;
 		if (app.canAccess) {
 			$closeAppLauncher();
 			window.open(app.url, "_blank");
@@ -281,7 +295,7 @@ export default () => {
 		}
 	};
 
-  const showRemovedAppWarning = (uid, el, e) => {
+	const showRemovedAppWarning = (uid, el, e) => {
 		if (!ddState.removedAppWithFoucs && (!e || verifyKeyPress(e.keyCode))) {
 			ddState.removedAppWithFoucs = {uid, el};
 		} else {
@@ -319,7 +333,7 @@ export default () => {
 	};
 
 	const simulateDragEvent = (e) => {
-		if (Math.abs(e.clientX - ddState.startClientX) > ddState.maxDragErrorTollerance || Math.abs(e.clientY - ddState.startClientY) > ddState.maxDragErrorTollerance) {
+		if (dragEventWasSimulated(e.clientX, e.clientY)) {
 			ddState.simulatedDragEvent = true;
 			ddState.dropdownWrapper.classList.add("dragging");
 			removeMouseOverListener();
@@ -334,6 +348,11 @@ export default () => {
 			secondarySortableOptions.ghostClass = "sortable-ghost-class-with-pointer-events";
 		}
 	};
+
+	const dragEventWasSimulated = (clientX, clientY) => (
+		Math.abs(clientX - ddState.startClientX) > ddState.maxDragErrorTollerance || 
+		Math.abs(clientY - ddState.startClientY) > ddState.maxDragErrorTollerance
+	);
 
 	const verifyKeyPress = (keyCode) => !keyCode || (keyCode === 13);
 
@@ -606,11 +625,12 @@ export default () => {
 	$target.addEventListener('header:update:apps', ({detail}) => {
 		const $gridIcon = $renderSvgOrImg({imgDef: detail.image.path, imgWidth: detail.image.width, imgHeight: detail.image.height, "shape-rendering": "crispEdges", imgClass: `${prefix} svg-grid-icon`, $targetElm: $appSwitcherIcon});
 
+		if (!detail.primary) return;
 		if (detail.ieVersion) applyDragAndDropAdjustmentsForIE(detail.ieVersion);
 		if (detail.disableDragAndDrop) ddState.disabled = true;
 		if (detail.text) ddState.i18n = detail.text || {};
 
-		if (detail.primary) {
+		if (!detail.isLoading) {
 			$target.appendChild($content);
 			$control.className = `${prefix}-control`;
 
@@ -683,6 +703,10 @@ export default () => {
 			$dropdown.appendChild(ddState.dropdownNav);
 			$content.appendChild($dropdown);
 			$replaceAll($target, $control, $content);
+		} else {
+			$control.className = `${prefix}-control disabled-grid-icon`;
+			$control.removeEventListener('click', $closeAppLauncher, false);
+			$replaceAll($target, $control);
 		}
 	});
 

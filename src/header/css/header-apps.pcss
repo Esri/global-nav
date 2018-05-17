@@ -64,6 +64,15 @@
 	display: inline-block;
 }
 
+.esri-header-apps-control.disabled-grid-icon {
+	opacity: .4;
+	padding: 18px 12px 12px 10px;
+}
+
+.esri-header-apps-control.disabled-grid-icon:hover {
+	box-shadow: none;
+}
+
 /* Calcite Styles */
 
 .esri-header-apps .block {
@@ -143,9 +152,11 @@ html[dir="rtl"] .dropdown-menu.dropdown-right {
 	border-top: 1px solid #e0e0e0;
 	cursor: default;
 	left: -210px;
+	max-height: 90vh;
 	max-width: 600px;
 	min-width: 475px;
 	overflow-x: hidden;
+	overflow-y: auto;
 	top: -21px;
 
 	@media (--width-s) {
