@@ -526,6 +526,78 @@ document.addEventListener("DOMContentLoaded", () => {
 							viewBox: '7 7 16 16',
 							path: ['M23 19h-3v4l-4-4H7V9h16z']
 						}
+					},
+					{
+						label: 'Google Plus',
+						href: 'https://plus.google.com/discover',
+						image: {
+							viewBox: '0 0 32 32',
+							path : 'https://www.esri.com/content/dam/esrisites/common/icons/GooglePlus_32.svg'
+						}
+					},					
+					{
+						label: 'Arc Germany',
+						href: 'http://en.arcgermany.com/en/',
+						image: {
+							viewBox: '0 0 32 32',
+							path : 'https://www.esri.com/content/dam/esrisites/common/icons/ArcGermany_32.svg'
+						}
+					},					
+					{
+						label: 'Blogger',
+						href: 'https://www.blogger.com',
+						image: {
+							viewBox: '0 0 32 32',
+							path : 'https://www.esri.com/content/dam/esrisites/common/icons/Blogger_32.svg'
+						}
+					},
+					{
+						label: 'Email',
+						href: 'mailto:info@esri.com',
+						image: {
+							viewBox: '0 0 32 32',
+							path : 'https://www.esri.com/content/dam/esrisites/common/icons/Contact-Newsletter_32.svg'
+						}
+					},
+					{
+						label: 'GisIQ',
+						href: 'https://gis-iq.esri.de/',
+						image: {
+							viewBox: '0 0 32 32',
+							path : 'https://www.esri.com/content/dam/esrisites/common/icons/GISIQ_32.svg'
+						}
+					},
+					{
+						label: 'Pintrest',
+						href: 'https://www.pinterest.com/',
+						image: {
+							viewBox: '0 0 32 32',
+							path : 'https://www.esri.com/content/dam/esrisites/common/icons/Pinterest_32.svg'
+						}
+					},
+					{
+						label: 'Rss',
+						href: 'https://en.wikipedia.org/wiki/RSS',
+						image: {
+							viewBox: '0 0 32 32',
+							path : 'https://www.esri.com/content/dam/esrisites/common/icons/RSSFeed_32.svg'
+						}
+					},
+					{
+						label: 'Tumblr',
+						href: 'https://en.wikipedia.org/wiki/RSS',
+						image: {
+							viewBox: '0 0 32 32',
+							path : 'https://www.esri.com/content/dam/esrisites/common/icons/Tumblr_32.svg'
+						}
+					},
+					{
+						label: 'Xing',
+						href: 'https://www.xing.com/en',
+						image: {
+							viewBox: '0 0 32 32',
+							path : 'https://www.esri.com/content/dam/esrisites/common/icons/Xing_32.svg'
+						}
 					}
 				]
 			},
