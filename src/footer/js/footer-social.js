@@ -11,7 +11,8 @@ export default (data, prefix) => {
 					{
 						class: `${prefix}-social-link -${item.label.toLowerCase().replace(' ','-')}`,
 						href: item.href,
-						aria: {label: item.label}
+						aria: {label: item.label},
+						target: '_blank'
 					},
 					$renderSvgOrImg({imgDef: item.image.path, imgClass: `${prefix}-social-image`, imgWidth: 30, imgHeight:30, viewBox : item.image.viewBox})
 				)
