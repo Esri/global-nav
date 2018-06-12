@@ -22,6 +22,10 @@
 	position: relative;
 }
 
+.esri-header-apps .svg-grid-icon {
+  fill: #6e6e6e;  
+}
+
 .esri-header-apps svg * {
 	pointer-events: all;
 }
@@ -40,8 +44,8 @@
 	@apply --normalize-button;
 	@apply --unset-button;
 	@apply --menu-link-styles;
-
-	padding: 46px 12px 12px 10px;
+	margin-top: 2px;
+	padding: 45px 12px 10px 10px;
 
 	@media (--width-s) {
 		margin-top: -2px;
@@ -347,7 +351,7 @@ html[dir="rtl"] .dropdown-menu.dropdown-right {
 .esri-header-apps .drag-apps-here-box {
 	border: 2px dashed rgb(208, 208, 208);
 	font-size: 14px;
-	height: 66px;
+	height: 100px;
 	letter-spacing: normal;
 	margin: 12px 24px;
 	overflow: hidden;
