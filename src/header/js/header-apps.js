@@ -167,9 +167,9 @@ export default () => {
 			"class": "missing-app-icon appIconImage",
 			"tabindex": 0,
 			"blur": deactivateAccessibilityMode.bind(null, currentApp),
-			title: ddState.i18n.removed,
-			keyup: showRemovedAppWarning.bind(null, currentApp.uid, $listItem),
-			onclick: showRemovedAppWarning.bind(null, currentApp.uid, $listItem)
+			title: ddState.i18n.removed
+			// keyup: showRemovedAppWarning.bind(null, currentApp.uid, $listItem),
+			// onclick: showRemovedAppWarning.bind(null, currentApp.uid, $listItem)
 		});
 		$missingIcon.appendChild(getAccessibleAppArrowContainer());
 		$listItem.appendChild($appLink);
