@@ -14,12 +14,17 @@
 }
 
 .esri-header-apps .appLink {
+	pointer-events: none;
 	display: block;
 	height: 93%;
 	padding-left: .5rem;
 	padding-right: .5rem;
 	padding-top: .5rem;
 	position: relative;
+}
+
+.esri-header-apps .svg-grid-icon {
+	fill: #6e6e6e;
 }
 
 .esri-header-apps svg * {
@@ -40,8 +45,8 @@
 	@apply --normalize-button;
 	@apply --unset-button;
 	@apply --menu-link-styles;
-
-	padding: 46px 12px 12px 10px;
+	margin-top: 2px;
+	padding: 45px 12px 10px 10px;
 
 	@media (--width-s) {
 		margin-top: -2px;
@@ -272,8 +277,11 @@ html[dir="rtl"] .dropdown-menu.dropdown-right {
 	width: 48px;
 }
 
-.esri-header-apps .down-carrot-svg {
+.esri-header-apps .default-svg-fill {
 	fill: #666c71;
+}
+
+.esri-header-apps .down-carrot-svg {
 	position: relative;
 	top: 1px;
 }
@@ -311,6 +319,7 @@ html[dir="rtl"] .dropdown-menu.dropdown-right {
 .esri-header-apps div.dragging p,
 .esri-header-apps div.dragging a,
 .esri-header-apps div.dragging span {
+	-webkit-user-select: none;
 	user-select: none;
 }
 
@@ -347,7 +356,7 @@ html[dir="rtl"] .dropdown-menu.dropdown-right {
 .esri-header-apps .drag-apps-here-box {
 	border: 2px dashed rgb(208, 208, 208);
 	font-size: 14px;
-	height: 66px;
+	height: 100px;
 	letter-spacing: normal;
 	margin: 12px 24px;
 	overflow: hidden;

@@ -86,7 +86,7 @@ export default () => {
 		UP_ARROW: 38,
 		RIGHT_ARROW: 39,
 		LEFT_ARROW: 37,
-		SPACE: 32 
+		SPACE: 32
 	};
 
 	/* Apps: Helper Functions for Update
@@ -194,11 +194,9 @@ export default () => {
 
 	const hideOrShowDropAppsHereMessage = (containerAppWasDroppedIn) => {
 		if (containerAppWasDroppedIn === ddState.bottomAppContainer && ddState.secondarySortable.toArray().length === 1) {
-			ddState.bottomAppContainer.classList.remove("drag-apps-here-box");
-			ddState.dragAppsHereText.classList.add("hide");
+			showDragAppsHereBox(false);
 		} else if (!ddState.secondarySortable.toArray().length) {
-			ddState.bottomAppContainer.classList.add("drag-apps-here-box");
-			ddState.dragAppsHereText.classList.remove("hide");
+			showDragAppsHereBox(true);
 		}
 	};
 
@@ -210,15 +208,16 @@ export default () => {
 		return metrics.width;
 	};
 
-	const getRemoveAppX  = () => '<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 32 32"><path d="M18.404 16l9.9 9.9-2.404 2.404-9.9-9.9-9.9 9.9L3.696 25.9l9.9-9.9-9.9-9.898L6.1 3.698l9.9 9.899 9.9-9.9 2.404 2.406-9.9 9.898z"/></svg>';
+	const getRemoveAppX  = () => '<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 32 32"  class="default-svg-fill"><path d="M18.404 16l9.9 9.9-2.404 2.404-9.9-9.9-9.9 9.9L3.696 25.9l9.9-9.9-9.9-9.898L6.1 3.698l9.9 9.899 9.9-9.9 2.404 2.406-9.9 9.898z"/></svg>';
 
-	const getDownChevron = () => ' <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 32 32" class="down-carrot-svg js-prevent-dropdown__app-switcher"><path d="M28 9v5L16 26 4 14V9l12 12L28 9z"></path></svg>';
+	const getDownChevron = () => ' <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 32 32" class="down-carrot-svg default-svg-fill"><path d="M28 9v5L16 26 4 14V9l12 12L28 9z"></path></svg>';
 
 	const interactWithAppLi = (app, e) => {
 		if (e.button === 0) {
 			ddState.startClientX = e.clientX;
 			ddState.startClientY = e.clientY;
 			ddState.startApp = app;
+			ddState.dragEventWasCanceled = false;
 			ddState.startElement = e.currentTarget;
 
 			if (ddState.disabled) {
@@ -255,6 +254,7 @@ export default () => {
 			if (app.canAccess) {
 				ddState.dropdownNav.addEventListener("mouseup", $closeAppLauncher);
 			} else {
+				ddState.dropdownNav.addEventListener("mouseup", deactivateDraggingStyles);
 				const removedAppClass = "app-indicator app-indicator-removed";
 				if (e.target.classList.className === removedAppClass || 
 						e.target.parentNode.className === removedAppClass || 
@@ -274,7 +274,7 @@ export default () => {
 	};
 
 	const generateCustomLinkClick = (app, el, removeApp) => {
-	  	if (ddState.disabled) return;
+		if (ddState.disabled || !app) return;
 		if (app.canAccess) {
 			$closeAppLauncher();
 			window.open(app.url, "_blank");
@@ -296,13 +296,23 @@ export default () => {
 	};
 
 	const showRemovedAppWarning = (uid, el, e) => {
+		ddState.dropdownWrapper.classList.remove("dragging");
 		if (!ddState.removedAppWithFoucs && (!e || verifyKeyPress(e.keyCode))) {
 			ddState.removedAppWithFoucs = {uid, el};
 		} else {
 			ddState.removedAppWithFoucs = null;
 		}
 	};
+
+	const deactivateDraggingStyles = (e) => {
+		ddState.dragEventWasCanceled = true;
+	};
 	
+	const showDragAppsHereBox = (show) => {
+		ddState.bottomAppContainer.classList[show ? "add" : "remove"]("drag-apps-here-box");
+		ddState.dragAppsHereText.classList[show ? "remove" : "add"]("hide");
+	};
+
 	const disableLinkHref = (e, disable) => {
 			const link = (e.item.children[1] && e.item.children[1].nodeName === "A") ? e.item.children[1] : e.item.children[0];
 			if (disable) {
@@ -350,8 +360,9 @@ export default () => {
 	};
 
 	const dragEventWasSimulated = (clientX, clientY) => (
-		Math.abs(clientX - ddState.startClientX) > ddState.maxDragErrorTollerance || 
-		Math.abs(clientY - ddState.startClientY) > ddState.maxDragErrorTollerance
+		!ddState.dragEventWasCanceled && 
+		(Math.abs(clientX - ddState.startClientX) > ddState.maxDragErrorTollerance || 
+		Math.abs(clientY - ddState.startClientY) > ddState.maxDragErrorTollerance)
 	);
 
 	const verifyKeyPress = (keyCode) => !keyCode || (keyCode === 13);
@@ -360,8 +371,7 @@ export default () => {
 	/* ====================================================================== */
 
 	const activateAccessibilityMode = (app, e) => {
-		if (!e.target.className === "app-indicator app-indicator-removed") {
-			e.preventDefault();
+		if (e.target.className !== "app-indicator app-indicator-removed") {
 			if (e.keyCode === keys.SPACE) {
 				if (ddState.activeAccessibleListElement) {
 					return deactivateAccessibilityMode(app, e);
@@ -553,7 +563,9 @@ export default () => {
 			disableLinkHref(e, false);
 			ddState.dropdownWrapper.classList.remove("dragging");
 			ddState.bottomAppContainer.classList.remove("on-drag-over");
-			hideOrShowDropAppsHereMessage(e.to);
+			if (ddState.secondarySortable.toArray().length) {
+				showDragAppsHereBox(false);
+			}
 			return false;
 		},
 		onMove: (e, oe) => {
@@ -571,7 +583,7 @@ export default () => {
 				} else {
 					saveAppOrderToUserProperties(sortable.toArray(), ddState.secondarySortable.toArray());
 				}
-				ddState.startElement.classList.remove("sortable-drag-class");
+				if (ddState.startElement) ddState.startElement.classList.remove("sortable-drag-class");
 				ddState.simulatedDragEvent = false;
 			}
 		}
@@ -599,9 +611,8 @@ export default () => {
 			removeMouseOverListener();
 			disableLinkHref(e, false);
 			ddState.dropdownWrapper.classList.remove("dragging");
-			if (e.to === ddState.topAppContainer && !ddState.secondarySortable.toArray().length) {
-				ddState.bottomAppContainer.classList.add("drag-apps-here-box");
-				ddState.dragAppsHereText.classList.remove("hide");
+			if (!ddState.secondarySortable.toArray().length) {
+				showDragAppsHereBox(true);
 			}
 		},
 		store: {
@@ -612,8 +623,7 @@ export default () => {
 				} else {
 					saveAppOrderToUserProperties(ddState.primarySortable.toArray(), sortable.toArray());
 				}
-
-				ddState.startElement.classList.remove("sortable-drag-class");
+				if (ddState.startElement) ddState.startElement.classList.remove("sortable-drag-class");
 				ddState.simulatedDragEvent = false;
 			}
 		}
@@ -657,6 +667,8 @@ export default () => {
 			if (!ddState.disabled) {
 				ddState.dragAppsHereText = $("p", {"class": "hide"}, ddState.i18n.dragAppsHere);
 				ddState.bottomAppContainer.appendChild(ddState.dragAppsHereText);
+
+				if (!detail.secondary.length) showDragAppsHereBox(true);
 
 				ddState.primarySortable = Sortable.create(ddState.topAppContainer, primarySortableOptions);
 				ddState.secondarySortable = Sortable.create(ddState.bottomAppContainer, secondarySortableOptions);
