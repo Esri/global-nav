@@ -86,7 +86,7 @@ export default () => {
 		UP_ARROW: 38,
 		RIGHT_ARROW: 39,
 		LEFT_ARROW: 37,
-		SPACE: 32 
+		SPACE: 32
 	};
 
 	/* Apps: Helper Functions for Update
@@ -217,7 +217,7 @@ export default () => {
 			ddState.startClientX = e.clientX;
 			ddState.startClientY = e.clientY;
 			ddState.startApp = app;
-      ddState.dragEventWasCanceled = false;
+			ddState.dragEventWasCanceled = false;
 			ddState.startElement = e.currentTarget;
 
 			if (ddState.disabled) {
@@ -274,7 +274,7 @@ export default () => {
 	};
 
 	const generateCustomLinkClick = (app, el, removeApp) => {
-	  	if (ddState.disabled || !app) return;
+		if (ddState.disabled || !app) return;
 		if (app.canAccess) {
 			$closeAppLauncher();
 			window.open(app.url, "_blank");
@@ -305,13 +305,13 @@ export default () => {
 	};
 
 	const deactivateDraggingStyles = (e) => {
-    ddState.dragEventWasCanceled = true;
-	}
+		ddState.dragEventWasCanceled = true;
+	};
 	
 	const showDragAppsHereBox = (show) => {
 		ddState.bottomAppContainer.classList[show ? "add" : "remove"]("drag-apps-here-box");
 		ddState.dragAppsHereText.classList[show ? "remove" : "add"]("hide");
-	}
+	};
 
 	const disableLinkHref = (e, disable) => {
 			const link = (e.item.children[1] && e.item.children[1].nodeName === "A") ? e.item.children[1] : e.item.children[0];
@@ -360,7 +360,7 @@ export default () => {
 	};
 
 	const dragEventWasSimulated = (clientX, clientY) => (
-    !ddState.dragEventWasCanceled && 
+		!ddState.dragEventWasCanceled && 
 		(Math.abs(clientX - ddState.startClientX) > ddState.maxDragErrorTollerance || 
 		Math.abs(clientY - ddState.startClientY) > ddState.maxDragErrorTollerance)
 	);
@@ -372,7 +372,7 @@ export default () => {
 
 	const activateAccessibilityMode = (app, e) => {
 		if (e.target.className !== "app-indicator app-indicator-removed") {
-			if (e.keyCode == keys.SPACE) {
+			if (e.keyCode === keys.SPACE) {
 				if (ddState.activeAccessibleListElement) {
 					return deactivateAccessibilityMode(app, e);
 				}
@@ -563,7 +563,9 @@ export default () => {
 			disableLinkHref(e, false);
 			ddState.dropdownWrapper.classList.remove("dragging");
 			ddState.bottomAppContainer.classList.remove("on-drag-over");
-			hideOrShowDropAppsHereMessage(e.to);
+			if (ddState.secondarySortable.toArray().length) {
+				showDragAppsHereBox(false);
+			}
 			return false;
 		},
 		onMove: (e, oe) => {
@@ -609,7 +611,7 @@ export default () => {
 			removeMouseOverListener();
 			disableLinkHref(e, false);
 			ddState.dropdownWrapper.classList.remove("dragging");
-			if (e.to === ddState.topAppContainer && !ddState.secondarySortable.toArray().length) {
+			if (!ddState.secondarySortable.toArray().length) {
 				showDragAppsHereBox(true);
 			}
 		},
