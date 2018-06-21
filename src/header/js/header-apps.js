@@ -27,7 +27,8 @@ export default () => {
 	});
 
 	const $controlContainer = $('button', {
-		class: `${prefix}-control empty-padding`, id: `${prefix}-control`
+		class: `${prefix}-control empty-padding`, id: `${prefix}-control`,
+		tabindex: "-1"
 	}, $appSwitcherIcon);
 
 	const $closeAppLauncher = (event) => {
@@ -643,6 +644,7 @@ export default () => {
 		if (!detail.isLoading) {
 			$target.appendChild($content);
 			$control.className = `${prefix}-control`;
+ 			$control.setAttribute("tabindex", "0");
 
 			$($control, {aria: {label: detail.label}});
 
@@ -717,6 +719,7 @@ export default () => {
 			$replaceAll($target, $control, $content);
 		} else {
 			$control.className = `${prefix}-control disabled-grid-icon`;
+			$control.setAttribute("tabindex", "-1");
 			$control.removeEventListener('click', $closeAppLauncher, false);
 			$replaceAll($target, $control);
 		}
