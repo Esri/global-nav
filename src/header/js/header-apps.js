@@ -36,7 +36,9 @@ export default () => {
 		removeMouseOverListener();
 
 		// Reset bottom container to origional state
-		ddState.showMoreButton.classList.remove("hide");
+		if (ddState.showMoreButton) {
+			ddState.showMoreButton.classList.remove("hide");
+		}
 		$secondaryDropdownMenu.setAttribute('aria-expanded', "false");
 
 		$dispatch($control, 'header:menu:toggle', {
