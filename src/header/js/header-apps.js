@@ -28,6 +28,7 @@ export default () => {
 
 	const $controlContainer = $('button', {
 		class: `${prefix}-control empty-padding`, id: `${prefix}-control`,
+    style: "display: none;",
 		tabindex: "-1"
 	}, $appSwitcherIcon);
 
@@ -637,6 +638,8 @@ export default () => {
 
 	$target.addEventListener('header:update:apps', ({detail}) => {
 		const $gridIcon = $renderSvgOrImg({imgDef: detail.image.path, imgWidth: detail.image.width, imgHeight: detail.image.height, "shape-rendering": "crispEdges", imgClass: `${prefix} svg-grid-icon`, $targetElm: $appSwitcherIcon});
+    // -- Remove display:none from style to show icon
+    $control.style = "";
 
 		if (!detail.primary) return;
 		if (detail.ieVersion) applyDragAndDropAdjustmentsForIE(detail.ieVersion);
