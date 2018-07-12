@@ -596,6 +596,12 @@
 		size: var(--header-width-m) calc(100vh - 50px);
 		size: var(--header-width-m) calc(var(--esri-vh) - 50px);
 
+		@media (--width-s) {
+			size: calc(100vw - 66px) 100vh;
+			top: 0px;
+			transform: translateX(0);
+		}
+
 		&[aria-hidden="true"] {
 			transition: transform var(--smooth-speed) ease-in-out, visibility 0s var(--smooth-speed);
 			transform: translateX(calc(-1 * var(--header-width-m)));
