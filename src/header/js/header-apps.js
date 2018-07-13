@@ -32,15 +32,19 @@ export default () => {
 		tabindex: "-1"
 	}, $appSwitcherIcon);
 
-	const $closeAppLauncher = (event) => {
-		removeMouseUpListener();
-		removeMouseOverListener();
-
-		// Reset bottom container to origional state
+	const resetStateOfBottomContainer = () => {
 		if (ddState.showMoreButton) {
 			ddState.showMoreButton.classList.remove("hide");
 		}
 		$secondaryDropdownMenu.setAttribute('aria-expanded', "false");
+  }; 
+
+	const $closeAppLauncher = (event) => {
+		if (!ddState || ddState.loading) return;
+		removeMouseUpListener();
+		removeMouseOverListener();
+
+		resetStateOfBottomContainer();
 
 		$dispatch($control, 'header:menu:toggle', {
 			state: 'menu',
@@ -295,6 +299,7 @@ export default () => {
 			$remove(el);
 			setTimeout(() => {
 				saveAppOrderToUserProperties(ddState.primarySortable.toArray(), ddState.secondarySortable.toArray());
+				hideOrShowDropAppsHereMessage(ddState.bottomAppContainer);
 			}, 0);
 		}
 	};
@@ -672,6 +677,12 @@ export default () => {
 			});
 
 			if (!ddState.disabled) {
+				if (ddState.dropdownWrapper) {
+					// Destroy dropdown content to start from clean slate
+					$content.innerHTML = "";
+					if ($bottomContainer.lastChild) $bottomContainer.removeChild($bottomContainer.lastChild);
+				}
+
 				ddState.dragAppsHereText = $("p", {"class": "hide"}, ddState.i18n.dragAppsHere);
 				ddState.bottomAppContainer.appendChild(ddState.dragAppsHereText);
 
@@ -722,10 +733,12 @@ export default () => {
 			$dropdown.appendChild(ddState.dropdownNav);
 			$content.appendChild($dropdown);
 			$replaceAll($target, $control, $content);
+			ddState.loading = false;
+			resetStateOfBottomContainer();
 		} else {
+			ddState.loading = true;
 			$control.className = `${prefix}-control disabled-grid-icon`;
 			$control.setAttribute("tabindex", "-1");
-			$control.removeEventListener('click', $closeAppLauncher, false);
 			$replaceAll($target, $control);
 		}
 	});
