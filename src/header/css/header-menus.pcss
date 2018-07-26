@@ -289,6 +289,10 @@
 			}
 			& .esri-header-menus-link-icon {
 				margin-right: 10px;
+					@nest :dir(rtl) & {
+					margin-right: unset;
+					margin-left: 10px;
+				}
 			}
 		}
 	}
@@ -604,14 +608,14 @@
 
 		&[aria-hidden="true"] {
 			transition: transform var(--smooth-speed) ease-in-out, visibility 0s var(--smooth-speed);
-			transform: translateX(calc(-1 * var(--header-width-m)));
+			transform: translateX(-100%);
 			visibility: hidden;
 			@nest :dir(rtl) & {
-				transform: translateX(var(--header-width-m));
+				transform: translateX(100%);
 			}
 		}
 		&:dir(rtl) {
-			right: 40px;
+			right: 0;
 		}
 	}
 
