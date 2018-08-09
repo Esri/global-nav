@@ -277,11 +277,9 @@ export default (data) => {
 		function onViewportIsSmallChange() {
 			if (viewportIsSmall.matches) {
 				$dispatch($header, 'header:breakpoint:s');
-
 				$mobileMenus.lastChild.appendChild($account);
 			} else {
 				$dispatch($header, 'header:breakpoint:not:s');
-
 				$client.appendChild($account);
 			}
 		}
@@ -292,6 +290,7 @@ export default (data) => {
 				$($desktopMenus.lastChild, {aria: {hidden: 'false' === $desktopMenus.lastChild.getAttribute('aria-expanded')}});
 			} else {
 				$dispatch($header, 'header:breakpoint:not:sm');
+				$dispatch($header, 'header:menu:close');
 				$($desktopMenus.lastChild, {aria: {hidden: false}});
 			}
 		}
