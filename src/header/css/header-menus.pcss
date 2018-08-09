@@ -33,6 +33,7 @@
 	@apply --normalize-button;
 	@apply --unset-button;
 
+	cursor: pointer;
 	@media (--width-s) {
 		background-color: #ffffff;
 		inset-inline-start: 0;
@@ -59,14 +60,7 @@
 	&::before {
 		display: block;
 		size: 32px;
-
-		@media (--width-s) {
-			margin: calc((var(--header-height-s) - 32px) / 2);
-		}
-
-		@media (--width-ml) {
-			margin: calc((var(--header-height-l) - 32px) / 2);
-		}
+		margin: calc((var(--header-height) - 32px) / 2);
 	}
 
 	&::before {
@@ -270,7 +264,7 @@
 	@media (--width-l) {
 		@apply --menu-link-styles;
 
-		padding: calc(var(--header-height-l) / 2 - 20px / 2) 24px;
+		padding: calc(var(--header-height) / 2 - 20px / 2) 24px;
 		width: 100%;
 	}
 
@@ -320,8 +314,8 @@
 	}
 
 	@media (--width-m) {
-		min-height: calc(100vh - var(--header-height-l));
-		min-height: calc(var(--esri-vh) - var(--header-height-l));
+		min-height: calc(100vh - var(--header-height));
+		min-height: calc(var(--esri-vh) - var(--header-height));
 		width: var(--header-width-m);
 	}
 
@@ -329,8 +323,8 @@
 		@apply --submenu-styles;
 
 		inset-inline-start: 0;
-		max-height: calc(100vh - var(--header-height-l));
-		max-height: calc(var(--esri-vh) - var(--header-height-l));
+		max-height: calc(100vh - var(--header-height));
+		max-height: calc(var(--esri-vh) - var(--header-height));
 		-webkit-overflow-scrolling: touch;
 		-ms-overflow-style: -ms-autohiding-scrollbar;
 		overflow-y: auto;
@@ -662,8 +656,8 @@
 		position: absolute;
 		transition: transform var(--smooth-speed) ease-in-out;
 		z-index: 1;
-		min-height: calc(100vh - var(--header-height-l));
-		min-height: calc(var(--esri-vh) - var(--header-height-l));
+		min-height: calc(100vh - var(--header-height));
+		min-height: calc(var(--esri-vh) - var(--header-height));
 		width: var(--header-width-m);
 
 		&[aria-hidden="true"] {

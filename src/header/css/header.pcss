@@ -13,15 +13,7 @@
 	position: relative;
 	user-select: none;
 	z-index: 100;
-
-	@media (--width-s) {
-		height: var(--header-height-s);
-	}
-
-	@media (--width-ml) {
-		height: var(--header-height-l);
-	}
-
+	height: var(--header-height);
 	&.-web {
 		@media (width > 1440px) {
 			padding-inline: calc(50% - 1440px / 2);
@@ -59,14 +51,7 @@
 	-webkit-tap-highlight-color: transparent;
 	transition: opacity var(--fast-speed) ease-in-out, visibility 0ms var(--fast-speed);
 	z-index: -1;
-
-	@media (--width-s) {
-		inset-block-start: var(--header-height-s);
-	}
-
-	@media (--width-ml) {
-		inset-block-start: var(--header-height-l);
-	}
+	inset-block-start: var(--header-height);
 
 	&[data-open="false"] {
 		opacity: 0;
@@ -89,26 +74,14 @@
 }
 
 .-app .esri-header-canvas {
-	@media (--width-s) {
-		inset-block-start: calc(var(--header-height-s) + 3px);
-	}
-
-	@media (--width-ml) {
-		inset-block-start: calc(var(--header-height-l) + 3px);
-	}
+		inset-block-start: calc(var(--header-height) + 3px);
 }
 
 /* Global Header: Barrier
 /* ========================================================================== */
 
 .esri-header-barrier {
-	@media (--width-s) {
-		height: var(--header-height-s);
-	}
-
-	@media (--width-ml) {
-		height: var(--header-height-l);
-	}
+	height: var(--header-height);
 }
 
 /* Global Header: "Is Open" (used to fix scrolling when the menu is open)

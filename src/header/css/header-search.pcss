@@ -10,20 +10,14 @@
 	@apply --menu-link-styles;
 
 	display: block;
+	cursor: pointer;
 }
 
 .esri-header-search-image {
 	display: block;
 	fill: var(--mono-35);
 	size: 24px;
-
-	@media (--width-s) {
-		margin: 13px;
-	}
-
-	@media (--width-ml) {
-		margin: 16px;
-	}
+	margin: 16px;
 
 	@nest :hover > &, :focus > &, [aria-expanded="true"] > & {
 		fill: var(--mono-0);
@@ -39,15 +33,8 @@
 	padding-block: 150px 20px;
 	position: fixed;
 	z-index: -1;
-
-	@media (--width-s) {
-		inset-block-start: var(--header-height-s);
-	}
-
-	@media (--width-ml) {
-		inset-block-start: var(--header-height-l);
-	}
-
+	inset-block-start: var(--header-height);
+	
 	@media (width <= 1440px) {
 		padding-inline: 20px;
 	}
