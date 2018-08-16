@@ -1,7 +1,17 @@
+## 1.1.0
+
+### Modified
+- Social icons open in new window
+
+### Fixed
+- IE 11 browser fixes
+- Fixed several spacing/alignment inconsistencies
+- small accessibility fixes
+
 ## 1.0.8
 
 ### Added
-- Distributor Logo 
+- Distributor Logo
 - Drag and Drop in the App Switcher
 
 ## 1.0.7
