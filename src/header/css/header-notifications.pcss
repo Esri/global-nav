@@ -43,39 +43,6 @@
 	padding: 2px 4px 1px 4px;
 }
 
-/* Global Header Notifications: Menu Header
-/* ========================================================================== */
-.esri-header-notifications-header {
-	padding: 12px 16px;
-	border-bottom: 1px solid var(--mono-88);
-	display: flex;
-	width: 100%;
-}
-
-.esri-header-notifications-header-text {
-	margin: 0;
-	color: var(--mono-0);
-	font-size: 18px;
-	font-weight: 400;
-	line-height: 1.75;
-	flex: 1;
-}
-
-.esri-header-notifications-dismiss-all {
-	@apply --unset-button;
-  background: var(--mono-100);
-  border: 1px solid var(--mono-88);
-  color: var(--mono-35);
-  cursor: pointer;
-  font-size: 14px;
-  padding: 6px 20px;
-  transition: all var(--instant-speed) linear;
-  &:hover, &:focus {
-		color: var(--blue);
-		border-color: var(--blue);
-	}
-}
-
 /* Global Header Notifications: Menu
 /* ========================================================================== */
 .esri-header-notifications-menu {
@@ -105,13 +72,16 @@
 }
 
 .esri-header-notifications-message {
-	font-size: 14px / 21px;
+	font-size: 13px / 21px;
 	padding-top: 14px;
 	padding-bottom: 14px;
 	padding-inline-end: 0;
 	padding-inline-start: 14px;
 	display: flex;
 	border-bottom: 1px solid var(--mono-88);
+	&:last-child {
+		border-bottom: none;
+	}
 }
 
 .esri-header-notifications-message-text {
@@ -170,4 +140,22 @@
 	text-align: center;
 	margin: 10px 0 0 0;
 	font-size: 15px;
+}
+
+/* Global Header Notifications: Dismiss All
+/* ========================================================================== */
+.esri-header-notifications-dismiss-all {
+	@apply --unset-button;
+	width: 100%;
+	background: var(--mono-100);
+	border: 1px solid var(--mono-80);
+	color: var(--blue);
+	cursor: pointer;
+	font-size: 14px;
+	padding: 8px 20px;
+	transition: all var(--instant-speed) linear;
+	&:hover, &:focus {
+		color: var(--blue-dark);
+		border-color: var(--blue);
+	}
 }

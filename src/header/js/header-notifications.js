@@ -39,14 +39,11 @@ export default () => {
 	const $contentMessages = $('ul', {
 		class: `${prefix}-messages`
 	});
-	const $title =  $('h4', {class: `${prefix}-header-text`});
-	const $header = $('div', {class: `${prefix}-header`}, $title, $dismiss);
 	const $content = $('div',
 		{
 			class: `${prefix}-menu`, id: `${prefix}-menu`,
 			role: 'group', aria: {expanded: false, hidden: true}
 		},
-		$header,
 		$contentMessages
 	);
 
@@ -60,7 +57,6 @@ export default () => {
 
 		if (detail.messages && detail.messages.length > 0) {
 			$replaceAll($dismiss, detail.dismissAllLabel);
-			$replaceAll($title, detail.label);
 			const $badge = $('span', {class: `${prefix}-badge`}, `${detail.messages.length}`);
 			$replaceAll($control, $icon, $badge);
 			// Update the notifications
@@ -80,14 +76,13 @@ export default () => {
 					);
 				})
 			);
+			$replaceAll($content, $contentMessages, $dismiss);
 		} else {
-			$replaceAll($title, detail.label);
-			$replaceAll($header, $title);
 			$replaceAll($control, $icon);
 			const $emptyImage = $renderSvgOrImg({imgDef: detail.emptyMessage.image.path, imgClass: `${prefix}-empty-image`, viewBox : detail.emptyMessage.image.viewBox});
 			const $emptyText = $('p', {class: `${prefix}-empty-text`}, detail.emptyMessage.text);
 			const $empty = $('div', {class: `${prefix}-empty`}, $emptyImage, $emptyText);
-			$replaceAll($content, $header, $empty);
+			$replaceAll($content, $empty);
 		}
 
 		$replaceAll($target, $control, $content);
