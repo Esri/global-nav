@@ -5,6 +5,7 @@
 
 ### Modified
 - Social icons open in new window
+- App Switcher now expects svg path data instead of url to image
 
 ### Fixed
 - IE 11 browser fixes
