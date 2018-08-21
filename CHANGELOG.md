@@ -1,5 +1,8 @@
 ## 1.1.0
 
+### Added
+- notifications UI (#33)
+
 ### Modified
 - Social icons open in new window
 

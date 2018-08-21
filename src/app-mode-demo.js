@@ -95,6 +95,69 @@ document.addEventListener("DOMContentLoaded", () => {
 					'queryLabel': 'Search Esri.com'
 				}
 			},
+			notifications: {
+				label: 'Notifications',
+				image: [
+					'M18 16v-5.087A5.91 5.91 0 0 0 13.59 5.2a2 2 0 1 0-3.18 0A5.91 5.91 0 0 0 6 10.913V16a3 3 0 0 1-3 3v1h18v-1a3 3 0 0 1-3-3zM12 3a1 1 0 1 1-1 1 1.001 1.001 0 0 1 1-1zM5.643 19A3.992 3.992 0 0 0 7 16v-5.087A4.919 4.919 0 0 1 11.913 6h.174A4.919 4.919 0 0 1 17 10.913V16a3.992 3.992 0 0 0 1.357 3zM13 21h1a2 2 0 0 1-4 0h1a1 1 0 0 0 2 0z'
+				],
+				dismissAllLabel: 'Dismiss all',
+				dismissLabel: 'Dismiss notification',
+				clearAllLabel: 'Mark all as read',
+				emptyMessage: {
+					image: {
+						path: ['M15.5 1A14.5 14.5 0 1 0 30 15.5 14.5 14.5 0 0 0 15.5 1zm0 28.1a13.6 13.6 0 1 1 13.6-13.6 13.615 13.615 0 0 1-13.6 13.6zM8.581 17.276l.637-.636 3.288 3.098 10.073-9.92.637.637-10.71 10.556z'],
+						viewBox: '0 0 32 32'
+					},
+					text: "You're up to date!"
+				},
+				messages: [
+					{
+						text: 'You accepted the invitation to join the <a href="#">Basemap Gallery</a>.',
+						date: 'Yesterday',
+						id: '131049582194'
+					},
+					{
+						text: 'You were invited to join the <a href="#">Public Analysis group</a>.',
+						date: '2 days ago',
+						id: '131049582197'
+					},
+					{
+						text: 'You accepted the invitation to join the <a href="#">Basemap Gallery</a>.',
+						date: '3 days ago',
+						id: '131049582194'
+					},
+					{
+						text: 'You were invited to join the <a href="#">Public Analysis group</a>.',
+						date: '3 days ago',
+						id: '131049582197'
+					},
+					{
+						text: 'You accepted the invitation to join the <a href="#">Basemap Gallery</a>.',
+						date: '4 days ago',
+						id: '131049582194'
+					},
+					{
+						text: 'You were invited to join the <a href="#">Public Analysis group</a>.',
+						date: '5 days ago',
+						id: '131049582197'
+					},
+					{
+						text: 'You accepted the invitation to join the <a href="#">Basemap Gallery</a>.',
+						date: '5 days ago',
+						id: '131049582194'
+					},
+					{
+						text: 'You were invited to join the <a href="#">Public Analysis group</a>.',
+						date: '1 week ago',
+						id: '131049582197'
+					},
+					{
+						text: 'You requested to join the <a href="#">Basemap Gallery</a> group.',
+						date: '2 weeks ago',
+						id: '131049582199'
+					}
+				]
+			},
 			apps: {
 				label: 'Applications',
 				disableDragAndDrop: false,
@@ -109,11 +172,9 @@ document.addEventListener("DOMContentLoaded", () => {
 					removedMessage: "Removed app",
 					showMore: "Show More"
 				},
-				image: {
-					path: './img/gnav-app-switcher-icon.svg',
-					width: 24,
-					height: 24
-				},
+				image: [
+					'M0 0h3v3H0zM8 0h3v3H8zM16 0h3v3h-3zM0 8h3v3H0zM8 8h3v3H8zM16 8h3v3h-3zM0 16h3v3H0zM8 16h3v3H8zM16 16h3v3h-3z'
+				],
 				primary: [
 					{
 						abbr: "APP",
