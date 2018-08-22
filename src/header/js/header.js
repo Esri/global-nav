@@ -6,6 +6,7 @@ import createBrandStripe from './header-branding-stripe';
 import createMenus from './header-menus';
 import createSearch from './header-search';
 import createApps from './header-apps';
+import createNotifications from './header-notifications';
 
 /* Header
 /* ====================================================================== */
@@ -36,6 +37,7 @@ export default (data) => {
 	const $mobileMenus = createMenus({variant: 'mobile'});
 	const $desktopMenus = createMenus({variant: 'desktop'});
 	const $search = createSearch();
+	const $notifications = createNotifications();
 	const $apps = createApps();
 
 	const $client = $('div', {class: 'esri-header-client'},
@@ -52,6 +54,7 @@ export default (data) => {
 		$desktopMenus,
 		$search,
 		$lineBreak,
+		$notifications,
 		$apps,
 		$client
 	);
@@ -96,6 +99,10 @@ export default (data) => {
 			$dispatch($apps, 'header:update:apps', detail.apps);
 		}
 
+		if (detail.notifications) {
+			$dispatch($notifications, 'header:update:notifications', detail.notifications);
+		}
+
 		$header.ownerDocument.defaultView.addEventListener('keydown', ({keyCode}) => {
 			if (27 === keyCode) {
 				$dispatch($header, 'header:menu:close');
@@ -103,7 +110,7 @@ export default (data) => {
 		});
 	});
 
-	/* On Drag & Drop Apps 
+	/* On Drag & Drop Apps
 	/* ====================================================================== */
 
 	$header.addEventListener('header:apps:reorder', ({detail}) => {
@@ -128,6 +135,7 @@ export default (data) => {
 	let menusDetail = null;
 	let menuDetail = null;
 	let appsDetail = null;
+	let notificationsDetail = null;
 
 	$header.addEventListener('header:menu:open', ({detail}) => {
 		const isMenuToggle = 'menu-toggle' === detail.type;
@@ -175,6 +183,14 @@ export default (data) => {
 			appsDetail = null;
 		}
 
+		if ($notifications === detail.target) {
+			notificationsDetail = detail;
+		} else if (notificationsDetail) {
+			$dispatch($notifications, 'header:menu:close', notificationsDetail);
+
+			notificationsDetail = null;
+		}
+
 		// Update Canvas
 		$($headerCanvas, {data: {open: true, state: detail.state}});
 
@@ -186,7 +202,7 @@ export default (data) => {
 	/* ====================================================================== */
 
 	$header.addEventListener('header:menu:close', ({detail}) => {
-		const currentDetail = detail || menusDetail || searchDetail || accountDetail || appsDetail || menuDetail;
+		const currentDetail = detail || menusDetail || searchDetail || accountDetail || appsDetail || menuDetail || notificationsDetail;
 
 		if (currentDetail) {
 			// Close the Detail

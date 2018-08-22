@@ -27,7 +27,7 @@ export default () => {
 	});
 
 	const $controlContainer = $('button', {
-		class: `${prefix}-control empty-padding`, id: `${prefix}-control`,
+		class: `${prefix}-control`, id: `${prefix}-control`,
 		style: "display: none;",
 		tabindex: "-1"
 	}, $appSwitcherIcon);
@@ -37,7 +37,7 @@ export default () => {
 			ddState.showMoreButton.classList.remove("hide");
 		}
 		$secondaryDropdownMenu.setAttribute('aria-expanded', "false");
-  }; 
+  };
 
 	const $closeAppLauncher = (event) => {
 		if (!ddState || ddState.loading) return;
@@ -67,7 +67,7 @@ export default () => {
 		$control
 	);
 
-	/* Apps: Secondary Set of Apps 
+	/* Apps: Secondary Set of Apps
 	/* ====================================================================== */
 
 	const $secondaryDropdownMenu = $('div', {
@@ -86,7 +86,7 @@ export default () => {
 		maxDragErrorTollerance: 1
 	};
 
-	/* Apps: Key Codes used for Accessibility 
+	/* Apps: Key Codes used for Accessibility
 	/* ====================================================================== */
 
 	const keys = {
@@ -166,10 +166,10 @@ export default () => {
 			keyup: removeAppFromDropdown.bind(null, currentApp.uid, $listItem),
 			keydown: preventBrowserKeyboardDefaults
 		});
-		$appLink.innerHTML = getRemoveAppX(); 
+		$appLink.innerHTML = getRemoveAppX();
 
 		// Displaying Warnings in association with removed apps
-		// - Requires access to orgUrlKey and isAdmin like functionality 
+		// - Requires access to orgUrlKey and isAdmin like functionality
 		// - To be implemented after discussion
 		const $missingIcon = $("div", {
 			"class": "missing-app-icon appIconImage",
@@ -197,7 +197,7 @@ export default () => {
 
 	const expandSecondaryDropdown = () => {
 		$secondaryDropdownMenu.setAttribute('aria-expanded', "true");
-		ddState.showMoreButton.classList.add("hide"); 
+		ddState.showMoreButton.classList.add("hide");
 	};
 
 	const hideOrShowDropAppsHereMessage = (containerAppWasDroppedIn) => {
@@ -243,11 +243,11 @@ export default () => {
 				const primaryApps = ddState.primarySortable.toArray();
 				// -- Bug occurs where duplicate value gets added to array when clicked
 				if (ddState.duplicateValueIndex) {
-					primaryApps.splice(ddState.duplicateValueIndex, 1); 
+					primaryApps.splice(ddState.duplicateValueIndex, 1);
 				}
 
 				saveAppOrderToUserProperties(
-					primaryApps, 
+					primaryApps,
 					ddState.secondarySortable.toArray(),
 					{targetUid: e.currentTarget.getAttribute("data-id"), isNew: true, targetValue: null}
 				);
@@ -264,8 +264,8 @@ export default () => {
 			} else {
 				ddState.dropdownNav.addEventListener("mouseup", deactivateDraggingStyles);
 				const removedAppClass = "app-indicator app-indicator-removed";
-				if (e.target.classList.className === removedAppClass || 
-						e.target.parentNode.className === removedAppClass || 
+				if (e.target.classList.className === removedAppClass ||
+						e.target.parentNode.className === removedAppClass ||
 						e.target.parentNode.parentNode.className === removedAppClass
 					) {
 					ddState.removeStartApp = true;
@@ -316,7 +316,7 @@ export default () => {
 	const deactivateDraggingStyles = (e) => {
 		ddState.dragEventWasCanceled = true;
 	};
-	
+
 	const showDragAppsHereBox = (show) => {
 		ddState.bottomAppContainer.classList[show ? "add" : "remove"]("drag-apps-here-box");
 		ddState.dragAppsHereText.classList[show ? "remove" : "add"]("hide");
@@ -335,7 +335,7 @@ export default () => {
 	};
 
 	const dismissIntro = (e) => {
-		ddState.dragAndDropIntro.classList.add("hide");     
+		ddState.dragAndDropIntro.classList.add("hide");
 		saveAppOrderToUserProperties(ddState.primarySortable.toArray(), ddState.secondarySortable.toArray());
 	};
 
@@ -369,14 +369,14 @@ export default () => {
 	};
 
 	const dragEventWasSimulated = (clientX, clientY) => (
-		!ddState.dragEventWasCanceled && 
-		(Math.abs(clientX - ddState.startClientX) > ddState.maxDragErrorTollerance || 
+		!ddState.dragEventWasCanceled &&
+		(Math.abs(clientX - ddState.startClientX) > ddState.maxDragErrorTollerance ||
 		Math.abs(clientY - ddState.startClientY) > ddState.maxDragErrorTollerance)
 	);
 
 	const verifyKeyPress = (keyCode) => !keyCode || (keyCode === 13);
 
-	/* Apps: Helper functions for Arrow Key Accessibility  
+	/* Apps: Helper functions for Arrow Key Accessibility
 	/* ====================================================================== */
 
 	const activateAccessibilityMode = (app, e) => {
@@ -475,8 +475,8 @@ export default () => {
 		setTimeout(() => {
 			if (app.isNew) {
 				saveAppOrderToUserProperties(
-					ddState.primarySortable.toArray(), 
-					ddState.secondarySortable.toArray(), 
+					ddState.primarySortable.toArray(),
+					ddState.secondarySortable.toArray(),
 					{targetUid: (app.itemId || app.title), isNew: true, targetValue: null}
 				);
 			} else {
@@ -642,7 +642,7 @@ export default () => {
 	/* ====================================================================== */
 
 	$target.addEventListener('header:update:apps', ({detail}) => {
-		const $gridIcon = $renderSvgOrImg({imgDef: detail.image.path, imgWidth: detail.image.width, imgHeight: detail.image.height, "shape-rendering": "crispEdges", imgClass: `${prefix} svg-grid-icon`, $targetElm: $appSwitcherIcon});
+		const $gridIcon = $renderSvgOrImg({imgDef: detail.image, "shape-rendering": "crispEdges", imgClass: `${prefix} svg-grid-icon`, $targetElm: $appSwitcherIcon});
 		// -- Remove display:none from style to show icon
 		$control.removeAttribute('style');
 
@@ -693,10 +693,10 @@ export default () => {
 			}
 
 			const maxAppsPerDialog = numberOfApps >= 100 ? 100 : numberOfApps;
-			detail.primary.forEach((a, i) => { 
+			detail.primary.forEach((a, i) => {
 				createDefaultAppLayout(ddState.topAppContainer, a, i);
 			});
-			detail.secondary.forEach((a, i) => { 
+			detail.secondary.forEach((a, i) => {
 				createDefaultAppLayout(ddState.bottomAppContainer, a, i);
 			});
 
@@ -704,7 +704,7 @@ export default () => {
 			$secondaryDropdownMenu.appendChild($bottomContainer);
 
 			const $dropdown = $('div', {
-				class: 'dropdown'
+				class: ''
 			});
 
 			const $dragAndDropIntroText = $('p', {
