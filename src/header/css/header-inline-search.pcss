@@ -1,0 +1,250 @@
+@import "../../shared/css/shared.pcss";
+
+/* Global Header Search
+/* ========================================================================== */
+
+.esri-header-inlineSearch {
+	&[aria-expanded="true"] {
+		width: 100%;
+	}
+}
+
+.esri-header-inlineSearch-control {
+	@apply --normalize-button;
+	@apply --unset-button;
+	@apply --menu-link-styles;
+
+	cursor: pointer;
+	display: block;
+
+	&[aria-expanded="true"] {
+		display: none;
+	}
+}
+
+.esri-header-inlineSearch-image {
+	display: block;
+	fill: var(--mono-35);
+	margin: 16px;
+	size: 24px;
+
+	@nest :hover > &, :focus > &, [aria-expanded="true"] > & {
+		fill: var(--mono-0);
+	}
+}
+
+.esri-header-inlineSearch-lineBreak {
+	position: absolute;
+	top: 0;
+}
+
+/* Global Header Search: Content
+/* ========================================================================== */
+
+.esri-header-inlineSearch-content {
+	inset-block-end: 0;
+	inset-inline: 0;
+	padding-block: 150px 20px;
+	position: absolute;
+
+	&[aria-expanded="false"] {
+		opacity: 0;
+		right: 0;
+		visibility: hidden;
+		width: 0;
+	}
+
+	&[aria-expanded="true"] {
+		animation: slide-to-the-left .3s backwards;
+		box-shadow: inset 0 -3px 0 0 #0079c1;
+		height: 55px;
+		margin: 0 0 0 10px;
+		opacity: 1;
+		padding-block: 14px 0;
+		position: relative;
+		width: calc(100% - 10px);
+
+		@nest :dir(rtl) & {
+			animation: slide-to-the-right .3s backwards;
+			margin: 0 10px 0 0;
+
+			@media (--width-s) {
+				margin: 0;
+			}
+		}
+
+		@media (--width-s) {
+			margin: 0;
+			width: 100%;
+		}
+	}
+}
+
+@keyframes slide-to-the-left {
+	0% {
+		left: 90%;
+		margin: 0;
+		width: 10%;
+	}
+
+	100% {
+		left: 0;
+		margin: 0;
+		width: 100%;
+	}
+}
+
+@keyframes slide-to-the-right {
+	0% {
+		margin: 0;
+		right: 90%;
+		width: 10%;
+	}
+
+	100% {
+		margin: 0;
+		right: 0;
+		width: 100%;
+	}
+}
+
+/* Global Header Search: Input
+/* ========================================================================== */
+
+.esri-header-inlineSearch-input {
+	@apply --normalize-button;
+	@apply --unset-button;
+
+	border-width: 0;
+	box-shadow: unset;
+	color: #595959;
+	font-size: 16px;
+	font-weight: unset;
+	padding: 0 30px 0 9px;
+	width: 100%;
+}
+
+.esri-header-inlineSearch-input:focus {
+	border-color: #dddddd;
+	box-shadow: none;
+}
+
+/* Global Header Search: Close Button
+/* ========================================================================== */
+
+.esri-header-inlineSearch-close-button {
+	background: transparent;
+	border: 0;
+	bottom: 28px;
+	cursor: pointer;
+	float: right;
+	height: 100%;
+	margin: 0 10px 0 0;
+	position: absolute;
+	right: 0;
+	top: 0;
+	z-index: 100;
+
+	@nest :dir(rtl) & {
+		float: left;
+		left: 0;
+	}
+}
+
+.esri-header-inlineSearch-dismiss-icon {
+	height: 21px;
+	width: 21px;
+}
+
+/* Global Header Search: Suggestions Dropdown
+/* ========================================================================== */
+
+.esri-header-inlineSearch-suggestions {
+	background: #f8f8f8;
+	border-radius: 0 0 10px 10px;
+	float: left;
+	font-size: 15px;
+	position: absolute;
+	top: 56px;
+	width: 100%;
+}
+
+.esri-header-inlineSearch-suggestions hr {
+	border: 1px solid #e9e9e9;
+	margin-top: 2px;
+}
+
+.esri-header-inlineSearch-suggestions-all-results-section {
+	background: #eeeeee;
+	border-radius: 0 0 20px 20px;
+	margin-top: 18px;
+	padding: 9px 22px;
+}
+
+.esri-header-inlineSearch-suggestions-all-results-section strong {
+	color: #3381b6;
+	font-weight: 600;
+}
+
+.esri-header-inlineSearch-suggestions-all-results-section a {
+	color: #3ba1de;
+	font-size: 15px;
+	text-decoration: none;
+}
+
+.esri-header-inlineSearch-all-results-icon {
+	float: left;
+	height: 19px;
+	position: relative;
+	top: 8px;
+	width: 28px;
+
+	@nest :dir(rtl) & {
+		float: right;
+		margin-left: 6px;
+	}
+}
+
+.esri-header-inlineSearch-suggestions-footer {
+	background: #429cd2;
+	padding: 0 22px;
+}
+
+/* Global Header Search: Suggestion
+/* ========================================================================== */
+
+.esri-header-inlineSearch-suggestion {
+	list-style: none;
+	margin-bottom: 8px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.esri-header-inlineSearch-suggestion a {
+	color: #595959;
+	text-decoration: none;
+}
+
+.esri-header-inlineSearch-suggestion strong {
+	font-weight: 600;
+}
+
+.esri-header-inlineSearch-suggestion-header {
+	margin-bottom: 0;
+}
+
+.esri-header-inlineSearch-suggestion-section {
+	padding: 0 22px;
+}
+
+.esri-header-inlineSearch-suggestion-section ul {
+	padding: 0;
+}
+
+.esri-header-inlineSearch-suggestion-footer {
+	color: #3ba1de;
+	font-size: 14px;
+	text-decoration: none;
+}
+
