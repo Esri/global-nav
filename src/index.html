@@ -315,6 +315,148 @@ esriHeader.addEventListener("header:click:search", function () { ... });</code><
   ]]
 }</code></pre>
 
+
+              <h3>Using Inline Search</h3>
+              <p>Inline search is a powerful way to supercharge the search experience for your users. It gives users the ability to view search results & suggestions in a dropdown without having to navigate away from their current content.</p>
+
+<pre><code>
+//_______________________________________________________________________________
+// - To use inline search, set the parameter inline to true within the search object
+//-------------------------------------------------------------------------------
+
+search: {
+  inline: true
+
+//_______________________________________________________________________________
+// - Setup an event to listen for typing within the search input
+//-------------------------------------------------------------------------------
+
+document.querySelector(".esri-header-barrier").addEventListener('header::search:typing', function (e) {
+  // e.detail will contain the current value of the search input
+  if (e.detail.length >= 2) {
+    // ... Fetch search suggestions or results here
+  }
+});
+
+//_______________________________________________________________________________
+// - Pass an array of objects containing a header, footer, and array of links to populate suggestions
+// - Additionally, you'll need to pass in a string for the see all results link
+//-------------------------------------------------------------------------------
+
+const event = document.createEvent("CustomEvent");
+
+event.initCustomEvent('header:search:update:suggestions', true, true, {
+  seeAllResultsString: "See all results for",
+  suggestions: [
+    {
+      header: "Content",
+      links: [
+        {text: "Sudo Polarized Data",      href: "https://example.com?q=Sudo Polarized Data"},
+        {text: "Data Aardvarks",           href: "https://example.com?q=Data Aardvarks"},
+        {text: "Polymorphic Data Streams", href: "https://example.com?q=Polymorphic Data Streams"}
+      ],
+      footer: {text: "View all content results", href: "https://arcgis.com"}
+    },
+    {
+      header: "Groups",
+      links: [
+        {text: "Group Data",                  href: "https://example.com?q=Group Data"},
+        {text: "Concentrated Geometric Data", href: "https://example.com?q=Concentrated Geometric Data"},
+        {text: "Milk and Data" ,              href: "https://example.com?q=Milk and Data"}
+      ],
+      footer: {text: "View all groups results", href: "https://arcgis.com"}
+    }
+  ]
+});
+
+document.querySelector(".esri-header-inlineSearch").dispatchEvent(event);
+
+//_______________________________________________________________________________
+// - Sending an empty array will trigger an empty state
+//-------------------------------------------------------------------------------
+
+event.initCustomEvent('header:search:update:suggestions', true, true, {
+  suggestions: []
+});</code></pre>
+
+
+              <h3>Configuring the App Launcher</h3>
+              <p>To work with the standard set of apps from ArcGIS Online use the AGO Webworker Interface: <a href="https://github.com/ArcGIS/AGO-Webworker-Interface">https://github.com/ArcGIS/AGO-Webworker-Interface</a></p>
+
+<pre><code>
+//_______________________________________________________________________________
+// - Before apps are loaded, we want to initialize the apps component with a loading state
+// -- Dispatch the event to update apps in the header
+//-------------------------------------------------------------------------------
+
+var event = document.createEvent("CustomEvent");
+
+event.initCustomEvent("header:update:apps", true, true, {
+  label: "Your Apps",
+  disableDragDrop: false,
+  image: [ // - Grid Icon
+    'M0 0h3v3H0zM8 0h3v3H8zM16 0h3v3h-3zM0 8h3v3H0zM8 8h3v3H8zM16 8h3v3h-3zM0 16h3v3H0zM8 16h3v3H8zM16 16h3v3h-3z'
+  ],
+  loading: true // - Loading state
+});
+
+document.querySelector(".esri-header-apps").dispatchEvent(event);
+
+//_______________________________________________________________________________
+// - When apps are available, update the header with them
+// -- The app launcher requires strings as well; contained within the text parameter
+// -- Note: If you're using AGO Webworker Interface, it will give you the majority of this data
+//-------------------------------------------------------------------------------
+
+event.initCustomEvent("header:update:apps", true, true, {
+  label: 'Applications',
+  disableDragAndDrop: false,
+  displayIntro: true,
+  ieVersion: null,
+  text: {
+    clear: "Clear",
+    confirm: "Got it.",
+    dragAppsHere: "Drag apps here that you don't use very often.",
+    intro: "Drag and drop your favorite apps in any order to customize your app launcher",
+    removed: "This app is no longer available.",
+    removedMessage: "Removed app",
+    showMore: "Show More"
+  },
+  image: [
+    'M0 0h3v3H0zM8 0h3v3H8zM16 0h3v3h-3zM0 8h3v3H0zM8 8h3v3H8zM16 8h3v3h-3zM0 16h3v3H0zM8 16h3v3H8zM16 16h3v3h-3z'
+  ],
+  primary: [
+    {
+      abbr: "APP", // - This is only used if a placeholderIcon is utilized; see the next app for an example
+      image: "https://www.example.com/url-to-app-icon.png", // - The app icon
+      label: "AppStudio for ArcGIS", // - Text that appears below the app icon
+      url: "//appstudiodev.arcgis.com/apps.html", // - Where the app redirects to
+      canAccess: true, // - If set to false, the app will be placed in a disabled state
+      itemId: "131049582192" // - ItemId is the unique id to identify apps; used when saving the app sorting order for users
+    },
+    {
+      abbr: "Studio", // - This text will be centered on top of the placeHolder icon
+      placeHolderIcon: "https://www.example.com/url-to-your-placeholder-icon.png",
+      image: null,
+      label: "Studio for ArcGIS",
+      url: "//appstudiodev.arcgis.com/apps.html",
+      canAccess: true,
+      itemId: "131049582193"
+    }
+  ],
+  secondary: [
+    {
+      abbr: "APP",
+      image: "https://www.example.com/url-to-app-icon.png",
+      label: "AppStudio for ArcGIS",
+      url: "//appstudiodev.arcgis.com/apps.html",
+      canAccess: true,
+      itemId: "131049582195"
+    }
+  ]
+)};</code></pre>
+
+
             </div>
         </main>
     </div>
