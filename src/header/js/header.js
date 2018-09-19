@@ -5,6 +5,7 @@ import createBrand from './header-brand';
 import createBrandStripe from './header-branding-stripe';
 import createMenus from './header-menus';
 import createSearch from './header-search';
+import createInlineSearch from './header-inline-search';
 import createApps from './header-apps';
 import createNotifications from './header-notifications';
 
@@ -37,6 +38,7 @@ export default (data) => {
 	const $mobileMenus = createMenus({variant: 'mobile'});
 	const $desktopMenus = createMenus({variant: 'desktop'});
 	const $search = createSearch();
+	const $inlineSearch = createInlineSearch();
 	const $notifications = createNotifications();
 	const $apps = createApps();
 
@@ -53,6 +55,7 @@ export default (data) => {
 		$mobileMenus,
 		$desktopMenus,
 		$search,
+		$inlineSearch,
 		$lineBreak,
 		$notifications,
 		$apps,
@@ -84,7 +87,13 @@ export default (data) => {
 		}
 
 		if (detail.search) {
-			$dispatch($search, 'header:update:search', detail.search);
+				if (detail.search.inline) {
+					$search.querySelector(".esri-header-search-control").setAttribute("tabindex", "-1");
+					$dispatch($inlineSearch, 'header:update:inlineSearch', detail.search);
+				} else {
+					$inlineSearch.querySelector(".esri-header-inlineSearch-control").setAttribute("tabindex", "-1");
+					$dispatch($search, 'header:update:search', detail.search);
+				}
 		}
 
 		if (detail.account) {
@@ -108,6 +117,17 @@ export default (data) => {
 				$dispatch($header, 'header:menu:close');
 			}
 		});
+	});
+
+	/* On Inline Search
+	/* ====================================================================== */
+
+	$header.addEventListener('header:search:typing', ({detail}) => {
+		$dispatch($inlineSearch, 'header::search:typing', detail.search);
+	});
+
+	$header.addEventListener('header:search:update:suggestions', ({detail}) => {
+		$dispatch($inlineSearch, 'header:search:populateSuggestions', detail);
 	});
 
 	/* On Drag & Drop Apps
@@ -152,9 +172,10 @@ export default (data) => {
 			menuDetail = detail;
 		}
 
-		if ($search === detail.target) {
+		if ($search === detail.target || $inlineSearch === detail.target) {
 			searchDetail = detail;
 		} else if (searchDetail) {
+			searchDetail.triggeredComponent = detail.type;
 			$dispatch($search, 'header:menu:close', searchDetail);
 			searchDetail = null;
 		}
@@ -214,6 +235,13 @@ export default (data) => {
 			if (searchDetail && searchDetail.control === currentDetail.control) {
 				$dispatch(searchDetail.content.lastChild, 'reset');
 			}
+			if (searchDetail && searchDetail.target === $inlineSearch && (currentDetail.type === "inlineSearch" || viewportIsSmall.matches)) {
+				if (menusDetail) {
+					$($inlineSearch.children[0], {aria: {expanded: false}});
+					$($inlineSearch.children[1], {aria: {expanded: false, hidden: true}});
+				}
+				$dispatch(searchDetail.content, 'header:inlineSearch:deactivated', {event});
+			}
 
 			if (canvasShouldClose) {
 				// Close the Canvas
@@ -225,7 +253,25 @@ export default (data) => {
 		}
 	});
 
-	/* On DOMNodeInserted
+	/* on Inline Search Activated
+	/* ====================================================================== */
+
+	$header.addEventListener('header:inlineSearch:activated', ({detail}) => {
+		$desktopMenus.querySelector('.esri-header-menus-menu').classList.add('hidden');
+		$mobileMenus.querySelector('.esri-header-menus-toggle').classList.add('hidden');
+		if (viewportIsSmall) $brand.classList.add('hidden');
+	});
+
+	/* on Inline Search Deactivated
+	/* ====================================================================== */
+
+	$header.addEventListener('header:inlineSearch:deactivated', ({detail}) => {
+		$desktopMenus.querySelector('.esri-header-menus-menu').classList.remove('hidden');
+		$mobileMenus.querySelector('.esri-header-menus-toggle').classList.remove('hidden');
+		$brand.classList.remove('hidden');
+	});
+
+	/* on domnodeinserted
 	/* ====================================================================== */
 
 	$header.addEventListener('DOMNodeInserted', function onload() {
@@ -294,9 +340,13 @@ export default (data) => {
 			if (viewportIsSmall.matches) {
 				$dispatch($header, 'header:breakpoint:s');
 				$mobileMenus.lastChild.appendChild($account);
+				$notifications.classList.add('hidden');
+				$apps.classList.add('hidden');
 			} else {
 				$dispatch($header, 'header:breakpoint:not:s');
 				$client.appendChild($account);
+				$notifications.classList.remove('hidden');
+				$apps.classList.remove('hidden');
 			}
 		}
 
