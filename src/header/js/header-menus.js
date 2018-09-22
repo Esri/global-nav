@@ -1,4 +1,5 @@
 import {$assign as $, $dispatch, $replaceAll, $renderSvgOrImg} from '../../shared/js/shared';
+import {$hamburger, $close} from '../../shared/js/iconPaths';
 
 const prefix = 'esri-header-menus';
 
@@ -11,6 +12,7 @@ export default ({variant = 'desktop'}) => {
 			class: `${prefix}-toggle`, id: `${prefix}-${variant}-toggle`,
 			aria: {controls: `${prefix}-content`, expanded: false, haspopup: true, labelledby: 'esri-header-brand'}
 		});
+		$renderSvgOrImg({imgDef: $hamburger.md, imgClass: `${prefix}-image`, id: `${prefix}-image`, $targetElm: $toggle});
 
 		$toggle.addEventListener('click', (event) => {
 			$dispatch($toggle, 'header:menu:toggle', {
