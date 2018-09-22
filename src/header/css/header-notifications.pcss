@@ -14,20 +14,11 @@
 	@apply --normalize-button;
 	@apply --unset-button;
 	@apply --menu-link-styles;
-	display: block;
-	cursor: pointer;
 	position: relative;
-	color: var(--mono-35);
-	@nest :hover > &, :focus > &, [aria-expanded="true"] > & {
-		color: var(--mono-0);
-	}
 }
 
 .esri-header-notifications-image {
-	display: block;
-	fill: currentColor;
-	size: 24px;
-	margin: 16px;
+	@apply --menu-icon-styles;
 }
 
 .esri-header-notifications-badge {
