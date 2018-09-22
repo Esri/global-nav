@@ -159,6 +159,7 @@ export default (data) => {
 
 	$header.addEventListener('header:menu:open', ({detail}) => {
 		const isMenuToggle = 'menu-toggle' === detail.type;
+		const isAccountMobile = $account === detail.target && viewportIsSmall.matches;
 
 		// Update Control, Content
 		$(detail.control, {aria: {expanded: true}});
@@ -182,7 +183,7 @@ export default (data) => {
 
 		if ($desktopMenus === detail.target || $mobileMenus === detail.target) {
 			menusDetail = detail;
-		} else if (menusDetail && !isMenuToggle && !viewportIsSmall.matches) {
+		} else if (menusDetail && !isMenuToggle && !isAccountMobile) {
 			$dispatch($desktopMenus, 'header:menu:close', menusDetail);
 			$dispatch($mobileMenus, 'header:menu:close', menusDetail);
 			menusDetail = null;
@@ -192,7 +193,6 @@ export default (data) => {
 			accountDetail = detail;
 		} else if (accountDetail) {
 			$dispatch($account, 'header:menu:close', accountDetail);
-
 			accountDetail = null;
 		}
 
@@ -200,7 +200,6 @@ export default (data) => {
 			appsDetail = detail;
 		} else if (appsDetail) {
 			$dispatch($apps, 'header:menu:close', appsDetail);
-
 			appsDetail = null;
 		}
 
@@ -208,7 +207,6 @@ export default (data) => {
 			notificationsDetail = detail;
 		} else if (notificationsDetail) {
 			$dispatch($notifications, 'header:menu:close', notificationsDetail);
-
 			notificationsDetail = null;
 		}
 
