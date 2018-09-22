@@ -143,14 +143,11 @@
 		display: flex;
 		flex-direction: column;
 		inset-start: 0;
-		max-height: 200vh;
-		max-height: calc(2 * var(--esri-vh));
-		min-height: 100vh;
-		min-height: var(--esri-vh);
+		min-height: calc(100vh - var(--header-height));
 		position: absolute;
+		transform: translate3D(0, 0, 0);
 		transition: transform var(--smooth-speed) ease-in-out;
-		width: calc(100vw - 50px);
-		width: calc(var(--esri-vw) - 50px);
+		width: calc(100%);
 		z-index: 1;
 	}
 
@@ -168,14 +165,12 @@
 		@media (--width-s) {
 			max-height: 0;
 			overflow: hidden;
-			transform: translateX(100vw);
-			transform: translateX(var(--esri-vw));
+			transform: translate3D(320px, 0, 0);
 			transition: max-height 0s var(--smooth-speed), transform var(--smooth-speed) ease-in-out, visibility 0s var(--smooth-speed);
 			visibility: hidden;
 
 			@nest :dir(rtl) & {
-				transform: translateX(-100vw);
-				transform: translateX(calc(-1 * var(--esri-vw)));
+				transform: translate3D(0, 0, -320px);
 			}
 		}
 	}
@@ -186,7 +181,8 @@
 	@apply --unset-button;
 
 	background-color: var(--mono-100);
-	box-shadow: inset 0 -1px 0 var(--mono-88);
+	margin-top: 1px;
+	border-bottom: 1px solid var(--mono-88);
 	font-size: 20px / 24px;
 	padding: 20px 10px;
 	position: relative;
@@ -355,7 +351,7 @@
 	padding: 15px;
 	transition: background-color 150ms ease-in-out, box-shadow 150ms ease-in-out;
 	height: 100%;
-	
+
 	@media (--width-s) {
 		margin-inline: auto;
 		width: 200px;
