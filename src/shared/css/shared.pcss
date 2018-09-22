@@ -5,7 +5,9 @@
 	--mono-0: #000000;
 	--mono-20: #323232;
 	--mono-35: #595959;
+	--mono-40: #6e6e6e;
 	--mono-45: #707070;
+	--mono-55: #828282;
 	--mono-80: #cccccc;
 	--mono-88: #e0e0e0;
 	--mono-91: #e9e9e9;
@@ -124,6 +126,8 @@
 	/* ====================================================================== */
 
 	--menu-link-styles: {
+		display: block;
+		cursor: pointer;
 		&:hover {
 			box-shadow: inset 0 -3px 0 0 color(var(--blue) a(50%));
 			color: var(--mono-0);
@@ -175,6 +179,13 @@
 			}
 		}
 	};
+
+	--menu-icon-styles: {
+		display: block;
+		fill: currentColor;
+		size: 24px;
+		margin: 16px;
+	}
 }
 
 /* Breakpoints

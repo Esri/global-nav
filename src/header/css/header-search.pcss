@@ -8,20 +8,10 @@
 	@apply --normalize-button;
 	@apply --unset-button;
 	@apply --menu-link-styles;
-
-	display: block;
-	cursor: pointer;
 }
 
 .esri-header-search-image {
-	display: block;
-	fill: var(--mono-35);
-	size: 24px;
-	margin: 16px;
-
-	@nest :hover > &, :focus > &, [aria-expanded="true"] > & {
-		fill: var(--mono-0);
-	}
+	@apply --menu-icon-styles;
 }
 
 /* Global Header Search: Content
@@ -34,7 +24,7 @@
 	position: fixed;
 	z-index: -1;
 	inset-block-start: var(--header-height);
-	
+
 	@media (width <= 1440px) {
 		padding-inline: 20px;
 	}
