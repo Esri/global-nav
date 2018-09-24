@@ -103,6 +103,12 @@
 
 		padding-block: calc((var(--header-height) - 36px) / 2);
 	}
+
+	@media (--width-m) {
+		padding-top: 12px;
+		padding-bottom: 12px;
+		padding-inline: 12px 13px;
+	}
 }
 
 .esri-header-account-image {
@@ -110,6 +116,10 @@
 	inset-start: calc(50% - 32px / 2) 12px;
 	position: absolute;
 	size: 32px;
+	@media (--width-m) {
+		position: static;
+		display: block;
+	}
 }
 
 .esri-header-account-name,
@@ -117,6 +127,9 @@
 	display: block;
 	user-select: text;
 	white-space: nowrap;
+	@media (--width-m) {
+		display: none;
+	}
 }
 
 .esri-header-account-name {
