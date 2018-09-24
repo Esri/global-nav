@@ -165,7 +165,7 @@ export default () => {
 		const $keyword = $('strong', {}, searchState.value);
 		const $allResults = $('a', {
 			href: `${searchState.action}?q=${searchState.value}`,
-			class: `${prefix}-suggestions-all-results`}, `${boldKeywords(detail.seeAllResultsString, searchValueArray)} `, $keyword 
+			class: `${prefix}-suggestions-all-results`}, `${boldKeywords(detail.seeAllResultsString, searchValueArray)}`
 		);
 		const $allResultsSection = $('div', {
 			class: `${prefix}-suggestions-all-results-section`

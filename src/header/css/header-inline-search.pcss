@@ -268,7 +268,12 @@
 }
 
 .esri-header-inlineSearch-suggestion-section ul {
+	margin-left: 0;
 	padding: 0;
+
+	@nest :dir(rtl) & {
+		margin-right: 0;
+	}
 }
 
 .esri-header-inlineSearch-suggestion-footer,
