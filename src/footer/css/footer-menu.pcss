@@ -63,7 +63,7 @@
 		}
 
 		&:hover, &:focus {
-			color: #0079c1;
+			color: var(--blue);
 		}
 
 		&[aria-expanded="true"] {
@@ -80,7 +80,7 @@
 	}
 
 	@media (--gfoot-ml) {
-		box-shadow: inset 0 -1px 0 0 #dddddd;
+		box-shadow: inset 0 -1px 0 0 var(--mono-87);
 		display: inline-block;
 		height: 25px;
 		margin-block-end: 10px;
@@ -123,12 +123,12 @@
 	padding-block: 4px;
 
 	&:hover, &:focus {
-		color: #0079c1;
+		color: var(--blue);
 	}
 
 	@media (--gfoot-s) {
-		box-shadow: inset 0 -1px 0 0 #e0e0e0;
-		color: #595959;
+		box-shadow: inset 0 -1px 0 0 var(--mono-88);
+		color: var(--mono-35);
 		display: block;
 		padding-block: calc((50px - 16px) / 2);
 	}
