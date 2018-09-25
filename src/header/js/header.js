@@ -77,6 +77,7 @@ export default (data) => {
 		}
 
 		if (detail.menus) {
+			detail.menus.noBrand = !detail.brand;
 			$dispatch($desktopMenus, 'header:update:menus', detail.menus);
 			$dispatch($mobileMenus, 'header:update:menus', detail.menus);
 		}

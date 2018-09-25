@@ -4,6 +4,7 @@ import {$hamburger} from '../../shared/js/iconPaths';
 const prefix = 'esri-header-menus';
 
 export default ({variant = 'desktop'}) => {
+
 	const $target = $('div', {class: prefix, id: `${prefix}-${variant}`});
 	$target.classList.add(`-${variant}`);
 
@@ -47,6 +48,9 @@ export default ({variant = 'desktop'}) => {
 	/* ====================================================================== */
 
 	$target.addEventListener('header:update:menus', ({detail}) => {
+		if (detail.noBrand) {
+			$target.classList.add("-no-brand");
+		}
 		$replaceAll(
 			$content,
 			...detail.map(
