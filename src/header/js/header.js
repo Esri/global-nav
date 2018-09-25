@@ -257,6 +257,7 @@ export default (data) => {
 
 	$header.addEventListener('header:inlineSearch:activated', ({detail}) => {
 		$desktopMenus.querySelector('.esri-header-menus-menu').classList.add('hidden');
+		$lineBreak.classList.add('hidden');
 		$mobileMenus.querySelector('.esri-header-menus-toggle').classList.add('hidden');
 		if (viewportIsSmall) $brand.classList.add('hidden');
 	});
@@ -266,6 +267,7 @@ export default (data) => {
 
 	$header.addEventListener('header:inlineSearch:deactivated', ({detail}) => {
 		$desktopMenus.querySelector('.esri-header-menus-menu').classList.remove('hidden');
+		$lineBreak.classList.remove('hidden');
 		$mobileMenus.querySelector('.esri-header-menus-toggle').classList.remove('hidden');
 		$brand.classList.remove('hidden');
 	});

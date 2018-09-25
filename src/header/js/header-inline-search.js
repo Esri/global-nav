@@ -87,11 +87,12 @@ export default () => {
 	/* ====================================================================== */
 
 	const $lineBreak = $('div', {class: `esri-header-lineBreak ${prefix}-lineBreak`});
+	const $lineBreakRight = $('div', {class: `esri-header-lineBreak ${prefix}-lineBreak lineBreak-right`});
 
 	const $content = $('div', {
 		class: `${prefix}-content`, id: `${prefix}-content`,
 		aria: {expanded: false, labelledby: `${prefix}-control`}
-	}, $lineBreak, $input, $closeBtn, $suggestions);
+	}, $lineBreak, $input, $closeBtn, $suggestions, $lineBreakRight);
 
 	/* Search: Target
 	/* ====================================================================== */
@@ -129,6 +130,7 @@ export default () => {
 	/* ====================================================================== */
 
 	$target.addEventListener('header:search:populateSuggestions', ({detail}) => {
+    const searchValueArray = searchState.value.split(" ");
 		$suggestions.innerHTML = '';
 		// No Results State
 		if (!detail.suggestions || !detail.suggestions.length) return;
@@ -143,7 +145,7 @@ export default () => {
 			const $ul = $('ul', {class: `${prefix}-suggestion-list`});
 
 			s.links.forEach((l) => {
-				const $text = boldKeywords(l.text, searchState.value.split(" "));
+				const $text = boldKeywords(l.text, searchValueArray);
 				const $span = $('span').innerHTML = $text;
 
 				const $li = $('li', {
@@ -163,7 +165,7 @@ export default () => {
 		const $keyword = $('strong', {}, searchState.value);
 		const $allResults = $('a', {
 			href: `${searchState.action}?q=${searchState.value}`,
-			class: `${prefix}-suggestions-all-results`}, `${detail.seeAllResultsString} `, $keyword
+			class: `${prefix}-suggestions-all-results`}, `${boldKeywords(detail.seeAllResultsString, searchValueArray)}`
 		);
 		const $allResultsSection = $('div', {
 			class: `${prefix}-suggestions-all-results-section`
@@ -181,6 +183,8 @@ export default () => {
 
 			searchState.image = $search.md;
 			searchState.action = detail.dialog && detail.dialog.action;
+
+      $input.setAttribute("placeholder", (detail.dialog && detail.dialog.queryLabel) || "");
 
 			if (detail.dialog) {
 				detail.dialog.prefix = 'esri-header-search-dialog';
