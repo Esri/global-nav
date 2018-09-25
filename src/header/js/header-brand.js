@@ -3,7 +3,7 @@ import {$assign as $, $dispatch, $replaceAll, $renderSvgOrImg} from '../../share
 const prefix = 'esri-header-brand';
 
 export default () => {
-	const $target = $('a', {class: prefix, id: prefix});
+	const $target = $('div', {class: prefix, id: prefix});
 
 	// On Click
 	$target.addEventListener('click', (event) => {
@@ -13,10 +13,15 @@ export default () => {
 	/* Brand: On Update
 	/* ====================================================================== */
 	$target.addEventListener('header:update:brand', ({detail}) => {
-		$($target, {href: detail.href});
+		if (detail.href) {
+			$($target, $('a', {class: `${prefix}-link`, id: prefix, href: detail.href}));
+		} else {
+			$($target, $('span', {class: prefix, id: prefix}));
+		}
+
 		if (detail.distributorImage) {
 			const $distributorImage = $('span', {class: 'distributor-image'});
-			$renderSvgOrImg({imgDef: detail.distributorImage, imgClass: `${prefix}-image`, imgWidth: detail.distributorImageWidth, imgHeight:detail.distributorImageHeight, $targetElm:$distributorImage});			
+			$renderSvgOrImg({imgDef: detail.distributorImage, imgClass: `${prefix}-image`, imgWidth: detail.distributorImageWidth, imgHeight:detail.distributorImageHeight, $targetElm:$distributorImage});
 			$($target, $distributorImage, $('span', {class: 'distributor-image-border'}));
 		}
 		if (detail.image) {

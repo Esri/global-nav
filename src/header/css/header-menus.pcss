@@ -18,6 +18,14 @@
 		position: relative;
 		&.-mobile {
 			display: block;
+		}
+		&.-mobile.-no-brand {
+			margin-inline-end: auto;
+		}
+	}
+
+	@media (--width-s) {
+		&.-mobile {
 			margin-inline-end: auto;
 		}
 	}
