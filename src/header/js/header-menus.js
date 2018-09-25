@@ -1,5 +1,5 @@
 import {$assign as $, $dispatch, $replaceAll, $renderSvgOrImg} from '../../shared/js/shared';
-import {$hamburger, $close} from '../../shared/js/iconPaths';
+import {$hamburger} from '../../shared/js/iconPaths';
 
 const prefix = 'esri-header-menus';
 
