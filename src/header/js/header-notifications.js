@@ -54,7 +54,6 @@ export default () => {
 		messages = (detail.messages || []).map((item) => item.id);
 
 		const $icon = $renderSvgOrImg({imgDef: $bell.md, imgClass: `${prefix}-image`, id: `${prefix}-image`});
-		const $closeIcon = ['M8.718 8l5.303 5.303-.707.707L8.01 8.707 2.707 14.01 2 13.303 7.303 8 2 2.697l.707-.707L8.01 7.293l5.304-5.303.707.707z'];
 
 		if (detail.messages && detail.messages.length > 0) {
 			$replaceAll($dismiss, detail.dismissAllLabel);
@@ -66,7 +65,7 @@ export default () => {
 					const $dismissBtn = $('button', {
 						class: `${prefix}-message-dismiss`,
 						aria: {label: detail.dismissLabel}
-					}, $renderSvgOrImg({imgDef: $closeIcon, imgClass: `${prefix}-dismiss-icon`}));
+					}, $renderSvgOrImg({imgDef: $close.sm, imgClass: `${prefix}-dismiss-icon`}));
 					$dismissBtn.addEventListener('click', (event) => {
 						$dispatch($control, 'header:click:notifications:dismiss', [item.id]);
 					});

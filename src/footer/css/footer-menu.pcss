@@ -45,14 +45,14 @@
 	transition: min-width 300ms;
 
 	@media (--gfoot-s) {
-		background-image: url("../../shared/shared.svg#c-chevron-down" param(--fill var(--mono-43)));
-		background-position-y: calc(50% + 14px / 2);
+		background-image: url("../../shared/shared.svg#c-chevron-down" param(--fill var(--mono-40)));
+		background-position-y: calc(50% + 16px / 2);
 		background-repeat: no-repeat;
-		background-size: 14px 14px;
+		background-size: 16px 16px;
 		color: var(--mono-20);
 		cursor: pointer;
 		display: block;
-		padding-block: 30px calc(30px - 14px);
+		padding-block: 30px calc(30px - 16px);
 
 		&:dir(ltr) {
 			background-position-x: 100%;
@@ -67,7 +67,7 @@
 		}
 
 		&[aria-expanded="true"] {
-			background-image: url("../../shared/shared.svg#c-chevron-up" param(--fill var(--mono-43)));
+			background-image: url("../../shared/shared.svg#c-chevron-up" param(--fill var(--mono-40)));
 		}
 	}
 
