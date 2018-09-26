@@ -189,6 +189,8 @@ export default () => {
 			if (detail.dialog) {
 				detail.dialog.prefix = 'esri-header-search-dialog';
 			}
+		} else {
+			$control.setAttribute("tabindex", "-1"); 
 		}
 	});
 
