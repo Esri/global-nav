@@ -11,7 +11,7 @@ const $close =  {
 };
 
 const $grid = {
-  md: ["M10 14h4v-4h-4zm1-3h2v2h-2zm-1-5h4V2h-4zm1-3h2v2h-2zm-1 19h4v-4h-4zm1-3h2v2h-2zm-9-5h4v-4H2zm1-3h2v2H3zm15 3h4v-4h-4zm1-3h2v2h-2zM2 22h4v-4H2zm1-3h2v2H3zM18 2v4h4V2zm3 3h-2V3h2zM2 6h4V2H2zm1-3h2v2H3zm15 19h4v-4h-4zm1-3h2v2h-2z"]
+  md: ["M6 2v4H2V2zm16 0v4h-4V2zm-8 0v4h-4V2zM6 18v4H2v-4zm16 0v4h-4v-4zm-8 0v4h-4v-4zm-8-8v4H2v-4zm16 0v4h-4v-4zm-8 0v4h-4v-4z"]
 };
 
 const $hamburger = {
