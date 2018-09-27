@@ -71,6 +71,7 @@
 		overflow-y: auto;
 		position: absolute;
 		size: var(--header-width-m) calc(100vh - var(--header-height));
+		size: var(--header-width-m) calc(var(--esri-vh) - var(--header-height));
 		transform: translate3D(0, 0, 0);
 		transition: transform var(--smooth-speed) ease-in-out;
 		z-index: 1;
@@ -527,7 +528,7 @@
 		transition: transform var(--smooth-speed) ease-in-out;
 		z-index: 1;
 		inset-block-start: 100%;
-		size: var(--header-width-m) calc(100vh - var(--header-height));
+		size: var(--header-width-m) calc(var(--esri-vh) - var(--header-height));
 
 		&[aria-hidden="true"] {
 			transition: transform var(--smooth-speed) ease-in-out, visibility 0s var(--smooth-speed);

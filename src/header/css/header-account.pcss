@@ -152,11 +152,13 @@
 	background-color: var(--mono-97);
 
 	@media (--width-s) {
-		box-shadow: inset 0 1px 0 0 var(--mono-88), 0 0 20px 0 color(var(--mono-0) a(30%));
+		background: #f8f8f8;
+		box-shadow: inset 0 1px 0 0 var(--mono-88);
 		display: flex;
 		flex-direction: column;
 		inset-start: 0;
-		min-height: calc(100vh - var(--header-height));
+		min-height: calc(var(--esri-vh) - var(--header-height));
+		overflow: auto;
 		position: absolute;
 		transform: translate3D(0, 0, 0);
 		transition: transform var(--smooth-speed) ease-in-out;
@@ -166,7 +168,6 @@
 
 	@media (--width-ml) {
 		@apply --submenu-styles;
-
 		display: flex;
 		flex-wrap: wrap;
 		inset-inline-end: 0;
@@ -176,10 +177,9 @@
 
 	&[aria-hidden="true"] {
 		@media (--width-s) {
-			max-height: 0;
 			overflow: hidden;
 			transform: translate3D(320px, 0, 0);
-			transition: max-height 0s var(--smooth-speed), transform var(--smooth-speed) ease-in-out, visibility 0s var(--smooth-speed);
+			transition: transform var(--smooth-speed) ease-in-out, visibility 0s var(--smooth-speed);
 			visibility: hidden;
 
 			@nest :dir(rtl) & {
@@ -283,6 +283,7 @@
 
 	@media (--width-s) {
 		text-align: center;
+		margin-bottom: 24px;
 	}
 
 	@media (--width-ml) {
