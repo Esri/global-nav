@@ -31,7 +31,7 @@ export default () => {
 		});
 	});
 
-	/* Search: Close Button 
+	/* Search: Close Button
 	/* ====================================================================== */
 
 	const $closeBtn = $('button', {
@@ -63,17 +63,17 @@ export default () => {
 	$input.addEventListener("keyup", (e) => {
 		searchState.value = e.target.value;
 		if (!searchState.value || searchState.value === " ") {
-			return $suggestions.innerHTML = ""; 
+			return $suggestions.innerHTML = "";
 		} else if (e.keyCode === 13 && searchState.value) {
 			return window.location.href = `${searchState.action}?q=${searchState.value}`;
 		}
 
 		$dispatch($control, 'header:search:typing', {
-			search: searchState.value 
+			search: searchState.value
 		});
 	});
 
-	/* Search: Suggestions 
+	/* Search: Suggestions
 	/* ====================================================================== */
 
 	const $suggestions = $('div', {
@@ -179,9 +179,9 @@ export default () => {
 	$target.addEventListener('header:update:inlineSearch', ({detail}) => {
 		if (!detail.hide) {
 			$($control, {aria: {label: detail.label}});
-			$renderSvgOrImg({imgDef: detail.image || $search.md, imgClass: `${prefix}-image`, id: `${prefix}-image`, $targetElm: $control});
+			$renderSvgOrImg({imgDef: $search.md, imgClass: `${prefix}-image`, id: `${prefix}-image`, $targetElm: $control});
 
-			searchState.image = detail.image;
+			searchState.image = $search.md;
 			searchState.action = detail.dialog && detail.dialog.action;
 
       $input.setAttribute("placeholder", (detail.dialog && detail.dialog.queryLabel) || "");

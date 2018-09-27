@@ -69,7 +69,7 @@
 
 	&[aria-expanded="true"] {
 		animation: slide-to-the-left .3s backwards;
-		box-shadow: inset 0 -3px 0 0 #0079c1;
+		box-shadow: inset 0 -3px 0 0 var(--blue);
 		height: 55px;
 		margin: 0 0 0 10px;
 		opacity: 1;
@@ -130,7 +130,7 @@
 
 	border-width: 0;
 	box-shadow: unset;
-	color: #595959;
+	color: var(--mono-35);
 	display: unset;
 	font-size: 16px;
 	font-weight: unset;
@@ -144,7 +144,7 @@
 }
 
 .esri-header-inlineSearch-input:focus {
-	border-color: #dddddd;
+	border-color: var(--mono-87);
 	box-shadow: none;
 }
 
@@ -179,7 +179,7 @@
 /* ========================================================================== */
 
 .esri-header-inlineSearch-suggestions {
-	background: #f8f8f8;
+	background: var(--mono-97);
 	border-radius: 0 0 10px 10px;
 	float: left;
 	font-size: 15px;
@@ -189,12 +189,12 @@
 }
 
 .esri-header-inlineSearch-suggestions hr {
-	border: 1px solid #e9e9e9;
+	border: 1px solid var(--mono-91);
 	margin: .5rem 0;
 }
 
 .esri-header-inlineSearch-suggestions-all-results-section {
-	background: #eeeeee;
+	background: var(--mono-93);
 	border-radius: 0 0 20px 20px;
 	margin-top: 18px;
 	padding: 9px 22px;
@@ -249,12 +249,12 @@
 
 .esri-header-inlineSearch-suggestion a,
 .esri-header-inlineSearch-suggestion a:visited {
-	color: #595959;
+	color: var(--mono-35);
 }
 
 .esri-header-inlineSearch-suggestion a:hover,
 .esri-header-inlineSearch-suggestion a:focus {
-	color: #000000;
+	color: var(--mono-0);
 	text-decoration: none;
 }
 

@@ -15,8 +15,24 @@
 	z-index: 100;
 	height: var(--header-height);
 	&.-web {
-		@media (width > 1440px) {
-			padding-inline: calc(50% - 1440px / 2);
+		padding-left: 2vw;
+		padding-right: 2vw;
+		width: 96vw;
+		box-sizing: content-box;
+		width: 1440px;
+		max-width: 96vw;
+
+		@media (--width-sm) {
+			padding-left: 0;
+			padding-right: 0;
+			max-width: 100%;
+		}
+
+		@media (width > 1500px) {
+			padding-inline: calc(50% - 720px);
+			width: 100%;
+			max-width: 100%;
+			box-sizing: border-box;
 		}
 	}
 
@@ -68,7 +84,7 @@
 	}
 
 	&[data-state="search"] {
-		background-color: color(#f8f8f8 a(98%));
+		background-color: color(var(--mono-97) a(98%));
 		box-shadow: inset 0 1px 0 0 var(--mono-88);
 	}
 }

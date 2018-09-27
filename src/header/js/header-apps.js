@@ -1,4 +1,5 @@
 import {$assign as $, $dispatch, $replaceAll, $renderSvgOrImg} from '../../shared/js/shared';
+import {$grid} from '../../shared/js/iconPaths';
 import Sortable from 'sortablejs';
 import {$remove} from '../../shared/js/domose';
 
@@ -642,7 +643,7 @@ export default () => {
 	/* ====================================================================== */
 
 	$target.addEventListener('header:update:apps', ({detail}) => {
-		const $gridIcon = $renderSvgOrImg({imgDef: detail.image, "shape-rendering": "crispEdges", imgClass: `${prefix} svg-grid-icon`, $targetElm: $appSwitcherIcon});
+		const $gridIcon = $renderSvgOrImg({imgDef: $grid.md, imgClass: `${prefix}-image`, $targetElm: $appSwitcherIcon});
 		// -- Remove display:none from style to show icon
 		$control.removeAttribute('style');
 

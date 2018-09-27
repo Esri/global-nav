@@ -14,20 +14,11 @@
 	@apply --normalize-button;
 	@apply --unset-button;
 	@apply --menu-link-styles;
-	display: block;
-	cursor: pointer;
 	position: relative;
-	color: var(--mono-35);
-	@nest :hover > &, :focus > &, [aria-expanded="true"] > & {
-		color: var(--mono-0);
-	}
 }
 
 .esri-header-notifications-image {
-	display: block;
-	fill: currentColor;
-	size: 24px;
-	margin: 16px;
+	@apply --menu-icon-styles;
 }
 
 .esri-header-notifications-badge {
@@ -75,10 +66,10 @@
 	font-size: 13px / 21px;
 	padding-top: 14px;
 	padding-bottom: 14px;
-	padding-inline-end: 0;
-	padding-inline-start: 14px;
+	padding-inline: 0;
+	margin-inline-start: 24px;
 	display: flex;
-	border-bottom: 1px solid var(--mono-88);
+	border-bottom: 1px solid var(--mono-91);
 	&:last-child {
 		border-bottom: none;
 	}
@@ -88,7 +79,15 @@
 	display: block;
 	flex: 1;
 	font-size: 15px;
-	color: var(--mono-0);
+	color: var(--mono-20);
+}
+
+.esri-header-notifications-message-text a {
+	color: var(--blue);
+	text-decoration: none;
+	&:hover {
+		text-decoration: underline;
+	}
 }
 
 .esri-header-notifications-message-date {
@@ -145,17 +144,20 @@
 /* Global Header Notifications: Dismiss All
 /* ========================================================================== */
 .esri-header-notifications-dismiss-all {
+	@apply --normalize-button;
 	@apply --unset-button;
-	width: 100%;
-	background: var(--mono-100);
-	border: 1px solid var(--mono-80);
+
+	box-shadow: inset 0 0 0 1px var(--blue);
+	display: block;
 	color: var(--blue);
 	cursor: pointer;
-	font-size: 14px;
-	padding: 8px 20px;
-	transition: all var(--instant-speed) linear;
-	&:hover, &:focus {
-		color: var(--blue-dark);
-		border-color: var(--blue);
+	font-size: 15px / 20px;
+	padding: 10px;
+	transition: background-color 150ms ease-in-out, box-shadow 150ms ease-in-out;
+	height: 100%;
+	width: 100%;
+
+	&:matches(:hover, :focus) {
+		box-shadow: inset 0 0 0 3px var(--blue);
 	}
 }

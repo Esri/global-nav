@@ -9,24 +9,31 @@
 	display: inline-flex;
 	height: 100%;
 	text-decoration: none;
-	color: #595959;
+	color: var(--mono-35);
 
 	&.-fit-burger{
 		position: relative;
 	}
 
+	&:empty {
+		display: none;
+	}
+
 	@media (--width-s) {
 		margin-inline-end: auto;
 		padding-inline: 12px;
+		padding-inline-start: 6px;
 	}
 
 	@media (--width-m) {
 		margin-inline-end: auto;
-		padding-inline: 12px;
+		padding-inline-end: 12px;
+		padding-inline-start: 6px;
 	}
 
 	@media (--width-l) {
-		padding-inline: 24px;
+		padding-inline-start: 8px;
+		padding-inline-end: 12px;
 	}
 }
 
@@ -52,13 +59,9 @@
 
 .distributor-image-border {
 	display: inline;
-	border-right: solid 1px #e0e0e0;
+	border-right: solid 1px var(--mono-88);
 	height: 56px;
-	margin-right: 10px;
-
-	@nest :dir(rtl) & {
-			margin: 0px 0px 0px 10px;
-	}
+	margin-inline-end: 10px;
 }
 
 /* Global Header Brand: Text
