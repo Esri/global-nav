@@ -68,7 +68,7 @@
 	}
 
 	&[aria-expanded="true"] {
-		animation: slide-to-the-left .3s backwards;
+		animation: slide-to-the-left .3s ease-in-out;
 		box-shadow: inset 0 -3px 0 0 var(--blue);
 		height: 55px;
 		margin: 0 0 0 10px;
@@ -78,7 +78,7 @@
 		width: calc(100% - 10px);
 
 		@nest :dir(rtl) & {
-			animation: slide-to-the-right .3s backwards;
+			animation: slide-to-the-right .3s ease-in-out;
 			margin: 0 10px 0 0;
 
 			@media (--width-s) {
