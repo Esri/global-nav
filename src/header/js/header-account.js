@@ -174,9 +174,9 @@ export default () => {
 			$replaceAll($contentMenu,
 				...detail.menus.map(
 					(item) => $('li', {class: `${prefix}-content-item`},
-						$('a', {class: `${prefix}-content-link`, href: item.href},
-							item.label
-						)
+						item.newContext ?
+							$('a', {class: `${prefix}-content-link`, href: item.href, target: "_blank", rel: 'noopener'}, item.label) :
+							$('a', {class: `${prefix}-content-link`, href: item.href}, item.label)
 					)
 				)
 			);
