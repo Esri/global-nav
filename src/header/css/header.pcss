@@ -2,10 +2,13 @@
 
 /* Global Header
 /* ========================================================================== */
+.esri-header-wrap {
+	box-shadow: 0 1px 0 0 var(--mono-88);
+}
 
 .esri-header {
 	align-items: center;
-	box-shadow: 0 1px 0 0 var(--mono-88);
+
 	color: var(--mono-35) var(--mono-100);
 	cursor: default;
 	display: flex;
@@ -15,13 +18,9 @@
 	z-index: 100;
 	height: var(--header-height);
 	&.-web {
-		padding-left: 2vw;
-		padding-right: 2vw;
-		width: 96vw;
-		box-sizing: content-box;
 		width: 1440px;
 		max-width: 96vw;
-
+		margin: 0 auto;
 		@media (--width-sm) {
 			padding-left: 0;
 			padding-right: 0;
