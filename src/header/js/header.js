@@ -47,20 +47,20 @@ export default (data) => {
 	);
 
 	const $lineBreak = $('div', {class: 'esri-header-lineBreak'});
-
-	const $header = $('div', {class: `esri-header -${data.theme || 'web'}`},
-		$headerCanvas,
-		$brandStripe,
-		$brand,
-		$mobileMenus,
-		$desktopMenus,
-		$search,
-		$inlineSearch,
-		$lineBreak,
-		$notifications,
-		$apps,
-		$client
-	);
+	const $headerContent = $('div', {class: `esri-header -${data.theme || 'web'}`},
+			$headerCanvas,
+			$brandStripe,
+			$brand,
+			$mobileMenus,
+			$desktopMenus,
+			$search,
+			$inlineSearch,
+			$lineBreak,
+			$notifications,
+			$apps,
+			$client)
+	;
+	const $header = $('div', {class: `esri-header-wrap`}, $headerContent);
 
 	$enableFocusRing($header);
 
