@@ -27,14 +27,10 @@
 }
 
 .esri-header-inlineSearch-image {
+	@apply --menu-icon-styles;
 	display: block;
-	fill: var(--mono-35);
 	margin: 16px;
 	size: 24px;
-
-	@nest :hover > &, :focus > &, [aria-expanded="true"] > & {
-		fill: var(--mono-0);
-	}
 }
 
 .esri-header-inlineSearch-lineBreak {
@@ -148,6 +144,11 @@
 	box-shadow: none;
 }
 
+.esri-header-inlineSearch-input::-ms-clear {
+	width : 0;
+	height: 0;
+}
+
 /* Global Header Search: Close Button
 /* ========================================================================== */
 
@@ -167,10 +168,13 @@
 	@nest :dir(rtl) & {
 		float: left;
 		left: 0;
+		right: auto;
 	}
 }
 
 .esri-header-inlineSearch-dismiss-icon {
+	@apply --menu-icon-styles;
+	margin: 0;
 	height: 21px;
 	width: 21px;
 }
@@ -218,8 +222,10 @@
 }
 
 .esri-header-inlineSearch-all-results-icon {
+	@apply --menu-icon-styles;
 	height: 14px;
-	margin-top: 0px;
+	margin: 0;
+	display: inline;
 	position: relative;
 	top: 2px;
 	width: 28px;
