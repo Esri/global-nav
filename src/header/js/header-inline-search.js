@@ -42,6 +42,10 @@ export default () => {
 	$closeBtn.addEventListener('click', (event) => {
 		$dispatch($control, 'header:inlineSearch:deactivated', {event});
 
+		setTimeout(() => {
+			$control.focus();
+		}, 0);
+
 		$dispatch($control, 'header:menu:toggle', {
 			state: 'menu',
 			target: $target,
@@ -119,11 +123,6 @@ export default () => {
 		$target.setAttribute('aria-expanded', "false");
 		$suggestions.innerHTML = '';
 		$input.value = '';
-		if (!detail.event.detail || !detail.event.detail.triggeredComponent || detail.event.detail.triggeredComponent === "inlineSearch") {
-			setTimeout(() => {
-				$control.focus();
-			}, 0);
-		}
 	});
 
 	/* Search: On Populate Suggestions

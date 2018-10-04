@@ -177,7 +177,6 @@ export default (data) => {
 		if ($search === detail.target || $inlineSearch === detail.target) {
 			searchDetail = detail;
 		} else if (searchDetail) {
-			searchDetail.triggeredComponent = detail.type;
 			$dispatch($search, 'header:menu:close', searchDetail);
 			searchDetail = null;
 		}
@@ -234,12 +233,11 @@ export default (data) => {
 			if (searchDetail && searchDetail.control === currentDetail.control) {
 				$dispatch(searchDetail.content.lastChild, 'reset');
 			}
+
 			if (searchDetail && searchDetail.target === $inlineSearch && (currentDetail.type === "inlineSearch" || viewportIsSmall.matches)) {
-				if (menusDetail) {
-					$($inlineSearch.children[0], {aria: {expanded: false}});
-					$($inlineSearch.children[1], {aria: {expanded: false, hidden: true}});
+				if (!menusDetail) {
+					$dispatch(searchDetail.content, 'header:inlineSearch:deactivated', currentDetail);
 				}
-				$dispatch(searchDetail.content, 'header:inlineSearch:deactivated', {event});
 			}
 
 			if (canvasShouldClose) {
