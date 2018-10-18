@@ -200,7 +200,7 @@ export default ({variant = 'desktop'}) => {
 									$subcontent
 								);
 
-								$subcontrol.addEventListener('click', () => {
+								$subcontrol.addEventListener('click', (e) => {
 									$dispatch($subcontrol, 'header:menu:toggle', {
 										control: $subcontrol,
 										content: $subcontent,
@@ -232,7 +232,7 @@ export default ({variant = 'desktop'}) => {
 		if (detail && detail.indexOf(true) > -1) {
 			document.querySelector('.esri-header-menus-toggle').classList.add('-visible');
 			document.getElementById('esri-header-brand').classList.add('-fit-burger');
-			document.getElementById('esri-header-menus-mobile').classList.add('-always-visible');
+			document.getElementById('esri-header-menus-mobile').classList.add('-always-hamburger');
 
 			const menus = [].slice.call($target.querySelectorAll('.esri-header-menus-menu'));
 			detail.forEach((collapse, i) => {
