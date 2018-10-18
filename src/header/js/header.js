@@ -47,7 +47,7 @@ export default (data) => {
 	);
 
 	const $lineBreak = $('div', {class: 'esri-header-lineBreak'});
-	const $headerContent = $('div', {class: `esri-header -${data.theme || 'web'}`},
+	const $headerContent = $('div', {class: `esri-header -${data.theme || 'web'} ${data.collapseMenus ? '-always-hamburger' : ''}`},
 			$headerCanvas,
 			$brandStripe,
 			$brand,
@@ -159,7 +159,7 @@ export default (data) => {
 	let notificationsDetail = null;
 
 	$header.addEventListener('header:menu:open', ({detail}) => {
-		const isMenuToggle = 'menu-toggle' === detail.type;
+		const isMenuMobile = 'menu-toggle' === detail.type && viewportIsSmallMedium.matches;
 		const isAccountMobile = $account === detail.target && viewportIsSmall.matches;
 
 		// Update Control, Content
@@ -183,7 +183,7 @@ export default (data) => {
 
 		if ($desktopMenus === detail.target || $mobileMenus === detail.target) {
 			menusDetail = detail;
-		} else if (menusDetail && !isMenuToggle && !isAccountMobile) {
+		} else if (menusDetail && !isAccountMobile && !isMenuMobile) {
 			$dispatch($desktopMenus, 'header:menu:close', menusDetail);
 			$dispatch($mobileMenus, 'header:menu:close', menusDetail);
 			menusDetail = null;
@@ -221,7 +221,7 @@ export default (data) => {
 	/* ====================================================================== */
 
 	$header.addEventListener('header:menu:close', ({detail}) => {
-		const currentDetail = detail || menusDetail || searchDetail || accountDetail || appsDetail || menuDetail || notificationsDetail;
+		const currentDetail = detail || searchDetail || accountDetail || appsDetail || notificationsDetail || menusDetail ||  menuDetail;
 
 		if (currentDetail) {
 			// Close the Detail
