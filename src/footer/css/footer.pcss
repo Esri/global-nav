@@ -106,34 +106,52 @@
 
 .esri-footer-breadcrumb {
 	box-sizing: border-box;
-	padding: 25px 0;
+	padding: 25px;
+}
+
+.clear {
+	clear: both;
 }
 
 .esri-footer-breadcrumb--list {
-	display: inline-block;
+	float: left;
 	list-style: none;
 	margin: 0;
-	padding: 0 24px;
+	padding: 0;
+	width: 90%;
 }
 
 .esri-footer-breadcrumb--pin {
-	display: block;
+	box-sizing: border-box;
+	float: left;
+	max-width: 15px;
+	padding-right: 20px;
+	width: 5%;
 }
 
 .esri-footer-breadcrumb--items {
 	display: inline-block;
 	font-size: 14px;
-	padding: 0 10px 0 0;
+	padding: 0;
 }
 
 .esri-footer-breadcrumb--items-link {
 	color: #636363;
+	padding: 0 10px;
 	text-decoration: none;
 
 	&:hover {
 		color: #0079c1;
 		text-decoration: underline;
 	}
+}
+
+.esri-footer-breadcrumb--items-current {
+	color: #636363;
+	display: inline-block;
+	margin: 0;
+	padding: 0 10px;
+	text-decoration: none;
 }
 
 .esri-footer-section--1 {
