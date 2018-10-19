@@ -31,4 +31,4 @@ export default () =>
       $('li', {class: `esri-footer-breadcrumb--items`}, '/'),
       $('li', {class: `esri-footer-breadcrumb--items`}, 'Resources'),
     )
-	);
+  );
