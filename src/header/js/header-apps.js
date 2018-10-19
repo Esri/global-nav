@@ -113,7 +113,7 @@ export default () => {
 			keyup: activateAccessibilityMode.bind(null, currentApp),
 			keydown: preventBrowserKeyboardDefaults,
 			"role": "menuitem",
-			"data-id": currentApp.itemId
+			"data-id": currentApp.itemId || currentApp.uid || currentApp.title
 		});
 
 		if (!currentApp.canAccess) {
