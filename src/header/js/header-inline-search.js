@@ -163,9 +163,10 @@ export default () => {
 	};
 
 	const createSuggestionsSections = (detail, searchValueArray) => {
+		const minIconWidth = `${detail.minIconWidth || "0"}px`;
 		detail.suggestions.forEach((s, ind) => {
 			const $header = s.header ? $('p', {class: `${prefix}-suggestion-header`}, s.header) : $('p');
-			const $hr = s.header || ind > 0 ? $('hr') : $('span');
+			const $hr = (s.header || ind > 0) && !s.hideHR ? $('hr') : $('span');
 			const $ul = $('ul', {class: `${prefix}-suggestion-list`});
 			const $footer = !s.footer ? $('span') : $('a', {
 				href: s.footer.href,
@@ -176,12 +177,17 @@ export default () => {
 				const $span = $('span', {class: `${prefix}-suggestion-text`});
 				$span.innerHTML = boldKeywords(l.text, searchValueArray);
 				$span.appendChild(l.secondary ? $('div', {class: `${prefix}-suggestion-secondary-text`}, l.secondary) : $('span'));
-				const $icon = !l.icon ? '' :
-				$renderSvgOrImg({
-					imgDef: l.icon === 'searchIcon' ? $search.sm : l.icon,
-					imgClass: `${prefix}-suggestion-icon`,
-					wrapperClass: `${prefix}-suggestion-icon-wrapper`
-				});
+				const $icon = !l.icon ? $('span', {class: `${prefix}-suggestion-icon-wrapper`, style: `min-width: ${minIconWidth};`}) :
+					$renderSvgOrImg({
+							imgDef: l.icon === 'searchIcon' ? $search.sm : l.icon,
+							imgWidth: l.iconSize || "22",
+							imgHeight: l.icon === 'searchIcon' ? "15px" : l.iconSize,
+							imgClass: `${prefix}-suggestion-icon`,
+							wrapperClass: `${prefix}-suggestion-icon-wrapper`
+						});
+				$icon.style.minWidth = minIconWidth;
+
+				if (l.htmlIcon) $icon.innerHTML = l.htmlIcon;
 
 				const $li = $('li', {
 					class: `${prefix}-suggestion`
