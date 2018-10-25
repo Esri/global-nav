@@ -193,7 +193,7 @@
 
 .esri-header-inlineSearch-suggestions hr {
 	border: 1px solid var(--mono-91);
-	margin: .5rem 0;
+	margin: 1rem 0;
 }
 
 .esri-header-inlineSearch-suggestions-bottom-padding {
@@ -249,22 +249,18 @@
 }
 
 .esri-header-inlineSearch-suggestion-icon {
-	height: 20px;
-	width: 20px;
 	margin: 0 16px 0 0;
+	position: relative;
 
 	@nest :dir(rtl) & {
 		margin: 0 0 0 16px;
 	}
 }
 
-.esri-header-inlineSearch-suggestion-icon {
-	position: relative;
-	top: 2px;
-}
-
 .esri-header-inlineSearch-suggestion-icon-wrapper {
 	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 .esri-header-inlineSearch-suggestion-header {
@@ -278,7 +274,7 @@
 
 .esri-header-inlineSearch-suggestion-section ul {
 	margin: 0px 0px 14px 0px;
-	padding: 0px 0px 2px 0;
+	padding: 0;
 
 	@nest :dir(rtl) & {
 		margin-right: 0;
