@@ -51,14 +51,20 @@ Esri welcomes contributions from anyone and everyone. Please see our
 
 ## Licensing
 
-[Esri Global Navigation] uses the Apache License, Version 2.0 (the "License").
-You may obtain a copy of the License at
-https://www.apache.org/licenses/LICENSE-2.0, which is also available in the
-repository's [LICENSE.md][lic-url].
+COPYRIGHT © 2018 Esri
+
+All rights reserved under the copyright laws of the United States and applicable international laws, treaties, and conventions.
+
+This material is licensed for use under the Esri Master License Agreement (MLA), and is bound by the terms of that agreement. You may redistribute and use this code without modification, provided you adhere to the terms of the MLA and include this copyright notice.
+
+See use restrictions at http://www.esri.com/legal/pdfs/mla_e204_e300/english
+
+For additional information, contact: Environmental Systems Research Institute, Inc. Attn: Contracts and Legal Services Department 380 New York Street Redlands, California, USA 92373 USA
+
+email: contracts@esri.com
 
 [Esri Global Navigation]: https://github.com/Esri/global-nav
 
 [cli-url]: https://travis-ci.org/Esri/global-nav
 [cli-img]: https://travis-ci.org/Esri/global-nav.svg?branch=master
 [lic-url]: LICENSE.md
-[lic-img]: https://img.shields.io/badge/license-Apache%202.0-blue.svg
