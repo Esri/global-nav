@@ -1,7 +1,6 @@
 # Esri Global Navigation [<img src="https://avatars2.githubusercontent.com/u/628795" alt="" width="90" height="90" align="right">][Esri Global Navigation]
 
 [![Build Status][cli-img]][cli-url]
-[![Licensing][lic-img]][lic-url]
 
 [Esri Global Navigation] is a branded presentation layer for Esri site and account navigation. It provides platform-wide alignment and brand cohesion, allowing visitors to explore new content and products through a familiar and consistent experience
 
