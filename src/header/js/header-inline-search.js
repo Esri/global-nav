@@ -103,7 +103,7 @@ export default () => {
 
 	const $target = $('div', {
 		class: prefix,
-		aria: {expanded: false, labelledby: `${prefix}-target`}
+		aria: {expanded: false}
 	}, $control, $content);
 
 	/* Search: On Activation
@@ -179,6 +179,7 @@ export default () => {
 				$span.appendChild(l.secondary ? $('div', {class: `${prefix}-suggestion-secondary-text`}, l.secondary) : $('span'));
 				const $icon = !l.icon ? $('span', {class: `${prefix}-suggestion-icon-wrapper`, style: `min-width: ${minIconWidth};`}) :
 					$renderSvgOrImg({
+							inlineImg: true,
 							imgDef: l.icon === 'searchIcon' ? $search.sm : l.icon,
 							imgWidth: l.iconSize || "22",
 							imgHeight: l.icon === 'searchIcon' ? "15px" : l.iconSize,
@@ -217,7 +218,8 @@ export default () => {
 			searchState.image = $search.md;
 			searchState.action = detail.dialog && detail.dialog.action;
 
-			$input.setAttribute("placeholder", (detail.dialog && detail.dialog.queryLabel) || "");
+			$input.setAttribute('placeholder', (detail.dialog && detail.dialog.queryLabel) || "");
+			$closeBtn.setAttribute('aria-label', (detail.dialog && detail.dialog.cancelLabel) || "");
 
 			if (detail.dialog) {
 				detail.dialog.prefix = 'esri-header-search-dialog';
