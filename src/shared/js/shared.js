@@ -67,7 +67,7 @@ function $fetch(url, callback, onError = () => {
 	return xhr;
 }
 
-function $renderSvgOrImg({imgDef = "", imgClass = "", wrapperClass = "", imgWidth, imgHeight, viewBox, id, $targetElm}) {
+function $renderSvgOrImg({imgDef = "", imgClass = "", wrapperClass = "", inlineImg = false, id = "", imgWidth, imgHeight, viewBox, $targetElm}) {
 	const $imgWrapper = $assign('span', {class: wrapperClass});
 
 	const svgProps = {class: `${imgClass}`, role: 'presentation', style: 'transform: rotate(360deg);'};
@@ -83,7 +83,7 @@ function $renderSvgOrImg({imgDef = "", imgClass = "", wrapperClass = "", imgWidt
 	}
 
 	if (typeof imgDef === 'string') {
-		if (imgDef.indexOf('.svg') === imgDef.length - 4) {
+		if (imgDef.indexOf('.svg') === imgDef.length - 4 && !inlineImg) {
 			$fetch(imgDef, (svgContents) => {
 				$imgWrapper.innerHTML = svgContents;
 				const $img = $imgWrapper.firstElementChild;
