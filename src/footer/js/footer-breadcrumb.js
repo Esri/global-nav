@@ -15,8 +15,8 @@ export default () =>
 
 
   window.addEventListener('DOMContentLoaded', () => {
-    // let breadcrumb = window.location.pathname;
-    const breadcrumb = "/en-us/arcgis/products/arcgis-pro/overview";
+    const breadcrumb = window.location.pathname;
+    // const breadcrumb = "/en-us/arcgis/products/arcgis-pro/overview";
     const listWrapper = document.querySelector('.esri-footer-breadcrumb--list');
 
     if (breadcrumb.length) {
