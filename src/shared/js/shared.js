@@ -67,36 +67,24 @@ function $fetch(url, callback, onError = () => {
 	return xhr;
 }
 
-function $renderSvgOrImg({imgDef = "", imgClass = "", wrapperClass = "", inlineImg = false, id = "", imgWidth, imgHeight, viewBox, $targetElm}) {
+function $renderSvgOrImg({imgDef = "", imgClass = "", wrapperClass = "", inlineImg = false, id, alt, imgWidth, imgHeight, viewBox, $targetElm}) {
 	const $imgWrapper = $assign('span', {class: wrapperClass});
-
-	const svgProps = {class: `${imgClass}`, role: 'presentation', style: 'transform: rotate(360deg);'};
-	if (imgWidth && imgHeight) {
-		svgProps.width = imgWidth;
-		svgProps.height = imgHeight;
-	}
-	if (viewBox) {
-		svgProps.viewBox = viewBox;
-	}
-	if (id) {
-		svgProps.id = id;
-	}
 
 	if (typeof imgDef === 'string') {
 		if (imgDef.indexOf('.svg') === imgDef.length - 4 && !inlineImg) {
 			$fetch(imgDef, (svgContents) => {
 				$imgWrapper.innerHTML = svgContents;
 				const $img = $imgWrapper.firstElementChild;
-				$assign($img, svgProps);
+				$assign($img, svgProps());
 			}, () => {
-				renderImgTag({$imgWrapper, id, imgDef, imgClass, imgWidth, imgHeight});
+				renderImgTag();
 			});
 		} else {
-			renderImgTag({$imgWrapper, id, imgDef, imgClass, imgWidth, imgHeight});
+			renderImgTag();
 		}
 	} else {
 		const $img = $assign(document.createElementNS('http://www.w3.org/2000/svg', 'svg'),
-			svgProps,
+			svgProps(),
 			$assign(document.createDocumentFragment(),
 				...imgDef.map(
 					(d) => $assign(
@@ -115,15 +103,28 @@ function $renderSvgOrImg({imgDef = "", imgClass = "", wrapperClass = "", inlineI
 
 	return $imgWrapper;
 
-	function renderImgTag({$imgWrapper, id, imgDef, imgClass, imgWidth, imgHeight}) {
-		$imgWrapper.appendChild($assign('img', {
-			id,
-			src: imgDef,
-			class: imgClass,
-			style:  `${imgWidth ? `width:${imgWidth}px` : ''}; ${imgHeight ? `height:${imgHeight}px` : ''}`
-		}));
+	function imgProps(props, mixins) {
+		for (const mixin in mixins) {
+			if (mixins[mixin] !== undefined && mixins[mixin] !== null) props[mixin] = mixins[mixin];
+		}
+		return props;
+	}
+
+	function svgProps() {
+		return imgProps(
+			{class: `${imgClass}`, role: 'presentation', style: 'transform: rotate(360deg);'},
+			{id, alt, viewBox, width: imgWidth, height: imgHeight}
+		);
+	}
+
+	function renderImgTag() {
+		$imgWrapper.appendChild($assign('img', imgProps(
+			{style: `${imgWidth ? `width:${imgWidth}px` : ''}; ${imgHeight ? `height:${imgHeight}px` : ''}`},
+			{id, alt, src: imgDef, class: imgClass}
+		)));
 	}
 }
+
 
 export {
 	$assign,
