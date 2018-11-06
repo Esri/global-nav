@@ -352,6 +352,16 @@
 	}
 }
 
+.-always-hamburger .esri-header-menus-submenu-toggle{
+	@media (--width-l) {
+		display: block;
+		box-shadow: inset 0 -1px 0 var(--mono-88), inset 0 1px 0 var(--mono-88);
+		margin-top: -15px;
+		margin-left: -35px;
+		width: calc(100% + 80px);
+	}	
+}
+
 .esri-header-menus-sublist {
 	@apply --unset-l;
 }
