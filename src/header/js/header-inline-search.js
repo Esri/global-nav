@@ -180,6 +180,7 @@ export default () => {
 				const $icon = !l.icon ? $('span', {class: `${prefix}-suggestion-icon-wrapper`, style: `min-width: ${minIconWidth};`}) :
 					$renderSvgOrImg({
 							inlineImg: true,
+							alt: "",
 							imgDef: l.icon === 'searchIcon' ? $search.sm : l.icon,
 							imgWidth: l.iconSize || "22",
 							imgHeight: l.icon === 'searchIcon' ? "15px" : l.iconSize,
@@ -213,7 +214,7 @@ export default () => {
 	$target.addEventListener('header:update:inlineSearch', ({detail}) => {
 		if (!detail.hide) {
 			$($control, {aria: {label: detail.label}});
-			$renderSvgOrImg({imgDef: $search.md, imgClass: `${prefix}-image`, id: `${prefix}-image`, $targetElm: $control});
+			$renderSvgOrImg({imgDef: $search.md, imgClass: `${prefix}-image`, id: `${prefix}-image`, alt: "", $targetElm: $control});
 
 			searchState.image = $search.md;
 			searchState.action = detail.dialog && detail.dialog.action;
