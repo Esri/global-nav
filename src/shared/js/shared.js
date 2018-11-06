@@ -67,10 +67,10 @@ function $fetch(url, callback, onError = () => {
 	return xhr;
 }
 
-function $renderSvgOrImg({imgDef = "", imgClass = "", imgWidth, imgHeight, viewBox, id, $targetElm}) {
-	const $imgWrapper = $assign('span');
+function $renderSvgOrImg({imgDef = "", imgClass = "", wrapperClass = "", inlineImg = false, id = "", imgWidth, imgHeight, viewBox, $targetElm}) {
+	const $imgWrapper = $assign('span', {class: wrapperClass});
 
-	const svgProps = {class: imgClass, role: 'presentation'};
+	const svgProps = {class: `${imgClass}`, role: 'presentation', style: 'transform: rotate(360deg);'};
 	if (imgWidth && imgHeight) {
 		svgProps.width = imgWidth;
 		svgProps.height = imgHeight;
@@ -83,7 +83,7 @@ function $renderSvgOrImg({imgDef = "", imgClass = "", imgWidth, imgHeight, viewB
 	}
 
 	if (typeof imgDef === 'string') {
-		if (imgDef.indexOf('.svg') === imgDef.length - 4) {
+		if (imgDef.indexOf('.svg') === imgDef.length - 4 && !inlineImg) {
 			$fetch(imgDef, (svgContents) => {
 				$imgWrapper.innerHTML = svgContents;
 				const $img = $imgWrapper.firstElementChild;

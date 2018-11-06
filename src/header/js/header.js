@@ -47,7 +47,7 @@ export default (data) => {
 	);
 
 	const $lineBreak = $('div', {class: 'esri-header-lineBreak'});
-	const $headerContent = $('div', {class: `esri-header -${data.theme || 'web'}`},
+	const $headerContent = $('div', {class: `esri-header -${data.theme || 'web'} ${data.collapseMenus ? '-always-hamburger' : ''}`},
 			$headerCanvas,
 			$brandStripe,
 			$brand,
@@ -159,7 +159,7 @@ export default (data) => {
 	let notificationsDetail = null;
 
 	$header.addEventListener('header:menu:open', ({detail}) => {
-		const isMenuToggle = 'menu-toggle' === detail.type;
+		const isMenuMobile = 'menu-toggle' === detail.type && viewportIsSmallMedium.matches;
 		const isAccountMobile = $account === detail.target && viewportIsSmall.matches;
 
 		// Update Control, Content
@@ -177,14 +177,13 @@ export default (data) => {
 		if ($search === detail.target || $inlineSearch === detail.target) {
 			searchDetail = detail;
 		} else if (searchDetail) {
-			searchDetail.triggeredComponent = detail.type;
 			$dispatch($search, 'header:menu:close', searchDetail);
 			searchDetail = null;
 		}
 
 		if ($desktopMenus === detail.target || $mobileMenus === detail.target) {
 			menusDetail = detail;
-		} else if (menusDetail && !isMenuToggle && !isAccountMobile) {
+		} else if (menusDetail && !isAccountMobile && !isMenuMobile) {
 			$dispatch($desktopMenus, 'header:menu:close', menusDetail);
 			$dispatch($mobileMenus, 'header:menu:close', menusDetail);
 			menusDetail = null;
@@ -222,7 +221,7 @@ export default (data) => {
 	/* ====================================================================== */
 
 	$header.addEventListener('header:menu:close', ({detail}) => {
-		const currentDetail = detail || menusDetail || searchDetail || accountDetail || appsDetail || menuDetail || notificationsDetail;
+		const currentDetail = detail || searchDetail || accountDetail || appsDetail || notificationsDetail || menusDetail ||  menuDetail;
 
 		if (currentDetail) {
 			// Close the Detail
@@ -234,12 +233,11 @@ export default (data) => {
 			if (searchDetail && searchDetail.control === currentDetail.control) {
 				$dispatch(searchDetail.content.lastChild, 'reset');
 			}
+
 			if (searchDetail && searchDetail.target === $inlineSearch && (currentDetail.type === "inlineSearch" || viewportIsSmall.matches)) {
-				if (menusDetail) {
-					$($inlineSearch.children[0], {aria: {expanded: false}});
-					$($inlineSearch.children[1], {aria: {expanded: false, hidden: true}});
+				if (!menusDetail) {
+					$dispatch(searchDetail.content, 'header:inlineSearch:deactivated', currentDetail);
 				}
-				$dispatch(searchDetail.content, 'header:inlineSearch:deactivated', {event});
 			}
 
 			if (canvasShouldClose) {
