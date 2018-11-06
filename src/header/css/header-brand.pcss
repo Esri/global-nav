@@ -6,7 +6,8 @@
 .esri-header-brand {
 	@apply --unset-a;
 	align-items: center;
-	display: inline-flex;
+	display: flex;
+	flex: 0 0 auto;
 	height: 100%;
 	text-decoration: none;
 	color: var(--mono-35);
@@ -52,9 +53,10 @@
 }
 
 .distributor-image {
-	display: inline-block;
+	display: inline;
 	padding-bottom: 0px;
 	position: relative;
+	vertical-align: text-top;
 }
 
 .distributor-image-border {

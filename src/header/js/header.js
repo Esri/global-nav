@@ -47,7 +47,7 @@ export default (data) => {
 	);
 
 	const $lineBreak = $('div', {class: 'esri-header-lineBreak'});
-	const $headerContent = $('div', {class: `esri-header -${data.theme || 'web'}`},
+	const $headerContent = $('div', {class: `esri-header -${data.theme || 'web'} ${data.collapseMenus ? '-always-hamburger' : ''}`},
 			$headerCanvas,
 			$brandStripe,
 			$brand,
@@ -159,8 +159,11 @@ export default (data) => {
 	let notificationsDetail = null;
 
 	$header.addEventListener('header:menu:open', ({detail}) => {
-		const isMenuToggle = 'menu-toggle' === detail.type;
-		const isAccountMobile = $account === detail.target && viewportIsSmall.matches;
+		const menuWrapper = detail.control.closest('.esri-header-menus');
+		const hasMobileClass = menuWrapper && menuWrapper.classList.contains('-mobile');
+		const isMenuMobile = ('menu-toggle' === detail.type && viewportIsSmallMedium.matches) || hasMobileClass;
+		const isAccountMobile = ($account === detail.target && viewportIsSmall.matches);
+
 
 		// Update Control, Content
 		$(detail.control, {aria: {expanded: true}});
@@ -177,14 +180,13 @@ export default (data) => {
 		if ($search === detail.target || $inlineSearch === detail.target) {
 			searchDetail = detail;
 		} else if (searchDetail) {
-			searchDetail.triggeredComponent = detail.type;
 			$dispatch($search, 'header:menu:close', searchDetail);
 			searchDetail = null;
 		}
 
 		if ($desktopMenus === detail.target || $mobileMenus === detail.target) {
 			menusDetail = detail;
-		} else if (menusDetail && !isMenuToggle && !isAccountMobile) {
+		} else if (menusDetail && !isAccountMobile && !isMenuMobile) {
 			$dispatch($desktopMenus, 'header:menu:close', menusDetail);
 			$dispatch($mobileMenus, 'header:menu:close', menusDetail);
 			menusDetail = null;
@@ -222,24 +224,25 @@ export default (data) => {
 	/* ====================================================================== */
 
 	$header.addEventListener('header:menu:close', ({detail}) => {
-		const currentDetail = detail || menusDetail || searchDetail || accountDetail || appsDetail || menuDetail || notificationsDetail;
+		const currentDetail = detail || searchDetail || accountDetail || appsDetail || notificationsDetail || menusDetail ||  menuDetail;
 
 		if (currentDetail) {
 			// Close the Detail
 			$(currentDetail.control, {aria: {expanded: false}});
 			$(currentDetail.content, {aria: {expanded: false, hidden: true}});
 
-			const canvasShouldClose = !viewportIsSmallMedium.matches || 'menu-close' !== currentDetail.type && 'account-close' !== currentDetail.type;
+			const isBurger = currentDetail.control.closest('.-always-hamburger') !== null;
+			const canvasShouldClose = (!viewportIsSmallMedium.matches && !isBurger)
+			|| ('menu-close' !== currentDetail.type && 'account-close' !== currentDetail.type);
 
 			if (searchDetail && searchDetail.control === currentDetail.control) {
 				$dispatch(searchDetail.content.lastChild, 'reset');
 			}
+
 			if (searchDetail && searchDetail.target === $inlineSearch && (currentDetail.type === "inlineSearch" || viewportIsSmall.matches)) {
-				if (menusDetail) {
-					$($inlineSearch.children[0], {aria: {expanded: false}});
-					$($inlineSearch.children[1], {aria: {expanded: false, hidden: true}});
+				if (!menusDetail) {
+					$dispatch(searchDetail.content, 'header:inlineSearch:deactivated', currentDetail);
 				}
-				$dispatch(searchDetail.content, 'header:inlineSearch:deactivated', {event});
 			}
 
 			if (canvasShouldClose) {

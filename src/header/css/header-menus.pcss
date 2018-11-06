@@ -6,7 +6,7 @@
 .esri-header-menus {
 	&.-mobile {
 		display: none;
-		&.-always-visible {
+		&.-always-hamburger {
 			display: block;
 			order: -1;
 			flex-grow: 0;
@@ -46,6 +46,10 @@
 	@media (--width-l) {
 		display: none;
 	}
+}
+
+.esri-header-menus.-always-hamburger .esri-header-menus-toggle {
+	display: block;
 }
 
 .esri-header-menus-image {
@@ -348,6 +352,16 @@
 	}
 }
 
+.-always-hamburger .esri-header-menus-submenu-toggle{
+	@media (--width-l) {
+		display: block;
+		box-shadow: inset 0 -1px 0 var(--mono-88), inset 0 1px 0 var(--mono-88);
+		margin-top: -15px;
+		margin-left: -35px;
+		width: calc(100% + 80px);
+	}	
+}
+
 .esri-header-menus-sublist {
 	@apply --unset-l;
 }
@@ -583,12 +597,11 @@
 	& .esri-header-menus-submenu {
 		box-shadow: inset 0 1px 0 0 var(--mono-88), 0 0 20px 0 color(var(--mono-0) a(30%));
 		inset-start: 0;
+		min-height: 100%;
 		position: absolute;
 		transition: transform var(--smooth-speed) ease-in-out;
-		z-index: 1;
-		min-height: calc(100vh - var(--header-height));
-		min-height: calc(var(--esri-vh) - var(--header-height));
 		width: var(--header-width-m);
+		z-index: 1;
 
 		&[aria-hidden="true"] {
 			height: 0;
@@ -635,6 +648,7 @@
 	&.-mobile {
 		& .esri-header-menus-menu {
 			display: none;
+			margin-bottom: auto;
 
 			&.-collapsed {
 				display: block;
