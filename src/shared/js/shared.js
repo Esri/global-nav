@@ -103,9 +103,9 @@ function $renderSvgOrImg({imgDef = "", imgClass = "", wrapperClass = "", inlineI
 
 	return $imgWrapper;
 
-	function imgProps(props, mixins) { 
+	function imgProps(props, mixins) {
 		for (const mixin in mixins) {
-			if (mixins[mixin] !== undefined) props[mixin] = mixins[mixin];
+			if (mixins[mixin] !== undefined && mixins[mixin] !== null) props[mixin] = mixins[mixin];
 		}
 		return props;
 	}
