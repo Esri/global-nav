@@ -159,8 +159,11 @@ export default (data) => {
 	let notificationsDetail = null;
 
 	$header.addEventListener('header:menu:open', ({detail}) => {
-		const isMenuMobile = 'menu-toggle' === detail.type && viewportIsSmallMedium.matches;
-		const isAccountMobile = $account === detail.target && viewportIsSmall.matches;
+		const menuWrapper = detail.control.closest('.esri-header-menus');
+		const hasMobileClass = menuWrapper && menuWrapper.classList.contains('-mobile');
+		const isMenuMobile = ('menu-toggle' === detail.type && viewportIsSmallMedium.matches) || hasMobileClass;
+		const isAccountMobile = ($account === detail.target && viewportIsSmall.matches);
+
 
 		// Update Control, Content
 		$(detail.control, {aria: {expanded: true}});
@@ -228,7 +231,9 @@ export default (data) => {
 			$(currentDetail.control, {aria: {expanded: false}});
 			$(currentDetail.content, {aria: {expanded: false, hidden: true}});
 
-			const canvasShouldClose = !viewportIsSmallMedium.matches || 'menu-close' !== currentDetail.type && 'account-close' !== currentDetail.type;
+			const isBurger = currentDetail.control.closest('.-always-hamburger') !== null;
+			const canvasShouldClose = (!viewportIsSmallMedium.matches && !isBurger)
+			|| ('menu-close' !== currentDetail.type && 'account-close' !== currentDetail.type);
 
 			if (searchDetail && searchDetail.control === currentDetail.control) {
 				$dispatch(searchDetail.content.lastChild, 'reset');
