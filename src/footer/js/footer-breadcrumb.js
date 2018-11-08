@@ -7,13 +7,9 @@ import {$assign as $} from '../../shared/js/shared';
 /* ========================================================================== */
 
 export default (data, prefix) => {
-
-  if(data.showBreadcrumb) {
-
+  if (data.showBreadcrumb) {
     const listWrapper = $('ul', {class: `esri-footer-breadcrumb--list`});
-
     const breadcrumb = window.location.pathname;
-
     if (breadcrumb.length) {
       const path = breadcrumb.split('/');
       path.forEach((element, index) => {
@@ -42,7 +38,5 @@ export default (data, prefix) => {
       listWrapper,
       $('div', {class: 'clear'})
     );
-
   }
-
-}
+};
