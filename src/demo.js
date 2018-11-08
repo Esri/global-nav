@@ -448,6 +448,7 @@ document.addEventListener("DOMContentLoaded", () => {
 		footer: {
 			hideMenus: false,
 			label: 'Esri',
+			showBreadcrumb: true,
 			brand: {
 				label: 'Esri: The Science of Where',
 				href: 'https://www.esri.com/about-esri',

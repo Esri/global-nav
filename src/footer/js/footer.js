@@ -5,6 +5,7 @@ import language from './footer-language';
 import menu from './footer-menu';
 import info from './footer-info';
 import social from './footer-social';
+import breadcrumb from './footer-breadcrumb';
 
 /* Global Footer
 /* ========================================================================== */
@@ -20,6 +21,7 @@ export default (data) => {
 	const $footerLanguage = data.language ? language(data.language, prefix) : $('div', {class: `esri-footer-language`});
 	const $footerMenu = menu(data.menu, prefix);
 	const $footerSocial = social(data.social, prefix);
+	const $footerBreadcrumb = breadcrumb(data, prefix);
 
 	const $footer = $('footer',
 		{
@@ -30,16 +32,21 @@ export default (data) => {
 
 		/* Append Footer Components
 		/* ================================================================== */
-		$('div', {class: `${prefix}-section--1 ${data.hideMenus ? 'hidden' : ''}`},
-			$footerBrand,
-			$footerSocial
+		$('div', {class: `${prefix}-section--0`},
+			$footerBreadcrumb,
 		),
-		$('div', {class: `${prefix}-section--2 ${data.hideMenus ? 'hidden' : ''}`},
-			$footerMenu
-		),
-		$('div', {class: `${prefix}-section--3`},
-			$footerLanguage,
-			$footerInfo
+		$('div', {class: `${prefix}--wrapper`},
+			$('div', {class: `${prefix}-section--1 ${data.hideMenus ? 'hidden' : ''}`},
+				$footerBrand,
+				$footerSocial
+			),
+			$('div', {class: `${prefix}-section--2 ${data.hideMenus ? 'hidden' : ''}`},
+				$footerMenu
+			),
+			$('div', {class: `${prefix}-section--3`},
+				$footerLanguage,
+				$footerInfo
+			)
 		)
 	);
 
