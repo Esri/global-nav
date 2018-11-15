@@ -36,8 +36,7 @@ export default (data, prefix) => {
 
     return $('div', {class: `${prefix}-breadcrumb`},
       $('a', {class: `${prefix}-breadcrumb--pin`}, $renderSvgOrImg({imgDef: $pin.sm, imgClass: `svg-icon`, imgWidth:"17", imgHeight:"17", viewBox:"0 0 32 32"})),
-      listWrapper,
-      $('div', {class: 'clear'})
+      listWrapper
     );
   }
 };
