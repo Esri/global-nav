@@ -2,6 +2,8 @@
 
 ### Added
 - notifications UI (#33)
+- now can set links to active with `active: true`
+- inline search pattern (for suggestions, top results)
 
 ### Modified
 - Social icons open in new window
@@ -11,6 +13,7 @@
 - IE 11 browser fixes
 - Fixed several spacing/alignment inconsistencies
 - small accessibility fixes
+- fixed bugs with images rendering with `undefined` id attribute
 
 ## 1.0.8
 
