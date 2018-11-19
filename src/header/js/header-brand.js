@@ -3,7 +3,7 @@ import {$assign as $, $dispatch, $replaceAll, $renderSvgOrImg} from '../../share
 const prefix = 'esri-header-brand';
 
 export default () => {
-	const $target = $('div', {class: prefix, id: prefix});
+	const $target = $('div', {class: prefix});
 
 	// On Click
 	$target.addEventListener('click', (event) => {
@@ -21,13 +21,13 @@ export default () => {
 
 		if (detail.distributorImage) {
 			const $distributorImage = $('span', {class: 'distributor-image'});
-			$renderSvgOrImg({imgDef: detail.distributorImage, imgClass: `${prefix}-image`, imgWidth: detail.distributorImageWidth, imgHeight: detail.distributorImageHeight, $targetElm: $distributorImage});
+			$renderSvgOrImg({imgDef: detail.distributorImage, imgClass: `${prefix}-image`, alt: '', imgWidth: detail.distributorImageWidth, imgHeight: detail.distributorImageHeight, $targetElm: $distributorImage});
 			$($targetLink, $distributorImage, $('span', {class: 'distributor-image-border'}));
 		}
 		if (detail.image) {
 			const $brandImage = $('span', {class: 'brand-image'});
-			$($target, {aria: {label: detail.label}});
-			$renderSvgOrImg({imgDef: detail.image, imgClass: `${prefix}-image`, imgWidth: detail.width, imgHeight: detail.height, $targetElm: $brandImage});
+			$($targetLink, {aria: {label: detail.label}});
+			$renderSvgOrImg({imgDef: detail.image, imgClass: `${prefix}-image`, alt: '', imgWidth: detail.width, imgHeight: detail.height, $targetElm: $brandImage});
 			$($targetLink, $brandImage);
 		}
 		if (detail.brandText) {
