@@ -6,21 +6,18 @@ export default (data, prefix) => {
 
 	data.menu.forEach((item) => {
 		$($socialIcons,
-			$('li', {class: `${prefix}-social-item`},
-				$('a',
-					{
-						class: `${prefix}-social-link -${item.label.toLowerCase().replace(' ','-')}`,
-						href: item.href,
-						aria: {label: item.label},
-						target: '_blank'
-					},
-					$renderSvgOrImg({imgDef: item.image.path, imgClass: `${prefix}-social-image`, alt: '', imgWidth: 30, imgHeight:30, viewBox : item.image.viewBox})
-				)
+			$('a',
+				{
+					class: `${prefix}-social-item ${prefix}-social-link -${item.label.toLowerCase().replace(' ','-')}`,
+					href: item.href,
+					aria: {label: item.label},
+					target: '_blank'
+				},
+				$renderSvgOrImg({imgDef: item.image.path, imgClass: `${prefix}-social-image`, alt: '', imgWidth: 30, imgHeight:30, viewBox : item.image.viewBox})
 			));
 	});
 
-	return $('div',
-		{class: `${prefix}-social`, aria: {label: data.label}},
-		$('ul', {class: `${prefix}-social-list`, role: 'presentation'},
+	return $('div', {class: `${prefix}-social`},
+		$('nav', {class: `${prefix}-social-nav`, aria: {label: data.label}},
 			$socialIcons));
 };
