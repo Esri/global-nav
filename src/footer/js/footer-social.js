@@ -14,7 +14,7 @@ export default (data, prefix) => {
 						aria: {label: item.label},
 						target: '_blank'
 					},
-					$renderSvgOrImg({imgDef: item.image.path, imgClass: `${prefix}-social-image`, imgWidth: 30, imgHeight:30, viewBox : item.image.viewBox})
+					$renderSvgOrImg({imgDef: item.image.path, imgClass: `${prefix}-social-image`, alt: '', imgWidth: 30, imgHeight:30, viewBox : item.image.viewBox})
 				)
 			));
 	});
