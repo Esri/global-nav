@@ -1,3 +1,9 @@
+## Unreleased
+
+### Fixed
+- remove non-unique ids (accessibility violation)
+- social link markup structure now more accessible
+
 ## 1.1.0
 
 ### Added

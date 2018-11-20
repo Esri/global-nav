@@ -73,7 +73,7 @@ export default ({variant = 'desktop'}) => {
 
 							const $subcontrol = $('a',
 								{
-									class: `${prefix}-link ${item.hideLabelInDesktop ? '-hide-label' : ''} ${item.active ? '-is-active' : ''}`, id: `${prefix}-link-${uuid}-${suuid}`,
+									class: `${prefix}-link ${item.hideLabelInDesktop ? '-hide-label' : ''} ${item.active ? '-is-active' : ''}`, id: `${prefix}-link-${variant}-${uuid}-${suuid}`,
 									href: item.href || 'javascript:;' // eslint-disable-line no-script-url
 								},
 								$linkIcon,
@@ -113,7 +113,7 @@ export default ({variant = 'desktop'}) => {
 										$('ul',
 											{
 												class: `${prefix}-sublist`,
-												role: 'navigation', aria: {labelledby: `${prefix}-${variant}-link-${uuid}-${suuid}`}
+												role: 'navigation', aria: {labelledby: `${prefix}-link-${variant}-${uuid}-${suuid}`}
 											},
 											/* Global Navigation: Menus: Sublink
 											/* ============================== */
@@ -155,7 +155,7 @@ export default ({variant = 'desktop'}) => {
 										$('ul',
 											{
 												class: `${prefix}-sublist--featured`,
-												role: 'navigation', aria: {labelledby: `${prefix}-link-${uuid}-${suuid}`},
+												role: 'navigation', aria: {labelledby: `${prefix}-link-${variant}-${uuid}-${suuid}`},
 												data: {filled: `${item.tiles.slice(0, 4).length}`}
 											},
 											/* Global Navigation: Menus: Sublink
