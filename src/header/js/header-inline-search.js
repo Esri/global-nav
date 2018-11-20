@@ -85,7 +85,7 @@ export default () => {
 		aria: {expanded: false, labelledby: `${prefix}-suggestions`}
 	});
 
-	const boldKeywords = (input, keywords) => input.replace(new RegExp(`(\\b)(${keywords.join('|')})(\\b)`,'ig'), '$1<strong>$2</strong>$3');
+	const boldKeywords = (input, keywords) => input.replace(new RegExp(`(\\b)(${keywords.join('|').replace(/\+|\*|\(|\)/g,'')})(\\b)`,'ig'), '$1<strong>$2</strong>$3');
 
 	/* Search: Content
 	/* ====================================================================== */
