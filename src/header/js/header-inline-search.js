@@ -69,7 +69,7 @@ export default () => {
 		if (!searchState.value || searchState.value === " ") {
 			return $suggestions.innerHTML = "";
 		} else if (e.keyCode === 13 && searchState.value) {
-			return window.location.href = `${searchState.action}?q=${searchState.value}`;
+			return window.location.href = `${searchState.action}?q=${encodeURIComponent(searchState.value)}`;
 		}
 
 		$dispatch($control, 'header:search:typing', {
