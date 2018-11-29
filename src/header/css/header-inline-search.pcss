@@ -263,6 +263,14 @@
 	align-items: center;
 }
 
+.inactive .esri-header-inlineSearch-suggestion-icon-wrapper {
+	float: left;
+
+	@nest :dir(rtl) & {
+		float: right;
+	}
+}
+
 .esri-header-inlineSearch-suggestion-header {
 	margin-bottom: 0;
 	margin-top: 16px;
