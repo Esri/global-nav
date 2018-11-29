@@ -158,7 +158,7 @@ export default () => {
 
 			const $li = $('li', {
 				class: `${prefix}-suggestion`
-			}, (l.href ? $('a', {href: l.href}, $icon, $span) : $('span', {}, $icon, $span)));
+			}, (l.href ? $('a', {href: l.href}, $icon, $span) : $('span', {class: "inactive"}, $icon, $span)));
 
 			$ul.appendChild($li);
 
@@ -201,7 +201,7 @@ export default () => {
 
 				const $li = $('li', {
 					class: `${prefix}-suggestion`
-				}, (l.href ? $('a', {href: l.href}, $icon, $span) : $('span', {}, $icon, $span)));
+				}, (l.href ? $('a', {href: l.href}, $icon, $span) : $('span', {class: "inactive"}, $icon, $span)));
 
 				$ul.appendChild($li);
 			});
