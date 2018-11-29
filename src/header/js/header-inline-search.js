@@ -67,8 +67,9 @@ export default () => {
 	$input.addEventListener("keyup", (e) => {
 		searchState.value = e.target.value;
 		if (!searchState.value || searchState.value === " ") {
+			searchState.isDisabled = false;
 			return $suggestions.innerHTML = "";
-		} else if (e.keyCode === 13 && searchState.value) {
+		} else if (e.keyCode === 13 && searchState.value && !searchState.isDisabled) {
 			return window.location.href = `${searchState.action}?q=${encodeURIComponent(searchState.value)}`;
 		}
 
@@ -136,6 +137,7 @@ export default () => {
 
 	$target.addEventListener('header:search:populateSuggestions', ({detail}) => {
 		$suggestions.innerHTML = '';
+		searchState.isDisabled = detail.disabled;
 
 		if (Array.isArray(detail)) {
 			createSuggestionsList(detail, searchState.value.split(" "));
@@ -156,7 +158,7 @@ export default () => {
 
 			const $li = $('li', {
 				class: `${prefix}-suggestion`
-			}, $('a', {href: l.href}, $icon, $span));
+			}, (l.href ? $('a', {href: l.href}, $icon, $span) : $('span', {}, $icon, $span)));
 
 			$ul.appendChild($li);
 
@@ -199,7 +201,7 @@ export default () => {
 
 				const $li = $('li', {
 					class: `${prefix}-suggestion`
-				}, $('a', {href: l.href}, $icon, $span));
+				}, (l.href ? $('a', {href: l.href}, $icon, $span) : $('span', {}, $icon, $span)));
 
 				$ul.appendChild($li);
 			});
