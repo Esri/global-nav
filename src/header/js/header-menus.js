@@ -10,7 +10,7 @@ export default ({variant = 'desktop'}) => {
 	if (variant === 'mobile') {
 		const $toggle = $('button', {
 			class: `${prefix}-toggle`, id: `${prefix}-${variant}-toggle`,
-			aria: {controls: `${prefix}-content`, expanded: false, haspopup: true, labelledby: 'esri-header-brand'}
+			aria: {controls: `${prefix}-content-${variant}`, expanded: false, haspopup: true, labelledby: 'esri-header-brand'}
 		});
 		$renderSvgOrImg({imgDef: $hamburger.md, imgClass: `${prefix}-image`, id: `${prefix}-image`, $targetElm: $toggle});
 
@@ -34,7 +34,7 @@ export default ({variant = 'desktop'}) => {
 
 	const $content = $('div', {
 		class: `${prefix}-content`,
-		id: `${prefix}-content`,
+		id: `${prefix}-content-${variant}`,
 		aria: {hidden: true, expanded: false}
 	});
 
