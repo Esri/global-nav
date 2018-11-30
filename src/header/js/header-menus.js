@@ -34,6 +34,7 @@ export default ({variant = 'desktop'}) => {
 
 	const $content = $('div', {
 		class: `${prefix}-content`,
+		id: `${prefix}-content`,
 		aria: {hidden: true, expanded: false}
 	});
 
