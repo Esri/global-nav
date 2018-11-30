@@ -1,8 +1,11 @@
-## Unreleased
+## 1.1.1
 
 ### Fixed
 - remove non-unique ids (accessibility violation)
 - social link markup structure now more accessible
+- fix missing ids for aria labels
+- hide inline search toggle when using normal search (and vice sersa)
+- set profile image alt tag to user's name
 
 ## 1.1.0
 
