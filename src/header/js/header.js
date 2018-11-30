@@ -88,13 +88,13 @@ export default (data) => {
 		}
 
 		if (detail.search) {
-				if (detail.search.inline) {
-					$search.querySelector(".esri-header-search-control").setAttribute("tabindex", "-1");
-					$dispatch($inlineSearch, 'header:update:inlineSearch', detail.search);
-				} else {
-					$inlineSearch.querySelector(".esri-header-inlineSearch-control").setAttribute("tabindex", "-1");
-					$dispatch($search, 'header:update:search', detail.search);
-				}
+			if (detail.search.inline) {
+				$search.querySelector(".esri-header-search-control").classList.add("esri-header-search-control-hidden");
+				$dispatch($inlineSearch, 'header:update:inlineSearch', detail.search);
+			} else {
+				$inlineSearch.querySelector(".esri-header-inlineSearch-control").classList.add("esri-header-search-control-hidden");
+				$dispatch($search, 'header:update:search', detail.search);
+			}
 		}
 
 		if (detail.account) {
