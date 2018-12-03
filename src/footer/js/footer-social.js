@@ -5,10 +5,11 @@ export default (data, prefix) => {
 
 
 	data.menu.forEach((item) => {
+		const platform = item.platform || item.label.toLowerCase().replace(' ','-');
 		$($socialIcons,
 			$('a',
 				{
-					class: `${prefix}-social-item ${prefix}-social-link -${item.label.toLowerCase().replace(' ','-')}`,
+					class: `${prefix}-social-item ${prefix}-social-link -${platform}`,
 					href: item.href,
 					aria: {label: item.label},
 					target: '_blank'

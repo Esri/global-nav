@@ -1,3 +1,8 @@
+## 1.1.2
+
+### Fixed
+- Add `platform` property as a fallback for social media classes (#134)
+
 ## 1.1.1
 
 ### Fixed

@@ -338,6 +338,7 @@ document.addEventListener("DOMContentLoaded", () => {
 				menu: [
 					{
 						label: 'Facebook',
+						platform: 'facebook',
 						href: 'https://www.facebook.com/esrigis',
 						image: {
 							viewBox: '0 0 38 38',
@@ -346,6 +347,7 @@ document.addEventListener("DOMContentLoaded", () => {
 					},
 					{
 						label: 'Twitter',
+						platform: 'twitter',
 						href: 'https://twitter.com/Esri',
 						image: {
 							viewBox: '0 0 512 512',
@@ -354,6 +356,7 @@ document.addEventListener("DOMContentLoaded", () => {
 					},
 					{
 						label: 'LinkedIn',
+						platform: 'linkedin',
 						href: 'https://www.linkedin.com/company/esri',
 						image: {
 							viewBox: '0 0 24 24',
@@ -362,6 +365,7 @@ document.addEventListener("DOMContentLoaded", () => {
 					},
 					{
 						label: 'Instagram',
+						platform: 'instagram',
 						href: 'https://www.instagram.com/esrigram/',
 						image: {
 							viewBox: '0 0 30 30',
@@ -370,6 +374,7 @@ document.addEventListener("DOMContentLoaded", () => {
 					},
 					{
 						label: 'YouTube',
+						platform: 'youtube',
 						href: 'https://www.youtube.com/user/esritv',
 						image: {
 							viewBox: '0 0 310 310',
@@ -378,6 +383,7 @@ document.addEventListener("DOMContentLoaded", () => {
 					},
 					{
 						label: 'GeoNet',
+						platform: 'geonet',
 						href: 'https://geonet.esri.com/',
 						image: {
 							viewBox: '7 7 16 16',
