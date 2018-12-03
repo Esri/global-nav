@@ -12,7 +12,8 @@ export default (data, prefix) => {
 					class: `${prefix}-social-item ${prefix}-social-link -${platform}`,
 					href: item.href,
 					aria: {label: item.label},
-					target: '_blank'
+					target: '_blank',
+					rel: 'noopener'
 				},
 				$renderSvgOrImg({imgDef: item.image.path, imgClass: `${prefix}-social-image`, alt: '', imgWidth: 30, imgHeight:30, viewBox : item.image.viewBox})
 			));

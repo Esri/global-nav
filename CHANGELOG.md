@@ -2,6 +2,7 @@
 
 ### Fixed
 - Add `platform` property as a fallback for social media classes (#134)
+- Use `rel=noopener` on social links
 
 ## 1.1.1
 
