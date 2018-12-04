@@ -71,21 +71,18 @@ export default ({variant = 'desktop'}) => {
 							const $linkIcon = item.icon
 								? $renderSvgOrImg({imgDef: item.icon.path, imgClass: `${prefix}-link-icon`, imgWidth: item.icon.width || '16px', imgHeight: item.icon.height || '16px'})
 								: null;
-
+							const linkScope = {
+								class: `${prefix}-link ${item.hideLabelInDesktop ? '-hide-label' : ''} ${item.active ? '-is-active' : ''}`, id: `${prefix}-link-${variant}-${uuid}-${suuid}`,
+								href: item.href || 'javascript:;' // eslint-disable-line no-script-url
+							};
+							if (item.data) {
+								linkScope.data = item.data;
+							}
 							const $subcontrol = $('a',
-								{
-									class: `${prefix}-link ${item.hideLabelInDesktop ? '-hide-label' : ''} ${item.active ? '-is-active' : ''}`, id: `${prefix}-link-${variant}-${uuid}-${suuid}`,
-									href: item.href || 'javascript:;' // eslint-disable-line no-script-url
-								},
+								linkScope,
 								$linkIcon,
 								$('span', {class : `${prefix}-link-label`}, item.label)
 							);
-
-							if (item.data) {
-								$subcontrol({
-									data: item.data
-								});
-							}
 
 							const $li = $('li', {class: `${prefix}-item`}, $subcontrol);
 
