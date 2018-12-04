@@ -6,6 +6,7 @@
     <title>Esri Global Nav Demo Pages</title>
     <link rel="stylesheet" href="./esri-global-nav.css">
     <link rel="stylesheet" href="https://s3-us-west-1.amazonaws.com/patterns.esri.com/files/calcite-web/1.0.1/css/calcite-web.min.css">
+    <link rel="stylesheet" href="./syntax.css">
 </head>
 <body>
     <a class="skip-to-content" href="#skip-to-content">Skip To Content</a>
@@ -43,7 +44,7 @@
 
                 <p>First, you need to import the global nav library into your page. The best way to do this will vary based on your toolchain and build process. For static html pages, you can simply add a link to the JS and CSS files:</p>
 
-<pre><code>&lt;!-- in the HEAD tag --&gt;
+<pre><code class="language-markup">&lt;!-- in the HEAD tag --&gt;
 &lt;link rel="stylesheet" href="./esri-global-nav.css"&gt;
 &lt;!-- before the end of BODY tag --&gt;
 &lt;script src="./path/to/esri-global-nav.js"&gt;&lt;/script&gt;
@@ -51,11 +52,11 @@
 
                 <p>If you're using a module system for your JS, the library can be imported via CommonJS:</p>
 
-<pre><code>var globalNav = require('esri-global-nav')</code></pre>
+<pre><code class="language-js">var globalNav = require('esri-global-nav')</code></pre>
 
                 <p>Or AMD (Dojo define syntax):</p>
 
-<pre><code>define([
+<pre><code class="language-js">define([
   "esri-global-nav/dist/esri-global-nav.js"
 ], function (globalNav) {
   return {
@@ -77,7 +78,7 @@
 
                 <p>The basic stucture of the options object would look something like this (abbreviated for clarity):</p>
 
-<pre><code>{
+<pre><code class="language-js">{
   header: {
     theme: 'web',
     brand: {
@@ -251,9 +252,9 @@
 };
 </code></pre>
 
-                <p>After you've defined the structure of your navigation, just call <code>globalNav.create</code> to start up your navigation, passing in the options and the containers like so:</p>
+                <p>After you've defined the structure of your navigation, just call <code class="language-js">globalNav.create</code> to start up your navigation, passing in the options and the containers like so:</p>
 
-<pre><code>esriGlobalNav.create({headerElm: '.esri-header-barrier', footerElm: '.esri-footer-barrier', menuData});</code></pre>
+<pre><code class="language-js">esriGlobalNav.create({headerElm: '.esri-header-barrier', footerElm: '.esri-footer-barrier', menuData});</code></pre>
 
                 <p>For a complete example, you can reference <a href="https://github.com/Esri/global-nav/blob/master/src/demo.js">the demo</a>.</p>
 
@@ -261,26 +262,26 @@
 
                 <p>The global nav dispatches custom events to each of its modules (Header and Footer).</p>
 
-<pre><code>globalNav.create(yourGlobalNavStructure);
+<pre><code class="language-js">globalNav.create(yourGlobalNavStructure);
 var esriHeader = document.querySelector('.esri-header-barrier');
 esriHeader.addEventListener("header:click:search", function () { ... });</code></pre>
 
                 <p>Important events:</p>
 
                 <ul>
-                    <li><code>header:click:account</code></li>
-                    <li><code>header:click:search</code></li>
-                    <li><code>header:click:signin</code></li>
-                    <li><code>header:click:signout</code></li>
-                    <li><code>header:click:switch</code></li>
-                    <li><code>header:menu:toggle</code></li>
+                    <li><code class="language-js">header:click:account</code></li>
+                    <li><code class="language-js">header:click:search</code></li>
+                    <li><code class="language-js">header:click:signin</code></li>
+                    <li><code class="language-js">header:click:signout</code></li>
+                    <li><code class="language-js">header:click:switch</code></li>
+                    <li><code class="language-js">header:menu:toggle</code></li>
                 </ul>
 
                 <h2 class="leader-2">Advanced</h2>
                 <h3>Opening Links in a New Tab</h3>
                 <p>Links, within a menu, can be configured to open in a new tab. As of now, this only works for links within dropdown submenus.</p>
 
-<pre><code>yourGlobalNavStructure = {
+<pre><code class="language-js">yourGlobalNavStructure = {
   theme: 'web',
   menus: [[
     {
@@ -294,7 +295,7 @@ esriHeader.addEventListener("header:click:search", function () { ... });</code><
                 <h3>Adding Data Attributes to Links</h3>
                 <p>Menu links can receive data attributes too. Here, we create a special page link that has an an attribute of "data-id" that's equal to "1" and "data-show-link" that's equal to "true". As of now, this only works for links within dropdown submenus</p>
 
-<pre><code>yourGlobalNavStructure = {
+<pre><code class="language-js">yourGlobalNavStructure = {
   theme: 'web',
   menus: [[
     {
@@ -308,11 +309,17 @@ esriHeader.addEventListener("header:click:search", function () { ... });</code><
   ]]
 }</code></pre>
 
+              <h3>Always Display the Hamburger</h3>
+
+<pre><code class="language-js">
+header: {
+  collapseMenus: [true, false]
+</code></pre>
 
               <h3>Using Inline Search</h3>
               <p>Inline search is a powerful way to supercharge the search experience for your users. It gives users the ability to view search results & suggestions in a dropdown without having to navigate away from their current content.</p>
 
-<pre><code>
+<pre><code class="language-js">
 //_______________________________________________________________________________
 // - To use inline search, set the parameter inline to true within the search object
 //-------------------------------------------------------------------------------
@@ -376,7 +383,7 @@ event.initCustomEvent('header:search:update:suggestions', true, true, {
               <h3>Configuring the App Launcher</h3>
               <p>To work with the standard set of apps from ArcGIS Online use the AGO Webworker Interface: <a href="https://github.com/ArcGIS/AGO-Webworker-Interface">https://github.com/ArcGIS/AGO-Webworker-Interface</a></p>
 
-<pre><code>
+<pre><code class="language-js">
 //_______________________________________________________________________________
 // - Before apps are loaded, we want to initialize the apps component with a loading state
 // -- Dispatch the event to update apps in the header
@@ -456,5 +463,6 @@ event.initCustomEvent("header:update:apps", true, true, {
     <div class="esri-footer-barrier"></div>
     <script src="./esri-global-nav.js"></script>
     <script src="./home.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.15.0/prism.min.js"></script>
 </body>
 </html>
