@@ -40,6 +40,10 @@
 	margin: 0;
 	padding: 0;
 	width: 90%;
+
+	@nest [dir="rtl"] & {
+		float: right;
+	}
 }
 
 .esri-footer-breadcrumb--pin {
@@ -49,6 +53,12 @@
 	max-width: 15px;
 	padding-right: 25px;
 	width: 5%;
+
+	@nest [dir="rtl"] & {
+		float: right;
+		padding-left: 25px;
+		padding-right: 5px;
+	}
 }
 
 .esri-footer-breadcrumb--pin:hover {
