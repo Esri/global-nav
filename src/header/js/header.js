@@ -113,6 +113,10 @@ export default (data) => {
 			$dispatch($notifications, 'header:update:notifications', detail.notifications);
 		}
 
+		if (!detail.notifications && !detail.apps && !detail.account) {
+			$lineBreak.classList.add('esri-header-lineBreak-hidden');
+		}
+
 		$header.ownerDocument.defaultView.addEventListener('keydown', ({keyCode}) => {
 			if (27 === keyCode) {
 				$dispatch($header, 'header:menu:close');
