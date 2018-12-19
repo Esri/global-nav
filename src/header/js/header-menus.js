@@ -82,9 +82,9 @@ export default ({variant = 'desktop'}) => {
 							);
 
 							if (item.data) {
-								$subcontrol({
-									data: item.data
-								});
+								for (const key in item.data) {
+									$subcontrol.setAttribute(`data-${key}`, item.data[key]);
+								}
 							}
 
 							const $li = $('li', {class: `${prefix}-item`}, $subcontrol);
