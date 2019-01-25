@@ -25,15 +25,17 @@ export default () =>
         if (element) {
           if (listWrapper) {
             if (index === path.length - 1) {
+              console.log(path[index]);
               $(listWrapper,
                 $('li', {class: `esri-footer-breadcrumb--items`}, '/',
                   $('p', {class: `esri-footer-breadcrumb--items-current`}, `${element}`),
                 ),
               );
             } else {
+              console.log(path[index]);
               $(listWrapper,
                 $('li', {class: `esri-footer-breadcrumb--items`}, '/',
-                  $('a', {href: '#', class: `esri-footer-breadcrumb--items-link`}, `${element}`)
+                  $('a', {href: 'link', class: `esri-footer-breadcrumb--items-link`}, `${element}`)
                 ),
               );
             }
