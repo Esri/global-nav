@@ -3,9 +3,9 @@ const browserSync = require('browser-sync').create();
 
 const pkg = require('../package.json');
 
-gulp.task('web-server', () => {
+gulp.task('web-server', (done) => {
 	browserSync.init({
-		open: true,
+		open: false,
 		port: pkg.gulp_config.server_port,
 		ui:{
 			port: 3003
@@ -14,12 +14,10 @@ gulp.task('web-server', () => {
 			baseDir: pkg.gulp_config.build_path,
 			index: "index.html"
 		},
-		watchOptions: {
-			ignoreInitial: true
-		},
-		files: `${pkg.gulp_config.build_path}/**/*`,
+		watch: true,
 		cors: true,
 		reloadOnRestart: true,
-		notify: false
-	});
+		notify: false,
+		ui: false
+	}, done);
 });
