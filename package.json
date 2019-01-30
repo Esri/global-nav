@@ -59,7 +59,7 @@
     "postcss-custom-selectors": "^4.0.1",
     "postcss-dir-pseudo-class": "^2.1.0",
     "postcss-easings": "^1.0.0",
-    "postcss-font-family-system-ui": "^2.0.1",
+    "postcss-font-family-system-ui": "^4.1.0",
     "postcss-font-variant": "^3.0.0",
     "postcss-image-set-polyfill": "^0.4.4",
     "postcss-initial": "^2.0.0",
