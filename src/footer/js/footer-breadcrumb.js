@@ -15,9 +15,7 @@ export default () =>
 
 
   window.addEventListener('DOMContentLoaded', () => {
-    // const breadcrumb = window.location.pathname;
-    const breadcrumb = "en-us/maps-we-love/gallery/animated-tornado-tree-rings";
-    // const breadcrumb = "/content/esri-sites/language-masters/en/industries/banking/overview.html";
+    const breadcrumb = window.location.pathname;
     const listWrapper = document.querySelector('.esri-footer-breadcrumb--list');
 
     const rules = [
@@ -45,7 +43,7 @@ export default () =>
     };
 
     const buildLinkURL = (path, position) => {
-      let url = 'https://www.esri.com/';
+      let url = `${window.location.origin}/` || 'https://www.esri.com/';
       for (let i = 0; i <= position; i++) {
         url += `${path[i]}/`;
       }
