@@ -26,7 +26,7 @@ function compileJs() {
 }
 
 function compileJsFile({rootJs, saveAs}) {
-	rollup_stream({
+	return rollup_stream({
 		input: rootJs,
 		format: `${pkg.gulp_config.js_module_format}`,
 		name: 'esriGlobalNav',
@@ -50,47 +50,53 @@ function compileJsFile({rootJs, saveAs}) {
 						}
 					}]]
 			}),
-			rollup_plugin_uglify(false)
+			rollup_plugin_uglify.uglify(false)
 		]
-	}).pipe(
-		source(`./${pkg.main}`)
-	).pipe(logger({
-		before: 'Compiling JS',
-		after: 'Compiling JS complete!',
-		showChange: false
-	})).pipe(
-		buffer()
-	).pipe(
-		add_banner(banner)
-	)
-	.pipe(
-		sourcemaps.init({
-			loadMaps: true
-		})
-	).pipe(
-		rename(saveAs)
-	).pipe(
-		size({
-			gzip: true,
-			showFiles: true,
-			title: 'Size of:'
-		})
-	).pipe(
-		sourcemaps.write('.')
-	).pipe(
-		gulp.dest(pkg.gulp_config.build_path)
-	)
+	})
+		.pipe(
+			source(`./${pkg.main}`)
+		)
+		.pipe(logger({
+			before: 'Compiling JS',
+			after: 'Compiling JS complete!',
+			showChange: false
+		}))
+		.pipe(
+			buffer()
+		)
+		.pipe(
+			add_banner(banner)
+		)
+		.pipe(
+			sourcemaps.init({
+				loadMaps: true
+			})
+		)
+		.pipe(
+			rename(saveAs)
+		)
+		.pipe(
+			size({
+				gzip: true,
+				showFiles: true,
+				title: 'Size of:'
+			})
+		)
+		.pipe(
+			sourcemaps.write('.')
+		)
+		.pipe(
+			gulp.dest(pkg.gulp_config.build_path)
+		);
 }
 
-gulp.task('compile-js', () => {
-	compileJs();
-});
+gulp.task('compile-js', () => compileJs());
 
 gulp.task('watch-js', () => {
 	console.log('watching js...');
 	compileJs();
 	const jsGlob = `${pkg.gulp_config.src_path}/**/*.js`;
-	watch(jsGlob, () => {
+	return watch(jsGlob, () => {
 		compileJs();
 	});
 });
