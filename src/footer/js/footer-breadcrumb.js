@@ -45,11 +45,11 @@ export default () =>
     };
 
     const buildLinkURL = (path, position) => {
-      let url = '';
+      let url = 'https://www.esri.com/';
       for (let i = 0; i <= position; i++) {
         url += `${path[i]}/`;
       }
-      url = `https://www.esri.com/${url}`;
+      url = `${url}`;
       
       return url;
     };
