@@ -1,7 +1,26 @@
+## 1.1.2
+
+### Fixed
+- Add `platform` property as a fallback for social media classes (#134)
+- Use `rel=noopener` on social links
+- When only search is used, divider is now hidden (#200)
+- remove text decoration from `header-brand-link`
+
+## 1.1.1
+
+### Fixed
+- remove non-unique ids (accessibility violation)
+- social link markup structure now more accessible
+- fix missing ids for aria labels
+- hide inline search toggle when using normal search (and vice sersa)
+- set profile image alt tag to user's name
+
 ## 1.1.0
 
 ### Added
 - notifications UI (#33)
+- now can set links to active with `active: true`
+- inline search pattern (for suggestions, top results)
 
 ### Modified
 - Social icons open in new window
@@ -11,6 +30,7 @@
 - IE 11 browser fixes
 - Fixed several spacing/alignment inconsistencies
 - small accessibility fixes
+- fixed bugs with images rendering with `undefined` id attribute
 
 ## 1.0.8
 

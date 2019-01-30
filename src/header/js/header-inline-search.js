@@ -42,6 +42,10 @@ export default () => {
 	$closeBtn.addEventListener('click', (event) => {
 		$dispatch($control, 'header:inlineSearch:deactivated', {event});
 
+		setTimeout(() => {
+			$control.focus();
+		}, 0);
+
 		$dispatch($control, 'header:menu:toggle', {
 			state: 'menu',
 			target: $target,
@@ -63,9 +67,10 @@ export default () => {
 	$input.addEventListener("keyup", (e) => {
 		searchState.value = e.target.value;
 		if (!searchState.value || searchState.value === " ") {
+			searchState.isDisabled = false;
 			return $suggestions.innerHTML = "";
-		} else if (e.keyCode === 13 && searchState.value) {
-			return window.location.href = `${searchState.action}?q=${searchState.value}`;
+		} else if (e.keyCode === 13 && searchState.value && !searchState.isDisabled) {
+			return window.location.href = `${searchState.action}?q=${encodeURIComponent(searchState.value)}`;
 		}
 
 		$dispatch($control, 'header:search:typing', {
@@ -81,7 +86,13 @@ export default () => {
 		aria: {expanded: false, labelledby: `${prefix}-suggestions`}
 	});
 
-	const boldKeywords = (input, keywords) => input.replace(new RegExp(`(\\b)(${keywords.join('|')})(\\b)`,'ig'), '$1<strong>$2</strong>$3');
+	const boldKeywords = (input, keywords) => {
+		try {
+			return input.replace(new RegExp(`(\\b)(${keywords.join('|').replace(/\+|\*|\(|\)\[/g,'')})(\\b)`,'ig'), '$1<strong>$2</strong>$3');
+		} catch (e) {
+			return input;
+		}
+	}; 
 
 	/* Search: Content
 	/* ====================================================================== */
@@ -99,7 +110,7 @@ export default () => {
 
 	const $target = $('div', {
 		class: prefix,
-		aria: {expanded: false, labelledby: `${prefix}-target`}
+		aria: {expanded: false}
 	}, $control, $content);
 
 	/* Search: On Activation
@@ -119,38 +130,78 @@ export default () => {
 		$target.setAttribute('aria-expanded', "false");
 		$suggestions.innerHTML = '';
 		$input.value = '';
-		if (!detail.event.detail || !detail.event.detail.triggeredComponent || detail.event.detail.triggeredComponent === "inlineSearch") {
-			setTimeout(() => {
-				$control.focus();
-			}, 0);
-		}
 	});
 
 	/* Search: On Populate Suggestions
 	/* ====================================================================== */
 
 	$target.addEventListener('header:search:populateSuggestions', ({detail}) => {
-    const searchValueArray = searchState.value.split(" ");
 		$suggestions.innerHTML = '';
-		// No Results State
-		if (!detail.suggestions || !detail.suggestions.length) return;
+		searchState.isDisabled = detail.disabled;
 
-		detail.suggestions.forEach((s) => {
-			const $header = $('p', {class: `${prefix}-suggestion-header`}, s.header);
-			const $footer = $('a', {
+		if (Array.isArray(detail)) {
+			createSuggestionsList(detail, searchState.value.split(" "));
+		} else if (!detail.suggestions || !detail.suggestions.length) {
+			// No Results State
+			return;
+		} else {
+			createSuggestionsSections(detail, searchState.value.split(" "));
+		}
+	});
+
+	const createSuggestionsList = (detail, searchValueArray) => {
+		const $ul = $('ul', {class: `${prefix}-simple-suggestion-list`});
+		detail.forEach((l) => {
+			const $icon = l.icon ? $('img', {src: l.icon, class: `${prefix}-suggestion-icon`, alt: ""}) : "";
+			const $span = $('span');
+			$span.innerHTML = boldKeywords(l.text, searchValueArray);
+
+			const $li = $('li', {
+				class: `${prefix}-suggestion`
+			}, (l.href ? $('a', {href: l.href}, $icon, $span) : $('span', {class: "inactive"}, $icon, $span)));
+
+			$ul.appendChild($li);
+
+			const $section = $('div', {
+				class: `${prefix}-simple-suggestion-section`
+			}, $ul);
+
+			$suggestions.appendChild($section);
+		});
+	};
+
+	const createSuggestionsSections = (detail, searchValueArray) => {
+		const minIconWidth = `${detail.minIconWidth || "0"}px`;
+		detail.suggestions.forEach((s, ind) => {
+			const $header = s.header ? $('p', {class: `${prefix}-suggestion-header`}, s.header) : $('p');
+			const $hr = (s.header || ind > 0) && !s.hideHR ? $('hr') : $('span');
+			const $ul = $('ul', {class: `${prefix}-suggestion-list`});
+			const $footer = !s.footer ? $('span') : $('a', {
 				href: s.footer.href,
 				class: `${prefix}-suggestion-footer`
 			}, s.footer.text);
-			const $hr = $('hr');
-			const $ul = $('ul', {class: `${prefix}-suggestion-list`});
 
 			s.links.forEach((l) => {
-				const $text = boldKeywords(l.text, searchValueArray);
-				const $span = $('span').innerHTML = $text;
+				const $span = $('span', {class: `${prefix}-suggestion-text`});
+				$span.innerHTML = boldKeywords(l.text, searchValueArray);
+				$span.appendChild(l.secondary ? $('div', {class: `${prefix}-suggestion-secondary-text`}, l.secondary) : $('span'));
+				const $icon = !l.icon ? $('span', {class: `${prefix}-suggestion-icon-wrapper`, style: `min-width: ${minIconWidth};`}) :
+					$renderSvgOrImg({
+							inlineImg: true,
+							alt: "",
+							imgDef: l.icon === 'searchIcon' ? $search.sm : l.icon,
+							imgWidth: l.iconSize || "22",
+							imgHeight: l.icon === 'searchIcon' ? "15px" : l.iconSize,
+							imgClass: `${prefix}-suggestion-icon`,
+							wrapperClass: `${prefix}-suggestion-icon-wrapper`
+						});
+				$icon.style.minWidth = minIconWidth;
+
+				if (l.htmlIcon) $icon.innerHTML = l.htmlIcon;
 
 				const $li = $('li', {
 					class: `${prefix}-suggestion`
-				}, $('a', {href: l.href}, $span));
+				}, (l.href ? $('a', {href: l.href}, $icon, $span) : $('span', {class: "inactive"}, $icon, $span)));
 
 				$ul.appendChild($li);
 			});
@@ -162,16 +213,8 @@ export default () => {
 			$suggestions.appendChild($section);
 		});
 
-		const $keyword = $('strong', {}, searchState.value);
-		const $allResults = $('a', {
-			href: `${searchState.action}?q=${searchState.value}`,
-			class: `${prefix}-suggestions-all-results`}, `${boldKeywords(detail.seeAllResultsString, searchValueArray)}`
-		);
-		const $allResultsSection = $('div', {
-			class: `${prefix}-suggestions-all-results-section`
-		}, $renderSvgOrImg({imgDef: $search.sm, imgClass: `${prefix}-all-results-icon`}), $allResults) ;
-		$suggestions.appendChild($allResultsSection);
-	});
+		$suggestions.appendChild($('div', {class: `${prefix}-suggestions-bottom-padding`}));
+	};
 
 	/* Search: On Update
 	/* ====================================================================== */
@@ -179,12 +222,13 @@ export default () => {
 	$target.addEventListener('header:update:inlineSearch', ({detail}) => {
 		if (!detail.hide) {
 			$($control, {aria: {label: detail.label}});
-			$renderSvgOrImg({imgDef: $search.md, imgClass: `${prefix}-image`, id: `${prefix}-image`, $targetElm: $control});
+			$renderSvgOrImg({imgDef: $search.md, imgClass: `${prefix}-image`, id: `${prefix}-image`, alt: "", $targetElm: $control});
 
 			searchState.image = $search.md;
 			searchState.action = detail.dialog && detail.dialog.action;
 
-      $input.setAttribute("placeholder", (detail.dialog && detail.dialog.queryLabel) || "");
+			$input.setAttribute('placeholder', (detail.dialog && detail.dialog.queryLabel) || "");
+			$closeBtn.setAttribute('aria-label', (detail.dialog && detail.dialog.cancelLabel) || "");
 
 			if (detail.dialog) {
 				detail.dialog.prefix = 'esri-header-search-dialog';

@@ -169,7 +169,7 @@ html[dir="rtl"] .dropdown-menu.dropdown-right {
 }
 
 .esri-header-apps .dropdown-width-3 {
-	width: 312px;
+	min-width: 480px;
 }
 
 .esri-header-apps .dropdown-width-4 {
@@ -239,6 +239,11 @@ html[dir="rtl"] .dropdown-menu.dropdown-right {
 	overflow-x: hidden;
 	padding: 10px 0 10px 13px;
 	text-align: left;
+
+	@nest :dir(rtl) & {
+		text-align: right;
+		padding: 10px;
+	}
 }
 
 .esri-header-apps .appContainer.primary {
