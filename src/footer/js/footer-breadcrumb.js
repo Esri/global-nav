@@ -43,7 +43,7 @@ export default () =>
     };
 
     const buildLinkURL = (path, position) => {
-      let url = `${window.location.origin}/` || 'https://www.esri.com/';
+      let url = `${window.location.origin}/`;
       for (let i = 0; i <= position; i++) {
         url += `${path[i]}/`;
       }
