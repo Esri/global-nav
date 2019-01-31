@@ -14,8 +14,7 @@ export default () =>
   );
 
   window.addEventListener('DOMContentLoaded', () => {
-    // const breadcrumb = window.location.pathname;
-    const breadcrumb = 'en-us/industries/petroleum/overview';
+    const breadcrumb = window.location.pathname;
     const listWrapper = document.querySelector('.esri-footer-breadcrumb--list');
 
     const rules = [
