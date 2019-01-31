@@ -676,6 +676,14 @@ document.addEventListener("DOMContentLoaded", () => {
 						}
 					},
 					{
+						label: 'Flickr',
+						href: 'https://www.flickr.com',
+						image: {
+							viewBox: '0 0 32 32',
+							path : 'http://www.esri.com/content/dam/esrisites/en-us/common/icons/Flikr_32.svg'
+						}
+					},					
+					{
 						label: 'GisIQ',
 						href: 'https://gis-iq.esri.de/',
 						image: {
