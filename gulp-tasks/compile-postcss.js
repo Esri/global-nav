@@ -9,7 +9,7 @@ const banner = require('./banner');
 const pkg = require('../package.json');
 
 function compilePostCss() {
-	gulp.src(`${pkg.gulp_config.src_path}/esri-global-nav.pcss`)
+	return gulp.src(`${pkg.gulp_config.src_path}/esri-global-nav.pcss`)
 		.pipe(sourcemaps.init())
 		.pipe(postcss([
 			require('postcss-partial-import')(),
@@ -49,18 +49,16 @@ function compilePostCss() {
 		.pipe(ext.replace('css','pcss'))
 		.pipe(add_banner(banner))
 		.pipe(sourcemaps.write('./'))
-		.pipe(gulp.dest(pkg.gulp_config.build_path))
+		.pipe(gulp.dest(pkg.gulp_config.build_path));
 }
 
-gulp.task('compile-postcss', () => {
-	compilePostCss();
-});
+gulp.task('compile-postcss', () => compilePostCss());
 
 gulp.task('watch-postcss', () => {
 	console.log('watching postcss...');
 	compilePostCss();
 	const pcssGlob = `${pkg.gulp_config.src_path}/**/*.pcss`;
-	watch(pcssGlob, () => {
-		compilePostCss()
+	return watch(pcssGlob, () => {
+		compilePostCss();
 	});
 });
