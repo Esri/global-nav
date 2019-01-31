@@ -4,6 +4,10 @@
 /* Global Footer */
 /* ========================================================================== */
 
+:root {
+	--breadcrumb--link-idle: #636363;
+}
+
 .esri-footer {
 	background-color: var(--mono-97);
 }
@@ -85,18 +89,6 @@
 
 .esri-footer-section--0 {
 
-	&.hidden{
-		display: none;
-	}
-
-	@media (--gfoot-s) {
-		
-	}
-
-	@media (--gfoot-m) {
-		
-	}
-
 	@media (--gfoot-l) {
 		padding-left: calc(50% - 1424px / 2);
 		padding-right: calc(50% - 1424px / 2);
@@ -109,7 +101,7 @@
 	padding: 25px;
 }
 
-.clear {
+.clearFloats {
 	clear: both;
 }
 
@@ -119,19 +111,32 @@
 	margin: 0;
 	padding: 0;
 	width: 90%;
+
+	@nest :dir(rtl) & {
+		float: right;
+	}
 }
 
 .esri-footer-breadcrumb--pin {
+	background: url("../../shared/shared.svg#c-map-pin" param(--fill var(--mono-0))) no-repeat;
+	background-size: contain;
+	background-position: 0%, 50%;
 	box-sizing: border-box;
-	color: #6e6e6e;
 	float: left;
 	max-width: 15px;
+	margin-top: 7px;
 	padding-right: 25px;
 	width: 5%;
+	height: 20px;
+
+	@nest :dir(rtl) & {
+		float: right;
+		padding-left: 25px;
+	}
 }
 
-.esri-footer-breadcrumb--pin:hover .svg-icon {
-	fill: var(--blue);
+.esri-footer-breadcrumb--pin:hover {
+	background: url("../../shared/shared.svg#c-map-pin" param(--fill var(--blue))) no-repeat;
 	cursor: pointer;
 }
 
@@ -143,19 +148,19 @@
 
 .esri-footer-breadcrumb--items-link {
 	font-size: 14px;
-	color: #636363;
+	color: var(--breadcrumb--link-idle);
 	padding: 0 10px;
 	text-decoration: none;
 	text-transform: capitalize;
 
 	&:hover {
-		color: #0079c1;
+		color: var(--blue);
 		text-decoration: underline;
 	}
 }
 
 .esri-footer-breadcrumb--items-current {
-	color: #000;
+	color: var(--mono-0);
 	font-size: 14px;
 	display: inline-block;
 	margin: 0;
