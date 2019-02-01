@@ -32,7 +32,7 @@ function compilePostCss() {
 			require('postcss-color-gray')(),
 			require('postcss-color-hex-alpha')(),
 			require('postcss-color-function')(),
-			require('postcss-font-family-system-ui')(),
+			// require('postcss-font-family-system-ui')(),
 			require('postcss-font-variant')(),
 			require('postcss-initial')(),
 			require('postcss-selector-matches')(),
