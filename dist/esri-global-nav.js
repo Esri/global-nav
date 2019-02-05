@@ -4918,20 +4918,24 @@ var breadcrumb = (function () {
 });
 
 window.addEventListener('DOMContentLoaded', function () {
-  var breadcrumb = window.location.pathname;
+  // const breadcrumb = window.location.pathname;
+  var breadcrumb = 'en-us/about-arcgis/products/esri-cityengine/arcgis-pro/arcgis-blog/js-api-arcgis/mapping/render-millions-of-features-in-your-maps/';
+  // const breadcrumb = 'arcgis-blog/products/js-api-arcgis/mapping/render-millions-of-features-in-your-maps/';
+  // const breadcrumb = 'esri-news/arcnews/arcwatch/arcuser/issue-archive ';
   var listWrapper = document.querySelector('.esri-footer-breadcrumb--list');
 
-  var rules = [{ 'arcgis': 'ArcGIS' }, { 'arcgis-pro': 'ArcGIS Pro' }, { 'about-arcgis': 'About ArcGIS' }];
+  var rules = [{ 'Esri Cityengine ': 'Esri CityEngine' }, { 'appstudio': 'AppStudio' }, { 'appbuilder': 'AppBuilder' }, { 'arcnews': 'ArcNews' }, { 'arcwatch': 'ArcWatch' }, { 'arcuser': 'ArcUser' }];
 
-  var exceptions = ['', 'content', 'esri-sites', 'language-masters', 'en', 'en-us'];
+  var exceptions = ['', 'content', 'esri-sites', 'language-masters', 'en', 'en-us', 'segments'];
 
   var validateRule = function validateRule(element) {
     var crumb = element;
+    var regEx = /arcgis/gi;
     rules.forEach(function (rule) {
       rule.hasOwnProperty(crumb) ? crumb = rule[crumb] : '';
     });
 
-    return crumb;
+    return crumb.replace(regEx, 'ArcGIS').replace(/-/gi, ' ').replace('Of', 'of').replace('For', 'for').replace('If', 'if').replace('And', 'and').replace('But', 'but').replace('Nor', 'nor').replace('Or', 'or').replace('Js', 'JS').replace('Api', 'API').replace('In', 'in');
   };
 
   var buildLinkURL = function buildLinkURL(path, position) {
@@ -4944,10 +4948,19 @@ window.addEventListener('DOMContentLoaded', function () {
     return url;
   };
 
+  var formatBreadcrumbs = function formatBreadcrumbs(breadcrumb) {
+    var newCurrentPage = breadcrumb.split(' ');
+    var currentPageFormatted = '';
+    newCurrentPage.forEach(function (ne) {
+      currentPageFormatted += '' + ne.charAt(0).toUpperCase() + ne.substr(1).toLowerCase() + ' ';
+    });
+    return currentPageFormatted = validateRule(currentPageFormatted);
+  };
+
   var cleanUpBreadcrumbs = function cleanUpBreadcrumbs(breadcrumb) {
     breadcrumb.forEach(function (b, index) {
-      exceptions.forEach(function (x) {
-        if (breadcrumb[index] === x) {
+      exceptions.forEach(function (ex) {
+        if (breadcrumb[index] === ex) {
           breadcrumb.splice(index, 1);
         }
       });
@@ -4964,10 +4977,13 @@ window.addEventListener('DOMContentLoaded', function () {
       if (element && listWrapper) {
         var currentPage = element.replace(/-/gi, ' ').replace(/\.html/gi, '');
         var crumbPage = crumb.replace(/-/gi, ' ').replace(/\.html/gi, '');
+
         if (index === newPath.length - 1) {
-          $assign(listWrapper, $assign('li', { class: prefix$8 + '--items' }, '/', $assign('p', { class: prefix$8 + '--items-current' }, '' + currentPage)));
+          var currentPageFormatted = formatBreadcrumbs(currentPage);
+          $assign(listWrapper, $assign('li', { class: prefix$8 + '--items' }, '/', $assign('p', { class: prefix$8 + '--items-current' }, '' + currentPageFormatted)));
         } else {
-          $assign(listWrapper, $assign('li', { class: prefix$8 + '--items' }, '/', $assign('a', { href: url, class: prefix$8 + '--items-link' }, '' + crumbPage)));
+          var crumbPageFormatted = formatBreadcrumbs(crumbPage);
+          $assign(listWrapper, $assign('li', { class: prefix$8 + '--items' }, '/', $assign('a', { href: url, class: prefix$8 + '--items-link' }, '' + crumbPageFormatted)));
         }
       }
     });

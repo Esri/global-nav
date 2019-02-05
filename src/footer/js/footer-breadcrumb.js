@@ -14,13 +14,19 @@ export default () =>
   );
 
   window.addEventListener('DOMContentLoaded', () => {
-    const breadcrumb = window.location.pathname;
+    // const breadcrumb = window.location.pathname;
+    const breadcrumb = 'en-us/about-arcgis/products/esri-cityengine/arcgis-pro/arcgis-blog/js-api-arcgis/mapping/render-millions-of-features-in-your-maps/';
+    // const breadcrumb = 'arcgis-blog/products/js-api-arcgis/mapping/render-millions-of-features-in-your-maps/';
+    // const breadcrumb = 'esri-news/arcnews/arcwatch/arcuser/issue-archive ';
     const listWrapper = document.querySelector('.esri-footer-breadcrumb--list');
 
     const rules = [
-      {'arcgis' : 'ArcGIS'},
-      {'arcgis-pro' : 'ArcGIS Pro'},
-      {'about-arcgis' : 'About ArcGIS'}
+      {'Esri Cityengine ' : 'Esri CityEngine'},
+      {'appstudio' : 'AppStudio'},
+      {'appbuilder' : 'AppBuilder'},
+      {'arcnews' : 'ArcNews'},
+      {'arcwatch' : 'ArcWatch'},
+      {'arcuser' : 'ArcUser'}
     ];
     
     const exceptions = [
@@ -29,16 +35,30 @@ export default () =>
       'esri-sites',
       'language-masters',
       'en',
-      'en-us'
+      'en-us',
+      'segments'
     ];
 
     const validateRule = (element) => {
       let crumb = element;
+      const regEx = /arcgis/gi;
       rules.forEach((rule) => {
         rule.hasOwnProperty(crumb) ? crumb = rule[crumb] : '';
       });
-
-      return crumb;
+      
+      return crumb
+        .replace(regEx, 'ArcGIS')
+        .replace(/-/gi, ' ')
+        .replace('Of', 'of')
+        .replace('For', 'for')
+        .replace('If', 'if')
+        .replace('And', 'and')
+        .replace('But', 'but')
+        .replace('Nor', 'nor')
+        .replace('Or', 'or')
+        .replace('Js', 'JS')
+        .replace('Api', 'API')
+        .replace('In', 'in');
     };
 
     const buildLinkURL = (path, position) => {
@@ -51,10 +71,19 @@ export default () =>
       return url;
     };
 
+    const formatBreadcrumbs = (breadcrumb) => {
+      const newCurrentPage = breadcrumb.split(' ');
+      let currentPageFormatted = '';
+      newCurrentPage.forEach((ne) => {
+        currentPageFormatted += `${ne.charAt(0).toUpperCase()}${ne.substr(1).toLowerCase()} `;
+      });
+      return currentPageFormatted = validateRule(currentPageFormatted);
+    };
+
     const cleanUpBreadcrumbs = (breadcrumb) => {
       breadcrumb.forEach((b, index) => {
-        exceptions.forEach((x) => {
-          if (breadcrumb[index] === x) {
+        exceptions.forEach((ex) => {
+          if (breadcrumb[index] === ex) {
             breadcrumb.splice(index, 1);
           }
         });
@@ -71,16 +100,19 @@ export default () =>
         if (element && listWrapper) {
           const currentPage = element.replace(/-/gi, ' ').replace(/\.html/gi, '');
           const crumbPage = crumb.replace(/-/gi, ' ').replace(/\.html/gi, '');
+
           if (index === newPath.length - 1) {
+            const currentPageFormatted = formatBreadcrumbs(currentPage);
             $(listWrapper,
               $('li', {class: `${prefix}--items`}, '/',
-                $('p', {class: `${prefix}--items-current`}, `${currentPage}`),
+                $('p', {class: `${prefix}--items-current`}, `${currentPageFormatted}`),
               ),
             );
           } else {
+            const crumbPageFormatted = formatBreadcrumbs(crumbPage);
             $(listWrapper,
               $('li', {class: `${prefix}--items`}, '/',
-                $('a', {href: url, class: `${prefix}--items-link`}, `${crumbPage}`)
+                $('a', {href: url, class: `${prefix}--items-link`}, `${crumbPageFormatted}`)
               ),
             );
           }
