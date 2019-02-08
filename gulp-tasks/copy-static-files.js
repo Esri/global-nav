@@ -7,7 +7,7 @@ const pkg = require('../package.json');
 const staticGlob = ['html', 'css', 'json','jpg'].map((ext) => `${pkg.gulp_config.src_path}/**/*.${ext}`);
 
 function copyStaticFiles(staticPaths) {
-	gulp.src(staticPaths, {base: pkg.gulp_config.src_path})
+	return gulp.src(staticPaths, {base: pkg.gulp_config.src_path})
 		.pipe(logger({
 			before: 'Copying static files...',
 			after: 'Copying static files complete!',
@@ -18,7 +18,7 @@ function copyStaticFiles(staticPaths) {
 
 gulp.task('copy-static-files', () => {
 	console.log('copy-static-files');
-	copyStaticFiles(staticGlob);
+	return copyStaticFiles(staticGlob);
 });
 
 gulp.task('watch-static-files', () => {
