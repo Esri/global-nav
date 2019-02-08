@@ -93,7 +93,7 @@ function compileJsFile({rootJs, saveAs}) {
 		);
 }
 
-gulp.task('compile-js', (cb) => compileJs(cb));
+gulp.task('compile-js', compileJs);
 
 gulp.task('watch-js', () => {
 	console.log('watching js...');
