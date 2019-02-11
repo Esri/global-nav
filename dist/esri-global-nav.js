@@ -4920,22 +4920,15 @@ var breadcrumb = (function () {
 window.addEventListener('DOMContentLoaded', function () {
   // const breadcrumb = window.location.pathname;
   var breadcrumb = 'en-us/about-arcgis/products/esri-cityengine/arcgis-pro/arcgis-blog/js-api-arcgis/mapping/render-millions-of-features-in-your-maps/';
-  // const breadcrumb = 'arcgis-blog/products/js-api-arcgis/mapping/render-millions-of-features-in-your-maps/';
-  // const breadcrumb = 'esri-news/arcnews/arcwatch/arcuser/issue-archive ';
   var listWrapper = document.querySelector('.esri-footer-breadcrumb--list');
-
-  var rules = [{ 'Esri Cityengine ': 'Esri CityEngine' }, { 'appstudio': 'AppStudio' }, { 'appbuilder': 'AppBuilder' }, { 'arcnews': 'ArcNews' }, { 'arcwatch': 'ArcWatch' }, { 'arcuser': 'ArcUser' }];
 
   var exceptions = ['', 'content', 'esri-sites', 'language-masters', 'en', 'en-us', 'segments'];
 
   var validateRule = function validateRule(element) {
     var crumb = element;
     var regEx = /arcgis/gi;
-    rules.forEach(function (rule) {
-      rule.hasOwnProperty(crumb) ? crumb = rule[crumb] : '';
-    });
 
-    return crumb.replace(regEx, 'ArcGIS').replace(/-/gi, ' ').replace('Of', 'of').replace('For', 'for').replace('If', 'if').replace('And', 'and').replace('But', 'but').replace('Nor', 'nor').replace('Or', 'or').replace('Js', 'JS').replace('Api', 'API').replace('In', 'in');
+    return crumb.replace(regEx, 'ArcGIS').replace(/-/gi, ' ').replace(/js/gi, 'JS').replace(/cityengine/gi, 'CityEngine').replace(/arcgis blog/gi, 'ArcGIS Blog').replace(/arcgis pro/gi, 'ArcGIS Pro').replace(/api/gi, 'API');
   };
 
   var buildLinkURL = function buildLinkURL(path, position) {
@@ -4949,11 +4942,9 @@ window.addEventListener('DOMContentLoaded', function () {
   };
 
   var formatBreadcrumbs = function formatBreadcrumbs(breadcrumb) {
-    var newCurrentPage = breadcrumb.split(' ');
     var currentPageFormatted = '';
-    newCurrentPage.forEach(function (ne) {
-      currentPageFormatted += '' + ne.charAt(0).toUpperCase() + ne.substr(1).toLowerCase() + ' ';
-    });
+    currentPageFormatted += '' + breadcrumb.charAt(0).toUpperCase() + breadcrumb.substr(1).toLowerCase();
+
     return currentPageFormatted = validateRule(currentPageFormatted);
   };
 

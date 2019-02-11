@@ -1,7 +1,7 @@
 /* Global Footer: Tooling
 /* ========================================================================== */
 
-import {$assign as $, $renderSvgOrImg} from '../../shared/js/shared';
+import {$assign as $} from '../../shared/js/shared';
 
 /* Global Footer Breadcrumb
 /* ========================================================================== */
@@ -16,18 +16,7 @@ export default () =>
   window.addEventListener('DOMContentLoaded', () => {
     // const breadcrumb = window.location.pathname;
     const breadcrumb = 'en-us/about-arcgis/products/esri-cityengine/arcgis-pro/arcgis-blog/js-api-arcgis/mapping/render-millions-of-features-in-your-maps/';
-    // const breadcrumb = 'arcgis-blog/products/js-api-arcgis/mapping/render-millions-of-features-in-your-maps/';
-    // const breadcrumb = 'esri-news/arcnews/arcwatch/arcuser/issue-archive ';
     const listWrapper = document.querySelector('.esri-footer-breadcrumb--list');
-
-    const rules = [
-      {'Esri Cityengine ' : 'Esri CityEngine'},
-      {'appstudio' : 'AppStudio'},
-      {'appbuilder' : 'AppBuilder'},
-      {'arcnews' : 'ArcNews'},
-      {'arcwatch' : 'ArcWatch'},
-      {'arcuser' : 'ArcUser'}
-    ];
     
     const exceptions = [
       '',
@@ -40,25 +29,17 @@ export default () =>
     ];
 
     const validateRule = (element) => {
-      let crumb = element;
+      const crumb = element;
       const regEx = /arcgis/gi;
-      rules.forEach((rule) => {
-        rule.hasOwnProperty(crumb) ? crumb = rule[crumb] : '';
-      });
       
       return crumb
         .replace(regEx, 'ArcGIS')
         .replace(/-/gi, ' ')
-        .replace('Of', 'of')
-        .replace('For', 'for')
-        .replace('If', 'if')
-        .replace('And', 'and')
-        .replace('But', 'but')
-        .replace('Nor', 'nor')
-        .replace('Or', 'or')
-        .replace('Js', 'JS')
-        .replace('Api', 'API')
-        .replace('In', 'in');
+        .replace(/js/gi, 'JS')
+        .replace(/cityengine/gi, 'CityEngine')
+        .replace(/arcgis blog/gi, 'ArcGIS Blog')
+        .replace(/arcgis pro/gi, 'ArcGIS Pro')
+        .replace(/api/gi, 'API');
     };
 
     const buildLinkURL = (path, position) => {
@@ -72,11 +53,9 @@ export default () =>
     };
 
     const formatBreadcrumbs = (breadcrumb) => {
-      const newCurrentPage = breadcrumb.split(' ');
       let currentPageFormatted = '';
-      newCurrentPage.forEach((ne) => {
-        currentPageFormatted += `${ne.charAt(0).toUpperCase()}${ne.substr(1).toLowerCase()} `;
-      });
+      currentPageFormatted += `${breadcrumb.charAt(0).toUpperCase()}${breadcrumb.substr(1).toLowerCase()}`;
+      
       return currentPageFormatted = validateRule(currentPageFormatted);
     };
 
