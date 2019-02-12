@@ -4924,7 +4924,7 @@ window.addEventListener('DOMContentLoaded', function () {
   var listWrapper = document.querySelector('.esri-footer-breadcrumb--list');
 
   if (originPage && breadcrumbFooter) {
-    if (originPage.indexOf('support.esri.com/en') > -1 || originPage.indexOf('esri.com/training') > -1 || originPage.indexOf('esri.com/en-us') < 0 || originPage.indexOf('arcgis.com') > -1) {
+    if (originPage.indexOf('esri.com/en-us') < 0) {
       breadcrumbFooter.style.display = 'none';
     }
   }
