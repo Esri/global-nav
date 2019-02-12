@@ -4919,15 +4919,7 @@ var breadcrumb = (function () {
 
 window.addEventListener('DOMContentLoaded', function () {
   var breadcrumb = window.location.pathname;
-  var breadcrumbFooter = document.querySelector('.esri-footer-section--0');
-  var originPage = window.location.href;
   var listWrapper = document.querySelector('.esri-footer-breadcrumb--list');
-
-  if (originPage && breadcrumbFooter) {
-    if (originPage.indexOf('esri.com/en-us') < 0) {
-      breadcrumbFooter.style.display = 'none';
-    }
-  }
 
   var exceptions = ['', 'content', 'esri-sites', 'language-masters', 'en', 'en-us', 'segments', 'overview'];
 

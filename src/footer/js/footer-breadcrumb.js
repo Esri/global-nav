@@ -15,15 +15,7 @@ export default () =>
 
   window.addEventListener('DOMContentLoaded', () => {
     const breadcrumb = window.location.pathname;
-    const breadcrumbFooter = document.querySelector('.esri-footer-section--0');
-    const originPage = window.location.href;
     const listWrapper = document.querySelector('.esri-footer-breadcrumb--list');
-
-    if (originPage && breadcrumbFooter) {
-      if (originPage.indexOf('esri.com/en-us') < 0) {
-        breadcrumbFooter.style.display = 'none'; 
-      }
-    }
     
     const exceptions = [
       '',
