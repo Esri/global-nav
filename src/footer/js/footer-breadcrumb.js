@@ -14,9 +14,19 @@ export default () =>
   );
 
   window.addEventListener('DOMContentLoaded', () => {
-    // const breadcrumb = window.location.pathname;
-    const breadcrumb = 'en-us/about-arcgis/products/esri-cityengine/arcgis-pro/arcgis-blog/js-api-arcgis/mapping/render-millions-of-features-in-your-maps/';
+    const breadcrumb = window.location.pathname;
+    const breadcrumbFooter = document.querySelector('.esri-footer-section--0');
+    const originPage = window.location.href;
     const listWrapper = document.querySelector('.esri-footer-breadcrumb--list');
+
+    if (originPage && breadcrumbFooter) {
+      if ((originPage.indexOf('support.esri.com/en') > -1) 
+          || (originPage.indexOf('esri.com/training') > -1) 
+          || (originPage.indexOf('esri.com/en-us') < 0) 
+          || (originPage.indexOf('arcgis.com') > -1)) {
+        breadcrumbFooter.style.display = 'none';  
+      }
+    }
     
     const exceptions = [
       '',
@@ -25,7 +35,8 @@ export default () =>
       'language-masters',
       'en',
       'en-us',
-      'segments'
+      'segments',
+      'overview'
     ];
 
     const validateRule = (element) => {
@@ -38,7 +49,15 @@ export default () =>
         .replace(/js/gi, 'JS')
         .replace(/cityengine/gi, 'CityEngine')
         .replace(/arcgis blog/gi, 'ArcGIS Blog')
+        .replace(/arcgis apps/gi, 'ArcGIS Apps')
+        .replace(/arcgis online/gi, 'ArcGIS Online')
+        .replace(/arcnews/gi, 'ArcNews')
+        .replace(/arcwatch/gi, 'ArcWatch')
+        .replace(/arcuser/gi, 'ArcUser')
+        .replace(/wherenext/gi, 'WhereNext')
+        .replace(/arcgis enterprise/gi, 'ArcGIS Enterprise')
         .replace(/arcgis pro/gi, 'ArcGIS Pro')
+        .replace(/story maps/gi, 'Story Maps')
         .replace(/api/gi, 'API');
     };
 
@@ -55,7 +74,7 @@ export default () =>
     const formatBreadcrumbs = (breadcrumb) => {
       let currentPageFormatted = '';
       currentPageFormatted += `${breadcrumb.charAt(0).toUpperCase()}${breadcrumb.substr(1).toLowerCase()}`;
-      
+
       return currentPageFormatted = validateRule(currentPageFormatted);
     };
 
@@ -67,6 +86,7 @@ export default () =>
           }
         });
       });
+      
       return breadcrumb;
     };
 
