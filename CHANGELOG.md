@@ -1,4 +1,4 @@
-## Unreleased
+## 1.2.1
 
 ### Updated
 - New icon for app-launcher
