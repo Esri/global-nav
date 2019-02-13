@@ -5,7 +5,7 @@ import language from './footer-language';
 import menu from './footer-menu';
 import info from './footer-info';
 import social from './footer-social';
-import breadcrumbs from './footer-crumbs';
+import breadcrumbs from './footer-breadcrumbs';
 
 /* Global Footer
 /* ========================================================================== */
