@@ -1,3 +1,12 @@
+## 1.2.0
+
+### Fixed
+- data attributes in top-level links (#23)
+- fix app launcher icons for right-to-left languages
+
+### Added
+- flickr icon in social media links
+
 ## 1.1.2
 
 ### Fixed

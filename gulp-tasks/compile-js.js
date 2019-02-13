@@ -18,11 +18,14 @@ const add_banner = require('gulp-banner');
 const banner = require('./banner');
 const pkg = require('../package.json');
 
-function compileJs() {
+function compileJs(cb) {
 	compileJsFile({rootJs: `./${pkg.main}`, saveAs: `${pkg.gulp_config.build_name}.js`});
 	compileJsFile({rootJs: `./${pkg.gulp_config.src_path}/demo.js`, saveAs: 'demo.js'});
 	compileJsFile({rootJs: `./${pkg.gulp_config.src_path}/home.js`, saveAs: 'home.js'});
 	compileJsFile({rootJs: `./${pkg.gulp_config.src_path}/app-mode-demo.js`, saveAs: 'app-mode-demo.js'});
+	if (cb) {
+		cb();
+	}
 }
 
 function compileJsFile({rootJs, saveAs}) {
@@ -90,7 +93,7 @@ function compileJsFile({rootJs, saveAs}) {
 		);
 }
 
-gulp.task('compile-js', () => compileJs());
+gulp.task('compile-js', compileJs);
 
 gulp.task('watch-js', () => {
 	console.log('watching js...');

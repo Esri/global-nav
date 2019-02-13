@@ -20,7 +20,7 @@ function lintJs(sourceFiles) {
 }
 
 gulp.task('es-lint', () => {
-    lintJs(`${pkg.gulp_config.src_path}/**/*.js`);
+    return lintJs(`${pkg.gulp_config.src_path}/**/*.js`);
 });
 
 gulp.task('watch-es-lint', () => {

@@ -7,14 +7,14 @@ const pkg = require('../package.json');
 const svgs = `${pkg.gulp_config.src_path}/img/**/*.svg`;
 
 function optimizeImages() {
-	gulp.src(svgs)
+	return gulp.src(svgs)
 		.pipe(svgmin())
 		.pipe(gulp.dest(`${pkg.gulp_config.build_path}/img`));
 }
 
 gulp.task('optimize-images', () => {
 	console.log('optimizing images...');
-	optimizeImages();
+	return optimizeImages();
 });
 
 gulp.task('watch-optimize-images', () => {
