@@ -1,3 +1,8 @@
+## Unreleased
+
+### Updated
+- New icon for app-launcher
+
 ## 1.2.0
 
 ### Fixed
