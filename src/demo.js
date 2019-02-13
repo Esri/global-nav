@@ -454,6 +454,21 @@ document.addEventListener("DOMContentLoaded", () => {
 				viewBox: '0 0 114 90',
 				path: './img/gnav-tsow-frame.svg'
 			},
+			showBreadcrumb: true,
+			breadcrumbs: [
+				{
+					label: 'ArcGIS', 
+					href: 'https://www.esri.com/en-us/arcgis'
+				},
+				{
+					label: 'Products', 
+					href: 'https://www.esri.com/en-us/arcgis/products'
+				},
+				{
+					label: 'ArcGIS Pro', 
+					href: 'https://www.esri.com/en-us/arcgis/products/arcgis-pro'
+				}
+			],
 			menu: {
 				label: 'Esri Sites',
 				menu: [

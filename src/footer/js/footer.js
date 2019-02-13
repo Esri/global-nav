@@ -5,7 +5,7 @@ import language from './footer-language';
 import menu from './footer-menu';
 import info from './footer-info';
 import social from './footer-social';
-import breadcrumb from './footer-breadcrumb';
+import breadcrumbs from './footer-crumbs';
 
 /* Global Footer
 /* ========================================================================== */
@@ -21,7 +21,7 @@ export default (data) => {
 	const $footerLanguage = data.language ? language(data.language, prefix) : $('div', {class: `esri-footer-language`});
 	const $footerMenu = menu(data.menu, prefix);
 	const $footerSocial = social(data.social, prefix);
-	const $footerBreadcrumb = breadcrumb();
+	const $footerBreadcrumb = breadcrumbs(data);
 
 	const $footer = $('footer',
 		{

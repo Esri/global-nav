@@ -4907,77 +4907,25 @@ var social = (function (data, prefix) {
 	return $assign('div', { class: prefix + '-social' }, $assign('nav', { class: prefix + '-social-nav', aria: { label: data.label } }, $socialIcons));
 });
 
-/* Global Footer: Tooling
-/* ========================================================================== */
+var breadcrumbs = (function (data) {
+  var showBreadCrumbs = data.showBreadcrumb;
 
-/* Global Footer Breadcrumb
-/* ========================================================================== */
-var prefix$8 = 'esri-footer-breadcrumb';
-var breadcrumb = (function () {
-  return $assign('div', { class: '' + prefix$8 }, $assign('a', { href: 'https://www.esri.com', class: prefix$8 + '--pin' }), $assign('ul', { class: prefix$8 + '--list' }), $assign('div', { class: 'clearFloats' }));
-});
+  if (showBreadCrumbs) {
+    var prefix = 'esri-footer-breadcrumb';
+    var $breadCrumbs = document.createDocumentFragment();
+    var breadCrumbItems = data.breadcrumbs;
 
-window.addEventListener('DOMContentLoaded', function () {
-  var breadcrumb = window.location.pathname;
-  var listWrapper = document.querySelector('.esri-footer-breadcrumb--list');
+    breadCrumbItems.forEach(function (crumb, index) {
+      var isLastBreadCrumbItem = index === breadCrumbItems.length - 1;
 
-  var exceptions = ['', 'content', 'esri-sites', 'language-masters', 'en', 'en-us', 'segments', 'overview'];
-
-  var validateRule = function validateRule(element) {
-    var crumb = element;
-    var regEx = /arcgis/gi;
-
-    return crumb.replace(regEx, 'ArcGIS').replace(/-/gi, ' ').replace(/js/gi, 'JS').replace(/cityengine/gi, 'CityEngine').replace(/arcgis blog/gi, 'ArcGIS Blog').replace(/arcgis apps/gi, 'ArcGIS Apps').replace(/arcgis online/gi, 'ArcGIS Online').replace(/arcnews/gi, 'ArcNews').replace(/arcwatch/gi, 'ArcWatch').replace(/arcuser/gi, 'ArcUser').replace(/wherenext/gi, 'WhereNext').replace(/arcgis enterprise/gi, 'ArcGIS Enterprise').replace(/arcgis pro/gi, 'ArcGIS Pro').replace(/story maps/gi, 'Story Maps').replace(/api/gi, 'API');
-  };
-
-  var buildLinkURL = function buildLinkURL(path, position) {
-    var url = window.location.origin + '/';
-    for (var i = 0; i <= position; i++) {
-      url += path[i] + '/';
-    }
-    url = '' + url;
-
-    return url;
-  };
-
-  var formatBreadcrumbs = function formatBreadcrumbs(breadcrumb) {
-    var currentPageFormatted = '';
-    currentPageFormatted += '' + breadcrumb.charAt(0).toUpperCase() + breadcrumb.substr(1).toLowerCase();
-
-    return currentPageFormatted = validateRule(currentPageFormatted);
-  };
-
-  var cleanUpBreadcrumbs = function cleanUpBreadcrumbs(breadcrumb) {
-    breadcrumb.forEach(function (b, index) {
-      exceptions.forEach(function (ex) {
-        if (breadcrumb[index] === ex) {
-          breadcrumb.splice(index, 1);
-        }
-      });
-    });
-
-    return breadcrumb;
-  };
-
-  if (breadcrumb.length) {
-    var path = breadcrumb.split('/');
-    var newPath = cleanUpBreadcrumbs(path);
-    newPath.forEach(function (element, index) {
-      var crumb = validateRule(element);
-      var url = buildLinkURL(newPath, index);
-      if (element && listWrapper) {
-        var currentPage = element.replace(/-/gi, ' ').replace(/\.html/gi, '');
-        var crumbPage = crumb.replace(/-/gi, ' ').replace(/\.html/gi, '');
-
-        if (index === newPath.length - 1) {
-          var currentPageFormatted = formatBreadcrumbs(currentPage);
-          $assign(listWrapper, $assign('li', { class: prefix$8 + '--items' }, '/', $assign('p', { class: prefix$8 + '--items-current' }, '' + currentPageFormatted)));
-        } else {
-          var crumbPageFormatted = formatBreadcrumbs(crumbPage);
-          $assign(listWrapper, $assign('li', { class: prefix$8 + '--items' }, '/', $assign('a', { href: url, class: prefix$8 + '--items-link' }, '' + crumbPageFormatted)));
-        }
+      if (isLastBreadCrumbItem) {
+        $assign($breadCrumbs, $assign('li', { class: prefix + '--items' }, '/', $assign('p', { href: crumb.href, class: prefix + '--items-current' }, '' + crumb.label)));
+      } else {
+        $assign($breadCrumbs, $assign('li', { class: prefix + '--items' }, '/', $assign('a', { href: crumb.href, class: prefix + '--items-link' }, '' + crumb.label)));
       }
     });
+
+    return $assign('div', { class: '' + prefix }, $assign('a', { href: 'https://www.esri.com', class: prefix + '--pin' }), $assign('ul', { class: prefix + '--list' }, $breadCrumbs), $assign('div', { class: 'clearFloats' }));
   }
 });
 
@@ -4995,7 +4943,7 @@ var createFooter = (function (data) {
 	var $footerLanguage = data.language ? language(data.language, prefix) : $assign('div', { class: 'esri-footer-language' });
 	var $footerMenu = menu(data.menu, prefix);
 	var $footerSocial = social(data.social, prefix);
-	var $footerBreadcrumb = breadcrumb();
+	var $footerBreadcrumb = breadcrumbs(data);
 
 	var $footer = $assign('footer', {
 		class: prefix + ' ' + (data.hideMenus ? 'skinny-footer' : ''),
