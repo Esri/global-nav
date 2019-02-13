@@ -4925,7 +4925,7 @@ var breadcrumbs = (function (data) {
       }
     });
 
-    return $assign('div', { class: '' + prefix }, $assign('a', { href: 'https://www.esri.com', class: prefix + '--pin' }), $assign('ul', { class: prefix + '--list' }, $breadCrumbs), $assign('div', { class: 'clearFloats' }));
+    return $assign('div', { class: '' + prefix }, $assign('a', { href: 'https://www.esri.com', class: prefix + '--pin' }), $assign('ul', { class: prefix + '--list' }, $breadCrumbs));
   }
 });
 
