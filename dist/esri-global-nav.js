@@ -1,7 +1,7 @@
 
 /**
  * Global Nav - A centralized component for Esri's global navigation
- * @version v1.1.2
+ * @version v1.2.1
  * @link https://github.com/Esri/global-nav
  * @copyright 2019 Esri
  * @license
@@ -4929,6 +4929,7 @@ var breadcrumbs = (function (data) {
   }
 });
 
+
 /* Global Footer
 /* ========================================================================== */
 
@@ -4945,6 +4946,7 @@ var createFooter = (function (data) {
 	var $footerSocial = social(data.social, prefix);
 	var $footerBreadcrumb = breadcrumbs(data);
 
+
 	var $footer = $assign('footer', {
 		class: prefix + ' ' + (data.hideMenus ? 'skinny-footer' : ''),
 		role: 'navigation',
@@ -4954,6 +4956,7 @@ var createFooter = (function (data) {
 	/* Append Footer Components
  /* ================================================================== */
 	$assign('div', { class: prefix + '-section--0' }, $footerBreadcrumb), $assign('div', { class: prefix + '--wrapper' }, $assign('div', { class: prefix + '-section--1 ' + (data.hideMenus ? 'hidden' : '') }, $footerBrand, $footerSocial), $assign('div', { class: prefix + '-section--2 ' + (data.hideMenus ? 'hidden' : '') }, $footerMenu), $assign('div', { class: prefix + '-section--3' }, $footerLanguage, $footerInfo)));
+
 
 	/* On DOMNodeInserted
  /* ====================================================================== */
