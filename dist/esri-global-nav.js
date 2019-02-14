@@ -657,7 +657,7 @@ var $close = {
 };
 
 var $grid = {
-  md: ["M11.5 18.05a1.45 1.45 0 1 0 1.45 1.45 1.45 1.45 0 0 0-1.45-1.45zM12 20h-1v-1h1zM3.5 2.05A1.45 1.45 0 1 0 4.95 3.5 1.45 1.45 0 0 0 3.5 2.05zM4 4H3V3h1zm7.5 6.05a1.45 1.45 0 1 0 1.45 1.45 1.45 1.45 0 0 0-1.45-1.45zM12 12h-1v-1h1zm-8.5-1.95a1.45 1.45 0 1 0 1.45 1.45 1.45 1.45 0 0 0-1.45-1.45zM4 12H3v-1h1zm-.5 6.05a1.45 1.45 0 1 0 1.45 1.45 1.45 1.45 0 0 0-1.45-1.45zM4 20H3v-1h1zM19.5 4.95a1.45 1.45 0 1 0-1.45-1.45 1.45 1.45 0 0 0 1.45 1.45zM19 3h1v1h-1zm.5 7.05a1.45 1.45 0 1 0 1.45 1.45 1.45 1.45 0 0 0-1.45-1.45zM20 12h-1v-1h1zm-8.5-9.95a1.45 1.45 0 1 0 1.45 1.45 1.45 1.45 0 0 0-1.45-1.45zM12 4h-1V3h1zm7.5 14.05a1.45 1.45 0 1 0 1.45 1.45 1.45 1.45 0 0 0-1.45-1.45zM20 20h-1v-1h1z"]
+  md: ["M6 2v4H2V2zm16 0v4h-4V2zm-8 0v4h-4V2zM6 18v4H2v-4zm16 0v4h-4v-4zm-8 0v4h-4v-4zm-8-8v4H2v-4zm16 0v4h-4v-4zm-8 0v4h-4v-4z"]
 };
 
 var $hamburger = {
@@ -4907,6 +4907,29 @@ var social = (function (data, prefix) {
 	return $assign('div', { class: prefix + '-social' }, $assign('nav', { class: prefix + '-social-nav', aria: { label: data.label } }, $socialIcons));
 });
 
+var breadcrumbs = (function (data) {
+  var showBreadCrumbs = data.showBreadcrumb;
+
+  if (showBreadCrumbs) {
+    var prefix = 'esri-footer-breadcrumb';
+    var $breadCrumbs = document.createDocumentFragment();
+    var breadCrumbItems = data.breadcrumbs;
+
+    breadCrumbItems.forEach(function (crumb, index) {
+      var isLastBreadCrumbItem = index === breadCrumbItems.length - 1;
+
+      if (isLastBreadCrumbItem) {
+        $assign($breadCrumbs, $assign('li', { class: prefix + '--items' }, '/', $assign('p', { href: crumb.href, class: prefix + '--items-current' }, '' + crumb.label)));
+      } else {
+        $assign($breadCrumbs, $assign('li', { class: prefix + '--items' }, '/', $assign('a', { href: crumb.href, class: prefix + '--items-link' }, '' + crumb.label)));
+      }
+    });
+
+    return $assign('div', { class: '' + prefix }, $assign('a', { href: 'https://www.esri.com', class: prefix + '--pin' }), $assign('ul', { class: prefix + '--list' }, $breadCrumbs));
+  }
+});
+
+
 /* Global Footer
 /* ========================================================================== */
 
@@ -4921,6 +4944,8 @@ var createFooter = (function (data) {
 	var $footerLanguage = data.language ? language(data.language, prefix) : $assign('div', { class: 'esri-footer-language' });
 	var $footerMenu = menu(data.menu, prefix);
 	var $footerSocial = social(data.social, prefix);
+	var $footerBreadcrumb = breadcrumbs(data);
+
 
 	var $footer = $assign('footer', {
 		class: prefix + ' ' + (data.hideMenus ? 'skinny-footer' : ''),
@@ -4930,7 +4955,8 @@ var createFooter = (function (data) {
 
 	/* Append Footer Components
  /* ================================================================== */
-	$assign('div', { class: prefix + '-section--1 ' + (data.hideMenus ? 'hidden' : '') }, $footerBrand, $footerSocial), $assign('div', { class: prefix + '-section--2 ' + (data.hideMenus ? 'hidden' : '') }, $footerMenu), $assign('div', { class: prefix + '-section--3' }, $footerLanguage, $footerInfo));
+	$assign('div', { class: prefix + '-section--0' }, $footerBreadcrumb), $assign('div', { class: prefix + '--wrapper' }, $assign('div', { class: prefix + '-section--1 ' + (data.hideMenus ? 'hidden' : '') }, $footerBrand, $footerSocial), $assign('div', { class: prefix + '-section--2 ' + (data.hideMenus ? 'hidden' : '') }, $footerMenu), $assign('div', { class: prefix + '-section--3' }, $footerLanguage, $footerInfo)));
+
 
 	/* On DOMNodeInserted
  /* ====================================================================== */
