@@ -19,7 +19,7 @@
     "test:js": "eslint src/**/*.js --cache --ignore-pattern .gitignore"
   },
   "dependencies": {
-    "sortablejs": "^1.8.1"
+    "sortablejs": "1.7.0"
   },
   "devDependencies": {
     "autoprefixer": "^9.4.7",
