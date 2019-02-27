@@ -167,8 +167,8 @@ export default () => {
 			$controlIdText.nodeValue = $contentInfoIdText.nodeValue = detail.user.id;
 			$contentInfoGroupText.nodeValue = detail.user.group;
 
-			$renderSvgOrImg({imgDef: detail.user.image, alt: detail.user.name, imgClass: `${prefix}-image`, $targetElm: $controlImage});
-			$renderSvgOrImg({imgDef: detail.user.image, alt: detail.user.name, imgClass: `${prefix}-content-image`, $targetElm: $contentImage});
+			$renderSvgOrImg({imgDef: detail.user.image, alt: "", imgClass: `${prefix}-image`, $targetElm: $controlImage});
+			$renderSvgOrImg({imgDef: detail.user.image, alt: "", imgClass: `${prefix}-content-image`, $targetElm: $contentImage});
 
 			// Update the content menu
 			$replaceAll($contentMenu,
