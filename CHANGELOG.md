@@ -1,3 +1,9 @@
+## Unreleased
+
+### Fixed
+- Empty alt tag for user image (#222)
+- align app indicators properly in right to left
+
 ## 1.2.1
 
 ### Updated

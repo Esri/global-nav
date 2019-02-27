@@ -75,7 +75,6 @@
 }
 
 /* Calcite Styles */
-
 .esri-header-apps .block {
 	box-sizing: border-box;
 	display: inline-block;
@@ -402,11 +401,10 @@ html[dir="rtl"] .dropdown-menu.dropdown-right {
 	border: 2px solid var(--mono-100);
 	border-radius: 10px;
 	clear: both;
-	float: right;
 	height: 18px;
 	padding: 0;
-	position: relative;
-	right: 46px;
+	position: absolute;
+	inset-inline-end: 46px;
 	top: 4px;
 	width: 18px;
 	z-index: 50;
@@ -422,8 +420,8 @@ html[dir="rtl"] .dropdown-menu.dropdown-right {
 	cursor: pointer;
 	line-height: 2px;
 	padding: 1px;
-	right: 33px;
-	top: -7px;
+	inset-inline-end: 42px;
+	top: -1px;
 }
 
 .esri-header-apps .app-indicator.app-indicator-removed:hover {
