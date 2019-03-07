@@ -566,8 +566,8 @@ var createAccount = (function () {
 			$controlIdText.nodeValue = $contentInfoIdText.nodeValue = detail.user.id;
 			$contentInfoGroupText.nodeValue = detail.user.group;
 
-			$renderSvgOrImg({ imgDef: detail.user.image, alt: detail.user.name, imgClass: prefix + '-image', $targetElm: $controlImage });
-			$renderSvgOrImg({ imgDef: detail.user.image, alt: detail.user.name, imgClass: prefix + '-content-image', $targetElm: $contentImage });
+			$renderSvgOrImg({ imgDef: detail.user.image, alt: "", imgClass: prefix + '-image', $targetElm: $controlImage });
+			$renderSvgOrImg({ imgDef: detail.user.image, alt: "", imgClass: prefix + '-content-image', $targetElm: $contentImage });
 
 			// Update the content menu
 			$replaceAll.apply(undefined, [$contentMenu].concat(toConsumableArray(detail.menus.map(function (item) {
@@ -2763,6 +2763,9 @@ var Sortable = createCommonjsModule(function (module) {
 
 var prefix$6 = 'esri-header-apps';
 var isRightToLeft = document.dir === "rtl";
+var isDesktop = function (global) {
+	return !/iPhone|iPad|iPod|Android/i.test(global.navigator.userAgent);
+}(window);
 
 var createApps = (function () {
 	/* Apps: Content
@@ -2802,14 +2805,20 @@ var createApps = (function () {
 
 		resetStateOfBottomContainer();
 
-		$dispatch($control, 'header:menu:toggle', {
-			state: 'menu',
-			target: $target,
-			type: 'root-toggle',
-			control: $control,
-			content: $content,
-			event: event
-		});
+		$dispatchCloseAppLauncher(event);
+	};
+
+	var $dispatchCloseAppLauncher = function $dispatchCloseAppLauncher(event) {
+		setTimeout(function () {
+			$dispatch($control, 'header:menu:toggle', {
+				state: 'menu',
+				target: $target,
+				type: 'root-toggle',
+				control: $control,
+				content: $content,
+				event: event
+			});
+		}, 1);
 	};
 
 	var $control = $controlContainer;
@@ -2862,9 +2871,9 @@ var createApps = (function () {
 		var $listItem = $assign("li", {
 			alt: "",
 			"class": 'block link-off-black appLinkContainer grabbable ' + canAccessClass,
-			mousedown: interactWithAppLi.bind(null, currentApp),
-			keyup: activateAccessibilityMode.bind(null, currentApp),
-			keydown: preventBrowserKeyboardDefaults,
+			mousedown: isDesktop ? interactWithAppLi.bind(null, currentApp) : $dispatchCloseAppLauncher,
+			keyup: !ddState.disabled && isDesktop ? activateAccessibilityMode.bind(null, currentApp) : function () {},
+			keydown: isDesktop ? preventBrowserKeyboardDefaults : function () {},
 			"role": "menuitem",
 			"data-id": currentApp.itemId || currentApp.uid || currentApp.title
 		});
@@ -2872,15 +2881,15 @@ var createApps = (function () {
 		if (!currentApp.canAccess) {
 			createMissingAppIcon(currentApp, $listItem, selectNoneClass);
 		} else {
-			if (currentApp.isNew) {
-				$listItem.appendChild($assign("div", { "class": "app-indicator app-indicator-new" }));
-			}
 			var $appLink = $assign("a", {
 				href: currentApp.url,
 				target: "_blank",
-				blur: deactivateAccessibilityMode.bind(null, currentApp),
+				blur: isDesktop ? deactivateAccessibilityMode.bind(null, currentApp) : function () {},
 				class: "appLink"
 			});
+			if (currentApp.isNew) {
+				$appLink.appendChild($assign("div", { "class": "app-indicator app-indicator-new" }));
+			}
 			// Check if App has Icon
 			if (currentApp.image) {
 				var $appImageContainer = $assign("div", { "class": 'appIconImage ' + selectNoneClass });
@@ -2931,8 +2940,8 @@ var createApps = (function () {
 			"tabindex": 0,
 			"blur": deactivateAccessibilityMode.bind(null, currentApp),
 			title: ddState.i18n.removed
-			// keyup: showRemovedAppWarning.bind(null, currentApp.uid, $listItem),
-			// onclick: showRemovedAppWarning.bind(null, currentApp.uid, $listItem)
+			// keyup: isDesktop ? showRemovedAppWarning.bind(null, currentApp.uid, $listItem) : () => {},
+			// onclick: isDesktop ? showRemovedAppWarning.bind(null, currentApp.uid, $listItem) : () => {}
 		});
 		$missingIcon.appendChild(getAccessibleAppArrowContainer());
 		$listItem.appendChild($appLink);
@@ -3007,8 +3016,9 @@ var createApps = (function () {
 				}
 
 				saveAppOrderToUserProperties(primaryApps, ddState.secondarySortable.toArray(), { targetUid: e.currentTarget.getAttribute("data-id"), isNew: true, targetValue: null });
-				e.currentTarget.classList.remove("sortable-drag-class");
-			} else {
+			}
+
+			if (e.currentTarget) {
 				e.currentTarget.classList.remove("sortable-drag-class");
 			}
 
@@ -3122,7 +3132,7 @@ var createApps = (function () {
 	};
 
 	var dragEventWasSimulated = function dragEventWasSimulated(clientX, clientY) {
-		return !ddState.dragEventWasCanceled && (Math.abs(clientX - ddState.startClientX) > ddState.maxDragErrorTollerance || Math.abs(clientY - ddState.startClientY) > ddState.maxDragErrorTollerance);
+		return !ddState.dragEventWasCanceled && !ddState.disabled && (Math.abs(clientX - ddState.startClientX) > ddState.maxDragErrorTollerance || Math.abs(clientY - ddState.startClientY) > ddState.maxDragErrorTollerance);
 	};
 
 	var verifyKeyPress = function verifyKeyPress(keyCode) {
@@ -3160,10 +3170,10 @@ var createApps = (function () {
 	var deactivateAccessibilityMode = function deactivateAccessibilityMode(app, e) {
 		var target = e.target || e;
 		var arrowSpan = app.canAccess ? target.firstChild.firstChild : target.firstChild;
-
-		arrowSpan.classList.remove("arrow-keys-enabled");
-		arrowSpan.classList.add("arrow-keys-disabled");
-
+		if (arrowSpan) {
+			arrowSpan.classList.remove("arrow-keys-enabled");
+			arrowSpan.classList.add("arrow-keys-disabled");
+		}
 		if (ddState.activeAccessibleListElement) {
 			ddState.activeAccessibleListElement.removeEventListener("keydown", ddState.activeAccessibleListElementEvent, false);
 			ddState.activeAccessibleListElement = null;
@@ -3275,8 +3285,10 @@ var createApps = (function () {
 	};
 
 	var populateAccessibleArrows = function populateAccessibleArrows(arrowSpan, liIndex, ul, numOfPrimaryApps) {
-		arrowSpan.classList.add("arrow-keys-enabled");
-		arrowSpan.classList.remove("arrow-keys-disabled");
+		if (arrowSpan) {
+			arrowSpan.classList.add("arrow-keys-enabled");
+			arrowSpan.classList.remove("arrow-keys-disabled");
+		}
 
 		var combinedIndex = getCombinedIndexOfApp(liIndex, ul, numOfPrimaryApps);
 		arrowSpan.innerHTML = getAccessibleArrows(getArrayOfDirections(combinedIndex, ul), ul);
@@ -3311,7 +3323,7 @@ var createApps = (function () {
 	var primarySortableOptions = {
 		group: "Apps", // or { name: "...", pull: [true, false, clone], put: [true, false, array] }
 		sort: true, // sorting inside list
-		disabled: false, // Disables the sortable if set to true.
+		disabled: !isDesktop, // Disables the sortable if set to true.
 		animation: 150, // ms, animation speed moving items when sorting, `0` — without animation
 		forceFallback: true,
 		delay: 0,
@@ -3363,7 +3375,7 @@ var createApps = (function () {
 	var secondarySortableOptions = {
 		group: "Apps",
 		sort: true,
-		disabled: false,
+		disabled: !isDesktop,
 		animation: 150,
 		forceFallback: true,
 		delay: 0,
@@ -3411,7 +3423,7 @@ var createApps = (function () {
 
 		if (!detail.primary) return;
 		if (detail.ieVersion) applyDragAndDropAdjustmentsForIE(detail.ieVersion);
-		if (detail.disableDragAndDrop) ddState.disabled = true;
+		if (detail.disableDragAndDrop || !isDesktop) ddState.disabled = true;
 		if (detail.text) ddState.i18n = detail.text || {};
 
 		if (!detail.isLoading) {
@@ -3434,21 +3446,19 @@ var createApps = (function () {
 				role: "menu"
 			});
 
-			if (!ddState.disabled) {
-				if (ddState.dropdownWrapper) {
-					// Destroy dropdown content to start from clean slate
-					$content.innerHTML = "";
-					if ($bottomContainer.lastChild) $bottomContainer.removeChild($bottomContainer.lastChild);
-				}
-
-				ddState.dragAppsHereText = $assign("p", { "class": "hide" }, ddState.i18n.dragAppsHere);
-				ddState.bottomAppContainer.appendChild(ddState.dragAppsHereText);
-
-				if (!detail.secondary.length) showDragAppsHereBox(true);
-
-				ddState.primarySortable = Sortable.create(ddState.topAppContainer, primarySortableOptions);
-				ddState.secondarySortable = Sortable.create(ddState.bottomAppContainer, secondarySortableOptions);
+			if (ddState.dropdownWrapper) {
+				// Destroy dropdown content to start from clean slate
+				$content.innerHTML = "";
+				if ($bottomContainer.lastChild) $bottomContainer.removeChild($bottomContainer.lastChild);
 			}
+
+			ddState.dragAppsHereText = $assign("p", { "class": "hide" }, ddState.i18n.dragAppsHere);
+			ddState.bottomAppContainer.appendChild(ddState.dragAppsHereText);
+
+			if (!detail.secondary.length) showDragAppsHereBox(true);
+
+			ddState.primarySortable = Sortable.create(ddState.topAppContainer, primarySortableOptions);
+			ddState.secondarySortable = Sortable.create(ddState.bottomAppContainer, secondarySortableOptions);
 
 			detail.primary.forEach(function (a, i) {
 				createDefaultAppLayout(ddState.topAppContainer, a, i);
@@ -3471,7 +3481,7 @@ var createApps = (function () {
 				class: prefix$6 + ' dismiss-intro-button',
 				click: dismissIntro
 			}, ddState.i18n.confirm);
-			ddState.dragAndDropIntro = detail.displayIntro ? $assign('div', { class: prefix$6 + ' intro-container' }, $dragAndDropIntroText, $dismissIntroButton) : "";
+			ddState.dragAndDropIntro = detail.displayIntro && !ddState.disabled ? $assign('div', { class: prefix$6 + ' intro-container' }, $dragAndDropIntroText, $dismissIntroButton) : "";
 
 			var $showMoreChevron = $assign('span');
 			$showMoreChevron.innerHTML = getDownChevron();
