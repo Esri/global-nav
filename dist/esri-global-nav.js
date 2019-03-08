@@ -4913,7 +4913,7 @@ var breadcrumbs = (function (data) {
   if (showBreadCrumbs) {
     var prefix = 'esri-footer-breadcrumb';
     var $breadCrumbs = document.createDocumentFragment();
-    var breadCrumbItems = data.breadcrumbs;
+    var breadCrumbItems = data.breadcrumbs || [];
 
     breadCrumbItems.forEach(function (crumb, index) {
       var isLastBreadCrumbItem = index === breadCrumbItems.length - 1;
