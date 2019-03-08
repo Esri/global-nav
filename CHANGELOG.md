@@ -3,6 +3,7 @@
 ### Fixed
 - Empty alt tag for user image (#222)
 - align app indicators properly in right to left
+- Disable app launcher drag and drop on Android and iPhone devices
 
 ## 1.2.1
 
