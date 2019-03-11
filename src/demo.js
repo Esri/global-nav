@@ -15,9 +15,70 @@ document.addEventListener("DOMContentLoaded", () => {
 			menus: [
 				[
 					{
-						label: 'ArcGIS',
+						label: 'Products',
+						useStructuredMenu: true,
+						structuredMenu: {
+							capabilities: [
+								{
+									heading: 'GEOSPATIAL CLOUD-BASED CAPABILITIES',
+									entryData: [
+										{
+											label: 'Mapping and Location Intelligence',
+											href: 'https://www.esri.com/en-us/location-intelligence',
+											description: 'Intuitive, data-driven mapping, visualization, and analysis'
+										},
+										{
+											label: 'Analytics and Data Science',
+											href: 'https://www.esri.com/en-us/arcgis/analytics/overview',
+											description: 'Advanced geospatial analysis, AI, and machine learning'
+										},
+										{
+											label: 'Mapping and Location Intelligence',
+											href: 'https://www.esri.com/en-us/location-intelligence',
+											description: 'Intuitive, data-driven mapping, visualization, and analysis'
+										},
+										{
+											label: 'Analytics and Data Science',
+											href: 'https://www.esri.com/en-us/arcgis/analytics/overview',
+											description: 'Advanced geospatial analysis, AI, and machine learning'
+										},
+										{
+											label: 'Mapping and Location Intelligence',
+											href: 'https://www.esri.com/en-us/location-intelligence',
+											description: 'Intuitive, data-driven mapping, visualization, and analysis'
+										},
+										{
+											label: 'Analytics and Data Science',
+											href: 'https://www.esri.com/en-us/arcgis/analytics/overview',
+											description: 'Advanced geospatial analysis, AI, and machine learning'
+										},
+										{
+											label: 'Mapping and Location Intelligence',
+											href: 'https://www.esri.com/en-us/location-intelligence',
+											description: 'Intuitive, data-driven mapping, visualization, and analysis'
+										},
+										{
+											label: 'Analytics and Data Science',
+											href: 'https://www.esri.com/en-us/arcgis/analytics/overview',
+											description: 'Advanced geospatial analysis, AI, and machine learning'
+										},
+										{
+											label: 'Mapping and Location Intelligence',
+											href: 'https://www.esri.com/en-us/location-intelligence',
+											description: 'Intuitive, data-driven mapping, visualization, and analysis'
+										},
+										{
+											label: 'Analytics and Data Science',
+											href: 'https://www.esri.com/en-us/arcgis/analytics/overview',
+											description: 'Advanced geospatial analysis, AI, and machine learning'
+										}
+									]
+								}
+							]
+						},
 						menus: [
 							{
+								heading: 'PRODUCTS',	
 								label: 'About ArcGIS',
 								href: 'https://www.esri.com/arcgis/about-arcgis',
 								data: {
@@ -41,10 +102,11 @@ document.addEventListener("DOMContentLoaded", () => {
 								href: 'https://developers.arcgis.com'
 							},
 							{
-								label: 'What is GIS?',
+								label: 'All Products',
 								href: 'https://www.esri.com/what-is-gis'
 							},
 							{
+								heading: 'ARCGIS',
 								label: 'Store',
 								href: 'https://store.esri.com'
 							},
@@ -89,9 +151,10 @@ document.addEventListener("DOMContentLoaded", () => {
 						]
 					},
 					{
-						label: 'Industries',
+						label: 'Solutions',
 						menus: [
 							{
+								heading: 'PRODUCT',
 								label: 'Banking',
 								href: 'https://www.esri.com/industries/banking'
 							},
@@ -128,6 +191,7 @@ document.addEventListener("DOMContentLoaded", () => {
 								href: 'https://www.esri.com/industries/public-safety'
 							},
 							{
+								heading: 'SOLUTIONS',
 								label: 'Real Estate',
 								href: 'https://www.esri.com/industries/real-estate'
 							},
@@ -150,6 +214,51 @@ document.addEventListener("DOMContentLoaded", () => {
 							{
 								label: 'Water Resources',
 								href: 'https://www.esri.com/industries/water-resources'
+							},
+							{
+								label: 'See all industries',
+								href: 'https://www.esri.com/industries'
+							},
+							{
+								label: 'See all industries',
+								href: 'https://www.esri.com/industries'
+							},
+							{
+								label: 'See all industries',
+								href: 'https://www.esri.com/industries'
+							},
+							{
+								heading: 'Industries',
+								label: 'Industry',
+								href: 'https://www.esri.com/industries'
+							},
+							{
+								label: 'Retail',
+								href: 'https://www.esri.com/industries/retail'
+							},
+							{
+								label: 'Telecommunications',
+								href: 'https://www.esri.com/industries/telecom'
+							},
+							{
+								label: 'Transportation',
+								href: 'https://www.esri.com/industries/transportation'
+							},
+							{
+								label: 'Utilities',
+								href: 'https://www.esri.com/industries/utilities-communications'
+							},
+							{
+								label: 'Water Resources',
+								href: 'https://www.esri.com/industries/water-resources'
+							},
+							{
+								label: 'And some more',
+								href: 'https://www.esri.com/industries'
+							},
+							{
+								label: 'See all industries',
+								href: 'https://www.esri.com/industries'
 							},
 							{
 								label: 'See all industries',
@@ -177,6 +286,64 @@ document.addEventListener("DOMContentLoaded", () => {
 								icon: [
 									'M7 32.1h4v.8H7zm24 6.8h3.757v-.8H31zm0 2h3.757v-.8H31zm-24-2h4v-.8H7zm20-10.8h-2v.8h2zM7 35.9h4v-.8H7zm20-10.8h-2v.8h2zM47.4 44c0 2.861-13.994 3.9-23.4 3.9S.6 46.861.6 44c0-.737.805-1.337 2.5-1.879V29.1h3v-4h5.6l3.2 4.267V33.1h3.2v-6.233l1-1.334V15h.01l-1.01-1.094V3.843L21.575.1H27.9v6h2v21h4.2v-4.738l3.33-4.262h5.47v23.498c4.016.868 4.5 1.783 4.5 2.402zm-.8 0c0-.032-.053-.773-3.7-1.584V43h-.8V18.9h-4.28l-2.92 3.738V27.9h-5v5.2h2.2v-2h5.8V44h-.8v-8.1h-3v-2h-7v-2h-4.2V44h-.8V31.1h5.8v2h1.2V6.9h-2v-6h-5.175L18.9 4.157v9.437l3 3.25v6.29l-3 4V44h-.8V33.9h-4v-4.267L11.3 25.9H6.9v4h-3V43h-.8v-.039c-1.322.455-1.7.858-1.7 1.039 0 1.294 8.598 3.1 22.6 3.1s22.6-1.806 22.6-3.1zM21.1 22.867v-5.71l-1.2-1.3v8.609zM34.9 33.1v2h2.2v-3.2h-4.2v1.2zm2.2-5.1h.8v-2.791h-.8zM27 19.1h-2v.8h2zm0 3h-2v.8h2zm0-6h-2v.8h2zm0-6h-2v.8h2zM39.1 28h.8v-5h-.8zM27 13.1h-2v.8h2zm-18.6-.6a.9.9 0 1 0-.9.9.901.901 0 0 0 .9-.9zm29.1-.1a.9.9 0 1 1 .9-.9.901.901 0 0 1-.9.9zm1.267 1.705l.697-.394a17.834 17.834 0 0 1 1.28 2.789h-.854a16.573 16.573 0 0 0-1.123-2.396zM31.5 6.125a18.543 18.543 0 0 1 4.292 2.962l-.541.589a18.317 18.317 0 0 0-1.621-1.327 18.097 18.097 0 0 0-2.13-1.314zM4.107 23.512c-.005-.17-.007-.341-.007-.512a18.864 18.864 0 0 1 1.795-8.05l.725.34a18.05 18.05 0 0 0-1.713 8.199L4.5 23.5zm5.66-12.861l-.584-.546A18.775 18.775 0 0 1 16.5 5.257v.856a17.943 17.943 0 0 0-6.733 4.538z'
 								]
+							}
+						]
+					},
+					{
+						label: 'Support & Services',
+						menus: [
+							{
+								label: 'Technical Support',
+								href: 'https://support.esri.com/'
+							},
+							{
+								label: 'Training',
+								href: 'https://www.esri.com/training'
+							},
+							{
+								label: 'Documentation',
+								href: 'https://doc.arcgis.com/en'
+							},
+							{
+								label: 'Consulting Services',
+								href: 'https://www.esri.com/arcgis/services/consulting'
+							},
+							{
+								label: 'Managed Cloud Services',
+								href: 'https://www.esri.com/arcgis/services/managed-cloud'
+							},
+							{
+								label: 'Esri Enterprise Advantage Program',
+								href: 'https://www.esri.com/arcgis/services/eeap'
+							},
+							{
+								label: 'Esri Community (GeoNet)',
+								href: 'https://geonet.esri.com/'
+							},
+							{
+								label: 'ArcGIS Blog',
+								href: 'https://blogs.esri.com/esri/arcgis/'
+							},
+							{
+								label: 'Contact Esri',
+								href: 'https://www.esri.com/about-esri/contact'
+							}
+						]
+					},
+					{
+						label: 'News',
+						menus: [
+							{
+								label: 'Whats News',
+								href: 'https://www.esri.com/about-esri'
+							},
+							{
+								label: 'Good News',
+								href: 'https://www.esri.com/about/newsroom/publications/wherenext/'
+							},
+							{
+								label: 'Only Good News',
+								href: 'https://www.esri.com/about/newsroom/publications/wherenext/'
 							}
 						]
 					},
@@ -233,47 +400,6 @@ document.addEventListener("DOMContentLoaded", () => {
 								icon: [
 									'M8.9 8.9h8V4.1H4.1v12.8h4.8zm-.8 7.2H4.9V4.9h11.2v3.2h-8zm.8 4H4.1v23.8h26.8v-4.8h-22zm21.2 19.8v3.2H4.9V20.9h3.2v19zm-10-35.8v4.8h19v30.2h-5v4.8h9.8V4.1zm23 39h-8.2v-3.2h5V8.1h-19V4.9h22.2z'
 								]
-							}
-						]
-					},
-					{
-						label: 'Support',
-						menus: [
-							{
-								label: 'Technical Support',
-								href: 'https://support.esri.com/'
-							},
-							{
-								label: 'Training',
-								href: 'https://www.esri.com/training'
-							},
-							{
-								label: 'Documentation',
-								href: 'https://doc.arcgis.com/en'
-							},
-							{
-								label: 'Consulting Services',
-								href: 'https://www.esri.com/arcgis/services/consulting'
-							},
-							{
-								label: 'Managed Cloud Services',
-								href: 'https://www.esri.com/arcgis/services/managed-cloud'
-							},
-							{
-								label: 'Esri Enterprise Advantage Program',
-								href: 'https://www.esri.com/arcgis/services/eeap'
-							},
-							{
-								label: 'Esri Community (GeoNet)',
-								href: 'https://geonet.esri.com/'
-							},
-							{
-								label: 'ArcGIS Blog',
-								href: 'https://blogs.esri.com/esri/arcgis/'
-							},
-							{
-								label: 'Contact Esri',
-								href: 'https://www.esri.com/about-esri/contact'
 							}
 						]
 					}
@@ -454,21 +580,6 @@ document.addEventListener("DOMContentLoaded", () => {
 				viewBox: '0 0 114 90',
 				path: './img/gnav-tsow-frame.svg'
 			},
-			showBreadcrumb: true,
-			breadcrumbs: [
-				{
-					label: 'ArcGIS', 
-					href: 'https://www.esri.com/en-us/arcgis'
-				},
-				{
-					label: 'Products', 
-					href: 'https://www.esri.com/en-us/arcgis/products'
-				},
-				{
-					label: 'ArcGIS Pro', 
-					href: 'https://www.esri.com/en-us/arcgis/products/arcgis-pro'
-				}
-			],
 			menu: {
 				label: 'Esri Sites',
 				menu: [
@@ -690,14 +801,6 @@ document.addEventListener("DOMContentLoaded", () => {
 							path : 'https://www.esri.com/content/dam/esrisites/common/icons/Contact-Newsletter_32.svg'
 						}
 					},
-					{
-						label: 'Flickr',
-						href: 'https://www.flickr.com',
-						image: {
-							viewBox: '0 0 32 32',
-							path : 'http://www.esri.com/content/dam/esrisites/en-us/common/icons/Flikr_32.svg'
-						}
-					},					
 					{
 						label: 'GisIQ',
 						href: 'https://gis-iq.esri.de/',

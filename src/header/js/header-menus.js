@@ -89,112 +89,583 @@ export default ({variant = 'desktop'}) => {
 
 							const $li = $('li', {class: `${prefix}-item`}, $subcontrol);
 
+							const hasStructuredMenu = item.useStructuredMenu || false;
 							const hasMenuItems = item.menus && item.menus.length;
 							const hasFeaturedItems = item.tiles && item.tiles.length;
 
 							if (hasMenuItems || hasFeaturedItems) {
 								/* Global Navigation: Submenu
 								/* ====================================== */
-
 								const $subtoggle = $('button', {class: `${prefix}-submenu-toggle`},
 									item.label
 								);
 
+								const $structuredLeftCol = $('div',
+									{
+										class: `${prefix}-submenu--left-col`
+									}
+								);
+								
+								const $structuredRightCol = $('div',
+									{
+										class: `${prefix}-submenu--right-col`
+									}
+								);
+								
 								const $subcontent = $('div',
 									{
-										class: `${prefix}-submenu`, id: `${prefix}-${variant}-submenu-${uuid}-${suuid}`,
+										class: `${prefix}-submenu`, id: `${prefix}-${variant}-submenu-${uuid}-${suuid}`, 'data-has-structured': hasStructuredMenu,
 										role: 'group', aria: {hidden: true, expanded: false},
-										data: {filled: (item.menus && item.menus.length > 10) ? item.menus.slice(0, 18).length : ''}
+										data: {filled: (item.menus && item.menus.length > 10) ? item.menus.slice(0,27).length : ''}
 									},
 									$subtoggle
 								);
 
-								if (hasMenuItems) {
-									$($subcontent,
-										$('ul',
-											{
-												class: `${prefix}-sublist`,
-												role: 'navigation', aria: {labelledby: `${prefix}-link-${variant}-${uuid}-${suuid}`}
-											},
-											/* Global Navigation: Menus: Sublink
-											/* ============================== */
-											...item.menus.slice(0, 18).map(
-												(childitem) => {
-													const $sublink = $('a',
-														{
-															class: `${prefix}-sublink`,
-															href: childitem.href
-														},
-														childitem.label
-													);
-
-													if (childitem.data) {
-														$($sublink, {
-															data: childitem.data
-														});
-													}
-
-													if (childitem.newContext) {
-														$($sublink, {
-															target: '_blank',
-															rel: 'noopener'
-														});
-													}
-
-													return $('li', {class: `${prefix}-subitem`},
-														$sublink
-													);
-												}
-											)
-										)
-									);
-								}
-
-								if (hasFeaturedItems) {
-									// ...
-									$($subcontent,
-										$('ul',
-											{
-												class: `${prefix}-sublist--featured`,
-												role: 'navigation', aria: {labelledby: `${prefix}-link-${variant}-${uuid}-${suuid}`},
-												data: {filled: `${item.tiles.slice(0, 4).length}`}
-											},
-											/* Global Navigation: Menus: Sublink
-											/* ============================== */
-
-											...item.tiles.slice(0, 4).map(
-												(childitem) => {
-													const $sublink = $('a',
-														{
-															class: `${prefix}-sublink--featured`,
-															href: childitem.href
-														},
-														$renderSvgOrImg({imgDef: childitem.icon, imgClass: `${prefix}-sublink-image`, imgWidth: childitem.width, imgHeight: childitem.height}),
-														$('span', {class: `${prefix}-sublink-text`},
-															childitem.label
+								if (hasStructuredMenu) {
+									const structuredMenu = item.structuredMenu;
+									if (structuredMenu) {
+										structuredMenu.capabilities.forEach((entries) => {
+											$($subcontent,
+												$('div', {class: `${prefix}-structured-menu--wrapper`}, 
+													$($structuredLeftCol,
+														$('ul', 
+															{
+																class: `${prefix}-sublist`, 'data-menutype': 'structured',
+																role: 'navigation', aria: {labelledby: `${prefix}-link-${variant}-${uuid}-${suuid}`}
+															},
+															$('li', 
+																{
+																	class: `${prefix}-entry--heading`
+																},
+																$('p', 
+																	{
+																		class: `${prefix}-entry--heading-label`
+																	}, 
+																	entries.heading
+																)
+															),
+															...entries.entryData.map((entry) => {
+																const menuItem = $('li', {class: `${prefix}-subitem`},
+																	$('a', 
+																		{
+																			href: entry.href, 
+																			class: `${prefix}-sublink`
+																		},
+																		$('p', 
+																			{
+																				class: `${prefix}-sublink--title`
+																			},
+																			entry.label
+																		),
+																		$('p', 
+																			{
+																				class: `${prefix}-sublink--description`
+																			}, 
+																			entry.description
+																		)
+																	)
+																);
+																return menuItem;
+															}),
 														)
-													);
+													),
+													$($structuredRightCol,
+														$('ul', 
+															{
+																class: `${prefix}-sublist`, 'data-menutype': 'standard',
+																role: 'navigation', aria: {labelledby: `${prefix}-link-${variant}-${uuid}-${suuid}`}
+															},
+															...item.menus.map(
+																(childitem) => {
+																	const $heading = (childitem.heading) ? $('p', {class: `${prefix}-heading--label`}, childitem.heading) : '';
+																	const $sublink = $('a',
+																		{
+																			class: `${prefix}-sublink`,
+																			href: childitem.href
+																		},
+																		childitem.label
+																	);
 
-													if (childitem.data) {
-														$($sublink, {
-															data: childitem.data
-														});
+																	if (childitem.data) {
+																		$($sublink, {
+																			data: childitem.data
+																		});
+																	}
+				
+																	if (childitem.newContext) {
+																		$($sublink, {
+																			target: '_blank',
+																			rel: 'noopener'
+																		});
+																	}
+
+																	if ($heading) {
+																		return $('li', {class: `${prefix}-subitem heading`}, $heading, $($sublink));
+																	} else {
+																		return $('li', {class: `${prefix}-subitem`}, $heading, $($sublink));
+																	}
+																}
+															)
+														)
+													)
+												),
+												$('ul',
+														{
+															class: `${prefix}-sublist--featured`,
+															role: 'navigation', aria: {labelledby: `${prefix}-link-${variant}-${uuid}-${suuid}`},
+															data: {filled: `${item.tiles.slice(0, 4).length}`}
+														},
+														/* Global Navigation: Menus: Sublink
+														/* ============================== */
+			
+														...item.tiles.slice(0, 4).map(
+															(childitem) => {
+																const $sublink = $('a',
+																	{
+																		class: `${prefix}-sublink--featured`,
+																		href: childitem.href
+																	},
+																	$renderSvgOrImg({imgDef: childitem.icon, imgClass: `${prefix}-sublink-image`, imgWidth: childitem.width, imgHeight: childitem.height}),
+																	$('span', {class: `${prefix}-sublink-text`},
+																		childitem.label
+																	)
+																);
+			
+																if (childitem.data) {
+																	$($sublink, {
+																		data: childitem.data
+																	});
+																}
+			
+																if (childitem.newContext) {
+																	$($sublink, {
+																		target: '_blank',
+																		rel: 'noopener'
+																	});
+																}
+			
+																return $('li', {class: `${prefix}-subitem--featured`},
+																	$sublink
+																);
+															}
+														)
+													)
+												
+											);
+										});
+									}
+								} else {
+									if (hasMenuItems) {
+										let col1 = undefined;
+										let col2 = undefined;
+										let col3 = undefined;
+										let col4 = undefined;
+
+										if (item.menus.length <= 9) {
+											col1 = $('div', {class: `${prefix}-sublist--col`},									
+												...item.menus.slice(0,9).map(
+													(childitem) => {
+														const $heading = (childitem.heading) ? $('p', {class: `${prefix}-heading--label`}, childitem.heading) : '';
+														const $sublink = $('a',
+															{
+																class: `${prefix}-sublink`,
+																href: childitem.href
+															},
+															childitem.label
+														);
+
+														if (childitem.data) {
+															$($sublink, {
+																data: childitem.data
+															});
+														}
+
+														if (childitem.newContext) {
+															$($sublink, {
+																target: '_blank',
+																rel: 'noopener'
+															});
+														}
+
+														if ($heading) {
+															return $('li', {class: `${prefix}-subitem heading`}, $heading, $($sublink));
+														} else {
+															return $('li', {class: `${prefix}-subitem`}, $heading, $($sublink));
+														}
 													}
+												)
+											);
+										} else if (item.menus.length > 9 && item.menus.length <= 18) {
+											col1 = $('div', {class: `${prefix}-sublist--col`},									
+												...item.menus.slice(0,9).map(
+													(childitem) => {
+														const $heading = (childitem.heading) ? $('p', {class: `${prefix}-heading--label`}, childitem.heading) : '';
+														const $sublink = $('a',
+															{
+																class: `${prefix}-sublink`,
+																href: childitem.href
+															},
+															childitem.label
+														);
 
-													if (childitem.newContext) {
-														$($sublink, {
-															target: '_blank',
-															rel: 'noopener'
-														});
+														if (childitem.data) {
+															$($sublink, {
+																data: childitem.data
+															});
+														}
+
+														if (childitem.newContext) {
+															$($sublink, {
+																target: '_blank',
+																rel: 'noopener'
+															});
+														}
+
+														if ($heading) {
+															return $('li', {class: `${prefix}-subitem heading`}, $heading, $($sublink));
+														} else {
+															return $('li', {class: `${prefix}-subitem`}, $heading, $($sublink));
+														}
 													}
+												)
+											);
 
-													return $('li', {class: `${prefix}-subitem--featured`},
-														$sublink
-													);
-												}
+											col2 = $('div', {class: `${prefix}-sublist--col`},									
+												...item.menus.slice(9,18).map(
+													(childitem) => {
+														const $heading = (childitem.heading) ? $('p', {class: `${prefix}-heading--label`}, childitem.heading) : '';
+														const $sublink = $('a',
+															{
+																class: `${prefix}-sublink`,
+																href: childitem.href
+															},
+															childitem.label
+														);
+
+														if (childitem.data) {
+															$($sublink, {
+																data: childitem.data
+															});
+														}
+
+														if (childitem.newContext) {
+															$($sublink, {
+																target: '_blank',
+																rel: 'noopener'
+															});
+														}
+
+														if ($heading) {
+															return $('li', {class: `${prefix}-subitem heading`}, $heading, $($sublink));
+														} else {
+															return $('li', {class: `${prefix}-subitem`}, $heading, $($sublink));
+														}
+													}
+												)
+											);
+										} else if (item.menus.length > 18 && item.menus.length <= 27) {
+											col1 = $('div', {class: `${prefix}-sublist--col`},									
+												...item.menus.slice(0,9).map(
+													(childitem) => {
+														const $heading = (childitem.heading) ? $('p', {class: `${prefix}-heading--label`}, childitem.heading) : '';
+														const $sublink = $('a',
+															{
+																class: `${prefix}-sublink`,
+																href: childitem.href
+															},
+															childitem.label
+														);
+
+														if (childitem.data) {
+															$($sublink, {
+																data: childitem.data
+															});
+														}
+
+														if (childitem.newContext) {
+															$($sublink, {
+																target: '_blank',
+																rel: 'noopener'
+															});
+														}
+
+														if ($heading) {
+															return $('li', {class: `${prefix}-subitem heading`}, $heading, $($sublink));
+														} else {
+															return $('li', {class: `${prefix}-subitem`}, $heading, $($sublink));
+														}
+													}
+												)
+											);
+
+											col2 = $('div', {class: `${prefix}-sublist--col`},									
+												...item.menus.slice(9, 18).map(
+													(childitem) => {
+														const $heading = (childitem.heading) ? $('p', {class: `${prefix}-heading--label`}, childitem.heading) : '';
+														const $sublink = $('a',
+															{
+																class: `${prefix}-sublink`,
+																href: childitem.href
+															},
+															childitem.label
+														);
+
+														if (childitem.data) {
+															$($sublink, {
+																data: childitem.data
+															});
+														}
+
+														if (childitem.newContext) {
+															$($sublink, {
+																target: '_blank',
+																rel: 'noopener'
+															});
+														}
+
+														if ($heading) {
+															return $('li', {class: `${prefix}-subitem heading`}, $heading, $($sublink));
+														} else {
+															return $('li', {class: `${prefix}-subitem`}, $heading, $($sublink));
+														}
+													}
+												)
+											);
+
+											col3 = $('div', {class: `${prefix}-sublist--col`},
+												...item.menus.slice(18,27).map(
+													(childitem) => {
+														const $heading = (childitem.heading) ? $('p', {class: `${prefix}-heading--label`}, childitem.heading) : '';
+														const $sublink = $('a',
+															{
+																class: `${prefix}-sublink`,
+																href: childitem.href
+															},
+															childitem.label
+														);
+
+														if (childitem.data) {
+															$($sublink, {
+																data: childitem.data
+															});
+														}
+
+														if (childitem.newContext) {
+															$($sublink, {
+																target: '_blank',
+																rel: 'noopener'
+															});
+														}
+
+														if ($heading) {
+															return $('li', {class: `${prefix}-subitem heading`}, $heading, $($sublink));
+														} else {
+															return $('li', {class: `${prefix}-subitem`}, $heading, $($sublink));
+														}
+													}
+												)
+											);
+										} else if (item.menus.length > 27 && item.menus.length <= 36) {
+											col1 = $('div', {class: `${prefix}-sublist--col`},									
+												...item.menus.slice(0,9).map(
+													(childitem) => {
+														const $heading = (childitem.heading) ? $('p', {class: `${prefix}-heading--label`}, childitem.heading) : '';
+														const $sublink = $('a',
+															{
+																class: `${prefix}-sublink`,
+																href: childitem.href
+															},
+															childitem.label
+														);
+
+														if (childitem.data) {
+															$($sublink, {
+																data: childitem.data
+															});
+														}
+
+														if (childitem.newContext) {
+															$($sublink, {
+																target: '_blank',
+																rel: 'noopener'
+															});
+														}
+
+														if ($heading) {
+															return $('li', {class: `${prefix}-subitem heading`}, $heading, $($sublink));
+														} else {
+															return $('li', {class: `${prefix}-subitem`}, $heading, $($sublink));
+														}
+													}
+												)
+											);
+
+											col2 = $('div', {class: `${prefix}-sublist--col`},									
+												...item.menus.slice(9, 18).map(
+													(childitem) => {
+														const $heading = (childitem.heading) ? $('p', {class: `${prefix}-heading--label`}, childitem.heading) : '';
+														const $sublink = $('a',
+															{
+																class: `${prefix}-sublink`,
+																href: childitem.href
+															},
+															childitem.label
+														);
+
+														if (childitem.data) {
+															$($sublink, {
+																data: childitem.data
+															});
+														}
+
+														if (childitem.newContext) {
+															$($sublink, {
+																target: '_blank',
+																rel: 'noopener'
+															});
+														}
+
+														if ($heading) {
+															return $('li', {class: `${prefix}-subitem heading`}, $heading, $($sublink));
+														} else {
+															return $('li', {class: `${prefix}-subitem`}, $heading, $($sublink));
+														}
+													}
+												)
+											);
+
+											col3 = $('div', {class: `${prefix}-sublist--col`},									
+												...item.menus.slice(18,27).map(
+													(childitem) => {
+														const $heading = (childitem.heading) ? $('p', {class: `${prefix}-heading--label`}, childitem.heading) : '';
+														const $sublink = $('a',
+															{
+																class: `${prefix}-sublink`,
+																href: childitem.href
+															},
+															childitem.label
+														);
+
+														if (childitem.data) {
+															$($sublink, {
+																data: childitem.data
+															});
+														}
+
+														if (childitem.newContext) {
+															$($sublink, {
+																target: '_blank',
+																rel: 'noopener'
+															});
+														}
+
+														if ($heading) {
+															return $('li', {class: `${prefix}-subitem heading`}, $heading, $($sublink));
+														} else {
+															return $('li', {class: `${prefix}-subitem`}, $heading, $($sublink));
+														}
+													}
+												)
+											);
+
+											col4 = $('div', {class: `${prefix}-sublist--col`},									
+												...item.menus.slice(27,36).map(
+													(childitem) => {
+														const $heading = (childitem.heading) ? $('p', {class: `${prefix}-heading--label`}, childitem.heading) : '';
+														const $sublink = $('a',
+															{
+																class: `${prefix}-sublink`,
+																href: childitem.href
+															},
+															childitem.label
+														);
+
+														if (childitem.data) {
+															$($sublink, {
+																data: childitem.data
+															});
+														}
+
+														if (childitem.newContext) {
+															$($sublink, {
+																target: '_blank',
+																rel: 'noopener'
+															});
+														}
+
+														if ($heading) {
+															return $('li', {class: `${prefix}-subitem heading`}, $heading, $($sublink));
+														} else {
+															return $('li', {class: `${prefix}-subitem`}, $heading, $($sublink));
+														}
+													}
+												)
+											);
+										}
+
+										$($subcontent,
+											$('ul',
+												{
+													class: `${prefix}-sublist`,
+													role: 'navigation', aria: {labelledby: `${prefix}-link-${variant}-${uuid}-${suuid}`}
+												},
+												/* Global Navigation: Menus: Sublink
+												/* ============================== */
+												$('div', {class: `${prefix}-sublist--col-wrapper`},
+													col1,
+													col2,
+													col3,
+													col4
+												)
 											)
-										)
-									);
+										);
+									}
+	
+									if (hasFeaturedItems) {
+										$($subcontent,
+											$('ul',
+												{
+													class: `${prefix}-sublist--featured`,
+													role: 'navigation', aria: {labelledby: `${prefix}-link-${variant}-${uuid}-${suuid}`},
+													data: {filled: `${item.tiles.slice(0, 4).length}`}
+												},
+												/* Global Navigation: Menus: Sublink
+												/* ============================== */
+	
+												...item.tiles.slice(0, 4).map(
+													(childitem) => {
+														const $sublink = $('a',
+															{
+																class: `${prefix}-sublink--featured`,
+																href: childitem.href
+															},
+															$renderSvgOrImg({imgDef: childitem.icon, imgClass: `${prefix}-sublink-image`, imgWidth: childitem.width, imgHeight: childitem.height}),
+															$('span', {class: `${prefix}-sublink-text`},
+																childitem.label
+															)
+														);
+	
+														if (childitem.data) {
+															$($sublink, {
+																data: childitem.data
+															});
+														}
+	
+														if (childitem.newContext) {
+															$($sublink, {
+																target: '_blank',
+																rel: 'noopener'
+															});
+														}
+	
+														return $('li', {class: `${prefix}-subitem--featured`},
+															$sublink
+														);
+													}
+												)
+											)
+										);
+									}
 								}
 
 								$($li,
