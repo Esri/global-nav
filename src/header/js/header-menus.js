@@ -104,7 +104,7 @@ export default ({variant = 'desktop'}) => {
 									{
 										class: `${prefix}-submenu`, id: `${prefix}-${variant}-submenu-${uuid}-${suuid}`,
 										role: 'group', aria: {hidden: true, expanded: false},
-										data: {filled: (item.menus && item.menus.length > 10) ? item.menus.slice(0, 18).length : ''}
+										data: {filled: (item.menus && item.menus.length > 10) ? item.menus.slice(0, 24).length : ''}
 									},
 									$subtoggle
 								);
@@ -118,7 +118,7 @@ export default ({variant = 'desktop'}) => {
 											},
 											/* Global Navigation: Menus: Sublink
 											/* ============================== */
-											...item.menus.slice(0, 18).map(
+											...item.menus.slice(0,24).map(
 												(childitem) => {
 													const $sublink = $('a',
 														{

@@ -6,7 +6,7 @@ export default (data) => {
   if (showBreadCrumbs) {
     const prefix =  'esri-footer-breadcrumb';
     const $breadCrumbs = document.createDocumentFragment();
-    const breadCrumbItems = data.breadcrumbs;
+    const breadCrumbItems = data.breadcrumbs || [];
 
     breadCrumbItems.forEach((crumb, index) => {
       const isLastBreadCrumbItem = (index === breadCrumbItems.length - 1);

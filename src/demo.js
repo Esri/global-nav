@@ -92,11 +92,19 @@ document.addEventListener("DOMContentLoaded", () => {
 						label: 'Industries',
 						menus: [
 							{
+								label: 'AEC',
+								href: 'https://www.esri.com/industries/banking'
+							},
+							{
 								label: 'Banking',
 								href: 'https://www.esri.com/industries/banking'
 							},
 							{
 								label: 'Education',
+								href: 'https://www.esri.com/industries/education'
+							},
+							{
+								label: 'Electric and Gas Utilities',
 								href: 'https://www.esri.com/industries/education'
 							},
 							{
@@ -120,7 +128,7 @@ document.addEventListener("DOMContentLoaded", () => {
 								href: 'https://www.esri.com/industries/natural-resources'
 							},
 							{
-								label: 'Petroleum',
+								label: 'Petroleum and Pipeline',
 								href: 'https://www.esri.com/industries/petroleum'
 							},
 							{
@@ -136,6 +144,14 @@ document.addEventListener("DOMContentLoaded", () => {
 								href: 'https://www.esri.com/industries/retail'
 							},
 							{
+								label: 'State and Local Government',
+								href: 'https://www.esri.com/industries/retail'
+							},
+							{
+								label: 'Sustainable Development',
+								href: 'https://www.esri.com/industries/retail'
+							},
+							{
 								label: 'Telecommunications',
 								href: 'https://www.esri.com/industries/telecom'
 							},
@@ -144,11 +160,7 @@ document.addEventListener("DOMContentLoaded", () => {
 								href: 'https://www.esri.com/industries/transportation'
 							},
 							{
-								label: 'Utilities',
-								href: 'https://www.esri.com/industries/utilities-communications'
-							},
-							{
-								label: 'Water Resources',
+								label: 'Water',
 								href: 'https://www.esri.com/industries/water-resources'
 							},
 							{
