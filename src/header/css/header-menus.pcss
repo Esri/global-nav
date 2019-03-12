@@ -239,28 +239,30 @@
 .esri-header-menus-submenu  {
 	& .esri-header-menus-structured-menu--wrapper {
 		& .esri-header-menus-submenu--left-col {
-			float: left;
+			float: inline-start;
 
 			& .esri-header-menus-entry--heading-label {
-				margin-left: 24px;
+				margin-inline-start: 24px;
 				@nest :dir(rtl) & {
-					margin-right: 24px;
+					margin-inline-end: 24px;
 				}
 				
 				@media (--width-l) {
-					margin-left: 0;
+					margin-inline-start: 0;
 
 					@nest :dir(rtl) & {
-						margin-right: 0;
+						margin-inline-end: 0;
 					}
 				}
 			}
 			
 			& .esri-header-menus-sublink {
+				margin-bottom: 10px;
 				padding-bottom: 7px;
 				padding-top: 7px;
 
 				@media (--width-l) {
+					margin-bottom: auto;
 					padding-bottom: 15px;
 					padding-top: 15px;
 				}
@@ -268,18 +270,23 @@
 		}
 		
 		& .esri-header-menus-submenu--right-col {
-			float: left;
+			float: inline-start;
 			@nest :dir(rtl) & {
-				float: right;
+				float: inline-end;
 			}
 
 			@media (--width-l) {
-				float: right;
+				float: inline-end;
 			}
 
 			& .esri-header-menus-sublink {
+				margin-bottom: 5px;
 				padding-bottom: 7px;
 				padding-top: 7px;
+
+				@media (--width-l) {
+					margin-bottom: auto;
+				}
 			}
 
 			& .esri-header-menus-heading--label {
@@ -489,14 +496,10 @@
 		@nest [data-filled]:not([data-filled=""]) & {
 			width: calc(100% - 10px);
 		}
-
-		@nest [data-filled]:not([data-filled=""]) &:last-child:nth-child(odd) {
-			margin-block-end: 60px;
-		}
 	}
 
 	@media (--width-l) {
-		&.heading {
+		& .esri-header-menus-subitem--heading {
 			&:first-child {
 				& .esri-header-menus-heading--label {
 					margin-top: 0;

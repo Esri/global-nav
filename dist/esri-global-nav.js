@@ -817,7 +817,7 @@ var createMenus = (function (_ref) {
 									}
 
 									if ($heading) {
-										return $assign('li', { class: prefix$3 + '-subitem heading' }, $heading, $assign($sublink));
+										return $assign('li', { class: prefix$3 + '-subitem ' + prefix$3 + '-subitem--heading' }, $heading, $assign($sublink));
 									} else {
 										return $assign('li', { class: prefix$3 + '-subitem' }, $heading, $assign($sublink));
 									}
@@ -877,7 +877,7 @@ var createMenus = (function (_ref) {
 									}
 
 									if ($heading) {
-										return $assign('li', { class: prefix$3 + '-subitem heading' }, $heading, $assign($sublink));
+										return $assign('li', { class: prefix$3 + '-subitem ' + prefix$3 + '-subitem--heading' }, $heading, $assign($sublink));
 									} else {
 										return $assign('li', { class: prefix$3 + '-subitem' }, $heading, $assign($sublink));
 									}
@@ -904,7 +904,7 @@ var createMenus = (function (_ref) {
 									}
 
 									if ($heading) {
-										return $assign('li', { class: prefix$3 + '-subitem heading' }, $heading, $assign($sublink));
+										return $assign('li', { class: prefix$3 + '-subitem ' + prefix$3 + '-subitem--heading' }, $heading, $assign($sublink));
 									} else {
 										return $assign('li', { class: prefix$3 + '-subitem' }, $heading, $assign($sublink));
 									}
@@ -931,7 +931,7 @@ var createMenus = (function (_ref) {
 									}
 
 									if ($heading) {
-										return $assign('li', { class: prefix$3 + '-subitem heading' }, $heading, $assign($sublink));
+										return $assign('li', { class: prefix$3 + '-subitem ' + prefix$3 + '-subitem--heading' }, $heading, $assign($sublink));
 									} else {
 										return $assign('li', { class: prefix$3 + '-subitem' }, $heading, $assign($sublink));
 									}
@@ -958,7 +958,7 @@ var createMenus = (function (_ref) {
 									}
 
 									if ($heading) {
-										return $assign('li', { class: prefix$3 + '-subitem heading' }, $heading, $assign($sublink));
+										return $assign('li', { class: prefix$3 + '-subitem ' + prefix$3 + '-subitem--heading' }, $heading, $assign($sublink));
 									} else {
 										return $assign('li', { class: prefix$3 + '-subitem' }, $heading, $assign($sublink));
 									}
@@ -985,7 +985,7 @@ var createMenus = (function (_ref) {
 									}
 
 									if ($heading) {
-										return $assign('li', { class: prefix$3 + '-subitem heading' }, $heading, $assign($sublink));
+										return $assign('li', { class: prefix$3 + '-subitem ' + prefix$3 + '-subitem--heading' }, $heading, $assign($sublink));
 									} else {
 										return $assign('li', { class: prefix$3 + '-subitem' }, $heading, $assign($sublink));
 									}
@@ -1012,7 +1012,7 @@ var createMenus = (function (_ref) {
 									}
 
 									if ($heading) {
-										return $assign('li', { class: prefix$3 + '-subitem heading' }, $heading, $assign($sublink));
+										return $assign('li', { class: prefix$3 + '-subitem ' + prefix$3 + '-subitem--heading' }, $heading, $assign($sublink));
 									} else {
 										return $assign('li', { class: prefix$3 + '-subitem' }, $heading, $assign($sublink));
 									}
@@ -1039,7 +1039,7 @@ var createMenus = (function (_ref) {
 									}
 
 									if ($heading) {
-										return $assign('li', { class: prefix$3 + '-subitem heading' }, $heading, $assign($sublink));
+										return $assign('li', { class: prefix$3 + '-subitem ' + prefix$3 + '-subitem--heading' }, $heading, $assign($sublink));
 									} else {
 										return $assign('li', { class: prefix$3 + '-subitem' }, $heading, $assign($sublink));
 									}
@@ -1066,7 +1066,7 @@ var createMenus = (function (_ref) {
 									}
 
 									if ($heading) {
-										return $assign('li', { class: prefix$3 + '-subitem heading' }, $heading, $assign($sublink));
+										return $assign('li', { class: prefix$3 + '-subitem ' + prefix$3 + '-subitem--heading' }, $heading, $assign($sublink));
 									} else {
 										return $assign('li', { class: prefix$3 + '-subitem' }, $heading, $assign($sublink));
 									}
@@ -1093,7 +1093,7 @@ var createMenus = (function (_ref) {
 									}
 
 									if ($heading) {
-										return $assign('li', { class: prefix$3 + '-subitem heading' }, $heading, $assign($sublink));
+										return $assign('li', { class: prefix$3 + '-subitem ' + prefix$3 + '-subitem--heading' }, $heading, $assign($sublink));
 									} else {
 										return $assign('li', { class: prefix$3 + '-subitem' }, $heading, $assign($sublink));
 									}
@@ -1120,7 +1120,7 @@ var createMenus = (function (_ref) {
 									}
 
 									if ($heading) {
-										return $assign('li', { class: prefix$3 + '-subitem heading' }, $heading, $assign($sublink));
+										return $assign('li', { class: prefix$3 + '-subitem ' + prefix$3 + '-subitem--heading' }, $heading, $assign($sublink));
 									} else {
 										return $assign('li', { class: prefix$3 + '-subitem' }, $heading, $assign($sublink));
 									}

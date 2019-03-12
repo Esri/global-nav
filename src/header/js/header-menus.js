@@ -200,7 +200,7 @@ export default ({variant = 'desktop'}) => {
 																	}
 
 																	if ($heading) {
-																		return $('li', {class: `${prefix}-subitem heading`}, $heading, $($sublink));
+																		return $('li', {class: `${prefix}-subitem ${prefix}-subitem--heading`}, $heading, $($sublink));
 																	} else {
 																		return $('li', {class: `${prefix}-subitem`}, $heading, $($sublink));
 																	}
@@ -288,7 +288,7 @@ export default ({variant = 'desktop'}) => {
 														}
 
 														if ($heading) {
-															return $('li', {class: `${prefix}-subitem heading`}, $heading, $($sublink));
+															return $('li', {class: `${prefix}-subitem ${prefix}-subitem--heading`}, $heading, $($sublink));
 														} else {
 															return $('li', {class: `${prefix}-subitem`}, $heading, $($sublink));
 														}
@@ -322,7 +322,7 @@ export default ({variant = 'desktop'}) => {
 														}
 
 														if ($heading) {
-															return $('li', {class: `${prefix}-subitem heading`}, $heading, $($sublink));
+															return $('li', {class: `${prefix}-subitem ${prefix}-subitem--heading`}, $heading, $($sublink));
 														} else {
 															return $('li', {class: `${prefix}-subitem`}, $heading, $($sublink));
 														}
@@ -356,7 +356,7 @@ export default ({variant = 'desktop'}) => {
 														}
 
 														if ($heading) {
-															return $('li', {class: `${prefix}-subitem heading`}, $heading, $($sublink));
+															return $('li', {class: `${prefix}-subitem ${prefix}-subitem--heading`}, $heading, $($sublink));
 														} else {
 															return $('li', {class: `${prefix}-subitem`}, $heading, $($sublink));
 														}
@@ -390,7 +390,7 @@ export default ({variant = 'desktop'}) => {
 														}
 
 														if ($heading) {
-															return $('li', {class: `${prefix}-subitem heading`}, $heading, $($sublink));
+															return $('li', {class: `${prefix}-subitem ${prefix}-subitem--heading`}, $heading, $($sublink));
 														} else {
 															return $('li', {class: `${prefix}-subitem`}, $heading, $($sublink));
 														}
@@ -424,7 +424,7 @@ export default ({variant = 'desktop'}) => {
 														}
 
 														if ($heading) {
-															return $('li', {class: `${prefix}-subitem heading`}, $heading, $($sublink));
+															return $('li', {class: `${prefix}-subitem ${prefix}-subitem--heading`}, $heading, $($sublink));
 														} else {
 															return $('li', {class: `${prefix}-subitem`}, $heading, $($sublink));
 														}
@@ -458,7 +458,7 @@ export default ({variant = 'desktop'}) => {
 														}
 
 														if ($heading) {
-															return $('li', {class: `${prefix}-subitem heading`}, $heading, $($sublink));
+															return $('li', {class: `${prefix}-subitem ${prefix}-subitem--heading`}, $heading, $($sublink));
 														} else {
 															return $('li', {class: `${prefix}-subitem`}, $heading, $($sublink));
 														}
@@ -492,7 +492,7 @@ export default ({variant = 'desktop'}) => {
 														}
 
 														if ($heading) {
-															return $('li', {class: `${prefix}-subitem heading`}, $heading, $($sublink));
+															return $('li', {class: `${prefix}-subitem ${prefix}-subitem--heading`}, $heading, $($sublink));
 														} else {
 															return $('li', {class: `${prefix}-subitem`}, $heading, $($sublink));
 														}
@@ -526,7 +526,7 @@ export default ({variant = 'desktop'}) => {
 														}
 
 														if ($heading) {
-															return $('li', {class: `${prefix}-subitem heading`}, $heading, $($sublink));
+															return $('li', {class: `${prefix}-subitem ${prefix}-subitem--heading`}, $heading, $($sublink));
 														} else {
 															return $('li', {class: `${prefix}-subitem`}, $heading, $($sublink));
 														}
@@ -560,7 +560,7 @@ export default ({variant = 'desktop'}) => {
 														}
 
 														if ($heading) {
-															return $('li', {class: `${prefix}-subitem heading`}, $heading, $($sublink));
+															return $('li', {class: `${prefix}-subitem ${prefix}-subitem--heading`}, $heading, $($sublink));
 														} else {
 															return $('li', {class: `${prefix}-subitem`}, $heading, $($sublink));
 														}
@@ -594,7 +594,7 @@ export default ({variant = 'desktop'}) => {
 														}
 
 														if ($heading) {
-															return $('li', {class: `${prefix}-subitem heading`}, $heading, $($sublink));
+															return $('li', {class: `${prefix}-subitem ${prefix}-subitem--heading`}, $heading, $($sublink));
 														} else {
 															return $('li', {class: `${prefix}-subitem`}, $heading, $($sublink));
 														}
