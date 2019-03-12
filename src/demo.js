@@ -154,12 +154,20 @@ document.addEventListener("DOMContentLoaded", () => {
 						label: 'Solutions',
 						menus: [
 							{
-								heading: 'PRODUCT',
+								heading: 'PRODUCTS',
+								label: 'AEC',
+								href: 'https://www.esri.com/industries/banking'
+							},
+							{
 								label: 'Banking',
 								href: 'https://www.esri.com/industries/banking'
 							},
 							{
 								label: 'Education',
+								href: 'https://www.esri.com/industries/education'
+							},
+							{
+								label: 'Electric and Gas Utilities',
 								href: 'https://www.esri.com/industries/education'
 							},
 							{
@@ -183,7 +191,8 @@ document.addEventListener("DOMContentLoaded", () => {
 								href: 'https://www.esri.com/industries/natural-resources'
 							},
 							{
-								label: 'Petroleum',
+								heading: 'SOLUTIONS',
+								label: 'Petroleum and Pipeline',
 								href: 'https://www.esri.com/industries/petroleum'
 							},
 							{
@@ -191,12 +200,19 @@ document.addEventListener("DOMContentLoaded", () => {
 								href: 'https://www.esri.com/industries/public-safety'
 							},
 							{
-								heading: 'SOLUTIONS',
 								label: 'Real Estate',
 								href: 'https://www.esri.com/industries/real-estate'
 							},
 							{
 								label: 'Retail',
+								href: 'https://www.esri.com/industries/retail'
+							},
+							{
+								label: 'State and Local Government',
+								href: 'https://www.esri.com/industries/retail'
+							},
+							{
+								label: 'Sustainable Development',
 								href: 'https://www.esri.com/industries/retail'
 							},
 							{
@@ -208,27 +224,23 @@ document.addEventListener("DOMContentLoaded", () => {
 								href: 'https://www.esri.com/industries/transportation'
 							},
 							{
-								label: 'Utilities',
-								href: 'https://www.esri.com/industries/utilities-communications'
-							},
-							{
-								label: 'Water Resources',
+								label: 'Water',
 								href: 'https://www.esri.com/industries/water-resources'
 							},
 							{
-								label: 'See all industries',
-								href: 'https://www.esri.com/industries'
-							},
-							{
-								label: 'See all industries',
-								href: 'https://www.esri.com/industries'
-							},
-							{
-								label: 'See all industries',
-								href: 'https://www.esri.com/industries'
-							},
-							{
 								heading: 'Industries',
+								label: 'See all industries',
+								href: 'https://www.esri.com/industries'
+							},
+							{
+								label: 'See all industries',
+								href: 'https://www.esri.com/industries'
+							},
+							{
+								label: 'See all industries',
+								href: 'https://www.esri.com/industries'
+							},
+							{
 								label: 'Industry',
 								href: 'https://www.esri.com/industries'
 							},
@@ -251,18 +263,6 @@ document.addEventListener("DOMContentLoaded", () => {
 							{
 								label: 'Water Resources',
 								href: 'https://www.esri.com/industries/water-resources'
-							},
-							{
-								label: 'And some more',
-								href: 'https://www.esri.com/industries'
-							},
-							{
-								label: 'See all industries',
-								href: 'https://www.esri.com/industries'
-							},
-							{
-								label: 'See all industries',
-								href: 'https://www.esri.com/industries'
 							}
 						],
 						tiles: [

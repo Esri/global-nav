@@ -484,6 +484,30 @@
 		@nest :matches([data-filled="17"], [data-filled="18"]) &:nth-child(10) {
 			margin-block-start: calc(-50px * 9);
 		}
+		
+		@nest :matches([data-filled="19"]) &:nth-child(10) {
+			margin-block-start: calc(-50px * 9);
+		}
+	
+		@nest :matches([data-filled="20"]) &:nth-child(11) {
+			margin-block-start: calc(-50px * 10);
+		}
+		
+		@nest :matches([data-filled="21"]) &:nth-child(11) {
+			margin-block-start: calc(-50px * 10);
+		}
+		
+		@nest :matches([data-filled="22"]) &:nth-child(11) {
+			margin-block-start: calc(-50px * 10);
+		}
+		
+		@nest :matches([data-filled="23"]) &:nth-child(12) {
+			margin-block-start: calc(-50px * 11);
+		}
+	
+		@nest :matches([data-filled="24"]) &:nth-child(13) {
+			margin-block-start: calc(-50px * 12);
+		}
 
 		@nest
 		:matches([data-filled="11"], [data-filled="12"]) &:nth-child(n+7),
@@ -492,6 +516,32 @@
 		:matches([data-filled="17"], [data-filled="18"]) &:nth-child(n+10) {
 			margin-inline-start: calc(33% + 10px);
 		}
+		
+		@nest
+		:matches([data-filled="19"]) &:nth-child(n+10) {
+			margin-inline-start: calc(50% + 10px);
+		}
+		
+		@nest
+		:matches([data-filled="20"]) &:nth-child(n+11) {
+			margin-inline-start: calc(50% + 10px);
+		}
+		
+		@nest
+		:matches([data-filled="21"]) &:nth-child(n+11) {
+			margin-inline-start: calc(50% + 10px);
+		}
+		
+		@nest
+		:matches([data-filled="22"], [data-filled="23"]) &:nth-child(n+12) {
+			margin-inline-start: calc(50% + 10px);
+		}
+		
+		@nest
+		:matches([data-filled="24"]) &:nth-child(n+13) {
+			margin-inline-start: calc(50% + 10px);
+		}
+		
 
 		@nest [data-filled]:not([data-filled=""]) & {
 			width: calc(100% - 10px);

@@ -1,7 +1,7 @@
 
 /**
  * Global Nav - A centralized component for Esri's global navigation
- * @version v1.1.2
+ * @version v1.2.1
  * @link https://github.com/Esri/global-nav
  * @copyright 2019 Esri
  * @license
@@ -769,7 +769,7 @@ var createMenus = (function (_ref) {
 					var $subcontent = $assign('div', {
 						class: prefix$3 + '-submenu', id: prefix$3 + '-' + variant + '-submenu-' + uuid + '-' + suuid, 'data-has-structured': hasStructuredMenu,
 						role: 'group', aria: { hidden: true, expanded: false },
-						data: { filled: item.menus && item.menus.length > 10 ? item.menus.slice(0, 27).length : '' }
+						data: { filled: item.menus && item.menus.length > 10 ? item.menus.slice(0, 24).length : '' }
 					}, $subtoggle);
 
 					if (hasStructuredMenu) {
@@ -5268,7 +5268,7 @@ var breadcrumbs = (function (data) {
   if (showBreadCrumbs) {
     var prefix = 'esri-footer-breadcrumb';
     var $breadCrumbs = document.createDocumentFragment();
-    var breadCrumbItems = data.breadcrumbs;
+    var breadCrumbItems = data.breadcrumbs || [];
 
     breadCrumbItems.forEach(function (crumb, index) {
       var isLastBreadCrumbItem = index === breadCrumbItems.length - 1;
