@@ -749,75 +749,420 @@ var createMenus = (function (_ref) {
 
 				var $li = $assign('li', { class: prefix$3 + '-item' }, $subcontrol);
 
+				var hasStructuredMenu = item.useStructuredMenu || false;
 				var hasMenuItems = item.menus && item.menus.length;
 				var hasFeaturedItems = item.tiles && item.tiles.length;
 
 				if (hasMenuItems || hasFeaturedItems) {
 					/* Global Navigation: Submenu
      /* ====================================== */
-
 					var $subtoggle = $assign('button', { class: prefix$3 + '-submenu-toggle' }, item.label);
 
+					var $structuredLeftCol = $assign('div', {
+						class: prefix$3 + '-submenu--left-col'
+					});
+
+					var $structuredRightCol = $assign('div', {
+						class: prefix$3 + '-submenu--right-col'
+					});
+
 					var $subcontent = $assign('div', {
-						class: prefix$3 + '-submenu', id: prefix$3 + '-' + variant + '-submenu-' + uuid + '-' + suuid,
+						class: prefix$3 + '-submenu', id: prefix$3 + '-' + variant + '-submenu-' + uuid + '-' + suuid, 'data-has-structured': hasStructuredMenu,
 						role: 'group', aria: { hidden: true, expanded: false },
 						data: { filled: item.menus && item.menus.length > 10 ? item.menus.slice(0, 24).length : '' }
 					}, $subtoggle);
 
-					if (hasMenuItems) {
-						$assign($subcontent, $assign.apply(undefined, ['ul', {
-							class: prefix$3 + '-sublist',
-							role: 'navigation', aria: { labelledby: prefix$3 + '-link-' + variant + '-' + uuid + '-' + suuid }
-						}].concat(toConsumableArray(item.menus.slice(0, 24).map(function (childitem) {
-							var $sublink = $assign('a', {
-								class: prefix$3 + '-sublink',
-								href: childitem.href
-							}, childitem.label);
+					if (hasStructuredMenu) {
+						var structuredMenu = item.structuredMenu;
+						if (structuredMenu) {
+							structuredMenu.capabilities.forEach(function (entries) {
+								$assign($subcontent, $assign('div', { class: prefix$3 + '-structured-menu--wrapper' }, $assign($structuredLeftCol, $assign.apply(undefined, ['ul', {
+									class: prefix$3 + '-sublist', 'data-menutype': 'structured',
+									role: 'navigation', aria: { labelledby: prefix$3 + '-link-' + variant + '-' + uuid + '-' + suuid }
+								}, $assign('li', {
+									class: prefix$3 + '-entry--heading'
+								}, $assign('p', {
+									class: prefix$3 + '-entry--heading-label'
+								}, entries.heading))].concat(toConsumableArray(entries.entryData.map(function (entry) {
+									var menuItem = $assign('li', { class: prefix$3 + '-subitem' }, $assign('a', {
+										href: entry.href,
+										class: prefix$3 + '-sublink'
+									}, $assign('p', {
+										class: prefix$3 + '-sublink--title'
+									}, entry.label), $assign('p', {
+										class: prefix$3 + '-sublink--description'
+									}, entry.description)));
+									return menuItem;
+								}))))), $assign($structuredRightCol, $assign.apply(undefined, ['ul', {
+									class: prefix$3 + '-sublist', 'data-menutype': 'standard',
+									role: 'navigation', aria: { labelledby: prefix$3 + '-link-' + variant + '-' + uuid + '-' + suuid }
+								}].concat(toConsumableArray(item.menus.map(function (childitem) {
+									var $heading = childitem.heading ? $assign('p', { class: prefix$3 + '-heading--label' }, childitem.heading) : '';
+									var $sublink = $assign('a', {
+										class: prefix$3 + '-sublink',
+										href: childitem.href
+									}, childitem.label);
 
-							if (childitem.data) {
-								$assign($sublink, {
-									data: childitem.data
-								});
+									if (childitem.data) {
+										$assign($sublink, {
+											data: childitem.data
+										});
+									}
+
+									if (childitem.newContext) {
+										$assign($sublink, {
+											target: '_blank',
+											rel: 'noopener'
+										});
+									}
+
+									if ($heading) {
+										return $assign('li', { class: prefix$3 + '-subitem ' + prefix$3 + '-subitem--heading' }, $heading, $assign($sublink));
+									} else {
+										return $assign('li', { class: prefix$3 + '-subitem' }, $heading, $assign($sublink));
+									}
+								})))))), $assign.apply(undefined, ['ul', {
+									class: prefix$3 + '-sublist--featured',
+									role: 'navigation', aria: { labelledby: prefix$3 + '-link-' + variant + '-' + uuid + '-' + suuid },
+									data: { filled: '' + item.tiles.slice(0, 4).length }
+								}].concat(toConsumableArray(item.tiles.slice(0, 4).map(function (childitem) {
+									var $sublink = $assign('a', {
+										class: prefix$3 + '-sublink--featured',
+										href: childitem.href
+									}, $renderSvgOrImg({ imgDef: childitem.icon, imgClass: prefix$3 + '-sublink-image', imgWidth: childitem.width, imgHeight: childitem.height }), $assign('span', { class: prefix$3 + '-sublink-text' }, childitem.label));
+
+									if (childitem.data) {
+										$assign($sublink, {
+											data: childitem.data
+										});
+									}
+
+									if (childitem.newContext) {
+										$assign($sublink, {
+											target: '_blank',
+											rel: 'noopener'
+										});
+									}
+
+									return $assign('li', { class: prefix$3 + '-subitem--featured' }, $sublink);
+								})))));
+							});
+						}
+					} else {
+						if (hasMenuItems) {
+							var col1 = undefined;
+							var col2 = undefined;
+							var col3 = undefined;
+							var col4 = undefined;
+
+							if (item.menus.length <= 9) {
+								col1 = $assign.apply(undefined, ['div', { class: prefix$3 + '-sublist--col' }].concat(toConsumableArray(item.menus.slice(0, 9).map(function (childitem) {
+									var $heading = childitem.heading ? $assign('p', { class: prefix$3 + '-heading--label' }, childitem.heading) : '';
+									var $sublink = $assign('a', {
+										class: prefix$3 + '-sublink',
+										href: childitem.href
+									}, childitem.label);
+
+									if (childitem.data) {
+										$assign($sublink, {
+											data: childitem.data
+										});
+									}
+
+									if (childitem.newContext) {
+										$assign($sublink, {
+											target: '_blank',
+											rel: 'noopener'
+										});
+									}
+
+									if ($heading) {
+										return $assign('li', { class: prefix$3 + '-subitem ' + prefix$3 + '-subitem--heading' }, $heading, $assign($sublink));
+									} else {
+										return $assign('li', { class: prefix$3 + '-subitem' }, $heading, $assign($sublink));
+									}
+								}))));
+							} else if (item.menus.length > 9 && item.menus.length <= 18) {
+								col1 = $assign.apply(undefined, ['div', { class: prefix$3 + '-sublist--col' }].concat(toConsumableArray(item.menus.slice(0, 9).map(function (childitem) {
+									var $heading = childitem.heading ? $assign('p', { class: prefix$3 + '-heading--label' }, childitem.heading) : '';
+									var $sublink = $assign('a', {
+										class: prefix$3 + '-sublink',
+										href: childitem.href
+									}, childitem.label);
+
+									if (childitem.data) {
+										$assign($sublink, {
+											data: childitem.data
+										});
+									}
+
+									if (childitem.newContext) {
+										$assign($sublink, {
+											target: '_blank',
+											rel: 'noopener'
+										});
+									}
+
+									if ($heading) {
+										return $assign('li', { class: prefix$3 + '-subitem ' + prefix$3 + '-subitem--heading' }, $heading, $assign($sublink));
+									} else {
+										return $assign('li', { class: prefix$3 + '-subitem' }, $heading, $assign($sublink));
+									}
+								}))));
+
+								col2 = $assign.apply(undefined, ['div', { class: prefix$3 + '-sublist--col' }].concat(toConsumableArray(item.menus.slice(9, 18).map(function (childitem) {
+									var $heading = childitem.heading ? $assign('p', { class: prefix$3 + '-heading--label' }, childitem.heading) : '';
+									var $sublink = $assign('a', {
+										class: prefix$3 + '-sublink',
+										href: childitem.href
+									}, childitem.label);
+
+									if (childitem.data) {
+										$assign($sublink, {
+											data: childitem.data
+										});
+									}
+
+									if (childitem.newContext) {
+										$assign($sublink, {
+											target: '_blank',
+											rel: 'noopener'
+										});
+									}
+
+									if ($heading) {
+										return $assign('li', { class: prefix$3 + '-subitem ' + prefix$3 + '-subitem--heading' }, $heading, $assign($sublink));
+									} else {
+										return $assign('li', { class: prefix$3 + '-subitem' }, $heading, $assign($sublink));
+									}
+								}))));
+							} else if (item.menus.length > 18 && item.menus.length <= 27) {
+								col1 = $assign.apply(undefined, ['div', { class: prefix$3 + '-sublist--col' }].concat(toConsumableArray(item.menus.slice(0, 9).map(function (childitem) {
+									var $heading = childitem.heading ? $assign('p', { class: prefix$3 + '-heading--label' }, childitem.heading) : '';
+									var $sublink = $assign('a', {
+										class: prefix$3 + '-sublink',
+										href: childitem.href
+									}, childitem.label);
+
+									if (childitem.data) {
+										$assign($sublink, {
+											data: childitem.data
+										});
+									}
+
+									if (childitem.newContext) {
+										$assign($sublink, {
+											target: '_blank',
+											rel: 'noopener'
+										});
+									}
+
+									if ($heading) {
+										return $assign('li', { class: prefix$3 + '-subitem ' + prefix$3 + '-subitem--heading' }, $heading, $assign($sublink));
+									} else {
+										return $assign('li', { class: prefix$3 + '-subitem' }, $heading, $assign($sublink));
+									}
+								}))));
+
+								col2 = $assign.apply(undefined, ['div', { class: prefix$3 + '-sublist--col' }].concat(toConsumableArray(item.menus.slice(9, 18).map(function (childitem) {
+									var $heading = childitem.heading ? $assign('p', { class: prefix$3 + '-heading--label' }, childitem.heading) : '';
+									var $sublink = $assign('a', {
+										class: prefix$3 + '-sublink',
+										href: childitem.href
+									}, childitem.label);
+
+									if (childitem.data) {
+										$assign($sublink, {
+											data: childitem.data
+										});
+									}
+
+									if (childitem.newContext) {
+										$assign($sublink, {
+											target: '_blank',
+											rel: 'noopener'
+										});
+									}
+
+									if ($heading) {
+										return $assign('li', { class: prefix$3 + '-subitem ' + prefix$3 + '-subitem--heading' }, $heading, $assign($sublink));
+									} else {
+										return $assign('li', { class: prefix$3 + '-subitem' }, $heading, $assign($sublink));
+									}
+								}))));
+
+								col3 = $assign.apply(undefined, ['div', { class: prefix$3 + '-sublist--col' }].concat(toConsumableArray(item.menus.slice(18, 27).map(function (childitem) {
+									var $heading = childitem.heading ? $assign('p', { class: prefix$3 + '-heading--label' }, childitem.heading) : '';
+									var $sublink = $assign('a', {
+										class: prefix$3 + '-sublink',
+										href: childitem.href
+									}, childitem.label);
+
+									if (childitem.data) {
+										$assign($sublink, {
+											data: childitem.data
+										});
+									}
+
+									if (childitem.newContext) {
+										$assign($sublink, {
+											target: '_blank',
+											rel: 'noopener'
+										});
+									}
+
+									if ($heading) {
+										return $assign('li', { class: prefix$3 + '-subitem ' + prefix$3 + '-subitem--heading' }, $heading, $assign($sublink));
+									} else {
+										return $assign('li', { class: prefix$3 + '-subitem' }, $heading, $assign($sublink));
+									}
+								}))));
+							} else if (item.menus.length > 27 && item.menus.length <= 36) {
+								col1 = $assign.apply(undefined, ['div', { class: prefix$3 + '-sublist--col' }].concat(toConsumableArray(item.menus.slice(0, 9).map(function (childitem) {
+									var $heading = childitem.heading ? $assign('p', { class: prefix$3 + '-heading--label' }, childitem.heading) : '';
+									var $sublink = $assign('a', {
+										class: prefix$3 + '-sublink',
+										href: childitem.href
+									}, childitem.label);
+
+									if (childitem.data) {
+										$assign($sublink, {
+											data: childitem.data
+										});
+									}
+
+									if (childitem.newContext) {
+										$assign($sublink, {
+											target: '_blank',
+											rel: 'noopener'
+										});
+									}
+
+									if ($heading) {
+										return $assign('li', { class: prefix$3 + '-subitem ' + prefix$3 + '-subitem--heading' }, $heading, $assign($sublink));
+									} else {
+										return $assign('li', { class: prefix$3 + '-subitem' }, $heading, $assign($sublink));
+									}
+								}))));
+
+								col2 = $assign.apply(undefined, ['div', { class: prefix$3 + '-sublist--col' }].concat(toConsumableArray(item.menus.slice(9, 18).map(function (childitem) {
+									var $heading = childitem.heading ? $assign('p', { class: prefix$3 + '-heading--label' }, childitem.heading) : '';
+									var $sublink = $assign('a', {
+										class: prefix$3 + '-sublink',
+										href: childitem.href
+									}, childitem.label);
+
+									if (childitem.data) {
+										$assign($sublink, {
+											data: childitem.data
+										});
+									}
+
+									if (childitem.newContext) {
+										$assign($sublink, {
+											target: '_blank',
+											rel: 'noopener'
+										});
+									}
+
+									if ($heading) {
+										return $assign('li', { class: prefix$3 + '-subitem ' + prefix$3 + '-subitem--heading' }, $heading, $assign($sublink));
+									} else {
+										return $assign('li', { class: prefix$3 + '-subitem' }, $heading, $assign($sublink));
+									}
+								}))));
+
+								col3 = $assign.apply(undefined, ['div', { class: prefix$3 + '-sublist--col' }].concat(toConsumableArray(item.menus.slice(18, 27).map(function (childitem) {
+									var $heading = childitem.heading ? $assign('p', { class: prefix$3 + '-heading--label' }, childitem.heading) : '';
+									var $sublink = $assign('a', {
+										class: prefix$3 + '-sublink',
+										href: childitem.href
+									}, childitem.label);
+
+									if (childitem.data) {
+										$assign($sublink, {
+											data: childitem.data
+										});
+									}
+
+									if (childitem.newContext) {
+										$assign($sublink, {
+											target: '_blank',
+											rel: 'noopener'
+										});
+									}
+
+									if ($heading) {
+										return $assign('li', { class: prefix$3 + '-subitem ' + prefix$3 + '-subitem--heading' }, $heading, $assign($sublink));
+									} else {
+										return $assign('li', { class: prefix$3 + '-subitem' }, $heading, $assign($sublink));
+									}
+								}))));
+
+								col4 = $assign.apply(undefined, ['div', { class: prefix$3 + '-sublist--col' }].concat(toConsumableArray(item.menus.slice(27, 36).map(function (childitem) {
+									var $heading = childitem.heading ? $assign('p', { class: prefix$3 + '-heading--label' }, childitem.heading) : '';
+									var $sublink = $assign('a', {
+										class: prefix$3 + '-sublink',
+										href: childitem.href
+									}, childitem.label);
+
+									if (childitem.data) {
+										$assign($sublink, {
+											data: childitem.data
+										});
+									}
+
+									if (childitem.newContext) {
+										$assign($sublink, {
+											target: '_blank',
+											rel: 'noopener'
+										});
+									}
+
+									if ($heading) {
+										return $assign('li', { class: prefix$3 + '-subitem ' + prefix$3 + '-subitem--heading' }, $heading, $assign($sublink));
+									} else {
+										return $assign('li', { class: prefix$3 + '-subitem' }, $heading, $assign($sublink));
+									}
+								}))));
 							}
 
-							if (childitem.newContext) {
-								$assign($sublink, {
-									target: '_blank',
-									rel: 'noopener'
-								});
-							}
+							$assign($subcontent, $assign('ul', {
+								class: prefix$3 + '-sublist',
+								role: 'navigation', aria: { labelledby: prefix$3 + '-link-' + variant + '-' + uuid + '-' + suuid }
+							},
+							/* Global Navigation: Menus: Sublink
+       /* ============================== */
+							$assign('div', { class: prefix$3 + '-sublist--col-wrapper' }, col1, col2, col3, col4)));
+						}
 
-							return $assign('li', { class: prefix$3 + '-subitem' }, $sublink);
-						})))));
-					}
+						if (hasFeaturedItems) {
+							$assign($subcontent, $assign.apply(undefined, ['ul', {
+								class: prefix$3 + '-sublist--featured',
+								role: 'navigation', aria: { labelledby: prefix$3 + '-link-' + variant + '-' + uuid + '-' + suuid },
+								data: { filled: '' + item.tiles.slice(0, 4).length }
+							}].concat(toConsumableArray(item.tiles.slice(0, 4).map(function (childitem) {
+								var $sublink = $assign('a', {
+									class: prefix$3 + '-sublink--featured',
+									href: childitem.href
+								}, $renderSvgOrImg({ imgDef: childitem.icon, imgClass: prefix$3 + '-sublink-image', imgWidth: childitem.width, imgHeight: childitem.height }), $assign('span', { class: prefix$3 + '-sublink-text' }, childitem.label));
 
-					if (hasFeaturedItems) {
-						// ...
-						$assign($subcontent, $assign.apply(undefined, ['ul', {
-							class: prefix$3 + '-sublist--featured',
-							role: 'navigation', aria: { labelledby: prefix$3 + '-link-' + variant + '-' + uuid + '-' + suuid },
-							data: { filled: '' + item.tiles.slice(0, 4).length }
-						}].concat(toConsumableArray(item.tiles.slice(0, 4).map(function (childitem) {
-							var $sublink = $assign('a', {
-								class: prefix$3 + '-sublink--featured',
-								href: childitem.href
-							}, $renderSvgOrImg({ imgDef: childitem.icon, imgClass: prefix$3 + '-sublink-image', imgWidth: childitem.width, imgHeight: childitem.height }), $assign('span', { class: prefix$3 + '-sublink-text' }, childitem.label));
+								if (childitem.data) {
+									$assign($sublink, {
+										data: childitem.data
+									});
+								}
 
-							if (childitem.data) {
-								$assign($sublink, {
-									data: childitem.data
-								});
-							}
+								if (childitem.newContext) {
+									$assign($sublink, {
+										target: '_blank',
+										rel: 'noopener'
+									});
+								}
 
-							if (childitem.newContext) {
-								$assign($sublink, {
-									target: '_blank',
-									rel: 'noopener'
-								});
-							}
-
-							return $assign('li', { class: prefix$3 + '-subitem--featured' }, $sublink);
-						})))));
+								return $assign('li', { class: prefix$3 + '-subitem--featured' }, $sublink);
+							})))));
+						}
 					}
 
 					$assign($li, $subcontent);
