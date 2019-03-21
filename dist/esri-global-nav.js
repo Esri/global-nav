@@ -773,9 +773,6 @@ var createMenus = (function (_ref) {
 		}].concat(toConsumableArray(tiles.slice(0, 4).map(createTile))));
 	};
 
-	/* Menus
- /* ====================================================================== */
-
 	/* Menus: On Update
  /* ====================================================================== */
 
