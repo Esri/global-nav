@@ -16,7 +16,6 @@ document.addEventListener("DOMContentLoaded", () => {
 				[
 					{
 						label: 'Products',
-						useStructuredMenu: true,
 						structuredMenu: {
 							capabilities: [
 								{

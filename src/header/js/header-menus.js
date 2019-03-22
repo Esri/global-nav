@@ -40,9 +40,77 @@ export default ({variant = 'desktop'}) => {
 
 	$($target, $content);
 
-	/* Menus
+	/* Menus: Link 
 	/* ====================================================================== */
 
+	const createNavLink = (link) => {
+		const $link = $('a',
+			{class: `${prefix}-${link.class}`, href: link.props.href || 'javascript:;'},
+			link.icon || "",
+			link.label
+		);
+
+		if (link.id) {
+			$link.setAttribute("id", `${prefix}-${link.id}`); 
+		}
+
+		if (link.props.data) {
+			for (const key in link.props.data) {
+				$link.setAttribute(`data-${key}`, link.props.data[key]);
+			}
+		}
+
+		if (link.props.newContext) {
+			$($link, {
+				target: '_blank',
+				rel: 'noopener'
+			});
+		}
+
+		return $link;
+	};
+
+	/* Menus: Column
+	/* ====================================================================== */
+
+	const createColumn = (childitem) => {
+		const headingClass = childitem.heading ? `${prefix}-subitem--heading` : "";
+
+		return $('li', 
+			{class: `${prefix}-subitem ${headingClass}`},
+			childitem.heading ? $('p', {class: `${prefix}-heading--label`}, childitem.heading) : '',
+			createNavLink({class:"sublink", props: childitem, label: childitem.label})
+		);
+	};
+
+	const createMenuColumns = (items) => {
+		if (!items.length) return null;
+		return $('div', {class: `${prefix}-sublist--col`}, ...items.map(createColumn));
+	};
+
+	/* Menus: Tile 
+	/* ====================================================================== */
+
+	const createTile = (tile) => {
+		const icon = $renderSvgOrImg({imgDef: tile.icon, imgClass: `${prefix}-sublink-image`, imgWidth: tile.width, imgHeight: tile.height});
+		return $('li', {class: `${prefix}-subitem--featured`},
+			createNavLink({
+				class: "sublink--featured", 
+				props: tile,
+				icon,
+				label: $('span', {class: `${prefix}-sublink-text`}, tile.label)
+			})
+		);
+	};
+
+	const createMenuTiles = (tiles, uuid, suuid) => {
+		if (!tiles.length) return null;
+		return $('ul', {
+			class: `${prefix}-sublist--featured`,
+			role: 'navigation', aria: {labelledby: `${prefix}-link-${variant}-${uuid}-${suuid}`},
+			data: {filled: `${tiles.slice(0, 4).length}`}
+		}, ...tiles.slice(0, 4).map(createTile));
+	};
 
 	/* Menus: On Update
 	/* ====================================================================== */
@@ -72,24 +140,16 @@ export default ({variant = 'desktop'}) => {
 								? $renderSvgOrImg({imgDef: item.icon.path, imgClass: `${prefix}-link-icon`, imgWidth: item.icon.width || '16px', imgHeight: item.icon.height || '16px'})
 								: null;
 
-							const $subcontrol = $('a',
-								{
-									class: `${prefix}-link ${item.hideLabelInDesktop ? '-hide-label' : ''} ${item.active ? '-is-active' : ''}`, id: `${prefix}-link-${variant}-${uuid}-${suuid}`,
-									href: item.href || 'javascript:;' // eslint-disable-line no-script-url
-								},
-								$linkIcon,
-								$('span', {class : `${prefix}-link-label`}, item.label)
-							);
-
-							if (item.data) {
-								for (const key in item.data) {
-									$subcontrol.setAttribute(`data-${key}`, item.data[key]);
-								}
-							}
+							const $subcontrol = createNavLink({
+								class: `link ${item.hideLabelInDesktop ? '-hide-label' : ''} ${item.active ? '-is-active' : ''}`,
+								id: `link-${variant}-${uuid}-${suuid}`,
+								props: item,
+								icon: $linkIcon,
+								label: $('span', {class : `${prefix}-link-label`}, item.label)
+							});
 
 							const $li = $('li', {class: `${prefix}-item`}, $subcontrol);
 
-							const hasStructuredMenu = item.useStructuredMenu || false;
 							const hasMenuItems = item.menus && item.menus.length;
 							const hasFeaturedItems = item.tiles && item.tiles.length;
 
@@ -114,495 +174,79 @@ export default ({variant = 'desktop'}) => {
 								
 								const $subcontent = $('div',
 									{
-										class: `${prefix}-submenu`, id: `${prefix}-${variant}-submenu-${uuid}-${suuid}`, 'data-has-structured': hasStructuredMenu,
+										class: `${prefix}-submenu`,
+										id: `${prefix}-${variant}-submenu-${uuid}-${suuid}`,
+										'data-has-structured': !!item.structuredMenu,
 										role: 'group', aria: {hidden: true, expanded: false},
 										data: {filled: (item.menus && item.menus.length > 10) ? item.menus.slice(0, 24).length : ''}
 									},
 									$subtoggle
 								);
 
-								if (hasStructuredMenu) {
+								if (item.structuredMenu) {
 									const structuredMenu = item.structuredMenu;
-									if (structuredMenu) {
-										structuredMenu.capabilities.forEach((entries) => {
-											$($subcontent,
-												$('div', {class: `${prefix}-structured-menu--wrapper`}, 
-													$($structuredLeftCol,
-														$('ul', 
+									structuredMenu.capabilities.forEach((entries) => {
+										$($subcontent,
+											$('div', {class: `${prefix}-structured-menu--wrapper`}, 
+												$($structuredLeftCol,
+													$('ul', 
+														{
+															class: `${prefix}-sublist`, 'data-menutype': 'structured',
+															role: 'navigation', aria: {labelledby: `${prefix}-link-${variant}-${uuid}-${suuid}`}
+														},
+														$('li', 
 															{
-																class: `${prefix}-sublist`, 'data-menutype': 'structured',
-																role: 'navigation', aria: {labelledby: `${prefix}-link-${variant}-${uuid}-${suuid}`}
+																class: `${prefix}-entry--heading`
 															},
-															$('li', 
+															$('p', 
 																{
-																	class: `${prefix}-entry--heading`
+																	class: `${prefix}-entry--heading-label`
 																},
-																$('p', 
-																	{
-																		class: `${prefix}-entry--heading-label`
-																	}, 
-																	entries.heading
-																)
-															),
-															...entries.entryData.map((entry) => {
-																const menuItem = $('li', {class: `${prefix}-subitem`},
-																	$('a', 
-																		{
-																			href: entry.href, 
-																			class: `${prefix}-sublink`
-																		},
-																		$('p', 
-																			{
-																				class: `${prefix}-sublink--title`
-																			},
-																			entry.label
-																		),
-																		$('p', 
-																			{
-																				class: `${prefix}-sublink--description`
-																			}, 
-																			entry.description
-																		)
-																	)
-																);
-																return menuItem;
-															}),
-														)
-													),
-													$($structuredRightCol,
-														$('ul', 
-															{
-																class: `${prefix}-sublist`, 'data-menutype': 'standard',
-																role: 'navigation', aria: {labelledby: `${prefix}-link-${variant}-${uuid}-${suuid}`}
-															},
-															...item.menus.map(
-																(childitem) => {
-																	const $heading = (childitem.heading) ? $('p', {class: `${prefix}-heading--label`}, childitem.heading) : '';
-																	const $sublink = $('a',
-																		{
-																			class: `${prefix}-sublink`,
-																			href: childitem.href
-																		},
-																		childitem.label
-																	);
-
-																	if (childitem.data) {
-																		$($sublink, {
-																			data: childitem.data
-																		});
-																	}
-				
-																	if (childitem.newContext) {
-																		$($sublink, {
-																			target: '_blank',
-																			rel: 'noopener'
-																		});
-																	}
-
-																	if ($heading) {
-																		return $('li', {class: `${prefix}-subitem ${prefix}-subitem--heading`}, $heading, $($sublink));
-																	} else {
-																		return $('li', {class: `${prefix}-subitem`}, $heading, $($sublink));
-																	}
-																}
+																entries.heading
 															)
-														)
+														),
+														...entries.entryData.map((entry) => {
+															const menuItem = $('li', {class: `${prefix}-subitem`},
+																$('a', 
+																	{
+																		href: entry.href, 
+																		class: `${prefix}-sublink`
+																	},
+																	$('p', 
+																		{
+																			class: `${prefix}-sublink--title`
+																		},
+																		entry.label
+																	),
+																	$('p', 
+																		{
+																			class: `${prefix}-sublink--description`
+																		}, 
+																		entry.description
+																	)
+																)
+															);
+															return menuItem;
+														}),
 													)
 												),
-												$('ul',
+												$($structuredRightCol,
+													$('ul', 
 														{
-															class: `${prefix}-sublist--featured`,
-															role: 'navigation', aria: {labelledby: `${prefix}-link-${variant}-${uuid}-${suuid}`},
-															data: {filled: `${item.tiles.slice(0, 4).length}`}
+															class: `${prefix}-sublist`, 'data-menutype': 'standard',
+															role: 'navigation', aria: {labelledby: `${prefix}-link-${variant}-${uuid}-${suuid}`}
 														},
-														/* Global Navigation: Menus: Sublink
-														/* ============================== */
-			
-														...item.tiles.slice(0, 4).map(
-															(childitem) => {
-																const $sublink = $('a',
-																	{
-																		class: `${prefix}-sublink--featured`,
-																		href: childitem.href
-																	},
-																	$renderSvgOrImg({imgDef: childitem.icon, imgClass: `${prefix}-sublink-image`, imgWidth: childitem.width, imgHeight: childitem.height}),
-																	$('span', {class: `${prefix}-sublink-text`},
-																		childitem.label
-																	)
-																);
-			
-																if (childitem.data) {
-																	$($sublink, {
-																		data: childitem.data
-																	});
-																}
-			
-																if (childitem.newContext) {
-																	$($sublink, {
-																		target: '_blank',
-																		rel: 'noopener'
-																	});
-																}
-			
-																return $('li', {class: `${prefix}-subitem--featured`},
-																	$sublink
-																);
-															}
-														)
+														createMenuColumns(item.menus)
 													)
-												
-											);
-										});
-									}
+												)
+											),
+											/* Global Navigation: Menus: Sublink
+											/* ============================== */
+											createMenuTiles(item.tiles, uuid, suuid)
+										);
+									});
 								} else {
 									if (hasMenuItems) {
-										let col1 = undefined;
-										let col2 = undefined;
-										let col3 = undefined;
-										let col4 = undefined;
-
-										if (item.menus.length <= 9) {
-											col1 = $('div', {class: `${prefix}-sublist--col`},									
-												...item.menus.slice(0,9).map(
-													(childitem) => {
-														const $heading = (childitem.heading) ? $('p', {class: `${prefix}-heading--label`}, childitem.heading) : '';
-														const $sublink = $('a',
-															{
-																class: `${prefix}-sublink`,
-																href: childitem.href
-															},
-															childitem.label
-														);
-
-														if (childitem.data) {
-															$($sublink, {
-																data: childitem.data
-															});
-														}
-
-														if (childitem.newContext) {
-															$($sublink, {
-																target: '_blank',
-																rel: 'noopener'
-															});
-														}
-
-														if ($heading) {
-															return $('li', {class: `${prefix}-subitem ${prefix}-subitem--heading`}, $heading, $($sublink));
-														} else {
-															return $('li', {class: `${prefix}-subitem`}, $heading, $($sublink));
-														}
-													}
-												)
-											);
-										} else if (item.menus.length > 9 && item.menus.length <= 18) {
-											col1 = $('div', {class: `${prefix}-sublist--col`},									
-												...item.menus.slice(0,9).map(
-													(childitem) => {
-														const $heading = (childitem.heading) ? $('p', {class: `${prefix}-heading--label`}, childitem.heading) : '';
-														const $sublink = $('a',
-															{
-																class: `${prefix}-sublink`,
-																href: childitem.href
-															},
-															childitem.label
-														);
-
-														if (childitem.data) {
-															$($sublink, {
-																data: childitem.data
-															});
-														}
-
-														if (childitem.newContext) {
-															$($sublink, {
-																target: '_blank',
-																rel: 'noopener'
-															});
-														}
-
-														if ($heading) {
-															return $('li', {class: `${prefix}-subitem ${prefix}-subitem--heading`}, $heading, $($sublink));
-														} else {
-															return $('li', {class: `${prefix}-subitem`}, $heading, $($sublink));
-														}
-													}
-												)
-											);
-
-											col2 = $('div', {class: `${prefix}-sublist--col`},									
-												...item.menus.slice(9,18).map(
-													(childitem) => {
-														const $heading = (childitem.heading) ? $('p', {class: `${prefix}-heading--label`}, childitem.heading) : '';
-														const $sublink = $('a',
-															{
-																class: `${prefix}-sublink`,
-																href: childitem.href
-															},
-															childitem.label
-														);
-
-														if (childitem.data) {
-															$($sublink, {
-																data: childitem.data
-															});
-														}
-
-														if (childitem.newContext) {
-															$($sublink, {
-																target: '_blank',
-																rel: 'noopener'
-															});
-														}
-
-														if ($heading) {
-															return $('li', {class: `${prefix}-subitem ${prefix}-subitem--heading`}, $heading, $($sublink));
-														} else {
-															return $('li', {class: `${prefix}-subitem`}, $heading, $($sublink));
-														}
-													}
-												)
-											);
-										} else if (item.menus.length > 18 && item.menus.length <= 27) {
-											col1 = $('div', {class: `${prefix}-sublist--col`},									
-												...item.menus.slice(0,9).map(
-													(childitem) => {
-														const $heading = (childitem.heading) ? $('p', {class: `${prefix}-heading--label`}, childitem.heading) : '';
-														const $sublink = $('a',
-															{
-																class: `${prefix}-sublink`,
-																href: childitem.href
-															},
-															childitem.label
-														);
-
-														if (childitem.data) {
-															$($sublink, {
-																data: childitem.data
-															});
-														}
-
-														if (childitem.newContext) {
-															$($sublink, {
-																target: '_blank',
-																rel: 'noopener'
-															});
-														}
-
-														if ($heading) {
-															return $('li', {class: `${prefix}-subitem ${prefix}-subitem--heading`}, $heading, $($sublink));
-														} else {
-															return $('li', {class: `${prefix}-subitem`}, $heading, $($sublink));
-														}
-													}
-												)
-											);
-
-											col2 = $('div', {class: `${prefix}-sublist--col`},									
-												...item.menus.slice(9, 18).map(
-													(childitem) => {
-														const $heading = (childitem.heading) ? $('p', {class: `${prefix}-heading--label`}, childitem.heading) : '';
-														const $sublink = $('a',
-															{
-																class: `${prefix}-sublink`,
-																href: childitem.href
-															},
-															childitem.label
-														);
-
-														if (childitem.data) {
-															$($sublink, {
-																data: childitem.data
-															});
-														}
-
-														if (childitem.newContext) {
-															$($sublink, {
-																target: '_blank',
-																rel: 'noopener'
-															});
-														}
-
-														if ($heading) {
-															return $('li', {class: `${prefix}-subitem ${prefix}-subitem--heading`}, $heading, $($sublink));
-														} else {
-															return $('li', {class: `${prefix}-subitem`}, $heading, $($sublink));
-														}
-													}
-												)
-											);
-
-											col3 = $('div', {class: `${prefix}-sublist--col`},
-												...item.menus.slice(18,27).map(
-													(childitem) => {
-														const $heading = (childitem.heading) ? $('p', {class: `${prefix}-heading--label`}, childitem.heading) : '';
-														const $sublink = $('a',
-															{
-																class: `${prefix}-sublink`,
-																href: childitem.href
-															},
-															childitem.label
-														);
-
-														if (childitem.data) {
-															$($sublink, {
-																data: childitem.data
-															});
-														}
-
-														if (childitem.newContext) {
-															$($sublink, {
-																target: '_blank',
-																rel: 'noopener'
-															});
-														}
-
-														if ($heading) {
-															return $('li', {class: `${prefix}-subitem ${prefix}-subitem--heading`}, $heading, $($sublink));
-														} else {
-															return $('li', {class: `${prefix}-subitem`}, $heading, $($sublink));
-														}
-													}
-												)
-											);
-										} else if (item.menus.length > 27 && item.menus.length <= 36) {
-											col1 = $('div', {class: `${prefix}-sublist--col`},									
-												...item.menus.slice(0,9).map(
-													(childitem) => {
-														const $heading = (childitem.heading) ? $('p', {class: `${prefix}-heading--label`}, childitem.heading) : '';
-														const $sublink = $('a',
-															{
-																class: `${prefix}-sublink`,
-																href: childitem.href
-															},
-															childitem.label
-														);
-
-														if (childitem.data) {
-															$($sublink, {
-																data: childitem.data
-															});
-														}
-
-														if (childitem.newContext) {
-															$($sublink, {
-																target: '_blank',
-																rel: 'noopener'
-															});
-														}
-
-														if ($heading) {
-															return $('li', {class: `${prefix}-subitem ${prefix}-subitem--heading`}, $heading, $($sublink));
-														} else {
-															return $('li', {class: `${prefix}-subitem`}, $heading, $($sublink));
-														}
-													}
-												)
-											);
-
-											col2 = $('div', {class: `${prefix}-sublist--col`},									
-												...item.menus.slice(9, 18).map(
-													(childitem) => {
-														const $heading = (childitem.heading) ? $('p', {class: `${prefix}-heading--label`}, childitem.heading) : '';
-														const $sublink = $('a',
-															{
-																class: `${prefix}-sublink`,
-																href: childitem.href
-															},
-															childitem.label
-														);
-
-														if (childitem.data) {
-															$($sublink, {
-																data: childitem.data
-															});
-														}
-
-														if (childitem.newContext) {
-															$($sublink, {
-																target: '_blank',
-																rel: 'noopener'
-															});
-														}
-
-														if ($heading) {
-															return $('li', {class: `${prefix}-subitem ${prefix}-subitem--heading`}, $heading, $($sublink));
-														} else {
-															return $('li', {class: `${prefix}-subitem`}, $heading, $($sublink));
-														}
-													}
-												)
-											);
-
-											col3 = $('div', {class: `${prefix}-sublist--col`},									
-												...item.menus.slice(18,27).map(
-													(childitem) => {
-														const $heading = (childitem.heading) ? $('p', {class: `${prefix}-heading--label`}, childitem.heading) : '';
-														const $sublink = $('a',
-															{
-																class: `${prefix}-sublink`,
-																href: childitem.href
-															},
-															childitem.label
-														);
-
-														if (childitem.data) {
-															$($sublink, {
-																data: childitem.data
-															});
-														}
-
-														if (childitem.newContext) {
-															$($sublink, {
-																target: '_blank',
-																rel: 'noopener'
-															});
-														}
-
-														if ($heading) {
-															return $('li', {class: `${prefix}-subitem ${prefix}-subitem--heading`}, $heading, $($sublink));
-														} else {
-															return $('li', {class: `${prefix}-subitem`}, $heading, $($sublink));
-														}
-													}
-												)
-											);
-
-											col4 = $('div', {class: `${prefix}-sublist--col`},									
-												...item.menus.slice(27,36).map(
-													(childitem) => {
-														const $heading = (childitem.heading) ? $('p', {class: `${prefix}-heading--label`}, childitem.heading) : '';
-														const $sublink = $('a',
-															{
-																class: `${prefix}-sublink`,
-																href: childitem.href
-															},
-															childitem.label
-														);
-
-														if (childitem.data) {
-															$($sublink, {
-																data: childitem.data
-															});
-														}
-
-														if (childitem.newContext) {
-															$($sublink, {
-																target: '_blank',
-																rel: 'noopener'
-															});
-														}
-
-														if ($heading) {
-															return $('li', {class: `${prefix}-subitem ${prefix}-subitem--heading`}, $heading, $($sublink));
-														} else {
-															return $('li', {class: `${prefix}-subitem`}, $heading, $($sublink));
-														}
-													}
-												)
-											);
-										}
-
 										$($subcontent,
 											$('ul',
 												{
@@ -612,10 +256,10 @@ export default ({variant = 'desktop'}) => {
 												/* Global Navigation: Menus: Sublink
 												/* ============================== */
 												$('div', {class: `${prefix}-sublist--col-wrapper`},
-													col1,
-													col2,
-													col3,
-													col4
+													createMenuColumns(item.menus.slice(0, 9)),
+													createMenuColumns(item.menus.slice(9, 18)),
+													createMenuColumns(item.menus.slice(18, 27)),
+													createMenuColumns(item.menus.slice(27, 36))
 												)
 											)
 										);
@@ -623,47 +267,9 @@ export default ({variant = 'desktop'}) => {
 	
 									if (hasFeaturedItems) {
 										$($subcontent,
-											$('ul',
-												{
-													class: `${prefix}-sublist--featured`,
-													role: 'navigation', aria: {labelledby: `${prefix}-link-${variant}-${uuid}-${suuid}`},
-													data: {filled: `${item.tiles.slice(0, 4).length}`}
-												},
-												/* Global Navigation: Menus: Sublink
-												/* ============================== */
-	
-												...item.tiles.slice(0, 4).map(
-													(childitem) => {
-														const $sublink = $('a',
-															{
-																class: `${prefix}-sublink--featured`,
-																href: childitem.href
-															},
-															$renderSvgOrImg({imgDef: childitem.icon, imgClass: `${prefix}-sublink-image`, imgWidth: childitem.width, imgHeight: childitem.height}),
-															$('span', {class: `${prefix}-sublink-text`},
-																childitem.label
-															)
-														);
-	
-														if (childitem.data) {
-															$($sublink, {
-																data: childitem.data
-															});
-														}
-	
-														if (childitem.newContext) {
-															$($sublink, {
-																target: '_blank',
-																rel: 'noopener'
-															});
-														}
-	
-														return $('li', {class: `${prefix}-subitem--featured`},
-															$sublink
-														);
-													}
-												)
-											)
+											/* Global Navigation: Menus: Sublink
+											/* ============================== */
+											createMenuTiles(item.tiles, uuid, suuid)
 										);
 									}
 								}
