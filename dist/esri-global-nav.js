@@ -822,7 +822,9 @@ var createMenus = (function (_ref) {
 					});
 
 					var $subcontent = $assign('div', {
-						class: prefix$3 + '-submenu', id: prefix$3 + '-' + variant + '-submenu-' + uuid + '-' + suuid, 'data-has-structured': item.structuredMenu,
+						class: prefix$3 + '-submenu',
+						id: prefix$3 + '-' + variant + '-submenu-' + uuid + '-' + suuid,
+						'data-has-structured': !!item.structuredMenu,
 						role: 'group', aria: { hidden: true, expanded: false },
 						data: { filled: item.menus && item.menus.length > 10 ? item.menus.slice(0, 24).length : '' }
 					}, $subtoggle);

@@ -174,7 +174,9 @@ export default ({variant = 'desktop'}) => {
 								
 								const $subcontent = $('div',
 									{
-										class: `${prefix}-submenu`, id: `${prefix}-${variant}-submenu-${uuid}-${suuid}`, 'data-has-structured': item.structuredMenu,
+										class: `${prefix}-submenu`,
+										id: `${prefix}-${variant}-submenu-${uuid}-${suuid}`,
+										'data-has-structured': !!item.structuredMenu,
 										role: 'group', aria: {hidden: true, expanded: false},
 										data: {filled: (item.menus && item.menus.length > 10) ? item.menus.slice(0, 24).length : ''}
 									},
