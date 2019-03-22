@@ -566,8 +566,8 @@ var createAccount = (function () {
 			$controlIdText.nodeValue = $contentInfoIdText.nodeValue = detail.user.id;
 			$contentInfoGroupText.nodeValue = detail.user.group;
 
-			$renderSvgOrImg({ imgDef: detail.user.image, alt: detail.user.name, imgClass: prefix + '-image', $targetElm: $controlImage });
-			$renderSvgOrImg({ imgDef: detail.user.image, alt: detail.user.name, imgClass: prefix + '-content-image', $targetElm: $contentImage });
+			$renderSvgOrImg({ imgDef: detail.user.image, alt: "", imgClass: prefix + '-image', $targetElm: $controlImage });
+			$renderSvgOrImg({ imgDef: detail.user.image, alt: "", imgClass: prefix + '-content-image', $targetElm: $contentImage });
 
 			// Update the content menu
 			$replaceAll.apply(undefined, [$contentMenu].concat(toConsumableArray(detail.menus.map(function (item) {
@@ -749,75 +749,420 @@ var createMenus = (function (_ref) {
 
 				var $li = $assign('li', { class: prefix$3 + '-item' }, $subcontrol);
 
+				var hasStructuredMenu = item.useStructuredMenu || false;
 				var hasMenuItems = item.menus && item.menus.length;
 				var hasFeaturedItems = item.tiles && item.tiles.length;
 
 				if (hasMenuItems || hasFeaturedItems) {
 					/* Global Navigation: Submenu
      /* ====================================== */
-
 					var $subtoggle = $assign('button', { class: prefix$3 + '-submenu-toggle' }, item.label);
 
+					var $structuredLeftCol = $assign('div', {
+						class: prefix$3 + '-submenu--left-col'
+					});
+
+					var $structuredRightCol = $assign('div', {
+						class: prefix$3 + '-submenu--right-col'
+					});
+
 					var $subcontent = $assign('div', {
-						class: prefix$3 + '-submenu', id: prefix$3 + '-' + variant + '-submenu-' + uuid + '-' + suuid,
+						class: prefix$3 + '-submenu', id: prefix$3 + '-' + variant + '-submenu-' + uuid + '-' + suuid, 'data-has-structured': hasStructuredMenu,
 						role: 'group', aria: { hidden: true, expanded: false },
-						data: { filled: item.menus && item.menus.length > 10 ? item.menus.slice(0, 18).length : '' }
+						data: { filled: item.menus && item.menus.length > 10 ? item.menus.slice(0, 24).length : '' }
 					}, $subtoggle);
 
-					if (hasMenuItems) {
-						$assign($subcontent, $assign.apply(undefined, ['ul', {
-							class: prefix$3 + '-sublist',
-							role: 'navigation', aria: { labelledby: prefix$3 + '-link-' + variant + '-' + uuid + '-' + suuid }
-						}].concat(toConsumableArray(item.menus.slice(0, 18).map(function (childitem) {
-							var $sublink = $assign('a', {
-								class: prefix$3 + '-sublink',
-								href: childitem.href
-							}, childitem.label);
+					if (hasStructuredMenu) {
+						var structuredMenu = item.structuredMenu;
+						if (structuredMenu) {
+							structuredMenu.capabilities.forEach(function (entries) {
+								$assign($subcontent, $assign('div', { class: prefix$3 + '-structured-menu--wrapper' }, $assign($structuredLeftCol, $assign.apply(undefined, ['ul', {
+									class: prefix$3 + '-sublist', 'data-menutype': 'structured',
+									role: 'navigation', aria: { labelledby: prefix$3 + '-link-' + variant + '-' + uuid + '-' + suuid }
+								}, $assign('li', {
+									class: prefix$3 + '-entry--heading'
+								}, $assign('p', {
+									class: prefix$3 + '-entry--heading-label'
+								}, entries.heading))].concat(toConsumableArray(entries.entryData.map(function (entry) {
+									var menuItem = $assign('li', { class: prefix$3 + '-subitem' }, $assign('a', {
+										href: entry.href,
+										class: prefix$3 + '-sublink'
+									}, $assign('p', {
+										class: prefix$3 + '-sublink--title'
+									}, entry.label), $assign('p', {
+										class: prefix$3 + '-sublink--description'
+									}, entry.description)));
+									return menuItem;
+								}))))), $assign($structuredRightCol, $assign.apply(undefined, ['ul', {
+									class: prefix$3 + '-sublist', 'data-menutype': 'standard',
+									role: 'navigation', aria: { labelledby: prefix$3 + '-link-' + variant + '-' + uuid + '-' + suuid }
+								}].concat(toConsumableArray(item.menus.map(function (childitem) {
+									var $heading = childitem.heading ? $assign('p', { class: prefix$3 + '-heading--label' }, childitem.heading) : '';
+									var $sublink = $assign('a', {
+										class: prefix$3 + '-sublink',
+										href: childitem.href
+									}, childitem.label);
 
-							if (childitem.data) {
-								$assign($sublink, {
-									data: childitem.data
-								});
+									if (childitem.data) {
+										$assign($sublink, {
+											data: childitem.data
+										});
+									}
+
+									if (childitem.newContext) {
+										$assign($sublink, {
+											target: '_blank',
+											rel: 'noopener'
+										});
+									}
+
+									if ($heading) {
+										return $assign('li', { class: prefix$3 + '-subitem ' + prefix$3 + '-subitem--heading' }, $heading, $assign($sublink));
+									} else {
+										return $assign('li', { class: prefix$3 + '-subitem' }, $heading, $assign($sublink));
+									}
+								})))))), $assign.apply(undefined, ['ul', {
+									class: prefix$3 + '-sublist--featured',
+									role: 'navigation', aria: { labelledby: prefix$3 + '-link-' + variant + '-' + uuid + '-' + suuid },
+									data: { filled: '' + item.tiles.slice(0, 4).length }
+								}].concat(toConsumableArray(item.tiles.slice(0, 4).map(function (childitem) {
+									var $sublink = $assign('a', {
+										class: prefix$3 + '-sublink--featured',
+										href: childitem.href
+									}, $renderSvgOrImg({ imgDef: childitem.icon, imgClass: prefix$3 + '-sublink-image', imgWidth: childitem.width, imgHeight: childitem.height }), $assign('span', { class: prefix$3 + '-sublink-text' }, childitem.label));
+
+									if (childitem.data) {
+										$assign($sublink, {
+											data: childitem.data
+										});
+									}
+
+									if (childitem.newContext) {
+										$assign($sublink, {
+											target: '_blank',
+											rel: 'noopener'
+										});
+									}
+
+									return $assign('li', { class: prefix$3 + '-subitem--featured' }, $sublink);
+								})))));
+							});
+						}
+					} else {
+						if (hasMenuItems) {
+							var col1 = undefined;
+							var col2 = undefined;
+							var col3 = undefined;
+							var col4 = undefined;
+
+							if (item.menus.length <= 9) {
+								col1 = $assign.apply(undefined, ['div', { class: prefix$3 + '-sublist--col' }].concat(toConsumableArray(item.menus.slice(0, 9).map(function (childitem) {
+									var $heading = childitem.heading ? $assign('p', { class: prefix$3 + '-heading--label' }, childitem.heading) : '';
+									var $sublink = $assign('a', {
+										class: prefix$3 + '-sublink',
+										href: childitem.href
+									}, childitem.label);
+
+									if (childitem.data) {
+										$assign($sublink, {
+											data: childitem.data
+										});
+									}
+
+									if (childitem.newContext) {
+										$assign($sublink, {
+											target: '_blank',
+											rel: 'noopener'
+										});
+									}
+
+									if ($heading) {
+										return $assign('li', { class: prefix$3 + '-subitem ' + prefix$3 + '-subitem--heading' }, $heading, $assign($sublink));
+									} else {
+										return $assign('li', { class: prefix$3 + '-subitem' }, $heading, $assign($sublink));
+									}
+								}))));
+							} else if (item.menus.length > 9 && item.menus.length <= 18) {
+								col1 = $assign.apply(undefined, ['div', { class: prefix$3 + '-sublist--col' }].concat(toConsumableArray(item.menus.slice(0, 9).map(function (childitem) {
+									var $heading = childitem.heading ? $assign('p', { class: prefix$3 + '-heading--label' }, childitem.heading) : '';
+									var $sublink = $assign('a', {
+										class: prefix$3 + '-sublink',
+										href: childitem.href
+									}, childitem.label);
+
+									if (childitem.data) {
+										$assign($sublink, {
+											data: childitem.data
+										});
+									}
+
+									if (childitem.newContext) {
+										$assign($sublink, {
+											target: '_blank',
+											rel: 'noopener'
+										});
+									}
+
+									if ($heading) {
+										return $assign('li', { class: prefix$3 + '-subitem ' + prefix$3 + '-subitem--heading' }, $heading, $assign($sublink));
+									} else {
+										return $assign('li', { class: prefix$3 + '-subitem' }, $heading, $assign($sublink));
+									}
+								}))));
+
+								col2 = $assign.apply(undefined, ['div', { class: prefix$3 + '-sublist--col' }].concat(toConsumableArray(item.menus.slice(9, 18).map(function (childitem) {
+									var $heading = childitem.heading ? $assign('p', { class: prefix$3 + '-heading--label' }, childitem.heading) : '';
+									var $sublink = $assign('a', {
+										class: prefix$3 + '-sublink',
+										href: childitem.href
+									}, childitem.label);
+
+									if (childitem.data) {
+										$assign($sublink, {
+											data: childitem.data
+										});
+									}
+
+									if (childitem.newContext) {
+										$assign($sublink, {
+											target: '_blank',
+											rel: 'noopener'
+										});
+									}
+
+									if ($heading) {
+										return $assign('li', { class: prefix$3 + '-subitem ' + prefix$3 + '-subitem--heading' }, $heading, $assign($sublink));
+									} else {
+										return $assign('li', { class: prefix$3 + '-subitem' }, $heading, $assign($sublink));
+									}
+								}))));
+							} else if (item.menus.length > 18 && item.menus.length <= 27) {
+								col1 = $assign.apply(undefined, ['div', { class: prefix$3 + '-sublist--col' }].concat(toConsumableArray(item.menus.slice(0, 9).map(function (childitem) {
+									var $heading = childitem.heading ? $assign('p', { class: prefix$3 + '-heading--label' }, childitem.heading) : '';
+									var $sublink = $assign('a', {
+										class: prefix$3 + '-sublink',
+										href: childitem.href
+									}, childitem.label);
+
+									if (childitem.data) {
+										$assign($sublink, {
+											data: childitem.data
+										});
+									}
+
+									if (childitem.newContext) {
+										$assign($sublink, {
+											target: '_blank',
+											rel: 'noopener'
+										});
+									}
+
+									if ($heading) {
+										return $assign('li', { class: prefix$3 + '-subitem ' + prefix$3 + '-subitem--heading' }, $heading, $assign($sublink));
+									} else {
+										return $assign('li', { class: prefix$3 + '-subitem' }, $heading, $assign($sublink));
+									}
+								}))));
+
+								col2 = $assign.apply(undefined, ['div', { class: prefix$3 + '-sublist--col' }].concat(toConsumableArray(item.menus.slice(9, 18).map(function (childitem) {
+									var $heading = childitem.heading ? $assign('p', { class: prefix$3 + '-heading--label' }, childitem.heading) : '';
+									var $sublink = $assign('a', {
+										class: prefix$3 + '-sublink',
+										href: childitem.href
+									}, childitem.label);
+
+									if (childitem.data) {
+										$assign($sublink, {
+											data: childitem.data
+										});
+									}
+
+									if (childitem.newContext) {
+										$assign($sublink, {
+											target: '_blank',
+											rel: 'noopener'
+										});
+									}
+
+									if ($heading) {
+										return $assign('li', { class: prefix$3 + '-subitem ' + prefix$3 + '-subitem--heading' }, $heading, $assign($sublink));
+									} else {
+										return $assign('li', { class: prefix$3 + '-subitem' }, $heading, $assign($sublink));
+									}
+								}))));
+
+								col3 = $assign.apply(undefined, ['div', { class: prefix$3 + '-sublist--col' }].concat(toConsumableArray(item.menus.slice(18, 27).map(function (childitem) {
+									var $heading = childitem.heading ? $assign('p', { class: prefix$3 + '-heading--label' }, childitem.heading) : '';
+									var $sublink = $assign('a', {
+										class: prefix$3 + '-sublink',
+										href: childitem.href
+									}, childitem.label);
+
+									if (childitem.data) {
+										$assign($sublink, {
+											data: childitem.data
+										});
+									}
+
+									if (childitem.newContext) {
+										$assign($sublink, {
+											target: '_blank',
+											rel: 'noopener'
+										});
+									}
+
+									if ($heading) {
+										return $assign('li', { class: prefix$3 + '-subitem ' + prefix$3 + '-subitem--heading' }, $heading, $assign($sublink));
+									} else {
+										return $assign('li', { class: prefix$3 + '-subitem' }, $heading, $assign($sublink));
+									}
+								}))));
+							} else if (item.menus.length > 27 && item.menus.length <= 36) {
+								col1 = $assign.apply(undefined, ['div', { class: prefix$3 + '-sublist--col' }].concat(toConsumableArray(item.menus.slice(0, 9).map(function (childitem) {
+									var $heading = childitem.heading ? $assign('p', { class: prefix$3 + '-heading--label' }, childitem.heading) : '';
+									var $sublink = $assign('a', {
+										class: prefix$3 + '-sublink',
+										href: childitem.href
+									}, childitem.label);
+
+									if (childitem.data) {
+										$assign($sublink, {
+											data: childitem.data
+										});
+									}
+
+									if (childitem.newContext) {
+										$assign($sublink, {
+											target: '_blank',
+											rel: 'noopener'
+										});
+									}
+
+									if ($heading) {
+										return $assign('li', { class: prefix$3 + '-subitem ' + prefix$3 + '-subitem--heading' }, $heading, $assign($sublink));
+									} else {
+										return $assign('li', { class: prefix$3 + '-subitem' }, $heading, $assign($sublink));
+									}
+								}))));
+
+								col2 = $assign.apply(undefined, ['div', { class: prefix$3 + '-sublist--col' }].concat(toConsumableArray(item.menus.slice(9, 18).map(function (childitem) {
+									var $heading = childitem.heading ? $assign('p', { class: prefix$3 + '-heading--label' }, childitem.heading) : '';
+									var $sublink = $assign('a', {
+										class: prefix$3 + '-sublink',
+										href: childitem.href
+									}, childitem.label);
+
+									if (childitem.data) {
+										$assign($sublink, {
+											data: childitem.data
+										});
+									}
+
+									if (childitem.newContext) {
+										$assign($sublink, {
+											target: '_blank',
+											rel: 'noopener'
+										});
+									}
+
+									if ($heading) {
+										return $assign('li', { class: prefix$3 + '-subitem ' + prefix$3 + '-subitem--heading' }, $heading, $assign($sublink));
+									} else {
+										return $assign('li', { class: prefix$3 + '-subitem' }, $heading, $assign($sublink));
+									}
+								}))));
+
+								col3 = $assign.apply(undefined, ['div', { class: prefix$3 + '-sublist--col' }].concat(toConsumableArray(item.menus.slice(18, 27).map(function (childitem) {
+									var $heading = childitem.heading ? $assign('p', { class: prefix$3 + '-heading--label' }, childitem.heading) : '';
+									var $sublink = $assign('a', {
+										class: prefix$3 + '-sublink',
+										href: childitem.href
+									}, childitem.label);
+
+									if (childitem.data) {
+										$assign($sublink, {
+											data: childitem.data
+										});
+									}
+
+									if (childitem.newContext) {
+										$assign($sublink, {
+											target: '_blank',
+											rel: 'noopener'
+										});
+									}
+
+									if ($heading) {
+										return $assign('li', { class: prefix$3 + '-subitem ' + prefix$3 + '-subitem--heading' }, $heading, $assign($sublink));
+									} else {
+										return $assign('li', { class: prefix$3 + '-subitem' }, $heading, $assign($sublink));
+									}
+								}))));
+
+								col4 = $assign.apply(undefined, ['div', { class: prefix$3 + '-sublist--col' }].concat(toConsumableArray(item.menus.slice(27, 36).map(function (childitem) {
+									var $heading = childitem.heading ? $assign('p', { class: prefix$3 + '-heading--label' }, childitem.heading) : '';
+									var $sublink = $assign('a', {
+										class: prefix$3 + '-sublink',
+										href: childitem.href
+									}, childitem.label);
+
+									if (childitem.data) {
+										$assign($sublink, {
+											data: childitem.data
+										});
+									}
+
+									if (childitem.newContext) {
+										$assign($sublink, {
+											target: '_blank',
+											rel: 'noopener'
+										});
+									}
+
+									if ($heading) {
+										return $assign('li', { class: prefix$3 + '-subitem ' + prefix$3 + '-subitem--heading' }, $heading, $assign($sublink));
+									} else {
+										return $assign('li', { class: prefix$3 + '-subitem' }, $heading, $assign($sublink));
+									}
+								}))));
 							}
 
-							if (childitem.newContext) {
-								$assign($sublink, {
-									target: '_blank',
-									rel: 'noopener'
-								});
-							}
+							$assign($subcontent, $assign('ul', {
+								class: prefix$3 + '-sublist',
+								role: 'navigation', aria: { labelledby: prefix$3 + '-link-' + variant + '-' + uuid + '-' + suuid }
+							},
+							/* Global Navigation: Menus: Sublink
+       /* ============================== */
+							$assign('div', { class: prefix$3 + '-sublist--col-wrapper' }, col1, col2, col3, col4)));
+						}
 
-							return $assign('li', { class: prefix$3 + '-subitem' }, $sublink);
-						})))));
-					}
+						if (hasFeaturedItems) {
+							$assign($subcontent, $assign.apply(undefined, ['ul', {
+								class: prefix$3 + '-sublist--featured',
+								role: 'navigation', aria: { labelledby: prefix$3 + '-link-' + variant + '-' + uuid + '-' + suuid },
+								data: { filled: '' + item.tiles.slice(0, 4).length }
+							}].concat(toConsumableArray(item.tiles.slice(0, 4).map(function (childitem) {
+								var $sublink = $assign('a', {
+									class: prefix$3 + '-sublink--featured',
+									href: childitem.href
+								}, $renderSvgOrImg({ imgDef: childitem.icon, imgClass: prefix$3 + '-sublink-image', imgWidth: childitem.width, imgHeight: childitem.height }), $assign('span', { class: prefix$3 + '-sublink-text' }, childitem.label));
 
-					if (hasFeaturedItems) {
-						// ...
-						$assign($subcontent, $assign.apply(undefined, ['ul', {
-							class: prefix$3 + '-sublist--featured',
-							role: 'navigation', aria: { labelledby: prefix$3 + '-link-' + variant + '-' + uuid + '-' + suuid },
-							data: { filled: '' + item.tiles.slice(0, 4).length }
-						}].concat(toConsumableArray(item.tiles.slice(0, 4).map(function (childitem) {
-							var $sublink = $assign('a', {
-								class: prefix$3 + '-sublink--featured',
-								href: childitem.href
-							}, $renderSvgOrImg({ imgDef: childitem.icon, imgClass: prefix$3 + '-sublink-image', imgWidth: childitem.width, imgHeight: childitem.height }), $assign('span', { class: prefix$3 + '-sublink-text' }, childitem.label));
+								if (childitem.data) {
+									$assign($sublink, {
+										data: childitem.data
+									});
+								}
 
-							if (childitem.data) {
-								$assign($sublink, {
-									data: childitem.data
-								});
-							}
+								if (childitem.newContext) {
+									$assign($sublink, {
+										target: '_blank',
+										rel: 'noopener'
+									});
+								}
 
-							if (childitem.newContext) {
-								$assign($sublink, {
-									target: '_blank',
-									rel: 'noopener'
-								});
-							}
-
-							return $assign('li', { class: prefix$3 + '-subitem--featured' }, $sublink);
-						})))));
+								return $assign('li', { class: prefix$3 + '-subitem--featured' }, $sublink);
+							})))));
+						}
 					}
 
 					$assign($li, $subcontent);
@@ -3452,6 +3797,9 @@ var Sortable = createCommonjsModule(function (module) {
 
 var prefix$6 = 'esri-header-apps';
 var isRightToLeft = document.dir === "rtl";
+var isDesktop = function (global) {
+	return !/iPhone|iPad|iPod|Android/i.test(global.navigator.userAgent);
+}(window);
 
 var createApps = (function () {
 	/* Apps: Content
@@ -3491,14 +3839,20 @@ var createApps = (function () {
 
 		resetStateOfBottomContainer();
 
-		$dispatch($control, 'header:menu:toggle', {
-			state: 'menu',
-			target: $target,
-			type: 'root-toggle',
-			control: $control,
-			content: $content,
-			event: event
-		});
+		$dispatchCloseAppLauncher(event);
+	};
+
+	var $dispatchCloseAppLauncher = function $dispatchCloseAppLauncher(event) {
+		setTimeout(function () {
+			$dispatch($control, 'header:menu:toggle', {
+				state: 'menu',
+				target: $target,
+				type: 'root-toggle',
+				control: $control,
+				content: $content,
+				event: event
+			});
+		}, 1);
 	};
 
 	var $control = $controlContainer;
@@ -3551,9 +3905,9 @@ var createApps = (function () {
 		var $listItem = $assign("li", {
 			alt: "",
 			"class": 'block link-off-black appLinkContainer grabbable ' + canAccessClass,
-			mousedown: interactWithAppLi.bind(null, currentApp),
-			keyup: activateAccessibilityMode.bind(null, currentApp),
-			keydown: preventBrowserKeyboardDefaults,
+			mousedown: isDesktop ? interactWithAppLi.bind(null, currentApp) : $dispatchCloseAppLauncher,
+			keyup: !ddState.disabled && isDesktop ? activateAccessibilityMode.bind(null, currentApp) : function () {},
+			keydown: isDesktop ? preventBrowserKeyboardDefaults : function () {},
 			"role": "menuitem",
 			"data-id": currentApp.itemId || currentApp.uid || currentApp.title
 		});
@@ -3561,15 +3915,15 @@ var createApps = (function () {
 		if (!currentApp.canAccess) {
 			createMissingAppIcon(currentApp, $listItem, selectNoneClass);
 		} else {
-			if (currentApp.isNew) {
-				$listItem.appendChild($assign("div", { "class": "app-indicator app-indicator-new" }));
-			}
 			var $appLink = $assign("a", {
 				href: currentApp.url,
 				target: "_blank",
-				blur: deactivateAccessibilityMode.bind(null, currentApp),
+				blur: isDesktop ? deactivateAccessibilityMode.bind(null, currentApp) : function () {},
 				class: "appLink"
 			});
+			if (currentApp.isNew) {
+				$appLink.appendChild($assign("div", { "class": "app-indicator app-indicator-new" }));
+			}
 			// Check if App has Icon
 			if (currentApp.image) {
 				var $appImageContainer = $assign("div", { "class": 'appIconImage ' + selectNoneClass });
@@ -3620,8 +3974,8 @@ var createApps = (function () {
 			"tabindex": 0,
 			"blur": deactivateAccessibilityMode.bind(null, currentApp),
 			title: ddState.i18n.removed
-			// keyup: showRemovedAppWarning.bind(null, currentApp.uid, $listItem),
-			// onclick: showRemovedAppWarning.bind(null, currentApp.uid, $listItem)
+			// keyup: isDesktop ? showRemovedAppWarning.bind(null, currentApp.uid, $listItem) : () => {},
+			// onclick: isDesktop ? showRemovedAppWarning.bind(null, currentApp.uid, $listItem) : () => {}
 		});
 		$missingIcon.appendChild(getAccessibleAppArrowContainer());
 		$listItem.appendChild($appLink);
@@ -3696,8 +4050,9 @@ var createApps = (function () {
 				}
 
 				saveAppOrderToUserProperties(primaryApps, ddState.secondarySortable.toArray(), { targetUid: e.currentTarget.getAttribute("data-id"), isNew: true, targetValue: null });
-				e.currentTarget.classList.remove("sortable-drag-class");
-			} else {
+			}
+
+			if (e.currentTarget) {
 				e.currentTarget.classList.remove("sortable-drag-class");
 			}
 
@@ -3811,7 +4166,7 @@ var createApps = (function () {
 	};
 
 	var dragEventWasSimulated = function dragEventWasSimulated(clientX, clientY) {
-		return !ddState.dragEventWasCanceled && (Math.abs(clientX - ddState.startClientX) > ddState.maxDragErrorTollerance || Math.abs(clientY - ddState.startClientY) > ddState.maxDragErrorTollerance);
+		return !ddState.dragEventWasCanceled && !ddState.disabled && (Math.abs(clientX - ddState.startClientX) > ddState.maxDragErrorTollerance || Math.abs(clientY - ddState.startClientY) > ddState.maxDragErrorTollerance);
 	};
 
 	var verifyKeyPress = function verifyKeyPress(keyCode) {
@@ -3849,10 +4204,10 @@ var createApps = (function () {
 	var deactivateAccessibilityMode = function deactivateAccessibilityMode(app, e) {
 		var target = e.target || e;
 		var arrowSpan = app.canAccess ? target.firstChild.firstChild : target.firstChild;
-
-		arrowSpan.classList.remove("arrow-keys-enabled");
-		arrowSpan.classList.add("arrow-keys-disabled");
-
+		if (arrowSpan) {
+			arrowSpan.classList.remove("arrow-keys-enabled");
+			arrowSpan.classList.add("arrow-keys-disabled");
+		}
 		if (ddState.activeAccessibleListElement) {
 			ddState.activeAccessibleListElement.removeEventListener("keydown", ddState.activeAccessibleListElementEvent, false);
 			ddState.activeAccessibleListElement = null;
@@ -3964,8 +4319,10 @@ var createApps = (function () {
 	};
 
 	var populateAccessibleArrows = function populateAccessibleArrows(arrowSpan, liIndex, ul, numOfPrimaryApps) {
-		arrowSpan.classList.add("arrow-keys-enabled");
-		arrowSpan.classList.remove("arrow-keys-disabled");
+		if (arrowSpan) {
+			arrowSpan.classList.add("arrow-keys-enabled");
+			arrowSpan.classList.remove("arrow-keys-disabled");
+		}
 
 		var combinedIndex = getCombinedIndexOfApp(liIndex, ul, numOfPrimaryApps);
 		arrowSpan.innerHTML = getAccessibleArrows(getArrayOfDirections(combinedIndex, ul), ul);
@@ -4000,7 +4357,7 @@ var createApps = (function () {
 	var primarySortableOptions = {
 		group: "Apps", // or { name: "...", pull: [true, false, clone], put: [true, false, array] }
 		sort: true, // sorting inside list
-		disabled: false, // Disables the sortable if set to true.
+		disabled: !isDesktop, // Disables the sortable if set to true.
 		animation: 150, // ms, animation speed moving items when sorting, `0` — without animation
 		forceFallback: true,
 		delay: 0,
@@ -4052,7 +4409,7 @@ var createApps = (function () {
 	var secondarySortableOptions = {
 		group: "Apps",
 		sort: true,
-		disabled: false,
+		disabled: !isDesktop,
 		animation: 150,
 		forceFallback: true,
 		delay: 0,
@@ -4100,7 +4457,7 @@ var createApps = (function () {
 
 		if (!detail.primary) return;
 		if (detail.ieVersion) applyDragAndDropAdjustmentsForIE(detail.ieVersion);
-		if (detail.disableDragAndDrop) ddState.disabled = true;
+		if (detail.disableDragAndDrop || !isDesktop) ddState.disabled = true;
 		if (detail.text) ddState.i18n = detail.text || {};
 
 		if (!detail.isLoading) {
@@ -4123,21 +4480,19 @@ var createApps = (function () {
 				role: "menu"
 			});
 
-			if (!ddState.disabled) {
-				if (ddState.dropdownWrapper) {
-					// Destroy dropdown content to start from clean slate
-					$content.innerHTML = "";
-					if ($bottomContainer.lastChild) $bottomContainer.removeChild($bottomContainer.lastChild);
-				}
-
-				ddState.dragAppsHereText = $assign("p", { "class": "hide" }, ddState.i18n.dragAppsHere);
-				ddState.bottomAppContainer.appendChild(ddState.dragAppsHereText);
-
-				if (!detail.secondary.length) showDragAppsHereBox(true);
-
-				ddState.primarySortable = Sortable.create(ddState.topAppContainer, primarySortableOptions);
-				ddState.secondarySortable = Sortable.create(ddState.bottomAppContainer, secondarySortableOptions);
+			if (ddState.dropdownWrapper) {
+				// Destroy dropdown content to start from clean slate
+				$content.innerHTML = "";
+				if ($bottomContainer.lastChild) $bottomContainer.removeChild($bottomContainer.lastChild);
 			}
+
+			ddState.dragAppsHereText = $assign("p", { "class": "hide" }, ddState.i18n.dragAppsHere);
+			ddState.bottomAppContainer.appendChild(ddState.dragAppsHereText);
+
+			if (!detail.secondary.length) showDragAppsHereBox(true);
+
+			ddState.primarySortable = Sortable.create(ddState.topAppContainer, primarySortableOptions);
+			ddState.secondarySortable = Sortable.create(ddState.bottomAppContainer, secondarySortableOptions);
 
 			detail.primary.forEach(function (a, i) {
 				createDefaultAppLayout(ddState.topAppContainer, a, i);
@@ -4160,7 +4515,7 @@ var createApps = (function () {
 				class: prefix$6 + ' dismiss-intro-button',
 				click: dismissIntro
 			}, ddState.i18n.confirm);
-			ddState.dragAndDropIntro = detail.displayIntro ? $assign('div', { class: prefix$6 + ' intro-container' }, $dragAndDropIntroText, $dismissIntroButton) : "";
+			ddState.dragAndDropIntro = detail.displayIntro && !ddState.disabled ? $assign('div', { class: prefix$6 + ' intro-container' }, $dragAndDropIntroText, $dismissIntroButton) : "";
 
 			var $showMoreChevron = $assign('span');
 			$showMoreChevron.innerHTML = getDownChevron();
@@ -4907,6 +5262,28 @@ var social = (function (data, prefix) {
 	return $assign('div', { class: prefix + '-social' }, $assign('nav', { class: prefix + '-social-nav', aria: { label: data.label } }, $socialIcons));
 });
 
+var breadcrumbs = (function (data) {
+  var showBreadCrumbs = data.showBreadcrumb;
+
+  if (showBreadCrumbs) {
+    var prefix = 'esri-footer-breadcrumb';
+    var $breadCrumbs = document.createDocumentFragment();
+    var breadCrumbItems = data.breadcrumbs || [];
+
+    breadCrumbItems.forEach(function (crumb, index) {
+      var isLastBreadCrumbItem = index === breadCrumbItems.length - 1;
+
+      if (isLastBreadCrumbItem) {
+        $assign($breadCrumbs, $assign('li', { class: prefix + '--items' }, '/', $assign('p', { href: crumb.href, class: prefix + '--items-current' }, '' + crumb.label)));
+      } else {
+        $assign($breadCrumbs, $assign('li', { class: prefix + '--items' }, '/', $assign('a', { href: crumb.href, class: prefix + '--items-link' }, '' + crumb.label)));
+      }
+    });
+
+    return $assign('div', { class: '' + prefix }, $assign('a', { href: 'https://www.esri.com', class: prefix + '--pin' }), $assign('ul', { class: prefix + '--list' }, $breadCrumbs));
+  }
+});
+
 /* Global Footer
 /* ========================================================================== */
 
@@ -4921,6 +5298,7 @@ var createFooter = (function (data) {
 	var $footerLanguage = data.language ? language(data.language, prefix) : $assign('div', { class: 'esri-footer-language' });
 	var $footerMenu = menu(data.menu, prefix);
 	var $footerSocial = social(data.social, prefix);
+	var $footerBreadcrumb = breadcrumbs(data);
 
 	var $footer = $assign('footer', {
 		class: prefix + ' ' + (data.hideMenus ? 'skinny-footer' : ''),
@@ -4930,7 +5308,7 @@ var createFooter = (function (data) {
 
 	/* Append Footer Components
  /* ================================================================== */
-	$assign('div', { class: prefix + '-section--1 ' + (data.hideMenus ? 'hidden' : '') }, $footerBrand, $footerSocial), $assign('div', { class: prefix + '-section--2 ' + (data.hideMenus ? 'hidden' : '') }, $footerMenu), $assign('div', { class: prefix + '-section--3' }, $footerLanguage, $footerInfo));
+	$assign('div', { class: prefix + '-section--0' }, $footerBreadcrumb), $assign('div', { class: prefix + '--wrapper' }, $assign('div', { class: prefix + '-section--1 ' + (data.hideMenus ? 'hidden' : '') }, $footerBrand, $footerSocial), $assign('div', { class: prefix + '-section--2 ' + (data.hideMenus ? 'hidden' : '') }, $footerMenu), $assign('div', { class: prefix + '-section--3' }, $footerLanguage, $footerInfo)));
 
 	/* On DOMNodeInserted
  /* ====================================================================== */
