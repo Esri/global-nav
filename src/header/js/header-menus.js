@@ -51,7 +51,7 @@ export default ({variant = 'desktop'}) => {
 		);
 
 		if (link.id) {
-			$link.setAttribute("id", `${prefix}-${link.id}`); 
+			$link.setAttribute("id", `${prefix}-${link.id}`);
 		}
 
 		if (link.props.data) {
@@ -76,10 +76,10 @@ export default ({variant = 'desktop'}) => {
 	const createColumn = (childitem) => {
 		const headingClass = childitem.heading ? `${prefix}-subitem--heading` : "";
 
-		return $('li', 
+		return $('li',
 			{class: `${prefix}-subitem ${headingClass}`},
 			childitem.heading ? $('p', {class: `${prefix}-heading--label`}, childitem.heading) : '',
-			createNavLink({class:"sublink", props: childitem, label: childitem.label})
+			createNavLink({class: "sublink", props: childitem, label: childitem.label})
 		);
 	};
 
@@ -95,7 +95,7 @@ export default ({variant = 'desktop'}) => {
 		const icon = $renderSvgOrImg({imgDef: tile.icon, imgClass: `${prefix}-sublink-image`, imgWidth: tile.width, imgHeight: tile.height});
 		return $('li', {class: `${prefix}-subitem--featured`},
 			createNavLink({
-				class: "sublink--featured", 
+				class: "sublink--featured",
 				props: tile,
 				icon,
 				label: $('span', {class: `${prefix}-sublink-text`}, tile.label)
@@ -145,7 +145,7 @@ export default ({variant = 'desktop'}) => {
 								id: `link-${variant}-${uuid}-${suuid}`,
 								props: item,
 								icon: $linkIcon,
-								label: $('span', {class : `${prefix}-link-label`}, item.label)
+								label: $('span', {class: `${prefix}-link-label`}, item.label)
 							});
 
 							const $li = $('li', {class: `${prefix}-item`}, $subcontrol);
@@ -160,18 +160,6 @@ export default ({variant = 'desktop'}) => {
 									item.label
 								);
 
-								const $structuredLeftCol = $('div',
-									{
-										class: `${prefix}-submenu--left-col`
-									}
-								);
-								
-								const $structuredRightCol = $('div',
-									{
-										class: `${prefix}-submenu--right-col`
-									}
-								);
-								
 								const $subcontent = $('div',
 									{
 										class: `${prefix}-submenu`,
@@ -184,67 +172,7 @@ export default ({variant = 'desktop'}) => {
 								);
 
 								if (item.structuredMenu) {
-									const structuredMenu = item.structuredMenu;
-									structuredMenu.capabilities.forEach((entries) => {
-										$($subcontent,
-											$('div', {class: `${prefix}-structured-menu--wrapper`}, 
-												$($structuredLeftCol,
-													$('ul', 
-														{
-															class: `${prefix}-sublist`, 'data-menutype': 'structured',
-															role: 'navigation', aria: {labelledby: `${prefix}-link-${variant}-${uuid}-${suuid}`}
-														},
-														$('li', 
-															{
-																class: `${prefix}-entry--heading`
-															},
-															$('p', 
-																{
-																	class: `${prefix}-entry--heading-label`
-																},
-																entries.heading
-															)
-														),
-														...entries.entryData.map((entry) => {
-															const menuItem = $('li', {class: `${prefix}-subitem`},
-																$('a', 
-																	{
-																		href: entry.href, 
-																		class: `${prefix}-sublink`
-																	},
-																	$('p', 
-																		{
-																			class: `${prefix}-sublink--title`
-																		},
-																		entry.label
-																	),
-																	$('p', 
-																		{
-																			class: `${prefix}-sublink--description`
-																		}, 
-																		entry.description
-																	)
-																)
-															);
-															return menuItem;
-														}),
-													)
-												),
-												$($structuredRightCol,
-													$('ul', 
-														{
-															class: `${prefix}-sublist`, 'data-menutype': 'standard',
-															role: 'navigation', aria: {labelledby: `${prefix}-link-${variant}-${uuid}-${suuid}`}
-														},
-														createMenuColumns(item.menus)
-													)
-												)
-											),
-											/* Global Navigation: Menus: Sublink
-											/* ============================== */
-											createMenuTiles(item.tiles, uuid, suuid)
-										);
-									});
+									renderStructuredMenu({$subcontent, item, uuid, suuid});
 								} else {
 									if (hasMenuItems) {
 										$($subcontent,
@@ -264,19 +192,17 @@ export default ({variant = 'desktop'}) => {
 											)
 										);
 									}
-	
-									if (hasFeaturedItems) {
-										$($subcontent,
-											/* Global Navigation: Menus: Sublink
-											/* ============================== */
-											createMenuTiles(item.tiles, uuid, suuid)
-										);
-									}
 								}
 
-								$($li,
-									$subcontent
-								);
+								if (hasFeaturedItems) {
+									$($subcontent,
+										/* Global Navigation: Menus: Sublink
+										/* ============================== */
+										createMenuTiles(item.tiles, uuid, suuid)
+									);
+								}
+
+								$($li, $subcontent);
 
 								$subcontrol.addEventListener('click', (e) => {
 									$dispatch($subcontrol, 'header:menu:toggle', {
@@ -305,6 +231,79 @@ export default ({variant = 'desktop'}) => {
 			)
 		);
 	});
+
+	function renderStructuredMenu({$subcontent, item, uuid, suuid}) {
+		const $structuredLeftCol = $('div',
+			{
+				class: `${prefix}-submenu--left-col`
+			}
+		);
+
+		const $structuredRightCol = $('div',
+			{
+				class: `${prefix}-submenu--right-col`
+			}
+		);
+
+		const structuredMenu = item.structuredMenu;
+		structuredMenu.capabilities.forEach((entries) => {
+			$($subcontent,
+				$('div', {class: `${prefix}-structured-menu--wrapper`},
+					$($structuredLeftCol,
+						$('ul',
+							{
+								class: `${prefix}-sublist`, 'data-menutype': 'structured',
+								role: 'navigation', aria: {labelledby: `${prefix}-link-${variant}-${uuid}-${suuid}`}
+							},
+							$('li',
+								{
+									class: `${prefix}-entry--heading`
+								},
+								$('p',
+									{
+										class: `${prefix}-entry--heading-label`
+									},
+									entries.heading
+								)
+							),
+							...entries.entryData.map((entry) => {
+								const menuItem = $('li', {class: `${prefix}-subitem`},
+									$('a',
+										{
+											href: entry.href,
+											class: `${prefix}-sublink`
+										},
+										$('p',
+											{
+												class: `${prefix}-sublink--title`
+											},
+											entry.label
+										),
+										$('p',
+											{
+												class: `${prefix}-sublink--description`
+											},
+											entry.description
+										)
+									)
+								);
+								return menuItem;
+							}),
+						)
+					),
+					$($structuredRightCol,
+						$('ul',
+							{
+								class: `${prefix}-sublist`, 'data-menutype': 'standard',
+								role: 'navigation', aria: {labelledby: `${prefix}-link-${variant}-${uuid}-${suuid}`}
+							},
+							createMenuColumns(item.menus)
+						)
+					)
+				)
+			);
+		});
+	}
 
 	$target.addEventListener('header:update:collapseMenus', ({detail}) => {
 		if (detail && detail.indexOf(true) > -1) {
