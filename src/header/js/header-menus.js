@@ -255,7 +255,6 @@ export default ({variant = 'desktop'}) => {
 	}
 
 	function renderStructuredMenuItems(entries) {
-		console.log('entries', entries);
 		const $items = [];
 		entries.forEach((entry) => {
 			if (entry.heading) {

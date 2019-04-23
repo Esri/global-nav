@@ -888,7 +888,6 @@ var createMenus = (function (_ref) {
 	}
 
 	function renderStructuredMenuItems(entries) {
-		console.log('entries', entries);
 		var $items = [];
 		entries.forEach(function (entry) {
 			if (entry.heading) {
