@@ -16,68 +16,48 @@ document.addEventListener("DOMContentLoaded", () => {
 				[
 					{
 						label: 'Products',
-						structuredMenu: {
-							capabilities: [
-								{
-									heading: 'GEOSPATIAL CLOUD-BASED CAPABILITIES',
-									entryData: [
-										{
-											label: 'Mapping and Location Intelligence',
-											href: 'https://www.esri.com/en-us/location-intelligence',
-											description: 'Intuitive, data-driven mapping, visualization, and analysis'
-										},
-										{
-											label: 'Analytics and Data Science',
-											href: 'https://www.esri.com/en-us/arcgis/analytics/overview',
-											description: 'Advanced geospatial analysis, AI, and machine learning'
-										},
-										{
-											label: 'Mapping and Location Intelligence',
-											href: 'https://www.esri.com/en-us/location-intelligence',
-											description: 'Intuitive, data-driven mapping, visualization, and analysis'
-										},
-										{
-											label: 'Analytics and Data Science',
-											href: 'https://www.esri.com/en-us/arcgis/analytics/overview',
-											description: 'Advanced geospatial analysis, AI, and machine learning'
-										},
-										{
-											label: 'Mapping and Location Intelligence',
-											href: 'https://www.esri.com/en-us/location-intelligence',
-											description: 'Intuitive, data-driven mapping, visualization, and analysis'
-										},
-										{
-											label: 'Analytics and Data Science',
-											href: 'https://www.esri.com/en-us/arcgis/analytics/overview',
-											description: 'Advanced geospatial analysis, AI, and machine learning'
-										},
-										{
-											label: 'Mapping and Location Intelligence',
-											href: 'https://www.esri.com/en-us/location-intelligence',
-											description: 'Intuitive, data-driven mapping, visualization, and analysis'
-										},
-										{
-											label: 'Analytics and Data Science',
-											href: 'https://www.esri.com/en-us/arcgis/analytics/overview',
-											description: 'Advanced geospatial analysis, AI, and machine learning'
-										},
-										{
-											label: 'Mapping and Location Intelligence',
-											href: 'https://www.esri.com/en-us/location-intelligence',
-											description: 'Intuitive, data-driven mapping, visualization, and analysis'
-										},
-										{
-											label: 'Analytics and Data Science',
-											href: 'https://www.esri.com/en-us/arcgis/analytics/overview',
-											description: 'Advanced geospatial analysis, AI, and machine learning'
-										}
-									]
-								}
-							]
-						},
+						structuredMenu: [
+							{
+								heading: 'GEOSPATIAL CLOUD-BASED CAPABILITIES',
+								label: 'Mapping and Location Intelligence',
+								href: 'https://www.esri.com/en-us/location-intelligence',
+								description: 'Intuitive, data-driven mapping, visualization, and analysis'
+							},
+							{
+								label: 'Analytics and Data Science',
+								href: 'https://www.esri.com/en-us/arcgis/analytics/overview',
+								description: 'Advanced geospatial analysis, AI, and machine learning'
+							},
+							{
+								label: 'Mapping and Location Intelligence',
+								href: 'https://www.esri.com/en-us/location-intelligence',
+								description: 'Intuitive, data-driven mapping, visualization, and analysis'
+							},
+							{
+								label: 'Mapping and Location Intelligence',
+								href: 'https://www.esri.com/en-us/location-intelligence',
+								description: 'Intuitive, data-driven mapping, visualization, and analysis'
+							},
+							{
+								label: 'Analytics and Data Science',
+								href: 'https://www.esri.com/en-us/arcgis/analytics/overview',
+								description: 'Advanced geospatial analysis, AI, and machine learning'
+							},
+							{
+								label: 'Mapping and Location Intelligence',
+								href: 'https://www.esri.com/en-us/location-intelligence',
+								description: 'Intuitive, data-driven mapping, visualization, and analysis'
+							},
+							{
+								label: 'Analytics and Data Science',
+								href: 'https://www.esri.com/en-us/arcgis/analytics/overview',
+								description: 'Advanced geospatial analysis, AI, and machine learning'
+							}
+
+						],
 						menus: [
 							{
-								heading: 'PRODUCTS',	
+								heading: 'PRODUCTS',
 								label: 'About ArcGIS',
 								href: 'https://www.esri.com/arcgis/about-arcgis',
 								data: {
@@ -773,7 +753,7 @@ document.addEventListener("DOMContentLoaded", () => {
 						href: 'https://plus.google.com/discover',
 						image: {
 							viewBox: '0 0 32 32',
-							path : 'https://www.esri.com/content/dam/esrisites/common/icons/GooglePlus_32.svg'
+							path: 'https://www.esri.com/content/dam/esrisites/common/icons/GooglePlus_32.svg'
 						}
 					},
 					{
@@ -781,7 +761,7 @@ document.addEventListener("DOMContentLoaded", () => {
 						href: 'http://en.arcgermany.com/en/',
 						image: {
 							viewBox: '0 0 32 32',
-							path : 'https://www.esri.com/content/dam/esrisites/common/icons/ArcGermany_32.svg'
+							path: 'https://www.esri.com/content/dam/esrisites/common/icons/ArcGermany_32.svg'
 						}
 					},
 					{
@@ -789,7 +769,7 @@ document.addEventListener("DOMContentLoaded", () => {
 						href: 'https://www.blogger.com',
 						image: {
 							viewBox: '0 0 32 32',
-							path : 'https://www.esri.com/content/dam/esrisites/common/icons/Blogger_32.svg'
+							path: 'https://www.esri.com/content/dam/esrisites/common/icons/Blogger_32.svg'
 						}
 					},
 					{
@@ -797,7 +777,7 @@ document.addEventListener("DOMContentLoaded", () => {
 						href: 'mailto:info@esri.com',
 						image: {
 							viewBox: '0 0 32 32',
-							path : 'https://www.esri.com/content/dam/esrisites/common/icons/Contact-Newsletter_32.svg'
+							path: 'https://www.esri.com/content/dam/esrisites/common/icons/Contact-Newsletter_32.svg'
 						}
 					},
 					{
@@ -805,7 +785,7 @@ document.addEventListener("DOMContentLoaded", () => {
 						href: 'https://gis-iq.esri.de/',
 						image: {
 							viewBox: '0 0 32 32',
-							path : 'https://www.esri.com/content/dam/esrisites/common/icons/GISIQ_32.svg'
+							path: 'https://www.esri.com/content/dam/esrisites/common/icons/GISIQ_32.svg'
 						}
 					},
 					{
@@ -813,7 +793,7 @@ document.addEventListener("DOMContentLoaded", () => {
 						href: 'https://www.pinterest.com/',
 						image: {
 							viewBox: '0 0 32 32',
-							path : 'https://www.esri.com/content/dam/esrisites/common/icons/Pinterest_32.svg'
+							path: 'https://www.esri.com/content/dam/esrisites/common/icons/Pinterest_32.svg'
 						}
 					},
 					{
@@ -821,7 +801,7 @@ document.addEventListener("DOMContentLoaded", () => {
 						href: 'https://en.wikipedia.org/wiki/RSS',
 						image: {
 							viewBox: '0 0 32 32',
-							path : 'https://www.esri.com/content/dam/esrisites/common/icons/RSSFeed_32.svg'
+							path: 'https://www.esri.com/content/dam/esrisites/common/icons/RSSFeed_32.svg'
 						}
 					},
 					{
@@ -829,7 +809,7 @@ document.addEventListener("DOMContentLoaded", () => {
 						href: 'https://en.wikipedia.org/wiki/RSS',
 						image: {
 							viewBox: '0 0 32 32',
-							path : 'https://www.esri.com/content/dam/esrisites/common/icons/Tumblr_32.svg'
+							path: 'https://www.esri.com/content/dam/esrisites/common/icons/Tumblr_32.svg'
 						}
 					},
 					{
@@ -837,7 +817,7 @@ document.addEventListener("DOMContentLoaded", () => {
 						href: 'https://www.xing.com/en',
 						image: {
 							viewBox: '0 0 32 32',
-							path : 'https://www.esri.com/content/dam/esrisites/common/icons/Xing_32.svg'
+							path: 'https://www.esri.com/content/dam/esrisites/common/icons/Xing_32.svg'
 						}
 					}
 				]

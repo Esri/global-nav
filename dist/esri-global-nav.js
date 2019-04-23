@@ -821,7 +821,7 @@ var createMenus = (function (_ref) {
 						data: { filled: item.menus && item.menus.length > 10 ? item.menus.slice(0, 24).length : '' }
 					}, $subtoggle);
 
-					if (item.structuredMenu) {
+					if (item.structuredMenu && item.structuredMenu.length > 0) {
 						renderStructuredMenu({ $subcontent: $subcontent, item: item, uuid: uuid, suuid: suuid });
 					} else {
 						if (hasMenuItems) {
@@ -875,38 +875,28 @@ var createMenus = (function (_ref) {
 		    uuid = _ref3.uuid,
 		    suuid = _ref3.suuid;
 
-		var $structuredLeftCol = $assign('div', {
-			class: prefix$3 + '-submenu--left-col'
-		});
+		var $structuredLeftCol = $assign('div', { class: prefix$3 + '-submenu--left-col' });
+		var $structuredRightCol = $assign('div', { class: prefix$3 + '-submenu--right-col' });
 
-		var $structuredRightCol = $assign('div', {
-			class: prefix$3 + '-submenu--right-col'
-		});
+		$assign($subcontent, $assign('div', { class: prefix$3 + '-structured-menu--wrapper' }, $assign($structuredLeftCol, $assign.apply(undefined, ['ul', {
+			class: prefix$3 + '-sublist', 'data-menutype': 'structured',
+			role: 'navigation', aria: { labelledby: prefix$3 + '-link-' + variant + '-' + uuid + '-' + suuid }
+		}].concat(toConsumableArray(renderStructuredMenuItems(item.structuredMenu))))), $assign($structuredRightCol, $assign('ul', {
+			class: prefix$3 + '-sublist', 'data-menutype': 'standard',
+			role: 'navigation', aria: { labelledby: prefix$3 + '-link-' + variant + '-' + uuid + '-' + suuid }
+		}, createMenuColumns(item.menus)))));
+	}
 
-		var structuredMenu = item.structuredMenu;
-		structuredMenu.capabilities.forEach(function (entries) {
-			$assign($subcontent, $assign('div', { class: prefix$3 + '-structured-menu--wrapper' }, $assign($structuredLeftCol, $assign.apply(undefined, ['ul', {
-				class: prefix$3 + '-sublist', 'data-menutype': 'structured',
-				role: 'navigation', aria: { labelledby: prefix$3 + '-link-' + variant + '-' + uuid + '-' + suuid }
-			}, $assign('li', {
-				class: prefix$3 + '-entry--heading'
-			}, $assign('p', {
-				class: prefix$3 + '-entry--heading-label'
-			}, entries.heading))].concat(toConsumableArray(entries.entryData.map(function (entry) {
-				var menuItem = $assign('li', { class: prefix$3 + '-subitem' }, $assign('a', {
-					href: entry.href,
-					class: prefix$3 + '-sublink'
-				}, $assign('p', {
-					class: prefix$3 + '-sublink--title'
-				}, entry.label), $assign('p', {
-					class: prefix$3 + '-sublink--description'
-				}, entry.description)));
-				return menuItem;
-			}))))), $assign($structuredRightCol, $assign('ul', {
-				class: prefix$3 + '-sublist', 'data-menutype': 'standard',
-				role: 'navigation', aria: { labelledby: prefix$3 + '-link-' + variant + '-' + uuid + '-' + suuid }
-			}, createMenuColumns(item.menus)))));
+	function renderStructuredMenuItems(entries) {
+		console.log('entries', entries);
+		var $items = [];
+		entries.forEach(function (entry) {
+			if (entry.heading) {
+				$items.push($assign('li', { class: prefix$3 + '-entry--heading' }, $assign('p', { class: prefix$3 + '-entry--heading-label' }, entry.heading)));
+			}
+			$items.push($assign('li', { class: prefix$3 + '-subitem' }, $assign('a', { href: entry.href, class: prefix$3 + '-sublink' }, $assign('p', { class: prefix$3 + '-sublink--title' }, entry.label), $assign('p', { class: prefix$3 + '-sublink--description' }, entry.description))));
 		});
+		return $items;
 	}
 
 	$target.addEventListener('header:update:collapseMenus', function (_ref4) {

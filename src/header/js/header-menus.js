@@ -171,7 +171,7 @@ export default ({variant = 'desktop'}) => {
 									$subtoggle
 								);
 
-								if (item.structuredMenu) {
+								if (item.structuredMenu && item.structuredMenu.length > 0) {
 									renderStructuredMenu({$subcontent, item, uuid, suuid});
 								} else {
 									if (hasMenuItems) {
@@ -233,76 +233,53 @@ export default ({variant = 'desktop'}) => {
 	});
 
 	function renderStructuredMenu({$subcontent, item, uuid, suuid}) {
-		const $structuredLeftCol = $('div',
-			{
-				class: `${prefix}-submenu--left-col`
-			}
-		);
+		const $structuredLeftCol = $('div', {class: `${prefix}-submenu--left-col`});
+		const $structuredRightCol = $('div', {class: `${prefix}-submenu--right-col`});
 
-		const $structuredRightCol = $('div',
-			{
-				class: `${prefix}-submenu--right-col`
-			}
+		$($subcontent,
+			$('div', {class: `${prefix}-structured-menu--wrapper`},
+				$($structuredLeftCol,
+					$('ul', {
+						class: `${prefix}-sublist`, 'data-menutype': 'structured',
+						role: 'navigation', aria: {labelledby: `${prefix}-link-${variant}-${uuid}-${suuid}`}
+					}, ...renderStructuredMenuItems(item.structuredMenu))
+				),
+				$($structuredRightCol,
+					$('ul', {
+						class: `${prefix}-sublist`, 'data-menutype': 'standard',
+						role: 'navigation', aria: {labelledby: `${prefix}-link-${variant}-${uuid}-${suuid}`}
+					}, createMenuColumns(item.menus))
+				)
+			)
 		);
+	}
 
-		const structuredMenu = item.structuredMenu;
-		structuredMenu.capabilities.forEach((entries) => {
-			$($subcontent,
-				$('div', {class: `${prefix}-structured-menu--wrapper`},
-					$($structuredLeftCol,
-						$('ul',
-							{
-								class: `${prefix}-sublist`, 'data-menutype': 'structured',
-								role: 'navigation', aria: {labelledby: `${prefix}-link-${variant}-${uuid}-${suuid}`}
-							},
-							$('li',
-								{
-									class: `${prefix}-entry--heading`
-								},
-								$('p',
-									{
-										class: `${prefix}-entry--heading-label`
-									},
-									entries.heading
-								)
-							),
-							...entries.entryData.map((entry) => {
-								const menuItem = $('li', {class: `${prefix}-subitem`},
-									$('a',
-										{
-											href: entry.href,
-											class: `${prefix}-sublink`
-										},
-										$('p',
-											{
-												class: `${prefix}-sublink--title`
-											},
-											entry.label
-										),
-										$('p',
-											{
-												class: `${prefix}-sublink--description`
-											},
-											entry.description
-										)
-									)
-								);
-								return menuItem;
-							}),
-						)
-					),
-					$($structuredRightCol,
-						$('ul',
-							{
-								class: `${prefix}-sublist`, 'data-menutype': 'standard',
-								role: 'navigation', aria: {labelledby: `${prefix}-link-${variant}-${uuid}-${suuid}`}
-							},
-							createMenuColumns(item.menus)
+	function renderStructuredMenuItems(entries) {
+		console.log('entries', entries);
+		const $items = [];
+		entries.forEach((entry) => {
+			if (entry.heading) {
+				$items.push(
+					$('li', {class: `${prefix}-entry--heading`},
+						$('p', {class: `${prefix}-entry--heading-label`},
+							entry.heading
+						))
+				);
+			}
+			$items.push(
+				$('li', {class: `${prefix}-subitem`},
+					$('a', {href: entry.href, class: `${prefix}-sublink`},
+						$('p', {class: `${prefix}-sublink--title`},
+							entry.label
+						),
+						$('p', {class: `${prefix}-sublink--description`},
+							entry.description
 						)
 					)
 				)
 			);
 		});
+		return $items;
 	}
 
 	$target.addEventListener('header:update:collapseMenus', ({detail}) => {
