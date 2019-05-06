@@ -289,13 +289,20 @@
 			&[data-has-structured="true"] {
 				padding: 25px 35px 35px;
 				width: calc(685px + 35px * 2);	
+
+				&[data-structuredcols="3"],
+				&[data-structuredcols="4"] {
+					width: calc(850px + 50px * 4);
+				}
+			}
+			
+			&[data-has-structured="false"] {	
+				&[data-structuredcols="3"],
+				&[data-structuredcols="4"] {
+					width: calc(650px + 35px * 4);
+				}
 			}
 			width: calc(350px + 35px * 2);
-
-			&[data-structuredcols="3"],
-			&[data-structuredcols="4"] {
-				width: calc(850px + 50px * 4);
-			}
 		}
 
 		&[data-filled]:not([data-filled=""]) {
@@ -566,6 +573,7 @@
 
 	& .esri-header-menus-entry-sublink--title {
 		color: var(--mono-20);
+		display: inline-block;
 		font-size: 17px;
 		margin: 0;
 
@@ -589,7 +597,7 @@
 			padding: 20px 20px 0 20px;
 
 			@media (--width-l) {
-				padding: 0px;
+				padding: 0;
 			}
 		}
 	}
@@ -608,21 +616,45 @@
 			color: #323232;
 			font-size: 16px;
 			margin: 10px 0 15px 0;
+			position: relative;
+
+			& .esri-header-menus-entry-sublink--title {
+				&:after {
+					content: url("../../shared/shared.svg#c-arrow-right" param(--fill var(--blue)));
+					right: 0;
+					opacity: 0;
+					position: absolute;
+					size: 16px;
+					top: 50%;
+					transition: opacity 250ms, all 250ms;
+					transform: translateY(-75%);
+				}
+			}
+			
+			&:hover {
+				background-position: 0% 100%;
+
+				& .esri-header-menus-entry--menus-subitem {
+					background-position: 0% 100%;
+				}
+
+				& .esri-header-menus-entry-sublink--title {
+					color: var(--mono-0);
+					&:after {
+						opacity: 1;
+						right: -25px;
+					}
+				}
 				
+				& .esri-header-menus-sublink--description {
+					color: var(--mono-45);
+				}
+			}
+
 			& .esri-header-menus-entry-sublink {
 				cursor: pointer;
 				position: relative;
 				text-decoration: none;
-
-				&:hover {
-					& .esri-header-menus-entry-sublink--title {
-						color: var(--mono-0);
-					}
-					
-					& .esri-header-menus-sublink--description {
-						color: var(--mono-45);
-					}
-				}
 			}
 
 			& .esri-header-menus-sublink--description {
@@ -643,7 +675,26 @@
 		& .esri-header-menus-entry-sublink {
 			color: var(--mono-40);
 			font-size: 14px;
+			position: relative;
 			text-decoration: none;
+
+			&:after {
+				content: url("../../shared/shared.svg#c-arrow-right" param(--fill var(--blue)));
+				right: 0;
+				opacity: 0;
+				position: absolute;
+				size: 16px;
+				top: 50%;
+				transition: opacity 250ms, all 250ms;
+				transform: translateY(-70%);
+			}
+
+			&:hover {
+				&:after {
+					opacity: 1;
+					right: -20px;
+				}
+			}
 		}
 	}
 }
