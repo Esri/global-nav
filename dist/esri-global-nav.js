@@ -807,32 +807,33 @@ var createMenus = (function (_ref) {
 
 				var hasMenuItems = item.menus && item.menus.length;
 				var hasFeaturedItems = item.tiles && item.tiles.length;
+				var hasStructured = false;
 
 				if (hasMenuItems || hasFeaturedItems) {
 					/* Global Navigation: Submenu
      /* ====================================== */
 					var $subtoggle = $assign('button', { class: prefix$3 + '-submenu-toggle' }, item.label);
 
+					if (item.cols && item.cols.length) {
+						item.cols.forEach(function (col) {
+							if (col.type && col.type === 'structured') {
+								hasStructured = true;
+							}
+						});
+					}
+
 					var $subcontent = $assign('div', {
 						class: prefix$3 + '-submenu',
 						id: prefix$3 + '-' + variant + '-submenu-' + uuid + '-' + suuid,
-						'data-has-structured': !!item.structuredMenu,
+						'data-has-structured': hasStructured,
 						role: 'group', aria: { hidden: true, expanded: false },
-						data: { filled: item.menus && item.menus.length > 10 ? item.menus.slice(0, 24).length : '' }
+						data: { filled: item.menus && item.menus.length > 10 ? item.menus.slice(0, 18).length : '' }
 					}, $subtoggle);
 
-					if (item.structuredMenu && item.structuredMenu.length > 0) {
-						renderStructuredMenu({ $subcontent: $subcontent, item: item, uuid: uuid, suuid: suuid });
+					if (item.cols && item.cols.length) {
+						renderMulti({ $subcontent: $subcontent, item: item, uuid: uuid, suuid: suuid });
 					} else {
-						if (hasMenuItems) {
-							$assign($subcontent, $assign('ul', {
-								class: prefix$3 + '-sublist',
-								role: 'navigation', aria: { labelledby: prefix$3 + '-link-' + variant + '-' + uuid + '-' + suuid }
-							},
-							/* Global Navigation: Menus: Sublink
-       /* ============================== */
-							$assign('div', { class: prefix$3 + '-sublist--col-wrapper' }, createMenuColumns(item.menus.slice(0, 9)), createMenuColumns(item.menus.slice(9, 18)), createMenuColumns(item.menus.slice(18, 27)), createMenuColumns(item.menus.slice(27, 36)))));
-						}
+						renderSingle({ hasMenuItems: hasMenuItems, $subcontent: $subcontent, item: item, uuid: uuid, suuid: suuid });
 					}
 
 					if (hasFeaturedItems) {
@@ -869,37 +870,84 @@ var createMenus = (function (_ref) {
 		}))));
 	});
 
-	function renderStructuredMenu(_ref3) {
-		var $subcontent = _ref3.$subcontent,
+	function renderSingle(_ref3) {
+		var hasMenuItems = _ref3.hasMenuItems,
+		    $subcontent = _ref3.$subcontent,
 		    item = _ref3.item,
 		    uuid = _ref3.uuid,
 		    suuid = _ref3.suuid;
 
-		var $structuredLeftCol = $assign('div', { class: prefix$3 + '-submenu--left-col' });
-		var $structuredRightCol = $assign('div', { class: prefix$3 + '-submenu--right-col' });
-
-		$assign($subcontent, $assign('div', { class: prefix$3 + '-structured-menu--wrapper' }, $assign($structuredLeftCol, $assign.apply(undefined, ['ul', {
-			class: prefix$3 + '-sublist', 'data-menutype': 'structured',
-			role: 'navigation', aria: { labelledby: prefix$3 + '-link-' + variant + '-' + uuid + '-' + suuid }
-		}].concat(toConsumableArray(renderStructuredMenuItems(item.structuredMenu))))), $assign($structuredRightCol, $assign('ul', {
-			class: prefix$3 + '-sublist', 'data-menutype': 'standard',
-			role: 'navigation', aria: { labelledby: prefix$3 + '-link-' + variant + '-' + uuid + '-' + suuid }
-		}, createMenuColumns(item.menus)))));
+		if (hasMenuItems) {
+			$assign($subcontent, $assign('ul', {
+				class: prefix$3 + '-sublist',
+				role: 'navigation', aria: { labelledby: prefix$3 + '-link-' + variant + '-' + uuid + '-' + suuid }
+			},
+			/* Global Navigation: Menus: Sublink
+   /* ============================== */
+			$assign('div', { class: prefix$3 + '-sublist--col-wrapper' }, createMenuColumns(item.menus.slice(0, 9)), createMenuColumns(item.menus.slice(9, 18)))));
+		}
 	}
 
-	function renderStructuredMenuItems(entries) {
+	function renderMulti(_ref4) {
+		var $subcontent = _ref4.$subcontent,
+		    item = _ref4.item,
+		    uuid = _ref4.uuid,
+		    suuid = _ref4.suuid;
+
+		var $cols = $assign('div', { class: prefix$3 + '-sublist--col-wrapper' });
+
+		if (item.cols) {
+			item.cols.forEach(function (col) {
+				if (col.type && col.type === 'single') {
+					$assign($cols, $assign('div', { class: prefix$3 + '-sublist--col' }, $assign.apply(undefined, ['ul', {
+						class: prefix$3 + '-sublist', 'data-menutype': 'standard',
+						role: 'navigation', aria: { labelledby: prefix$3 + '-link-' + variant + '-' + uuid + '-' + suuid }
+					}].concat(toConsumableArray(renderer(col.items))))));
+				} else if (col.type && col.type === 'structured') {
+					$assign($cols, $assign('div', { class: prefix$3 + '-sublist--col' }, $assign.apply(undefined, ['ul', {
+						class: prefix$3 + '-sublist', 'data-menutype': 'structured',
+						role: 'navigation', aria: { labelledby: prefix$3 + '-link-' + variant + '-' + uuid + '-' + suuid }
+					}].concat(toConsumableArray(renderStructuredMenu(col.items))))));
+				}
+			});
+
+			$assign($subcontent, $assign('div', { class: prefix$3 + '-sublist' }, $cols));
+		}
+	}
+
+	function renderer(entries) {
 		var $items = [];
-		entries.forEach(function (entry) {
+
+		entries.map(function (entry) {
 			if (entry.heading) {
 				$items.push($assign('li', { class: prefix$3 + '-entry--heading' }, $assign('p', { class: prefix$3 + '-entry--heading-label' }, entry.heading)));
 			}
-			$items.push($assign('li', { class: prefix$3 + '-subitem' }, $assign('a', { href: entry.href, class: prefix$3 + '-sublink' }, $assign('p', { class: prefix$3 + '-sublink--title' }, entry.label), $assign('p', { class: prefix$3 + '-sublink--description' }, entry.description))));
+			$items.push($assign('li', { class: prefix$3 + '-entry--menus-subitem' }, $assign('a', { href: entry.href, class: prefix$3 + '-entry-sublink' }, $assign('p', { class: prefix$3 + '-entry-sublink--title' }, entry.label), $assign('p', { class: prefix$3 + '-sublink--description' }, entry.description))));
 		});
+
 		return $items;
 	}
 
-	$target.addEventListener('header:update:collapseMenus', function (_ref4) {
-		var detail = _ref4.detail;
+	function renderStructuredMenu(entries) {
+		var $items = [];
+
+		entries.map(function (entry) {
+			if (entry.heading) {
+				$items.push($assign('li', { class: prefix$3 + '-entry--heading' }, $assign('p', { class: prefix$3 + '-entry--heading-label' }, entry.heading)));
+			}
+
+			if (entry.href && entry.label && entry.description) {
+				$items.push($items.push($assign('li', { class: prefix$3 + '-entry--menus-subitem' }, $assign('a', { href: entry.href, class: prefix$3 + '-entry-sublink' }, $assign('p', { class: prefix$3 + '-entry-sublink--title' }, entry.label), $assign('p', { class: prefix$3 + '-sublink--description' }, entry.description)))));
+			} else if (entry.href && entry.label) {
+				$items.push($items.push($assign('li', { class: prefix$3 + '-entry--menus-subitem' }, $assign('a', { href: entry.href, class: prefix$3 + '-entry-sublink' }, $assign('p', { class: prefix$3 + '-entry-sublink--title' }, entry.label)))));
+			}
+		});
+
+		return $items;
+	}
+
+	$target.addEventListener('header:update:collapseMenus', function (_ref5) {
+		var detail = _ref5.detail;
 
 		if (detail && detail.indexOf(true) > -1) {
 			document.querySelector('.esri-header-menus-toggle').classList.add('-visible');
