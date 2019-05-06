@@ -153,6 +153,7 @@ export default ({variant = 'desktop'}) => {
 							const hasMenuItems = item.menus && item.menus.length; 
 							const hasFeaturedItems = item.tiles && item.tiles.length;
 							let hasStructured = false;
+							let structuredCols = 0;
 
 							if (hasMenuItems || hasFeaturedItems) { 
 								/* Global Navigation: Submenu
@@ -162,6 +163,8 @@ export default ({variant = 'desktop'}) => {
 								);
 
 								if (item.cols && item.cols.length) {
+									structuredCols = item.cols.length;
+
 									item.cols.forEach((col) => {
 										if (col.type && col.type === 'structured') {
 											hasStructured = true;
@@ -175,7 +178,7 @@ export default ({variant = 'desktop'}) => {
 										id: `${prefix}-${variant}-submenu-${uuid}-${suuid}`,
 										'data-has-structured': hasStructured,
 										role: 'group', aria: {hidden: true, expanded: false},
-										data: {filled: (item.menus && item.menus.length > 10) ? item.menus.slice(0, 18).length : ''}
+										data: {filled: (item.menus && item.menus.length > 10) ? item.menus.slice(0, 18).length : '', structuredCols: (structuredCols) ? structuredCols : ''}
 									},
 									$subtoggle
 								);
@@ -289,14 +292,13 @@ export default ({variant = 'desktop'}) => {
 						))
 				);
 			}
-			$items.push(
-				$('li', {class: `${prefix}-entry--menus-subitem`},
-					$('a', {href: entry.href, class: `${prefix}-entry-sublink`},
-						$('p', {class: `${prefix}-entry-sublink--title`}, entry.label),
-						$('p', {class: `${prefix}-sublink--description`}, entry.description)
+			if (entry.href && entry.label) {
+				$items.push(
+					$('li', {class: `${prefix}-entry--menus-subitem`},
+						$('a', {href: entry.href, class: `${prefix}-entry-sublink`}, entry.label),
 					)
-				)
-			);
+				);
+			}
 		});
 
 		return $items;

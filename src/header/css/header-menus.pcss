@@ -287,14 +287,21 @@
 
 		&[data-filled=""] {
 			&[data-has-structured="true"] {
+				padding: 25px 35px 35px;
 				width: calc(685px + 35px * 2);	
 			}
 			width: calc(350px + 35px * 2);
+
+			&[data-structuredcols="3"],
+			&[data-structuredcols="4"] {
+				width: calc(850px + 50px * 4);
+			}
 		}
 
 		&[data-filled]:not([data-filled=""]) {
 			width: calc(350px * 2 + 20px + 35px * 2);
 		}
+
 	}
 
 	&[aria-hidden="true"] {
@@ -559,8 +566,12 @@
 
 	& .esri-header-menus-entry-sublink--title {
 		color: var(--mono-20);
-		font-size: 18px;
+		font-size: 17px;
 		margin: 0;
+
+		@media (--width-l) {
+			font-size: 18px;
+		}
 	}
 }
 
@@ -575,21 +586,31 @@
 
 		& .esri-header-menus-sublist--col {
 			flex-grow: 1;
+			padding: 20px 20px 0 20px;
+
+			@media (--width-l) {
+				padding: 0px;
+			}
 		}
 	}
 
  	&[data-menutype='structured'] {
-		 & .esri-header-menus-entry--menus-subitem {
-				background-image: linear-gradient(90deg, #0079c1 50%, #e0e0e0 0);
-				background-position: 100% 100%;
-				background-repeat: no-repeat;
-				background-size: 200% 1px;
-				transition: background-position .25s;
-				color: #323232;
-				font-size: 16px;
-				margin: 15px 0;
+		@media (--width-l) {
+			padding-right: 50px;
+		}
+
+		& .esri-header-menus-entry--menus-subitem {
+			background-image: linear-gradient(90deg, #0079c1 50%, #e0e0e0 0);
+			background-position: 100% 100%;
+			background-repeat: no-repeat;
+			background-size: 200% 1px;
+			transition: background-position .25s;
+			color: #323232;
+			font-size: 16px;
+			margin: 10px 0 15px 0;
 				
 			& .esri-header-menus-entry-sublink {
+				cursor: pointer;
 				position: relative;
 				text-decoration: none;
 
@@ -606,22 +627,23 @@
 
 			& .esri-header-menus-sublink--description {
 				color: var(--mono-40);
-				font-size: 14px;
+				font-size: 13px;
 				font-weight: 400;
 				margin: 0;
 				padding: 0 0 10px 0;
+
+				@media (--width-l) {
+					font-size: 14px;
+				}
 			}
 		}
 	}
  
  	&[data-menutype='standard'] {
 		& .esri-header-menus-entry-sublink {
+			color: var(--mono-40);
+			font-size: 14px;
 			text-decoration: none;
-
-			& .esri-header-menus-entry-sublink--title {
-				color: var(--mono-40);
-				font-size: 14px;
-			}
 		}
 	}
 }

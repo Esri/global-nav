@@ -808,6 +808,7 @@ var createMenus = (function (_ref) {
 				var hasMenuItems = item.menus && item.menus.length;
 				var hasFeaturedItems = item.tiles && item.tiles.length;
 				var hasStructured = false;
+				var structuredCols = 0;
 
 				if (hasMenuItems || hasFeaturedItems) {
 					/* Global Navigation: Submenu
@@ -815,6 +816,8 @@ var createMenus = (function (_ref) {
 					var $subtoggle = $assign('button', { class: prefix$3 + '-submenu-toggle' }, item.label);
 
 					if (item.cols && item.cols.length) {
+						structuredCols = item.cols.length;
+
 						item.cols.forEach(function (col) {
 							if (col.type && col.type === 'structured') {
 								hasStructured = true;
@@ -827,7 +830,7 @@ var createMenus = (function (_ref) {
 						id: prefix$3 + '-' + variant + '-submenu-' + uuid + '-' + suuid,
 						'data-has-structured': hasStructured,
 						role: 'group', aria: { hidden: true, expanded: false },
-						data: { filled: item.menus && item.menus.length > 10 ? item.menus.slice(0, 18).length : '' }
+						data: { filled: item.menus && item.menus.length > 10 ? item.menus.slice(0, 18).length : '', structuredCols: structuredCols ? structuredCols : '' }
 					}, $subtoggle);
 
 					if (item.cols && item.cols.length) {
@@ -922,7 +925,9 @@ var createMenus = (function (_ref) {
 			if (entry.heading) {
 				$items.push($assign('li', { class: prefix$3 + '-entry--heading' }, $assign('p', { class: prefix$3 + '-entry--heading-label' }, entry.heading)));
 			}
-			$items.push($assign('li', { class: prefix$3 + '-entry--menus-subitem' }, $assign('a', { href: entry.href, class: prefix$3 + '-entry-sublink' }, $assign('p', { class: prefix$3 + '-entry-sublink--title' }, entry.label), $assign('p', { class: prefix$3 + '-sublink--description' }, entry.description))));
+			if (entry.href && entry.label) {
+				$items.push($assign('li', { class: prefix$3 + '-entry--menus-subitem' }, $assign('a', { href: entry.href, class: prefix$3 + '-entry-sublink' }, entry.label)));
+			}
 		});
 
 		return $items;
