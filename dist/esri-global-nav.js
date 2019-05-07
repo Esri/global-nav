@@ -815,14 +815,12 @@ var createMenus = (function (_ref) {
      /* ====================================== */
 					var $subtoggle = $assign('button', { class: prefix$3 + '-submenu-toggle' }, item.label);
 
-					if (item.cols && item.cols.length) {
+					var hasCols = item.cols && item.cols.length;
+					if (hasCols) {
 						structuredCols = item.cols.length;
-
-						item.cols.forEach(function (col) {
-							if (col.type && col.type === 'structured') {
-								hasStructured = true;
-							}
-						});
+						hasStructured = item.cols.filter(function (col) {
+							return col.type === 'structured';
+						}).length > 0;
 					}
 
 					var $subcontent = $assign('div', {
@@ -833,7 +831,7 @@ var createMenus = (function (_ref) {
 						data: { filled: item.menus && item.menus.length > 10 ? item.menus.slice(0, 18).length : '', structuredCols: structuredCols ? structuredCols : '' }
 					}, $subtoggle);
 
-					if (item.cols && item.cols.length) {
+					if (hasCols) {
 						renderMulti({ $subcontent: $subcontent, item: item, uuid: uuid, suuid: suuid });
 					} else {
 						renderSingle({ hasMenuItems: hasMenuItems, $subcontent: $subcontent, item: item, uuid: uuid, suuid: suuid });
@@ -901,17 +899,20 @@ var createMenus = (function (_ref) {
 
 		if (item.cols) {
 			item.cols.forEach(function (col) {
-				if (col.type && col.type === 'single') {
-					$assign($cols, $assign('div', { class: prefix$3 + '-sublist--col' }, $assign.apply(undefined, ['ul', {
-						class: prefix$3 + '-sublist', 'data-menutype': 'standard',
-						role: 'navigation', aria: { labelledby: prefix$3 + '-link-' + variant + '-' + uuid + '-' + suuid }
-					}].concat(toConsumableArray(renderer(col.items))))));
-				} else if (col.type && col.type === 'structured') {
-					$assign($cols, $assign('div', { class: prefix$3 + '-sublist--col' }, $assign.apply(undefined, ['ul', {
-						class: prefix$3 + '-sublist', 'data-menutype': 'structured',
-						role: 'navigation', aria: { labelledby: prefix$3 + '-link-' + variant + '-' + uuid + '-' + suuid }
-					}].concat(toConsumableArray(renderStructuredMenu(col.items))))));
+				var menuType = 'standard';
+				var menuRenderer = renderer;
+
+				switch (col.type) {
+					case 'structured':
+						menuType = 'structured';
+						menuRenderer = renderStructuredMenu;
+						break;
 				}
+
+				$assign($cols, $assign('div', { class: prefix$3 + '-sublist--col' }, $assign.apply(undefined, ['ul', {
+					class: prefix$3 + '-sublist', 'data-menutype': menuType,
+					role: 'navigation', aria: { labelledby: prefix$3 + '-link-' + variant + '-' + uuid + '-' + suuid }
+				}].concat(toConsumableArray(menuRenderer(col.items))))));
 			});
 
 			$assign($subcontent, $assign('div', { class: prefix$3 + '-sublist' }, $cols));
@@ -936,7 +937,7 @@ var createMenus = (function (_ref) {
 	function renderStructuredMenu(entries) {
 		var $items = [];
 
-		entries.map(function (entry) {
+		entries.forEach(function (entry) {
 			if (entry.heading) {
 				$items.push($assign('li', { class: prefix$3 + '-entry--heading' }, $assign('p', { class: prefix$3 + '-entry--heading-label' }, entry.heading)));
 			}

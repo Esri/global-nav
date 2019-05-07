@@ -162,14 +162,10 @@ export default ({variant = 'desktop'}) => {
 									item.label
 								);
 
-								if (item.cols && item.cols.length) {
+								const hasCols = item.cols && item.cols.length;
+								if (hasCols) {
 									structuredCols = item.cols.length;
-
-									item.cols.forEach((col) => {
-										if (col.type && col.type === 'structured') {
-											hasStructured = true;
-										}
-									});
+									hasStructured = item.cols.filter((col) => (col.type === 'structured')).length > 0;
 								}
 
 								const $subcontent = $('div',
@@ -183,7 +179,7 @@ export default ({variant = 'desktop'}) => {
 									$subtoggle
 								);
 								
-								if (item.cols && item.cols.length) {
+								if (hasCols) {
 									renderMulti({$subcontent, item, uuid, suuid});
 								} else {
 									renderSingle({hasMenuItems, $subcontent, item, uuid, suuid});
@@ -251,25 +247,24 @@ export default ({variant = 'desktop'}) => {
 
 		if (item.cols) {
 			item.cols.forEach((col) => {
-				if (col.type && col.type === 'single') {
-					$($cols,
-						$('div', {class: `${prefix}-sublist--col`},
-							$('ul', {
-								class: `${prefix}-sublist`, 'data-menutype': 'standard',
-								role: 'navigation', aria: {labelledby: `${prefix}-link-${variant}-${uuid}-${suuid}`}
-							}, ...renderer(col.items))
-						)
-					);
-				} else if (col.type && col.type === 'structured') {
-					$($cols,
-						$('div', {class: `${prefix}-sublist--col`},
-							$('ul', {
-								class: `${prefix}-sublist`, 'data-menutype': 'structured',
-								role: 'navigation', aria: {labelledby: `${prefix}-link-${variant}-${uuid}-${suuid}`}
-							}, ...renderStructuredMenu(col.items))
-						)
-					);
+				let menuType = 'standard';
+				let menuRenderer = renderer;
+				
+				switch (col.type) {
+					case 'structured':
+						menuType = 'structured';
+						menuRenderer = renderStructuredMenu;
+						break;
 				}
+
+				$($cols,
+					$('div', {class: `${prefix}-sublist--col`},
+						$('ul', {
+							class: `${prefix}-sublist`, 'data-menutype': menuType,
+							role: 'navigation', aria: {labelledby: `${prefix}-link-${variant}-${uuid}-${suuid}`}
+						}, ...menuRenderer(col.items))
+					)
+				);
 			});
 			
 			$($subcontent,
@@ -307,7 +302,7 @@ export default ({variant = 'desktop'}) => {
 	function renderStructuredMenu(entries) {
 		const $items = [];
 
-		entries.map((entry) => {
+		entries.forEach((entry) => {
 			if (entry.heading) {
 				$items.push(
 					$('li', {class: `${prefix}-entry--heading`},

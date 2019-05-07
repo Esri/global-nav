@@ -37,37 +37,7 @@ document.addEventListener("DOMContentLoaded", () => {
 										description: 'Intuitive, data-driven mapping, visualization, and analysis'
 									},
 									{
-										label: 'Mapping and Location Intelligence',
-										href: 'https://www.esri.com/en-us/location-intelligence',
-										description: 'Intuitive, data-driven mapping, visualization, and analysis'
-									},
-									{
-										label: 'Analytics and Data Science',
-										href: 'https://www.esri.com/en-us/arcgis/analytics/overview',
-										description: 'Advanced geospatial analysis, AI, and machine learning'
-									}
-								]
-							},
-							{
-								type: 'structured',
-								items: [
-									{
 										heading: 'GEOSPATIAL CLOUD-BASED CAPABILITIES',
-										label: 'Mapping and Location Intelligence',
-										href: 'https://www.esri.com/en-us/location-intelligence',
-										description: 'Intuitive, data-driven mapping, visualization, and analysis'
-									},
-									{
-										label: 'Analytics and Data Science',
-										href: 'https://www.esri.com/en-us/arcgis/analytics/overview',
-										description: 'Advanced geospatial analysis, AI, and machine learning'
-									},
-									{
-										label: 'Mapping and Location Intelligence',
-										href: 'https://www.esri.com/en-us/location-intelligence',
-										description: 'Intuitive, data-driven mapping, visualization, and analysis'
-									},
-									{
 										label: 'Mapping and Location Intelligence',
 										href: 'https://www.esri.com/en-us/location-intelligence',
 										description: 'Intuitive, data-driven mapping, visualization, and analysis'
