@@ -909,7 +909,7 @@ var createMenus = (function (_ref) {
 						break;
 				}
 
-				$assign($cols, $assign('div', { class: prefix$3 + '-sublist--col' }, $assign.apply(undefined, ['ul', {
+				$assign($cols, $assign('div', { class: prefix$3 + '-sublist--col', 'data-coltype': menuType }, $assign.apply(undefined, ['ul', {
 					class: prefix$3 + '-sublist', 'data-menutype': menuType,
 					role: 'navigation', aria: { labelledby: prefix$3 + '-link-' + variant + '-' + uuid + '-' + suuid }
 				}].concat(toConsumableArray(menuRenderer(col.items))))));

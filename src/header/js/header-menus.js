@@ -258,7 +258,7 @@ export default ({variant = 'desktop'}) => {
 				}
 
 				$($cols,
-					$('div', {class: `${prefix}-sublist--col`},
+					$('div', {class: `${prefix}-sublist--col`, 'data-coltype': menuType},
 						$('ul', {
 							class: `${prefix}-sublist`, 'data-menutype': menuType,
 							role: 'navigation', aria: {labelledby: `${prefix}-link-${variant}-${uuid}-${suuid}`}

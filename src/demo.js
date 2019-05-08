@@ -27,6 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
 										description: 'Intuitive, data-driven mapping, visualization, and analysis'
 									},
 									{
+										heading: 'GEOSPATIAL CLOUD-BASED CAPABILITIES',
 										label: 'Analytics and Data Science',
 										href: 'https://www.esri.com/en-us/arcgis/analytics/overview',
 										description: 'Advanced geospatial analysis, AI, and machine learning'
@@ -53,61 +54,63 @@ document.addEventListener("DOMContentLoaded", () => {
 								type: 'single',
 								items: [
 									{
-										heading: 'PRODUCTS',
-										label: 'Products',
-										href: 'https://www.esri.com/products'
+										heading: 'GEOSPATIAL CLOUD-BASED CAPABILITIES',
+										label: 'Mapping and Location Intelligence',
+										href: 'https://www.esri.com/en-us/location-intelligence',
+										description: 'Intuitive, data-driven mapping, visualization, and analysis'
 									},
 									{
-										label: 'Services',
-										href: 'https://www.esri.com/arcgis/services'
+										label: 'Analytics and Data Science',
+										href: 'https://www.esri.com/en-us/arcgis/analytics/overview',
+										description: 'Advanced geospatial analysis, AI, and machine learning'
 									},
 									{
-										label: 'ArcGIS for Developers',
-										href: 'https://developers.arcgis.com'
+										label: 'Mapping and Location Intelligence',
+										href: 'https://www.esri.com/en-us/location-intelligence',
+										description: 'Intuitive, data-driven mapping, visualization, and analysis'
 									},
 									{
-										label: 'All Products',
-										href: 'https://www.esri.com/what-is-gis'
+										label: 'Mapping and Location Intelligence',
+										href: 'https://www.esri.com/en-us/location-intelligence',
+										description: 'Intuitive, data-driven mapping, visualization, and analysis'
 									},
 									{
-										heading: 'SOLUTIONS',
-										label: 'Store',
-										href: 'https://store.esri.com'
-									},
-									{
-										label: 'Free Trial',
-										href: 'https://www.esri.com/arcgis/trial'
+										label: 'Analytics and Data Science',
+										href: 'https://www.esri.com/en-us/arcgis/analytics/overview',
+										description: 'Advanced geospatial analysis, AI, and machine learning'
 									}
 								]
 							},
 							{
-								type: 'single',
+								type: 'structured',
 								items: [
 									{
-										heading: 'PRODUCTS',
-										label: 'Products',
-										href: 'https://www.esri.com/products'
+										heading: 'GEOSPATIAL CLOUD-BASED CAPABILITIES',
+										label: 'Mapping and Location Intelligence',
+										href: 'https://www.esri.com/en-us/location-intelligence',
+										description: 'Intuitive, data-driven mapping, visualization, and analysis'
 									},
 									{
-										label: 'Services',
-										href: 'https://www.esri.com/arcgis/services'
+										heading: 'GEOSPATIAL CLOUD-BASED CAPABILITIES',
+										label: 'Analytics and Data Science',
+										href: 'https://www.esri.com/en-us/arcgis/analytics/overview',
+										description: 'Advanced geospatial analysis, AI, and machine learning'
 									},
 									{
-										label: 'ArcGIS for Developers',
-										href: 'https://developers.arcgis.com'
+										label: 'Mapping and Location Intelligence',
+										href: 'https://www.esri.com/en-us/location-intelligence',
+										description: 'Intuitive, data-driven mapping, visualization, and analysis'
 									},
 									{
-										label: 'All Products',
-										href: 'https://www.esri.com/what-is-gis'
+										heading: 'GEOSPATIAL CLOUD-BASED CAPABILITIES',
+										label: 'Mapping and Location Intelligence',
+										href: 'https://www.esri.com/en-us/location-intelligence',
+										description: 'Intuitive, data-driven mapping, visualization, and analysis'
 									},
 									{
-										heading: 'SOLUTIONS',
-										label: 'Store',
-										href: 'https://store.esri.com'
-									},
-									{
-										label: 'Free Trial',
-										href: 'https://www.esri.com/arcgis/trial'
+										label: 'Analytics and Data Science',
+										href: 'https://www.esri.com/en-us/arcgis/analytics/overview',
+										description: 'Advanced geospatial analysis, AI, and machine learning'
 									}
 								]
 							}
