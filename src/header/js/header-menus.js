@@ -249,6 +249,7 @@ export default ({variant = 'desktop'}) => {
 			item.cols.forEach((col) => {
 				let menuType = 'standard';
 				let menuRenderer = renderer;
+				let menuBorder = 'false';
 				
 				switch (col.type) {
 					case 'structured':
@@ -256,9 +257,15 @@ export default ({variant = 'desktop'}) => {
 						menuRenderer = renderStructuredMenu;
 						break;
 				}
+				
+				switch (col.border) {
+					case 'true':
+						menuBorder = 'true';
+						break;
+				}
 
 				$($cols,
-					$('div', {class: `${prefix}-sublist--col`, 'data-coltype': menuType},
+					$('div', {class: `${prefix}-sublist--col`, 'data-coltype': menuType, 'data-menuborder': menuBorder},
 						$('ul', {
 							class: `${prefix}-sublist`, 'data-menutype': menuType,
 							role: 'navigation', aria: {labelledby: `${prefix}-link-${variant}-${uuid}-${suuid}`}

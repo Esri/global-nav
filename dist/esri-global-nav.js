@@ -901,6 +901,7 @@ var createMenus = (function (_ref) {
 			item.cols.forEach(function (col) {
 				var menuType = 'standard';
 				var menuRenderer = renderer;
+				var menuBorder = 'false';
 
 				switch (col.type) {
 					case 'structured':
@@ -909,7 +910,13 @@ var createMenus = (function (_ref) {
 						break;
 				}
 
-				$assign($cols, $assign('div', { class: prefix$3 + '-sublist--col', 'data-coltype': menuType }, $assign.apply(undefined, ['ul', {
+				switch (col.border) {
+					case 'true':
+						menuBorder = 'true';
+						break;
+				}
+
+				$assign($cols, $assign('div', { class: prefix$3 + '-sublist--col', 'data-coltype': menuType, 'data-menuborder': menuBorder }, $assign.apply(undefined, ['ul', {
 					class: prefix$3 + '-sublist', 'data-menutype': menuType,
 					role: 'navigation', aria: { labelledby: prefix$3 + '-link-' + variant + '-' + uuid + '-' + suuid }
 				}].concat(toConsumableArray(menuRenderer(col.items))))));

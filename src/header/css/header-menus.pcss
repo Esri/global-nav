@@ -292,29 +292,64 @@
 
 				&[data-structuredcols="2"] {
 					width: calc(600px + 35px * 2);
+
+					& [data-coltype="structured"] {
+						max-width: 55%;
+					}
+					
+					& [data-coltype="standard"] {
+						max-width: 42%;
+					}
 				}
 
 				&[data-structuredcols="3"],
 				&[data-structuredcols="4"] {
-					width: calc(850px + 50px * 4);
+					width: calc(1000px + 45px * 3);
 
 					& .esri-header-menus-sublist--col {
-						max-width: 33%;
-						padding: 0 20px;
-					}
-					
-					& .esri-header-menus-sublist--col {
+						padding: 0;
+						position: relative;
+
+						& .esri-header-menus-sublist {
+							padding: 0;
+						}
+
 						&:first-child {
-							padding-left: 0;
+							& .esri-header-menus-sublist {
+								padding-right: 40px;
+								padding-left: 0;
+							}
 						}
 						
 						&:last-child {
-							padding-right: 0;
+							& .esri-header-menus-sublist {
+								padding-right: 0;
+								/* padding-left: 25px; */
+							}
 						}
 					}
 
+					& [data-coltype="structured"] {
+						max-width: 35%;
+					}
+					
 					& [data-coltype="standard"] {
-						max-width: 33%;
+						max-width: 30%;
+					}
+					
+					& [data-menuborder="true"] {
+						margin-left: 40px;
+						padding-left: 40px;
+
+						&:after {
+							content: '';
+							background: rgba(204, 204, 204, .50);
+							height: 100%;
+							position: absolute;
+							left: 0;
+							top: 0;
+							width: 1px;
+						}
 					}
 				}
 			}
@@ -636,14 +671,14 @@
 
  	&[data-menutype='structured'] {
 		& .esri-header-menus-entry--menus-subitem {
-			background-image: linear-gradient(90deg, #0079c1 50%, #e0e0e0 0);
+			background-image: linear-gradient(90deg, #0079c1 50%, #ccc 0);
 			background-position: 100% 100%;
 			background-repeat: no-repeat;
 			background-size: 200% 1px;
 			transition: background-position .25s;
 			color: #323232;
 			font-size: 16px;
-			margin: 10px 0 15px 0;
+			margin: 15px 0;
 			position: relative;
 
 			& .esri-header-menus-entry-sublink--title {
@@ -667,7 +702,7 @@
 				}
 
 				& .esri-header-menus-entry-sublink--title {
-					color: var(--mono-0);
+					color: var(--blue);
 					&:after {
 						opacity: 1;
 						right: -25px;
@@ -675,7 +710,7 @@
 				}
 				
 				& .esri-header-menus-sublink--description {
-					color: var(--mono-40);
+					color: var(--blue);
 				}
 			}
 
@@ -701,6 +736,15 @@
 	}
  
  	&[data-menutype='standard'] {
+		& .esri-header-menus-entry--heading {
+			margin: 40px 0 15px 0;
+
+			&:first-child {
+				margin-top: 0;
+				margin-bottom: 10px;
+			}
+		}
+
 		& .esri-header-menus-entry-sublink {
 			color: var(--mono-40);
 			font-size: 14px;
