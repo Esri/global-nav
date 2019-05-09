@@ -324,7 +324,7 @@
 						&:last-child {
 							& .esri-header-menus-sublist {
 								padding-right: 0;
-								/* padding-left: 25px; */
+								padding-left: 40px;
 							}
 						}
 					}
@@ -340,6 +340,10 @@
 					& [data-menuborder="true"] {
 						margin-left: 40px;
 						padding-left: 40px;
+
+						&:last-child {
+							padding-left: 0;
+						}
 
 						&:after {
 							content: '';
@@ -365,6 +369,22 @@
 
 					& [data-coltype="standard"] {
 						max-width: 33%;
+						position: relative;
+					}
+				}
+
+				& [data-menuborder="true"] {
+					margin-left: 0;
+					padding-left: 40px;
+
+					&:after {
+						content: '';
+						background: rgba(204, 204, 204, .50);
+						height: 100%;
+						position: absolute;
+						left: 0;
+						top: 0;
+						width: 1px;
 					}
 				}
 			}
