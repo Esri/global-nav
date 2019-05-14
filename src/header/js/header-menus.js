@@ -244,7 +244,6 @@ export default ({variant = 'desktop'}) => {
 	
 	function renderMulti({$subcontent, item, uuid, suuid}) {
 		const $cols = $('div', {class: `${prefix}-sublist--col-wrapper`});
-
 		if (item.cols) {
 			item.cols.forEach((col) => {
 				let menuType = 'standard';

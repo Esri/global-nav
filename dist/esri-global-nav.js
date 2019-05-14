@@ -896,7 +896,6 @@ var createMenus = (function (_ref) {
 		    suuid = _ref4.suuid;
 
 		var $cols = $assign('div', { class: prefix$3 + '-sublist--col-wrapper' });
-
 		if (item.cols) {
 			item.cols.forEach(function (col) {
 				var menuType = 'standard';

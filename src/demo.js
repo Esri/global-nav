@@ -78,26 +78,6 @@ document.addEventListener("DOMContentLoaded", () => {
 										label: 'ArcGIS Mission',
 										href: 'https://www.esri.com/en-us/arcgis/analytics/overview',
 										description: 'Mission management and situational awareness'
-									},
-									{
-										label: 'ArcGIS Urban',
-										href: 'https://www.esri.com/en-us/arcgis/analytics/overview',
-										description: 'Smart city planning for urban development'
-									},
-									{
-										label: 'ArcGIS Business Analyst',
-										href: 'https://www.esri.com/en-us/arcgis/analytics/overview',
-										description: 'Business and market intelligence'
-									},
-									{
-										label: 'ArcGIS Hub',
-										href: 'https://www.esri.com/en-us/arcgis/analytics/overview',
-										description: 'Community engagement and collaboration'
-									},
-									{
-										label: 'Insights for ArcGIS',
-										href: 'https://www.esri.com/en-us/arcgis/analytics/overview',
-										description: 'Location analytics and spatial BI'
 									}
 								]
 							},
@@ -148,80 +128,80 @@ document.addEventListener("DOMContentLoaded", () => {
 										href: 'https://www.esri.com/en-us/arcgis/analytics/overview'
 									}
 								]
+							},
+							{
+								type: 'flyout',
+								items: [
+									{
+										title: 'GIS Products',
+										href: '#',
+										cols: [
+											{
+												type: 'structured',
+												items: [
+													{
+														heading: 'GEOSPATIAL CLOUD-BASED CAPABILITIES',
+														label: 'Mapping and Location Intelligence',
+														href: 'https://www.esri.com/en-us/location-intelligence',
+														description: 'Intuitive, data-driven mapping, visualization, and analysis'
+													},
+													{
+														label: 'Analytics and Data Science',
+														href: 'https://www.esri.com/en-us/arcgis/analytics/overview',
+														description: 'Advanced geospatial analysis, AI, and machine learning'
+													},
+													{
+														label: 'Mapping and Location Intelligence',
+														href: 'https://www.esri.com/en-us/location-intelligence',
+														description: 'Intuitive, data-driven mapping, visualization, and analysis'
+													},
+													{
+														label: 'Mapping and Location Intelligence',
+														href: 'https://www.esri.com/en-us/location-intelligence',
+														description: 'Intuitive, data-driven mapping, visualization, and analysis'
+													},
+													{
+														label: 'Analytics and Data Science',
+														href: 'https://www.esri.com/en-us/arcgis/analytics/overview',
+														description: 'Advanced geospatial analysis, AI, and machine learning'
+													}
+												]
+											},
+											{
+												type: 'single',
+												items: [
+													{
+														heading: 'GEOSPATIAL CLOUD-BASED CAPABILITIES',
+														label: 'Mapping and Location Intelligence',
+														href: 'https://www.esri.com/en-us/location-intelligence',
+														description: 'Intuitive, data-driven mapping, visualization, and analysis'
+													},
+													{
+														label: 'Analytics and Data Science',
+														href: 'https://www.esri.com/en-us/arcgis/analytics/overview',
+														description: 'Advanced geospatial analysis, AI, and machine learning'
+													},
+													{
+														label: 'Mapping and Location Intelligence',
+														href: 'https://www.esri.com/en-us/location-intelligence',
+														description: 'Intuitive, data-driven mapping, visualization, and analysis'
+													},
+													{
+														label: 'Mapping and Location Intelligence',
+														href: 'https://www.esri.com/en-us/location-intelligence',
+														description: 'Intuitive, data-driven mapping, visualization, and analysis'
+													},
+													{
+														label: 'Analytics and Data Science',
+														href: 'https://www.esri.com/en-us/arcgis/analytics/overview',
+														description: 'Advanced geospatial analysis, AI, and machine learning'
+													}
+												]
+											}
+										]
+									}
+								]
 							}
-							// {
-							// 	type: 'flyout',
-							// 	items: [
-							// 		{
-							// 			title: 'GIS Products',
-							// 			href: '#',
-							// 			cols: [
-							// 				{
-							// 					type: 'structured',
-							// 					items: [
-							// 						{
-							// 							heading: 'GEOSPATIAL CLOUD-BASED CAPABILITIES',
-							// 							label: 'Mapping and Location Intelligence',
-							// 							href: 'https://www.esri.com/en-us/location-intelligence',
-							// 							description: 'Intuitive, data-driven mapping, visualization, and analysis'
-							// 						},
-							// 						{
-							// 							label: 'Analytics and Data Science',
-							// 							href: 'https://www.esri.com/en-us/arcgis/analytics/overview',
-							// 							description: 'Advanced geospatial analysis, AI, and machine learning'
-							// 						},
-							// 						{
-							// 							label: 'Mapping and Location Intelligence',
-							// 							href: 'https://www.esri.com/en-us/location-intelligence',
-							// 							description: 'Intuitive, data-driven mapping, visualization, and analysis'
-							// 						},
-							// 						{
-							// 							label: 'Mapping and Location Intelligence',
-							// 							href: 'https://www.esri.com/en-us/location-intelligence',
-							// 							description: 'Intuitive, data-driven mapping, visualization, and analysis'
-							// 						},
-							// 						{
-							// 							label: 'Analytics and Data Science',
-							// 							href: 'https://www.esri.com/en-us/arcgis/analytics/overview',
-							// 							description: 'Advanced geospatial analysis, AI, and machine learning'
-							// 						}
-							// 					]
-							// 				},
-							// 				{
-							// 					type: 'single',
-							// 					items: [
-							// 						{
-							// 							heading: 'GEOSPATIAL CLOUD-BASED CAPABILITIES',
-							// 							label: 'Mapping and Location Intelligence',
-							// 							href: 'https://www.esri.com/en-us/location-intelligence',
-							// 							description: 'Intuitive, data-driven mapping, visualization, and analysis'
-							// 						},
-							// 						{
-							// 							label: 'Analytics and Data Science',
-							// 							href: 'https://www.esri.com/en-us/arcgis/analytics/overview',
-							// 							description: 'Advanced geospatial analysis, AI, and machine learning'
-							// 						},
-							// 						{
-							// 							label: 'Mapping and Location Intelligence',
-							// 							href: 'https://www.esri.com/en-us/location-intelligence',
-							// 							description: 'Intuitive, data-driven mapping, visualization, and analysis'
-							// 						},
-							// 						{
-							// 							label: 'Mapping and Location Intelligence',
-							// 							href: 'https://www.esri.com/en-us/location-intelligence',
-							// 							description: 'Intuitive, data-driven mapping, visualization, and analysis'
-							// 						},
-							// 						{
-							// 							label: 'Analytics and Data Science',
-							// 							href: 'https://www.esri.com/en-us/arcgis/analytics/overview',
-							// 							description: 'Advanced geospatial analysis, AI, and machine learning'
-							// 						}
-							// 					]
-							// 				}
-							// 			]
-							// 		}
-							// 	]
-							// }
 						],
 						menus: [
 							{
