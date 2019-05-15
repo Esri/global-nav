@@ -248,18 +248,12 @@ export default ({variant = 'desktop'}) => {
 			item.cols.forEach((col) => {
 				let menuType = 'standard';
 				let menuRenderer = renderer;
-				let menuBorder = 'false';
+				let menuBorder = col.border || 'false';
 				
 				switch (col.type) {
 					case 'structured':
 						menuType = 'structured';
 						menuRenderer = renderStructuredMenu;
-						break;
-				}
-				
-				switch (col.border) {
-					case 'true':
-						menuBorder = 'true';
 						break;
 				}
 
