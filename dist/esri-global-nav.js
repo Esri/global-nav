@@ -806,22 +806,18 @@ var createMenus = (function (_ref) {
 				var $li = $assign('li', { class: prefix$3 + '-item' }, $subcontrol);
 
 				var hasMenuItems = item.menus && item.menus.length;
+				var hasCols = item.cols && item.cols.length;
 				var hasFeaturedItems = item.tiles && item.tiles.length;
-				var hasStructured = false;
-				var structuredCols = 0;
 
-				if (hasMenuItems || hasFeaturedItems) {
+				if (hasMenuItems || hasCols || hasFeaturedItems) {
 					/* Global Navigation: Submenu
      /* ====================================== */
 					var $subtoggle = $assign('button', { class: prefix$3 + '-submenu-toggle' }, item.label);
 
-					var hasCols = item.cols && item.cols.length;
-					if (hasCols) {
-						structuredCols = item.cols.length;
-						hasStructured = item.cols.filter(function (col) {
-							return col.type === 'structured';
-						}).length > 0;
-					}
+					var hasStructured = hasCols && item.cols.filter(function (col) {
+						return col.type === 'structured';
+					}).length > 0;
+					var structuredCols = hasCols ? item.cols.length : 0;
 
 					var $subcontent = $assign('div', {
 						class: prefix$3 + '-submenu',
@@ -900,7 +896,7 @@ var createMenus = (function (_ref) {
 			item.cols.forEach(function (col) {
 				var menuType = 'standard';
 				var menuRenderer = renderer;
-				var menuBorder = 'false';
+				var menuBorder = col.border || 'false';
 
 				switch (col.type) {
 					case 'structured':
@@ -909,8 +905,11 @@ var createMenus = (function (_ref) {
 						break;
 				}
 
+<<<<<<< HEAD
 				col.border === 'true' ? menuBorder = 'true' : menuBorder = 'false';
 
+=======
+>>>>>>> 57e619a0c29e818cc8079b68979c5e708911ca51
 				$assign($cols, $assign('div', { class: prefix$3 + '-sublist--col', 'data-coltype': menuType, 'data-menuborder': menuBorder }, $assign.apply(undefined, ['ul', {
 					class: prefix$3 + '-sublist', 'data-menutype': menuType,
 					role: 'navigation', aria: { labelledby: prefix$3 + '-link-' + variant + '-' + uuid + '-' + suuid }
