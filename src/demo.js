@@ -172,12 +172,6 @@ document.addEventListener("DOMContentLoaded", () => {
 					},
 					{
 						label: 'Solutions',
-						cols: {
-							type: 'single',
-							items: [
-								
-							]
-						},
 						menus: [
 							{
 								heading: 'PRODUCTS',
@@ -317,12 +311,6 @@ document.addEventListener("DOMContentLoaded", () => {
 					},
 					{
 						label: 'Support & Services',
-						cols: {
-							type: 'single',
-							items: [
-								
-							]
-						},
 						menus: [
 							{
 								label: 'Technical Support',
@@ -364,12 +352,6 @@ document.addEventListener("DOMContentLoaded", () => {
 					},
 					{
 						label: 'News',
-						cols: {
-							type: 'single',
-							items: [
-								
-							]
-						},
 						menus: [
 							{
 								label: 'Whats News',
@@ -387,12 +369,6 @@ document.addEventListener("DOMContentLoaded", () => {
 					},
 					{
 						label: 'About',
-						cols: {
-							type: 'single',
-							items: [
-								
-							]
-						},
 						menus: [
 							{
 								label: 'About Esri',
