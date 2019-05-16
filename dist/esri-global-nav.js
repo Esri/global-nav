@@ -806,22 +806,18 @@ var createMenus = (function (_ref) {
 				var $li = $assign('li', { class: prefix$3 + '-item' }, $subcontrol);
 
 				var hasMenuItems = item.menus && item.menus.length;
+				var hasCols = item.cols && item.cols.length;
 				var hasFeaturedItems = item.tiles && item.tiles.length;
-				var hasStructured = false;
-				var structuredCols = 0;
 
-				if (hasMenuItems || hasFeaturedItems) {
+				if (hasMenuItems || hasCols || hasFeaturedItems) {
 					/* Global Navigation: Submenu
      /* ====================================== */
 					var $subtoggle = $assign('button', { class: prefix$3 + '-submenu-toggle' }, item.label);
 
-					var hasCols = item.cols && item.cols.length;
-					if (hasCols) {
-						structuredCols = item.cols.length;
-						hasStructured = item.cols.filter(function (col) {
-							return col.type === 'structured';
-						}).length > 0;
-					}
+					var hasStructured = hasCols && item.cols.filter(function (col) {
+						return col.type === 'structured';
+					}).length > 0;
+					var structuredCols = hasCols ? item.cols.length : 0;
 
 					var $subcontent = $assign('div', {
 						class: prefix$3 + '-submenu',

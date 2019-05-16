@@ -150,23 +150,19 @@ export default ({variant = 'desktop'}) => {
 
 							const $li = $('li', {class: `${prefix}-item`}, $subcontrol);
 
-							const hasMenuItems = item.menus && item.menus.length; 
+							const hasMenuItems = item.menus && item.menus.length;
+							const hasCols = item.cols && item.cols.length;
 							const hasFeaturedItems = item.tiles && item.tiles.length;
-							let hasStructured = false;
-							let structuredCols = 0;
 
-							if (hasMenuItems || hasFeaturedItems) { 
+							if (hasMenuItems || hasCols || hasFeaturedItems) { 
 								/* Global Navigation: Submenu
 								/* ====================================== */
 								const $subtoggle = $('button', {class: `${prefix}-submenu-toggle`},
 									item.label
 								);
 
-								const hasCols = item.cols && item.cols.length;
-								if (hasCols) {
-									structuredCols = item.cols.length;
-									hasStructured = item.cols.filter((col) => (col.type === 'structured')).length > 0;
-								}
+								const hasStructured = hasCols && item.cols.filter((col) => (col.type === 'structured')).length > 0;
+								const structuredCols = hasCols ? item.cols.length : 0;
 
 								const $subcontent = $('div',
 									{
@@ -248,7 +244,7 @@ export default ({variant = 'desktop'}) => {
 			item.cols.forEach((col) => {
 				let menuType = 'standard';
 				let menuRenderer = renderer;
-				let menuBorder = col.border || 'false';
+				const menuBorder = col.border || 'false';
 				
 				switch (col.type) {
 					case 'structured':

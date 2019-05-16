@@ -129,45 +129,6 @@ document.addEventListener("DOMContentLoaded", () => {
 									}
 								]
 							}
-						],
-						menus: [
-							{
-								heading: 'PRODUCTS',
-								label: 'About ArcGIS',
-								href: 'https://www.esri.com/arcgis/about-arcgis',
-								data: {
-									this: true,
-									that: true,
-									other: true,
-									thing: true
-								},
-								newContext: true
-							},
-							{
-								label: 'Products',
-								href: 'https://www.esri.com/products'
-							},
-							{
-								label: 'Services',
-								href: 'https://www.esri.com/arcgis/services'
-							},
-							{
-								label: 'ArcGIS for Developers',
-								href: 'https://developers.arcgis.com'
-							},
-							{
-								label: 'All Products',
-								href: 'https://www.esri.com/what-is-gis'
-							},
-							{
-								heading: 'ARCGIS',
-								label: 'Store',
-								href: 'https://store.esri.com'
-							},
-							{
-								label: 'Free Trial',
-								href: 'https://www.esri.com/arcgis/trial'
-							}
 						]
 					},
 					{
