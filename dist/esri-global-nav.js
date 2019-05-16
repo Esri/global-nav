@@ -909,11 +909,7 @@ var createMenus = (function (_ref) {
 						break;
 				}
 
-				switch (col.border) {
-					case 'true':
-						menuBorder = 'true';
-						break;
-				}
+				col.border === 'true' ? menuBorder = 'true' : menuBorder = 'false';
 
 				$assign($cols, $assign('div', { class: prefix$3 + '-sublist--col', 'data-coltype': menuType, 'data-menuborder': menuBorder }, $assign.apply(undefined, ['ul', {
 					class: prefix$3 + '-sublist', 'data-menutype': menuType,

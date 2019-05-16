@@ -276,7 +276,6 @@
 
 	@media (--width-l) {
 		@apply --submenu-styles;
-
 		inset-inline-start: 0;
 		max-height: calc(100vh - var(--header-height));
 		max-height: calc(var(--esri-vh) - var(--header-height));
@@ -287,6 +286,167 @@
 
 		&[data-filled=""] {
 			&[data-has-structured="true"] {
+				padding: 25px;
+				width: calc(685px + 35px * 2);	
+
+				&[data-structuredcols="1"] {
+					width: calc(300px + 35px * 2);
+
+					& [data-coltype="structured"] {
+						max-width: 100%;
+					}
+
+					& .esri-header-menus-sublist--col {
+						&:first-child {
+							& .esri-header-menus-sublist {
+								padding-right: 0px;
+								padding-left: 0;
+							}
+						}
+					}
+					
+					& [data-coltype="standard"] {
+						max-width: 42%;
+					}
+				}
+				
+				&[data-structuredcols="2"] {
+					width: calc(600px + 35px * 2);
+
+					& [data-coltype="structured"] {
+						max-width: 55%;
+					}
+
+					& .esri-header-menus-sublist--col {
+						&:first-child {
+							& .esri-header-menus-sublist {
+								padding-right: 20px;
+								padding-left: 0;
+							}
+						}
+					}
+					
+					& [data-coltype="standard"] {
+						max-width: 42%;
+					}
+				}
+
+				&[data-structuredcols="3"],
+				&[data-structuredcols="4"] {
+					width: calc(700px + 25px * 3);
+
+					& .esri-header-menus-sublist--col {
+						padding: 0;
+						position: relative;
+
+						& .esri-header-menus-sublist {
+							padding: 0;
+						}
+
+						&:first-child {
+							& .esri-header-menus-sublist {
+								padding-right: 20px;
+								padding-left: 0;
+							}
+						}
+
+						&:nth-child(2) {
+							padding-left: 20px;
+						}
+						
+						&:last-child {
+							& .esri-header-menus-sublist {
+								padding-right: 0;
+								padding-left: 20px;
+							}
+						}
+					}
+
+					& [data-coltype="structured"] {
+						max-width: 35%;
+					}
+					
+					& [data-coltype="standard"] {
+						max-width: 30%;
+					}
+					
+					& [data-menuborder="true"] {
+						margin-left: 20px;
+						padding-left: 20px;
+						
+						&:first-of-type {
+							margin-left: 0;
+							padding-left: 0;
+						}
+
+						&:nth-child(2) {
+							padding-left: 0;
+							padding-right: 20px;
+						}
+						
+						&:last-child {
+							padding-left: 0;
+						}
+
+						&:after {
+							content: '';
+							background: rgba(204, 204, 204, .50);
+							height: 100%;
+							position: absolute;
+							right: 0;
+							top: 0;
+							width: 1px;
+						}
+					}
+				}
+			}
+			
+			&[data-has-structured="false"] {	
+				&[data-structuredcols="2"] {
+					width: calc(500px + 50px * 2);
+				}
+				
+				&[data-structuredcols="3"],
+				&[data-structuredcols="4"] {
+					width: calc(700px + 35px * 4);
+
+					& [data-coltype="standard"] {
+						max-width: 33%;
+						position: relative;
+					}
+				}
+
+				& [data-menuborder="true"] {
+					margin-left: 0;
+					padding-left: 40px;
+
+					&:after {
+						content: '';
+						background: rgba(204, 204, 204, .50);
+						height: 100%;
+						position: absolute;
+						right: 0;
+						top: 0;
+						width: 1px;
+					}
+				}
+			}
+			width: calc(350px + 35px * 2);
+		}
+
+		&[data-filled]:not([data-filled=""]) {
+			width: calc(350px * 2 + 20px + 35px * 2);
+
+				&[data-structuredcols=""] {
+					width: calc(300px * 2 + 20px + 20px * 2);
+				}
+		}
+
+	}
+
+	@media (--width-xl) {
+		&[data-filled=""] {
+			&[data-has-structured="true"] {
 				padding: 25px 35px 35px;
 				width: calc(685px + 35px * 2);	
 
@@ -295,6 +455,15 @@
 
 					& [data-coltype="structured"] {
 						max-width: 55%;
+					}
+
+					& .esri-header-menus-sublist--col {
+						&:first-child {
+							& .esri-header-menus-sublist {
+								padding-right: 20px;
+								padding-left: 0;
+							}
+						}
 					}
 					
 					& [data-coltype="standard"] {
@@ -327,38 +496,27 @@
 								padding-left: 40px;
 							}
 						}
-					}
 
-					& [data-coltype="structured"] {
-						max-width: 35%;
-					}
-					
-					& [data-coltype="standard"] {
-						max-width: 30%;
-					}
-					
-					& [data-menuborder="true"] {
-						margin-left: 40px;
-						padding-left: 40px;
+						&[data-menuborder="true"] {
+							margin-left: 0;
 
-						&:last-child {
-							padding-left: 0;
-						}
+							&:first-of-type {
+								margin-right: 20px;
+								
+								& .esri-header-menus-sublist {
+									padding-right: 0;
+								}
+							}
 
-						&:after {
-							content: '';
-							background: rgba(204, 204, 204, .50);
-							height: 100%;
-							position: absolute;
-							left: 0;
-							top: 0;
-							width: 1px;
+							&:nth-child(2) {
+								padding-right: 40px;
+							}
 						}
 					}
 				}
 			}
 			
-			&[data-has-structured="false"] {	
+			&[data-has-structured="false"] {
 				&[data-structuredcols="2"] {
 					width: calc(500px + 50px * 2);
 				}
@@ -382,7 +540,7 @@
 						background: rgba(204, 204, 204, .50);
 						height: 100%;
 						position: absolute;
-						left: 0;
+						right: 0;
 						top: 0;
 						width: 1px;
 					}
@@ -394,7 +552,6 @@
 		&[data-filled]:not([data-filled=""]) {
 			width: calc(350px * 2 + 20px + 35px * 2);
 		}
-
 	}
 
 	&[aria-hidden="true"] {
@@ -664,6 +821,11 @@
 		margin: 0;
 
 		@media (--width-l) {
+			font-size: 16px;
+			line-height: 1.5;
+		}
+		
+		@media (--width-xl) {
 			font-size: 18px;
 			line-height: 1.5;
 		}
@@ -748,6 +910,11 @@
 				padding: 0 0 10px 0;
 
 				@media (--width-l) {
+					font-size: 12px;
+					line-height: 1.5;
+				}
+				
+				@media (--width-xl) {
 					font-size: 14px;
 					line-height: 1.5;
 				}

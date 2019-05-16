@@ -257,11 +257,7 @@ export default ({variant = 'desktop'}) => {
 						break;
 				}
 				
-				switch (col.border) {
-					case 'true':
-						menuBorder = 'true';
-						break;
-				}
+				(col.border === 'true') ? menuBorder = 'true' : menuBorder = 'false';
 
 				$($cols,
 					$('div', {class: `${prefix}-sublist--col`, 'data-coltype': menuType, 'data-menuborder': menuBorder},

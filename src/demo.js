@@ -18,6 +18,54 @@ document.addEventListener("DOMContentLoaded", () => {
 						label: 'Products',
 						cols: [
 							{
+								type: 'single',
+								border: 'true',
+								items: [
+									{
+										heading: 'CAPABILITIES',
+										label: 'Mapping & Location Enablement',
+										href: 'https://www.esri.com/en-us/location-intelligence'
+									},
+									{
+										label: 'Field Operations',
+										href: 'https://www.esri.com/en-us/arcgis/analytics/overview'
+									},
+									{
+										label: 'Spatial Analysis & Data Science',
+										href: 'https://www.esri.com/en-us/location-intelligence'
+									},
+									{
+										label: 'Imagery & Remote Sensing',
+										href: 'https://www.esri.com/en-us/location-intelligence'
+									},
+									{
+										label: 'Real-Time Visualization & Analytics',
+										href: 'https://www.esri.com/en-us/arcgis/analytics/overview'
+									},
+									{
+										label: '3D Visualization & Analytics',
+										href: 'https://www.esri.com/en-us/arcgis/analytics/overview'
+									},
+									{
+										label: 'Data Management',
+										href: 'https://www.esri.com/en-us/arcgis/analytics/overview'
+									},
+									{
+										heading: 'EXPLORE MORE',
+										label: 'All Products',
+										href: 'https://www.esri.com/en-us/location-intelligence'
+									},
+									{
+										label: 'About ArcGIS',
+										href: 'https://www.esri.com/en-us/arcgis/analytics/overview'
+									},
+									{
+										label: 'How to Buy',
+										href: 'https://www.esri.com/en-us/arcgis/analytics/overview'
+									}
+								]
+							},
+							{
 								type: 'structured',
 								border: 'false',
 								items: [
@@ -80,54 +128,6 @@ document.addEventListener("DOMContentLoaded", () => {
 										description: 'Mission management and situational awareness'
 									}
 								]
-							},
-							{
-								type: 'single',
-								border: 'true',
-								items: [
-									{
-										heading: 'CAPABILITIES',
-										label: 'Mapping & Location Enablement',
-										href: 'https://www.esri.com/en-us/location-intelligence'
-									},
-									{
-										label: 'Field Operations',
-										href: 'https://www.esri.com/en-us/arcgis/analytics/overview'
-									},
-									{
-										label: 'Spatial Analysis & Data Science',
-										href: 'https://www.esri.com/en-us/location-intelligence'
-									},
-									{
-										label: 'Imagery & Remote Sensing',
-										href: 'https://www.esri.com/en-us/location-intelligence'
-									},
-									{
-										label: 'Real-Time Visualization & Analytics',
-										href: 'https://www.esri.com/en-us/arcgis/analytics/overview'
-									},
-									{
-										label: '3D Visualization & Analytics',
-										href: 'https://www.esri.com/en-us/arcgis/analytics/overview'
-									},
-									{
-										label: 'Data Management',
-										href: 'https://www.esri.com/en-us/arcgis/analytics/overview'
-									},
-									{
-										heading: 'EXPLORE MORE',
-										label: 'All Products',
-										href: 'https://www.esri.com/en-us/location-intelligence'
-									},
-									{
-										label: 'About ArcGIS',
-										href: 'https://www.esri.com/en-us/arcgis/analytics/overview'
-									},
-									{
-										label: 'How to Buy',
-										href: 'https://www.esri.com/en-us/arcgis/analytics/overview'
-									}
-								]
 							}
 						],
 						menus: [
@@ -172,12 +172,6 @@ document.addEventListener("DOMContentLoaded", () => {
 					},
 					{
 						label: 'Solutions',
-						cols: {
-							type: 'single',
-							items: [
-								
-							]
-						},
 						menus: [
 							{
 								heading: 'PRODUCTS',
@@ -317,12 +311,6 @@ document.addEventListener("DOMContentLoaded", () => {
 					},
 					{
 						label: 'Support & Services',
-						cols: {
-							type: 'single',
-							items: [
-								
-							]
-						},
 						menus: [
 							{
 								label: 'Technical Support',
@@ -364,12 +352,6 @@ document.addEventListener("DOMContentLoaded", () => {
 					},
 					{
 						label: 'News',
-						cols: {
-							type: 'single',
-							items: [
-								
-							]
-						},
 						menus: [
 							{
 								label: 'Whats News',
@@ -387,12 +369,6 @@ document.addEventListener("DOMContentLoaded", () => {
 					},
 					{
 						label: 'About',
-						cols: {
-							type: 'single',
-							items: [
-								
-							]
-						},
 						menus: [
 							{
 								label: 'About Esri',
