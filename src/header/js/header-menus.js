@@ -278,9 +278,8 @@ export default ({variant = 'desktop'}) => {
 			if (entry.heading) {
 				$items.push(
 					$('li', {class: `${prefix}-entry--heading`},
-						$('p', {class: `${prefix}-entry--heading-label`},
-							entry.heading
-						))
+						$('p', {class: `${prefix}-entry--heading-label`}, entry.heading)
+					)
 				);
 			}
 			if (entry.href && entry.label) {
