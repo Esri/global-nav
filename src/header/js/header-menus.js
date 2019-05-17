@@ -154,7 +154,7 @@ export default ({variant = 'desktop'}) => {
 							const hasCols = item.cols && item.cols.length;
 							const hasFeaturedItems = item.tiles && item.tiles.length;
 
-							if (hasMenuItems || hasCols || hasFeaturedItems) { 
+							if (hasMenuItems || hasCols || hasFeaturedItems) {
 								/* Global Navigation: Submenu
 								/* ====================================== */
 								const $subtoggle = $('button', {class: `${prefix}-submenu-toggle`},
@@ -174,7 +174,7 @@ export default ({variant = 'desktop'}) => {
 									},
 									$subtoggle
 								);
-								
+
 								if (hasCols) {
 									renderMulti({$subcontent, item, uuid, suuid});
 								} else {
@@ -237,7 +237,7 @@ export default ({variant = 'desktop'}) => {
 			);
 		}
 	}
-	
+
 	function renderMulti({$subcontent, item, uuid, suuid}) {
 		const $cols = $('div', {class: `${prefix}-sublist--col-wrapper`});
 		if (item.cols) {
@@ -245,7 +245,7 @@ export default ({variant = 'desktop'}) => {
 				let menuType = 'standard';
 				let menuRenderer = renderer;
 				const menuBorder = col.border || 'false';
-				
+
 				switch (col.type) {
 					case 'structured':
 						menuType = 'structured';
@@ -262,7 +262,7 @@ export default ({variant = 'desktop'}) => {
 					)
 				);
 			});
-			
+
 			$($subcontent,
 				$('div', {class: `${prefix}-sublist`},
 					$cols,
@@ -307,25 +307,13 @@ export default ({variant = 'desktop'}) => {
 						))
 				);
 			}
-			
-			if (entry.href && entry.label && entry.description) {
+
+			if (entry.href && entry.label) {
 				$items.push(
-					$items.push(
-						$('li', {class: `${prefix}-entry--menus-subitem`},
-							$('a', {href: entry.href, class: `${prefix}-entry-sublink`},
-								$('p', {class: `${prefix}-entry-sublink--title`}, entry.label),
-								$('p', {class: `${prefix}-sublink--description`}, entry.description)
-							)
-						)
-					)
-				);
-			} else if (entry.href && entry.label) {
-				$items.push(
-					$items.push(
-						$('li', {class: `${prefix}-entry--menus-subitem`},
-							$('a', {href: entry.href, class: `${prefix}-entry-sublink`},
-								$('p', {class: `${prefix}-entry-sublink--title`}, entry.label),
-							)
+					$('li', {class: `${prefix}-entry--menus-subitem`},
+						$('a', {href: entry.href, class: `${prefix}-entry-sublink`},
+							$('p', {class: `${prefix}-entry-sublink--title`}, entry.label),
+							entry.description ? $('p', {class: `${prefix}-sublink--description`}, entry.description) : null
 						)
 					)
 				);

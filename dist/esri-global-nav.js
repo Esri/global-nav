@@ -905,11 +905,6 @@ var createMenus = (function (_ref) {
 						break;
 				}
 
-<<<<<<< HEAD
-				col.border === 'true' ? menuBorder = 'true' : menuBorder = 'false';
-
-=======
->>>>>>> 57e619a0c29e818cc8079b68979c5e708911ca51
 				$assign($cols, $assign('div', { class: prefix$3 + '-sublist--col', 'data-coltype': menuType, 'data-menuborder': menuBorder }, $assign.apply(undefined, ['ul', {
 					class: prefix$3 + '-sublist', 'data-menutype': menuType,
 					role: 'navigation', aria: { labelledby: prefix$3 + '-link-' + variant + '-' + uuid + '-' + suuid }
@@ -943,10 +938,8 @@ var createMenus = (function (_ref) {
 				$items.push($assign('li', { class: prefix$3 + '-entry--heading' }, $assign('p', { class: prefix$3 + '-entry--heading-label' }, entry.heading)));
 			}
 
-			if (entry.href && entry.label && entry.description) {
-				$items.push($items.push($assign('li', { class: prefix$3 + '-entry--menus-subitem' }, $assign('a', { href: entry.href, class: prefix$3 + '-entry-sublink' }, $assign('p', { class: prefix$3 + '-entry-sublink--title' }, entry.label), $assign('p', { class: prefix$3 + '-sublink--description' }, entry.description)))));
-			} else if (entry.href && entry.label) {
-				$items.push($items.push($assign('li', { class: prefix$3 + '-entry--menus-subitem' }, $assign('a', { href: entry.href, class: prefix$3 + '-entry-sublink' }, $assign('p', { class: prefix$3 + '-entry-sublink--title' }, entry.label)))));
+			if (entry.href && entry.label) {
+				$items.push($assign('li', { class: prefix$3 + '-entry--menus-subitem' }, $assign('a', { href: entry.href, class: prefix$3 + '-entry-sublink' }, $assign('p', { class: prefix$3 + '-entry-sublink--title' }, entry.label), entry.description ? $assign('p', { class: prefix$3 + '-sublink--description' }, entry.description) : null)));
 			}
 		});
 
