@@ -16,115 +16,117 @@ document.addEventListener("DOMContentLoaded", () => {
 				[
 					{
 						label: 'Products',
-						structuredMenu: [
+						cols: [
 							{
-								heading: 'GEOSPATIAL CLOUD-BASED CAPABILITIES',
-								label: 'Mapping and Location Intelligence',
-								href: 'https://www.esri.com/en-us/location-intelligence',
-								description: 'Intuitive, data-driven mapping, visualization, and analysis'
-							},
-							{
-								label: 'Analytics and Data Science',
-								href: 'https://www.esri.com/en-us/arcgis/analytics/overview',
-								description: 'Advanced geospatial analysis, AI, and machine learning'
-							},
-							{
-								label: 'Mapping and Location Intelligence',
-								href: 'https://www.esri.com/en-us/location-intelligence',
-								description: 'Intuitive, data-driven mapping, visualization, and analysis'
-							},
-							{
-								label: 'Mapping and Location Intelligence',
-								href: 'https://www.esri.com/en-us/location-intelligence',
-								description: 'Intuitive, data-driven mapping, visualization, and analysis'
-							},
-							{
-								label: 'Analytics and Data Science',
-								href: 'https://www.esri.com/en-us/arcgis/analytics/overview',
-								description: 'Advanced geospatial analysis, AI, and machine learning'
-							},
-							{
-								label: 'Mapping and Location Intelligence',
-								href: 'https://www.esri.com/en-us/location-intelligence',
-								description: 'Intuitive, data-driven mapping, visualization, and analysis'
-							},
-							{
-								label: 'Analytics and Data Science',
-								href: 'https://www.esri.com/en-us/arcgis/analytics/overview',
-								description: 'Advanced geospatial analysis, AI, and machine learning'
-							}
-
-						],
-						menus: [
-							{
-								heading: 'PRODUCTS',
-								label: 'About ArcGIS',
-								href: 'https://www.esri.com/arcgis/about-arcgis',
-								data: {
-									this: true,
-									that: true,
-									other: true,
-									thing: true
-								},
-								newContext: true
-							},
-							{
-								label: 'Products',
-								href: 'https://www.esri.com/products'
-							},
-							{
-								label: 'Services',
-								href: 'https://www.esri.com/arcgis/services'
-							},
-							{
-								label: 'ArcGIS for Developers',
-								href: 'https://developers.arcgis.com'
-							},
-							{
-								label: 'All Products',
-								href: 'https://www.esri.com/what-is-gis'
-							},
-							{
-								heading: 'ARCGIS',
-								label: 'Store',
-								href: 'https://store.esri.com'
-							},
-							{
-								label: 'Free Trial',
-								href: 'https://www.esri.com/arcgis/trial'
-							}
-						],
-						tiles: [
-							{
-								label: 'ArcGIS Pro',
-								href: 'https://www.esri.com/arcgis/products/arcgis-pro/Overview',
-								icon: [
-									'M15 36.1h-2.1v-3.2H15v-.8H1.5a.6.6 0 0 1-.6-.6v-26a.6.6 0 0 1 .6-.6h38a.6.6 0 0 1 .6.6V23h.8V5.5a1.401 1.401 0 0 0-1.4-1.4h-38A1.401 1.401 0 0 0 .1 5.5v26a1.401 1.401 0 0 0 1.4 1.4h10.6v3.2H8v.8h7z',
-									'M43.9 41.1V26.5a1.401 1.401 0 0 0-1.4-1.4h-24a1.401 1.401 0 0 0-1.4 1.4v14.6h-3V43a1.902 1.902 0 0 0 1.9 1.9h29a1.902 1.902 0 0 0 1.9-1.9v-1.9zm-26-14.6a.6.6 0 0 1 .6-.6h24a.6.6 0 0 1 .6.6v14.6h-1.2v-14H19.1v14h-1.2zm2 14.6V27.9h21.2v13.2zM46.1 43a1.101 1.101 0 0 1-1.1 1.1H16a1.101 1.101 0 0 1-1.1-1.1v-1.1h13.164A1.495 1.495 0 0 0 29.5 43h3a1.492 1.492 0 0 0 1.433-1.1H46.1z',
-									'M34 30.9h2.884l-5.736 5.089-4.214-3.029-4.239 4.981.61.518 3.761-4.419 4.135 2.971 5.899-5.233V34h.8v-3.9H34v.8zm3.9-7.9V7.1H3.1v22.8H15v-.8h-1.546c-.021-.08-.04-.152-.044-.136a1.58 1.58 0 0 1 .462-.86 2.677 2.677 0 0 0 .486-.763 1.466 1.466 0 0 0-.056-.93 1.807 1.807 0 0 1-.099-.5c0-1.054-1.089-1.308-1.884-1.494-.356-.083-.894-.21-.97-.362-.398-.796-.04-1.212.628-1.878a2.653 2.653 0 0 0 1.03-1.831c0-.572-.31-1.512-1.137-1.595a2.261 2.261 0 0 0-1.157.19 1.825 1.825 0 0 1-.738.166c-.298 0-.618-.175-.618-.436a1.857 1.857 0 0 1 .31-.918 2.578 2.578 0 0 0 .407-1.298 3.17 3.17 0 0 0-.132-.85 2.413 2.413 0 0 1-.106-.645 1.044 1.044 0 0 1 .976-1.098c.477 0 .705.368 1.086 1.05a1.876 1.876 0 0 0 1.786.925c1.377 0 2.255-1.584 2.255-2.675a.707.707 0 0 1 .619-.736 1.176 1.176 0 0 1 .715.338 1.923 1.923 0 0 0 1.199.5c.98 0 1.386-.72 1.745-1.356a2.536 2.536 0 0 1 .899-1.087A2.644 2.644 0 0 0 22.31 7.9H37.1v9.362c-.116.067-.236.133-.343.201a1.916 1.916 0 0 1-1.076.414c-.164 0-.335-.012-.511-.024a4.623 4.623 0 0 0-1.42.07c-.321.089-.708.219-1.063.339a9.223 9.223 0 0 1-.885.274 2.082 2.082 0 0 0-.91.284 1.495 1.495 0 0 1-.556.2 2.912 2.912 0 0 1-1.845-.81 2.09 2.09 0 0 1-.425-.628c-.231-.445-.52-1-1.276-1a1.856 1.856 0 0 0-1.495 1.031c-.3.428-.502.691-.839.691a1.58 1.58 0 0 1-.555-.143 2.268 2.268 0 0 0-.84-.197c-.678 0-1.434.475-1.434 1.156v1.168c0 .312-.17.499-.472.8a1.88 1.88 0 0 0-.707 1.37 1.232 1.232 0 0 0 .343.781l.321-.239.267-.31c-.092-.12-.13-.173-.13-.232 0-.314.17-.5.473-.804a1.878 1.878 0 0 0 .705-1.366V19.12c0-.147.328-.355.635-.355a1.575 1.575 0 0 1 .553.143 2.283 2.283 0 0 0 .841.196 1.854 1.854 0 0 0 1.494-1.03c.302-.428.504-.691.84-.691.239 0 .33.114.567.569a2.77 2.77 0 0 0 .606.86 3.635 3.635 0 0 0 2.373 1.008 2.08 2.08 0 0 0 .912-.284 1.498 1.498 0 0 1 .554-.2 4.634 4.634 0 0 0 1.14-.317c.342-.115.712-.24 1.02-.325a3.843 3.843 0 0 1 1.155-.043c.194.013.383.025.564.025a2.511 2.511 0 0 0 1.419-.485V23zM20.734 10.12a3.23 3.23 0 0 0-1.215 1.396c-.351.624-.557.95-1.047.95a1.178 1.178 0 0 1-.717-.338 1.92 1.92 0 0 0-1.198-.5 1.5 1.5 0 0 0-1.418 1.536c0 .643-.567 1.875-1.455 1.875a1.105 1.105 0 0 1-1.106-.548c-.373-.669-.796-1.427-1.766-1.427a1.841 1.841 0 0 0-1.776 1.897 3.159 3.159 0 0 0 .131.848 2.405 2.405 0 0 1 .107.648 1.855 1.855 0 0 1-.31.915 2.584 2.584 0 0 0-.407 1.3 1.327 1.327 0 0 0 1.417 1.236 2.573 2.573 0 0 0 1.03-.221 1.45 1.45 0 0 1 .784-.14c.278.028.418.528.418.8 0 .47-.368.839-.795 1.264-.648.647-1.454 1.451-.778 2.802.245.489.856.632 1.504.783.876.205 1.266.357 1.266.715a2.482 2.482 0 0 0 .131.725.896.896 0 0 1 .067.443 2.159 2.159 0 0 1-.353.523 2.228 2.228 0 0 0-.638 1.361.59.59 0 0 0 .018.136H3.9V7.9h17.602c.139.9.089 1.756-.768 2.22z'
+								type: 'single',
+								border: 'true',
+								items: [
+									{
+										heading: 'CAPABILITIES',
+										label: 'Mapping & Location Enablement',
+										href: 'https://www.esri.com/en-us/location-intelligence'
+									},
+									{
+										label: 'Field Operations',
+										href: 'https://www.esri.com/en-us/arcgis/analytics/overview'
+									},
+									{
+										label: 'Spatial Analysis & Data Science',
+										href: 'https://www.esri.com/en-us/location-intelligence'
+									},
+									{
+										label: 'Imagery & Remote Sensing',
+										href: 'https://www.esri.com/en-us/location-intelligence'
+									},
+									{
+										label: 'Real-Time Visualization & Analytics',
+										href: 'https://www.esri.com/en-us/arcgis/analytics/overview'
+									},
+									{
+										label: '3D Visualization & Analytics',
+										href: 'https://www.esri.com/en-us/arcgis/analytics/overview'
+									},
+									{
+										label: 'Data Management',
+										href: 'https://www.esri.com/en-us/arcgis/analytics/overview'
+									},
+									{
+										heading: 'EXPLORE MORE',
+										label: 'All Products',
+										href: 'https://www.esri.com/en-us/location-intelligence'
+									},
+									{
+										label: 'About ArcGIS',
+										href: 'https://www.esri.com/en-us/arcgis/analytics/overview'
+									},
+									{
+										label: 'How to Buy',
+										href: 'https://www.esri.com/en-us/arcgis/analytics/overview'
+									}
 								]
 							},
 							{
-								label: 'ArcGIS Online',
-								href: 'https://www.esri.com/software/arcgis/arcgisonline',
-								icon: [
-									'M37.396 37.211l3.898 2.274L27.5 47.53l-13.794-8.046 3.898-2.274.794.463-3.104 1.81 3.736 2.18a19.35 19.35 0 0 1 3.408-1.633l.892.52-.418.148a18.678 18.678 0 0 0-3.078 1.435l7.666 4.471 6.635-3.87-3.105-1.81.794-.464 3.105 1.81 3.174-1.851a24.69 24.69 0 0 0-4.61-.932l1.123-.656a23.867 23.867 0 0 1 4.414 1.047l.676-.394-3.105-1.81zm1.012-22.16A11.768 11.768 0 0 0 26.35 4.767a11.829 11.829 0 0 0-10.613 5.857 7.369 7.369 0 0 0-2.312-.374 7.457 7.457 0 0 0-7.437 7.87A9.797 9.797 0 0 0 9.9 36.9H12v-.8H9.9a8.997 8.997 0 0 1-3.342-17.352l.278-.111a8.811 8.811 0 0 1-.061-.937 6.635 6.635 0 0 1 9.01-6.21l.332.126.164-.316A11.006 11.006 0 0 1 26.35 5.566a10.973 10.973 0 0 1 11.295 9.882l.031.326.326.034a10.176 10.176 0 0 1 3.578 19.168l.366.71a10.976 10.976 0 0 0-3.538-20.635zm-1.036 15.168l3.922 2.287L27.5 40.552l-13.794-8.046 3.922-2.287.794.463-3.128 1.824 2.197 1.282 3.127-1.825.795.463-3.128 1.825 6.674 3.893 12.206-7.12-.587-.342zm2.334 2.287l-1.747-1.019-12.206 7.12 1.747 1.02zM23.9 24.5a.6.6 0 1 0 .6-.6.6.6 0 0 0-.6.6zm-.4 2.1a.9.9 0 1 1-.9.9.901.901 0 0 1 .9-.9zm4-9.146L13.706 25.5 27.5 33.546 41.294 25.5zM39.706 25.5l-10.382 6.056c-.495-.69-.525-.943-.525-.99a2.049 2.049 0 0 1 .431-1.192 2.2 2.2 0 0 0 .455-1.225 1.905 1.905 0 0 0-1.077-1.504c-.43-.299-.693-.5-.693-.77a4.37 4.37 0 0 1 .212-.648 4.912 4.912 0 0 0 .4-1.514 1.354 1.354 0 0 0-.502-1.094 34.71 34.71 0 0 0-3.484-2.514L27.5 18.38zm-24.412 0l8.47-4.941a34.305 34.305 0 0 1 3.753 2.677.567.567 0 0 1 .21.477 4.636 4.636 0 0 1-.35 1.233 3.07 3.07 0 0 0-.262.926c0 .713.575 1.11 1.038 1.43.455.316.732.53.732.847a1.491 1.491 0 0 1-.328.793A2.805 2.805 0 0 0 28 30.566a2.53 2.53 0 0 0 .63 1.395l-1.13.66zm17.206-.9a.9.9 0 1 1-.9.9.901.901 0 0 1 .9-.9z'
+								type: 'structured',
+								border: 'false',
+								items: [
+									{
+										heading: 'CORE PRODUCTS',
+										label: 'ArcGIS Online',
+										href: 'https://www.esri.com/en-us/location-intelligence',
+										description: 'Complete SaaS mapping platform'
+									},
+									{
+										label: 'ArcGIS Pro',
+										href: 'https://www.esri.com/en-us/arcgis/analytics/overview',
+										description: 'Next generation desktop GIS'
+									},
+									{
+										label: 'ArcGIS Enterprise',
+										href: 'https://www.esri.com/en-us/location-intelligence',
+										description: 'Flexible mapping server software'
+									},
+									{
+										label: 'ArcGIS for Developers',
+										href: 'https://www.esri.com/en-us/location-intelligence',
+										description: 'Develop your own apps'
+									},
+									{
+										label: 'Esri Data & Location Services',
+										href: 'https://www.esri.com/en-us/arcgis/analytics/overview',
+										description: 'Text needed for data and location services'
+									}
 								]
 							},
 							{
-								label: 'ArcGIS Enterprise',
-								href: 'https://www.esri.com/arcgis/products/arcgis-enterprise/Overview',
-								icon: [
-									'M13 15h-2v-2h2zm4-2h-2v2h2zm4 0h-2v2h2zm4 0h-2v2h2zm4 0h-2v2h2zM13 24h-2v2h2zm4 0h-2v2h2zm4 0h-2v2h2zm4 0h-2v2h2zm4 0h-2v2h2zM13 35h-2v2h2zm4 0h-2v2h2zm4 0h-2v2h2zm4 0h-2v2h2zm4 0h-2v2h2zm17.4-1.5a.9.9 0 1 0-.9.9.901.901 0 0 0 .9-.9zm-25 12a.9.9 0 1 0-.9.9.901.901 0 0 0 .9-.9zm-18-38a.9.9 0 1 0-.9.9.901.901 0 0 0 .9-.9zm20-5a.9.9 0 1 0-.9.9.901.901 0 0 0 .9-.9zM7.1 29.9h33.8v-9.8H7.1zm.8-9h32.2v8.2H7.9zm-.8 20h33.8v-9.8H7.1zm.8-9h32.2v8.2H7.9zM7.1 9.1v9.8h33.8V9.1zm33 9H7.9V9.9h32.2zM4.923 5.138l-.571-.56A14.923 14.923 0 0 1 19.492.789l-.241.763A14.08 14.08 0 0 0 4.923 5.138zM13.856 42.5a20.468 20.468 0 0 0 3.288 2.133l.367-.711a19.588 19.588 0 0 1-2.297-1.422zm14.01-35a14.9 14.9 0 0 0-2.444-3.148l-.56.57A14.132 14.132 0 0 1 26.937 7.5zM5.5 25.397A14.047 14.047 0 0 1 1.552 10.75l-.763-.241A14.836 14.836 0 0 0 5.5 26.45zm37-11.527v1.319a19.62 19.62 0 0 1 3.272 14.904l.787.145A20.395 20.395 0 0 0 42.5 13.87zM37.817 42.5a19.613 19.613 0 0 1-13.963 3.423l-.107.793A20.373 20.373 0 0 0 39.124 42.5zm4.683-4.687v1.318a20.462 20.462 0 0 0 1.69-2.463l-.694-.4c-.305.53-.641 1.044-.996 1.545z'
-								]
-							},
-							{
-								label: 'Apps',
-								href: 'https://www.esri.com/software/apps',
-								icon: [
-									'M34.489 3.155l-9.37 4.408v4.128l.801.248V8.07l8.63-4.059 8.569 2.649v13.41l-8.63 4.084-4.489-1.4v.838l4.55 1.42 9.37-4.436V6.07l-9.431-2.915z',
-									'M22 35.04l-6.03 2.854L4.9 34.439V17.152l11.13-5.235 11.07 3.422v12.408l.8-.377V14.749l-11.93-3.687L4.1 16.645v18.382l11.93 3.724L22 35.925v-.885z',
-									'M30.97 28.247L24.1 31.48v10.627l6.93 2.164 6.87-3.252v-10.63zm6.13 12.265l-6.13 2.901-6.07-1.894v-9.533l6.13-2.884 6.07 1.877z'
+								type: 'structured',
+								border: 'false',
+								items: [
+									{
+										heading: 'FEATURED PRODUCTS',
+										label: 'ArcGIS Urban',
+										href: 'https://www.esri.com/en-us/location-intelligence',
+										description: 'Smart city planning for urban development'
+									},
+									{
+										label: 'ArcGIS Business Analyst',
+										href: 'https://www.esri.com/en-us/arcgis/analytics/overview',
+										description: 'Business and market intelligence'
+									},
+									{
+										label: 'ArcGIS Hub',
+										href: 'https://www.esri.com/en-us/location-intelligence',
+										description: 'Community engagement and collaboration'
+									},
+									{
+										label: 'ArcGIS Excalibur',
+										href: 'https://www.esri.com/en-us/location-intelligence',
+										description: 'Imagery exploitation'
+									},
+									{
+										label: 'ArcGIS Mission',
+										href: 'https://www.esri.com/en-us/arcgis/analytics/overview',
+										description: 'Mission management and situational awareness'
+									}
 								]
 							}
 						]
@@ -134,7 +136,7 @@ document.addEventListener("DOMContentLoaded", () => {
 						menus: [
 							{
 								heading: 'PRODUCTS',
-								label: 'AEC',
+								label: 'Architecture, Engineering, and Construction',
 								href: 'https://www.esri.com/industries/banking'
 							},
 							{
