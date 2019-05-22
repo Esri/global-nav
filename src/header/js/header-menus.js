@@ -283,8 +283,9 @@ export default ({variant = 'desktop'}) => {
 
 	$target.addEventListener('header:update:collapseMenus', ({detail}) => {
 		if (detail && detail.indexOf(true) > -1) {
+			const $brand = document.getElementById('esri-header-brand') || document.getElementById('esri-header-inline-title');
 			document.querySelector('.esri-header-menus-toggle').classList.add('-visible');
-			document.getElementById('esri-header-brand').classList.add('-fit-burger');
+			$brand.classList.add('-fit-burger');
 			document.getElementById('esri-header-menus-mobile').classList.add('-always-hamburger');
 
 			const menus = [].slice.call($target.querySelectorAll('.esri-header-menus-menu'));

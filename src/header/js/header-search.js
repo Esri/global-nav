@@ -89,6 +89,8 @@ export default () => {
 					}
 				});
 			}
+		} else {
+			$control.setAttribute("tabindex", "-1");
 		}
 	});
 

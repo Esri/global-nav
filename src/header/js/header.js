@@ -2,6 +2,7 @@ import {$assign as $, $dispatch, $enableFocusRing, $replaceAll} from '../../shar
 
 import createAccount from './header-account';
 import createBrand from './header-brand';
+import createInlineTitle from './header-inline-title';
 import createBrandStripe from './header-branding-stripe';
 import createMenus from './header-menus';
 import createSearch from './header-search';
@@ -34,6 +35,7 @@ export default (data) => {
 
 	const $brandStripe = createBrandStripe();
 	const $brand = createBrand();
+	const $inlineTitle = createInlineTitle();
 	const $account = createAccount();
 	const $mobileMenus = createMenus({variant: 'mobile'});
 	const $desktopMenus = createMenus({variant: 'desktop'});
@@ -52,6 +54,7 @@ export default (data) => {
 			$brandStripe,
 			$brand,
 			$mobileMenus,
+			$inlineTitle,
 			$desktopMenus,
 			$search,
 			$inlineSearch,
@@ -73,7 +76,11 @@ export default (data) => {
 				$dispatch($brandStripe, 'header:update:brand', detail.brand);
 				$header.style.marginTop = '3px';
 			}
-			$dispatch($brand, 'header:update:brand', detail.brand);
+			if (detail.brand.editTitle) {
+				$dispatch($inlineTitle, 'header:update:inlineTitle', detail.brand);
+			} else {
+				$dispatch($brand, 'header:update:brand', detail.brand);
+			}
 		}
 
 		if (detail.menus) {
@@ -135,6 +142,13 @@ export default (data) => {
 		$dispatch($inlineSearch, 'header:search:populateSuggestions', detail);
 	});
 
+	/* On Save Title
+	/* ====================================================================== */
+
+	$header.addEventListener('header:title:submit', ({detail}) => {
+		$dispatch($inlineSearch, 'header::title:save', detail.title);
+	});
+
 	/* On Drag & Drop Apps
 	/* ====================================================================== */
 
@@ -160,6 +174,7 @@ export default (data) => {
 	let menusDetail = null;
 	let menuDetail = null;
 	let appsDetail = null;
+	let inlineTitleDetail = null;
 	let notificationsDetail = null;
 
 	$header.addEventListener('header:menu:open', ({detail}) => {
@@ -196,6 +211,13 @@ export default (data) => {
 			menusDetail = null;
 		}
 
+		if ($inlineTitle === detail.target) {
+			inlineTitleDetail = detail;
+		} else if (inlineTitleDetail) {
+			$dispatch($inlineTitle, 'header:menu:close', inlineTitleDetail);
+			inlineTitleDetail = null;
+		}
+
 		if ($account === detail.target) {
 			accountDetail = detail;
 		} else if (accountDetail) {
@@ -228,7 +250,7 @@ export default (data) => {
 	/* ====================================================================== */
 
 	$header.addEventListener('header:menu:close', ({detail}) => {
-		const currentDetail = detail || searchDetail || accountDetail || appsDetail || notificationsDetail || menusDetail ||  menuDetail;
+		const currentDetail = detail || searchDetail || inlineTitleDetail || accountDetail || appsDetail || notificationsDetail || menusDetail ||  menuDetail;
 
 		if (currentDetail) {
 			// Close the Detail
@@ -238,6 +260,10 @@ export default (data) => {
 			const isBurger = currentDetail.control.closest('.-always-hamburger') !== null;
 			const canvasShouldClose = (!viewportIsSmallMedium.matches && !isBurger)
 			|| ('menu-close' !== currentDetail.type && 'account-close' !== currentDetail.type);
+
+			if (inlineTitleDetail && inlineTitleDetail.control === currentDetail.control) {
+				$dispatch(inlineTitleDetail.content, 'header:inlineTitle:deactivated', currentDetail);
+			}
 
 			if (searchDetail && searchDetail.control === currentDetail.control) {
 				$dispatch(searchDetail.content.lastChild, 'reset');
@@ -277,6 +303,25 @@ export default (data) => {
 		$lineBreak.classList.remove('hidden');
 		$mobileMenus.querySelector('.esri-header-menus-toggle').classList.remove('hidden');
 		$brand.classList.remove('hidden');
+	});
+
+	/* on Inline Title Activated
+	/* ====================================================================== */
+
+	$header.addEventListener('header:inlineTitle:activated', ({detail}) => {
+		if (!viewportIsSmall.matches) {
+			$desktopMenus.querySelector('.esri-header-menus-content').classList.add('hidden');
+			$mobileMenus.querySelector('.esri-header-menus-toggle').classList.add('hidden');
+		}
+	});
+
+	/* on Inline Title Deactivated
+	/* ====================================================================== */
+
+	$header.addEventListener('header:inlineTitle:deactivated', ({detail}) => {
+		if (!viewportIsSmall.matches) {
+			$desktopMenus.querySelector('.esri-header-menus-content').classList.remove('hidden');
+		}
 	});
 
 	/* on domnodeinserted
