@@ -627,10 +627,213 @@ var createBrand = (function () {
 	return $target;
 });
 
-var prefix$2 = 'esri-header-branding-stripe';
+/* Standard Set of Icons from Calicte Web - https://esri.github.io/calcite-ui-icons
+/* ========================================================================== */
+var $bell = {
+  md: ["M18 16v-5.087A5.91 5.91 0 0 0 13.59 5.2a2 2 0 1 0-3.18 0A5.91 5.91 0 0 0 6 10.913V16a3 3 0 0 1-3 3v1h18v-1a3 3 0 0 1-3-3zM12 3a1 1 0 1 1-1 1 1.001 1.001 0 0 1 1-1zM5.643 19A3.992 3.992 0 0 0 7 16v-5.087A4.919 4.919 0 0 1 11.913 6h.174A4.919 4.919 0 0 1 17 10.913V16a3.992 3.992 0 0 0 1.357 3zM13 21h1a2 2 0 0 1-4 0h1a1 1 0 0 0 2 0z"]
+};
+
+var $close = {
+  sm: ["M8.718 8l5.303 5.303-.707.707L8.01 8.707 2.707 14.01 2 13.303 7.303 8 2 2.697l.707-.707L8.01 7.293l5.304-5.303.707.707z"],
+  md: ["M13.207 12.5l7.778 7.778-.707.707-7.778-7.778-7.778 7.778-.707-.707 7.778-7.778-7.778-7.778.707-.707 7.778 7.778 7.778-7.778.707.707z"],
+  lg: ["M16.707 16l10.607 10.606-.708.707L16 16.707 5.394 27.313l-.708-.707L15.293 16 4.686 5.394l.708-.707L16 15.293 26.606 4.687l.708.707z"]
+};
+
+var $check = {
+  sm: ["M2 8.689l.637-.636L5.5 10.727l8.022-7.87.637.637L5.5 12z"],
+  md: ["M4.581 13.276l.637-.636 3.288 3.098 10.073-9.92.637.637L8.506 17.01z"],
+  lg: ["M24 4.685l-16.327 17.315-7.673-9.054.761-.648 6.95 8.203 15.561-16.501.728.685z"]
+};
+
+var $grid = {
+  md: ["M11.5 18.05a1.45 1.45 0 1 0 1.45 1.45 1.45 1.45 0 0 0-1.45-1.45zM12 20h-1v-1h1zM3.5 2.05A1.45 1.45 0 1 0 4.95 3.5 1.45 1.45 0 0 0 3.5 2.05zM4 4H3V3h1zm7.5 6.05a1.45 1.45 0 1 0 1.45 1.45 1.45 1.45 0 0 0-1.45-1.45zM12 12h-1v-1h1zm-8.5-1.95a1.45 1.45 0 1 0 1.45 1.45 1.45 1.45 0 0 0-1.45-1.45zM4 12H3v-1h1zm-.5 6.05a1.45 1.45 0 1 0 1.45 1.45 1.45 1.45 0 0 0-1.45-1.45zM4 20H3v-1h1zM19.5 4.95a1.45 1.45 0 1 0-1.45-1.45 1.45 1.45 0 0 0 1.45 1.45zM19 3h1v1h-1zm.5 7.05a1.45 1.45 0 1 0 1.45 1.45 1.45 1.45 0 0 0-1.45-1.45zM20 12h-1v-1h1zm-8.5-9.95a1.45 1.45 0 1 0 1.45 1.45 1.45 1.45 0 0 0-1.45-1.45zM12 4h-1V3h1zm7.5 14.05a1.45 1.45 0 1 0 1.45 1.45 1.45 1.45 0 0 0-1.45-1.45zM20 20h-1v-1h1z"]
+};
+
+var $hamburger = {
+  md: ["M21 6H3V5h18zm0 6H3v1h18zm0 7H3v1h18z"]
+};
+
+var $pencil = {
+  sm: ["M14.792 2.666l-1.414-1.413a.965.965 0 0 0-1.385-.03l-1.444 1.444-8.763 8.72L.03 15.481a.371.371 0 0 0 .488.488l4.096-1.756 8.763-8.72-.001-.001.002.002 1.443-1.444a.965.965 0 0 0-.03-1.385zM1.569 14.431l.554-1.293.74.739zm2.338-.924l-1.414-1.414 7.963-7.92 1.414 1.415zm8.67-8.626l-1.413-1.414 1.29-1.29a.306.306 0 0 1 .433 0l.981.98a.306.306 0 0 1 0 .433z"]
+};
+
+var $search = {
+  sm: ["M9.85 9.153a5 5 0 1 0-.69.69l4.631 4.631.69-.69zm-1.02-.326A3.973 3.973 0 0 1 6 10a4.002 4.002 0 1 1 2.83-1.172z"],
+  md: ["M21.995 21.288l-6.855-6.855a7.517 7.517 0 1 0-.707.707l6.855 6.855zm-17.092-7.19a6.501 6.501 0 1 1 9.6-.45l-.854.855a6.501 6.501 0 0 1-8.746-.405z"]
+};
+
+var prefix$2 = 'esri-header-inline-title';
+var titleState = {};
+
+var createInlineTitle = (function () {
+	/* Title: Control
+ /* ====================================================================== */
+
+	var $control = $assign('button', {
+		class: prefix$2 + '-control', id: prefix$2 + '-control',
+		tabindex: "-1",
+		aria: { expanded: false, controls: prefix$2 + '-content' }
+	});
+
+	$control.addEventListener('header:menu:open', function (event) {
+		$dispatch($control, 'header:inlineTitle:activated', { event: event });
+	});
+
+	$control.addEventListener('click', function (event) {
+		$dispatch($control, 'header:click:inlineTitle', { event: event });
+		$dispatch($control, 'header:menu:toggle', {
+			state: 'menu',
+			target: $target,
+			type: 'inlineTitle',
+			control: $control,
+			content: $content,
+			event: event
+		});
+	});
+
+	/* Title: Deactivates and Closes input
+ /* ====================================================================== */
+
+	var deactivateInput = function deactivateInput() {
+		$dispatch($control, 'header:inlineTitle:deactivated', { event: event });
+
+		setTimeout(function () {
+			$control.focus();
+		}, 0);
+
+		$dispatch($control, 'header:menu:toggle', {
+			state: 'menu',
+			target: $target,
+			type: 'inlineTitle',
+			control: $control,
+			content: $content,
+			event: event
+		});
+	};
+
+	/* Title: Save New Title and Emit Submit Event
+ /* ====================================================================== */
+
+	var saveNewTitle = function saveNewTitle(e) {
+		titleState.newValue = $input.value;
+
+		if (!e.keyCode || e.keyCode === 13) {
+			if (titleState.newValue && titleState.newValue !== " " && titleState.newValue !== titleState.text) {
+				$dispatch($control, 'header:title:submit', {
+					title: titleState.newValue
+				});
+			}
+			deactivateInput();
+		}
+	};
+
+	/* Title: Input
+ /* ====================================================================== */
+
+	var $input = $assign('input', {
+		class: prefix$2 + '-input', id: prefix$2 + '-input',
+		aria: { labelledby: prefix$2 + '-input' }
+	});
+
+	$input.addEventListener("keyup", saveNewTitle);
+
+	/* Title: Close Button
+ /* ====================================================================== */
+
+	var $closeBtn = $assign('button', {
+		class: prefix$2 + '-action-button ' + prefix$2 + '-dismiss-button',
+		aria: { labelledby: prefix$2 + '-action-button' }
+	}, $renderSvgOrImg({ imgDef: $close.md, imgClass: prefix$2 + '-dismiss-icon' }));
+
+	$closeBtn.addEventListener('click', deactivateInput);
+
+	/* Title: Submit Button
+ /* ====================================================================== */
+
+	var $submitBtn = $assign('button', {
+		class: prefix$2 + '-action-button ' + prefix$2 + '-submit-button',
+		aria: { labelledby: prefix$2 + '-action-button' }
+	}, $renderSvgOrImg({ imgDef: $check.lg, imgClass: prefix$2 + '-submit-icon' }));
+
+	$submitBtn.addEventListener('click', saveNewTitle);
+
+	/* Title: Content
+ /* ====================================================================== */
+
+	var $lineBreak = $assign('div', { class: 'esri-header-lineBreak ' + prefix$2 + '-lineBreak' });
+	var $lineBreakRight = $assign('div', { class: 'esri-header-lineBreak ' + prefix$2 + '-lineBreak lineBreak-right' });
+	var $actionButtons = $assign("span", { class: prefix$2 + '-actionButton-container' }, $closeBtn, $submitBtn);
+
+	var $content = $assign('div', {
+		class: prefix$2 + '-content', id: prefix$2 + '-content',
+		aria: { expanded: false, labelledby: prefix$2 + '-control' }
+	}, $lineBreak, $input, $actionButtons, $lineBreakRight);
+
+	/* Title: Target
+ /* ====================================================================== */
+
+	var $target = $assign('span', {
+		class: prefix$2,
+		id: prefix$2,
+		aria: { expanded: false }
+	}, $control, $content);
+
+	/* Title: On Active Edit
+ /* ====================================================================== */
+
+	$target.addEventListener('header:inlineTitle:activated', function (_ref) {
+		$input.value = titleState.text;
+		$target.setAttribute('aria-expanded', "true");
+		setTimeout(function () {
+			$input.selectionStart = titleState.text.length;
+			$input.focus();
+		}, 100);
+	});
+
+	/* Title: On Deactive Edit
+ /* ====================================================================== */
+
+	$target.addEventListener('header:inlineTitle:deactivated', function (_ref2) {
+		$target.setAttribute('aria-expanded', "false");
+		$input.value = '';
+	});
+
+	/* Title: Reset Title State
+ /* ====================================================================== */
+	var resetState = function resetState() {
+		if (titleState.brandText && titleState.pencilIcon) {
+			titleState.brandText.parentNode.removeChild(titleState.brandText);
+			titleState.pencilIcon.parentNode.removeChild(titleState.pencilIcon);
+		} else {
+			$control.setAttribute("tabindex", "0");
+		}
+	};
+
+	/* Title: On Update
+ /* ====================================================================== */
+	$target.addEventListener('header:update:inlineTitle', function (_ref3) {
+		var detail = _ref3.detail;
+
+		if (detail.brandText) {
+			resetState();
+
+			var maxTitleWidth = detail.maxViewWidth || 30;
+			titleState.text = detail.brandText;
+			titleState.pencilIcon = $renderSvgOrImg({ imgDef: $pencil.sm, imgClass: prefix$2 + '-edit-icon' });
+			titleState.brandText = $assign('span', { class: prefix$2 + '-text', style: 'max-width: ' + maxTitleWidth + 'vw;' }, detail.brandText);
+			if (detail.titleFontSize) titleState.brandText.style.fontSize = detail.titleFontSize + 'px';
+
+			$assign($control, titleState.brandText, titleState.pencilIcon);
+		}
+	});
+
+	return $target;
+});
+
+var prefix$3 = 'esri-header-branding-stripe';
 
 var createBrandStripe = (function () {
-	var $target = $assign('div', { class: prefix$2, id: prefix$2 });
+	var $target = $assign('div', { class: prefix$3, id: prefix$3 });
 
 	/* Brand: On Update
  /* ====================================================================== */
@@ -644,46 +847,21 @@ var createBrandStripe = (function () {
 	return $target;
 });
 
-/* Standard Set of Icons from Calicte Web - https://esri.github.io/calcite-ui-icons
-/* ========================================================================== */
-var $bell = {
-  md: ["M18 16v-5.087A5.91 5.91 0 0 0 13.59 5.2a2 2 0 1 0-3.18 0A5.91 5.91 0 0 0 6 10.913V16a3 3 0 0 1-3 3v1h18v-1a3 3 0 0 1-3-3zM12 3a1 1 0 1 1-1 1 1.001 1.001 0 0 1 1-1zM5.643 19A3.992 3.992 0 0 0 7 16v-5.087A4.919 4.919 0 0 1 11.913 6h.174A4.919 4.919 0 0 1 17 10.913V16a3.992 3.992 0 0 0 1.357 3zM13 21h1a2 2 0 0 1-4 0h1a1 1 0 0 0 2 0z"]
-};
-
-var $close = {
-  sm: ["M8.718 8l5.303 5.303-.707.707L8.01 8.707 2.707 14.01 2 13.303 7.303 8 2 2.697l.707-.707L8.01 7.293l5.304-5.303.707.707z"],
-  md: ["M13.207 12.5l7.778 7.778-.707.707-7.778-7.778-7.778 7.778-.707-.707 7.778-7.778-7.778-7.778.707-.707 7.778 7.778 7.778-7.778.707.707z"],
-  lg: ["M16.707 16l10.607 10.606-.708.707L16 16.707 5.394 27.313l-.708-.707L15.293 16 4.686 5.394l.708-.707L16 15.293 26.606 4.687l.708.707z"]
-};
-
-var $grid = {
-  md: ["M11.5 18.05a1.45 1.45 0 1 0 1.45 1.45 1.45 1.45 0 0 0-1.45-1.45zM12 20h-1v-1h1zM3.5 2.05A1.45 1.45 0 1 0 4.95 3.5 1.45 1.45 0 0 0 3.5 2.05zM4 4H3V3h1zm7.5 6.05a1.45 1.45 0 1 0 1.45 1.45 1.45 1.45 0 0 0-1.45-1.45zM12 12h-1v-1h1zm-8.5-1.95a1.45 1.45 0 1 0 1.45 1.45 1.45 1.45 0 0 0-1.45-1.45zM4 12H3v-1h1zm-.5 6.05a1.45 1.45 0 1 0 1.45 1.45 1.45 1.45 0 0 0-1.45-1.45zM4 20H3v-1h1zM19.5 4.95a1.45 1.45 0 1 0-1.45-1.45 1.45 1.45 0 0 0 1.45 1.45zM19 3h1v1h-1zm.5 7.05a1.45 1.45 0 1 0 1.45 1.45 1.45 1.45 0 0 0-1.45-1.45zM20 12h-1v-1h1zm-8.5-9.95a1.45 1.45 0 1 0 1.45 1.45 1.45 1.45 0 0 0-1.45-1.45zM12 4h-1V3h1zm7.5 14.05a1.45 1.45 0 1 0 1.45 1.45 1.45 1.45 0 0 0-1.45-1.45zM20 20h-1v-1h1z"]
-};
-
-var $hamburger = {
-  md: ["M21 6H3V5h18zm0 6H3v1h18zm0 7H3v1h18z"]
-};
-
-var $search = {
-  sm: ["M9.85 9.153a5 5 0 1 0-.69.69l4.631 4.631.69-.69zm-1.02-.326A3.973 3.973 0 0 1 6 10a4.002 4.002 0 1 1 2.83-1.172z"],
-  md: ["M21.995 21.288l-6.855-6.855a7.517 7.517 0 1 0-.707.707l6.855 6.855zm-17.092-7.19a6.501 6.501 0 1 1 9.6-.45l-.854.855a6.501 6.501 0 0 1-8.746-.405z"]
-};
-
-var prefix$3 = 'esri-header-menus';
+var prefix$4 = 'esri-header-menus';
 
 var createMenus = (function (_ref) {
 	var _ref$variant = _ref.variant,
 	    variant = _ref$variant === undefined ? 'desktop' : _ref$variant;
 
-	var $target = $assign('div', { class: prefix$3, id: prefix$3 + '-' + variant });
+	var $target = $assign('div', { class: prefix$4, id: prefix$4 + '-' + variant });
 	$target.classList.add('-' + variant);
 
 	if (variant === 'mobile') {
 		var $toggle = $assign('button', {
-			class: prefix$3 + '-toggle', id: prefix$3 + '-' + variant + '-toggle',
-			aria: { controls: prefix$3 + '-content-' + variant, expanded: false, haspopup: true, labelledby: 'esri-header-brand' }
+			class: prefix$4 + '-toggle', id: prefix$4 + '-' + variant + '-toggle',
+			aria: { controls: prefix$4 + '-content-' + variant, expanded: false, haspopup: true, labelledby: 'esri-header-brand' }
 		});
-		$renderSvgOrImg({ imgDef: $hamburger.md, imgClass: prefix$3 + '-image', id: prefix$3 + '-image', $targetElm: $toggle });
+		$renderSvgOrImg({ imgDef: $hamburger.md, imgClass: prefix$4 + '-image', id: prefix$4 + '-image', $targetElm: $toggle });
 
 		$toggle.addEventListener('click', function (event) {
 			$dispatch($toggle, 'header:menu:toggle', {
@@ -704,8 +882,8 @@ var createMenus = (function (_ref) {
  /* ====================================================================== */
 
 	var $content = $assign('div', {
-		class: prefix$3 + '-content',
-		id: prefix$3 + '-content-' + variant,
+		class: prefix$4 + '-content',
+		id: prefix$4 + '-content-' + variant,
 		aria: { hidden: true, expanded: false }
 	});
 
@@ -715,10 +893,10 @@ var createMenus = (function (_ref) {
  /* ====================================================================== */
 
 	var createNavLink = function createNavLink(link) {
-		var $link = $assign('a', { class: prefix$3 + '-' + link.class, href: link.props.href || 'javascript:;' }, link.icon || "", link.label);
+		var $link = $assign('a', { class: prefix$4 + '-' + link.class, href: link.props.href || 'javascript:;' }, link.icon || "", link.label);
 
 		if (link.id) {
-			$link.setAttribute("id", prefix$3 + '-' + link.id);
+			$link.setAttribute("id", prefix$4 + '-' + link.id);
 		}
 
 		if (link.props.data) {
@@ -741,34 +919,34 @@ var createMenus = (function (_ref) {
  /* ====================================================================== */
 
 	var createColumn = function createColumn(childitem) {
-		var headingClass = childitem.heading ? prefix$3 + '-subitem--heading' : "";
+		var headingClass = childitem.heading ? prefix$4 + '-subitem--heading' : "";
 
-		return $assign('li', { class: prefix$3 + '-subitem ' + headingClass }, childitem.heading ? $assign('p', { class: prefix$3 + '-heading--label' }, childitem.heading) : '', createNavLink({ class: "sublink", props: childitem, label: childitem.label }));
+		return $assign('li', { class: prefix$4 + '-subitem ' + headingClass }, childitem.heading ? $assign('p', { class: prefix$4 + '-heading--label' }, childitem.heading) : '', createNavLink({ class: "sublink", props: childitem, label: childitem.label }));
 	};
 
 	var createMenuColumns = function createMenuColumns(items) {
 		if (!items.length) return null;
-		return $assign.apply(undefined, ['div', { class: prefix$3 + '-sublist--col' }].concat(toConsumableArray(items.map(createColumn))));
+		return $assign.apply(undefined, ['div', { class: prefix$4 + '-sublist--col' }].concat(toConsumableArray(items.map(createColumn))));
 	};
 
 	/* Menus: Tile 
  /* ====================================================================== */
 
 	var createTile = function createTile(tile) {
-		var icon = $renderSvgOrImg({ imgDef: tile.icon, imgClass: prefix$3 + '-sublink-image', imgWidth: tile.width, imgHeight: tile.height });
-		return $assign('li', { class: prefix$3 + '-subitem--featured' }, createNavLink({
+		var icon = $renderSvgOrImg({ imgDef: tile.icon, imgClass: prefix$4 + '-sublink-image', imgWidth: tile.width, imgHeight: tile.height });
+		return $assign('li', { class: prefix$4 + '-subitem--featured' }, createNavLink({
 			class: "sublink--featured",
 			props: tile,
 			icon: icon,
-			label: $assign('span', { class: prefix$3 + '-sublink-text' }, tile.label)
+			label: $assign('span', { class: prefix$4 + '-sublink-text' }, tile.label)
 		}));
 	};
 
 	var createMenuTiles = function createMenuTiles(tiles, uuid, suuid) {
 		if (!tiles.length) return null;
 		return $assign.apply(undefined, ['ul', {
-			class: prefix$3 + '-sublist--featured',
-			role: 'navigation', aria: { labelledby: prefix$3 + '-link-' + variant + '-' + uuid + '-' + suuid },
+			class: prefix$4 + '-sublist--featured',
+			role: 'navigation', aria: { labelledby: prefix$4 + '-link-' + variant + '-' + uuid + '-' + suuid },
 			data: { filled: '' + tiles.slice(0, 4).length }
 		}].concat(toConsumableArray(tiles.slice(0, 4).map(createTile))));
 	};
@@ -784,26 +962,26 @@ var createMenus = (function (_ref) {
 		}
 		$replaceAll.apply(undefined, [$content].concat(toConsumableArray(detail.map(function (menu, uuid) {
 			return $assign('div', {
-				class: prefix$3 + '-menu',
+				class: prefix$4 + '-menu',
 				role: 'group'
 			}, $assign.apply(undefined, ['ul', {
-				class: prefix$3 + '-list',
+				class: prefix$4 + '-list',
 				role: 'navigation', aria: { labelledby: 'esri-header-brand' }
 			}].concat(toConsumableArray(menu.map(function (item, suuid) {
 				/* Global Navigation: Menus: Link
     /* ====================================================== */
 
-				var $linkIcon = item.icon ? $renderSvgOrImg({ imgDef: item.icon.path, imgClass: prefix$3 + '-link-icon', imgWidth: item.icon.width || '16px', imgHeight: item.icon.height || '16px' }) : null;
+				var $linkIcon = item.icon ? $renderSvgOrImg({ imgDef: item.icon.path, imgClass: prefix$4 + '-link-icon', imgWidth: item.icon.width || '16px', imgHeight: item.icon.height || '16px' }) : null;
 
 				var $subcontrol = createNavLink({
 					class: 'link ' + (item.hideLabelInDesktop ? '-hide-label' : '') + ' ' + (item.active ? '-is-active' : ''),
 					id: 'link-' + variant + '-' + uuid + '-' + suuid,
 					props: item,
 					icon: $linkIcon,
-					label: $assign('span', { class: prefix$3 + '-link-label' }, item.label)
+					label: $assign('span', { class: prefix$4 + '-link-label' }, item.label)
 				});
 
-				var $li = $assign('li', { class: prefix$3 + '-item' }, $subcontrol);
+				var $li = $assign('li', { class: prefix$4 + '-item' }, $subcontrol);
 
 				var hasMenuItems = item.menus && item.menus.length;
 				var hasCols = item.cols && item.cols.length;
@@ -812,7 +990,7 @@ var createMenus = (function (_ref) {
 				if (hasMenuItems || hasCols || hasFeaturedItems) {
 					/* Global Navigation: Submenu
      /* ====================================== */
-					var $subtoggle = $assign('button', { class: prefix$3 + '-submenu-toggle' }, item.label);
+					var $subtoggle = $assign('button', { class: prefix$4 + '-submenu-toggle' }, item.label);
 
 					var hasStructured = hasCols && item.cols.filter(function (col) {
 						return col.type === 'structured';
@@ -820,8 +998,8 @@ var createMenus = (function (_ref) {
 					var structuredCols = hasCols ? item.cols.length : 0;
 
 					var $subcontent = $assign('div', {
-						class: prefix$3 + '-submenu',
-						id: prefix$3 + '-' + variant + '-submenu-' + uuid + '-' + suuid,
+						class: prefix$4 + '-submenu',
+						id: prefix$4 + '-' + variant + '-submenu-' + uuid + '-' + suuid,
 						'data-has-structured': hasStructured,
 						role: 'group', aria: { hidden: true, expanded: false },
 						data: { filled: item.menus && item.menus.length > 10 ? item.menus.slice(0, 18).length : '', structuredCols: structuredCols ? structuredCols : '' }
@@ -876,12 +1054,12 @@ var createMenus = (function (_ref) {
 
 		if (hasMenuItems) {
 			$assign($subcontent, $assign('ul', {
-				class: prefix$3 + '-sublist',
-				role: 'navigation', aria: { labelledby: prefix$3 + '-link-' + variant + '-' + uuid + '-' + suuid }
+				class: prefix$4 + '-sublist',
+				role: 'navigation', aria: { labelledby: prefix$4 + '-link-' + variant + '-' + uuid + '-' + suuid }
 			},
 			/* Global Navigation: Menus: Sublink
    /* ============================== */
-			$assign('div', { class: prefix$3 + '-sublist--col-wrapper' }, createMenuColumns(item.menus.slice(0, 9)), createMenuColumns(item.menus.slice(9, 18)))));
+			$assign('div', { class: prefix$4 + '-sublist--col-wrapper' }, createMenuColumns(item.menus.slice(0, 9)), createMenuColumns(item.menus.slice(9, 18)))));
 		}
 	}
 
@@ -891,7 +1069,7 @@ var createMenus = (function (_ref) {
 		    uuid = _ref4.uuid,
 		    suuid = _ref4.suuid;
 
-		var $cols = $assign('div', { class: prefix$3 + '-sublist--col-wrapper' });
+		var $cols = $assign('div', { class: prefix$4 + '-sublist--col-wrapper' });
 		if (item.cols) {
 			item.cols.forEach(function (col) {
 				var menuType = 'standard';
@@ -905,13 +1083,13 @@ var createMenus = (function (_ref) {
 						break;
 				}
 
-				$assign($cols, $assign('div', { class: prefix$3 + '-sublist--col', 'data-coltype': menuType, 'data-menuborder': menuBorder }, $assign.apply(undefined, ['ul', {
-					class: prefix$3 + '-sublist', 'data-menutype': menuType,
-					role: 'navigation', aria: { labelledby: prefix$3 + '-link-' + variant + '-' + uuid + '-' + suuid }
+				$assign($cols, $assign('div', { class: prefix$4 + '-sublist--col', 'data-coltype': menuType, 'data-menuborder': menuBorder }, $assign.apply(undefined, ['ul', {
+					class: prefix$4 + '-sublist', 'data-menutype': menuType,
+					role: 'navigation', aria: { labelledby: prefix$4 + '-link-' + variant + '-' + uuid + '-' + suuid }
 				}].concat(toConsumableArray(menuRenderer(col.items))))));
 			});
 
-			$assign($subcontent, $assign('div', { class: prefix$3 + '-sublist' }, $cols));
+			$assign($subcontent, $assign('div', { class: prefix$4 + '-sublist' }, $cols));
 		}
 	}
 
@@ -920,10 +1098,10 @@ var createMenus = (function (_ref) {
 
 		entries.map(function (entry) {
 			if (entry.heading) {
-				$items.push($assign('li', { class: prefix$3 + '-entry--heading' }, $assign('p', { class: prefix$3 + '-entry--heading-label' }, entry.heading)));
+				$items.push($assign('li', { class: prefix$4 + '-entry--heading' }, $assign('p', { class: prefix$4 + '-entry--heading-label' }, entry.heading)));
 			}
 			if (entry.href && entry.label) {
-				$items.push($assign('li', { class: prefix$3 + '-entry--menus-subitem' }, $assign('a', { href: entry.href, class: prefix$3 + '-entry-sublink' }, entry.label)));
+				$items.push($assign('li', { class: prefix$4 + '-entry--menus-subitem' }, $assign('a', { href: entry.href, class: prefix$4 + '-entry-sublink' }, entry.label)));
 			}
 		});
 
@@ -935,11 +1113,11 @@ var createMenus = (function (_ref) {
 
 		entries.forEach(function (entry) {
 			if (entry.heading) {
-				$items.push($assign('li', { class: prefix$3 + '-entry--heading' }, $assign('p', { class: prefix$3 + '-entry--heading-label' }, entry.heading)));
+				$items.push($assign('li', { class: prefix$4 + '-entry--heading' }, $assign('p', { class: prefix$4 + '-entry--heading-label' }, entry.heading)));
 			}
 
 			if (entry.href && entry.label) {
-				$items.push($assign('li', { class: prefix$3 + '-entry--menus-subitem' }, $assign('a', { href: entry.href, class: prefix$3 + '-entry-sublink' }, $assign('p', { class: prefix$3 + '-entry-sublink--title' }, entry.label), entry.description ? $assign('p', { class: prefix$3 + '-sublink--description' }, entry.description) : null)));
+				$items.push($assign('li', { class: prefix$4 + '-entry--menus-subitem' }, $assign('a', { href: entry.href, class: prefix$4 + '-entry-sublink' }, $assign('p', { class: prefix$4 + '-entry-sublink--title' }, entry.label), entry.description ? $assign('p', { class: prefix$4 + '-sublink--description' }, entry.description) : null)));
 			}
 		});
 
@@ -950,8 +1128,9 @@ var createMenus = (function (_ref) {
 		var detail = _ref5.detail;
 
 		if (detail && detail.indexOf(true) > -1) {
+			var $brand = document.getElementById('esri-header-brand') || document.getElementById('esri-header-inline-title');
 			document.querySelector('.esri-header-menus-toggle').classList.add('-visible');
-			document.getElementById('esri-header-brand').classList.add('-fit-burger');
+			$brand.classList.add('-fit-burger');
 			document.getElementById('esri-header-menus-mobile').classList.add('-always-hamburger');
 
 			var menus = [].slice.call($target.querySelectorAll('.esri-header-menus-menu'));
@@ -1111,15 +1290,15 @@ var esriSearch = (function (data) {
 	return $search;
 });
 
-var prefix$4 = 'esri-header-search';
+var prefix$5 = 'esri-header-search';
 
 var createSearch = (function () {
 	/* Search: Control
  /* ====================================================================== */
 
 	var $control = $assign('button', {
-		class: prefix$4 + '-control', id: prefix$4 + '-control',
-		aria: { expanded: false, controls: prefix$4 + '-content' }
+		class: prefix$5 + '-control', id: prefix$5 + '-control',
+		aria: { expanded: false, controls: prefix$5 + '-content' }
 	});
 
 	$control.addEventListener('click', function (event) {
@@ -1139,14 +1318,14 @@ var createSearch = (function () {
  /* ====================================================================== */
 
 	var $content = $assign('div', {
-		class: prefix$4 + '-content', id: prefix$4 + '-content',
-		aria: { expanded: false, labelledby: prefix$4 + '-control' }
+		class: prefix$5 + '-content', id: prefix$5 + '-content',
+		aria: { expanded: false, labelledby: prefix$5 + '-control' }
 	});
 
 	/* Search: Target
  /* ====================================================================== */
 
-	var $target = $assign('div', { class: prefix$4 }, $control, $content);
+	var $target = $assign('div', { class: prefix$5 }, $control, $content);
 
 	/* Search: On Update
  /* ====================================================================== */
@@ -1156,7 +1335,7 @@ var createSearch = (function () {
 
 		if (!detail.hide) {
 			$assign($control, { aria: { label: detail.label } });
-			$renderSvgOrImg({ imgDef: $search.md, imgClass: prefix$4 + '-image', id: prefix$4 + '-image', $targetElm: $control });
+			$renderSvgOrImg({ imgDef: $search.md, imgClass: prefix$5 + '-image', id: prefix$5 + '-image', $targetElm: $control });
 
 			if (detail.dialog) {
 				detail.dialog.prefix = 'esri-header-search-dialog';
@@ -1188,13 +1367,15 @@ var createSearch = (function () {
 					}
 				});
 			}
+		} else {
+			$control.setAttribute("tabindex", "-1");
 		}
 	});
 
 	return $target;
 });
 
-var prefix$5 = 'esri-header-inlineSearch';
+var prefix$6 = 'esri-header-inlineSearch';
 var searchState = {};
 
 var createInlineSearch = (function () {
@@ -1202,8 +1383,8 @@ var createInlineSearch = (function () {
  /* ====================================================================== */
 
 	var $control = $assign('button', {
-		class: prefix$5 + '-control', id: prefix$5 + '-control',
-		aria: { expanded: false, controls: prefix$5 + '-content' }
+		class: prefix$6 + '-control', id: prefix$6 + '-control',
+		aria: { expanded: false, controls: prefix$6 + '-content' }
 	});
 
 	$control.addEventListener('header:menu:open', function (event) {
@@ -1226,9 +1407,9 @@ var createInlineSearch = (function () {
  /* ====================================================================== */
 
 	var $closeBtn = $assign('button', {
-		class: prefix$5 + '-close-button', id: prefix$5 + '-close-button',
-		aria: { labelledby: prefix$5 + '-close-button' }
-	}, $renderSvgOrImg({ imgDef: $close.md, imgClass: prefix$5 + '-dismiss-icon' }));
+		class: prefix$6 + '-close-button', id: prefix$6 + '-close-button',
+		aria: { labelledby: prefix$6 + '-close-button' }
+	}, $renderSvgOrImg({ imgDef: $close.md, imgClass: prefix$6 + '-dismiss-icon' }));
 
 	$closeBtn.addEventListener('click', function (event) {
 		$dispatch($control, 'header:inlineSearch:deactivated', { event: event });
@@ -1251,8 +1432,8 @@ var createInlineSearch = (function () {
  /* ====================================================================== */
 
 	var $input = $assign('input', {
-		class: prefix$5 + '-input', id: prefix$5 + '-input',
-		aria: { labelledby: prefix$5 + '-input' }
+		class: prefix$6 + '-input', id: prefix$6 + '-input',
+		aria: { labelledby: prefix$6 + '-input' }
 	});
 
 	$input.addEventListener("keyup", function (e) {
@@ -1273,8 +1454,8 @@ var createInlineSearch = (function () {
  /* ====================================================================== */
 
 	var $suggestions = $assign('div', {
-		class: prefix$5 + '-suggestions', id: prefix$5 + '-suggestions',
-		aria: { expanded: false, labelledby: prefix$5 + '-suggestions' }
+		class: prefix$6 + '-suggestions', id: prefix$6 + '-suggestions',
+		aria: { expanded: false, labelledby: prefix$6 + '-suggestions' }
 	});
 
 	var boldKeywords = function boldKeywords(input, keywords) {
@@ -1288,19 +1469,19 @@ var createInlineSearch = (function () {
 	/* Search: Content
  /* ====================================================================== */
 
-	var $lineBreak = $assign('div', { class: 'esri-header-lineBreak ' + prefix$5 + '-lineBreak' });
-	var $lineBreakRight = $assign('div', { class: 'esri-header-lineBreak ' + prefix$5 + '-lineBreak lineBreak-right' });
+	var $lineBreak = $assign('div', { class: 'esri-header-lineBreak ' + prefix$6 + '-lineBreak' });
+	var $lineBreakRight = $assign('div', { class: 'esri-header-lineBreak ' + prefix$6 + '-lineBreak lineBreak-right' });
 
 	var $content = $assign('div', {
-		class: prefix$5 + '-content', id: prefix$5 + '-content',
-		aria: { expanded: false, labelledby: prefix$5 + '-control' }
+		class: prefix$6 + '-content', id: prefix$6 + '-content',
+		aria: { expanded: false, labelledby: prefix$6 + '-control' }
 	}, $lineBreak, $input, $closeBtn, $suggestions, $lineBreakRight);
 
 	/* Search: Target
  /* ====================================================================== */
 
 	var $target = $assign('div', {
-		class: prefix$5,
+		class: prefix$6,
 		aria: { expanded: false }
 	}, $control, $content);
 
@@ -1343,20 +1524,20 @@ var createInlineSearch = (function () {
 	});
 
 	var createSuggestionsList = function createSuggestionsList(detail, searchValueArray) {
-		var $ul = $assign('ul', { class: prefix$5 + '-simple-suggestion-list' });
+		var $ul = $assign('ul', { class: prefix$6 + '-simple-suggestion-list' });
 		detail.forEach(function (l) {
-			var $icon = l.icon ? $assign('img', { src: l.icon, class: prefix$5 + '-suggestion-icon', alt: "" }) : "";
+			var $icon = l.icon ? $assign('img', { src: l.icon, class: prefix$6 + '-suggestion-icon', alt: "" }) : "";
 			var $span = $assign('span');
 			$span.innerHTML = boldKeywords(l.text, searchValueArray);
 
 			var $li = $assign('li', {
-				class: prefix$5 + '-suggestion'
+				class: prefix$6 + '-suggestion'
 			}, l.href ? $assign('a', { href: l.href }, $icon, $span) : $assign('span', { class: "inactive" }, $icon, $span));
 
 			$ul.appendChild($li);
 
 			var $section = $assign('div', {
-				class: prefix$5 + '-simple-suggestion-section'
+				class: prefix$6 + '-simple-suggestion-section'
 			}, $ul);
 
 			$suggestions.appendChild($section);
@@ -1366,46 +1547,46 @@ var createInlineSearch = (function () {
 	var createSuggestionsSections = function createSuggestionsSections(detail, searchValueArray) {
 		var minIconWidth = (detail.minIconWidth || "0") + 'px';
 		detail.suggestions.forEach(function (s, ind) {
-			var $header = s.header ? $assign('p', { class: prefix$5 + '-suggestion-header' }, s.header) : $assign('p');
+			var $header = s.header ? $assign('p', { class: prefix$6 + '-suggestion-header' }, s.header) : $assign('p');
 			var $hr = (s.header || ind > 0) && !s.hideHR ? $assign('hr') : $assign('span');
-			var $ul = $assign('ul', { class: prefix$5 + '-suggestion-list' });
+			var $ul = $assign('ul', { class: prefix$6 + '-suggestion-list' });
 			var $footer = !s.footer ? $assign('span') : $assign('a', {
 				href: s.footer.href,
-				class: prefix$5 + '-suggestion-footer'
+				class: prefix$6 + '-suggestion-footer'
 			}, s.footer.text);
 
 			s.links.forEach(function (l) {
-				var $span = $assign('span', { class: prefix$5 + '-suggestion-text' });
+				var $span = $assign('span', { class: prefix$6 + '-suggestion-text' });
 				$span.innerHTML = boldKeywords(l.text, searchValueArray);
-				$span.appendChild(l.secondary ? $assign('div', { class: prefix$5 + '-suggestion-secondary-text' }, l.secondary) : $assign('span'));
-				var $icon = !l.icon ? $assign('span', { class: prefix$5 + '-suggestion-icon-wrapper', style: 'min-width: ' + minIconWidth + ';' }) : $renderSvgOrImg({
+				$span.appendChild(l.secondary ? $assign('div', { class: prefix$6 + '-suggestion-secondary-text' }, l.secondary) : $assign('span'));
+				var $icon = !l.icon ? $assign('span', { class: prefix$6 + '-suggestion-icon-wrapper', style: 'min-width: ' + minIconWidth + ';' }) : $renderSvgOrImg({
 					inlineImg: true,
 					alt: "",
 					imgDef: l.icon === 'searchIcon' ? $search.sm : l.icon,
 					imgWidth: l.iconSize || "22",
 					imgHeight: l.icon === 'searchIcon' ? "15px" : l.iconSize,
-					imgClass: prefix$5 + '-suggestion-icon',
-					wrapperClass: prefix$5 + '-suggestion-icon-wrapper'
+					imgClass: prefix$6 + '-suggestion-icon',
+					wrapperClass: prefix$6 + '-suggestion-icon-wrapper'
 				});
 				$icon.style.minWidth = minIconWidth;
 
 				if (l.htmlIcon) $icon.innerHTML = l.htmlIcon;
 
 				var $li = $assign('li', {
-					class: prefix$5 + '-suggestion'
+					class: prefix$6 + '-suggestion'
 				}, l.href ? $assign('a', { href: l.href }, $icon, $span) : $assign('span', { class: "inactive" }, $icon, $span));
 
 				$ul.appendChild($li);
 			});
 
 			var $section = $assign('div', {
-				class: prefix$5 + '-suggestion-section'
+				class: prefix$6 + '-suggestion-section'
 			}, $header, $hr, $ul, $footer);
 
 			$suggestions.appendChild($section);
 		});
 
-		$suggestions.appendChild($assign('div', { class: prefix$5 + '-suggestions-bottom-padding' }));
+		$suggestions.appendChild($assign('div', { class: prefix$6 + '-suggestions-bottom-padding' }));
 	};
 
 	/* Search: On Update
@@ -1416,7 +1597,7 @@ var createInlineSearch = (function () {
 
 		if (!detail.hide) {
 			$assign($control, { aria: { label: detail.label } });
-			$renderSvgOrImg({ imgDef: $search.md, imgClass: prefix$5 + '-image', id: prefix$5 + '-image', alt: "", $targetElm: $control });
+			$renderSvgOrImg({ imgDef: $search.md, imgClass: prefix$6 + '-image', id: prefix$6 + '-image', alt: "", $targetElm: $control });
 
 			searchState.image = $search.md;
 			searchState.action = detail.dialog && detail.dialog.action;
@@ -1443,7 +1624,6 @@ var Sortable = createCommonjsModule(function (module) {
 	/**!
   * Sortable
   * @author	RubaXa   <trash@rubaxa.org>
-  * @author	owenm    <owen23355@gmail.com>
   * @license MIT
   */
 
@@ -1474,35 +1654,22 @@ var Sortable = createCommonjsModule(function (module) {
 		    scrollEl,
 		    scrollParentEl,
 		    scrollCustomFn,
+		    lastEl,
+		    lastCSS,
+		    lastParentCSS,
 		    oldIndex,
 		    newIndex,
 		    activeGroup,
 		    putSortable,
-		    autoScrolls = [],
-		    scrolling = false,
-		    awaitingDragStarted = false,
-		    ignoreNextClick = false,
-		    sortables = [],
-		    pointerElemChangedInterval,
-		    lastPointerElemX,
-		    lastPointerElemY,
+		    autoScroll = {},
 		    tapEvt,
 		    touchEvt,
 		    moved,
-		    lastTarget,
-		    lastDirection,
-		    pastFirstInvertThresh = false,
-		    isCircumstantialInvert = false,
-		    lastMode,
-		    // 'swap' or 'insert'
 
-		targetMoveDistance,
-		    forRepaintDummy,
-		    realDragElRect,
-		    // dragEl rect after current animation
 
 		/** @const */
 		R_SPACE = /\s+/g,
+		    R_FLOAT = /left|right|inline/,
 		    expando = 'Sortable' + new Date().getTime(),
 		    win = window,
 		    document = win.document,
@@ -1510,258 +1677,115 @@ var Sortable = createCommonjsModule(function (module) {
 		    setTimeout = win.setTimeout,
 		    $ = win.jQuery || win.Zepto,
 		    Polymer = win.Polymer,
-		    captureMode = {
-			capture: false,
-			passive: false
-		},
-		    IE11OrLess = !!navigator.userAgent.match(/(?:Trident.*rv[ :]?11\.|msie|iemobile)/i),
-		    Edge = !!navigator.userAgent.match(/Edge/i),
-
-		// FireFox = !!navigator.userAgent.match(/firefox/i),
-
-		CSSFloatProperty = Edge || IE11OrLess ? 'cssFloat' : 'float',
-
-
-		// This will not pass for IE9, because IE9 DnD only works on anchors
-		supportDraggable = 'draggable' in document.createElement('div'),
-		    supportCssPointerEvents = function () {
-			// false when <= IE11
-			if (IE11OrLess) {
+		    captureMode = false,
+		    passiveMode = false,
+		    supportDraggable = 'draggable' in document.createElement('div'),
+		    supportCssPointerEvents = function (el) {
+			// false when IE11
+			if (!!navigator.userAgent.match(/(?:Trident.*rv[ :]?11\.|msie)/i)) {
 				return false;
 			}
-			var el = document.createElement('x');
+			el = document.createElement('x');
 			el.style.cssText = 'pointer-events:auto';
 			return el.style.pointerEvents === 'auto';
 		}(),
 		    _silent = false,
-		    _alignedSilent = false,
 		    abs = Math.abs,
 		    min = Math.min,
 		    savedInputChecked = [],
-		    _detectDirection = function _detectDirection(el, options) {
-			var elCSS = _css(el),
-			    elWidth = parseInt(elCSS.width),
-			    child1 = _getChild(el, 0, options),
-			    child2 = _getChild(el, 1, options),
-			    firstChildCSS = child1 && _css(child1),
-			    secondChildCSS = child2 && _css(child2),
-			    firstChildWidth = firstChildCSS && parseInt(firstChildCSS.marginLeft) + parseInt(firstChildCSS.marginRight) + _getRect(child1).width,
-			    secondChildWidth = secondChildCSS && parseInt(secondChildCSS.marginLeft) + parseInt(secondChildCSS.marginRight) + _getRect(child2).width;
-			if (elCSS.display === 'flex') {
-				return elCSS.flexDirection === 'column' || elCSS.flexDirection === 'column-reverse' ? 'vertical' : 'horizontal';
-			}
-			return child1 && (firstChildCSS.display === 'block' || firstChildCSS.display === 'flex' || firstChildCSS.display === 'table' || firstChildCSS.display === 'grid' || firstChildWidth >= elWidth && elCSS[CSSFloatProperty] === 'none' || child2 && elCSS[CSSFloatProperty] === 'none' && firstChildWidth + secondChildWidth > elWidth) ? 'vertical' : 'horizontal';
-		},
-
-
-		/**
-   * Detects first nearest empty sortable to X and Y position using emptyInsertThreshold.
-   * @param  {Number} x      X position
-   * @param  {Number} y      Y position
-   * @return {HTMLElement}   Element of the first found nearest Sortable
-   */
-		_detectNearestEmptySortable = function _detectNearestEmptySortable(x, y) {
-			for (var i = 0; i < sortables.length; i++) {
-				if (sortables[i].children.length) continue;
-
-				var rect = _getRect(sortables[i]),
-				    threshold = sortables[i][expando].options.emptyInsertThreshold,
-				    insideHorizontally = x >= rect.left - threshold && x <= rect.right + threshold,
-				    insideVertically = y >= rect.top - threshold && y <= rect.bottom + threshold;
-
-				if (insideHorizontally && insideVertically) {
-					return sortables[i];
-				}
-			}
-		},
-		    _isClientInRowColumn = function _isClientInRowColumn(x, y, el, axis, options) {
-			var targetRect = _getRect(el),
-			    targetS1Opp = axis === 'vertical' ? targetRect.left : targetRect.top,
-			    targetS2Opp = axis === 'vertical' ? targetRect.right : targetRect.bottom,
-			    mouseOnOppAxis = axis === 'vertical' ? x : y;
-
-			return targetS1Opp < mouseOnOppAxis && mouseOnOppAxis < targetS2Opp;
-		},
-		    _isElInRowColumn = function _isElInRowColumn(el1, el2, axis) {
-			var el1Rect = el1 === dragEl && realDragElRect || _getRect(el1),
-			    el2Rect = el2 === dragEl && realDragElRect || _getRect(el2),
-			    el1S1Opp = axis === 'vertical' ? el1Rect.left : el1Rect.top,
-			    el1S2Opp = axis === 'vertical' ? el1Rect.right : el1Rect.bottom,
-			    el1OppLength = axis === 'vertical' ? el1Rect.width : el1Rect.height,
-			    el2S1Opp = axis === 'vertical' ? el2Rect.left : el2Rect.top,
-			    el2S2Opp = axis === 'vertical' ? el2Rect.right : el2Rect.bottom,
-			    el2OppLength = axis === 'vertical' ? el2Rect.width : el2Rect.height;
-
-			return el1S1Opp === el2S1Opp || el1S2Opp === el2S2Opp || el1S1Opp + el1OppLength / 2 === el2S1Opp + el2OppLength / 2;
-		},
-		    _getParentAutoScrollElement = function _getParentAutoScrollElement(el, includeSelf) {
-			// skip to window
-			if (!el || !el.getBoundingClientRect) return win;
-
-			var elem = el;
-			var gotSelf = false;
-			do {
-				// we don't need to get elem css if it isn't even overflowing in the first place (performance)
-				if (elem.clientWidth < elem.scrollWidth || elem.clientHeight < elem.scrollHeight) {
-					var elemCSS = _css(elem);
-					if (elem.clientWidth < elem.scrollWidth && (elemCSS.overflowX == 'auto' || elemCSS.overflowX == 'scroll') || elem.clientHeight < elem.scrollHeight && (elemCSS.overflowY == 'auto' || elemCSS.overflowY == 'scroll')) {
-						if (!elem || !elem.getBoundingClientRect || elem === document.body) return win;
-
-						if (gotSelf || includeSelf) return elem;
-						gotSelf = true;
-					}
-				}
-				/* jshint boss:true */
-			} while (elem = elem.parentNode);
-
-			return win;
-		},
-		    _autoScroll = _throttle(function ( /**Event*/evt, /**Object*/options, /**HTMLElement*/rootEl, /**Boolean*/isFallback) {
+		    touchDragOverListeners = [],
+		    _autoScroll = _throttle(function ( /**Event*/evt, /**Object*/options, /**HTMLElement*/rootEl) {
 			// Bug: https://bugzilla.mozilla.org/show_bug.cgi?id=505521
-			if (options.scroll) {
-				var _this = rootEl ? rootEl[expando] : window,
+			if (rootEl && options.scroll) {
+				var _this = rootEl[expando],
+				    el,
+				    rect,
 				    sens = options.scrollSensitivity,
 				    speed = options.scrollSpeed,
 				    x = evt.clientX,
 				    y = evt.clientY,
 				    winWidth = window.innerWidth,
 				    winHeight = window.innerHeight,
-				    scrollThisInstance = false;
+				    vx,
+				    vy,
+				    scrollOffsetX,
+				    scrollOffsetY;
 
-				// Detect scrollEl
+				// Delect scrollEl
 				if (scrollParentEl !== rootEl) {
-					_clearAutoScrolls();
-
 					scrollEl = options.scroll;
+					scrollParentEl = rootEl;
 					scrollCustomFn = options.scrollFn;
 
 					if (scrollEl === true) {
-						scrollEl = _getParentAutoScrollElement(rootEl, true);
-						scrollParentEl = scrollEl;
+						scrollEl = rootEl;
+
+						do {
+							if (scrollEl.offsetWidth < scrollEl.scrollWidth || scrollEl.offsetHeight < scrollEl.scrollHeight) {
+								break;
+							}
+							/* jshint boss:true */
+						} while (scrollEl = scrollEl.parentNode);
 					}
 				}
 
-				var layersOut = 0;
-				var currentParent = scrollEl;
-				do {
-					var el = currentParent,
-					    rect = _getRect(el),
-					    top = rect.top,
-					    bottom = rect.bottom,
-					    left = rect.left,
-					    right = rect.right,
-					    width = rect.width,
-					    height = rect.height,
-					    scrollWidth,
-					    scrollHeight,
-					    css,
-					    vx,
-					    vy,
-					    canScrollX,
-					    canScrollY,
-					    scrollPosX,
-					    scrollPosY;
+				if (scrollEl) {
+					el = scrollEl;
+					rect = scrollEl.getBoundingClientRect();
+					vx = (abs(rect.right - x) <= sens) - (abs(rect.left - x) <= sens);
+					vy = (abs(rect.bottom - y) <= sens) - (abs(rect.top - y) <= sens);
+				}
 
-					if (el !== win) {
-						scrollWidth = el.scrollWidth;
-						scrollHeight = el.scrollHeight;
+				if (!(vx || vy)) {
+					vx = (winWidth - x <= sens) - (x <= sens);
+					vy = (winHeight - y <= sens) - (y <= sens);
 
-						css = _css(el);
+					/* jshint expr:true */
+					(vx || vy) && (el = win);
+				}
 
-						canScrollX = width < scrollWidth && (css.overflowX === 'auto' || css.overflowX === 'scroll');
-						canScrollY = height < scrollHeight && (css.overflowY === 'auto' || css.overflowY === 'scroll');
+				if (autoScroll.vx !== vx || autoScroll.vy !== vy || autoScroll.el !== el) {
+					autoScroll.el = el;
+					autoScroll.vx = vx;
+					autoScroll.vy = vy;
 
-						scrollPosX = el.scrollLeft;
-						scrollPosY = el.scrollTop;
-					} else {
-						scrollWidth = document.documentElement.scrollWidth;
-						scrollHeight = document.documentElement.scrollHeight;
+					clearInterval(autoScroll.pid);
 
-						css = _css(document.documentElement);
+					if (el) {
+						autoScroll.pid = setInterval(function () {
+							scrollOffsetY = vy ? vy * speed : 0;
+							scrollOffsetX = vx ? vx * speed : 0;
 
-						canScrollX = width < scrollWidth && (css.overflowX === 'auto' || css.overflowX === 'scroll' || css.overflowX === 'visible');
-						canScrollY = height < scrollHeight && (css.overflowY === 'auto' || css.overflowY === 'scroll' || css.overflowY === 'visible');
-
-						scrollPosX = document.documentElement.scrollLeft;
-						scrollPosY = document.documentElement.scrollTop;
-					}
-
-					vx = canScrollX && (abs(right - x) <= sens && scrollPosX + width < scrollWidth) - (abs(left - x) <= sens && !!scrollPosX);
-
-					vy = canScrollY && (abs(bottom - y) <= sens && scrollPosY + height < scrollHeight) - (abs(top - y) <= sens && !!scrollPosY);
-
-					if (!autoScrolls[layersOut]) {
-						for (var i = 0; i <= layersOut; i++) {
-							if (!autoScrolls[i]) {
-								autoScrolls[i] = {};
+							if ('function' === typeof scrollCustomFn) {
+								return scrollCustomFn.call(_this, scrollOffsetX, scrollOffsetY, evt);
 							}
-						}
+
+							if (el === win) {
+								win.scrollTo(win.pageXOffset + scrollOffsetX, win.pageYOffset + scrollOffsetY);
+							} else {
+								el.scrollTop += scrollOffsetY;
+								el.scrollLeft += scrollOffsetX;
+							}
+						}, 24);
 					}
-
-					if (autoScrolls[layersOut].vx != vx || autoScrolls[layersOut].vy != vy || autoScrolls[layersOut].el !== el) {
-						autoScrolls[layersOut].el = el;
-						autoScrolls[layersOut].vx = vx;
-						autoScrolls[layersOut].vy = vy;
-
-						clearInterval(autoScrolls[layersOut].pid);
-
-						if (el && (vx != 0 || vy != 0)) {
-							scrollThisInstance = true;
-							/* jshint loopfunc:true */
-							autoScrolls[layersOut].pid = setInterval(function () {
-								// emulate drag over during autoscroll (fallback), emulating native DnD behaviour
-								if (isFallback && this.layer === 0) {
-									Sortable.active._emulateDragOver(true);
-								}
-								var scrollOffsetY = autoScrolls[this.layer].vy ? autoScrolls[this.layer].vy * speed : 0;
-								var scrollOffsetX = autoScrolls[this.layer].vx ? autoScrolls[this.layer].vx * speed : 0;
-
-								if ('function' === typeof scrollCustomFn) {
-									if (scrollCustomFn.call(_this, scrollOffsetX, scrollOffsetY, evt, touchEvt, autoScrolls[this.layer].el) !== 'continue') {
-										return;
-									}
-								}
-								if (autoScrolls[this.layer].el === win) {
-									win.scrollTo(win.pageXOffset + scrollOffsetX, win.pageYOffset + scrollOffsetY);
-								} else {
-									autoScrolls[this.layer].el.scrollTop += scrollOffsetY;
-									autoScrolls[this.layer].el.scrollLeft += scrollOffsetX;
-								}
-							}.bind({ layer: layersOut }), 24);
-						}
-					}
-					layersOut++;
-				} while (options.bubbleScroll && currentParent !== win && (currentParent = _getParentAutoScrollElement(currentParent, false)));
-				scrolling = scrollThisInstance; // in case another function catches scrolling as false in between when it is not
+				}
 			}
 		}, 30),
-		    _clearAutoScrolls = function _clearAutoScrolls() {
-			autoScrolls.forEach(function (autoScroll) {
-				clearInterval(autoScroll.pid);
-			});
-			autoScrolls = [];
-		},
 		    _prepareGroup = function _prepareGroup(options) {
 			function toFn(value, pull) {
-				return function (to, from, dragEl, evt) {
-					var sameGroup = to.options.group.name && from.options.group.name && to.options.group.name === from.options.group.name;
+				if (value === void 0 || value === true) {
+					value = group.name;
+				}
 
-					if (value == null && (pull || sameGroup)) {
-						// Default pull value
-						// Default pull and put value if same group
-						return true;
-					} else if (value == null || value === false) {
-						return false;
-					} else if (pull && value === 'clone') {
-						return value;
-					} else if (typeof value === 'function') {
-						return toFn(value(to, from, dragEl, evt), pull)(to, from, dragEl, evt);
-					} else {
-						var otherGroup = (pull ? to : from).options.group.name;
+				if (typeof value === 'function') {
+					return value;
+				} else {
+					return function (to, from) {
+						var fromGroup = from.options.group.name;
 
-						return value === true || typeof value === 'string' && value === otherGroup || value.join && value.indexOf(otherGroup) > -1;
-					}
-				};
+						return pull ? value : value && (value.join ? value.indexOf(fromGroup) > -1 : fromGroup == value);
+					};
+				}
 			}
 
 			var group = {};
@@ -1777,71 +1801,22 @@ var Sortable = createCommonjsModule(function (module) {
 			group.revertClone = originalGroup.revertClone;
 
 			options.group = group;
-		},
-		    _checkAlignment = function _checkAlignment(evt) {
-			if (!dragEl || !dragEl.parentNode) return;
-			dragEl.parentNode[expando] && dragEl.parentNode[expando]._computeIsAligned(evt);
-		},
-		    _isTrueParentSortable = function _isTrueParentSortable(el, target) {
-			var trueParent = target;
-			while (!trueParent[expando]) {
-				trueParent = trueParent.parentNode;
-			}
-
-			return el === trueParent;
-		},
-		    _artificalBubble = function _artificalBubble(sortable, originalEvt, method) {
-			// Artificial IE bubbling
-			var nextParent = sortable.parentNode;
-			while (nextParent && !nextParent[expando]) {
-				nextParent = nextParent.parentNode;
-			}
-
-			if (nextParent) {
-				nextParent[expando][method](_extend(originalEvt, {
-					artificialBubble: true
-				}));
-			}
-		},
-		    _hideGhostForTarget = function _hideGhostForTarget() {
-			if (!supportCssPointerEvents && ghostEl) {
-				_css(ghostEl, 'display', 'none');
-			}
-		},
-		    _unhideGhostForTarget = function _unhideGhostForTarget() {
-			if (!supportCssPointerEvents && ghostEl) {
-				_css(ghostEl, 'display', '');
-			}
 		};
 
-		// #1184 fix - Prevent click event on fallback if dragged but item not changed position
-		document.addEventListener('click', function (evt) {
-			if (ignoreNextClick) {
-				evt.preventDefault();
-				evt.stopPropagation && evt.stopPropagation();
-				evt.stopImmediatePropagation && evt.stopImmediatePropagation();
-				ignoreNextClick = false;
-				return false;
-			}
-		}, true);
-
-		var nearestEmptyInsertDetectEvent = function nearestEmptyInsertDetectEvent(evt) {
-			if (dragEl) {
-				var nearest = _detectNearestEmptySortable(evt.clientX, evt.clientY);
-
-				if (nearest) {
-					nearest[expando]._onDragOver({
-						clientX: evt.clientX,
-						clientY: evt.clientY,
-						target: nearest,
-						rootEl: nearest
-					});
+		// Detect support a passive mode
+		try {
+			window.addEventListener('test', null, Object.defineProperty({}, 'passive', {
+				get: function get$$1() {
+					// `false`, because everything starts to work incorrectly and instead of d'n'd,
+					// begins the page has scrolled.
+					passiveMode = false;
+					captureMode = {
+						capture: false,
+						passive: passiveMode
+					};
 				}
-			}
-		};
-		// We do not want this to be triggered if completed (bubbling canceled), so only define it here
-		document.addEventListener('dragover', nearestEmptyInsertDetectEvent);
-		document.addEventListener('mousemove', nearestEmptyInsertDetectEvent);
+			}));
+		} catch (err) {}
 
 		/**
    * @class  Sortable
@@ -1850,7 +1825,7 @@ var Sortable = createCommonjsModule(function (module) {
    */
 		function Sortable(el, options) {
 			if (!(el && el.nodeType && el.nodeType === 1)) {
-				throw 'Sortable: `el` must be HTMLElement, not ' + {}.toString.call(el);
+				throw 'Sortable: `el` must be HTMLElement, and not ' + {}.toString.call(el);
 			}
 
 			this.el = el; // root element
@@ -1861,7 +1836,7 @@ var Sortable = createCommonjsModule(function (module) {
 
 			// Default options
 			var defaults$$1 = {
-				group: null,
+				group: Math.random(),
 				sort: true,
 				disabled: false,
 				store: null,
@@ -1869,15 +1844,7 @@ var Sortable = createCommonjsModule(function (module) {
 				scroll: true,
 				scrollSensitivity: 30,
 				scrollSpeed: 10,
-				bubbleScroll: true,
 				draggable: /[uo]l/i.test(el.nodeName) ? 'li' : '>*',
-				swapThreshold: 1, // percentage; 0 <= x <= 1
-				invertSwap: false, // invert always
-				invertedSwapThreshold: null, // will be set to same as swapThreshold if default
-				removeCloneOnHide: true,
-				direction: function direction() {
-					return _detectDirection(el, this.options);
-				},
 				ghostClass: 'sortable-ghost',
 				chosenClass: 'sortable-chosen',
 				dragClass: 'sortable-drag',
@@ -1885,7 +1852,6 @@ var Sortable = createCommonjsModule(function (module) {
 				filter: null,
 				preventOnFilter: true,
 				animation: 0,
-				easing: null,
 				setData: function setData(dataTransfer, dragEl) {
 					dataTransfer.setData('Text', dragEl.textContent);
 				},
@@ -1893,15 +1859,12 @@ var Sortable = createCommonjsModule(function (module) {
 				dragoverBubble: false,
 				dataIdAttr: 'data-id',
 				delay: 0,
-				touchStartThreshold: parseInt(window.devicePixelRatio, 10) || 1,
 				forceFallback: false,
 				fallbackClass: 'sortable-fallback',
 				fallbackOnBody: false,
 				fallbackTolerance: 0,
 				fallbackOffset: { x: 0, y: 0 },
-				supportPointer: Sortable.supportPointer !== false && ('PointerEvent' in window || window.navigator && 'msPointerEnabled' in window.navigator // microsoft
-				),
-				emptyInsertThreshold: 5
+				supportPointer: Sortable.supportPointer !== false
 			};
 
 			// Set default options
@@ -1922,67 +1885,25 @@ var Sortable = createCommonjsModule(function (module) {
 			this.nativeDraggable = options.forceFallback ? false : supportDraggable;
 
 			// Bind events
-			if (options.supportPointer) {
-				_on(el, 'pointerdown', this._onTapStart);
-			} else {
-				_on(el, 'mousedown', this._onTapStart);
-				_on(el, 'touchstart', this._onTapStart);
-			}
+			_on(el, 'mousedown', this._onTapStart);
+			_on(el, 'touchstart', this._onTapStart);
+			options.supportPointer && _on(el, 'pointerdown', this._onTapStart);
 
 			if (this.nativeDraggable) {
 				_on(el, 'dragover', this);
 				_on(el, 'dragenter', this);
 			}
 
-			sortables.push(this.el);
+			touchDragOverListeners.push(this._onDragOver);
 
 			// Restore sorting
-			options.store && options.store.get && this.sort(options.store.get(this) || []);
+			options.store && this.sort(options.store.get(this));
 		}
 
 		Sortable.prototype = /** @lends Sortable.prototype */{
 			constructor: Sortable,
 
-			_computeIsAligned: function _computeIsAligned(evt) {
-				var target;
-
-				if (ghostEl && !supportCssPointerEvents) {
-					_hideGhostForTarget();
-					target = document.elementFromPoint(evt.clientX, evt.clientY);
-					_unhideGhostForTarget();
-				} else {
-					target = evt.target;
-				}
-
-				target = _closest(target, this.options.draggable, this.el, false);
-				if (_alignedSilent) return;
-				if (!dragEl || dragEl.parentNode !== this.el) return;
-
-				var children = this.el.children;
-				for (var i = 0; i < children.length; i++) {
-					// Don't change for target in case it is changed to aligned before onDragOver is fired
-					if (_closest(children[i], this.options.draggable, this.el, false) && children[i] !== target) {
-						children[i].sortableMouseAligned = _isClientInRowColumn(evt.clientX, evt.clientY, children[i], this._getDirection(evt, null), this.options);
-					}
-				}
-				// Used for nulling last target when not in element, nothing to do with checking if aligned
-				if (!_closest(target, this.options.draggable, this.el, true)) {
-					lastTarget = null;
-				}
-
-				_alignedSilent = true;
-				setTimeout(function () {
-					_alignedSilent = false;
-				}, 30);
-			},
-
-			_getDirection: function _getDirection(evt, target) {
-				return typeof this.options.direction === 'function' ? this.options.direction.call(this, evt, target, dragEl) : this.options.direction;
-			},
-
 			_onTapStart: function _onTapStart( /** Event|TouchEvent */evt) {
-				if (!evt.cancelable) return;
-
 				var _this = this,
 				    el = this.el,
 				    options = this.options,
@@ -1990,17 +1911,11 @@ var Sortable = createCommonjsModule(function (module) {
 				    type = evt.type,
 				    touch = evt.touches && evt.touches[0],
 				    target = (touch || evt).target,
-				    originalTarget = evt.target.shadowRoot && (evt.path && evt.path[0] || evt.composedPath && evt.composedPath()[0]) || target,
+				    originalTarget = evt.target.shadowRoot && evt.path && evt.path[0] || target,
 				    filter = options.filter,
 				    startIndex;
 
 				_saveInputCheckedState(el);
-
-				// IE: Calls events in capture mode if event element is nested. This ensures only correct element's _onTapStart goes through.
-				// This process is also done in _onDragOver
-				if (IE11OrLess && !evt.artificialBubble && !_isTrueParentSortable(el, target)) {
-					return;
-				}
 
 				// Don't trigger start event when an element is been dragged, otherwise the evt.oldindex always wrong when set option.group.
 				if (dragEl) {
@@ -2008,7 +1923,7 @@ var Sortable = createCommonjsModule(function (module) {
 				}
 
 				if (/mousedown|pointerdown/.test(type) && evt.button !== 0 || options.disabled) {
-					return; // only left button and enabled
+					return; // only left button or enabled
 				}
 
 				// cancel dnd if original target is content editable
@@ -2016,12 +1931,9 @@ var Sortable = createCommonjsModule(function (module) {
 					return;
 				}
 
-				target = _closest(target, options.draggable, el, false);
+				target = _closest(target, options.draggable, el);
 
 				if (!target) {
-					if (IE11OrLess) {
-						_artificalBubble(el, evt, '_onTapStart');
-					}
 					return;
 				}
 
@@ -2037,12 +1949,12 @@ var Sortable = createCommonjsModule(function (module) {
 				if (typeof filter === 'function') {
 					if (filter.call(this, evt, target, this)) {
 						_dispatchEvent(_this, originalTarget, 'filter', target, el, el, startIndex);
-						preventOnFilter && evt.cancelable && evt.preventDefault();
+						preventOnFilter && evt.preventDefault();
 						return; // cancel dnd
 					}
 				} else if (filter) {
 					filter = filter.split(',').some(function (criteria) {
-						criteria = _closest(originalTarget, criteria.trim(), el, false);
+						criteria = _closest(originalTarget, criteria.trim(), el);
 
 						if (criteria) {
 							_dispatchEvent(_this, criteria, 'filter', target, el, el, startIndex);
@@ -2051,59 +1963,17 @@ var Sortable = createCommonjsModule(function (module) {
 					});
 
 					if (filter) {
-						preventOnFilter && evt.cancelable && evt.preventDefault();
+						preventOnFilter && evt.preventDefault();
 						return; // cancel dnd
 					}
 				}
 
-				if (options.handle && !_closest(originalTarget, options.handle, el, false)) {
+				if (options.handle && !_closest(originalTarget, options.handle, el)) {
 					return;
 				}
 
 				// Prepare `dragstart`
 				this._prepareDragStart(evt, touch, target, startIndex);
-			},
-
-			_handleAutoScroll: function _handleAutoScroll(evt, fallback) {
-				if (!dragEl || !this.options.scroll) return;
-				var x = evt.clientX,
-				    y = evt.clientY,
-				    elem = document.elementFromPoint(x, y),
-				    _this = this;
-
-				// IE does not seem to have native autoscroll,
-				// Edge's autoscroll seems too conditional,
-				// Firefox and Chrome are good
-				if (fallback || Edge || IE11OrLess) {
-					_autoScroll(evt, _this.options, elem, fallback);
-
-					// Listener for pointer element change
-					var ogElemScroller = _getParentAutoScrollElement(elem, true);
-					if (scrolling && (!pointerElemChangedInterval || x !== lastPointerElemX || y !== lastPointerElemY)) {
-
-						pointerElemChangedInterval && clearInterval(pointerElemChangedInterval);
-						// Detect for pointer elem change, emulating native DnD behaviour
-						pointerElemChangedInterval = setInterval(function () {
-							if (!dragEl) return;
-							// could also check if scroll direction on newElem changes due to parent autoscrolling
-							var newElem = _getParentAutoScrollElement(document.elementFromPoint(x, y), true);
-							if (newElem !== ogElemScroller) {
-								ogElemScroller = newElem;
-								_clearAutoScrolls();
-								_autoScroll(evt, _this.options, ogElemScroller, fallback);
-							}
-						}, 10);
-						lastPointerElemX = x;
-						lastPointerElemY = y;
-					}
-				} else {
-					// if DnD is enabled (and browser has good autoscrolling), first autoscroll will already scroll, so get parent autoscroll of first autoscroll
-					if (!_this.options.bubbleScroll || _getParentAutoScrollElement(elem, true) === window) {
-						_clearAutoScrolls();
-						return;
-					}
-					_autoScroll(evt, _this.options, _getParentAutoScrollElement(elem, false), false);
-				}
 			},
 
 			_prepareDragStart: function _prepareDragStart( /** Event */evt, /** Touch */touch, /** HTMLElement */target, /** Number */startIndex) {
@@ -2114,6 +1984,8 @@ var Sortable = createCommonjsModule(function (module) {
 				    dragStartFn;
 
 				if (target && !dragEl && target.parentNode === el) {
+					tapEvt = evt;
+
 					rootEl = el;
 					dragEl = target;
 					parentEl = dragEl.parentNode;
@@ -2122,19 +1994,10 @@ var Sortable = createCommonjsModule(function (module) {
 					activeGroup = options.group;
 					oldIndex = startIndex;
 
-					tapEvt = {
-						target: dragEl,
-						clientX: (touch || evt).clientX,
-						clientY: (touch || evt).clientY
-					};
-
 					this._lastX = (touch || evt).clientX;
 					this._lastY = (touch || evt).clientY;
 
 					dragEl.style['will-change'] = 'all';
-					// undo animation if needed
-					dragEl.style.transition = '';
-					dragEl.style.transform = '';
 
 					dragStartFn = function dragStartFn() {
 						// Delayed drag has been triggered
@@ -2144,14 +2007,14 @@ var Sortable = createCommonjsModule(function (module) {
 						// Make the element draggable
 						dragEl.draggable = _this.nativeDraggable;
 
+						// Chosen item
+						_toggleClass(dragEl, options.chosenClass, true);
+
 						// Bind the events: dragstart/dragend
 						_this._triggerDragStart(evt, touch);
 
 						// Drag start event
 						_dispatchEvent(_this, rootEl, 'choose', dragEl, rootEl, rootEl, oldIndex);
-
-						// Chosen item
-						_toggleClass(dragEl, options.chosenClass, true);
 					};
 
 					// Disable "draggable"
@@ -2159,14 +2022,11 @@ var Sortable = createCommonjsModule(function (module) {
 						_find(dragEl, criteria.trim(), _disableDraggable);
 					});
 
-					if (options.supportPointer) {
-						_on(ownerDocument, 'pointerup', _this._onDrop);
-						_on(ownerDocument, 'pointercancel', _this._onDrop);
-					} else {
-						_on(ownerDocument, 'mouseup', _this._onDrop);
-						_on(ownerDocument, 'touchend', _this._onDrop);
-						_on(ownerDocument, 'touchcancel', _this._onDrop);
-					}
+					_on(ownerDocument, 'mouseup', _this._onDrop);
+					_on(ownerDocument, 'touchend', _this._onDrop);
+					_on(ownerDocument, 'touchcancel', _this._onDrop);
+					_on(ownerDocument, 'selectstart', _this);
+					options.supportPointer && _on(ownerDocument, 'pointercancel', _this._onDrop);
 
 					if (options.delay) {
 						// If the user moves the pointer or let go the click or touch
@@ -2175,21 +2035,14 @@ var Sortable = createCommonjsModule(function (module) {
 						_on(ownerDocument, 'mouseup', _this._disableDelayedDrag);
 						_on(ownerDocument, 'touchend', _this._disableDelayedDrag);
 						_on(ownerDocument, 'touchcancel', _this._disableDelayedDrag);
-						_on(ownerDocument, 'mousemove', _this._delayedDragTouchMoveHandler);
-						_on(ownerDocument, 'touchmove', _this._delayedDragTouchMoveHandler);
-						options.supportPointer && _on(ownerDocument, 'pointermove', _this._delayedDragTouchMoveHandler);
+						_on(ownerDocument, 'mousemove', _this._disableDelayedDrag);
+						_on(ownerDocument, 'touchmove', _this._disableDelayedDrag);
+						options.supportPointer && _on(ownerDocument, 'pointermove', _this._disableDelayedDrag);
 
 						_this._dragStartTimer = setTimeout(dragStartFn, options.delay);
 					} else {
 						dragStartFn();
 					}
-				}
-			},
-
-			_delayedDragTouchMoveHandler: function _delayedDragTouchMoveHandler( /** TouchEvent|PointerEvent **/e) {
-				var touch = e.touches ? e.touches[0] : e;
-				if (min(abs(touch.clientX - this._lastX), abs(touch.clientY - this._lastY)) >= this.options.touchStartThreshold) {
-					this._disableDelayedDrag();
 				}
 			},
 
@@ -2200,22 +2053,25 @@ var Sortable = createCommonjsModule(function (module) {
 				_off(ownerDocument, 'mouseup', this._disableDelayedDrag);
 				_off(ownerDocument, 'touchend', this._disableDelayedDrag);
 				_off(ownerDocument, 'touchcancel', this._disableDelayedDrag);
-				_off(ownerDocument, 'mousemove', this._delayedDragTouchMoveHandler);
-				_off(ownerDocument, 'touchmove', this._delayedDragTouchMoveHandler);
-				_off(ownerDocument, 'pointermove', this._delayedDragTouchMoveHandler);
+				_off(ownerDocument, 'mousemove', this._disableDelayedDrag);
+				_off(ownerDocument, 'touchmove', this._disableDelayedDrag);
+				_off(ownerDocument, 'pointermove', this._disableDelayedDrag);
 			},
 
 			_triggerDragStart: function _triggerDragStart( /** Event */evt, /** Touch */touch) {
 				touch = touch || (evt.pointerType == 'touch' ? evt : null);
 
-				if (!this.nativeDraggable || touch) {
-					if (this.options.supportPointer) {
-						_on(document, 'pointermove', this._onTouchMove);
-					} else if (touch) {
-						_on(document, 'touchmove', this._onTouchMove);
-					} else {
-						_on(document, 'mousemove', this._onTouchMove);
-					}
+				if (touch) {
+					// Touch device support
+					tapEvt = {
+						target: dragEl,
+						clientX: touch.clientX,
+						clientY: touch.clientY
+					};
+
+					this._onDragStart(tapEvt, 'touch');
+				} else if (!this.nativeDraggable) {
+					this._onDragStart(tapEvt, true);
 				} else {
 					_on(dragEl, 'dragend', this);
 					_on(rootEl, 'dragstart', this._onDragStart);
@@ -2233,25 +2089,15 @@ var Sortable = createCommonjsModule(function (module) {
 				} catch (err) {}
 			},
 
-			_dragStarted: function _dragStarted(fallback) {
-				awaitingDragStarted = false;
+			_dragStarted: function _dragStarted() {
 				if (rootEl && dragEl) {
-					if (this.nativeDraggable) {
-						_on(document, 'dragover', this._handleAutoScroll);
-						_on(document, 'dragover', _checkAlignment);
-					}
 					var options = this.options;
 
 					// Apply effect
-					!fallback && _toggleClass(dragEl, options.dragClass, false);
 					_toggleClass(dragEl, options.ghostClass, true);
-
-					// In case dragging an animated element
-					_css(dragEl, 'transform', '');
+					_toggleClass(dragEl, options.dragClass, false);
 
 					Sortable.active = this;
-
-					fallback && this._appendGhost();
 
 					// Drag start event
 					_dispatchEvent(this, rootEl, 'start', dragEl, rootEl, rootEl, oldIndex);
@@ -2260,20 +2106,24 @@ var Sortable = createCommonjsModule(function (module) {
 				}
 			},
 
-			_emulateDragOver: function _emulateDragOver(bypassLastTouchCheck) {
+			_emulateDragOver: function _emulateDragOver() {
 				if (touchEvt) {
-					if (this._lastX === touchEvt.clientX && this._lastY === touchEvt.clientY && !bypassLastTouchCheck) {
+					if (this._lastX === touchEvt.clientX && this._lastY === touchEvt.clientY) {
 						return;
 					}
+
 					this._lastX = touchEvt.clientX;
 					this._lastY = touchEvt.clientY;
 
-					_hideGhostForTarget();
+					if (!supportCssPointerEvents) {
+						_css(ghostEl, 'display', 'none');
+					}
 
 					var target = document.elementFromPoint(touchEvt.clientX, touchEvt.clientY);
 					var parent = target;
+					var i = touchDragOverListeners.length;
 
-					while (target && target.shadowRoot) {
+					if (target && target.shadowRoot) {
 						target = target.shadowRoot.elementFromPoint(touchEvt.clientX, touchEvt.clientY);
 						parent = target;
 					}
@@ -2281,18 +2131,16 @@ var Sortable = createCommonjsModule(function (module) {
 					if (parent) {
 						do {
 							if (parent[expando]) {
-								var inserted;
-
-								inserted = parent[expando]._onDragOver({
-									clientX: touchEvt.clientX,
-									clientY: touchEvt.clientY,
-									target: target,
-									rootEl: parent
-								});
-
-								if (inserted && !this.options.dragoverBubble) {
-									break;
+								while (i--) {
+									touchDragOverListeners[i]({
+										clientX: touchEvt.clientX,
+										clientY: touchEvt.clientY,
+										target: target,
+										rootEl: parent
+									});
 								}
+
+								break;
 							}
 
 							target = parent; // store last element
@@ -2300,35 +2148,34 @@ var Sortable = createCommonjsModule(function (module) {
 						/* jshint boss:true */
 						while (parent = parent.parentNode);
 					}
-					dragEl.parentNode[expando]._computeIsAligned(touchEvt);
 
-					_unhideGhostForTarget();
+					if (!supportCssPointerEvents) {
+						_css(ghostEl, 'display', '');
+					}
 				}
 			},
 
 			_onTouchMove: function _onTouchMove( /**TouchEvent*/evt) {
 				if (tapEvt) {
-					if (!evt.cancelable) return;
 					var options = this.options,
 					    fallbackTolerance = options.fallbackTolerance,
 					    fallbackOffset = options.fallbackOffset,
 					    touch = evt.touches ? evt.touches[0] : evt,
-					    matrix = ghostEl && _matrix(ghostEl),
-					    scaleX = ghostEl && matrix && matrix.a,
-					    scaleY = ghostEl && matrix && matrix.d,
-					    dx = (touch.clientX - tapEvt.clientX + fallbackOffset.x) / (scaleX ? scaleX : 1),
-					    dy = (touch.clientY - tapEvt.clientY + fallbackOffset.y) / (scaleY ? scaleY : 1),
+					    dx = touch.clientX - tapEvt.clientX + fallbackOffset.x,
+					    dy = touch.clientY - tapEvt.clientY + fallbackOffset.y,
 					    translate3d = evt.touches ? 'translate3d(' + dx + 'px,' + dy + 'px,0)' : 'translate(' + dx + 'px,' + dy + 'px)';
 
 					// only set the status to dragging, when we are actually dragging
-					if (!Sortable.active && !awaitingDragStarted) {
+					if (!Sortable.active) {
 						if (fallbackTolerance && min(abs(touch.clientX - this._lastX), abs(touch.clientY - this._lastY)) < fallbackTolerance) {
 							return;
 						}
-						this._onDragStart(evt, true);
+
+						this._dragStarted();
 					}
 
-					this._handleAutoScroll(touch, true);
+					// as well as creating the ghost element on the document body
+					this._appendGhost();
 
 					moved = true;
 					touchEvt = touch;
@@ -2338,15 +2185,16 @@ var Sortable = createCommonjsModule(function (module) {
 					_css(ghostEl, 'msTransform', translate3d);
 					_css(ghostEl, 'transform', translate3d);
 
-					evt.cancelable && evt.preventDefault();
+					evt.preventDefault();
 				}
 			},
 
 			_appendGhost: function _appendGhost() {
 				if (!ghostEl) {
-					var rect = _getRect(dragEl, this.options.fallbackOnBody ? document.body : rootEl, true),
+					var rect = dragEl.getBoundingClientRect(),
 					    css = _css(dragEl),
-					    options = this.options;
+					    options = this.options,
+					    ghostRect;
 
 					ghostEl = dragEl.cloneNode(true);
 
@@ -2354,10 +2202,8 @@ var Sortable = createCommonjsModule(function (module) {
 					_toggleClass(ghostEl, options.fallbackClass, true);
 					_toggleClass(ghostEl, options.dragClass, true);
 
-					_css(ghostEl, 'box-sizing', 'border-box');
-					_css(ghostEl, 'margin', 0);
-					_css(ghostEl, 'top', rect.top);
-					_css(ghostEl, 'left', rect.left);
+					_css(ghostEl, 'top', rect.top - parseInt(css.marginTop, 10));
+					_css(ghostEl, 'left', rect.left - parseInt(css.marginLeft, 10));
 					_css(ghostEl, 'width', rect.width);
 					_css(ghostEl, 'height', rect.height);
 					_css(ghostEl, 'opacity', '0.8');
@@ -2366,45 +2212,58 @@ var Sortable = createCommonjsModule(function (module) {
 					_css(ghostEl, 'pointerEvents', 'none');
 
 					options.fallbackOnBody && document.body.appendChild(ghostEl) || rootEl.appendChild(ghostEl);
+
+					// Fixing dimensions.
+					ghostRect = ghostEl.getBoundingClientRect();
+					_css(ghostEl, 'width', rect.width * 2 - ghostRect.width);
+					_css(ghostEl, 'height', rect.height * 2 - ghostRect.height);
 				}
 			},
 
-			_onDragStart: function _onDragStart( /**Event*/evt, /**boolean*/fallback) {
+			_onDragStart: function _onDragStart( /**Event*/evt, /**boolean*/useFallback) {
 				var _this = this;
 				var dataTransfer = evt.dataTransfer;
 				var options = _this.options;
 
-				// Setup clone
-				cloneEl = _clone(dragEl);
+				_this._offUpEvents();
 
-				cloneEl.draggable = false;
-				cloneEl.style['will-change'] = '';
+				if (activeGroup.checkPull(_this, _this, dragEl, evt)) {
+					cloneEl = _clone(dragEl);
 
-				this._hideClone();
+					cloneEl.draggable = false;
+					cloneEl.style['will-change'] = '';
 
-				_toggleClass(cloneEl, _this.options.chosenClass, false);
+					_css(cloneEl, 'display', 'none');
+					_toggleClass(cloneEl, _this.options.chosenClass, false);
 
-				// #1143: IFrame support workaround
-				_this._cloneId = _nextTick(function () {
-					if (!_this.options.removeCloneOnHide) {
+					// #1143: IFrame support workaround
+					_this._cloneId = _nextTick(function () {
 						rootEl.insertBefore(cloneEl, dragEl);
+						_dispatchEvent(_this, rootEl, 'clone', dragEl);
+					});
+				}
+
+				_toggleClass(dragEl, options.dragClass, true);
+
+				if (useFallback) {
+					if (useFallback === 'touch') {
+						// Bind touch events
+						_on(document, 'touchmove', _this._onTouchMove);
+						_on(document, 'touchend', _this._onDrop);
+						_on(document, 'touchcancel', _this._onDrop);
+
+						if (options.supportPointer) {
+							_on(document, 'pointermove', _this._onTouchMove);
+							_on(document, 'pointerup', _this._onDrop);
+						}
+					} else {
+						// Old brwoser
+						_on(document, 'mousemove', _this._onTouchMove);
+						_on(document, 'mouseup', _this._onDrop);
 					}
-					_dispatchEvent(_this, rootEl, 'clone', dragEl);
-				});
 
-				!fallback && _toggleClass(dragEl, options.dragClass, true);
-
-				// Set proper drop events
-				if (fallback) {
-					ignoreNextClick = true;
 					_this._loopId = setInterval(_this._emulateDragOver, 50);
 				} else {
-					// Undo what was set in _prepareDragStart before drag started
-					_off(document, 'mouseup', _this._onDrop);
-					_off(document, 'touchend', _this._onDrop);
-					_off(document, 'touchcancel', _this._onDrop);
-					_off(document, 'pointercancel', _this._onDrop);
-
 					if (dataTransfer) {
 						dataTransfer.effectAllowed = 'move';
 						options.setData && options.setData.call(_this, dataTransfer, dragEl);
@@ -2412,20 +2271,18 @@ var Sortable = createCommonjsModule(function (module) {
 
 					_on(document, 'drop', _this);
 
-					// #1276 fix:
-					_css(dragEl, 'transform', 'translateZ(0)');
+					// #1143: Бывает элемент с IFrame внутри блокирует `drop`,
+					// поэтому если вызвался `mouseover`, значит надо отменять весь d'n'd.
+					// Breaking Chrome 62+
+					// _on(document, 'mouseover', _this);
+
+					_this._dragStartId = _nextTick(_this._dragStarted);
 				}
-
-				awaitingDragStarted = true;
-
-				_this._dragStartId = _nextTick(_this._dragStarted.bind(_this, fallback));
-				_on(document, 'selectstart', _this);
 			},
 
-			// Returns true - if no further action is needed (either inserted or another condition)
 			_onDragOver: function _onDragOver( /**Event*/evt) {
 				var el = this.el,
-				    target = evt.target,
+				    target,
 				    dragRect,
 				    targetRect,
 				    revert,
@@ -2433,233 +2290,157 @@ var Sortable = createCommonjsModule(function (module) {
 				    group = options.group,
 				    activeSortable = Sortable.active,
 				    isOwner = activeGroup === group,
-				    canSort = options.sort,
-				    _this = this;
-
-				if (_silent) return;
-
-				// IE event order fix
-				if (IE11OrLess && !evt.rootEl && !evt.artificialBubble && !_isTrueParentSortable(el, target)) {
-					return;
-				}
-
-				// Return invocation when no further action is needed in another sortable
-				function completed() {
-					if (activeSortable) {
-						// Set ghost class to new sortable's ghost class
-						_toggleClass(dragEl, putSortable ? putSortable.options.ghostClass : activeSortable.options.ghostClass, false);
-						_toggleClass(dragEl, options.ghostClass, true);
-					}
-
-					if (putSortable !== _this && _this !== Sortable.active) {
-						putSortable = _this;
-					} else if (_this === Sortable.active) {
-						putSortable = null;
-					}
-
-					// Null lastTarget if it is not inside a previously swapped element
-					if (target === dragEl && !dragEl.animated || target === el && !target.animated) {
-						lastTarget = null;
-					}
-					// no bubbling and not fallback
-					if (!options.dragoverBubble && !evt.rootEl && target !== document) {
-						_this._handleAutoScroll(evt);
-						dragEl.parentNode[expando]._computeIsAligned(evt);
-					}
-
-					!options.dragoverBubble && evt.stopPropagation && evt.stopPropagation();
-
-					return true;
-				}
-
-				// Call when dragEl has been inserted
-				function changed() {
-					_dispatchEvent(_this, rootEl, 'change', target, el, rootEl, oldIndex, _index(dragEl, options.draggable), evt);
-				}
+				    isMovingBetweenSortable = false,
+				    canSort = options.sort;
 
 				if (evt.preventDefault !== void 0) {
-					evt.cancelable && evt.preventDefault();
+					evt.preventDefault();
+					!options.dragoverBubble && evt.stopPropagation();
+				}
+
+				if (dragEl.animated) {
+					return;
 				}
 
 				moved = true;
 
-				target = _closest(target, options.draggable, el, true);
-
-				// target is dragEl or target is animated
-				if (!!_closest(evt.target, null, dragEl, true) || target.animated) {
-					return completed();
-				}
-
-				if (target !== dragEl) {
-					ignoreNextClick = false;
-				}
-
 				if (activeSortable && !options.disabled && (isOwner ? canSort || (revert = !rootEl.contains(dragEl)) // Reverting item into the original list
-				: putSortable === this || (this.lastPutMode = activeGroup.checkPull(this, activeSortable, dragEl, evt)) && group.checkPut(this, activeSortable, dragEl, evt))) {
-					var axis = this._getDirection(evt, target);
+				: putSortable === this || (activeSortable.lastPullMode = activeGroup.checkPull(this, activeSortable, dragEl, evt)) && group.checkPut(this, activeSortable, dragEl, evt)) && (evt.rootEl === void 0 || evt.rootEl === this.el) // touch fallback
+				) {
+						// Smart auto-scrolling
+						_autoScroll(evt, options, this.el);
 
-					dragRect = _getRect(dragEl);
-
-					if (revert) {
-						this._hideClone();
-						parentEl = rootEl; // actualization
-
-						if (nextEl) {
-							rootEl.insertBefore(dragEl, nextEl);
-						} else {
-							rootEl.appendChild(dragEl);
+						if (_silent) {
+							return;
 						}
 
-						return completed();
-					}
+						target = _closest(evt.target, options.draggable, el);
+						dragRect = dragEl.getBoundingClientRect();
 
-					if (el.children.length === 0 || el.children[0] === ghostEl || _ghostIsLast(evt, axis, el) && !dragEl.animated) {
-						//assign target only if condition is true
-						if (el.children.length !== 0 && el.children[0] !== ghostEl && el === evt.target) {
-							target = _lastChild(el);
+						if (putSortable !== this) {
+							putSortable = this;
+							isMovingBetweenSortable = true;
 						}
 
-						if (target) {
-							targetRect = _getRect(target);
-						}
+						if (revert) {
+							_cloneHide(activeSortable, true);
+							parentEl = rootEl; // actualization
 
-						if (isOwner) {
-							activeSortable._hideClone();
-						} else {
-							activeSortable._showClone(this);
-						}
-
-						if (_onMove(rootEl, el, dragEl, dragRect, target, targetRect, evt, !!target) !== false) {
-							el.appendChild(dragEl);
-							parentEl = el; // actualization
-							realDragElRect = null;
-
-							changed();
-							this._animate(dragRect, dragEl);
-							target && this._animate(targetRect, target);
-							return completed();
-						}
-					} else if (target && target !== dragEl && target.parentNode[expando] !== void 0 && target !== el) {
-						var direction = 0,
-						    targetBeforeFirstSwap,
-						    aligned = target.sortableMouseAligned,
-						    differentLevel = dragEl.parentNode !== el,
-						    scrolledPastTop = _isScrolledPast(target, axis === 'vertical' ? 'top' : 'left');
-
-						if (lastTarget !== target) {
-							lastMode = null;
-							targetBeforeFirstSwap = _getRect(target)[axis === 'vertical' ? 'top' : 'left'];
-							pastFirstInvertThresh = false;
-						}
-
-						// Reference: https://www.lucidchart.com/documents/view/10fa0e93-e362-4126-aca2-b709ee56bd8b/0
-						if (_isElInRowColumn(dragEl, target, axis) && aligned || differentLevel || scrolledPastTop || options.invertSwap || lastMode === 'insert' ||
-						// Needed, in the case that we are inside target and inserted because not aligned... aligned will stay false while inside
-						// and lastMode will change to 'insert', but we must swap
-						lastMode === 'swap') {
-							// New target that we will be inside
-							if (lastMode !== 'swap') {
-								isCircumstantialInvert = options.invertSwap || differentLevel || scrolling || scrolledPastTop;
+							if (cloneEl || nextEl) {
+								rootEl.insertBefore(dragEl, cloneEl || nextEl);
+							} else if (!canSort) {
+								rootEl.appendChild(dragEl);
 							}
 
-							direction = _getSwapDirection(evt, target, axis, options.swapThreshold, options.invertedSwapThreshold == null ? options.swapThreshold : options.invertedSwapThreshold, isCircumstantialInvert, lastTarget === target);
-							lastMode = 'swap';
-						} else {
-							// Insert at position
-							direction = _getInsertDirection(target, options);
-							lastMode = 'insert';
+							return;
 						}
-						if (direction === 0) return completed();
 
-						realDragElRect = null;
-						lastTarget = target;
-
-						lastDirection = direction;
-
-						targetRect = _getRect(target);
-
-						var nextSibling = target.nextElementSibling,
-						    after = false;
-
-						after = direction === 1;
-
-						var moveVector = _onMove(rootEl, el, dragEl, dragRect, target, targetRect, evt, after);
-
-						if (moveVector !== false) {
-							if (moveVector === 1 || moveVector === -1) {
-								after = moveVector === 1;
+						if (el.children.length === 0 || el.children[0] === ghostEl || el === evt.target && _ghostIsLast(el, evt)) {
+							//assign target only if condition is true
+							if (el.children.length !== 0 && el.children[0] !== ghostEl && el === evt.target) {
+								target = el.lastElementChild;
 							}
 
-							_silent = true;
-							setTimeout(_unsilent, 30);
+							if (target) {
+								if (target.animated) {
+									return;
+								}
 
-							if (isOwner) {
-								activeSortable._hideClone();
-							} else {
-								activeSortable._showClone(this);
+								targetRect = target.getBoundingClientRect();
 							}
 
-							if (after && !nextSibling) {
-								el.appendChild(dragEl);
-							} else {
-								target.parentNode.insertBefore(dragEl, after ? nextSibling : target);
+							_cloneHide(activeSortable, isOwner);
+
+							if (_onMove(rootEl, el, dragEl, dragRect, target, targetRect, evt) !== false) {
+								if (!dragEl.contains(el)) {
+									el.appendChild(dragEl);
+									parentEl = el; // actualization
+								}
+
+								this._animate(dragRect, dragEl);
+								target && this._animate(targetRect, target);
+							}
+						} else if (target && !target.animated && target !== dragEl && target.parentNode[expando] !== void 0) {
+							if (lastEl !== target) {
+								lastEl = target;
+								lastCSS = _css(target);
+								lastParentCSS = _css(target.parentNode);
 							}
 
-							parentEl = dragEl.parentNode; // actualization
+							targetRect = target.getBoundingClientRect();
 
-							// must be done before animation
-							if (targetBeforeFirstSwap !== undefined && !isCircumstantialInvert) {
-								targetMoveDistance = abs(targetBeforeFirstSwap - _getRect(target)[axis === 'vertical' ? 'top' : 'left']);
+							var width = targetRect.right - targetRect.left,
+							    height = targetRect.bottom - targetRect.top,
+							    floating = R_FLOAT.test(lastCSS.cssFloat + lastCSS.display) || lastParentCSS.display == 'flex' && lastParentCSS['flex-direction'].indexOf('row') === 0,
+							    isWide = target.offsetWidth > dragEl.offsetWidth,
+							    isLong = target.offsetHeight > dragEl.offsetHeight,
+							    halfway = (floating ? (evt.clientX - targetRect.left) / width : (evt.clientY - targetRect.top) / height) > 0.5,
+							    nextSibling = target.nextElementSibling,
+							    after = false;
+
+							if (floating) {
+								var elTop = dragEl.offsetTop,
+								    tgTop = target.offsetTop;
+
+								if (elTop === tgTop) {
+									after = target.previousElementSibling === dragEl && !isWide || halfway && isWide;
+								} else if (target.previousElementSibling === dragEl || dragEl.previousElementSibling === target) {
+									after = (evt.clientY - targetRect.top) / height > 0.5;
+								} else {
+									after = tgTop > elTop;
+								}
+							} else if (!isMovingBetweenSortable) {
+								after = nextSibling !== dragEl && !isLong || halfway && isLong;
 							}
-							changed();
-							!differentLevel && this._animate(targetRect, target);
-							this._animate(dragRect, dragEl);
 
-							return completed();
+							var moveVector = _onMove(rootEl, el, dragEl, dragRect, target, targetRect, evt, after);
+
+							if (moveVector !== false) {
+								if (moveVector === 1 || moveVector === -1) {
+									after = moveVector === 1;
+								}
+
+								_silent = true;
+								setTimeout(_unsilent, 30);
+
+								_cloneHide(activeSortable, isOwner);
+
+								if (!dragEl.contains(el)) {
+									if (after && !nextSibling) {
+										el.appendChild(dragEl);
+									} else {
+										target.parentNode.insertBefore(dragEl, after ? nextSibling : target);
+									}
+								}
+
+								parentEl = dragEl.parentNode; // actualization
+
+								this._animate(dragRect, dragEl);
+								this._animate(targetRect, target);
+							}
 						}
 					}
-
-					if (el.contains(dragEl)) {
-						return completed();
-					}
-				}
-
-				if (IE11OrLess && !evt.rootEl) {
-					_artificalBubble(el, evt, '_onDragOver');
-				}
-
-				return false;
 			},
 
 			_animate: function _animate(prevRect, target) {
 				var ms = this.options.animation;
 
 				if (ms) {
-					var currentRect = _getRect(target);
-
-					if (target === dragEl) {
-						realDragElRect = currentRect;
-					}
+					var currentRect = target.getBoundingClientRect();
 
 					if (prevRect.nodeType === 1) {
-						prevRect = _getRect(prevRect);
+						prevRect = prevRect.getBoundingClientRect();
 					}
 
-					// Check if actually moving position
-					if (prevRect.left + prevRect.width / 2 !== currentRect.left + currentRect.width / 2 || prevRect.top + prevRect.height / 2 !== currentRect.top + currentRect.height / 2) {
-						var matrix = _matrix(this.el),
-						    scaleX = matrix && matrix.a,
-						    scaleY = matrix && matrix.d;
+					_css(target, 'transition', 'none');
+					_css(target, 'transform', 'translate3d(' + (prevRect.left - currentRect.left) + 'px,' + (prevRect.top - currentRect.top) + 'px,0)');
 
-						_css(target, 'transition', 'none');
-						_css(target, 'transform', 'translate3d(' + (prevRect.left - currentRect.left) / (scaleX ? scaleX : 1) + 'px,' + (prevRect.top - currentRect.top) / (scaleY ? scaleY : 1) + 'px,0)');
+					target.offsetWidth; // repaint
 
-						forRepaintDummy = target.offsetWidth; // repaint
-						_css(target, 'transition', 'transform ' + ms + 'ms' + (this.options.easing ? ' ' + this.options.easing : ''));
-						_css(target, 'transform', 'translate3d(0,0,0)');
-					}
+					_css(target, 'transition', 'all ' + ms + 'ms');
+					_css(target, 'transform', 'translate3d(0,0,0)');
 
-					typeof target.animated === 'number' && clearTimeout(target.animated);
+					clearTimeout(target.animated);
 					target.animated = setTimeout(function () {
 						_css(target, 'transition', '');
 						_css(target, 'transform', '');
@@ -2678,50 +2459,40 @@ var Sortable = createCommonjsModule(function (module) {
 				_off(ownerDocument, 'pointerup', this._onDrop);
 				_off(ownerDocument, 'touchcancel', this._onDrop);
 				_off(ownerDocument, 'pointercancel', this._onDrop);
-				_off(document, 'selectstart', this);
+				_off(ownerDocument, 'selectstart', this);
 			},
 
 			_onDrop: function _onDrop( /**Event*/evt) {
 				var el = this.el,
 				    options = this.options;
 
-				awaitingDragStarted = false;
-				scrolling = false;
-				isCircumstantialInvert = false;
-				pastFirstInvertThresh = false;
-
 				clearInterval(this._loopId);
-
-				clearInterval(pointerElemChangedInterval);
-				_clearAutoScrolls();
-				_cancelThrottle();
-
+				clearInterval(autoScroll.pid);
 				clearTimeout(this._dragStartTimer);
 
 				_cancelNextTick(this._cloneId);
 				_cancelNextTick(this._dragStartId);
 
 				// Unbind events
+				_off(document, 'mouseover', this);
 				_off(document, 'mousemove', this._onTouchMove);
 
 				if (this.nativeDraggable) {
 					_off(document, 'drop', this);
 					_off(el, 'dragstart', this._onDragStart);
-					_off(document, 'dragover', this._handleAutoScroll);
-					_off(document, 'dragover', _checkAlignment);
 				}
 
 				this._offUpEvents();
 
 				if (evt) {
 					if (moved) {
-						evt.cancelable && evt.preventDefault();
+						evt.preventDefault();
 						!options.dropBubble && evt.stopPropagation();
 					}
 
 					ghostEl && ghostEl.parentNode && ghostEl.parentNode.removeChild(ghostEl);
 
-					if (rootEl === parentEl || putSortable && putSortable.lastPutMode !== 'clone') {
+					if (rootEl === parentEl || Sortable.active.lastPullMode !== 'clone') {
 						// Remove clone
 						cloneEl && cloneEl.parentNode && cloneEl.parentNode.removeChild(cloneEl);
 					}
@@ -2735,28 +2506,26 @@ var Sortable = createCommonjsModule(function (module) {
 						dragEl.style['will-change'] = '';
 
 						// Remove class's
-						_toggleClass(dragEl, putSortable ? putSortable.options.ghostClass : this.options.ghostClass, false);
+						_toggleClass(dragEl, this.options.ghostClass, false);
 						_toggleClass(dragEl, this.options.chosenClass, false);
 
 						// Drag stop event
-						_dispatchEvent(this, rootEl, 'unchoose', dragEl, parentEl, rootEl, oldIndex, null, evt);
+						_dispatchEvent(this, rootEl, 'unchoose', dragEl, parentEl, rootEl, oldIndex);
 
 						if (rootEl !== parentEl) {
 							newIndex = _index(dragEl, options.draggable);
 
 							if (newIndex >= 0) {
 								// Add event
-								_dispatchEvent(null, parentEl, 'add', dragEl, parentEl, rootEl, oldIndex, newIndex, evt);
+								_dispatchEvent(null, parentEl, 'add', dragEl, parentEl, rootEl, oldIndex, newIndex);
 
 								// Remove event
-								_dispatchEvent(this, rootEl, 'remove', dragEl, parentEl, rootEl, oldIndex, newIndex, evt);
+								_dispatchEvent(this, rootEl, 'remove', dragEl, parentEl, rootEl, oldIndex, newIndex);
 
 								// drag from one list and drop into another
-								_dispatchEvent(null, parentEl, 'sort', dragEl, parentEl, rootEl, oldIndex, newIndex, evt);
-								_dispatchEvent(this, rootEl, 'sort', dragEl, parentEl, rootEl, oldIndex, newIndex, evt);
+								_dispatchEvent(null, parentEl, 'sort', dragEl, parentEl, rootEl, oldIndex, newIndex);
+								_dispatchEvent(this, rootEl, 'sort', dragEl, parentEl, rootEl, oldIndex, newIndex);
 							}
-
-							putSortable && putSortable.save();
 						} else {
 							if (dragEl.nextSibling !== nextEl) {
 								// Get the index of the dragged element within its parent
@@ -2764,8 +2533,8 @@ var Sortable = createCommonjsModule(function (module) {
 
 								if (newIndex >= 0) {
 									// drag & drop within the same list
-									_dispatchEvent(this, rootEl, 'update', dragEl, parentEl, rootEl, oldIndex, newIndex, evt);
-									_dispatchEvent(this, rootEl, 'sort', dragEl, parentEl, rootEl, oldIndex, newIndex, evt);
+									_dispatchEvent(this, rootEl, 'update', dragEl, parentEl, rootEl, oldIndex, newIndex);
+									_dispatchEvent(this, rootEl, 'sort', dragEl, parentEl, rootEl, oldIndex, newIndex);
 								}
 							}
 						}
@@ -2776,23 +2545,23 @@ var Sortable = createCommonjsModule(function (module) {
 								newIndex = oldIndex;
 							}
 
-							_dispatchEvent(this, rootEl, 'end', dragEl, parentEl, rootEl, oldIndex, newIndex, evt);
+							_dispatchEvent(this, rootEl, 'end', dragEl, parentEl, rootEl, oldIndex, newIndex);
 
 							// Save sorting
 							this.save();
 						}
 					}
 				}
+
 				this._nulling();
 			},
 
 			_nulling: function _nulling() {
-				rootEl = dragEl = parentEl = ghostEl = nextEl = cloneEl = lastDownEl = scrollEl = scrollParentEl = autoScrolls.length = pointerElemChangedInterval = lastPointerElemX = lastPointerElemY = tapEvt = touchEvt = moved = newIndex = oldIndex = lastTarget = lastDirection = forRepaintDummy = realDragElRect = putSortable = activeGroup = Sortable.active = null;
+				rootEl = dragEl = parentEl = ghostEl = nextEl = cloneEl = lastDownEl = scrollEl = scrollParentEl = tapEvt = touchEvt = moved = newIndex = lastEl = lastCSS = putSortable = activeGroup = Sortable.active = null;
 
 				savedInputChecked.forEach(function (el) {
 					el.checked = true;
 				});
-
 				savedInputChecked.length = 0;
 			},
 
@@ -2803,12 +2572,16 @@ var Sortable = createCommonjsModule(function (module) {
 						this._onDrop(evt);
 						break;
 
-					case 'dragenter':
 					case 'dragover':
+					case 'dragenter':
 						if (dragEl) {
 							this._onDragOver(evt);
 							_globalDragOver(evt);
 						}
+						break;
+
+					case 'mouseover':
+						this._onDrop(evt);
 						break;
 
 					case 'selectstart':
@@ -2831,7 +2604,7 @@ var Sortable = createCommonjsModule(function (module) {
 
 				for (; i < n; i++) {
 					el = children[i];
-					if (_closest(el, options.draggable, this.el, false)) {
+					if (_closest(el, options.draggable, this.el)) {
 						order.push(el.getAttribute(options.dataIdAttr) || _generateId(el));
 					}
 				}
@@ -2850,7 +2623,7 @@ var Sortable = createCommonjsModule(function (module) {
 				this.toArray().forEach(function (id, i) {
 					var el = rootEl.children[i];
 
-					if (_closest(el, this.options.draggable, rootEl, false)) {
+					if (_closest(el, this.options.draggable, rootEl)) {
 						items[id] = el;
 					}
 				}, this);
@@ -2868,7 +2641,7 @@ var Sortable = createCommonjsModule(function (module) {
     */
 			save: function save() {
 				var store = this.options.store;
-				store && store.set && store.set(this);
+				store && store.set(this);
 			},
 
 			/**
@@ -2878,7 +2651,7 @@ var Sortable = createCommonjsModule(function (module) {
     * @returns {HTMLElement|null}
     */
 			closest: function closest(el, selector) {
-				return _closest(el, selector || this.options.draggable, this.el, false);
+				return _closest(el, selector || this.options.draggable, this.el);
 			},
 
 			/**
@@ -2917,63 +2690,51 @@ var Sortable = createCommonjsModule(function (module) {
 					_off(el, 'dragover', this);
 					_off(el, 'dragenter', this);
 				}
+
 				// Remove draggable attributes
 				Array.prototype.forEach.call(el.querySelectorAll('[draggable]'), function (el) {
 					el.removeAttribute('draggable');
 				});
 
+				touchDragOverListeners.splice(touchDragOverListeners.indexOf(this._onDragOver), 1);
+
 				this._onDrop();
 
-				sortables.splice(sortables.indexOf(this.el), 1);
-
 				this.el = el = null;
-			},
-
-			_hideClone: function _hideClone() {
-				if (!cloneEl.cloneHidden) {
-					_css(cloneEl, 'display', 'none');
-					cloneEl.cloneHidden = true;
-					if (cloneEl.parentNode && this.options.removeCloneOnHide) {
-						cloneEl.parentNode.removeChild(cloneEl);
-					}
-				}
-			},
-
-			_showClone: function _showClone(putSortable) {
-				if (putSortable.lastPutMode !== 'clone') {
-					this._hideClone();
-					return;
-				}
-
-				if (cloneEl.cloneHidden) {
-					// show clone at dragEl or original position
-					if (rootEl.contains(dragEl) && !this.options.group.revertClone) {
-						rootEl.insertBefore(cloneEl, dragEl);
-					} else if (nextEl) {
-						rootEl.insertBefore(cloneEl, nextEl);
-					} else {
-						rootEl.appendChild(cloneEl);
-					}
-
-					if (this.options.group.revertClone) {
-						this._animate(dragEl, cloneEl);
-					}
-					_css(cloneEl, 'display', '');
-					cloneEl.cloneHidden = false;
-				}
 			}
 		};
 
-		function _closest( /**HTMLElement*/el, /**String*/selector, /**HTMLElement*/ctx, includeCTX) {
+		function _cloneHide(sortable, state) {
+			if (sortable.lastPullMode !== 'clone') {
+				state = true;
+			}
+
+			if (cloneEl && cloneEl.state !== state) {
+				_css(cloneEl, 'display', state ? 'none' : '');
+
+				if (!state) {
+					if (cloneEl.state) {
+						if (sortable.options.group.revertClone) {
+							rootEl.insertBefore(cloneEl, nextEl);
+							sortable._animate(dragEl, cloneEl);
+						} else {
+							rootEl.insertBefore(cloneEl, dragEl);
+						}
+					}
+				}
+
+				cloneEl.state = state;
+			}
+		}
+
+		function _closest( /**HTMLElement*/el, /**String*/selector, /**HTMLElement*/ctx) {
 			if (el) {
 				ctx = ctx || document;
 
 				do {
-					if (selector === '>*' && el.parentNode === ctx || _matches(el, selector) || includeCTX && el === ctx) {
+					if (selector === '>*' && el.parentNode === ctx || _matches(el, selector)) {
 						return el;
 					}
-
-					if (el === ctx) break;
 					/* jshint boss:true */
 				} while (el = _getParentOrHost(el));
 			}
@@ -2982,14 +2743,16 @@ var Sortable = createCommonjsModule(function (module) {
 		}
 
 		function _getParentOrHost(el) {
-			return el.host && el !== document && el.host.nodeType ? el.host : el.parentNode;
+			var parent = el.host;
+
+			return parent && parent.nodeType ? parent : el.parentNode;
 		}
 
 		function _globalDragOver( /**Event*/evt) {
 			if (evt.dataTransfer) {
 				evt.dataTransfer.dropEffect = 'move';
 			}
-			evt.cancelable && evt.preventDefault();
+			evt.preventDefault();
 		}
 
 		function _on(el, event, fn) {
@@ -3001,7 +2764,7 @@ var Sortable = createCommonjsModule(function (module) {
 		}
 
 		function _toggleClass(el, name, state) {
-			if (el && name) {
+			if (el) {
 				if (el.classList) {
 					el.classList[state ? 'add' : 'remove'](name);
 				} else {
@@ -3024,32 +2787,12 @@ var Sortable = createCommonjsModule(function (module) {
 
 					return prop === void 0 ? val : val[prop];
 				} else {
-					if (!(prop in style) && prop.indexOf('webkit') === -1) {
+					if (!(prop in style)) {
 						prop = '-webkit-' + prop;
 					}
 
 					style[prop] = val + (typeof val === 'string' ? '' : 'px');
 				}
-			}
-		}
-
-		function _matrix(el) {
-			var appliedTransforms = '';
-			do {
-				var transform = _css(el, 'transform');
-
-				if (transform && transform !== 'none') {
-					appliedTransforms = transform + ' ' + appliedTransforms;
-				}
-				/* jshint boss:true */
-			} while (el = el.parentNode);
-
-			if (window.DOMMatrix) {
-				return new DOMMatrix(appliedTransforms);
-			} else if (window.WebKitCSSMatrix) {
-				return new WebKitCSSMatrix(appliedTransforms);
-			} else if (window.CSSMatrix) {
-				return new CSSMatrix(appliedTransforms);
 			}
 		}
 
@@ -3071,21 +2814,14 @@ var Sortable = createCommonjsModule(function (module) {
 			return [];
 		}
 
-		function _dispatchEvent(sortable, rootEl, name, targetEl, toEl, fromEl, startIndex, newIndex, originalEvt) {
+		function _dispatchEvent(sortable, rootEl, name, targetEl, toEl, fromEl, startIndex, newIndex) {
 			sortable = sortable || rootEl[expando];
-			var evt,
+
+			var evt = document.createEvent('Event'),
 			    options = sortable.options,
 			    onName = 'on' + name.charAt(0).toUpperCase() + name.substr(1);
-			// Support for new CustomEvent feature
-			if (window.CustomEvent && !IE11OrLess && !Edge) {
-				evt = new CustomEvent(name, {
-					bubbles: true,
-					cancelable: true
-				});
-			} else {
-				evt = document.createEvent('Event');
-				evt.initEvent(name, true, true);
-			}
+
+			evt.initEvent(name, true, true);
 
 			evt.to = toEl || rootEl;
 			evt.from = fromEl || rootEl;
@@ -3095,11 +2831,7 @@ var Sortable = createCommonjsModule(function (module) {
 			evt.oldIndex = startIndex;
 			evt.newIndex = newIndex;
 
-			evt.originalEvent = originalEvt;
-
-			if (rootEl) {
-				rootEl.dispatchEvent(evt);
-			}
+			rootEl.dispatchEvent(evt);
 
 			if (options[onName]) {
 				options[onName].call(sortable, evt);
@@ -3111,26 +2843,17 @@ var Sortable = createCommonjsModule(function (module) {
 			    sortable = fromEl[expando],
 			    onMoveFn = sortable.options.onMove,
 			    retVal;
-			// Support for new CustomEvent feature
-			if (window.CustomEvent && !IE11OrLess && !Edge) {
-				evt = new CustomEvent('move', {
-					bubbles: true,
-					cancelable: true
-				});
-			} else {
-				evt = document.createEvent('Event');
-				evt.initEvent('move', true, true);
-			}
+
+			evt = document.createEvent('Event');
+			evt.initEvent('move', true, true);
 
 			evt.to = toEl;
 			evt.from = fromEl;
 			evt.dragged = dragEl;
 			evt.draggedRect = dragRect;
 			evt.related = targetEl || toEl;
-			evt.relatedRect = targetRect || _getRect(toEl);
+			evt.relatedRect = targetRect || toEl.getBoundingClientRect();
 			evt.willInsertAfter = willInsertAfter;
-
-			evt.originalEvent = originalEvt;
 
 			fromEl.dispatchEvent(evt);
 
@@ -3149,121 +2872,14 @@ var Sortable = createCommonjsModule(function (module) {
 			_silent = false;
 		}
 
-		/**
-   * Gets nth child of el, ignoring hidden children, sortable's elements (does not ignore clone if it's visible)
-   * and non-draggable elements
-   * @param  {HTMLElement} el       The parent element
-   * @param  {Number} childNum      The index of the child
-   * @param  {Object} options       Parent Sortable's options
-   * @return {HTMLElement}          The child at index childNum, or null if not found
-   */
-		function _getChild(el, childNum, options) {
-			var currentChild = 0,
-			    i = 0,
-			    children = el.children;
+		/** @returns {HTMLElement|false} */
+		function _ghostIsLast(el, evt) {
+			var lastEl = el.lastElementChild,
+			    rect = lastEl.getBoundingClientRect();
 
-			while (i < children.length) {
-				if (children[i].style.display !== 'none' && children[i] !== ghostEl && children[i] !== dragEl && _closest(children[i], options.draggable, el, false)) {
-					if (currentChild === childNum) {
-						return children[i];
-					}
-					currentChild++;
-				}
-
-				i++;
-			}
-			return null;
-		}
-
-		/**
-   * Gets the last child in the el, ignoring ghostEl
-   * @param  {HTMLElement} el       Parent element
-   * @return {HTMLElement}          The last child, ignoring ghostEl
-   */
-		function _lastChild(el) {
-			var last = el.lastElementChild;
-
-			if (last === ghostEl) {
-				last = el.children[el.childElementCount - 2];
-			}
-
-			return last || null;
-		}
-
-		function _ghostIsLast(evt, axis, el) {
-			var elRect = _getRect(_lastChild(el)),
-			    mouseOnAxis = axis === 'vertical' ? evt.clientY : evt.clientX,
-			    mouseOnOppAxis = axis === 'vertical' ? evt.clientX : evt.clientY,
-			    targetS2 = axis === 'vertical' ? elRect.bottom : elRect.right,
-			    targetS1Opp = axis === 'vertical' ? elRect.left : elRect.top,
-			    targetS2Opp = axis === 'vertical' ? elRect.right : elRect.bottom;
-
-			return mouseOnOppAxis > targetS1Opp && mouseOnOppAxis < targetS2Opp && mouseOnAxis > targetS2;
-		}
-
-		function _getSwapDirection(evt, target, axis, swapThreshold, invertedSwapThreshold, invertSwap, isLastTarget) {
-			var targetRect = _getRect(target),
-			    mouseOnAxis = axis === 'vertical' ? evt.clientY : evt.clientX,
-			    targetLength = axis === 'vertical' ? targetRect.height : targetRect.width,
-			    targetS1 = axis === 'vertical' ? targetRect.top : targetRect.left,
-			    targetS2 = axis === 'vertical' ? targetRect.bottom : targetRect.right,
-			    dragRect = _getRect(dragEl),
-			    invert = false;
-
-			if (!invertSwap) {
-				// Never invert or create dragEl shadow when target movemenet causes mouse to move past the end of regular swapThreshold
-				if (isLastTarget && targetMoveDistance < targetLength * swapThreshold) {
-					// multiplied only by swapThreshold because mouse will already be inside target by (1 - threshold) * targetLength / 2
-					// check if past first invert threshold on side opposite of lastDirection
-					if (!pastFirstInvertThresh && (lastDirection === 1 ? mouseOnAxis > targetS1 + targetLength * invertedSwapThreshold / 2 : mouseOnAxis < targetS2 - targetLength * invertedSwapThreshold / 2)) {
-						// past first invert threshold, do not restrict inverted threshold to dragEl shadow
-						pastFirstInvertThresh = true;
-					}
-
-					if (!pastFirstInvertThresh) {
-						if (lastDirection === 1 ? mouseOnAxis < targetS1 + targetMoveDistance // over dragEl shadow
-						: mouseOnAxis > targetS2 - targetMoveDistance) {
-							return lastDirection * -1;
-						}
-					} else {
-						invert = true;
-					}
-				} else {
-					// Regular
-					if (mouseOnAxis > targetS1 + targetLength * (1 - swapThreshold) / 2 && mouseOnAxis < targetS2 - targetLength * (1 - swapThreshold) / 2) {
-						return mouseOnAxis > targetS1 + targetLength / 2 ? -1 : 1;
-					}
-				}
-			}
-
-			invert = invert || invertSwap;
-
-			if (invert) {
-				// Invert of regular
-				if (mouseOnAxis < targetS1 + targetLength * invertedSwapThreshold / 2 || mouseOnAxis > targetS2 - targetLength * invertedSwapThreshold / 2) {
-					return mouseOnAxis > targetS1 + targetLength / 2 ? 1 : -1;
-				}
-			}
-
-			return 0;
-		}
-
-		/**
-   * Gets the direction dragEl must be swapped relative to target in order to make it
-   * seem that dragEl has been "inserted" into that element's position
-   * @param  {HTMLElement} target       The target whose position dragEl is being inserted at
-   * @param  {Object} options           options of the parent sortable
-   * @return {Number}                   Direction dragEl must be swapped
-   */
-		function _getInsertDirection(target, options) {
-			var dragElIndex = _index(dragEl, options.draggable),
-			    targetIndex = _index(target, options.draggable);
-
-			if (dragElIndex < targetIndex) {
-				return 1;
-			} else {
-				return -1;
-			}
+			// 5 — min delta
+			// abs — нельзя добавлять, а то глюки при наведении сверху
+			return evt.clientY - (rect.top + rect.height) > 5 || evt.clientX - (rect.left + rect.width) > 5;
 		}
 
 		/**
@@ -3299,7 +2915,7 @@ var Sortable = createCommonjsModule(function (module) {
 			}
 
 			while (el && (el = el.previousElementSibling)) {
-				if (el.nodeName.toUpperCase() !== 'TEMPLATE' && el !== cloneEl) {
+				if (el.nodeName.toUpperCase() !== 'TEMPLATE' && (selector === '>*' || _matches(el, selector))) {
 					index++;
 				}
 			}
@@ -3309,45 +2925,36 @@ var Sortable = createCommonjsModule(function (module) {
 
 		function _matches( /**HTMLElement*/el, /**String*/selector) {
 			if (el) {
-				try {
-					if (el.matches) {
-						return el.matches(selector);
-					} else if (el.msMatchesSelector) {
-						return el.msMatchesSelector(selector);
-					} else if (el.webkitMatchesSelector) {
-						return el.webkitMatchesSelector(selector);
-					}
-				} catch (_) {
-					return false;
-				}
+				selector = selector.split('.');
+
+				var tag = selector.shift().toUpperCase(),
+				    re = new RegExp('\\s(' + selector.join('|') + ')(?=\\s)', 'g');
+
+				return (tag === '' || el.nodeName.toUpperCase() == tag) && (!selector.length || ((' ' + el.className + ' ').match(re) || []).length == selector.length);
 			}
 
 			return false;
 		}
 
-		var _throttleTimeout;
 		function _throttle(callback, ms) {
-			return function () {
-				if (!_throttleTimeout) {
-					var args = arguments,
-					    _this = this;
+			var args, _this;
 
-					_throttleTimeout = setTimeout(function () {
+			return function () {
+				if (args === void 0) {
+					args = arguments;
+					_this = this;
+
+					setTimeout(function () {
 						if (args.length === 1) {
 							callback.call(_this, args[0]);
 						} else {
 							callback.apply(_this, args);
 						}
 
-						_throttleTimeout = void 0;
+						args = void 0;
 					}, ms);
 				}
 			};
-		}
-
-		function _cancelThrottle() {
-			clearTimeout(_throttleTimeout);
-			_throttleTimeout = void 0;
 		}
 
 		function _extend(dst, src) {
@@ -3373,8 +2980,6 @@ var Sortable = createCommonjsModule(function (module) {
 		}
 
 		function _saveInputCheckedState(root) {
-			savedInputChecked.length = 0;
-
 			var inputs = root.getElementsByTagName('input');
 			var idx = inputs.length;
 
@@ -3392,120 +2997,9 @@ var Sortable = createCommonjsModule(function (module) {
 			return clearTimeout(id);
 		}
 
-		/**
-   * Returns the "bounding client rect" of given element
-   * @param  {HTMLElement} el                The element whose boundingClientRect is wanted
-   * @param  {[HTMLElement]} container       the parent the element will be placed in
-   * @param  {[Boolean]} adjustForTransform  Whether the rect should compensate for parent's transform
-   * (used for fixed positioning on el)
-   * @return {Object}                        The boundingClientRect of el
-   */
-		function _getRect(el, container, adjustForTransform) {
-			if (!el.getBoundingClientRect && el !== win) return;
-
-			var elRect, top, left, bottom, right, height, width;
-
-			if (el !== win) {
-				elRect = el.getBoundingClientRect();
-				top = elRect.top;
-				left = elRect.left;
-				bottom = elRect.bottom;
-				right = elRect.right;
-				height = elRect.height;
-				width = elRect.width;
-			} else {
-				top = 0;
-				left = 0;
-				bottom = window.innerHeight;
-				right = window.innerWidth;
-				height = window.innerHeight;
-				width = window.innerWidth;
-			}
-
-			if (adjustForTransform && el !== win) {
-				// Adjust for translate()
-				container = container || el.parentNode;
-
-				// solves #1123 (see: https://stackoverflow.com/a/37953806/6088312)
-				// Not needed on <= IE11
-				if (!IE11OrLess) {
-					do {
-						if (container && container.getBoundingClientRect && _css(container, 'transform') !== 'none') {
-							var containerRect = container.getBoundingClientRect();
-
-							// Set relative to edges of padding box of container
-							top -= containerRect.top + parseInt(_css(container, 'border-top-width'));
-							left -= containerRect.left + parseInt(_css(container, 'border-left-width'));
-							bottom = top + elRect.height;
-							right = left + elRect.width;
-
-							break;
-						}
-						/* jshint boss:true */
-					} while (container = container.parentNode);
-				}
-
-				// Adjust for scale()
-				var matrix = _matrix(el),
-				    scaleX = matrix && matrix.a,
-				    scaleY = matrix && matrix.d;
-
-				if (matrix) {
-					top /= scaleY;
-					left /= scaleX;
-
-					width /= scaleX;
-					height /= scaleY;
-
-					bottom = top + height;
-					right = left + width;
-				}
-			}
-
-			return {
-				top: top,
-				left: left,
-				bottom: bottom,
-				right: right,
-				width: width,
-				height: height
-			};
-		}
-
-		/**
-   * Checks if a side of an element is scrolled past a side of it's parents
-   * @param  {HTMLElement}  el       The element who's side being scrolled out of view is in question
-   * @param  {String}       side     Side of the element in question ('top', 'left', 'right', 'bottom')
-   * @return {Boolean}               Whether the element is overflowing the viewport on the given side of it's parent
-   */
-		function _isScrolledPast(el, side) {
-			var parent = _getParentAutoScrollElement(parent, true),
-			    elSide = _getRect(el)[side];
-
-			/* jshint boss:true */
-			while (parent) {
-				var parentSide = _getRect(parent)[side],
-				    visible;
-
-				if (side === 'top' || side === 'left') {
-					visible = elSide >= parentSide;
-				} else {
-					visible = elSide <= parentSide;
-				}
-
-				if (!visible) return true;
-
-				if (parent === win) break;
-
-				parent = _getParentAutoScrollElement(parent, false);
-			}
-
-			return false;
-		}
-
 		// Fixed #973:
 		_on(document, 'touchmove', function (evt) {
-			if ((Sortable.active || awaitingDragStarted) && evt.cancelable) {
+			if (Sortable.active) {
 				evt.preventDefault();
 			}
 		});
@@ -3517,7 +3011,7 @@ var Sortable = createCommonjsModule(function (module) {
 			css: _css,
 			find: _find,
 			is: function is(el, selector) {
-				return !!_closest(el, selector, el, false);
+				return !!_closest(el, selector, el);
 			},
 			extend: _extend,
 			throttle: _throttle,
@@ -3526,9 +3020,7 @@ var Sortable = createCommonjsModule(function (module) {
 			clone: _clone,
 			index: _index,
 			nextTick: _nextTick,
-			cancelNextTick: _cancelNextTick,
-			detectDirection: _detectDirection,
-			getChild: _getChild
+			cancelNextTick: _cancelNextTick
 		};
 
 		/**
@@ -3541,7 +3033,7 @@ var Sortable = createCommonjsModule(function (module) {
 		};
 
 		// Export
-		Sortable.version = '1.8.1';
+		Sortable.version = '1.7.0';
 		return Sortable;
 	});
 });
@@ -3549,7 +3041,7 @@ var Sortable = createCommonjsModule(function (module) {
 /* Apps
 /* ========================================================================== */
 
-var prefix$6 = 'esri-header-apps';
+var prefix$7 = 'esri-header-apps';
 var isRightToLeft = document.dir === "rtl";
 var isDesktop = function (global) {
 	return !/iPhone|iPad|iPod|Android/i.test(global.navigator.userAgent);
@@ -3560,9 +3052,9 @@ var createApps = (function () {
  /* ====================================================================== */
 
 	var $content = $assign('div', {
-		class: prefix$6 + '-content',
-		id: prefix$6 + '-content',
-		aria: { expanded: false, labelledby: prefix$6 + '-control' }
+		class: prefix$7 + '-content',
+		id: prefix$7 + '-content',
+		aria: { expanded: false, labelledby: prefix$7 + '-control' }
 	});
 
 	/* Apps: Control
@@ -3574,7 +3066,7 @@ var createApps = (function () {
 	});
 
 	var $controlContainer = $assign('button', {
-		class: prefix$6 + '-control', id: prefix$6 + '-control',
+		class: prefix$7 + '-control', id: prefix$7 + '-control',
 		style: "display: none;",
 		tabindex: "-1"
 	}, $appSwitcherIcon);
@@ -3616,18 +3108,18 @@ var createApps = (function () {
 	/* Apps: Target
  /* ====================================================================== */
 
-	var $target = $assign('div', { class: prefix$6 }, $control);
+	var $target = $assign('div', { class: prefix$7 }, $control);
 
 	/* Apps: Secondary Set of Apps
  /* ====================================================================== */
 
 	var $secondaryDropdownMenu = $assign('div', {
-		class: prefix$6 + ' secondary-dropdown-menu',
+		class: prefix$7 + ' secondary-dropdown-menu',
 		aria: { expanded: false }
 	}, $assign('hr'));
 
 	var $bottomContainer = $assign('div', {
-		class: prefix$6 + ' bottom-container'
+		class: prefix$7 + ' bottom-container'
 	});
 
 	/* Apps: Parameters that Control the State of Drag & Drop
@@ -4205,7 +3697,7 @@ var createApps = (function () {
 	$target.addEventListener('header:update:apps', function (_ref) {
 		var detail = _ref.detail;
 
-		var $gridIcon = $renderSvgOrImg({ imgDef: $grid.md, imgClass: prefix$6 + '-image', $targetElm: $appSwitcherIcon });
+		var $gridIcon = $renderSvgOrImg({ imgDef: $grid.md, imgClass: prefix$7 + '-image', $targetElm: $appSwitcherIcon });
 		// -- Remove display:none from style to show icon
 		$control.removeAttribute('style');
 
@@ -4216,7 +3708,7 @@ var createApps = (function () {
 
 		if (!detail.isLoading) {
 			$target.appendChild($content);
-			$control.className = prefix$6 + '-control';
+			$control.className = prefix$7 + '-control';
 			$control.setAttribute("tabindex", "0");
 
 			$assign($control, { aria: { label: detail.label } });
@@ -4225,12 +3717,12 @@ var createApps = (function () {
 			var dropdownWidth = ' dropdown-width-' + (numberOfApps < 3 ? numberOfApps : 3);
 			// Variables to Assist with Moving Apps Between Primary and Secondary Groups
 			ddState.topAppContainer = $assign("ul", {
-				class: prefix$6 + ' appContainer primary',
+				class: prefix$7 + ' appContainer primary',
 				role: "menu"
 			});
 
 			ddState.bottomAppContainer = $assign("ul", {
-				class: prefix$6 + ' appContainer secondary',
+				class: prefix$7 + ' appContainer secondary',
 				role: "menu"
 			});
 
@@ -4263,25 +3755,25 @@ var createApps = (function () {
 			});
 
 			var $dragAndDropIntroText = $assign('p', {
-				class: prefix$6 + ' drag-and-drop-intro'
+				class: prefix$7 + ' drag-and-drop-intro'
 			}, ddState.i18n.intro);
 			var $dismissIntroButton = $assign('button', {
-				class: prefix$6 + ' dismiss-intro-button',
+				class: prefix$7 + ' dismiss-intro-button',
 				click: dismissIntro
 			}, ddState.i18n.confirm);
-			ddState.dragAndDropIntro = detail.displayIntro && !ddState.disabled ? $assign('div', { class: prefix$6 + ' intro-container' }, $dragAndDropIntroText, $dismissIntroButton) : "";
+			ddState.dragAndDropIntro = detail.displayIntro && !ddState.disabled ? $assign('div', { class: prefix$7 + ' intro-container' }, $dragAndDropIntroText, $dismissIntroButton) : "";
 
 			var $showMoreChevron = $assign('span');
 			$showMoreChevron.innerHTML = getDownChevron();
 			ddState.showMoreButton = $assign('button', {
-				class: prefix$6 + ' show-more-button',
+				class: prefix$7 + ' show-more-button',
 				click: expandSecondaryDropdown
 			}, ddState.i18n.showMore, $showMoreChevron);
 
 			ddState.dropdownWrapper = $assign('div', {}, ddState.dragAndDropIntro, ddState.topAppContainer, ddState.showMoreButton, $secondaryDropdownMenu);
 
 			ddState.dropdownNav = $assign('nav', {
-				class: prefix$6 + ' dropdown-menu dropdown-right app-switcher-dropdown-menu ' + dropdownWidth,
+				class: prefix$7 + ' dropdown-menu dropdown-right app-switcher-dropdown-menu ' + dropdownWidth,
 				role: "menu"
 			}, ddState.dropdownWrapper);
 
@@ -4292,7 +3784,7 @@ var createApps = (function () {
 			resetStateOfBottomContainer();
 		} else {
 			ddState.loading = true;
-			$control.className = prefix$6 + '-control disabled-grid-icon';
+			$control.className = prefix$7 + '-control disabled-grid-icon';
 			$control.setAttribute("tabindex", "-1");
 			$replaceAll($target, $control);
 		}
@@ -4301,17 +3793,17 @@ var createApps = (function () {
 	return $target;
 });
 
-var prefix$7 = 'esri-header-notifications';
+var prefix$8 = 'esri-header-notifications';
 var messages = [];
 
 var createNotifications = (function () {
-	var $target = $assign('div', { class: prefix$7 });
+	var $target = $assign('div', { class: prefix$8 });
 
 	// /* Notifications: Control
 	// /* ====================================================================== */
 	var $control = $assign('button', {
-		class: prefix$7 + '-control', id: prefix$7 + '-control',
-		aria: { controls: prefix$7 + '-menu', expanded: false, haspopup: true }
+		class: prefix$8 + '-control', id: prefix$8 + '-control',
+		aria: { controls: prefix$8 + '-menu', expanded: false, haspopup: true }
 	});
 
 	$control.addEventListener('click', function (event) {
@@ -4328,7 +3820,7 @@ var createNotifications = (function () {
 
 	// /* Notifications: Control
 	// /* ====================================================================== */
-	var $dismiss = $assign('button', { class: prefix$7 + '-dismiss-all' });
+	var $dismiss = $assign('button', { class: prefix$8 + '-dismiss-all' });
 	$dismiss.addEventListener('click', function (event) {
 		$dispatch($control, 'header:click:notifications:dismiss', messages);
 	});
@@ -4336,10 +3828,10 @@ var createNotifications = (function () {
 	/* Notifications: Content
  /* ====================================================================== */
 	var $contentMessages = $assign('ul', {
-		class: prefix$7 + '-messages'
+		class: prefix$8 + '-messages'
 	});
 	var $content = $assign('div', {
-		class: prefix$7 + '-menu', id: prefix$7 + '-menu',
+		class: prefix$8 + '-menu', id: prefix$8 + '-menu',
 		role: 'group', aria: { expanded: false, hidden: true }
 	}, $contentMessages);
 
@@ -4352,29 +3844,29 @@ var createNotifications = (function () {
 			return item.id;
 		});
 
-		var $icon = $renderSvgOrImg({ imgDef: $bell.md, imgClass: prefix$7 + '-image', id: prefix$7 + '-image' });
+		var $icon = $renderSvgOrImg({ imgDef: $bell.md, imgClass: prefix$8 + '-image', id: prefix$8 + '-image' });
 
 		if (detail.messages && detail.messages.length > 0) {
 			$replaceAll($dismiss, detail.dismissAllLabel);
-			var $badge = $assign('span', { class: prefix$7 + '-badge' }, '' + detail.messages.length);
+			var $badge = $assign('span', { class: prefix$8 + '-badge' }, '' + detail.messages.length);
 			$replaceAll($control, $icon, $badge);
 			// Update the notifications
 			$replaceAll.apply(undefined, [$contentMessages].concat(toConsumableArray(detail.messages.map(function (item) {
 				var $dismissBtn = $assign('button', {
-					class: prefix$7 + '-message-dismiss',
+					class: prefix$8 + '-message-dismiss',
 					aria: { label: detail.dismissLabel }
-				}, $renderSvgOrImg({ imgDef: $close.sm, imgClass: prefix$7 + '-dismiss-icon' }));
+				}, $renderSvgOrImg({ imgDef: $close.sm, imgClass: prefix$8 + '-dismiss-icon' }));
 				$dismissBtn.addEventListener('click', function (event) {
 					$dispatch($control, 'header:click:notifications:dismiss', [item.id]);
 				});
-				return $assign('li', { class: prefix$7 + '-message' }, $assign('span', { class: prefix$7 + '-message-text' }, item.text, $assign('span', { class: prefix$7 + '-message-date' }, item.date)), $dismissBtn);
+				return $assign('li', { class: prefix$8 + '-message' }, $assign('span', { class: prefix$8 + '-message-text' }, item.text, $assign('span', { class: prefix$8 + '-message-date' }, item.date)), $dismissBtn);
 			}))));
 			$replaceAll($content, $contentMessages, $dismiss);
 		} else {
 			$replaceAll($control, $icon);
-			var $emptyImage = $renderSvgOrImg({ imgDef: detail.emptyMessage.image.path, imgClass: prefix$7 + '-empty-image', viewBox: detail.emptyMessage.image.viewBox });
-			var $emptyText = $assign('p', { class: prefix$7 + '-empty-text' }, detail.emptyMessage.text);
-			var $empty = $assign('div', { class: prefix$7 + '-empty' }, $emptyImage, $emptyText);
+			var $emptyImage = $renderSvgOrImg({ imgDef: detail.emptyMessage.image.path, imgClass: prefix$8 + '-empty-image', viewBox: detail.emptyMessage.image.viewBox });
+			var $emptyText = $assign('p', { class: prefix$8 + '-empty-text' }, detail.emptyMessage.text);
+			var $empty = $assign('div', { class: prefix$8 + '-empty' }, $emptyImage, $emptyText);
 			$replaceAll($content, $empty);
 		}
 
@@ -4409,6 +3901,7 @@ var createHeader = (function (data) {
 
 	var $brandStripe = createBrandStripe();
 	var $brand = createBrand();
+	var $inlineTitle = createInlineTitle();
 	var $account = createAccount();
 	var $mobileMenus = createMenus({ variant: 'mobile' });
 	var $desktopMenus = createMenus({ variant: 'desktop' });
@@ -4420,7 +3913,7 @@ var createHeader = (function (data) {
 	var $client = $assign('div', { class: 'esri-header-client' }, $account);
 
 	var $lineBreak = $assign('div', { class: 'esri-header-lineBreak' });
-	var $headerContent = $assign('div', { class: 'esri-header -' + (data.theme || 'web') + ' ' + (data.collapseMenus ? '-always-hamburger' : '') }, $headerCanvas, $brandStripe, $brand, $mobileMenus, $desktopMenus, $search, $inlineSearch, $lineBreak, $notifications, $apps, $client);
+	var $headerContent = $assign('div', { class: 'esri-header -' + (data.theme || 'web') + ' ' + (data.collapseMenus ? '-always-hamburger' : '') }, $headerCanvas, $brandStripe, $brand, $mobileMenus, $inlineTitle, $desktopMenus, $search, $inlineSearch, $lineBreak, $notifications, $apps, $client);
 	var $header = $assign('div', { class: 'esri-header-wrap' }, $headerContent);
 
 	$enableFocusRing($header);
@@ -4436,7 +3929,11 @@ var createHeader = (function (data) {
 				$dispatch($brandStripe, 'header:update:brand', detail.brand);
 				$header.style.marginTop = '3px';
 			}
-			$dispatch($brand, 'header:update:brand', detail.brand);
+			if (detail.brand.editTitle) {
+				$dispatch($inlineTitle, 'header:update:inlineTitle', detail.brand);
+			} else {
+				$dispatch($brand, 'header:update:brand', detail.brand);
+			}
 		}
 
 		if (detail.menus) {
@@ -4504,11 +4001,20 @@ var createHeader = (function (data) {
 		$dispatch($inlineSearch, 'header:search:populateSuggestions', detail);
 	});
 
+	/* On Save Title
+ /* ====================================================================== */
+
+	$header.addEventListener('header:title:submit', function (_ref5) {
+		var detail = _ref5.detail;
+
+		$dispatch($inlineSearch, 'header::title:save', detail.title);
+	});
+
 	/* On Drag & Drop Apps
  /* ====================================================================== */
 
-	$header.addEventListener('header:apps:reorder', function (_ref5) {
-		var detail = _ref5.detail;
+	$header.addEventListener('header:apps:reorder', function (_ref6) {
+		var detail = _ref6.detail;
 
 		$dispatch($apps, 'header::apps:reorder', detail.icons);
 	});
@@ -4516,8 +4022,8 @@ var createHeader = (function (data) {
 	/* On Header Menu Toggle
  /* ====================================================================== */
 
-	$header.addEventListener('header:menu:toggle', function (_ref6) {
-		var detail = _ref6.detail;
+	$header.addEventListener('header:menu:toggle', function (_ref7) {
+		var detail = _ref7.detail;
 
 		var submenuShouldOpen = 'true' !== detail.control.getAttribute('aria-expanded');
 		var eventType = submenuShouldOpen ? 'header:menu:open' : 'header:menu:close';
@@ -4533,10 +4039,11 @@ var createHeader = (function (data) {
 	var menusDetail = null;
 	var menuDetail = null;
 	var appsDetail = null;
+	var inlineTitleDetail = null;
 	var notificationsDetail = null;
 
-	$header.addEventListener('header:menu:open', function (_ref7) {
-		var detail = _ref7.detail;
+	$header.addEventListener('header:menu:open', function (_ref8) {
+		var detail = _ref8.detail;
 
 		var menuWrapper = detail.control.closest('.esri-header-menus');
 		var hasMobileClass = menuWrapper && menuWrapper.classList.contains('-mobile');
@@ -4570,6 +4077,13 @@ var createHeader = (function (data) {
 			menusDetail = null;
 		}
 
+		if ($inlineTitle === detail.target) {
+			inlineTitleDetail = detail;
+		} else if (inlineTitleDetail) {
+			$dispatch($inlineTitle, 'header:menu:close', inlineTitleDetail);
+			inlineTitleDetail = null;
+		}
+
 		if ($account === detail.target) {
 			accountDetail = detail;
 		} else if (accountDetail) {
@@ -4601,10 +4115,10 @@ var createHeader = (function (data) {
 	/* On Header Menu Close
  /* ====================================================================== */
 
-	$header.addEventListener('header:menu:close', function (_ref8) {
-		var detail = _ref8.detail;
+	$header.addEventListener('header:menu:close', function (_ref9) {
+		var detail = _ref9.detail;
 
-		var currentDetail = detail || searchDetail || accountDetail || appsDetail || notificationsDetail || menusDetail || menuDetail;
+		var currentDetail = detail || searchDetail || inlineTitleDetail || accountDetail || appsDetail || notificationsDetail || menusDetail || menuDetail;
 
 		if (currentDetail) {
 			// Close the Detail
@@ -4613,6 +4127,10 @@ var createHeader = (function (data) {
 
 			var isBurger = currentDetail.control.closest('.-always-hamburger') !== null;
 			var canvasShouldClose = !viewportIsSmallMedium.matches && !isBurger || 'menu-close' !== currentDetail.type && 'account-close' !== currentDetail.type;
+
+			if (inlineTitleDetail && inlineTitleDetail.control === currentDetail.control) {
+				$dispatch(inlineTitleDetail.content, 'header:inlineTitle:deactivated', currentDetail);
+			}
 
 			if (searchDetail && searchDetail.control === currentDetail.control) {
 				$dispatch(searchDetail.content.lastChild, 'reset');
@@ -4637,7 +4155,7 @@ var createHeader = (function (data) {
 	/* on Inline Search Activated
  /* ====================================================================== */
 
-	$header.addEventListener('header:inlineSearch:activated', function (_ref9) {
+	$header.addEventListener('header:inlineSearch:activated', function (_ref10) {
 		$desktopMenus.querySelector('.esri-header-menus-menu').classList.add('hidden');
 		$lineBreak.classList.add('hidden');
 		$mobileMenus.querySelector('.esri-header-menus-toggle').classList.add('hidden');
@@ -4647,11 +4165,30 @@ var createHeader = (function (data) {
 	/* on Inline Search Deactivated
  /* ====================================================================== */
 
-	$header.addEventListener('header:inlineSearch:deactivated', function (_ref10) {
+	$header.addEventListener('header:inlineSearch:deactivated', function (_ref11) {
 		$desktopMenus.querySelector('.esri-header-menus-menu').classList.remove('hidden');
 		$lineBreak.classList.remove('hidden');
 		$mobileMenus.querySelector('.esri-header-menus-toggle').classList.remove('hidden');
 		$brand.classList.remove('hidden');
+	});
+
+	/* on Inline Title Activated
+ /* ====================================================================== */
+
+	$header.addEventListener('header:inlineTitle:activated', function (_ref12) {
+		if (!viewportIsSmall.matches) {
+			$desktopMenus.querySelector('.esri-header-menus-content').classList.add('hidden');
+			$mobileMenus.querySelector('.esri-header-menus-toggle').classList.add('hidden');
+		}
+	});
+
+	/* on Inline Title Deactivated
+ /* ====================================================================== */
+
+	$header.addEventListener('header:inlineTitle:deactivated', function (_ref13) {
+		if (!viewportIsSmall.matches) {
+			$desktopMenus.querySelector('.esri-header-menus-content').classList.remove('hidden');
+		}
 	});
 
 	/* on domnodeinserted
