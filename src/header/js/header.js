@@ -7,6 +7,7 @@ import createBrandStripe from './header-branding-stripe';
 import createMenus from './header-menus';
 import createSearch from './header-search';
 import createInlineSearch from './header-inline-search';
+import createShoppingCart from './header-shopping-cart';
 import createApps from './header-apps';
 import createNotifications from './header-notifications';
 
@@ -40,6 +41,7 @@ export default (data) => {
 	const $mobileMenus = createMenus({variant: 'mobile'});
 	const $desktopMenus = createMenus({variant: 'desktop'});
 	const $search = createSearch();
+	const $shoppingCart = createShoppingCart();
 	const $inlineSearch = createInlineSearch();
 	const $notifications = createNotifications();
 	const $apps = createApps();
@@ -59,6 +61,7 @@ export default (data) => {
 			$search,
 			$inlineSearch,
 			$lineBreak,
+			$shoppingCart,
 			$notifications,
 			$apps,
 			$client)
@@ -122,6 +125,10 @@ export default (data) => {
 
 		if (!detail.notifications && !detail.apps && !detail.account) {
 			$lineBreak.classList.add('esri-header-lineBreak-hidden');
+		}
+
+		if(detail.cart) {
+			$dispatch($shoppingCart, 'header:update:cart', detail.cart);
 		}
 
 		$header.ownerDocument.defaultView.addEventListener('keydown', ({keyCode}) => {
@@ -414,6 +421,14 @@ export default (data) => {
 			}
 		}
 	});
+
+	$header.addItemsToCart = (count) => {
+		$dispatch($shoppingCart, 'header:shoppingcart:add', count);
+	};
+
+	$header.removeItemsFromCart = (count) => {
+		$dispatch($shoppingCart, 'header:shoppingcart:remove', count);
+	};
 
 	return $header;
 };

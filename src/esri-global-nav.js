@@ -10,6 +10,8 @@ function buildHeader({targetElm, menuData}) {
 	const $esriHeader = createHeader(menuData.header);
 	const $headerBarrier = document.querySelector(targetElm);
 	$headerBarrier.appendChild($esriHeader);
+
+	window.esriHeader.node = $esriHeader;
 }
 
 function buildFooter({targetElm, menuData}) {
@@ -17,6 +19,8 @@ function buildFooter({targetElm, menuData}) {
 	const $esriFooter = createFooter(menuData.footer);
 	const $footerBarrier = document.querySelector(targetElm);
 	$footerBarrier.appendChild($esriFooter);
+
+	window.esriFooter.node = $esriFooter;
 }
 
 export default {
