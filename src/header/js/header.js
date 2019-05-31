@@ -127,7 +127,7 @@ export default (data) => {
 			$lineBreak.classList.add('esri-header-lineBreak-hidden');
 		}
 
-		if(detail.cart) {
+		if (detail.cart) {
 			$dispatch($shoppingCart, 'header:update:cart', detail.cart);
 		}
 
