@@ -7,7 +7,7 @@ export default () => {
 	const $target = $('div', {class: prefix});
 
 	$target.addEventListener('click', (event) => {
-    $dispatch($target, 'header:click:shoppingCart', {event});
+		$dispatch($target, 'header:click:shoppingCart', {event});
 	});
 
 	/* Shopping Cart: Control
@@ -35,7 +35,7 @@ export default () => {
 	/* Shopping Cart: Target
 	/* ====================================================================== */
 
-  $target.addEventListener('header:shoppingcart:add', ({detail}) => {
+	$target.addEventListener('header:shoppingcart:add', ({detail}) => {
 		changeCartCount(detail, true);
 	});
 
@@ -53,9 +53,9 @@ export default () => {
 		if (cartCount > 0) {
 			$target.setAttribute('data-cart-empty', 'false');
 			if (animate) {
-				$cartItems.setAttribute('data-cart-updated', true);
+				$cartItems.setAttribute('data-cart-updated', 'true');
 				setTimeout(() => {
-					$cartItems.setAttribute('data-cart-updated', false);
+					$cartItems.setAttribute('data-cart-updated', 'false');
 				}, 1000);
 			}
 		} else {

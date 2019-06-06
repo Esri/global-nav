@@ -1673,9 +1673,9 @@ var createShoppingCart = (function () {
 		if (cartCount > 0) {
 			$target.setAttribute('data-cart-empty', 'false');
 			if (animate) {
-				$cartItems.setAttribute('data-cart-updated', true);
+				$cartItems.setAttribute('data-cart-updated', 'true');
 				setTimeout(function () {
-					$cartItems.setAttribute('data-cart-updated', false);
+					$cartItems.setAttribute('data-cart-updated', 'false');
 				}, 1000);
 			}
 		} else {
