@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
 				distributorImageHeight: 56
 			},
 			cart: {
-				items: 7
+				items: 2
 			},
 			menus: [
 				[

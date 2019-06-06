@@ -34,7 +34,7 @@
   width: 15px;
   z-index: 777;
 
-  &[data-cart-updated='false'] {
+  &[data-cart-updated='true'] {
     animation: pulse 1s 1;
     height: 30px;
     font-size: 12px;
@@ -46,7 +46,7 @@
 }
 
 .esri-header-shopping-cart {
-  &[data-cart-empty='false'] {
+  &[data-cart-empty='true'] {
     & .esri-header-shopping-cart--icon,
     & .esri-header-shopping-cart--items {
       display: none;
