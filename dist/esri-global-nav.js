@@ -1679,7 +1679,10 @@ var createShoppingCart = (function () {
 				}, 1000);
 			}
 		} else {
-			$target.setAttribute('data-cart-empty', 'true');
+			$cartItems.setAttribute('data-cart-updated', 'true');
+			setTimeout(function () {
+				$target.setAttribute('data-cart-empty', 'true');
+			}, 1000);
 		}
 	};
 

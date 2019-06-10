@@ -59,7 +59,10 @@ export default () => {
 				}, 1000);
 			}
 		} else {
-			$target.setAttribute('data-cart-empty', 'true');
+			$cartItems.setAttribute('data-cart-updated', 'true');
+			setTimeout(() => {
+				$target.setAttribute('data-cart-empty', 'true');
+			}, 1000);
 		}
 	};
 
