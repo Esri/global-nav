@@ -1,5 +1,9 @@
 ## Unreleased
 
+### Added
+- Shopping cart icon functionality
+- Multi column feature adds both 'single', and 'structured' menu types
+
 ### Fixed
 - Empty alt tag for user image (#222)
 - align app indicators properly in right to left
