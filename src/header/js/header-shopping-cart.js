@@ -18,10 +18,11 @@ export default () => {
 	);
 
 	$target.addEventListener('header:update:cart', ({detail}) => {
-		const $control = $('div',
+		const $control = $('a',
 			{
-				class: `${prefix}--icon`, id: `${prefix}--icon`,
-				aria: {expanded: false, controls: `${prefix}--content`}
+				href: detail.url, 
+				class: `${prefix}--icon`, 
+				id: `${prefix}--icon`
 			}, $renderSvgOrImg({imgDef: $cart.md, imgClass: `${prefix}--image`, id: `${prefix}--image`, $targetElm: $control})
 		);
 

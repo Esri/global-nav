@@ -1639,9 +1639,10 @@ var createShoppingCart = (function () {
 	$target.addEventListener('header:update:cart', function (_ref) {
 		var detail = _ref.detail;
 
-		var $control = $assign('div', {
-			class: prefix$7 + '--icon', id: prefix$7 + '--icon',
-			aria: { expanded: false, controls: prefix$7 + '--content' }
+		var $control = $assign('a', {
+			href: detail.url,
+			class: prefix$7 + '--icon',
+			id: prefix$7 + '--icon'
 		}, $renderSvgOrImg({ imgDef: $cart.md, imgClass: prefix$7 + '--image', id: prefix$7 + '--image', $targetElm: $control }));
 
 		$assign($target, $control, $cartItems);
@@ -5044,14 +5045,6 @@ var createHeader = (function (data) {
 			}
 		}
 	});
-
-	$header.addItemsToCart = function (count) {
-		$dispatch($shoppingCart, 'header:shoppingcart:add', count);
-	};
-
-	$header.removeItemsFromCart = function (count) {
-		$dispatch($shoppingCart, 'header:shoppingcart:remove', count);
-	};
 
 	return $header;
 });
