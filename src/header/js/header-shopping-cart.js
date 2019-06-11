@@ -1,4 +1,4 @@
-import {$assign as $, $dispatch, $replaceAll, $renderSvgOrImg} from '../../shared/js/shared';
+import {$assign as $, $dispatch, $renderSvgOrImg} from '../../shared/js/shared';
 import {$cart} from '../../shared/js/iconPaths';
 
 const prefix = 'esri-header-shopping-cart';
@@ -10,31 +10,32 @@ export default () => {
 		$dispatch($target, 'header:click:shoppingCart', {event});
 	});
 
-	/* Shopping Cart: Control
-	/* ====================================================================== */
+	const $control = $('a',
+		{
+			href: '#', 
+			class: `${prefix}--icon`, 
+			id: `${prefix}--icon`
+		}, 
+		$renderSvgOrImg({
+			imgDef: $cart.md, 
+			imgClass: `${prefix}--image`, 
+			id: `${prefix}--image`, 
+			$targetElm: $control
+		})
+	);
 
 	const $cartItems = $('div',
 		{class: `${prefix}--items`, id: `${prefix}--items`}
 	);
 
-	$target.addEventListener('header:update:cart', ({detail}) => {
-		const $control = $('a',
-			{
-				href: detail.url, 
-				class: `${prefix}--icon`, 
-				id: `${prefix}--icon`
-			}, $renderSvgOrImg({imgDef: $cart.md, imgClass: `${prefix}--image`, id: `${prefix}--image`, $targetElm: $control})
-		);
+	$($target,
+		$control,
+		$cartItems);
 
-		$($target,
-			$control,
-			$cartItems
-		);
+	$target.addEventListener('header:update:cart', ({detail}) => {
+		$control.setAttribute('href', `${detail.url}`);
 		changeCartCount(detail.items);
 	});
-
-	/* Shopping Cart: Target
-	/* ====================================================================== */
 
 	$target.addEventListener('header:shoppingcart:add', ({detail}) => {
 		changeCartCount(detail, true);

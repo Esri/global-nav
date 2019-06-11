@@ -1631,26 +1631,27 @@ var createShoppingCart = (function () {
 		$dispatch($target, 'header:click:shoppingCart', { event: event });
 	});
 
-	/* Shopping Cart: Control
- /* ====================================================================== */
+	var $control = $assign('a', {
+		href: '#',
+		class: prefix$7 + '--icon',
+		id: prefix$7 + '--icon'
+	}, $renderSvgOrImg({
+		imgDef: $cart.md,
+		imgClass: prefix$7 + '--image',
+		id: prefix$7 + '--image',
+		$targetElm: $control
+	}));
 
 	var $cartItems = $assign('div', { class: prefix$7 + '--items', id: prefix$7 + '--items' });
+
+	$assign($target, $control, $cartItems);
 
 	$target.addEventListener('header:update:cart', function (_ref) {
 		var detail = _ref.detail;
 
-		var $control = $assign('a', {
-			href: detail.url,
-			class: prefix$7 + '--icon',
-			id: prefix$7 + '--icon'
-		}, $renderSvgOrImg({ imgDef: $cart.md, imgClass: prefix$7 + '--image', id: prefix$7 + '--image', $targetElm: $control }));
-
-		$assign($target, $control, $cartItems);
+		$control.setAttribute('href', '' + detail.url);
 		changeCartCount(detail.items);
 	});
-
-	/* Shopping Cart: Target
- /* ====================================================================== */
 
 	$target.addEventListener('header:shoppingcart:add', function (_ref2) {
 		var detail = _ref2.detail;
@@ -5044,6 +5045,14 @@ var createHeader = (function (data) {
 				$assign($desktopMenus.lastChild, { aria: { hidden: false } });
 			}
 		}
+
+		$header.addItemsToCart = function (count) {
+			$dispatch($shoppingCart, 'header:shoppingcart:add', count);
+		};
+
+		$header.removeItemsFromCart = function (count) {
+			$dispatch($shoppingCart, 'header:shoppingcart:remove', count);
+		};
 	});
 
 	return $header;
