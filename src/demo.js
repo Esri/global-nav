@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
 				distributorImageHeight: 56
 			},
 			cart: {
-				items: 1,
+				items: 0,
 				url: 'https://checkout.esri.com/'
 			},
 			menus: [

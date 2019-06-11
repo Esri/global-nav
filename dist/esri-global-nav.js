@@ -5045,6 +5045,14 @@ var createHeader = (function (data) {
 				$assign($desktopMenus.lastChild, { aria: { hidden: false } });
 			}
 		}
+
+		// $header.addItemsToCart = (count) => {
+		// 	$dispatch($shoppingCart, 'header:shoppingcart:add', count);
+		// };
+
+		// $header.removeItemsFromCart = (count) => {
+		// 	$dispatch($shoppingCart, 'header:shoppingcart:remove', count);
+		// };
 	});
 
 	return $header;
