@@ -12,6 +12,10 @@ document.addEventListener("DOMContentLoaded", () => {
 				distributorImageWidth: 120,
 				distributorImageHeight: 56
 			},
+			cart: {
+				items: 0,
+				url: 'https://checkout.esri.com/'
+			},
 			menus: [
 				[
 					{
@@ -545,7 +549,7 @@ document.addEventListener("DOMContentLoaded", () => {
 					}
 				],
 				user: {
-					name: 'Cassidy Bishop',
+					name: 'Cesar Marrujo',
 					id: 'iamoktatester@gmail.com',
 					group: 'Riverside City Mgmt.',
 					image: '//placehold.it/300x300'

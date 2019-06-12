@@ -174,7 +174,7 @@
         }
       ],
       user: {
-        name: 'Cassidy Bishop',
+        name: 'Cesar Marrujo',
         id: 'iamoktatester@gmail.com',
         group: 'Riverside City Mgmt.',
         image: '//placehold.it/300x300'
@@ -456,6 +456,99 @@ event.initCustomEvent("header:update:apps", true, true, {
   ]
 )};</code></pre>
 
+<h3>Configuring the shopping cart</h3>
+<p>The Global Navigation now features a shopping cart integration system, which gives users the ability to 
+  view, add, and remove items from their shopping cart. The shopping cart icon displays the number of items 
+  in the cart, and also uses and interactive animation feature to give visual feedback as items are added, or removed.</p>
+<pre><code class="language-js">
+    //_________________________________________________________________________________________________
+    // - The shopping cart listens for the following events to add, and remove cart items respectively.
+    // -- It receives the target element, and the number of items to add/remove from the cart as params.
+    //_________________________________________________________________________________________________
+    <ul>
+      <li><code class="language-js">header:shoppingcart:add</code></li>
+      <li><code class="language-js">header:shoppingcart:remove</code></li>
+    </ul>      
+</code></pre>
+
+<h3>Configuring the column based menu</h3>
+<p>The global navigation now features a new column based layout. This new feature supports both single, and structured menu types. 
+  You can specify up to three columns per menu as well as the type of menu to render in each column.</p>
+
+<pre><code class="language-js">
+    //____________________________________________________________________________________________
+    // - In the 'cols' array you create an object representation of the menu for each column
+    // -- You can configure the menu in each column as either a 'single' or 'structured' menu type
+    // -- Note: You can also specify to have a right 'border' to seperate the individual columns
+    //--------------------------------------------------------------------------------------------
+{
+  label: 'Products',
+  cols: [
+    {
+      type: 'single',
+      border: 'true',
+      items: [
+        {
+          heading: 'CAPABILITIES',
+          label: 'Mapping & Location Enablement',
+          href: 'https://www.esri.com/en-us/location-intelligence'
+        },
+        {
+          label: 'Field Operations',
+          href: 'https://www.esri.com/en-us/arcgis/analytics/overview'
+        },
+        {
+          label: 'Spatial Analysis & Data Science',
+          href: 'https://www.esri.com/en-us/location-intelligence'
+        },
+        {
+          label: 'Imagery & Remote Sensing',
+          href: 'https://www.esri.com/en-us/location-intelligence'
+        }
+      ]
+    },
+    {
+      type: 'structured',
+      border: 'false',
+      items: [
+        {
+          heading: 'CORE PRODUCTS',
+          label: 'ArcGIS Online',
+          href: 'https://www.esri.com/en-us/location-intelligence',
+          description: 'Complete SaaS mapping platform'
+        },
+        {
+          label: 'ArcGIS Pro',
+          href: 'https://www.esri.com/en-us/arcgis/analytics/overview',
+          description: 'Next generation desktop GIS'
+        },
+        {
+          label: 'ArcGIS Enterprise',
+          href: 'https://www.esri.com/en-us/location-intelligence',
+          description: 'Flexible mapping server software'
+        }
+      ]
+    },
+    {
+      type: 'structured',
+      border: 'false',
+      items: [
+        {
+          heading: 'FEATURED PRODUCTS',
+          label: 'ArcGIS Urban',
+          href: 'https://www.esri.com/en-us/location-intelligence',
+          description: 'Smart city planning for urban development'
+        },
+        {
+          label: 'ArcGIS Business Analyst',
+          href: 'https://www.esri.com/en-us/arcgis/analytics/overview',
+          description: 'Business and market intelligence'
+        }
+      ]
+    }
+  ]
+}
+</code></pre>
 
             </div>
         </main>
