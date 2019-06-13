@@ -4,7 +4,7 @@ import {$cart} from '../../shared/js/iconPaths';
 const prefix = 'esri-header-shopping-cart';
 
 export default () => {
-	const $target = $('div', {class: prefix});
+	const $target = $('div', {class: prefix, 'data-cart-empty': 'true'});
 
 	$target.addEventListener('click', (event) => {
 		$dispatch($target, 'header:click:shoppingCart', {event});
@@ -33,8 +33,10 @@ export default () => {
 		$cartItems);
 
 	$target.addEventListener('header:update:cart', ({detail}) => {
-		$control.setAttribute('href', `${detail.url}`);
-		changeCartCount(detail.items);
+		if (detail && detail.items > 0) {
+			$control.setAttribute('href', `${detail.url}`);
+			changeCartCount(detail.items);
+		}
 	});
 
 	$target.addEventListener('header:shoppingcart:add', ({detail}) => {
