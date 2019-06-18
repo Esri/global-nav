@@ -1625,7 +1625,7 @@ var createInlineSearch = (function () {
 var prefix$7 = 'esri-header-shopping-cart';
 
 var createShoppingCart = (function () {
-	var $target = $assign('div', { class: prefix$7 });
+	var $target = $assign('div', { class: prefix$7, 'data-cart-empty': 'true' });
 
 	$target.addEventListener('click', function (event) {
 		$dispatch($target, 'header:click:shoppingCart', { event: event });
@@ -1650,7 +1650,9 @@ var createShoppingCart = (function () {
 		var detail = _ref.detail;
 
 		$control.setAttribute('href', '' + detail.url);
-		changeCartCount(detail.items);
+		if (detail && detail.items > 0) {
+			changeCartCount(detail.items);
+		}
 	});
 
 	$target.addEventListener('header:shoppingcart:add', function (_ref2) {

@@ -33,8 +33,8 @@ export default () => {
 		$cartItems);
 
 	$target.addEventListener('header:update:cart', ({detail}) => {
+		$control.setAttribute('href', `${detail.url}`);
 		if (detail && detail.items > 0) {
-			$control.setAttribute('href', `${detail.url}`);
 			changeCartCount(detail.items);
 		}
 	});
