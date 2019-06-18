@@ -660,7 +660,13 @@ export default () => {
 		if (!detail.primary) return;
 		if (detail.ieVersion) applyDragAndDropAdjustmentsForIE(detail.ieVersion);
 		if (detail.disableDragAndDrop || !isDesktop) ddState.disabled = true;
-		if (detail.text) ddState.i18n = detail.text || {};
+		if (detail.text) {
+			ddState.i18n = detail.text || {};
+			if (ddState.i18n.title) {
+				$appSwitcherIcon.setAttribute("title", ddState.i18n.title);
+				$appSwitcherIcon.setAttribute("aria-label", ddState.i18n.title);
+			}
+		}
 
 		if (!detail.isLoading) {
 			$target.appendChild($content);
