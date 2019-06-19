@@ -4,6 +4,9 @@ document.addEventListener("DOMContentLoaded", () => {
 			theme: 'app',
 			brand: {
 				label: 'Dashboard',
+				editTitle: true,
+				titleFontSize: 18,
+				maxViewWidth: 25,
 				brandText: 'Mapping Dashboard',
 				image: './img/dashboard-icon_32.svg',
 				href: 'https://www.esri.com/',
@@ -158,6 +161,7 @@ document.addEventListener("DOMContentLoaded", () => {
 				displayIntro: true,
 				ieVersion: null,
 				text: {
+					title: "App Launcher",
 					clear: "Clear",
 					confirm: "Got it.",
 					dragAppsHere: "Drag apps here that you don't use very often.",
@@ -498,4 +502,14 @@ document.addEventListener("DOMContentLoaded", () => {
 	};
 
 	esriGlobalNav.create({headerElm: '.esri-header-barrier', footerElm: '.esri-footer-barrier', menuData});
+
+	const header = document.querySelector('.esri-header-barrier');
+	header.addEventListener("header::title:save", (d) => {
+		const event = document.createEvent("CustomEvent");
+		event.initCustomEvent("header:update:inlineTitle", true, true, {
+			maxWidth: 380,
+			brandText: d.detail
+		});
+		document.querySelector(".esri-header-inline-title").dispatchEvent(event);
+	});
 });

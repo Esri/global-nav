@@ -379,6 +379,43 @@ event.initCustomEvent('header:search:update:suggestions', true, true, {
   suggestions: []
 });</code></pre>
 
+              <h3>Using Inline Title</h3>
+              <p>Inline title provides users whith a way to edit brand text. It was designed for use within mapping applications like map and scene viwer.</p>
+
+<pre><code class="language-js">
+//_______________________________________________________________________________
+// - To use inline title, set the parameter editTitle to true within the brand object
+//-------------------------------------------------------------------------------
+
+// The inline title properties in brand are editTitle, titleFontSize, and maxViewWidth
+header: {
+  theme: 'app',
+  brand: {
+    label: 'My Mapping App',
+    editTitle: true,  // Activates the inline-title
+    titleFontSize: 18, // Lets apps set the font size for the title (optional)
+    maxViewWidth: 25, //  Helps Apps adjust the max width of the title (optional)
+    brandText: 'My Mapping App',
+    topStripe : '#e8912e'
+},
+
+//_______________________________________________________________________________
+// - Setup an event to listen for header:title:save
+//-------------------------------------------------------------------------------
+
+var header = document.querySelector('.esri-header-barrier');
+header.addEventListener("header::title:save", (result) => {
+  // Create and dispatch event to update the inlinte title with a new value 
+  var event = document.createEvent("CustomEvent");
+  event.initCustomEvent("header:update:inlineTitle", true, true, {
+    label: result.detail,
+    maxWidth: 380,
+    brandText: result.detail,
+  });
+  document.querySelector(".esri-header-inline-title").dispatchEvent(event);
+});
+</code></pre>
+
 
               <h3>Configuring the App Launcher</h3>
               <p>To work with the standard set of apps from ArcGIS Online use the AGO Webworker Interface: <a href="https://github.com/ArcGIS/AGO-Webworker-Interface">https://github.com/ArcGIS/AGO-Webworker-Interface</a></p>
@@ -414,6 +451,7 @@ event.initCustomEvent("header:update:apps", true, true, {
   displayIntro: true,
   ieVersion: null,
   text: {
+    title: "App Launcher",
     clear: "Clear",
     confirm: "Got it.",
     dragAppsHere: "Drag apps here that you don't use very often.",
