@@ -662,9 +662,9 @@
 			margin-block-start: calc(-50px * 9);
 		}
 
-		@nest :matches([data-filled="17"], [data-filled="18"]) &:nth-child(10) {
+		/* @nest :matches([data-filled="17"], [data-filled="18"]) &:nth-child(10) {
 			margin-block-start: calc(-50px * 9);
-		}
+		} */
 		
 		@nest :matches([data-filled="19"]) &:nth-child(10) {
 			margin-block-start: calc(-50px * 9);
@@ -693,8 +693,8 @@
 		@nest
 		:matches([data-filled="11"], [data-filled="12"]) &:nth-child(n+10),
 		:matches([data-filled="13"], [data-filled="14"]) &:nth-child(n+10),
-		:matches([data-filled="15"], [data-filled="16"]) &:nth-child(n+10),
-		:matches([data-filled="17"], [data-filled="18"]) &:nth-child(n+10) {
+		:matches([data-filled="15"], [data-filled="16"]) &:nth-child(n+10) {
+		/* :matches([data-filled="17"], [data-filled="18"]) &:nth-child(n+10) { */
 			margin-inline-start: calc(33% + 10px);
 		}
 		
@@ -788,11 +788,12 @@
 
 	&::after {
 		content: url("../../shared/shared.svg#c-arrow-right" param(--fill var(--blue)));
-		inset-block-start: calc(50% - 16px / 2);
+		/* inset-block-start: calc(50% - 16px / 2); */
 		opacity: 0;
 		position: absolute;
 		size: 16px;
 		transition: opacity 250ms, transform 250ms;
+		transform: translate(0, 2px);
 
 		@nest :dir(rtl) & {
 			transform: scaleX(-1);
@@ -802,10 +803,10 @@
 	&:hover, &:focus {
 		&::after {
 			opacity: 1;
-			transform: translateX(10px);
+			transform: translate(10px, 2px);
 
 			@nest :dir(rtl) & {
-				transform: scale(-1) translateX(10px);
+				transform: scale(-1) translate(10px, 2px);
 			}
 		}
 	}

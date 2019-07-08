@@ -1058,14 +1058,42 @@ var createMenus = (function (_ref) {
 		    uuid = _ref3.uuid,
 		    suuid = _ref3.suuid;
 
-		if (hasMenuItems) {
-			$assign($subcontent, $assign('ul', {
-				class: prefix$4 + '-sublist',
-				role: 'navigation', aria: { labelledby: prefix$4 + '-link-' + variant + '-' + uuid + '-' + suuid }
-			},
-			/* Global Navigation: Menus: Sublink
-   /* ============================== */
-			$assign('div', { class: prefix$4 + '-sublist--col-wrapper' }, createMenuColumns(item.menus.slice(0, 9)), createMenuColumns(item.menus.slice(9, 18)))));
+		if (item.menus.length >= 10) {
+			if (item.menus.length % 2 === 0) {
+				var multi = item.menus.length / 2;
+
+				if (hasMenuItems) {
+					$assign($subcontent, $assign('ul', {
+						class: prefix$4 + '-sublist',
+						role: 'navigation', aria: { labelledby: prefix$4 + '-link-' + variant + '-' + uuid + '-' + suuid }
+					},
+					/* Global Navigation: Menus: Sublink
+     /* ============================== */
+					$assign('div', { class: prefix$4 + '-sublist--col-wrapper' }, createMenuColumns(item.menus.slice(0, multi)), createMenuColumns(item.menus.slice(parseInt(multi), item.menus.length - 1)))));
+				}
+			} else if (item.menus.length % 3 === 0) {
+				var _multi = item.menus.length / 3;
+
+				if (hasMenuItems) {
+					$assign($subcontent, $assign('ul', {
+						class: prefix$4 + '-sublist',
+						role: 'navigation', aria: { labelledby: prefix$4 + '-link-' + variant + '-' + uuid + '-' + suuid }
+					},
+					/* Global Navigation: Menus: Sublink
+     /* ============================== */
+					$assign('div', { class: prefix$4 + '-sublist--col-wrapper' }, createMenuColumns(item.menus.slice(0, _multi)), createMenuColumns(item.menus.slice(parseInt(_multi), parseInt(_multi * 2))), createMenuColumns(item.menus.slice(parseInt(_multi * 2), item.menus.length - 1)))));
+				}
+			}
+		} else {
+			if (hasMenuItems) {
+				$assign($subcontent, $assign('ul', {
+					class: prefix$4 + '-sublist',
+					role: 'navigation', aria: { labelledby: prefix$4 + '-link-' + variant + '-' + uuid + '-' + suuid }
+				},
+				/* Global Navigation: Menus: Sublink
+    /* ============================== */
+				$assign('div', { class: prefix$4 + '-sublist--col-wrapper' }, createMenuColumns(item.menus.slice(0, item.menus.length - 1)))));
+			}
 		}
 	}
 

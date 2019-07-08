@@ -220,21 +220,63 @@ export default ({variant = 'desktop'}) => {
 	});
 
 	function renderSingle({hasMenuItems, $subcontent, item, uuid, suuid}) {
-		if (hasMenuItems) {
-			$($subcontent,
-				$('ul',
-					{
-						class: `${prefix}-sublist`,
-						role: 'navigation', aria: {labelledby: `${prefix}-link-${variant}-${uuid}-${suuid}`}
-					},
-					/* Global Navigation: Menus: Sublink
-					/* ============================== */
-					$('div', {class: `${prefix}-sublist--col-wrapper`},
-						createMenuColumns(item.menus.slice(0, 9)),
-						createMenuColumns(item.menus.slice(9, 18))
+		if (item.menus.length >= 10) {
+			if (item.menus.length % 2 === 0) {
+				const multi = item.menus.length / 2;
+				
+				if (hasMenuItems) {
+					$($subcontent,
+						$('ul',
+							{
+								class: `${prefix}-sublist`,
+								role: 'navigation', aria: {labelledby: `${prefix}-link-${variant}-${uuid}-${suuid}`}
+							},
+							/* Global Navigation: Menus: Sublink
+							/* ============================== */
+							$('div', {class: `${prefix}-sublist--col-wrapper`},
+								createMenuColumns(item.menus.slice(0, multi)),
+								createMenuColumns(item.menus.slice(parseInt(multi), item.menus.length - 1))
+							)
+						)
+					);
+				}
+			} else if (item.menus.length % 3 === 0) {
+				const multi = item.menus.length / 3;
+
+				if (hasMenuItems) {
+					$($subcontent,
+						$('ul',
+							{
+								class: `${prefix}-sublist`,
+								role: 'navigation', aria: {labelledby: `${prefix}-link-${variant}-${uuid}-${suuid}`}
+							},
+							/* Global Navigation: Menus: Sublink
+							/* ============================== */
+							$('div', {class: `${prefix}-sublist--col-wrapper`},
+								createMenuColumns(item.menus.slice(0, multi)),
+								createMenuColumns(item.menus.slice(parseInt(multi), parseInt(multi * 2))),
+								createMenuColumns(item.menus.slice(parseInt(multi * 2), item.menus.length - 1))
+							)
+						)
+					);
+				}
+			}
+		} else {
+			if (hasMenuItems) {
+				$($subcontent,
+					$('ul',
+						{
+							class: `${prefix}-sublist`,
+							role: 'navigation', aria: {labelledby: `${prefix}-link-${variant}-${uuid}-${suuid}`}
+						},
+						/* Global Navigation: Menus: Sublink
+						/* ============================== */
+						$('div', {class: `${prefix}-sublist--col-wrapper`},
+							createMenuColumns(item.menus.slice(0, item.menus.length - 1))
+						)
 					)
-				)
-			);
+				);
+			}
 		}
 	}
 
