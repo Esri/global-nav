@@ -163,6 +163,11 @@ export default ({variant = 'desktop'}) => {
 
 								const hasStructured = hasCols && item.cols.filter((col) => (col.type === 'structured')).length > 0;
 								const structuredCols = hasCols ? item.cols.length : 0;
+								let multiCols = 0;
+
+								if (item.menus && item.menus.length > 10) {
+									(parseInt(item.menus.length % 3) === 0) ? multiCols = true : multiCols = false;
+								}
 
 								const $subcontent = $('div',
 									{
@@ -170,7 +175,7 @@ export default ({variant = 'desktop'}) => {
 										id: `${prefix}-${variant}-submenu-${uuid}-${suuid}`,
 										'data-has-structured': hasStructured,
 										role: 'group', aria: {hidden: true, expanded: false},
-										data: {filled: (item.menus && item.menus.length > 10) ? item.menus.slice(0, 18).length : '', structuredCols: (structuredCols) ? structuredCols : ''}
+										data: {filled: (item.menus && item.menus.length > 10) ? item.menus.slice(0, 30).length : '', structuredCols: (structuredCols) ? structuredCols : '', hasMultiCols: multiCols}
 									},
 									$subtoggle
 								);

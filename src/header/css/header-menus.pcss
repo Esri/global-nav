@@ -443,7 +443,10 @@
 			width: calc(350px * 2 + 20px + 35px * 2);
 
 				&[data-structuredcols=""] {
-					width: calc(300px * 2 + 20px + 20px * 2);
+					width: calc(300px * 2 + 20px + 35px * 2);
+					&[data-hasMultiCols="true"] {
+						width: calc(290px * 3 + 20px + 20px * 3);
+					}
 				}
 		}
 

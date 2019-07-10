@@ -1002,13 +1002,18 @@ var createMenus = (function (_ref) {
 						return col.type === 'structured';
 					}).length > 0;
 					var structuredCols = hasCols ? item.cols.length : 0;
+					var multiCols = 0;
+
+					if (item.menus && item.menus.length > 10) {
+						parseInt(item.menus.length % 3) === 0 ? multiCols = true : multiCols = false;
+					}
 
 					var $subcontent = $assign('div', {
 						class: prefix$4 + '-submenu',
 						id: prefix$4 + '-' + variant + '-submenu-' + uuid + '-' + suuid,
 						'data-has-structured': hasStructured,
 						role: 'group', aria: { hidden: true, expanded: false },
-						data: { filled: item.menus && item.menus.length > 10 ? item.menus.slice(0, 18).length : '', structuredCols: structuredCols ? structuredCols : '' }
+						data: { filled: item.menus && item.menus.length > 10 ? item.menus.slice(0, 30).length : '', structuredCols: structuredCols ? structuredCols : '', hasMultiCols: multiCols }
 					}, $subtoggle);
 
 					if (hasCols) {
