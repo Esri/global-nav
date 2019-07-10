@@ -175,7 +175,11 @@ export default ({variant = 'desktop'}) => {
 										id: `${prefix}-${variant}-submenu-${uuid}-${suuid}`,
 										'data-has-structured': hasStructured,
 										role: 'group', aria: {hidden: true, expanded: false},
-										data: {filled: (item.menus && item.menus.length > 10) ? item.menus.slice(0, 30).length : '', structuredCols: (structuredCols) ? structuredCols : '', hasMultiCols: multiCols}
+										data: {
+											filled: (item.menus && item.menus.length > 10) ? item.menus.slice(0, 30).length : '', 
+											structuredCols: (structuredCols) ? structuredCols : '', 
+											hasMultiCols: multiCols
+										}
 									},
 									$subtoggle
 								);
