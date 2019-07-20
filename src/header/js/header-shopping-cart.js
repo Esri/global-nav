@@ -15,14 +15,14 @@ export default () => {
 			href: '#', 
 			class: `${prefix}--icon`, 
 			id: `${prefix}--icon`
-		}, 
-		$renderSvgOrImg({
-			imgDef: $cart.md, 
-			imgClass: `${prefix}--image`, 
-			id: `${prefix}--image`, 
-			$targetElm: $control
-		})
-	);
+		},
+    $renderSvgOrImg({
+      imgDef: $cart.md, 
+      imgClass: `${prefix}--image`, 
+      id: `${prefix}--image`
+    })
+  );
+
 
 	const $cartItems = $('div',
 		{class: `${prefix}--items`, id: `${prefix}--items`}
