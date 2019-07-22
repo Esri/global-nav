@@ -396,6 +396,11 @@
 							right: 0;
 							top: 0;
 							width: 1px;
+
+							@nest :dir(rtl) & {
+								left: 40px;
+								right: auto;
+							}
 						}
 					}
 				}
@@ -873,6 +878,12 @@
 					top: 50%;
 					transition: opacity 250ms, all 250ms;
 					transform: translateY(-75%);
+
+					@nest :dir(rtl) & {
+						left: 0;
+						right: auto;
+						transform: rotate(180deg) translateY(35%);
+					}
 				}
 			}
 			
@@ -888,6 +899,11 @@
 					&:after {
 						opacity: 1;
 						right: -25px;
+
+						@nest :dir(rtl) & {
+							left: -25px;
+							right: auto;
+						}
 					}
 				}
 				
@@ -947,12 +963,24 @@
 				top: 50%;
 				transition: opacity 250ms, all 250ms;
 				transform: translateY(-70%);
+
+				@nest :dir(rtl) & {
+					left: 0;
+					right: auto;
+					transform: rotate(180deg) translateY(35%);
+				}
 			}
 
 			&:hover {
 				&:after {
 					opacity: 1;
 					right: -20px;
+
+					@nest :dir(rtl) & {
+						left: -20px;
+						opacity: 1;
+						right: auto;
+					}
 				}
 			}
 		}
