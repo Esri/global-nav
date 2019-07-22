@@ -28,25 +28,26 @@ const files = [
 ]
 
 function minifyJS(cb) {
-  files.forEach(file => minifyJSFile(file));
+	console.log('minifying js...');
+	files.forEach(file => minifyJSFile(file));
 	if (cb) {
 		cb();
 	}
 }
 
 function minifyJSFile(file) {
-  fs.readFile(`./dist/${file.saveAs}`, 'utf8', function(err, contents) {
-    const output = uglifyjs.minify(contents).code; 
+	fs.readFile(`./dist/${file.saveAs}`, 'utf8', function(err, contents) {
+		const output = uglifyjs.minify(contents).code; 
 
-    fs.writeFile("./dist/" + file.saveAs, output, function(err) {
-      if(err) return console.log(err);
-    });
-  });
+		fs.writeFile("./dist/" + file.saveAs, output, function(err) {
+			if(err) return console.log(err);
+		});
+	});
 
 }
 
 function compileJs(cb) {
-  files.forEach(file => compileJsFile(file));
+	files.forEach(file => compileJsFile(file));
 	if (cb) {
 		cb();
 	}
