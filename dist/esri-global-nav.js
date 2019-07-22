@@ -1638,8 +1638,7 @@ var createShoppingCart = (function () {
 	}, $renderSvgOrImg({
 		imgDef: $cart.md,
 		imgClass: prefix$7 + '--image',
-		id: prefix$7 + '--image',
-		$targetElm: $control
+		id: prefix$7 + '--image'
 	}));
 
 	var $cartItems = $assign('div', { class: prefix$7 + '--items', id: prefix$7 + '--items' });
