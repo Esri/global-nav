@@ -52,7 +52,6 @@ export default (data) => {
 
 	const $lineBreak = $('div', {class: 'esri-header-lineBreak'});
 	const $headerContent = $('div', {class: `esri-header -${data.theme || 'web'} ${data.collapseMenus ? '-always-hamburger' : ''}`},
-			$headerCanvas,
 			$brandStripe,
 			$brand,
 			$mobileMenus,
@@ -66,7 +65,7 @@ export default (data) => {
 			$apps,
 			$client)
 	;
-	const $header = $('div', {class: `esri-header-wrap`}, $headerContent);
+	const $header = $('div', {class: `esri-header-canvas`}, $headerCanvas, {class: `esri-header-wrap`}, $headerContent);
 
 	$enableFocusRing($header);
 
