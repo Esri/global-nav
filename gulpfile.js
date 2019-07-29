@@ -6,4 +6,4 @@ gulp.task("watch", gulp.parallel("watch-es-lint", "watch-js", "watch-postcss", "
 
 gulp.task("default", gulp.series("clean-dist", "web-server", "watch"));
 
-gulp.task("build", gulp.series("clean-dist", "compile-js", "compile-postcss", "optimize-images", "copy-static-files"));
+gulp.task("build", gulp.series("clean-dist", "compile-js", "compile-postcss", "optimize-images", "copy-static-files", "minify-js"));
