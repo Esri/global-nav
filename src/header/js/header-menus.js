@@ -162,7 +162,11 @@ export default ({variant = 'desktop'}) => {
 								);
 
 								const hasStructured = hasCols && item.cols.filter((col) => (col.type === 'structured')).length > 0;
-								const structuredCols = hasCols ? item.cols.length : 0;
+								let multiCols = false;
+
+								if (item.menus && item.menus.length > 10) {
+									((item.menus.length % 3) === 0) ? multiCols = true : multiCols = false;
+								}
 
 								const $subcontent = $('div',
 									{
@@ -170,7 +174,11 @@ export default ({variant = 'desktop'}) => {
 										id: `${prefix}-${variant}-submenu-${uuid}-${suuid}`,
 										'data-has-structured': hasStructured,
 										role: 'group', aria: {hidden: true, expanded: false},
-										data: {filled: (item.menus && item.menus.length > 10) ? item.menus.slice(0, 18).length : '', structuredCols: (structuredCols) ? structuredCols : ''}
+										data: {
+											filled: (item.menus && item.menus.length > 10) ? item.menus.slice(0, 30).length : '', 
+											structuredCols: hasCols ? item.cols.length : '', 
+											hasMultiCols: multiCols
+										}
 									},
 									$subtoggle
 								);
@@ -220,22 +228,44 @@ export default ({variant = 'desktop'}) => {
 	});
 
 	function renderSingle({hasMenuItems, $subcontent, item, uuid, suuid}) {
-		if (hasMenuItems) {
-			$($subcontent,
-				$('ul',
-					{
-						class: `${prefix}-sublist`,
-						role: 'navigation', aria: {labelledby: `${prefix}-link-${variant}-${uuid}-${suuid}`}
-					},
-					/* Global Navigation: Menus: Sublink
-					/* ============================== */
-					$('div', {class: `${prefix}-sublist--col-wrapper`},
-						createMenuColumns(item.menus.slice(0, 9)),
-						createMenuColumns(item.menus.slice(9, 18))
-					)
-				)
-			);
+		let columns = '';
+
+		if (item.menus.length >= 10) {
+			if (item.menus.length % 2 === 0) {
+				const multi = item.menus.length / 2;
+				
+				columns = $('div', {class: `${prefix}-sublist--col-wrapper`},
+					createMenuColumns(item.menus.slice(0, multi)),
+					createMenuColumns(item.menus.slice(parseInt(multi), item.menus.length - 1))
+				);
+			} else if (item.menus.length % 3 === 0) {
+				const multi = item.menus.length / 3;
+
+				columns = $('div', {class: `${prefix}-sublist--col-wrapper`},
+					createMenuColumns(item.menus.slice(0, multi)),
+					createMenuColumns(item.menus.slice(parseInt(multi), parseInt(multi * 2))),
+					createMenuColumns(item.menus.slice(parseInt(multi * 2), item.menus.length - 1))
+				);
+			}
+		} else {
+			if (hasMenuItems) {
+				columns = $('div', {class: `${prefix}-sublist--col-wrapper`},
+					createMenuColumns(item.menus.slice(0, item.menus.length - 1))
+				);
+			}
 		}
+
+		$($subcontent,
+			$('ul',
+				{
+					class: `${prefix}-sublist`,
+					role: 'navigation', aria: {labelledby: `${prefix}-link-${variant}-${uuid}-${suuid}`}
+				},
+				/* Global Navigation: Menus: Sublink
+				/* ============================== */
+				$(columns)
+			)
+		);
 	}
 
 	function renderMulti({$subcontent, item, uuid, suuid}) {
