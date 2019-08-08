@@ -187,67 +187,6 @@ document.addEventListener("DOMContentLoaded", () => {
 							{
 								label: 'Real Estate',
 								href: 'https://www.esri.com/industries/real-estate'
-							},
-							{
-								label: 'Retail',
-								href: 'https://www.esri.com/industries/retail'
-							},
-							{
-								label: 'State and Local Government',
-								href: 'https://www.esri.com/industries/retail'
-							},
-							{
-								label: 'Sustainable Development',
-								href: 'https://www.esri.com/industries/retail'
-							},
-							{
-								label: 'Telecommunications',
-								href: 'https://www.esri.com/industries/telecom'
-							},
-							{
-								label: 'Transportation',
-								href: 'https://www.esri.com/industries/transportation'
-							},
-							{
-								label: 'Water',
-								href: 'https://www.esri.com/industries/water-resources'
-							},
-							{
-								heading: 'Industries',
-								label: 'See all industries',
-								href: 'https://www.esri.com/industries'
-							},
-							{
-								label: 'See all industries',
-								href: 'https://www.esri.com/industries'
-							},
-							{
-								label: 'See all industries',
-								href: 'https://www.esri.com/industries'
-							},
-							{
-								label: 'Industry',
-								href: 'https://www.esri.com/industries'
-							},
-							{
-								label: 'Retail',
-								href: 'https://www.esri.com/industries/retail'
-							},
-							{
-								label: 'Telecommunications',
-								href: 'https://www.esri.com/industries/telecom'
-							},
-							{
-								label: 'Transportation',
-								href: 'https://www.esri.com/industries/transportation'
-							},
-							{
-								label: 'Utilities',
-								href: 'https://www.esri.com/industries/utilities-communications'
-							},
-							{
-								label: 'Water Resources',
-								href: 'https://www.esri.com/industries/water-resources'
 							}
 						],
 						tiles: [
