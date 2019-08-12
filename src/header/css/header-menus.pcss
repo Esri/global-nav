@@ -446,7 +446,23 @@
 				&[data-structuredcols=""] {
 					width: calc(300px * 2 + 20px + 35px * 2);
 					&[data-hasMultiCols="true"] {
-						width: calc(290px * 3 + 20px + 20px * 3);
+						&[data-filled="12"],
+						&[data-filled="13"],
+						&[data-filled="14"],
+						&[data-filled="15"],
+						&[data-filled="16"],
+						&[data-filled="17"],
+						&[data-filled="18"] {
+							width: calc(325px * 2 + 20px + 20px * 2);
+							& .esri-header-menus-sublist--col {
+								max-width: 50%;
+							}
+						}
+
+						width: calc(290px * 3 + 20px + 20px * 3);						
+						& .esri-header-menus-sublist--col {
+							max-width: 33%;
+						}
 					}
 				}
 		}

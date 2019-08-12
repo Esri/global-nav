@@ -83,7 +83,7 @@ export default ({variant = 'desktop'}) => {
 		);
 	};
 
-	const createMenuColumns = (items) => {
+	const createMenuColumns = (items) => {		
 		if (!items.length) return null;
 		return $('div', {class: `${prefix}-sublist--col`}, ...items.map(createColumn));
 	};
@@ -230,27 +230,23 @@ export default ({variant = 'desktop'}) => {
 	function renderSingle({hasMenuItems, $subcontent, item, uuid, suuid}) {
 		let columns = '';
 
-		if (item.menus.length >= 10) {
-			if (item.menus.length % 2 === 0) {
-				const multi = item.menus.length / 2;
-				
-				columns = $('div', {class: `${prefix}-sublist--col-wrapper`},
+		if (item.menus.length >= 10 && item.menus.length <= 18) {
+			const multi = Math.ceil(item.menus.length / 2);
+			columns = $('div', {class: `${prefix}-sublist--col-wrapper`},
 					createMenuColumns(item.menus.slice(0, multi)),
-					createMenuColumns(item.menus.slice(parseInt(multi), item.menus.length - 1))
+					createMenuColumns(item.menus.slice(multi, item.menus.length))
 				);
-			} else if (item.menus.length % 3 === 0) {
-				const multi = item.menus.length / 3;
-
-				columns = $('div', {class: `${prefix}-sublist--col-wrapper`},
-					createMenuColumns(item.menus.slice(0, multi)),
-					createMenuColumns(item.menus.slice(parseInt(multi), parseInt(multi * 2))),
-					createMenuColumns(item.menus.slice(parseInt(multi * 2), item.menus.length - 1))
-				);
-			}
+		} else if (item.menus.length > 18 && item.menus.length <= 27) {
+			const multi = Math.ceil(item.menus.length / 3);
+			columns = $('div', {class: `${prefix}-sublist--col-wrapper`},
+				createMenuColumns(item.menus.slice(0, multi)),
+				createMenuColumns(item.menus.slice(multi, (multi * 2))),
+				createMenuColumns(item.menus.slice((multi * 2), item.menus.length))
+			);
 		} else {
 			if (hasMenuItems) {
 				columns = $('div', {class: `${prefix}-sublist--col-wrapper`},
-					createMenuColumns(item.menus.slice(0, item.menus.length - 1))
+					createMenuColumns(item.menus.slice(0, item.menus.length))
 				);
 			}
 		}

@@ -174,19 +174,6 @@ document.addEventListener("DOMContentLoaded", () => {
 							{
 								label: 'Natural Resources',
 								href: 'https://www.esri.com/industries/natural-resources'
-							},
-							{
-								heading: 'SOLUTIONS',
-								label: 'Petroleum and Pipeline',
-								href: 'https://www.esri.com/industries/petroleum'
-							},
-							{
-								label: 'Public Safety',
-								href: 'https://www.esri.com/industries/public-safety'
-							},
-							{
-								label: 'Real Estate',
-								href: 'https://www.esri.com/industries/real-estate'
 							}
 						],
 						tiles: [
