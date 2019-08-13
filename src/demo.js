@@ -176,17 +176,24 @@ document.addEventListener("DOMContentLoaded", () => {
 								href: 'https://www.esri.com/industries/natural-resources'
 							},
 							{
-								heading: 'SOLUTIONS',
-								label: 'Petroleum and Pipeline',
-								href: 'https://www.esri.com/industries/petroleum'
+								label: 'Government',
+								href: 'https://www.esri.com/industries/government'
 							},
 							{
-								label: 'Public Safety',
-								href: 'https://www.esri.com/industries/public-safety'
+								label: 'Health and Human Services',
+								href: 'https://www.esri.com/industries/health'
 							},
 							{
-								label: 'Real Estate',
-								href: 'https://www.esri.com/industries/real-estate'
+								label: 'Insurance',
+								href: 'https://www.esri.com/industries/insurance'
+							},
+							{
+								label: 'Manufacturing',
+								href: 'https://www.esri.com/industries/manufacturing'
+							},
+							{
+								label: 'Natural Resources',
+								href: 'https://www.esri.com/industries/natural-resources'
 							}
 						],
 						tiles: [

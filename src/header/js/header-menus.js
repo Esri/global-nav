@@ -83,7 +83,7 @@ export default ({variant = 'desktop'}) => {
 		);
 	};
 
-	const createMenuColumns = (items) => {
+	const createMenuColumns = (items) => {		
 		if (!items.length) return null;
 		return $('div', {class: `${prefix}-sublist--col`}, ...items.map(createColumn));
 	};
@@ -163,9 +163,18 @@ export default ({variant = 'desktop'}) => {
 
 								const hasStructured = hasCols && item.cols.filter((col) => (col.type === 'structured')).length > 0;
 								let multiCols = false;
+								let colsNum = 0;
 
 								if (item.menus && item.menus.length > 10) {
 									((item.menus.length % 3) === 0) ? multiCols = true : multiCols = false;
+								}
+
+								if (hasMenuItems) {
+									if (item.menus.length >= 10 && item.menus.length <= 18) {
+										colsNum = 2;
+									} else if (item.menus.length > 18 && item.menus.length <= 27) {
+										colsNum = 3;
+									}
 								}
 
 								const $subcontent = $('div',
@@ -177,7 +186,8 @@ export default ({variant = 'desktop'}) => {
 										data: {
 											filled: (item.menus && item.menus.length > 10) ? item.menus.slice(0, 30).length : '', 
 											structuredCols: hasCols ? item.cols.length : '', 
-											hasMultiCols: multiCols
+											hasMultiCols: multiCols,
+											columns: colsNum
 										}
 									},
 									$subtoggle
@@ -230,27 +240,23 @@ export default ({variant = 'desktop'}) => {
 	function renderSingle({hasMenuItems, $subcontent, item, uuid, suuid}) {
 		let columns = '';
 
-		if (item.menus.length >= 10) {
-			if (item.menus.length % 2 === 0) {
-				const multi = item.menus.length / 2;
-				
-				columns = $('div', {class: `${prefix}-sublist--col-wrapper`},
-					createMenuColumns(item.menus.slice(0, multi)),
-					createMenuColumns(item.menus.slice(parseInt(multi), item.menus.length - 1))
-				);
-			} else if (item.menus.length % 3 === 0) {
-				const multi = item.menus.length / 3;
-
-				columns = $('div', {class: `${prefix}-sublist--col-wrapper`},
-					createMenuColumns(item.menus.slice(0, multi)),
-					createMenuColumns(item.menus.slice(parseInt(multi), parseInt(multi * 2))),
-					createMenuColumns(item.menus.slice(parseInt(multi * 2), item.menus.length - 1))
-				);
-			}
+		if (item.menus.length >= 10 && item.menus.length <= 18) {
+			const multi = Math.ceil(item.menus.length / 2);
+			columns = $('div', {class: `${prefix}-sublist--col-wrapper ${prefix}-columns-2`},
+				createMenuColumns(item.menus.slice(0, multi)),
+				createMenuColumns(item.menus.slice(multi, item.menus.length))
+			);
+		} else if (item.menus.length > 18 && item.menus.length <= 27) {
+			const multi = Math.ceil(item.menus.length / 3);
+			columns = $('div', {class: `${prefix}-sublist--col-wrapper ${prefix}-columns-3`},
+				createMenuColumns(item.menus.slice(0, multi)),
+				createMenuColumns(item.menus.slice(multi, (multi * 2))),
+				createMenuColumns(item.menus.slice((multi * 2), item.menus.length))
+			);
 		} else {
 			if (hasMenuItems) {
 				columns = $('div', {class: `${prefix}-sublist--col-wrapper`},
-					createMenuColumns(item.menus.slice(0, item.menus.length - 1))
+					createMenuColumns(item.menus.slice(0, item.menus.length))
 				);
 			}
 		}

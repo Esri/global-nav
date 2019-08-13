@@ -444,9 +444,28 @@
 			width: calc(350px * 2 + 20px + 35px * 2);
 
 				&[data-structuredcols=""] {
-					width: calc(300px * 2 + 20px + 35px * 2);
+	
+					&[data-columns="2"] {
+						width: 720px;
+
+						& .esri-header-menus-columns-2 {
+							& .esri-header-menus-sublist--col {
+								width: 50%;
+							}
+						}
+					}
+					
+					
 					&[data-hasMultiCols="true"] {
-						width: calc(290px * 3 + 20px + 20px * 3);
+						&[data-columns="3"] {
+							width: 950px;
+
+							& .esri-header-menus-columns-3 {
+								& .esri-header-menus-sublist--col {
+									width: 33%;
+								}
+							}				
+						}
 					}
 				}
 		}
