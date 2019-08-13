@@ -174,6 +174,26 @@ document.addEventListener("DOMContentLoaded", () => {
 							{
 								label: 'Natural Resources',
 								href: 'https://www.esri.com/industries/natural-resources'
+							},
+							{
+								label: 'Government',
+								href: 'https://www.esri.com/industries/government'
+							},
+							{
+								label: 'Health and Human Services',
+								href: 'https://www.esri.com/industries/health'
+							},
+							{
+								label: 'Insurance',
+								href: 'https://www.esri.com/industries/insurance'
+							},
+							{
+								label: 'Manufacturing',
+								href: 'https://www.esri.com/industries/manufacturing'
+							},
+							{
+								label: 'Natural Resources',
+								href: 'https://www.esri.com/industries/natural-resources'
 							}
 						],
 						tiles: [

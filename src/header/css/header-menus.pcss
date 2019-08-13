@@ -444,24 +444,27 @@
 			width: calc(350px * 2 + 20px + 35px * 2);
 
 				&[data-structuredcols=""] {
-					width: calc(300px * 2 + 20px + 35px * 2);
-					&[data-hasMultiCols="true"] {
-						&[data-filled="12"],
-						&[data-filled="13"],
-						&[data-filled="14"],
-						&[data-filled="15"],
-						&[data-filled="16"],
-						&[data-filled="17"],
-						&[data-filled="18"] {
-							width: calc(325px * 2 + 20px + 20px * 2);
+	
+					&[data-columns="2"] {
+						width: 720px;
+
+						& .columns2 {
 							& .esri-header-menus-sublist--col {
-								max-width: 50%;
+								width: 50%;
 							}
 						}
+					}
+					
+					
+					&[data-hasMultiCols="true"] {
+						&[data-columns="3"] {
+							width: 950px;
 
-						width: calc(290px * 3 + 20px + 20px * 3);						
-						& .esri-header-menus-sublist--col {
-							max-width: 33%;
+							& .columns3 {
+								& .esri-header-menus-sublist--col {
+									width: 33%;
+								}
+							}				
 						}
 					}
 				}
