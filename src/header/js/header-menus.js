@@ -242,13 +242,13 @@ export default ({variant = 'desktop'}) => {
 
 		if (item.menus.length >= 10 && item.menus.length <= 18) {
 			const multi = Math.ceil(item.menus.length / 2);
-			columns = $('div', {class: `${prefix}-sublist--col-wrapper columns2`},
+			columns = $('div', {class: `${prefix}-sublist--col-wrapper ${prefix}-columns-2`},
 				createMenuColumns(item.menus.slice(0, multi)),
 				createMenuColumns(item.menus.slice(multi, item.menus.length))
 			);
 		} else if (item.menus.length > 18 && item.menus.length <= 27) {
 			const multi = Math.ceil(item.menus.length / 3);
-			columns = $('div', {class: `${prefix}-sublist--col-wrapper columns3`},
+			columns = $('div', {class: `${prefix}-sublist--col-wrapper ${prefix}-columns-3`},
 				createMenuColumns(item.menus.slice(0, multi)),
 				createMenuColumns(item.menus.slice(multi, (multi * 2))),
 				createMenuColumns(item.menus.slice((multi * 2), item.menus.length))
