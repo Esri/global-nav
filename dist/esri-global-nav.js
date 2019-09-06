@@ -1134,9 +1134,10 @@ var createMenus = (function (_ref) {
 
 	function renderFlyoutMenu(items, type, id) {
 		var $items = [];
+		var current = id === 0 ? 'true' : 'false';
 
 		if (type === 'type') {
-			$items.push($assign('li', { 'data-id': id }, items.type));
+			$items.push($assign('li', { class: prefix$4 + '-flyout--categories-item', 'data-id': id, 'aria-current': current }, items.type));
 		} else if (type === 'label') {
 			items.items.forEach(function (item) {
 				$items.push($assign('li', {}, item.label));
@@ -1150,16 +1151,16 @@ var createMenus = (function (_ref) {
 		var $subcontent = _ref5.$subcontent,
 		    item = _ref5.item;
 
-		var $cols = $assign('ul', { class: prefix$4 + '-flyout' });
-		var $list = $assign('div', { class: prefix$4 + '-flyout--list' });
+		var $flyoutItems = $assign('ul', { class: prefix$4 + '-flyout--categories' });
+		var $flyoutList = $assign('div', { class: prefix$4 + '-flyout--list' });
 
 		item.flyout.forEach(function (item, id) {
-			$assign.apply(undefined, [$cols].concat(toConsumableArray(renderFlyoutMenu(item, 'type', id))));
+			$assign.apply(undefined, [$flyoutItems].concat(toConsumableArray(renderFlyoutMenu(item, 'type', id))));
 
-			$assign($list, $assign.apply(undefined, ['ul', { 'data-id': id }].concat(toConsumableArray(renderFlyoutMenu(item, 'label', id)))));
+			$assign($flyoutList, $assign.apply(undefined, ['ul', { class: prefix$4 + '-flyout--list-items', 'data-id': id, 'aria-current': id === 0 ? 'true' : 'false' }].concat(toConsumableArray(renderFlyoutMenu(item, 'label', id)))));
 		});
 
-		$assign($subcontent, $assign('div', { class: prefix$4 + '-sublist' }, $cols, $list));
+		$assign($subcontent, $assign('div', { class: prefix$4 + '-flyout' }, $flyoutItems, $flyoutList));
 	}
 
 	function renderer(entries) {

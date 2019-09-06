@@ -312,10 +312,11 @@ export default ({variant = 'desktop'}) => {
 	
 	function renderFlyoutMenu(items, type, id) {
 		const $items = [];
-		
+		const current = id === 0 ? 'true' : 'false';
+
 		if (type === 'type') {
 			$items.push(
-				$('li', {'data-id': id}, items.type)
+				$('li', {class: `${prefix}-flyout--categories-item`, 'data-id': id, 'aria-current': current}, items.type)
 			);
 		} else if (type === 'label') {
 			items.items.forEach((item) => {
@@ -329,25 +330,25 @@ export default ({variant = 'desktop'}) => {
 	}
 
 	function renderFlyout({$subcontent, item, uuid, suuid}) {
-		const $cols = $('ul', {class: `${prefix}-flyout`});
-		const $list = $('div', {class: `${prefix}-flyout--list`});
+		const $flyoutItems = $('ul', {class: `${prefix}-flyout--categories`});
+		const $flyoutList = $('div', {class: `${prefix}-flyout--list`});
 		
 			item.flyout.forEach((item, id) => {
-				$($cols,
+				$($flyoutItems,
 					...renderFlyoutMenu(item, 'type', id)
 				);
 				
-				$($list,
-					$('ul', {'data-id': id}, 
+				$($flyoutList,
+					$('ul', {class: `${prefix}-flyout--list-items`, 'data-id': id, 'aria-current': id === 0 ? 'true' : 'false'}, 
 						...renderFlyoutMenu(item, 'label', id)
 					)
 				);
 			});
 
 			$($subcontent,
-				$('div', {class: `${prefix}-sublist`},
-					$cols,
-					$list,
+				$('div', {class: `${prefix}-flyout`},
+					$flyoutItems,
+					$flyoutList,
 				)
 			);
 	}

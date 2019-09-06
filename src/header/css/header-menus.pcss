@@ -235,7 +235,61 @@
 
 /* Global Header Menus: Submenu
 /* ========================================================================== */
-	
+
+.esri-header-menus-flyout {
+	&::after {
+		content: '';
+		display: table;
+		clear: both;
+	}
+}
+
+.esri-header-menus-flyout--categories,
+.esri-header-menus-flyout--list {
+	float: left;
+}
+
+.esri-header-menus-flyout--categories {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	width: 25%;
+}
+
+.esri-header-menus-flyout--categories-item {
+	background: var(--mono-94);
+	box-sizing: border-box;
+	padding: 15px 25px;
+
+	&[aria-current='true'] {
+		background: var(--mono-100);
+	}
+}
+
+.esri-header-menus-flyout--list {
+	position: relative;
+	height: 300px;
+	width: 75%;
+}
+
+.esri-header-menus-flyout--list-items {
+	height: 100%;
+	list-style-type: none;
+	left: 0;
+	margin: 0;
+	padding: 15px 25px;
+	position: absolute;
+	top: 0;
+	width: 100%;
+	z-index: 1;
+
+	&[aria-current='true'] {
+		background: var(--mono-100);
+		color: var(--mono-0);
+		z-index: 10;
+	}
+}
+
 .esri-header-menus-structured-menu--wrapper:after {
 	content: '';
 	clear: both;
