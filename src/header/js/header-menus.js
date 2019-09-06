@@ -280,6 +280,7 @@ export default ({variant = 'desktop'}) => {
 
 	function renderMulti({$subcontent, item, uuid, suuid}) {
 		const $cols = $('div', {class: `${prefix}-sublist--col-wrapper`});
+
 		if (item.cols) {
 			item.cols.forEach((col) => {
 				let menuType = 'standard';
@@ -313,11 +314,30 @@ export default ({variant = 'desktop'}) => {
 	
 	function renderFlyoutMenu(items, type, id) {
 		const $items = [];
-		const current = id === 0 ? 'true' : 'false';
 
 		if (type === 'type') {
+			const category = $('li', {
+				class: `${prefix}-flyout--categories-item`, 'data-id': 
+				id, 'aria-current': id === 0 ? 'true' : 'false'}, 
+				items.type
+			);
+			
+			category.addEventListener('click', (e) => {
+				const selectedCategory = (e.target.hasAttribute('data-id')) && e.target.getAttribute('data-id');
+				const listItems = [].slice.call(document.querySelectorAll('.esri-header-menus-flyout--list-items'));
+				const categoryItems = [].slice.call(document.querySelectorAll('.esri-header-menus-flyout--categories-item'));
+
+				listItems.forEach((list, index) => {
+					categoryItems[index].setAttribute('aria-current', 'false');
+					(categoryItems[index].hasAttribute('data-id') && categoryItems[index].getAttribute('data-id') === selectedCategory) && categoryItems[index].setAttribute('aria-current', 'true');
+
+					list.setAttribute('aria-current', 'false');
+					(list.hasAttribute('data-id') && list.getAttribute('data-id') === selectedCategory) && list.setAttribute('aria-current', 'true');
+				});
+			});
+
 			$items.push(
-				$('li', {class: `${prefix}-flyout--categories-item`, 'data-id': id, 'aria-current': current}, items.type)
+				category
 			);
 		} else if (type === 'label') {
 			items.items.forEach((item) => {
@@ -330,28 +350,28 @@ export default ({variant = 'desktop'}) => {
 		return $items;
 	}
 
-	function renderFlyout({$subcontent, item, uuid, suuid}) {
+	function renderFlyout({$subcontent, item}) {
 		const $flyoutItems = $('ul', {class: `${prefix}-flyout--categories`});
 		const $flyoutList = $('div', {class: `${prefix}-flyout--list`});
 		
-			item.flyout.forEach((item, id) => {
-				$($flyoutItems,
-					...renderFlyoutMenu(item, 'type', id)
-				);
-				
-				$($flyoutList,
-					$('ul', {class: `${prefix}-flyout--list-items`, 'data-id': id, 'aria-current': id === 0 ? 'true' : 'false'}, 
-						...renderFlyoutMenu(item, 'label', id)
-					)
-				);
-			});
-
-			$($subcontent,
-				$('div', {class: `${prefix}-flyout`},
-					$flyoutItems,
-					$flyoutList,
+		item.flyout.forEach((item, id) => {
+			$($flyoutItems,
+				...renderFlyoutMenu(item, 'type', id)
+			);
+			
+			$($flyoutList,
+				$('ul', {class: `${prefix}-flyout--list-items`, 'data-id': id, 'aria-current': id === 0 ? 'true' : 'false'}, 
+					...renderFlyoutMenu(item, 'label', id)
 				)
 			);
+		});
+
+		$($subcontent,
+			$('div', {class: `${prefix}-flyout`},
+				$flyoutItems,
+				$flyoutList,
+			)
+		);
 	}
 
 	function renderer(entries) {

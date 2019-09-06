@@ -33,12 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
 										heading: 'GIS & MAPPING PRODUCTS',
 										label: 'ArcGIS Online',
 										href: 'https://www.esri.com/en-us/arcgis-online'
-									}
-								]
-							},
-							{
-								type: 'GIS & MAPPING PRODUCTS',
-								items: [
+									},
 									{
 										heading: 'CAPABILITIES',
 										label: 'Mapping',
@@ -52,8 +47,43 @@ document.addEventListener("DOMContentLoaded", () => {
 								]
 							},
 							{
+								type: 'GIS & MAPPING PRODUCTS',
+								items: [
+									{
+										heading: 'CAPABILITIES',
+										label: 'ArcGIS Pro',
+										href: 'https://www.esri.com/en-us/location-intelligence'
+									},
+									{
+										heading: 'GIS & MAPPING PRODUCTS',
+										label: 'ArcGIS Enterprise',
+										href: 'https://www.esri.com/en-us/arcgis-online'
+									},
+									{
+										heading: 'CAPABILITIES',
+										label: 'Esri Maps',
+										href: 'https://www.esri.com/en-us/location-intelligence'
+									},
+									{
+										heading: 'GIS & MAPPING PRODUCTS',
+										label: 'ArcGIS Online',
+										href: 'https://www.esri.com/en-us/arcgis-online'
+									}
+								]
+							},
+							{
 								type: 'LOCATION-ENABLED PRODUCTS',
 								items: [
+									{
+										heading: 'CAPABILITIES',
+										label: 'Mapping The Nation',
+										href: 'https://www.esri.com/en-us/location-intelligence'
+									},
+									{
+										heading: 'GIS & MAPPING PRODUCTS',
+										label: 'ArcGIS Online',
+										href: 'https://www.esri.com/en-us/arcgis-online'
+									},
 									{
 										heading: 'CAPABILITIES',
 										label: 'Mapping',
@@ -69,6 +99,16 @@ document.addEventListener("DOMContentLoaded", () => {
 							{
 								type: 'EXPLORE MORE',
 								items: [
+									{
+										heading: 'CAPABILITIES',
+										label: 'ArcGIS World',
+										href: 'https://www.esri.com/en-us/location-intelligence'
+									},
+									{
+										heading: 'GIS & MAPPING PRODUCTS',
+										label: 'ArcGIS Online',
+										href: 'https://www.esri.com/en-us/arcgis-online'
+									},
 									{
 										heading: 'CAPABILITIES',
 										label: 'Mapping',

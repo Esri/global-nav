@@ -1110,6 +1110,7 @@ var createMenus = (function (_ref) {
 		    suuid = _ref4.suuid;
 
 		var $cols = $assign('div', { class: prefix$4 + '-sublist--col-wrapper' });
+
 		if (item.cols) {
 			item.cols.forEach(function (col) {
 				var menuType = 'standard';
@@ -1135,10 +1136,26 @@ var createMenus = (function (_ref) {
 
 	function renderFlyoutMenu(items, type, id) {
 		var $items = [];
-		var current = id === 0 ? 'true' : 'false';
 
 		if (type === 'type') {
-			$items.push($assign('li', { class: prefix$4 + '-flyout--categories-item', 'data-id': id, 'aria-current': current }, items.type));
+			var category = $assign('li', {
+				class: prefix$4 + '-flyout--categories-item', 'data-id': id, 'aria-current': id === 0 ? 'true' : 'false' }, items.type);
+
+			category.addEventListener('click', function (e) {
+				var selectedCategory = e.target.hasAttribute('data-id') && e.target.getAttribute('data-id');
+				var listItems = [].slice.call(document.querySelectorAll('.esri-header-menus-flyout--list-items'));
+				var categoryItems = [].slice.call(document.querySelectorAll('.esri-header-menus-flyout--categories-item'));
+
+				listItems.forEach(function (list, index) {
+					categoryItems[index].setAttribute('aria-current', 'false');
+					categoryItems[index].hasAttribute('data-id') && categoryItems[index].getAttribute('data-id') === selectedCategory && categoryItems[index].setAttribute('aria-current', 'true');
+
+					list.setAttribute('aria-current', 'false');
+					list.hasAttribute('data-id') && list.getAttribute('data-id') === selectedCategory && list.setAttribute('aria-current', 'true');
+				});
+			});
+
+			$items.push(category);
 		} else if (type === 'label') {
 			items.items.forEach(function (item) {
 				$items.push($assign('li', { class: prefix$4 + '-flyout--list-items_name' }, item.label));
