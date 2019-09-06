@@ -182,7 +182,8 @@ export default ({variant = 'desktop'}) => {
 									{
 										class: `${prefix}-submenu`,
 										id: `${prefix}-${variant}-submenu-${uuid}-${suuid}`,
-										'data-has-structured': hasStructured,
+										'data-has-structured': hasFlyout ? 'false' : hasStructured,
+										'data-has-flyout': hasFlyout ? 'true' : 'false',
 										role: 'group', aria: {hidden: true, expanded: false},
 										data: {
 											filled: (item.menus && item.menus.length > 10) ? item.menus.slice(0, 30).length : '', 
@@ -321,7 +322,7 @@ export default ({variant = 'desktop'}) => {
 		} else if (type === 'label') {
 			items.items.forEach((item) => {
 				$items.push(
-					$('li', {}, item.label)
+					$('li', {class: `${prefix}-flyout--list-items_name`}, item.label)
 				);
 			});
 		}

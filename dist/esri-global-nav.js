@@ -1020,7 +1020,8 @@ var createMenus = (function (_ref) {
 					var $subcontent = $assign('div', {
 						class: prefix$4 + '-submenu',
 						id: prefix$4 + '-' + variant + '-submenu-' + uuid + '-' + suuid,
-						'data-has-structured': hasStructured,
+						'data-has-structured': hasFlyout ? 'false' : hasStructured,
+						'data-has-flyout': hasFlyout ? 'true' : 'false',
 						role: 'group', aria: { hidden: true, expanded: false },
 						data: {
 							filled: item.menus && item.menus.length > 10 ? item.menus.slice(0, 30).length : '',
@@ -1140,7 +1141,7 @@ var createMenus = (function (_ref) {
 			$items.push($assign('li', { class: prefix$4 + '-flyout--categories-item', 'data-id': id, 'aria-current': current }, items.type));
 		} else if (type === 'label') {
 			items.items.forEach(function (item) {
-				$items.push($assign('li', {}, item.label));
+				$items.push($assign('li', { class: prefix$4 + '-flyout--list-items_name' }, item.label));
 			});
 		}
 
