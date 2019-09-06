@@ -991,9 +991,10 @@ var createMenus = (function (_ref) {
 
 				var hasMenuItems = item.menus && item.menus.length;
 				var hasCols = item.cols && item.cols.length;
+				var hasFlyout = item.flyout && item.flyout.length;
 				var hasFeaturedItems = item.tiles && item.tiles.length;
 
-				if (hasMenuItems || hasCols || hasFeaturedItems) {
+				if (hasMenuItems || hasCols || hasFeaturedItems || hasFlyout) {
 					/* Global Navigation: Submenu
      /* ====================================== */
 					var $subtoggle = $assign('button', { class: prefix$4 + '-submenu-toggle' }, item.label);
@@ -1029,7 +1030,9 @@ var createMenus = (function (_ref) {
 						}
 					}, $subtoggle);
 
-					if (hasCols) {
+					if (hasFlyout) {
+						renderFlyout({ $subcontent: $subcontent, item: item, uuid: uuid, suuid: suuid });
+					} else if (hasCols) {
 						renderMulti({ $subcontent: $subcontent, item: item, uuid: uuid, suuid: suuid });
 					} else {
 						renderSingle({ hasMenuItems: hasMenuItems, $subcontent: $subcontent, item: item, uuid: uuid, suuid: suuid });
@@ -1129,6 +1132,36 @@ var createMenus = (function (_ref) {
 		}
 	}
 
+	function renderFlyoutMenu(items, type, id) {
+		var $items = [];
+
+		if (type === 'type') {
+			$items.push($assign('li', { 'data-id': id }, items.type));
+		} else if (type === 'label') {
+			items.items.forEach(function (item) {
+				$items.push($assign('li', {}, item.label));
+			});
+		}
+
+		return $items;
+	}
+
+	function renderFlyout(_ref5) {
+		var $subcontent = _ref5.$subcontent,
+		    item = _ref5.item;
+
+		var $cols = $assign('ul', { class: prefix$4 + '-flyout' });
+		var $list = $assign('div', { class: prefix$4 + '-flyout--list' });
+
+		item.flyout.forEach(function (item, id) {
+			$assign.apply(undefined, [$cols].concat(toConsumableArray(renderFlyoutMenu(item, 'type', id))));
+
+			$assign($list, $assign.apply(undefined, ['ul', { 'data-id': id }].concat(toConsumableArray(renderFlyoutMenu(item, 'label', id)))));
+		});
+
+		$assign($subcontent, $assign('div', { class: prefix$4 + '-sublist' }, $cols, $list));
+	}
+
 	function renderer(entries) {
 		var $items = [];
 
@@ -1136,6 +1169,7 @@ var createMenus = (function (_ref) {
 			if (entry.heading) {
 				$items.push($assign('li', { class: prefix$4 + '-entry--heading' }, $assign('p', { class: prefix$4 + '-entry--heading-label' }, entry.heading)));
 			}
+
 			if (entry.href && entry.label) {
 				$items.push($assign('li', { class: prefix$4 + '-entry--menus-subitem' }, $assign('a', { href: entry.href, class: prefix$4 + '-entry-sublink' }, entry.label)));
 			}
@@ -1160,8 +1194,8 @@ var createMenus = (function (_ref) {
 		return $items;
 	}
 
-	$target.addEventListener('header:update:collapseMenus', function (_ref5) {
-		var detail = _ref5.detail;
+	$target.addEventListener('header:update:collapseMenus', function (_ref6) {
+		var detail = _ref6.detail;
 
 		if (detail && detail.indexOf(true) > -1) {
 			var $brand = document.getElementById('esri-header-brand') || document.getElementById('esri-header-inline-title');

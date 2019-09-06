@@ -152,9 +152,10 @@ export default ({variant = 'desktop'}) => {
 
 							const hasMenuItems = item.menus && item.menus.length;
 							const hasCols = item.cols && item.cols.length;
+							const hasFlyout = item.flyout && item.flyout.length;
 							const hasFeaturedItems = item.tiles && item.tiles.length;
 
-							if (hasMenuItems || hasCols || hasFeaturedItems) {
+							if (hasMenuItems || hasCols || hasFeaturedItems || hasFlyout) {
 								/* Global Navigation: Submenu
 								/* ====================================== */
 								const $subtoggle = $('button', {class: `${prefix}-submenu-toggle`},
@@ -193,7 +194,9 @@ export default ({variant = 'desktop'}) => {
 									$subtoggle
 								);
 
-								if (hasCols) {
+								if (hasFlyout) {
+									renderFlyout({$subcontent, item, uuid, suuid});
+								} else if (hasCols) {
 									renderMulti({$subcontent, item, uuid, suuid});
 								} else {
 									renderSingle({hasMenuItems, $subcontent, item, uuid, suuid});
@@ -306,6 +309,48 @@ export default ({variant = 'desktop'}) => {
 			);
 		}
 	}
+	
+	function renderFlyoutMenu(items, type, id) {
+		const $items = [];
+		
+		if (type === 'type') {
+			$items.push(
+				$('li', {'data-id': id}, items.type)
+			);
+		} else if (type === 'label') {
+			items.items.forEach((item) => {
+				$items.push(
+					$('li', {}, item.label)
+				);
+			});
+		}
+		
+		return $items;
+	}
+
+	function renderFlyout({$subcontent, item, uuid, suuid}) {
+		const $cols = $('ul', {class: `${prefix}-flyout`});
+		const $list = $('div', {class: `${prefix}-flyout--list`});
+		
+			item.flyout.forEach((item, id) => {
+				$($cols,
+					...renderFlyoutMenu(item, 'type', id)
+				);
+				
+				$($list,
+					$('ul', {'data-id': id}, 
+						...renderFlyoutMenu(item, 'label', id)
+					)
+				);
+			});
+
+			$($subcontent,
+				$('div', {class: `${prefix}-sublist`},
+					$cols,
+					$list,
+				)
+			);
+	}
 
 	function renderer(entries) {
 		const $items = [];
@@ -318,6 +363,7 @@ export default ({variant = 'desktop'}) => {
 					)
 				);
 			}
+
 			if (entry.href && entry.label) {
 				$items.push(
 					$('li', {class: `${prefix}-entry--menus-subitem`},
