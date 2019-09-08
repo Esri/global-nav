@@ -252,6 +252,7 @@
 }
 
 .esri-header-menus-flyout--categories {
+	background-color: var(--mono-100);
 	list-style-type: none;
 	margin: 0;
 	padding: 0;
@@ -259,7 +260,7 @@
 }
 
 .esri-header-menus-flyout--categories-item {
-	background: var(--mono-94);
+	background-color: var(--mono-94);
 	box-sizing: border-box;
 	cursor: pointer;
 	font-size: 12px;
@@ -282,7 +283,7 @@
 	}
 
 	&[aria-current='true'] {
-		background: var(--mono-100);
+		background-color: var(--mono-100);
 		cursor: auto;
 		font-weight: 600;
 
@@ -292,11 +293,18 @@
 	}
 
 	&:hover {
-		background: var(--mono-100);
-		font-weight: 600;
+		background-color: rgba(239, 239, 239, .50);
+
+		&[aria-current='true'] {
+			background-color: var(--mono-100);
+
+			&::before {
+				opacity: 1;
+			}
+		}
 
 		&::before {
-			opacity: 1;
+			opacity: .5;
 		}
 	}
 }
