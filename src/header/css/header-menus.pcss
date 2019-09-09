@@ -263,7 +263,8 @@
 	background-color: var(--mono-94);
 	box-sizing: border-box;
 	cursor: pointer;
-	font-size: 12px;
+	font-size: 11px;
+	letter-spacing: 1px;
 	padding: 15px 15px 15px 30px;
 	position: relative;
 	transition: background-color .25s ease-out;
@@ -310,27 +311,33 @@
 }
 
 .esri-header-menus-flyout--list {
+	background: var(--mono-100);
 	position: relative;
-	min-height: 300px;
+	min-height: 350px;
 	width: 70%;
 }
 
 .esri-header-menus-flyout--list-items {
+	background: var(--mono-100);
 	color: var(--mono-20);
+	display: none;
 	font-size: 14px;
 	height: 100%;
 	list-style-type: none;
 	left: 0;
 	margin: 0;
+	opacity: 0;
 	padding: 0;
-	position: absolute;
+	position: relative;
 	top: 0;
+	transition: all .5s ease-out;
 	width: 100%;
-	z-index: 1;
+	z-index: -1;
 
 	&[aria-current='true'] {
-		background: var(--mono-100);
-		z-index: 10;
+		display: block;
+		opacity: 1;
+		z-index: 1;
 	}
 }
 

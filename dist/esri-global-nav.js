@@ -1169,13 +1169,13 @@ var createMenus = (function (_ref) {
 		var $subcontent = _ref5.$subcontent,
 		    item = _ref5.item;
 
-		var $flyoutItems = $assign('ul', { class: prefix$4 + '-flyout--categories' });
+		var $flyoutItems = $assign('div', { class: prefix$4 + '-flyout--categories' });
 		var $flyoutList = $assign('div', { class: prefix$4 + '-flyout--list' });
 
 		item.flyout.forEach(function (item, id) {
 			$assign.apply(undefined, [$flyoutItems].concat(toConsumableArray(renderFlyoutMenu(item, 'type', id))));
 
-			$assign($flyoutList, $assign.apply(undefined, ['ul', { class: prefix$4 + '-flyout--list-items', 'data-id': id, 'aria-current': id === 0 ? 'true' : 'false' }].concat(toConsumableArray(renderFlyoutMenu(item, 'label', id)))));
+			$assign($flyoutList, $assign.apply(undefined, ['div', { class: prefix$4 + '-flyout--list-items', 'data-id': id, 'aria-current': id === 0 ? 'true' : 'false' }].concat(toConsumableArray(renderFlyoutMenu(item, 'label', id)))));
 		});
 
 		$assign($subcontent, $assign('div', { class: prefix$4 + '-flyout' }, $flyoutItems, $flyoutList));

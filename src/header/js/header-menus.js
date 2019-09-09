@@ -351,7 +351,7 @@ export default ({variant = 'desktop'}) => {
 	}
 
 	function renderFlyout({$subcontent, item}) {
-		const $flyoutItems = $('ul', {class: `${prefix}-flyout--categories`});
+		const $flyoutItems = $('div', {class: `${prefix}-flyout--categories`});
 		const $flyoutList = $('div', {class: `${prefix}-flyout--list`});
 		
 		item.flyout.forEach((item, id) => {
@@ -360,7 +360,7 @@ export default ({variant = 'desktop'}) => {
 			);
 			
 			$($flyoutList,
-				$('ul', {class: `${prefix}-flyout--list-items`, 'data-id': id, 'aria-current': id === 0 ? 'true' : 'false'}, 
+				$('div', {class: `${prefix}-flyout--list-items`, 'data-id': id, 'aria-current': id === 0 ? 'true' : 'false'}, 
 					...renderFlyoutMenu(item, 'label', id)
 				)
 			);
