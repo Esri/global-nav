@@ -6,6 +6,7 @@
 *.log*
 node_modules
 dist/*
+www/
 !dist/esri-global-nav.js
 !dist/esri-global-nav.css
 !dist/img/

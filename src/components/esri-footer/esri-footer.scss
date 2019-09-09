@@ -1,0 +1,33 @@
+// Cou can use any SASS from Calcite Base and Calcite Colors here.
+
+:host {
+  // Declare any CSS variables here as well as styles for the <Host> element.
+}
+
+  @mixin footer-link-styles() {
+    position: relative;
+
+    &::after {
+      // TODO: add this as an actual dom element
+      // content: url("../shared.svg#c-arrow-right" param(--fill var(--blue)));
+      inset-block-start: calc(50% - 8px);
+      line-height: 10px;
+      margin-inline-start: -.25em;
+      opacity: 0;
+      position: absolute;
+      size: 16px;
+      transition: margin-left 300ms, margin-right 300ms, opacity 300ms;
+
+      &:dir(rtl) {
+        transform: scale(-1);
+        left: -13px;
+      }
+    }
+
+    &:hover, &:focus {
+      &::after {
+        margin-inline-start: .25em;
+        opacity: 1;
+      }
+    }
+  };

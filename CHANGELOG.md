@@ -1,4 +1,10 @@
-## Unreleased
+## 2.0
+
+### Breaking
+
+- Both the header and the footer are now web components created with stencil. This changes the way you must initialize and consume the global nav. See the documentation for more details.
+
+## 1.2.2
 
 ### Added
 - Shopping cart icon functionality

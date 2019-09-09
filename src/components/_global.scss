@@ -1,0 +1,144 @@
+@import "./node_modules/@esri/calcite-colors/colors.scss";
+@import "./node_modules/@esri/calcite-base/dist/_index.scss";
+
+/* Global SASS variables */
+$esri-header-width-m: 320px;
+$esri-header-height: 56px;
+$esri-footer-social-size: 36px;
+$esri-footer-social-gutter: 7px;
+
+/* Unset Property Sets
+/* ====================================================================== */
+@mixin normalize-button () {
+  -webkit-appearance: button;
+  margin: 0;
+  overflow: visible;
+  text-transform: none;
+
+  &::-moz-focus-inner {
+    border-style: none;
+    padding: 0;
+  }
+
+  &:-moz-focusring {
+    outline: 1px dotted ButtonText;
+  }
+}
+
+@mixin normalize-input-type-search () {
+  -webkit-appearance: textfield;
+  margin: 0;
+  outline-offset: -2px;
+  overflow: visible;
+  box-shadow: none;
+
+  &::-ms-clear {
+    display: none;
+  }
+
+  &::-webkit-search-cancel-button,
+  &::-webkit-search-decoration {
+    -webkit-appearance: none;
+  }
+
+  &:focus {
+    border-color: transparent;
+    box-shadow: none;
+  }
+};
+
+@mixin unset-a () {
+  color: inherit;
+  text-decoration: none;
+  &:hover {
+    text-decoration: none;
+  }
+};
+
+@mixin unset-input-text () {
+  background-color: transparent;
+  border-width: 0;
+  font-family: inherit;
+  font-size: inherit;
+  font-style: inherit;
+  font-weight: inherit;
+  padding: 0;
+};
+
+@mixin unset-button () {
+  background-color: transparent;
+  border-width: 0;
+  color: inherit;
+  font-family: inherit;
+  font-size: inherit;
+  font-style: inherit;
+  font-weight: inherit;
+  padding: 0;
+};
+
+/* Shared style mixins
+/* ====================================================================== */
+@mixin menu-link () {
+  display: block;
+  cursor: pointer;
+  &:hover {
+    box-shadow: inset 0 -3px 0 0 $h-bb-030;
+    color: $blk-000;
+    fill: currentColor;
+  }
+
+  &:matches(:active, [aria-expanded="true"]) {
+    box-shadow: inset 0 -3px 0 0 $h-bb-060;
+    color: $blk-000;
+    fill: currentColor;
+  }
+
+  &.-is-active {
+    box-shadow: inset 0 -3px 0 0 $h-bb-060;
+  }
+};
+
+@mixin submenu() {
+  box-shadow: inset 0 0 0 1px $blk-130;
+  position: absolute 100%;
+  transition: opacity $transition; // TODO: use new transition variables
+
+  &:not([aria-expanded="true"]) {
+    clip: rect(0, 0, 0, 0);
+    opacity: 0;
+    visibility: hidden;
+  }
+};
+
+@mixin menu-icon () {
+  display: block;
+  fill: currentColor;
+  margin: 16px;
+  size: 24px;
+}
+
+/* Breakpoints
+/* ========================================================================== */
+@mixin width-xl {
+  @media screen and (min-width: 1440px){ @content; }
+}
+@mixin width-l {
+  @media screen and (min-width: 1024px){ @content; }
+}
+@mixin width-ml {
+  @media screen and (min-width: 768px){ @content; }
+}
+@mixin width-m {
+  @media screen and (min-width: 768px) and (max-width: 1024px){ @content; }
+}
+@mixin width-sm {
+  @media screen and (max-width: 1024px){ @content; }
+}
+@mixin width-s {
+  @media screen and (max-width: 768px){ @content; }
+}
+
+/* Selectors
+/* ========================================================================== */
+// @custom-selector :--enter :focus, :hover;
+
