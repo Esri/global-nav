@@ -56,6 +56,14 @@ Pull requests are the greatest contributions, so be sure they are focused in sco
 
 That’s it! Now [open a pull request] with a clear title and description.
 
+## Running the local dev server
+
+Assuming that you've already cloned and installed dependencies you can run a local development environment using:
+
+```bash
+npm start
+```
+
 [already been reported]: issues
 [fork this project]:     fork
 [live example]:          https://codepen.io/pen
