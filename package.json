@@ -19,7 +19,8 @@
     "test:js": "eslint src/**/*.js --cache --ignore-pattern .gitignore"
   },
   "dependencies": {
-    "sortablejs": "1.7.0"
+    "sortablejs": "1.7.0",
+    "zingtouch": "^1.0.6"
   },
   "devDependencies": {
     "autoprefixer": "^9.4.7",

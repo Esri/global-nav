@@ -1,5 +1,6 @@
 import {$assign as $, $dispatch, $replaceAll, $renderSvgOrImg} from '../../shared/js/shared';
 import {$hamburger} from '../../shared/js/iconPaths';
+import ZingTouch from 'zingtouch';
 
 const prefix = 'esri-header-menus';
 
@@ -315,11 +316,11 @@ export default ({variant = 'desktop'}) => {
 	function renderFlyoutMenu(items, type, id) {
 		const $items = [];
 
-		if (type === 'type') {
+		if (type === 'category') {
 			const category = $('li', {
 				class: `${prefix}-flyout--categories-item`, 'data-id': 
 				id, 'aria-current': id === 0 ? 'true' : 'false'}, 
-				items.type
+				items.category
 			);
 			
 			category.addEventListener('click', (e) => {
@@ -351,12 +352,12 @@ export default ({variant = 'desktop'}) => {
 	}
 
 	function renderFlyout({$subcontent, item}) {
-		const $flyoutItems = $('div', {class: `${prefix}-flyout--categories`});
+		const $flyoutCategories = $('div', {class: `${prefix}-flyout--categories`, 'data-mobile-slide': '0'});
 		const $flyoutList = $('div', {class: `${prefix}-flyout--list`});
 		
 		item.flyout.forEach((item, id) => {
-			$($flyoutItems,
-				...renderFlyoutMenu(item, 'type', id)
+			$($flyoutCategories,
+				...renderFlyoutMenu(item, 'category', id)
 			);
 			
 			$($flyoutList,
@@ -368,7 +369,9 @@ export default ({variant = 'desktop'}) => {
 
 		$($subcontent,
 			$('div', {class: `${prefix}-flyout`},
-				$flyoutItems,
+				$('div', {class: `${prefix}-flyout--categories-wrapper`},
+					$flyoutCategories,
+				),
 				$flyoutList,
 			)
 		);
@@ -444,3 +447,34 @@ export default ({variant = 'desktop'}) => {
 
 	return $target;
 };
+
+window.addEventListener('DOMContentLoaded', () => {
+	const zt = new ZingTouch.Region(document.body);
+	const myElement = document.querySelector('.esri-header-menus-flyout--categories');
+	const leftSwipe = 180;
+	const rightSwipe = 360;
+	const delta = 270;
+	let current = 0;
+
+	zt.bind(myElement, 'swipe', (evt) => {
+		const direction = evt.detail.data[0].currentDirection;
+		current = parseInt(myElement.getAttribute('data-mobile-slide'));
+		if (direction === leftSwipe) {
+			current = current + 1;
+			myElement.setAttribute('data-mobile-slide', current);
+			const categoryItems = [].slice.call(document.querySelectorAll('.esri-header-menus-flyout--categories-item'));
+			categoryItems.forEach((cat) => {
+				cat.setAttribute('aria-current', 'false');
+			});
+			categoryItems[current].setAttribute('aria-current', 'true');
+			const listItems = [].slice.call(document.querySelectorAll('.esri-header-menus-flyout--list-items'));
+			listItems.forEach((list) => {
+				list.setAttribute('aria-current', 'false');
+			});
+			listItems[current].setAttribute('aria-current', 'true');
+			myElement.style.left = `-${delta * current}px`;
+		} else if (direction === rightSwipe) {
+			myElement.style.left = '0px';
+		}
+	}, false);
+});

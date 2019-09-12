@@ -248,15 +248,46 @@
 
 .esri-header-menus-flyout--categories,
 .esri-header-menus-flyout--list {
-	float: left;
+
+	@media (--width-l) {
+		float: left;
+	}
+}
+
+.esri-header-menus-flyout--categories-wrapper {
+	height: 60px;
+	overflow: hidden;
+	position: relative;
+	width: 100%;
+
+	@media (--width-l) {
+		overflow: visible;
+		height: 100%;
+	}
 }
 
 .esri-header-menus-flyout--categories {
 	background-color: var(--mono-100);
+	border-bottom: thin solid var(--mono-88);
+	display: flex;
+	height: 60px;
 	list-style-type: none;
 	margin: 0;
+	overflow: hidden;
+	position: absolute;
+	left: 0;
 	padding: 0;
-	width: 30%;
+	transition: all .35s ease-out;
+	width: 1080px;
+
+	@media (--width-l) {
+		border-bottom: transparent;
+		display: block;
+		height: auto;
+		overflow: auto;
+		position: relative;
+		width: 30%;
+	}
 }
 
 .esri-header-menus-flyout--categories-item {
@@ -268,6 +299,7 @@
 	padding: 15px 15px 15px 30px;
 	position: relative;
 	transition: background-color .25s ease-out;
+	width: 100%;
 
 	&::before {
 		background-color: var(--blue);
@@ -314,7 +346,11 @@
 	background: var(--mono-100);
 	position: relative;
 	min-height: 350px;
-	width: 70%;
+	width: 100%;
+
+	@media (--width-l) {
+		width: 70%;
+	}
 }
 
 .esri-header-menus-flyout--list-items {
@@ -342,7 +378,7 @@
 }
 
 .esri-header-menus-flyout--list-items_name {
-	padding: 15px 15px 0 25px;
+	padding: 15px 25px;
 
 	&::after {
 		content: url("../../shared/shared.svg#c-arrow-right" param(--fill var(--blue)));
