@@ -1,6 +1,6 @@
 import {$assign as $, $dispatch, $replaceAll, $renderSvgOrImg} from '../../shared/js/shared';
 import {$hamburger} from '../../shared/js/iconPaths';
-import ZingTouch from 'zingtouch';
+import Hammer from 'hammerjs';
 
 const prefix = 'esri-header-menus';
 
@@ -448,33 +448,55 @@ export default ({variant = 'desktop'}) => {
 	return $target;
 };
 
-window.addEventListener('DOMContentLoaded', () => {
-	const zt = new ZingTouch.Region(document.body);
-	const myElement = document.querySelector('.esri-header-menus-flyout--categories');
-	const leftSwipe = 180;
-	const rightSwipe = 360;
+function resetMobileTabs(myElement, cur, direction) {
 	const delta = 270;
+	const categoryItems = [].slice.call(document.querySelectorAll('.esri-header-menus-flyout--categories-item[data-id]'));
+	const listItems = [].slice.call(document.querySelectorAll('.esri-header-menus-flyout--list-items'));
+	const minItem = categoryItems[0].getAttribute('data-id');
+	const maxItem = categoryItems[categoryItems.length - 1].getAttribute('data-id');
+
+	let current = cur;
+
+	if (direction === 'swipeleft') {
+		current++;
+		if (current > maxItem) {
+			current = 3;
+		}
+	} else if (direction === 'swiperight') {
+		current--;
+		if (current <= minItem) {
+			current = 0;
+		}
+	}
+
+	categoryItems.forEach((cat) => {
+		cat.setAttribute('aria-current', 'false');
+	});
+	categoryItems[current].setAttribute('aria-current', 'true');
+
+	listItems.forEach((list) => {
+		list.setAttribute('aria-current', 'false');
+	});
+	listItems[current].setAttribute('aria-current', 'true');
+
+	myElement.setAttribute('data-mobile-slide', current);
+	myElement.style.left = `-${delta * current}px`;
+}
+
+window.addEventListener('DOMContentLoaded', () => {
+	const myElement = document.querySelector('.esri-header-menus-flyout--categories');
 	let current = 0;
 
-	zt.bind(myElement, 'swipe', (evt) => {
-		const direction = evt.detail.data[0].currentDirection;
+	const hammertime = new Hammer.Manager(myElement);
+	const Swipe = new Hammer.Swipe();
+	hammertime.add(Swipe);
+	hammertime.on('swipeleft swiperight', (ev) => {
+		const direction = ev.type;
 		current = parseInt(myElement.getAttribute('data-mobile-slide'));
-		if (direction === leftSwipe) {
-			current = current + 1;
-			myElement.setAttribute('data-mobile-slide', current);
-			const categoryItems = [].slice.call(document.querySelectorAll('.esri-header-menus-flyout--categories-item'));
-			categoryItems.forEach((cat) => {
-				cat.setAttribute('aria-current', 'false');
-			});
-			categoryItems[current].setAttribute('aria-current', 'true');
-			const listItems = [].slice.call(document.querySelectorAll('.esri-header-menus-flyout--list-items'));
-			listItems.forEach((list) => {
-				list.setAttribute('aria-current', 'false');
-			});
-			listItems[current].setAttribute('aria-current', 'true');
-			myElement.style.left = `-${delta * current}px`;
-		} else if (direction === rightSwipe) {
-			myElement.style.left = '0px';
+		if (direction === 'swipeleft') {
+			resetMobileTabs(myElement, current, 'swipeleft');
+		} else if (direction === 'swiperight') {
+			resetMobileTabs(myElement, current, 'swiperight');
 		}
-	}, false);
+	});
 });
