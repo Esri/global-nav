@@ -3812,14 +3812,17 @@ var createMenus = (function (_ref) {
 
 		var $flyoutCategories = $assign('div', { class: prefix$4 + '-flyout--categories', 'data-mobile-slide': '0' });
 		var $flyoutList = $assign('div', { class: prefix$4 + '-flyout--list' });
+		var $positionMarkers = $assign('div', { class: prefix$4 + '-flyout--position' });
 
 		item.flyout.forEach(function (item, id) {
 			$assign.apply(undefined, [$flyoutCategories].concat(toConsumableArray(renderFlyoutMenu(item, 'category', id))));
 
+			$assign($positionMarkers, $assign('div', { class: prefix$4 + '-flyout--position_markers', 'data-id': id, 'aria-current': id === 0 ? 'true' : 'false' }));
+
 			$assign($flyoutList, $assign.apply(undefined, ['div', { class: prefix$4 + '-flyout--list-items', 'data-id': id, 'aria-current': id === 0 ? 'true' : 'false' }].concat(toConsumableArray(renderFlyoutMenu(item, 'label', id)))));
 		});
 
-		$assign($subcontent, $assign('div', { class: prefix$4 + '-flyout' }, $assign('div', { class: prefix$4 + '-flyout--categories-wrapper' }, $flyoutCategories), $flyoutList));
+		$assign($subcontent, $assign('div', { class: prefix$4 + '-flyout' }, $assign('div', { class: prefix$4 + '-flyout--categories-wrapper' }, $flyoutCategories, $positionMarkers), $flyoutList));
 	}
 
 	function renderer(entries) {
@@ -3881,13 +3884,14 @@ function resetMobileTabs(myElement, cur, direction) {
 	var listItems = [].slice.call(document.querySelectorAll('.esri-header-menus-flyout--list-items'));
 	var minItem = categoryItems[0].getAttribute('data-id');
 	var maxItem = categoryItems[categoryItems.length - 1].getAttribute('data-id');
+	var positionMarkers = [].slice.call(document.querySelectorAll('.esri-header-menus-flyout--position_markers'));
 
 	var current = cur;
 
 	if (direction === 'swipeleft') {
 		current++;
 		if (current > maxItem) {
-			current = 3;
+			current = maxItem;
 		}
 	} else if (direction === 'swiperight') {
 		current--;
@@ -3906,13 +3910,21 @@ function resetMobileTabs(myElement, cur, direction) {
 	});
 	listItems[current].setAttribute('aria-current', 'true');
 
+	positionMarkers.forEach(function (list) {
+		list.setAttribute('aria-current', 'false');
+	});
+	positionMarkers[current].setAttribute('aria-current', 'true');
+
 	myElement.setAttribute('data-mobile-slide', current);
 	myElement.style.left = '-' + delta * current + 'px';
 }
 
 window.addEventListener('DOMContentLoaded', function () {
 	var myElement = document.querySelector('.esri-header-menus-flyout--categories');
+	var myItems = [].slice.call(document.querySelectorAll('.esri-header-menus-flyout--categories-item'));
 	var current = 0;
+
+	myElement.style.width = myItems.length * 270 + 'px';
 
 	var hammertime = new hammer.Manager(myElement);
 	var Swipe = new hammer.Swipe();

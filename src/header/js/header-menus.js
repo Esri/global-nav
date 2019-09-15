@@ -359,10 +359,15 @@ export default ({variant = 'desktop'}) => {
 	function renderFlyout({$subcontent, item}) {
 		const $flyoutCategories = $('div', {class: `${prefix}-flyout--categories`, 'data-mobile-slide': '0'});
 		const $flyoutList = $('div', {class: `${prefix}-flyout--list`});
+		const $positionMarkers = 	$('div', {class: `${prefix}-flyout--position`},);
 		
 		item.flyout.forEach((item, id) => {
 			$($flyoutCategories,
 				...renderFlyoutMenu(item, 'category', id)
+			);
+			
+			$($positionMarkers,
+				$('div', {class: `${prefix}-flyout--position_markers`, 'data-id': id, 'aria-current': id === 0 ? 'true' : 'false'},)
 			);
 			
 			$($flyoutList,
@@ -376,6 +381,7 @@ export default ({variant = 'desktop'}) => {
 			$('div', {class: `${prefix}-flyout`},
 				$('div', {class: `${prefix}-flyout--categories-wrapper`},
 					$flyoutCategories,
+					$positionMarkers
 				),
 				$flyoutList,
 			)
@@ -459,13 +465,14 @@ function resetMobileTabs(myElement, cur, direction) {
 	const listItems = [].slice.call(document.querySelectorAll('.esri-header-menus-flyout--list-items'));
 	const minItem = categoryItems[0].getAttribute('data-id');
 	const maxItem = categoryItems[categoryItems.length - 1].getAttribute('data-id');
+	const positionMarkers = [].slice.call(document.querySelectorAll('.esri-header-menus-flyout--position_markers'));
 
 	let current = cur;
 
 	if (direction === 'swipeleft') {
 		current++;
 		if (current > maxItem) {
-			current = 3;
+			current = maxItem;
 		}
 	} else if (direction === 'swiperight') {
 		current--;
@@ -484,13 +491,21 @@ function resetMobileTabs(myElement, cur, direction) {
 	});
 	listItems[current].setAttribute('aria-current', 'true');
 
+	positionMarkers.forEach((list) => {
+		list.setAttribute('aria-current', 'false');
+	});
+	positionMarkers[current].setAttribute('aria-current', 'true');
+
 	myElement.setAttribute('data-mobile-slide', current);
 	myElement.style.left = `-${delta * current}px`;
 }
 
 window.addEventListener('DOMContentLoaded', () => {
 	const myElement = document.querySelector('.esri-header-menus-flyout--categories');
+	const myItems = [].slice.call(document.querySelectorAll('.esri-header-menus-flyout--categories-item'));
 	let current = 0;
+
+	myElement.style.width = `${(myItems.length * 270)}px`;
 
 	const hammertime = new Hammer.Manager(myElement);
 	const Swipe = new Hammer.Swipe();

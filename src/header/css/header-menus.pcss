@@ -253,6 +253,28 @@
 	}
 }
 
+.esri-header-menus-flyout--position {
+	bottom: 5px;
+	left: 50%;
+	position: absolute;
+	transform: translateX(-50%);
+	min-width: 15%;
+	height: 5px;
+}
+
+.esri-header-menus-flyout--position_markers {
+	background: var(--mono-80);
+	border-radius: 100%;
+	float: left;
+	height: 3px;
+	margin: 0 2px;
+	width: 3px;
+
+	&[aria-current='true'] {
+		background: var(--mono-0);
+	}
+}
+
 .esri-header-menus-flyout--categories-wrapper {
 	height: 60px;
 	overflow: hidden;
@@ -298,7 +320,7 @@
 	padding: 15px 15px 15px 30px;
 	position: relative;
 	transition: background-color .25s ease-out;
-	width: 100%;
+	width: 270px;
 
 	&::before {
 		background-color: var(--blue);
