@@ -3793,9 +3793,14 @@ var createMenus = (function (_ref) {
 
 			$items.push(category);
 		} else if (type === 'label') {
-			items.items.forEach(function (item) {
-				$items.push($assign('li', { class: prefix$4 + '-flyout--list-items_name' }, item.label));
-			});
+			if (items.cols && items.cols.length) {
+				items.cols.forEach(function (column) {
+					var $column = $assign('div', { class: prefix$4 + '-flyout--list-items_column' });
+					column.col.forEach(function (col) {
+						$items.push($assign($column, $assign('li', { class: prefix$4 + '-flyout--list-items_name' }, col.label)));
+					});
+				});
+			}
 		}
 
 		return $items;

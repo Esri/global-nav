@@ -341,11 +341,16 @@ export default ({variant = 'desktop'}) => {
 				category
 			);
 		} else if (type === 'label') {
-			items.items.forEach((item) => {
-				$items.push(
-					$('li', {class: `${prefix}-flyout--list-items_name`}, item.label)
-				);
-			});
+			if (items.cols && items.cols.length) {
+				items.cols.forEach((column) => {
+					const $column = $('div', {class: `${prefix}-flyout--list-items_column`});
+					column.col.forEach((col) => {
+						$items.push(
+							$($column, $('li', {class: `${prefix}-flyout--list-items_name`}, col.label)
+						));
+					});
+				});
+			}
 		}
 		
 		return $items;

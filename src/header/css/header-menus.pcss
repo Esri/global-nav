@@ -360,12 +360,10 @@
 	font-size: 14px;
 	height: 100%;
 	list-style-type: none;
-	left: 0;
 	margin: 0;
 	opacity: 0;
 	padding: 0;
 	position: relative;
-	top: 0;
 	transition: all .5s ease-out;
 	width: 100%;
 	z-index: -1;
@@ -374,6 +372,13 @@
 		display: block;
 		opacity: 1;
 		z-index: 1;
+	}
+}
+
+.esri-header-menus-flyout--list-items_column {	
+	@media (--width-l) {
+		display: inline-block;
+		width: 50%;
 	}
 }
 
