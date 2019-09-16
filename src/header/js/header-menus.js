@@ -322,6 +322,10 @@ export default ({variant = 'desktop'}) => {
 				id, 'aria-current': id === 0 ? 'true' : 'false'}, 
 				items.category
 			);
+
+			$items.push(
+				category
+			);
 			
 			category.addEventListener('click', (e) => {
 				const selectedCategory = (e.target.hasAttribute('data-id')) && e.target.getAttribute('data-id');
@@ -336,18 +340,21 @@ export default ({variant = 'desktop'}) => {
 					(list.hasAttribute('data-id') && list.getAttribute('data-id') === selectedCategory) && list.setAttribute('aria-current', 'true');
 				});
 			});
-
-			$items.push(
-				category
-			);
 		} else if (type === 'label') {
 			if (items.cols && items.cols.length) {
 				items.cols.forEach((column) => {
 					const $column = $('div', {class: `${prefix}-flyout--list-items_column`});
 					column.col.forEach((col) => {
 						$items.push(
-							$($column, $('li', {class: `${prefix}-flyout--list-items_name`}, col.label)
-						));
+							$($column, 
+								$('li', {class: `${prefix}-flyout--list-items_name`}, 
+									$('a', {href: '#', class: `${prefix}-flyout--list-items_anchor`}, 
+										(col.heading) && $('p', {class: `${prefix}-flyout--list-items_heading`}, col.heading), 
+										(col.label) && $('p', {class: `${prefix}-flyout--list-items_label`}, col.label)
+									)
+								)
+							)
+						);
 					});
 				});
 			}
@@ -459,7 +466,7 @@ export default ({variant = 'desktop'}) => {
 	return $target;
 };
 
-function resetMobileTabs(myElement, cur, direction) {
+function resetFlyoutTabs(myElement, cur, direction) {
 	const delta = 270;
 	const categoryItems = [].slice.call(document.querySelectorAll('.esri-header-menus-flyout--categories-item[data-id]'));
 	const listItems = [].slice.call(document.querySelectorAll('.esri-header-menus-flyout--list-items'));
@@ -514,9 +521,9 @@ window.addEventListener('DOMContentLoaded', () => {
 		const direction = ev.type;
 		current = parseInt(myElement.getAttribute('data-mobile-slide'));
 		if (direction === 'swipeleft') {
-			resetMobileTabs(myElement, current, 'swipeleft');
+			resetFlyoutTabs(myElement, current, 'swipeleft');
 		} else if (direction === 'swiperight') {
-			resetMobileTabs(myElement, current, 'swiperight');
+			resetFlyoutTabs(myElement, current, 'swiperight');
 		}
 	});
 });

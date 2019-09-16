@@ -3777,6 +3777,8 @@ var createMenus = (function (_ref) {
 			var category = $assign('li', {
 				class: prefix$4 + '-flyout--categories-item', 'data-id': id, 'aria-current': id === 0 ? 'true' : 'false' }, items.category);
 
+			$items.push(category);
+
 			category.addEventListener('click', function (e) {
 				var selectedCategory = e.target.hasAttribute('data-id') && e.target.getAttribute('data-id');
 				var listItems = [].slice.call(document.querySelectorAll('.esri-header-menus-flyout--list-items'));
@@ -3790,14 +3792,12 @@ var createMenus = (function (_ref) {
 					list.hasAttribute('data-id') && list.getAttribute('data-id') === selectedCategory && list.setAttribute('aria-current', 'true');
 				});
 			});
-
-			$items.push(category);
 		} else if (type === 'label') {
 			if (items.cols && items.cols.length) {
 				items.cols.forEach(function (column) {
 					var $column = $assign('div', { class: prefix$4 + '-flyout--list-items_column' });
 					column.col.forEach(function (col) {
-						$items.push($assign($column, $assign('li', { class: prefix$4 + '-flyout--list-items_name' }, col.label)));
+						$items.push($assign($column, $assign('li', { class: prefix$4 + '-flyout--list-items_name' }, $assign('a', { href: '#', class: prefix$4 + '-flyout--list-items_anchor' }, col.heading && $assign('p', { class: prefix$4 + '-flyout--list-items_heading' }, col.heading), col.label && $assign('p', { class: prefix$4 + '-flyout--list-items_label' }, col.label)))));
 					});
 				});
 			}
@@ -3878,7 +3878,7 @@ var createMenus = (function (_ref) {
 	return $target;
 });
 
-function resetMobileTabs(myElement, cur, direction) {
+function resetFlyoutTabs(myElement, cur, direction) {
 	var delta = 270;
 	var categoryItems = [].slice.call(document.querySelectorAll('.esri-header-menus-flyout--categories-item[data-id]'));
 	var listItems = [].slice.call(document.querySelectorAll('.esri-header-menus-flyout--list-items'));
@@ -3933,9 +3933,9 @@ window.addEventListener('DOMContentLoaded', function () {
 		var direction = ev.type;
 		current = parseInt(myElement.getAttribute('data-mobile-slide'));
 		if (direction === 'swipeleft') {
-			resetMobileTabs(myElement, current, 'swipeleft');
+			resetFlyoutTabs(myElement, current, 'swipeleft');
 		} else if (direction === 'swiperight') {
-			resetMobileTabs(myElement, current, 'swiperight');
+			resetFlyoutTabs(myElement, current, 'swiperight');
 		}
 	});
 });
