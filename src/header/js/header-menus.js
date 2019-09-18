@@ -312,19 +312,60 @@ export default ({variant = 'desktop'}) => {
 			);
 		}
 	}
+
+	function swapFlyoutContent(category) {
+		const categoryList = category.target.parentNode.querySelector('.esri-header-menus-flyout--categories-details[aria-expanded]');
+		const categoryListArr = document.querySelectorAll('.esri-header-menus-flyout--categories-details[aria-expanded]');
+		const active = categoryList.getAttribute('aria-expanded') === 'false' ? 'true' : 'false';
+		
+		categoryListArr.forEach((list) => {
+			list.setAttribute('aria-expanded', 'false');
+		});
+
+		categoryList.setAttribute('aria-expanded', `${active}`);
+
+		// category.addEventListener('click', (e) => {
+		// 	const selectedCategory = (e.target.hasAttribute('data-id')) && e.target.getAttribute('data-id');
+		// 	const listItems = [].slice.call(document.querySelectorAll('.esri-header-menus-flyout--list-items'));
+		// 	const categoryItems = [].slice.call(document.querySelectorAll('.esri-header-menus-flyout--categories-item'));
+
+		// 	listItems.forEach((list, index) => {
+		// 		categoryItems[index].setAttribute('aria-current', 'false');
+		// 		(categoryItems[index].hasAttribute('data-id') && categoryItems[index].getAttribute('data-id') === selectedCategory) && categoryItems[index].setAttribute('aria-current', 'true');
+
+		// 		list.setAttribute('aria-current', 'false');
+		// 		(list.hasAttribute('data-id') && list.getAttribute('data-id') === selectedCategory) && list.setAttribute('aria-current', 'true');
+		// 	});
+		// });
+	}
 	
 	function renderFlyoutMenu(items, type, id) {
 		const $items = [];
-
+		let category = "";
+		const listArr = [];
 		if (type === 'category') {
-			const category = $('li', {
-				class: `${prefix}-flyout--categories-item`, 'data-id': 
-				id, 'aria-current': id === 0 ? 'true' : 'false'}, 
-				items.category
-			);
+			if (items.cols && items.cols.length) {
+				items.cols.forEach((column) => {
+					category = $('li', {
+						class: `${prefix}-flyout--categories-item`, 'data-id': 
+						id, 'aria-current': id === 0 ? 'true' : 'false', click: (e) => { swapFlyoutContent(e) }}, 
+						$('p', {class: `${prefix}-flyout--categories-item_header`}, items.category)
+					);
+					column.col.forEach((col) => {
+						listArr.push(						
+							$('div', {class: `${prefix}-flyout--categories-details_item`}, 
+								col.label
+							)
+						);
+					});
+				});
+			}
 
 			$items.push(
-				category
+				$(category, 
+					$('div', {class: `${prefix}-flyout--categories-details`, 'aria-expanded': 'false'},
+					...listArr)
+				)
 			);
 			
 			category.addEventListener('click', (e) => {
@@ -364,17 +405,12 @@ export default ({variant = 'desktop'}) => {
 	}
 
 	function renderFlyout({$subcontent, item}) {
-		const $flyoutCategories = $('div', {class: `${prefix}-flyout--categories`, 'data-mobile-slide': '0'});
+		const $flyoutCategories = $('div', {class: `${prefix}-flyout--categories`});
 		const $flyoutList = $('div', {class: `${prefix}-flyout--list`});
-		const $positionMarkers = 	$('div', {class: `${prefix}-flyout--position`},);
 		
 		item.flyout.forEach((item, id) => {
 			$($flyoutCategories,
 				...renderFlyoutMenu(item, 'category', id)
-			);
-			
-			$($positionMarkers,
-				$('div', {class: `${prefix}-flyout--position_markers`, 'data-id': id, 'aria-current': id === 0 ? 'true' : 'false'},)
 			);
 			
 			$($flyoutList,
@@ -387,8 +423,7 @@ export default ({variant = 'desktop'}) => {
 		$($subcontent,
 			$('div', {class: `${prefix}-flyout`},
 				$('div', {class: `${prefix}-flyout--categories-wrapper`},
-					$flyoutCategories,
-					$positionMarkers
+					$flyoutCategories
 				),
 				$flyoutList,
 			)
@@ -465,65 +500,3 @@ export default ({variant = 'desktop'}) => {
 
 	return $target;
 };
-
-function resetFlyoutTabs(myElement, cur, direction) {
-	const delta = 270;
-	const categoryItems = [].slice.call(document.querySelectorAll('.esri-header-menus-flyout--categories-item[data-id]'));
-	const listItems = [].slice.call(document.querySelectorAll('.esri-header-menus-flyout--list-items'));
-	const minItem = categoryItems[0].getAttribute('data-id');
-	const maxItem = categoryItems[categoryItems.length - 1].getAttribute('data-id');
-	const positionMarkers = [].slice.call(document.querySelectorAll('.esri-header-menus-flyout--position_markers'));
-
-	let current = cur;
-
-	if (direction === 'swipeleft') {
-		current++;
-		if (current > maxItem) {
-			current = maxItem;
-		}
-	} else if (direction === 'swiperight') {
-		current--;
-		if (current <= minItem) {
-			current = 0;
-		}
-	}
-
-	categoryItems.forEach((cat) => {
-		cat.setAttribute('aria-current', 'false');
-	});
-	categoryItems[current].setAttribute('aria-current', 'true');
-
-	listItems.forEach((list) => {
-		list.setAttribute('aria-current', 'false');
-	});
-	listItems[current].setAttribute('aria-current', 'true');
-
-	positionMarkers.forEach((list) => {
-		list.setAttribute('aria-current', 'false');
-	});
-	positionMarkers[current].setAttribute('aria-current', 'true');
-
-	myElement.setAttribute('data-mobile-slide', current);
-	myElement.style.left = `-${delta * current}px`;
-}
-
-window.addEventListener('DOMContentLoaded', () => {
-	const myElement = document.querySelector('.esri-header-menus-flyout--categories');
-	const myItems = [].slice.call(document.querySelectorAll('.esri-header-menus-flyout--categories-item'));
-	let current = 0;
-
-	myElement.style.width = `${(myItems.length * 270)}px`;
-
-	const hammertime = new Hammer.Manager(myElement);
-	const Swipe = new Hammer.Swipe();
-	hammertime.add(Swipe);
-	hammertime.on('swipeleft swiperight', (ev) => {
-		const direction = ev.type;
-		current = parseInt(myElement.getAttribute('data-mobile-slide'));
-		if (direction === 'swipeleft') {
-			resetFlyoutTabs(myElement, current, 'swipeleft');
-		} else if (direction === 'swiperight') {
-			resetFlyoutTabs(myElement, current, 'swiperight');
-		}
-	});
-});

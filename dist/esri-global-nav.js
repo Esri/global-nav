@@ -3770,14 +3770,50 @@ var createMenus = (function (_ref) {
 		}
 	}
 
+	function swapFlyoutContent(category) {
+		var categoryList = category.target.parentNode.querySelector('.esri-header-menus-flyout--categories-details[aria-expanded]');
+		var categoryListArr = document.querySelectorAll('.esri-header-menus-flyout--categories-details[aria-expanded]');
+		var active = categoryList.getAttribute('aria-expanded') === 'false' ? 'true' : 'false';
+
+		categoryListArr.forEach(function (list) {
+			list.setAttribute('aria-expanded', 'false');
+		});
+
+		categoryList.setAttribute('aria-expanded', '' + active);
+
+		// category.addEventListener('click', (e) => {
+		// 	const selectedCategory = (e.target.hasAttribute('data-id')) && e.target.getAttribute('data-id');
+		// 	const listItems = [].slice.call(document.querySelectorAll('.esri-header-menus-flyout--list-items'));
+		// 	const categoryItems = [].slice.call(document.querySelectorAll('.esri-header-menus-flyout--categories-item'));
+
+		// 	listItems.forEach((list, index) => {
+		// 		categoryItems[index].setAttribute('aria-current', 'false');
+		// 		(categoryItems[index].hasAttribute('data-id') && categoryItems[index].getAttribute('data-id') === selectedCategory) && categoryItems[index].setAttribute('aria-current', 'true');
+
+		// 		list.setAttribute('aria-current', 'false');
+		// 		(list.hasAttribute('data-id') && list.getAttribute('data-id') === selectedCategory) && list.setAttribute('aria-current', 'true');
+		// 	});
+		// });
+	}
+
 	function renderFlyoutMenu(items, type, id) {
 		var $items = [];
-
+		var category = "";
+		var listArr = [];
 		if (type === 'category') {
-			var category = $assign('li', {
-				class: prefix$4 + '-flyout--categories-item', 'data-id': id, 'aria-current': id === 0 ? 'true' : 'false' }, items.category);
+			if (items.cols && items.cols.length) {
+				items.cols.forEach(function (column) {
+					category = $assign('li', {
+						class: prefix$4 + '-flyout--categories-item', 'data-id': id, 'aria-current': id === 0 ? 'true' : 'false', click: function click(e) {
+							swapFlyoutContent(e);
+						} }, $assign('p', { class: prefix$4 + '-flyout--categories-item_header' }, items.category));
+					column.col.forEach(function (col) {
+						listArr.push($assign('div', { class: prefix$4 + '-flyout--categories-details_item' }, col.label));
+					});
+				});
+			}
 
-			$items.push(category);
+			$items.push($assign(category, $assign.apply(undefined, ['div', { class: prefix$4 + '-flyout--categories-details', 'aria-expanded': 'false' }].concat(listArr))));
 
 			category.addEventListener('click', function (e) {
 				var selectedCategory = e.target.hasAttribute('data-id') && e.target.getAttribute('data-id');
@@ -3810,19 +3846,16 @@ var createMenus = (function (_ref) {
 		var $subcontent = _ref5.$subcontent,
 		    item = _ref5.item;
 
-		var $flyoutCategories = $assign('div', { class: prefix$4 + '-flyout--categories', 'data-mobile-slide': '0' });
+		var $flyoutCategories = $assign('div', { class: prefix$4 + '-flyout--categories' });
 		var $flyoutList = $assign('div', { class: prefix$4 + '-flyout--list' });
-		var $positionMarkers = $assign('div', { class: prefix$4 + '-flyout--position' });
 
 		item.flyout.forEach(function (item, id) {
 			$assign.apply(undefined, [$flyoutCategories].concat(toConsumableArray(renderFlyoutMenu(item, 'category', id))));
 
-			$assign($positionMarkers, $assign('div', { class: prefix$4 + '-flyout--position_markers', 'data-id': id, 'aria-current': id === 0 ? 'true' : 'false' }));
-
 			$assign($flyoutList, $assign.apply(undefined, ['div', { class: prefix$4 + '-flyout--list-items', 'data-id': id, 'aria-current': id === 0 ? 'true' : 'false' }].concat(toConsumableArray(renderFlyoutMenu(item, 'label', id)))));
 		});
 
-		$assign($subcontent, $assign('div', { class: prefix$4 + '-flyout' }, $assign('div', { class: prefix$4 + '-flyout--categories-wrapper' }, $flyoutCategories, $positionMarkers), $flyoutList));
+		$assign($subcontent, $assign('div', { class: prefix$4 + '-flyout' }, $assign('div', { class: prefix$4 + '-flyout--categories-wrapper' }, $flyoutCategories), $flyoutList));
 	}
 
 	function renderer(entries) {
@@ -3876,68 +3909,6 @@ var createMenus = (function (_ref) {
 	});
 
 	return $target;
-});
-
-function resetFlyoutTabs(myElement, cur, direction) {
-	var delta = 270;
-	var categoryItems = [].slice.call(document.querySelectorAll('.esri-header-menus-flyout--categories-item[data-id]'));
-	var listItems = [].slice.call(document.querySelectorAll('.esri-header-menus-flyout--list-items'));
-	var minItem = categoryItems[0].getAttribute('data-id');
-	var maxItem = categoryItems[categoryItems.length - 1].getAttribute('data-id');
-	var positionMarkers = [].slice.call(document.querySelectorAll('.esri-header-menus-flyout--position_markers'));
-
-	var current = cur;
-
-	if (direction === 'swipeleft') {
-		current++;
-		if (current > maxItem) {
-			current = maxItem;
-		}
-	} else if (direction === 'swiperight') {
-		current--;
-		if (current <= minItem) {
-			current = 0;
-		}
-	}
-
-	categoryItems.forEach(function (cat) {
-		cat.setAttribute('aria-current', 'false');
-	});
-	categoryItems[current].setAttribute('aria-current', 'true');
-
-	listItems.forEach(function (list) {
-		list.setAttribute('aria-current', 'false');
-	});
-	listItems[current].setAttribute('aria-current', 'true');
-
-	positionMarkers.forEach(function (list) {
-		list.setAttribute('aria-current', 'false');
-	});
-	positionMarkers[current].setAttribute('aria-current', 'true');
-
-	myElement.setAttribute('data-mobile-slide', current);
-	myElement.style.left = '-' + delta * current + 'px';
-}
-
-window.addEventListener('DOMContentLoaded', function () {
-	var myElement = document.querySelector('.esri-header-menus-flyout--categories');
-	var myItems = [].slice.call(document.querySelectorAll('.esri-header-menus-flyout--categories-item'));
-	var current = 0;
-
-	myElement.style.width = myItems.length * 270 + 'px';
-
-	var hammertime = new hammer.Manager(myElement);
-	var Swipe = new hammer.Swipe();
-	hammertime.add(Swipe);
-	hammertime.on('swipeleft swiperight', function (ev) {
-		var direction = ev.type;
-		current = parseInt(myElement.getAttribute('data-mobile-slide'));
-		if (direction === 'swipeleft') {
-			resetFlyoutTabs(myElement, current, 'swipeleft');
-		} else if (direction === 'swiperight') {
-			resetFlyoutTabs(myElement, current, 'swiperight');
-		}
-	});
 });
 
 /* Search
