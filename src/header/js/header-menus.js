@@ -315,14 +315,27 @@ export default ({variant = 'desktop'}) => {
 
 	function swapFlyoutContent(category) {
 		const categoryList = category.target.parentNode.querySelector('.esri-header-menus-flyout--categories-details[aria-expanded]');
+		const categoryHeader = category.target.parentNode.querySelector('.esri-header-menus-flyout--categories-item_header');
 		const categoryListArr = document.querySelectorAll('.esri-header-menus-flyout--categories-details[aria-expanded]');
 		const active = categoryList.getAttribute('aria-expanded') === 'false' ? 'true' : 'false';
-		
+		const categoryDetailsItems = category.target.parentNode.querySelectorAll('.esri-header-menus-flyout--categories-details_item');
+		const catsComputedStyle = window.getComputedStyle(categoryDetailsItems[0]);
+		const computedHeight = (parseInt(catsComputedStyle.height) * categoryDetailsItems.length);
+		const computedMargin = (parseInt(catsComputedStyle.marginTop) * categoryDetailsItems.length) + parseInt(catsComputedStyle.marginTop);
+
 		categoryListArr.forEach((list) => {
 			list.setAttribute('aria-expanded', 'false');
+			list.style.height = '0px';
 		});
 
 		categoryList.setAttribute('aria-expanded', `${active}`);
+		if (active === 'true') {
+			categoryList.style.height = `${(computedHeight) + (computedMargin)}px`;
+			categoryHeader.setAttribute('aria-current', 'true');
+		} else {
+			categoryList.style.height = '0px';
+			categoryHeader.setAttribute('aria-current', 'false');
+		}
 
 		// category.addEventListener('click', (e) => {
 		// 	const selectedCategory = (e.target.hasAttribute('data-id')) && e.target.getAttribute('data-id');
@@ -348,7 +361,10 @@ export default ({variant = 'desktop'}) => {
 				items.cols.forEach((column) => {
 					category = $('li', {
 						class: `${prefix}-flyout--categories-item`, 'data-id': 
-						id, 'aria-current': id === 0 ? 'true' : 'false', click: (e) => { swapFlyoutContent(e) }}, 
+						id, 'aria-current': id === 0 ? 'true' : 'false', click: (e) => { 
+							swapFlyoutContent(e);
+						}
+					}, 
 						$('p', {class: `${prefix}-flyout--categories-item_header`}, items.category)
 					);
 					column.col.forEach((col) => {

@@ -3772,14 +3772,27 @@ var createMenus = (function (_ref) {
 
 	function swapFlyoutContent(category) {
 		var categoryList = category.target.parentNode.querySelector('.esri-header-menus-flyout--categories-details[aria-expanded]');
+		var categoryHeader = category.target.parentNode.querySelector('.esri-header-menus-flyout--categories-item_header');
 		var categoryListArr = document.querySelectorAll('.esri-header-menus-flyout--categories-details[aria-expanded]');
 		var active = categoryList.getAttribute('aria-expanded') === 'false' ? 'true' : 'false';
+		var categoryDetailsItems = category.target.parentNode.querySelectorAll('.esri-header-menus-flyout--categories-details_item');
+		var catsComputedStyle = window.getComputedStyle(categoryDetailsItems[0]);
+		var computedHeight = parseInt(catsComputedStyle.height) * categoryDetailsItems.length;
+		var computedMargin = parseInt(catsComputedStyle.marginTop) * categoryDetailsItems.length + parseInt(catsComputedStyle.marginTop);
 
 		categoryListArr.forEach(function (list) {
 			list.setAttribute('aria-expanded', 'false');
+			list.style.height = '0px';
 		});
 
 		categoryList.setAttribute('aria-expanded', '' + active);
+		if (active === 'true') {
+			categoryList.style.height = computedHeight + computedMargin + 'px';
+			categoryHeader.setAttribute('aria-current', 'true');
+		} else {
+			categoryList.style.height = '0px';
+			categoryHeader.setAttribute('aria-current', 'false');
+		}
 
 		// category.addEventListener('click', (e) => {
 		// 	const selectedCategory = (e.target.hasAttribute('data-id')) && e.target.getAttribute('data-id');
@@ -3806,7 +3819,8 @@ var createMenus = (function (_ref) {
 					category = $assign('li', {
 						class: prefix$4 + '-flyout--categories-item', 'data-id': id, 'aria-current': id === 0 ? 'true' : 'false', click: function click(e) {
 							swapFlyoutContent(e);
-						} }, $assign('p', { class: prefix$4 + '-flyout--categories-item_header' }, items.category));
+						}
+					}, $assign('p', { class: prefix$4 + '-flyout--categories-item_header' }, items.category));
 					column.col.forEach(function (col) {
 						listArr.push($assign('div', { class: prefix$4 + '-flyout--categories-details_item' }, col.label));
 					});

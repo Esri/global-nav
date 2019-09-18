@@ -290,7 +290,6 @@
 	transition: all .35s ease-out;
 
 	&[aria-expanded='true'] {
-		height: auto;
 		overflow: auto;
 	}
 }
@@ -308,18 +307,24 @@
 	padding: 15px;
 
 	&::after {
-			content: url("../../shared/shared.svg#c-chevron-down" param(--fill #595959));
-			inset-block-start: calc(50% - 16px / 2);
-			inset-inline-end: 20px;
-			position: absolute;
-			size: 16px;
-			top: 20px;
-			transition: left 250ms, opacity 250ms, right 250ms;
+		content: url("../../shared/shared.svg#c-chevron-down" param(--fill #595959));
+		inset-block-start: calc(50% - 16px / 2);
+		inset-inline-end: 20px;
+		position: absolute;
+		size: 16px;
+		top: 20px;
+		transition: left 250ms, opacity 250ms, right 250ms;
 
-			@nest :dir(rtl) & {
-				transform: scaleX(-1);
-			}
+		@nest :dir(rtl) & {
+			transform: scaleX(-1);
 		}
+	}
+
+	&[aria-current="true"] {
+		&::after {
+			content: url("../../shared/shared.svg#c-chevron-up" param(--fill #595959));
+		}
+	}
 }
 
 .esri-header-menus-flyout--categories-item {

@@ -151,8 +151,7 @@ document.addEventListener("DOMContentLoaded", () => {
 										]
 									}
 								]
-							},
-
+							}
 						],
 						cols: [
 							{
