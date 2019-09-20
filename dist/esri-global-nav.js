@@ -3779,10 +3779,11 @@ var createMenus = (function (_ref) {
 		var computedHeight = parseInt(catsComputedStyle.height) * categoryDetailsItems.length;
 		var computedMargin = parseInt(catsComputedStyle.marginTop) * categoryDetailsItems.length + parseInt(catsComputedStyle.marginTop);
 		var headers = [].slice.call(document.querySelectorAll('.esri-header-menus-flyout--categories-item_header'));
-		var winWidth = window.innerWidth;
+		var items = [].slice.call(document.querySelectorAll('.esri-header-menus-flyout--categories-item'));
+		var itemsList = [].slice.call(document.querySelectorAll('.esri-header-menus-flyout--list-items'));
+		var viewport = window.innerWidth < 1024 && 'mobile';
 
-		if (winWidth < 1024) {
-			console.log('clickkkk');
+		if (viewport === 'mobile') {
 			var categoryListArr = [].slice.call(document.querySelectorAll('.esri-header-menus-flyout--categories-details[aria-expanded]'));
 			categoryListArr.forEach(function (list) {
 				list.setAttribute('aria-expanded', 'false');
@@ -3801,9 +3802,6 @@ var createMenus = (function (_ref) {
 				categoryHeader.setAttribute('aria-current', 'false');
 			}
 		} else {
-			var items = [].slice.call(document.querySelectorAll('.esri-header-menus-flyout--categories-item'));
-			var itemsList = [].slice.call(document.querySelectorAll('.esri-header-menus-flyout--list-items'));
-
 			items.forEach(function (item, index) {
 				item.addEventListener('click', function (e) {
 					var selectedCategory = e.target.parentNode.getAttribute('data-id');

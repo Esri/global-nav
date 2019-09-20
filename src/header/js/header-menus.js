@@ -322,10 +322,11 @@ export default ({variant = 'desktop'}) => {
 		const computedHeight = (parseInt(catsComputedStyle.height) * categoryDetailsItems.length);
 		const computedMargin = (parseInt(catsComputedStyle.marginTop) * categoryDetailsItems.length) + parseInt(catsComputedStyle.marginTop);
 		const headers = [].slice.call(document.querySelectorAll('.esri-header-menus-flyout--categories-item_header'));
-		const winWidth = window.innerWidth;
-		
-		if (winWidth < 1024) {
-			console.log('clickkkk');
+		const items = [].slice.call(document.querySelectorAll('.esri-header-menus-flyout--categories-item'));
+		const itemsList = [].slice.call(document.querySelectorAll('.esri-header-menus-flyout--list-items'));
+		const viewport = (window.innerWidth < 1024) && 'mobile';
+
+		if (viewport === 'mobile') {
 			const categoryListArr = [].slice.call(document.querySelectorAll('.esri-header-menus-flyout--categories-details[aria-expanded]'));
 			categoryListArr.forEach((list) => {
 				list.setAttribute('aria-expanded', 'false');
@@ -344,9 +345,6 @@ export default ({variant = 'desktop'}) => {
 				categoryHeader.setAttribute('aria-current', 'false');
 			}
 		} else {
-			const items = [].slice.call(document.querySelectorAll('.esri-header-menus-flyout--categories-item'));
-			const itemsList = [].slice.call(document.querySelectorAll('.esri-header-menus-flyout--list-items'));
-			
 			items.forEach((item, index) => {
 				item.addEventListener('click', (e) => {
 					const selectedCategory = e.target.parentNode.getAttribute('data-id');
