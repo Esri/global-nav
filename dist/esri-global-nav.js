@@ -3804,10 +3804,15 @@ var createMenus = (function (_ref) {
 		} else {
 			items.forEach(function (item, index) {
 				item.addEventListener('click', function (e) {
-					var selectedCategory = e.target.parentNode.getAttribute('data-id');
-					itemsList.forEach(function (list) {
+					var parentNode = e.target.parentNode;
+					var selectedCategory = parentNode.getAttribute('data-id');
+
+					itemsList.forEach(function (list, index) {
 						list.setAttribute('aria-current', 'false');
+						items[index].setAttribute('aria-current', 'false');
 					});
+
+					parentNode.setAttribute('aria-current', 'true');
 					itemsList[index].getAttribute('data-id') === selectedCategory && itemsList[index].setAttribute('aria-current', 'true');
 				});
 			});

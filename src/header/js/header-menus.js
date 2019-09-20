@@ -347,11 +347,16 @@ export default ({variant = 'desktop'}) => {
 		} else {
 			items.forEach((item, index) => {
 				item.addEventListener('click', (e) => {
-					const selectedCategory = e.target.parentNode.getAttribute('data-id');
-					itemsList.forEach((list) => {
+					const parentNode = e.target.parentNode;
+					const selectedCategory = parentNode.getAttribute('data-id');
+
+					itemsList.forEach((list, index) => {
 						list.setAttribute('aria-current', 'false');
+						items[index].setAttribute('aria-current', 'false');
 					});
-					itemsList[index].getAttribute('data-id') === selectedCategory && itemsList[index].setAttribute('aria-current', 'true');
+
+					parentNode.setAttribute('aria-current', 'true');
+					(itemsList[index].getAttribute('data-id') === selectedCategory) && itemsList[index].setAttribute('aria-current', 'true');
 				});
 			});
 		}
