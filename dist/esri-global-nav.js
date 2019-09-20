@@ -3773,40 +3773,47 @@ var createMenus = (function (_ref) {
 	function swapFlyoutContent(category) {
 		var categoryList = category.target.parentNode.querySelector('.esri-header-menus-flyout--categories-details[aria-expanded]');
 		var categoryHeader = category.target.parentNode.querySelector('.esri-header-menus-flyout--categories-item_header');
-		var categoryListArr = document.querySelectorAll('.esri-header-menus-flyout--categories-details[aria-expanded]');
 		var active = categoryList.getAttribute('aria-expanded') === 'false' ? 'true' : 'false';
-		var categoryDetailsItems = category.target.parentNode.querySelectorAll('.esri-header-menus-flyout--categories-details_item');
+		var categoryDetailsItems = [].slice.call(category.target.parentNode.querySelectorAll('.esri-header-menus-flyout--categories-details_item'));
 		var catsComputedStyle = window.getComputedStyle(categoryDetailsItems[0]);
 		var computedHeight = parseInt(catsComputedStyle.height) * categoryDetailsItems.length;
 		var computedMargin = parseInt(catsComputedStyle.marginTop) * categoryDetailsItems.length + parseInt(catsComputedStyle.marginTop);
+		var headers = [].slice.call(document.querySelectorAll('.esri-header-menus-flyout--categories-item_header'));
+		var winWidth = window.innerWidth;
 
-		categoryListArr.forEach(function (list) {
-			list.setAttribute('aria-expanded', 'false');
-			list.style.height = '0px';
-		});
+		if (winWidth < 1024) {
+			console.log('clickkkk');
+			var categoryListArr = [].slice.call(document.querySelectorAll('.esri-header-menus-flyout--categories-details[aria-expanded]'));
+			categoryListArr.forEach(function (list) {
+				list.setAttribute('aria-expanded', 'false');
+				list.style.height = '0px';
+			});
 
-		categoryList.setAttribute('aria-expanded', '' + active);
-		if (active === 'true') {
-			categoryList.style.height = computedHeight + computedMargin + 'px';
-			categoryHeader.setAttribute('aria-current', 'true');
+			categoryList.setAttribute('aria-expanded', '' + active);
+			if (active === 'true') {
+				categoryList.style.height = computedHeight + computedMargin + 'px';
+				headers.forEach(function (head) {
+					head.setAttribute('aria-current', 'false');
+				});
+				categoryHeader.setAttribute('aria-current', 'true');
+			} else {
+				categoryList.style.height = '0px';
+				categoryHeader.setAttribute('aria-current', 'false');
+			}
 		} else {
-			categoryList.style.height = '0px';
-			categoryHeader.setAttribute('aria-current', 'false');
+			var items = [].slice.call(document.querySelectorAll('.esri-header-menus-flyout--categories-item'));
+			var itemsList = [].slice.call(document.querySelectorAll('.esri-header-menus-flyout--list-items'));
+
+			items.forEach(function (item, index) {
+				item.addEventListener('click', function (e) {
+					var selectedCategory = e.target.parentNode.getAttribute('data-id');
+					itemsList.forEach(function (list) {
+						list.setAttribute('aria-current', 'false');
+					});
+					itemsList[index].getAttribute('data-id') === selectedCategory && itemsList[index].setAttribute('aria-current', 'true');
+				});
+			});
 		}
-
-		// category.addEventListener('click', (e) => {
-		// 	const selectedCategory = (e.target.hasAttribute('data-id')) && e.target.getAttribute('data-id');
-		// 	const listItems = [].slice.call(document.querySelectorAll('.esri-header-menus-flyout--list-items'));
-		// 	const categoryItems = [].slice.call(document.querySelectorAll('.esri-header-menus-flyout--categories-item'));
-
-		// 	listItems.forEach((list, index) => {
-		// 		categoryItems[index].setAttribute('aria-current', 'false');
-		// 		(categoryItems[index].hasAttribute('data-id') && categoryItems[index].getAttribute('data-id') === selectedCategory) && categoryItems[index].setAttribute('aria-current', 'true');
-
-		// 		list.setAttribute('aria-current', 'false');
-		// 		(list.hasAttribute('data-id') && list.getAttribute('data-id') === selectedCategory) && list.setAttribute('aria-current', 'true');
-		// 	});
-		// });
 	}
 
 	function renderFlyoutMenu(items, type, id) {
@@ -3817,10 +3824,10 @@ var createMenus = (function (_ref) {
 			if (items.cols && items.cols.length) {
 				items.cols.forEach(function (column) {
 					category = $assign('li', {
-						class: prefix$4 + '-flyout--categories-item', 'data-id': id, 'aria-current': id === 0 ? 'true' : 'false', click: function click(e) {
+						class: prefix$4 + '-flyout--categories-item', 'data-id': id, 'aria-current': id === 0 ? 'true' : 'false'
+					}, $assign('p', { class: prefix$4 + '-flyout--categories-item_header', click: function click(e) {
 							swapFlyoutContent(e);
-						}
-					}, $assign('p', { class: prefix$4 + '-flyout--categories-item_header' }, items.category));
+						} }, items.category));
 					column.col.forEach(function (col) {
 						listArr.push($assign('div', { class: prefix$4 + '-flyout--categories-details_item' }, col.label));
 					});
@@ -3828,20 +3835,6 @@ var createMenus = (function (_ref) {
 			}
 
 			$items.push($assign(category, $assign.apply(undefined, ['div', { class: prefix$4 + '-flyout--categories-details', 'aria-expanded': 'false' }].concat(listArr))));
-
-			category.addEventListener('click', function (e) {
-				var selectedCategory = e.target.hasAttribute('data-id') && e.target.getAttribute('data-id');
-				var listItems = [].slice.call(document.querySelectorAll('.esri-header-menus-flyout--list-items'));
-				var categoryItems = [].slice.call(document.querySelectorAll('.esri-header-menus-flyout--categories-item'));
-
-				listItems.forEach(function (list, index) {
-					categoryItems[index].setAttribute('aria-current', 'false');
-					categoryItems[index].hasAttribute('data-id') && categoryItems[index].getAttribute('data-id') === selectedCategory && categoryItems[index].setAttribute('aria-current', 'true');
-
-					list.setAttribute('aria-current', 'false');
-					list.hasAttribute('data-id') && list.getAttribute('data-id') === selectedCategory && list.setAttribute('aria-current', 'true');
-				});
-			});
 		} else if (type === 'label') {
 			if (items.cols && items.cols.length) {
 				items.cols.forEach(function (column) {

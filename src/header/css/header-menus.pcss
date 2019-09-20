@@ -285,11 +285,13 @@
 }
 
 .esri-header-menus-flyout--categories-details {
+	background: var(--mono-94);
 	height: 0;
 	overflow: hidden;
 	transition: all .35s ease-out;
 
 	&[aria-expanded='true'] {
+		background: var(--mono-94);
 		overflow: auto;
 	}
 }
@@ -303,6 +305,8 @@
 
 .esri-header-menus-flyout--categories-item_header {
 	box-sizing: border-box;
+	font-weight: 400;
+	font-size: 13px;
 	margin: 0;
 	padding: 15px;
 
@@ -318,9 +322,17 @@
 		@nest :dir(rtl) & {
 			transform: scaleX(-1);
 		}
+
+		@media (--width-l) {
+			display: none;
+		}
 	}
 
 	&[aria-current="true"] {
+		background: var(--mono-94);
+		color: var(--blue);
+		font-weight: 500;
+
 		&::after {
 			content: url("../../shared/shared.svg#c-chevron-up" param(--fill #595959));
 		}
@@ -376,6 +388,7 @@
 	width: 100%;
 
 	@media (--width-l) {
+		display: block;
 		min-height: 350px;
 		width: 70%;
 	}
