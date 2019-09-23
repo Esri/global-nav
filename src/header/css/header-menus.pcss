@@ -352,12 +352,16 @@
 		background: var(--mono-94);
 		color: var(--blue);
 		font-weight: 500;
+		
+		&::after {
+			content: url("../../shared/shared.svg#c-chevron-up" param(--fill #595959));
+		}
 
 		@media (--width-l) {
 			padding: 15px 25px;
-			
+
 			&::after {
-				content: url("../../shared/shared.svg#c-chevron-up" param(--fill #595959));
+				content: "";
 			}
 		}
 	}

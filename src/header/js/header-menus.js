@@ -1,6 +1,5 @@
 import {$assign as $, $dispatch, $replaceAll, $renderSvgOrImg} from '../../shared/js/shared';
 import {$hamburger} from '../../shared/js/iconPaths';
-import Hammer from 'hammerjs';
 
 const prefix = 'esri-header-menus';
 
@@ -324,9 +323,9 @@ export default ({variant = 'desktop'}) => {
 		const headers = [].slice.call(document.querySelectorAll('.esri-header-menus-flyout--categories-item_header'));
 		const items = [].slice.call(document.querySelectorAll('.esri-header-menus-flyout--categories-item'));
 		const itemsList = [].slice.call(document.querySelectorAll('.esri-header-menus-flyout--list-items'));
-		const viewport = (window.innerWidth < 1024) && 'mobile';
+		const isMobile = (window.innerWidth < 1024);
 
-		if (viewport === 'mobile') {
+		if (isMobile) {
 			const categoryListArr = [].slice.call(document.querySelectorAll('.esri-header-menus-flyout--categories-details[aria-expanded]'));
 			categoryListArr.forEach((list) => {
 				list.setAttribute('aria-expanded', 'false');
@@ -349,14 +348,17 @@ export default ({variant = 'desktop'}) => {
 				item.addEventListener('click', (e) => {
 					const parentNode = e.target.parentNode;
 					const selectedCategory = parentNode.getAttribute('data-id');
+					const selectedList = itemsList[index].getAttribute('data-id');
 
 					itemsList.forEach((list, index) => {
 						list.setAttribute('aria-current', 'false');
 						items[index].setAttribute('aria-current', 'false');
 					});
 
-					parentNode.setAttribute('aria-current', 'true');
-					(itemsList[index].getAttribute('data-id') === selectedCategory) && itemsList[index].setAttribute('aria-current', 'true');
+					if (selectedCategory === selectedList) {
+						parentNode.setAttribute('aria-current', 'true');
+						itemsList[index].setAttribute('aria-current', 'true');
+					}
 				});
 			});
 		}

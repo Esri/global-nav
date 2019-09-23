@@ -19,7 +19,6 @@
     "test:js": "eslint src/**/*.js --cache --ignore-pattern .gitignore"
   },
   "dependencies": {
-    "hammerjs": "^2.0.8",
     "sortablejs": "1.7.0"
   },
   "devDependencies": {
