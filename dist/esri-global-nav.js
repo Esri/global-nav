@@ -711,7 +711,7 @@ var createMenus = (function (_ref) {
 
 	$assign($target, $content);
 
-	/* Menus: Link 
+	/* Menus: Link
  /* ====================================================================== */
 
 	var createNavLink = function createNavLink(link) {
@@ -751,7 +751,7 @@ var createMenus = (function (_ref) {
 		return $assign.apply(undefined, ['div', { class: prefix$3 + '-sublist--col' }].concat(toConsumableArray(items.map(createColumn))));
 	};
 
-	/* Menus: Tile 
+	/* Menus: Tile
  /* ====================================================================== */
 
 	var createTile = function createTile(tile) {
@@ -4437,4 +4437,3 @@ var esriGlobalNav = {
 return esriGlobalNav;
 
 })));
-//# sourceMappingURL=esri-global-nav.js.map
