@@ -297,8 +297,26 @@
 
 .esri-header-menus-flyout--categories-details_item {
 	box-sizing: border-box;
+	display: block;
 	margin: 15px 25px 15px 35px;
 	padding: 0 0 10px 0;
+	text-decoration: none;
+
+	&[data-heading='true'] {
+		border-bottom: 1px solid var(--mono-80);
+	}
+}
+
+.esri-header-menus-flyout--categories-details_heading {
+	color: red;
+	margin: 0;
+	padding: 0;
+}
+
+.esri-header-menus-flyout--categories-details_label {
+	color: var(--mono-20);
+	margin: 0;
+	padding: 0;
 }
 
 .esri-header-menus-flyout--categories-item_header {

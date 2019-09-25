@@ -993,7 +993,7 @@ var createMenus = (function (_ref) {
 				var hasCols = item.cols && item.cols.length;
 				var hasFlyout = item.flyout && item.flyout.length;
 				var hasFeaturedItems = item.tiles && item.tiles.length;
-				console.log(item.flyout);
+				// console.log(item.flyout);
 
 				if (hasMenuItems || hasCols || hasFeaturedItems || hasFlyout) {
 					/* Global Navigation: Submenu
@@ -1167,7 +1167,7 @@ var createMenus = (function (_ref) {
 			var categoryListArr = [].slice.call(document.querySelectorAll('.esri-header-menus-flyout--categories-details[aria-expanded]'));
 			categoryListArr.forEach(function (list) {
 				list.setAttribute('aria-expanded', 'false');
-				list.style.height = '0px';
+				list.style.height = '0';
 			});
 
 			categoryList.setAttribute('aria-expanded', '' + active);
@@ -1178,7 +1178,7 @@ var createMenus = (function (_ref) {
 				});
 				categoryHeader.setAttribute('aria-current', 'true');
 			} else {
-				categoryList.style.height = '0px';
+				categoryList.style.height = '0';
 				categoryHeader.setAttribute('aria-current', 'false');
 			}
 		} else {
@@ -1220,7 +1220,7 @@ var createMenus = (function (_ref) {
 						}
 					}, items.category));
 					column.col.forEach(function (col) {
-						listArr.push($assign('div', { class: prefix$4 + '-flyout--categories-details_item' }, col.label));
+						listArr.push($assign('a', { href: col.href, class: prefix$4 + '-flyout--categories-details_item', 'data-heading': col.heading ? 'true' : 'false' }, col.heading && $assign('p', { class: prefix$4 + '-flyout--categories-details_heading' }, col.heading), col.label && $assign('p', { class: prefix$4 + '-flyout--categories-details_label' }, col.label)));
 					});
 				});
 			}

@@ -154,7 +154,7 @@ export default ({variant = 'desktop'}) => {
 							const hasCols = item.cols && item.cols.length;
 							const hasFlyout = item.flyout && item.flyout.length;
 							const hasFeaturedItems = item.tiles && item.tiles.length;
-							console.log(item.flyout);
+							// console.log(item.flyout);
 
 							if (hasMenuItems || hasCols || hasFeaturedItems || hasFlyout) {
 								/* Global Navigation: Submenu
@@ -345,7 +345,7 @@ export default ({variant = 'desktop'}) => {
 			const categoryListArr = [].slice.call(document.querySelectorAll('.esri-header-menus-flyout--categories-details[aria-expanded]'));
 			categoryListArr.forEach((list) => {
 				list.setAttribute('aria-expanded', 'false');
-				list.style.height = '0px';
+				list.style.height = '0';
 			});
 	
 			categoryList.setAttribute('aria-expanded', `${active}`);
@@ -356,7 +356,7 @@ export default ({variant = 'desktop'}) => {
 				});
 				categoryHeader.setAttribute('aria-current', 'true');
 			} else {
-				categoryList.style.height = '0px';
+				categoryList.style.height = '0';
 				categoryHeader.setAttribute('aria-current', 'false');
 			}
 		} else {
@@ -401,8 +401,9 @@ export default ({variant = 'desktop'}) => {
 					);
 					column.col.forEach((col) => {
 						listArr.push(						
-							$('div', {class: `${prefix}-flyout--categories-details_item`}, 
-								col.label
+							$('a', {href: col.href, class: `${prefix}-flyout--categories-details_item`, 'data-heading': col.heading ? 'true' : 'false'}, 
+								(col.heading) && $('p', {class: `${prefix}-flyout--categories-details_heading`}, col.heading), 
+								(col.label) && $('p', {class: `${prefix}-flyout--categories-details_label`}, col.label)
 							)
 						);
 					});
