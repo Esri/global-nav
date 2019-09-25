@@ -1210,7 +1210,7 @@ var createMenus = (function (_ref) {
 				items.cols.forEach(function (column) {
 					var $column = $assign('div', { class: prefix$4 + '-flyout--list-items_column' });
 					column.col.forEach(function (col) {
-						$items.push($assign($column, $assign('li', { class: prefix$4 + '-flyout--list-items_name' }, $assign('a', { href: '#', class: prefix$4 + '-flyout--list-items_anchor' }, col.heading && $assign('p', { class: prefix$4 + '-flyout--list-items_heading' }, col.heading), col.label && $assign('p', { class: prefix$4 + '-flyout--list-items_label' }, col.label)))));
+						$items.push($assign($column, $assign('li', { class: prefix$4 + '-flyout--list-items_name' }, $assign('a', { href: '#', class: prefix$4 + '-flyout--list-items_anchor', 'data-heading': col.heading ? 'true' : 'false' }, col.heading && $assign('p', { class: prefix$4 + '-flyout--list-items_heading' }, col.heading), col.label && $assign('p', { class: prefix$4 + '-flyout--list-items_label' }, col.label)))));
 					});
 				});
 			}

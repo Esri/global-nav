@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
 									{
 										col: [
 											{
-												heading: 'CAPABILITIES',
+												heading: '',
 												label: 'Mapping',
 												href: 'https://www.esri.com/en-us/location-intelligence'
 											},
