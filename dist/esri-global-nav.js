@@ -993,6 +993,7 @@ var createMenus = (function (_ref) {
 				var hasCols = item.cols && item.cols.length;
 				var hasFlyout = item.flyout && item.flyout.length;
 				var hasFeaturedItems = item.tiles && item.tiles.length;
+				console.log(item.flyout);
 
 				if (hasMenuItems || hasCols || hasFeaturedItems || hasFlyout) {
 					/* Global Navigation: Submenu
@@ -1065,6 +1066,7 @@ var createMenus = (function (_ref) {
 							content: $subcontent,
 							type: 'menu-close'
 						});
+						resetFlyoutMenu();
 					});
 				}
 
@@ -1072,6 +1074,20 @@ var createMenus = (function (_ref) {
 			})))));
 		}))));
 	});
+
+	function resetFlyoutMenu() {
+		var flyoutMenuHeaders = [].slice.call(document.querySelectorAll('.esri-header-menus-flyout--categories-item_header'));
+		var flyoutMenuDetails = [].slice.call(document.querySelectorAll('.esri-header-menus-flyout--categories-details'));
+
+		flyoutMenuHeaders.forEach(function (header) {
+			header.setAttribute("aria-current", "false");
+		});
+
+		flyoutMenuDetails.forEach(function (detail) {
+			detail.setAttribute("aria-expanded", "false");
+			detail.style.height = '0';
+		});
+	}
 
 	function renderSingle(_ref3) {
 		var hasMenuItems = _ref3.hasMenuItems,
@@ -1188,16 +1204,21 @@ var createMenus = (function (_ref) {
 
 	function renderFlyoutMenu(items, type, id) {
 		var $items = [];
-		var category = "";
 		var listArr = [];
+		var category = "";
+
 		if (type === 'category') {
 			if (items.cols && items.cols.length) {
 				items.cols.forEach(function (column) {
 					category = $assign('li', {
-						class: prefix$4 + '-flyout--categories-item', 'data-id': id, 'aria-current': id === 0 ? 'true' : 'false'
-					}, $assign('p', { class: prefix$4 + '-flyout--categories-item_header', click: function click(e) {
+						class: prefix$4 + '-flyout--categories-item',
+						'data-id': id,
+						'aria-current': id === 0 ? 'true' : 'false'
+					}, $assign('p', { class: prefix$4 + '-flyout--categories-item_header',
+						click: function click(e) {
 							swapFlyoutContent(e);
-						} }, items.category));
+						}
+					}, items.category));
 					column.col.forEach(function (col) {
 						listArr.push($assign('div', { class: prefix$4 + '-flyout--categories-details_item' }, col.label));
 					});
@@ -1229,7 +1250,9 @@ var createMenus = (function (_ref) {
 		item.flyout.forEach(function (item, id) {
 			$assign.apply(undefined, [$flyoutCategories].concat(toConsumableArray(renderFlyoutMenu(item, 'category', id))));
 
-			$assign($flyoutList, $assign.apply(undefined, ['div', { class: prefix$4 + '-flyout--list-items', 'data-id': id, 'aria-current': id === 0 ? 'true' : 'false' }].concat(toConsumableArray(renderFlyoutMenu(item, 'label', id)))));
+			$assign($flyoutList, $assign.apply(undefined, ['div', { class: prefix$4 + '-flyout--list-items',
+				'data-id': id, 'data-coltype': item.cols.length,
+				'aria-current': id === 0 ? 'true' : 'false' }].concat(toConsumableArray(renderFlyoutMenu(item, 'label', id)))));
 		});
 
 		$assign($subcontent, $assign('div', { class: prefix$4 + '-flyout' }, $assign('div', { class: prefix$4 + '-flyout--categories-wrapper' }, $flyoutCategories), $flyoutList));

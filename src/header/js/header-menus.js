@@ -154,6 +154,7 @@ export default ({variant = 'desktop'}) => {
 							const hasCols = item.cols && item.cols.length;
 							const hasFlyout = item.flyout && item.flyout.length;
 							const hasFeaturedItems = item.tiles && item.tiles.length;
+							console.log(item.flyout);
 
 							if (hasMenuItems || hasCols || hasFeaturedItems || hasFlyout) {
 								/* Global Navigation: Submenu
@@ -230,6 +231,7 @@ export default ({variant = 'desktop'}) => {
 										content: $subcontent,
 										type: 'menu-close'
 									});
+									resetFlyoutMenu();
 								});
 							}
 
@@ -240,6 +242,20 @@ export default ({variant = 'desktop'}) => {
 			)
 		);
 	});
+
+	function resetFlyoutMenu() {
+		const flyoutMenuHeaders = [].slice.call(document.querySelectorAll('.esri-header-menus-flyout--categories-item_header'));
+		const flyoutMenuDetails = [].slice.call(document.querySelectorAll('.esri-header-menus-flyout--categories-details'));
+
+		flyoutMenuHeaders.forEach((header) => {
+			header.setAttribute("aria-current", "false");
+		});
+		
+		flyoutMenuDetails.forEach((detail) => {
+			detail.setAttribute("aria-expanded", "false");
+			detail.style.height = '0';
+		});
+	}
 
 	function renderSingle({hasMenuItems, $subcontent, item, uuid, suuid}) {
 		let columns = '';
@@ -366,18 +382,22 @@ export default ({variant = 'desktop'}) => {
 	
 	function renderFlyoutMenu(items, type, id) {
 		const $items = [];
-		let category = "";
 		const listArr = [];
+		let category = "";
+
 		if (type === 'category') {
 			if (items.cols && items.cols.length) {
 				items.cols.forEach((column) => {
 					category = $('li', {
-						class: `${prefix}-flyout--categories-item`, 'data-id': 
-						id, 'aria-current': id === 0 ? 'true' : 'false'
+						class: `${prefix}-flyout--categories-item`, 
+						'data-id': id,
+						'aria-current': id === 0 ? 'true' : 'false'
 					}, 
-						$('p', {class: `${prefix}-flyout--categories-item_header`, click: (e) => { 
-							swapFlyoutContent(e);
-						}}, items.category)
+						$('p', {class: `${prefix}-flyout--categories-item_header`, 
+							click: (e) => { 
+								swapFlyoutContent(e);
+							}
+						}, items.category)
 					);
 					column.col.forEach((col) => {
 						listArr.push(						
@@ -428,7 +448,9 @@ export default ({variant = 'desktop'}) => {
 			);
 			
 			$($flyoutList,
-				$('div', {class: `${prefix}-flyout--list-items`, 'data-id': id, 'aria-current': id === 0 ? 'true' : 'false'}, 
+				$('div', {class: `${prefix}-flyout--list-items`, 
+				'data-id': id, 'data-coltype': item.cols.length,
+				'aria-current': id === 0 ? 'true' : 'false'}, 
 					...renderFlyoutMenu(item, 'label', id)
 				)
 			);
