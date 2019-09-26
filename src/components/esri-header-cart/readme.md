@@ -5,29 +5,10 @@
 
 ## Properties
 
-| Property | Attribute | Description | Type  | Default |
-| -------- | --------- | ----------- | ----- | ------- |
-| `detail` | `detail`  |             | `any` | `{}`    |
-
-
-## Events
-
-| Event  | Description | Type               |
-| ------ | ----------- | ------------------ |
-| `open` |             | `CustomEvent<any>` |
-
-
-## Methods
-
-### `doThing() => Promise<void>`
-
-Add a jsdoc comment describing your method and it's parameters (use `@param`).
-
-#### Returns
-
-Type: `Promise<void>`
-
-
+| Property | Attribute | Description | Type     | Default |
+| -------- | --------- | ----------- | -------- | ------- |
+| `items`  | `items`   |             | `number` | `0`     |
+| `url`    | `url`     |             | `string` | `"#"`   |
 
 
 ## Dependencies

@@ -47,12 +47,8 @@ export class EsriHeader {
     return (
       <Host>
         <div class="esri-header">
-          <div>
-            <slot />
-          </div>
-          {this.brand ? <esri-header-brand {...this.brand}></esri-header-brand> : ""}
-          {this.cart ? (
-            <esri-header-cart items={this.cart.items} url={this.cart.url}></esri-header-cart>
+          {this.brand ? (
+            <esri-header-brand {...this.brand}></esri-header-brand>
           ) : (
             ""
           )}
@@ -66,9 +62,20 @@ export class EsriHeader {
           ) : (
             ""
           )}
+          {this.cart ? (
+            <esri-header-cart
+              items={this.cart.items}
+              url={this.cart.url}
+            ></esri-header-cart>
+          ) : (
+            ""
+          )}
           {this.notifications ? (
             <esri-header-notifications
-              detail={this.notifications}
+              messages={this.notifications.messages}
+              dismissAllLabel={this.notifications.dismissAllLabel}
+              dismissLabel={this.notifications.dismissLabel}
+              emptyMessage={this.notifications.emptyMessage}
             ></esri-header-notifications>
           ) : (
             ""
@@ -158,6 +165,6 @@ export class EsriHeader {
   /** Track the open menu in state  */
   @State() openMenu: HTMLElement;
 
-  /** Track the open menu in state  */
+  /** Track viewport width for responsive changes */
   @State() screenSize: number;
 }

@@ -83,13 +83,13 @@ $esri-footer-social-gutter: 7px;
   cursor: pointer;
   &:hover {
     box-shadow: inset 0 -3px 0 0 $h-bb-030;
-    color: $blk-000;
+    color: $blk-240;
     fill: currentColor;
   }
 
   &:matches(:active, [aria-expanded="true"]) {
     box-shadow: inset 0 -3px 0 0 $h-bb-060;
-    color: $blk-000;
+    color: $blk-240;
     fill: currentColor;
   }
 
@@ -99,22 +99,26 @@ $esri-footer-social-gutter: 7px;
 };
 
 @mixin submenu() {
-  box-shadow: inset 0 0 0 1px $blk-130;
-  position: absolute 100%;
-  transition: opacity $transition; // TODO: use new transition variables
-
+  box-shadow: inset 0 0 0 1px $blk-020;
+  position: absolute;
+  top: 100%;
+  visibility: visible;
+  clip: rect(0,100vw,100vh,0);
+  transition: opacity $transition, clip 0ms linear 0ms;
   &:not([aria-expanded="true"]) {
-    clip: rect(0, 0, 0, 0);
+    clip: rect(0,0,0,0);
     opacity: 0;
-    visibility: hidden;
+    transition: opacity $transition, visibility 0ms linear 300ms, clip 0ms linear 300ms;
   }
 };
 
 @mixin menu-icon () {
   display: block;
   fill: currentColor;
+  color: $blk-200;
   margin: 16px;
-  size: 24px;
+  width: 24px;
+  height: 24px;
 }
 
 /* Breakpoints

@@ -9,6 +9,9 @@ import { HTMLStencilElement, JSXBase } from '@stencil/core/internal';
 import {
   imgOrSvgDef,
 } from './utils/interfaces';
+import {
+  Notification,
+} from './components/esri-header-notifications/esri-header-notifications';
 
 
 export namespace Components {
@@ -154,13 +157,25 @@ export namespace Components {
   }
   interface EsriHeaderNotifications {
     /**
-    * Be sure to add a jsdoc comment describing your propery for the generated readme file. If your property should be hidden from documentation, you can use the `@internal` tag
+    * Text for button that clears all notifications
     */
-    'detail': any;
+    'dismissAllLabel': string;
     /**
-    * Add a jsdoc comment describing your method and it's parameters (use `@param`).
+    * Aria label for noticiation X
     */
-    'doThing': () => Promise<void>;
+    'dismissLabel': string;
+    /**
+    * Text to display when no notifications are found
+    */
+    'emptyMessage': string;
+    /**
+    * array of current notification messages
+    */
+    'messages': Notification[];
+    /**
+    * Set true to open notifications dropdown
+    */
+    'open': boolean;
   }
   interface EsriHeaderSearch {
     /**
@@ -400,10 +415,26 @@ declare namespace LocalJSX {
   }
   interface EsriHeaderNotifications extends JSXBase.HTMLAttributes<HTMLEsriHeaderNotificationsElement> {
     /**
-    * Be sure to add a jsdoc comment describing your propery for the generated readme file. If your property should be hidden from documentation, you can use the `@internal` tag
+    * Text for button that clears all notifications
     */
-    'detail'?: any;
-    'onOpen'?: (event: CustomEvent<any>) => void;
+    'dismissAllLabel'?: string;
+    /**
+    * Aria label for noticiation X
+    */
+    'dismissLabel'?: string;
+    /**
+    * Text to display when no notifications are found
+    */
+    'emptyMessage'?: string;
+    /**
+    * array of current notification messages
+    */
+    'messages'?: Notification[];
+    'onHeader:click:notifications:dismiss'?: (event: CustomEvent<any>) => void;
+    /**
+    * Set true to open notifications dropdown
+    */
+    'open'?: boolean;
   }
   interface EsriHeaderSearch extends JSXBase.HTMLAttributes<HTMLEsriHeaderSearchElement> {
     /**

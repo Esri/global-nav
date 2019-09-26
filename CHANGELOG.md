@@ -3,6 +3,7 @@
 ### Breaking
 
 - Both the header and the footer are now web components created with stencil. This changes the way you must initialize and consume the global nav. See the documentation for more details.
+- `notifications.emptyMessage` is now a string rather than an object
 
 ## 1.2.2
 
