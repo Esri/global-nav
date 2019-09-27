@@ -424,7 +424,7 @@ export default ({variant = 'desktop'}) => {
 						$items.push(
 							$($column, 
 								$('li', {class: `${prefix}-flyout--list-items_name`}, 
-									$('a', {href: '#', class: `${prefix}-flyout--list-items_anchor`, 'data-heading': (col.heading) ? 'true' : 'false'}, 
+									$('a', {href: col.href, class: `${prefix}-flyout--list-items_anchor`, 'data-heading': (col.heading) ? 'true' : 'false'}, 
 										(col.heading) && $('p', {class: `${prefix}-flyout--list-items_heading`}, col.heading), 
 										(col.label) && $('p', {class: `${prefix}-flyout--list-items_label`}, col.label)
 									)
