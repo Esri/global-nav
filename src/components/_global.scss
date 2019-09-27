@@ -55,6 +55,17 @@ $esri-footer-social-gutter: 7px;
   }
 };
 
+@mixin unset-ul {
+  margin: 0;
+  padding: 0;
+}
+
+@mixin unset-l () {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+};
+
 @mixin unset-input-text () {
   background-color: transparent;
   border-width: 0;
@@ -81,13 +92,14 @@ $esri-footer-social-gutter: 7px;
 @mixin menu-link () {
   display: block;
   cursor: pointer;
-  &:hover {
+  &:hover, &:focus {
     box-shadow: inset 0 -3px 0 0 $h-bb-030;
     color: $blk-240;
     fill: currentColor;
+    outline: none;
   }
 
-  &:matches(:active, [aria-expanded="true"]) {
+  &:active, &[aria-expanded="true"] {
     box-shadow: inset 0 -3px 0 0 $h-bb-060;
     color: $blk-240;
     fill: currentColor;

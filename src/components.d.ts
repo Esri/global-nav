@@ -7,6 +7,9 @@
 
 import { HTMLStencilElement, JSXBase } from '@stencil/core/internal';
 import {
+  UserMenuLink,
+} from './components/esri-header-account/esri-header-account';
+import {
   imgOrSvgDef,
 } from './utils/interfaces';
 import {
@@ -81,13 +84,49 @@ export namespace Components {
   }
   interface EsriHeaderAccount {
     /**
-    * Be sure to add a jsdoc comment describing your propery for the generated readme file. If your property should be hidden from documentation, you can use the `@internal` tag
-    */
-    'detail': any;
-    /**
     * Add a jsdoc comment describing your method and it's parameters (use `@param`).
     */
     'doThing': () => Promise<void>;
+    /**
+    * Array of links to appear in user menu
+    */
+    'menus': UserMenuLink[];
+    /**
+    * Open state of the menu
+    */
+    'open': boolean;
+    /**
+    * Translated string for profile
+    */
+    'profileText': string;
+    /**
+    * Translated string for sign in
+    */
+    'signInText': string;
+    /**
+    * Translated string for sign out
+    */
+    'signOutText': string;
+    /**
+    * Translated string for switch account
+    */
+    'switchText': string;
+    /**
+    * Organization name
+    */
+    'userGroup': string;
+    /**
+    * Unique user id
+    */
+    'userId': string;
+    /**
+    * Absolute path to profile photo
+    */
+    'userImage': string;
+    /**
+    * Human-readable name of the user
+    */
+    'userName': string;
   }
   interface EsriHeaderApps {
     /**
@@ -356,10 +395,49 @@ declare namespace LocalJSX {
   }
   interface EsriHeaderAccount extends JSXBase.HTMLAttributes<HTMLEsriHeaderAccountElement> {
     /**
-    * Be sure to add a jsdoc comment describing your propery for the generated readme file. If your property should be hidden from documentation, you can use the `@internal` tag
+    * Array of links to appear in user menu
     */
-    'detail'?: any;
-    'onOpen'?: (event: CustomEvent<any>) => void;
+    'menus'?: UserMenuLink[];
+    'onHeader:click:account'?: (event: CustomEvent<any>) => void;
+    'onHeader:click:signin'?: (event: CustomEvent<any>) => void;
+    'onHeader:click:signout'?: (event: CustomEvent<any>) => void;
+    'onHeader:click:switch'?: (event: CustomEvent<any>) => void;
+    /**
+    * Open state of the menu
+    */
+    'open'?: boolean;
+    /**
+    * Translated string for profile
+    */
+    'profileText'?: string;
+    /**
+    * Translated string for sign in
+    */
+    'signInText'?: string;
+    /**
+    * Translated string for sign out
+    */
+    'signOutText'?: string;
+    /**
+    * Translated string for switch account
+    */
+    'switchText'?: string;
+    /**
+    * Organization name
+    */
+    'userGroup'?: string;
+    /**
+    * Unique user id
+    */
+    'userId'?: string;
+    /**
+    * Absolute path to profile photo
+    */
+    'userImage'?: string;
+    /**
+    * Human-readable name of the user
+    */
+    'userName'?: string;
   }
   interface EsriHeaderApps extends JSXBase.HTMLAttributes<HTMLEsriHeaderAppsElement> {
     /**

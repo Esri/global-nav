@@ -86,7 +86,17 @@ export class EsriHeader {
             ""
           )}
           {this.account ? (
-            <esri-header-account detail={this.account}></esri-header-account>
+            <esri-header-account
+              profileText={this.account.label}
+              signInText={this.account.controls.signin}
+              switchText={this.account.controls.switch}
+              signOutText={this.account.controls.signout}
+              userName={this.account.user.name}
+              userId={this.account.user.id}
+              userGroup={this.account.user.group}
+              userImage={this.account.user.image}
+              menus={this.account.menus}
+              ></esri-header-account>
           ) : (
             ""
           )}
