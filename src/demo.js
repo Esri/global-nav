@@ -376,88 +376,245 @@ document.addEventListener("DOMContentLoaded", () => {
 					},
 					{
 						label: 'Solutions',
-						menus: [
+						flyout: [
 							{
-								heading: 'PRODUCTS',
-								label: 'Architecture, Engineering, and Construction',
-								href: 'https://www.esri.com/industries/banking'
+								category: 'CAPABILITIES',
+								cols: [
+									{
+										col: [
+											{
+												heading: '',
+												label: 'Mapping',
+												href: 'https://www.esri.com/en-us/location-intelligence'
+											},
+											{
+												heading: 'GIS & MAPPING PRODUCTS',
+												label: 'ArcGIS Online',
+												href: 'https://www.esri.com/en-us/arcgis-online'
+											},
+											{
+												heading: 'CAPABILITIES',
+												label: 'Mapping',
+												href: 'https://www.esri.com/en-us/location-intelligence'
+											},
+											{
+												heading: 'GIS & MAPPING PRODUCTS',
+												label: 'ArcGIS Online',
+												href: 'https://www.esri.com/en-us/arcgis-online'
+											},
+											{
+												heading: 'CAPABILITIES',
+												label: 'Mapping',
+												href: 'https://www.esri.com/en-us/location-intelligence'
+											},
+											{
+												heading: 'GIS & MAPPING PRODUCTS',
+												label: 'ArcGIS Online',
+												href: 'https://www.esri.com/en-us/arcgis-online'
+											}
+										]
+									},
+									{
+										col: [
+											{
+												heading: 'MAPPING NATION',
+												label: 'Mapping',
+												href: 'https://www.esri.com/en-us/location-intelligence'
+											},
+											{
+												heading: 'GIS & MAPPING PRODUCTS',
+												label: 'ArcGIS Online',
+												href: 'https://www.esri.com/en-us/arcgis-online'
+											}
+										]
+									}
+								]
 							},
 							{
-								label: 'Banking',
-								href: 'https://www.esri.com/industries/banking'
+								category: 'GEOLOCATION',
+								cols: [
+									{
+										col: [
+											{
+												heading: '',
+												label: 'Mapping',
+												href: 'https://www.esri.com/en-us/location-intelligence'
+											},
+											{
+												heading: 'GIS & MAPPING PRODUCTS',
+												label: 'ArcGIS Online',
+												href: 'https://www.esri.com/en-us/arcgis-online'
+											},
+											{
+												heading: 'CAPABILITIES',
+												label: 'Mapping',
+												href: 'https://www.esri.com/en-us/location-intelligence'
+											},
+											{
+												heading: 'GIS & MAPPING PRODUCTS',
+												label: 'ArcGIS Online',
+												href: 'https://www.esri.com/en-us/arcgis-online'
+											},
+											{
+												heading: 'CAPABILITIES',
+												label: 'Mapping',
+												href: 'https://www.esri.com/en-us/location-intelligence'
+											},
+											{
+												heading: 'GIS & MAPPING PRODUCTS',
+												label: 'ArcGIS Online',
+												href: 'https://www.esri.com/en-us/arcgis-online'
+											}
+										]
+									},
+									{
+										col: [
+											{
+												heading: 'MAPPING NATION',
+												label: 'Mapping',
+												href: 'https://www.esri.com/en-us/location-intelligence'
+											},
+											{
+												heading: 'GIS & MAPPING PRODUCTS',
+												label: 'ArcGIS Online',
+												href: 'https://www.esri.com/en-us/arcgis-online'
+											}
+										]
+									}
+								]
 							},
 							{
-								label: 'Education',
-								href: 'https://www.esri.com/industries/education'
+								category: 'ARCGISENTERPRISE',
+								cols: [
+									{
+										col: [
+											{
+												heading: '',
+												label: 'Mapping',
+												href: 'https://www.esri.com/en-us/location-intelligence'
+											},
+											{
+												heading: 'GIS & MAPPING PRODUCTS',
+												label: 'ArcGIS Online',
+												href: 'https://www.esri.com/en-us/arcgis-online'
+											},
+											{
+												heading: 'CAPABILITIES',
+												label: 'Mapping',
+												href: 'https://www.esri.com/en-us/location-intelligence'
+											},
+											{
+												heading: 'GIS & MAPPING PRODUCTS',
+												label: 'ArcGIS Online',
+												href: 'https://www.esri.com/en-us/arcgis-online'
+											},
+											{
+												heading: 'CAPABILITIES',
+												label: 'Mapping',
+												href: 'https://www.esri.com/en-us/location-intelligence'
+											},
+											{
+												heading: 'GIS & MAPPING PRODUCTS',
+												label: 'ArcGIS Online',
+												href: 'https://www.esri.com/en-us/arcgis-online'
+											}
+										]
+									},
+									{
+										col: [
+											{
+												heading: 'MAPPING NATION',
+												label: 'Mapping',
+												href: 'https://www.esri.com/en-us/location-intelligence'
+											},
+											{
+												heading: 'GIS & MAPPING PRODUCTS',
+												label: 'ArcGIS Online',
+												href: 'https://www.esri.com/en-us/arcgis-online'
+											}
+										]
+									}
+								]
 							},
 							{
-								label: 'Electric and Gas Utilities',
-								href: 'https://www.esri.com/industries/education'
+								category: 'GIS & MAPPING PRODUCTS',
+								cols: [
+									{
+										col: [
+											{
+												heading: 'CAPABILITIES1',
+												label: 'Mapping',
+												href: 'https://www.esri.com/en-us/location-intelligence'
+											},
+											{
+												heading: 'GIS & MAPPING PRODUCTS',
+												label: 'ArcGIS Online',
+												href: 'https://www.esri.com/en-us/arcgis-online'
+											},
+											{
+												heading: 'CAPABILITIES',
+												label: 'Mapping',
+												href: 'https://www.esri.com/en-us/location-intelligence'
+											},
+											{
+												heading: 'GIS & MAPPING PRODUCTS',
+												label: 'ArcGIS Online',
+												href: 'https://www.esri.com/en-us/arcgis-online'
+											},
+											{
+												heading: 'CAPABILITIES',
+												label: 'Mapping',
+												href: 'https://www.esri.com/en-us/location-intelligence'
+											},
+											{
+												heading: 'GIS & MAPPING PRODUCTS',
+												label: 'ArcGIS Online',
+												href: 'https://www.esri.com/en-us/arcgis-online'
+											}
+										]
+									}
+								]
 							},
 							{
-								label: 'Government',
-								href: 'https://www.esri.com/industries/government'
-							},
-							{
-								label: 'Health and Human Services',
-								href: 'https://www.esri.com/industries/health'
-							},
-							{
-								label: 'Insurance',
-								href: 'https://www.esri.com/industries/insurance'
-							},
-							{
-								label: 'Manufacturing',
-								href: 'https://www.esri.com/industries/manufacturing'
-							},
-							{
-								label: 'Natural Resources',
-								href: 'https://www.esri.com/industries/natural-resources'
-							},
-							{
-								label: 'Government',
-								href: 'https://www.esri.com/industries/government'
-							},
-							{
-								label: 'Health and Human Services',
-								href: 'https://www.esri.com/industries/health'
-							},
-							{
-								label: 'Insurance',
-								href: 'https://www.esri.com/industries/insurance'
-							},
-							{
-								label: 'Manufacturing',
-								href: 'https://www.esri.com/industries/manufacturing'
-							},
-							{
-								label: 'Natural Resources',
-								href: 'https://www.esri.com/industries/natural-resources'
+								category: 'LOCATION-ENABLED PRODUCTS',
+								cols: [
+									{
+										col: [
+											{
+												heading: 'CAPABILITIES21',
+												label: 'Mapping',
+												href: 'https://www.esri.com/en-us/location-intelligence'
+											},
+											{
+												heading: 'GIS & MAPPING PRODUCTS',
+												label: 'ArcGIS Online',
+												href: 'https://www.esri.com/en-us/arcgis-online'
+											},
+											{
+												heading: 'CAPABILITIES',
+												label: 'Mapping',
+												href: 'https://www.esri.com/en-us/location-intelligence'
+											},
+											{
+												heading: 'GIS & MAPPING PRODUCTS',
+												label: 'ArcGIS Online',
+												href: 'https://www.esri.com/en-us/arcgis-online'
+											},
+											{
+												heading: 'CAPABILITIES',
+												label: 'Mapping',
+												href: 'https://www.esri.com/en-us/location-intelligence'
+											},
+											{
+												heading: 'GIS & MAPPING PRODUCTS',
+												label: 'ArcGIS Online',
+												href: 'https://www.esri.com/en-us/arcgis-online'
+											}
+										]
+									}
+								]
 							}
 						],
-						tiles: [
-							{
-								label: 'Location Strategy',
-								href: 'https://www.esri.com/location-strategy',
-								icon: [
-									'M11.5 27.7a1.8 1.8 0 1 1-1.8 1.8 1.802 1.802 0 0 1 1.8-1.8zm-.75 1.8a.75.75 0 1 0 .75-.75.751.751 0 0 0-.75.75zM28.5 14.7a1.8 1.8 0 1 0 1.8 1.8 1.802 1.802 0 0 0-1.8-1.8zm0 2.55a.75.75 0 1 1 .75-.75.751.751 0 0 1-.75.75zm4 12.45a1.8 1.8 0 1 0 1.8 1.8 1.802 1.802 0 0 0-1.8-1.8zm0 2.55a.75.75 0 1 1 .75-.75.751.751 0 0 1-.75.75zm3-13.55a1.8 1.8 0 1 0 1.8 1.8 1.802 1.802 0 0 0-1.8-1.8zm0 2.55a.75.75 0 1 1 .75-.75.751.751 0 0 1-.75.75zm-29 1.45a1.8 1.8 0 1 1-1.8 1.8 1.802 1.802 0 0 1 1.8-1.8zm-.75 1.8a.75.75 0 1 0 .75-.75.751.751 0 0 0-.75.75zm18.85-15a.9.9 0 1 0 .9-.9.901.901 0 0 0-.9.9zm7 4a.9.9 0 1 0 .9-.9.901.901 0 0 0-.9.9zm-2 23a.9.9 0 1 0 .9-.9.901.901 0 0 0-.9.9zm-12.9 3a.9.9 0 1 0 .9-.9.901.901 0 0 0-.9.9zm-3.1-15a.9.9 0 1 0 .9-.9.901.901 0 0 0-.9.9zm2.083-4.575l-.596-.596a9.32 9.32 0 0 0-.874 2.711l.79.124a8.493 8.493 0 0 1 .68-2.239zm-5.838-5.838l-.466-.466c-.038-.038-.065-.083-.1-.123a17.337 17.337 0 0 0-3.082 8.162l.795.084a16.527 16.527 0 0 1 2.853-7.657zm2.307 2.307a13.347 13.347 0 0 0-1.625 10.469l.774-.202a12.555 12.555 0 0 1 1.433-9.685zM7.31 27.179l-.78.177a17.427 17.427 0 0 0 8.715 11.459l.38-.704A16.632 16.632 0 0 1 7.31 27.179zm6.344 4.177l-.625.5A13.348 13.348 0 0 0 23.5 36.9v-.8a12.55 12.55 0 0 1-9.845-4.745zm1.85-4.688l-.744.295A9.36 9.36 0 0 0 23.5 32.9v-.8a8.563 8.563 0 0 1-7.995-5.433zm4.33 13.844a17.43 17.43 0 0 0 3.665.388v-.8a16.626 16.626 0 0 1-3.497-.37zm1.704 3.496l-.074.797A21.4 21.4 0 0 1 2.198 25.568l.797-.076A20.597 20.597 0 0 0 21.54 44.008zm0-41.016l-.074-.797a21.388 21.388 0 0 0-19.272 19.3l.796.075A20.586 20.586 0 0 1 21.54 2.992zm22.466 18.519l.797-.076a21.401 21.401 0 0 0-19.267-19.24l-.074.797a20.598 20.598 0 0 1 18.544 18.519zM25.46 44.008l.075.797a21.388 21.388 0 0 0 19.272-19.303l-.797-.074a20.586 20.586 0 0 1-18.55 18.58zM20.699 23.5a2.772 2.772 0 0 1 .566-1.67L11.217 11.784l.566-.566 10.048 10.048A2.775 2.775 0 0 1 23.5 20.7a2.8 2.8 0 1 1-2.8 2.8zm2.801-2a2 2 0 1 0 2 2 2.003 2.003 0 0 0-2-2zM23.9 0h-.8v3h.8zm20.131 23.069v.8h3v-.8zM23.1 47h.8v-3h-.8zM3.031 23.131h-3v.8h3z'
-								]
-							},
-							{
-								label: 'Operational Intelligence',
-								href: 'https://www.esri.com/operational-intelligence',
-								icon: [
-									'M18 37.9h-7.1V45h-.8v-7.1H3v-.8h7.1V30h.8v7.1H18zM11 17H9v2h2zm3-8v4h4V9zm3 3h-2v-2h2zm16 21h-2v2h2zm-5 4h-1v1h1zm8-9v3h3v-3zm2 2h-1v-1h1zM32.1 3.1v13.148l3.106-4.348H44.9V3.1zm12 8h-9.306L32.9 13.752V3.9h11.2zM42 6.9h-7v-.8h7zm0 2h-7v-.8h7zm-.833 4.6h-.936a19.413 19.413 0 0 1 2.755 9.6H32.83a9.348 9.348 0 0 0-8.93-8.93V4.02a19.412 19.412 0 0 1 6.6 1.289v-.847A20.247 20.247 0 0 0 3.22 23.1l-.004.8a20.345 20.345 0 0 0 3.93 11.6h.997a19.538 19.538 0 0 1-4.126-11.6H14.17a9.348 9.348 0 0 0 8.93 8.93v10.155a19.346 19.346 0 0 1-10.6-3.395v.957A20.27 20.27 0 0 0 43.78 23.9l.006-.8a20.23 20.23 0 0 0-2.619-9.6zM4.02 23.1A19.502 19.502 0 0 1 23.1 4.02v10.15a9.348 9.348 0 0 0-8.93 8.93zm10.93.4a8.55 8.55 0 1 1 8.55 8.55 8.56 8.56 0 0 1-8.55-8.55zm8.95 19.48V32.83a9.348 9.348 0 0 0 8.93-8.93h10.15A19.502 19.502 0 0 1 23.9 42.98zm-.4-22.83a3.35 3.35 0 1 0 3.35 3.35 3.354 3.354 0 0 0-3.35-3.35zm0 5.9a2.55 2.55 0 1 1 2.55-2.55 2.553 2.553 0 0 1-2.55 2.55z'
-								]
-							},
-							{
-								label: 'Smart Communities',
-								href: 'https://www.esri.com/smart-communities',
-								icon: [
-									'M7 32.1h4v.8H7zm24 6.8h3.757v-.8H31zm0 2h3.757v-.8H31zm-24-2h4v-.8H7zm20-10.8h-2v.8h2zM7 35.9h4v-.8H7zm20-10.8h-2v.8h2zM47.4 44c0 2.861-13.994 3.9-23.4 3.9S.6 46.861.6 44c0-.737.805-1.337 2.5-1.879V29.1h3v-4h5.6l3.2 4.267V33.1h3.2v-6.233l1-1.334V15h.01l-1.01-1.094V3.843L21.575.1H27.9v6h2v21h4.2v-4.738l3.33-4.262h5.47v23.498c4.016.868 4.5 1.783 4.5 2.402zm-.8 0c0-.032-.053-.773-3.7-1.584V43h-.8V18.9h-4.28l-2.92 3.738V27.9h-5v5.2h2.2v-2h5.8V44h-.8v-8.1h-3v-2h-7v-2h-4.2V44h-.8V31.1h5.8v2h1.2V6.9h-2v-6h-5.175L18.9 4.157v9.437l3 3.25v6.29l-3 4V44h-.8V33.9h-4v-4.267L11.3 25.9H6.9v4h-3V43h-.8v-.039c-1.322.455-1.7.858-1.7 1.039 0 1.294 8.598 3.1 22.6 3.1s22.6-1.806 22.6-3.1zM21.1 22.867v-5.71l-1.2-1.3v8.609zM34.9 33.1v2h2.2v-3.2h-4.2v1.2zm2.2-5.1h.8v-2.791h-.8zM27 19.1h-2v.8h2zm0 3h-2v.8h2zm0-6h-2v.8h2zm0-6h-2v.8h2zM39.1 28h.8v-5h-.8zM27 13.1h-2v.8h2zm-18.6-.6a.9.9 0 1 0-.9.9.901.901 0 0 0 .9-.9zm29.1-.1a.9.9 0 1 1 .9-.9.901.901 0 0 1-.9.9zm1.267 1.705l.697-.394a17.834 17.834 0 0 1 1.28 2.789h-.854a16.573 16.573 0 0 0-1.123-2.396zM31.5 6.125a18.543 18.543 0 0 1 4.292 2.962l-.541.589a18.317 18.317 0 0 0-1.621-1.327 18.097 18.097 0 0 0-2.13-1.314zM4.107 23.512c-.005-.17-.007-.341-.007-.512a18.864 18.864 0 0 1 1.795-8.05l.725.34a18.05 18.05 0 0 0-1.713 8.199L4.5 23.5zm5.66-12.861l-.584-.546A18.775 18.775 0 0 1 16.5 5.257v.856a17.943 17.943 0 0 0-6.733 4.538z'
-								]
-							}
-						]
 					},
 					{
 						label: 'Support & Services',

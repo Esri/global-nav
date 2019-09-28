@@ -1057,6 +1057,7 @@ var createMenus = (function (_ref) {
 							state: 'menu',
 							type: 'menu-toggle'
 						});
+						resetFlyoutState();
 					});
 
 					$subtoggle.addEventListener('click', function () {
@@ -1074,6 +1075,18 @@ var createMenus = (function (_ref) {
 			})))));
 		}))));
 	});
+
+	function resetFlyoutState() {
+		var flyoutList = [].slice.call(document.querySelectorAll('.esri-header-menus-flyout--list-items'));
+
+		if (flyoutList.length) {
+			flyoutList.forEach(function (fly) {
+				if (fly.hasAttribute('data-id') && fly.getAttribute('data-id') === '0') {
+					fly.setAttribute('aria-current', 'true');
+				}
+			});
+		}
+	}
 
 	function resetFlyoutMenu() {
 		var flyoutMenuHeaders = [].slice.call(document.querySelectorAll('.esri-header-menus-flyout--categories-item_header'));
