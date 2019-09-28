@@ -46,7 +46,7 @@ export class EsriHeader {
   render() {
     return (
       <Host>
-        <div class="esri-header">
+        <div class={`esri-header -${this.theme}`}>
           {this.brand ? (
             <esri-header-brand {...this.brand}></esri-header-brand>
           ) : (
