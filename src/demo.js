@@ -614,7 +614,7 @@ document.addEventListener("DOMContentLoaded", () => {
 									}
 								]
 							}
-						],
+						]
 					},
 					{
 						label: 'Support & Services',

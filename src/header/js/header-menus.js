@@ -245,12 +245,18 @@ export default ({variant = 'desktop'}) => {
 	});
 
 	function resetFlyoutState() {
+		const flyoutCategories = [].slice.call(document.querySelectorAll('.esri-header-menus-flyout--categories-item'));
 		const flyoutList = [].slice.call(document.querySelectorAll('.esri-header-menus-flyout--list-items'));
-	
+
 		if (flyoutList.length) {
-			flyoutList.forEach((fly) => {
-				if (fly.hasAttribute('data-id') && fly.getAttribute('data-id') === '0') {
-					fly.setAttribute('aria-current', 'true');
+			flyoutList.forEach((list, index) => {
+				flyoutCategories[index].setAttribute('aria-current', 'false');
+				list.setAttribute('aria-current', 'false');
+				if ((list.hasAttribute('data-id') && list.getAttribute('data-id') === '0') && 
+						(flyoutCategories[index].hasAttribute('data-id') && flyoutCategories[index].getAttribute('data-id') === '0')
+					 ) {
+					flyoutCategories[index].setAttribute('aria-current', 'true');
+					list.setAttribute('aria-current', 'true');
 				}
 			});
 		}
