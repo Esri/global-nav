@@ -993,7 +993,6 @@ var createMenus = (function (_ref) {
 				var hasCols = item.cols && item.cols.length;
 				var hasFlyout = item.flyout && item.flyout.length;
 				var hasFeaturedItems = item.tiles && item.tiles.length;
-				// console.log(item.flyout);
 
 				if (hasMenuItems || hasCols || hasFeaturedItems || hasFlyout) {
 					/* Global Navigation: Submenu
@@ -1075,6 +1074,20 @@ var createMenus = (function (_ref) {
 			})))));
 		}))));
 	});
+
+	function resetFlyoutDimensions(parentNode) {
+		var subMenus = document.querySelectorAll('.esri-header-menus-submenu');
+		var parent = parentNode !== 'disabled' && parentNode.getAttribute('data-parent');
+		var parentElement = document.querySelector('#' + parent);
+
+		if (parentNode === 'disabled') {
+			subMenus.forEach(function (menu) {
+				menu.removeAttribute('data-single');
+			});
+		} else {
+			parentElement.setAttribute('data-single', '');
+		}
+	}
 
 	function resetFlyoutState() {
 		var flyoutCategories = [].slice.call(document.querySelectorAll('.esri-header-menus-flyout--categories-item'));
@@ -1202,8 +1215,9 @@ var createMenus = (function (_ref) {
 			items.forEach(function (item, index) {
 				item.addEventListener('click', function (e) {
 					var parentNode = e.target.parentNode;
-					var selectedCategory = parentNode.getAttribute('data-id');
-					var selectedList = itemsList[index].getAttribute('data-id');
+					var selectedCategory = parentNode.hasAttribute('data-id') && parentNode.getAttribute('data-id');
+					var selectedList = itemsList[index].hasAttribute('data-id') && itemsList[index].getAttribute('data-id');
+					var selectedListCols = itemsList[index].hasAttribute('data-coltype') && itemsList[index].getAttribute('data-coltype');
 
 					itemsList.forEach(function (list, index) {
 						list.setAttribute('aria-current', 'false');
@@ -1211,6 +1225,7 @@ var createMenus = (function (_ref) {
 					});
 
 					if (selectedCategory === selectedList) {
+						selectedListCols === '1' ? resetFlyoutDimensions(parentNode) : resetFlyoutDimensions('disabled');
 						parentNode.setAttribute('aria-current', 'true');
 						itemsList[index].setAttribute('aria-current', 'true');
 					}
@@ -1219,7 +1234,7 @@ var createMenus = (function (_ref) {
 		}
 	}
 
-	function renderFlyoutMenu(items, type, id) {
+	function renderFlyoutMenu(items, type, id, uuid, suuid) {
 		var $items = [];
 		var listArr = [];
 		var category = "";
@@ -1230,7 +1245,8 @@ var createMenus = (function (_ref) {
 					category = $assign('li', {
 						class: prefix$4 + '-flyout--categories-item',
 						'data-id': id,
-						'aria-current': id === 0 ? 'true' : 'false'
+						'aria-current': id === 0 ? 'true' : 'false',
+						'data-parent': prefix$4 + '-' + variant + '-submenu-' + uuid + '-' + suuid
 					}, $assign('p', { class: prefix$4 + '-flyout--categories-item_header',
 						click: function click(e) {
 							swapFlyoutContent(e);
@@ -1259,17 +1275,19 @@ var createMenus = (function (_ref) {
 
 	function renderFlyout(_ref5) {
 		var $subcontent = _ref5.$subcontent,
-		    item = _ref5.item;
+		    item = _ref5.item,
+		    uuid = _ref5.uuid,
+		    suuid = _ref5.suuid;
 
 		var $flyoutCategories = $assign('div', { class: prefix$4 + '-flyout--categories' });
 		var $flyoutList = $assign('div', { class: prefix$4 + '-flyout--list' });
 
 		item.flyout.forEach(function (item, id) {
-			$assign.apply(undefined, [$flyoutCategories].concat(toConsumableArray(renderFlyoutMenu(item, 'category', id))));
+			$assign.apply(undefined, [$flyoutCategories].concat(toConsumableArray(renderFlyoutMenu(item, 'category', id, uuid, suuid))));
 
 			$assign($flyoutList, $assign.apply(undefined, ['div', { class: prefix$4 + '-flyout--list-items',
 				'data-id': id, 'data-coltype': item.cols.length,
-				'aria-current': id === 0 ? 'true' : 'false' }].concat(toConsumableArray(renderFlyoutMenu(item, 'label', id)))));
+				'aria-current': id === 0 ? 'true' : 'false' }].concat(toConsumableArray(renderFlyoutMenu(item, 'label', id, uuid, suuid)))));
 		});
 
 		$assign($subcontent, $assign('div', { class: prefix$4 + '-flyout' }, $assign('div', { class: prefix$4 + '-flyout--categories-wrapper' }, $flyoutCategories), $flyoutList));

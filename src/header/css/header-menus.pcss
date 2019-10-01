@@ -279,7 +279,7 @@
 		height: auto;
 		overflow: auto;
 		position: relative;
-		width: 30%;
+		width: 250px;
 	}
 }
 
@@ -751,6 +751,19 @@
 			&[data-has-structured="false"] {
 				&[data-has-flyout="true"] {
 					padding: 0;
+					width: 850px;
+
+					&[data-single] {
+						width: 650px;
+						
+						& .esri-header-menus-flyout--list {
+							width: 400px;
+						}
+
+						& .esri-header-menus-flyout--list-items_column {
+							width: 100%;
+						}
+					}
 				}
 			}
 

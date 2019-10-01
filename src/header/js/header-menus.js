@@ -154,7 +154,6 @@ export default ({variant = 'desktop'}) => {
 							const hasCols = item.cols && item.cols.length;
 							const hasFlyout = item.flyout && item.flyout.length;
 							const hasFeaturedItems = item.tiles && item.tiles.length;
-							// console.log(item.flyout);
 
 							if (hasMenuItems || hasCols || hasFeaturedItems || hasFlyout) {
 								/* Global Navigation: Submenu
@@ -243,6 +242,20 @@ export default ({variant = 'desktop'}) => {
 			)
 		);
 	});
+
+	function resetFlyoutDimensions(parentNode) {
+		const subMenus = document.querySelectorAll('.esri-header-menus-submenu');
+		const parent = parentNode !== 'disabled' && parentNode.getAttribute('data-parent');
+		const parentElement = document.querySelector(`#${parent}`);
+
+		if (parentNode === 'disabled') {
+			subMenus.forEach((menu) => {
+				menu.removeAttribute('data-single');
+			});
+		} else {
+			parentElement.setAttribute('data-single', '');
+		}
+	}
 
 	function resetFlyoutState() {
 		const flyoutCategories = [].slice.call(document.querySelectorAll('.esri-header-menus-flyout--categories-item'));
@@ -382,15 +395,17 @@ export default ({variant = 'desktop'}) => {
 			items.forEach((item, index) => {
 				item.addEventListener('click', (e) => {
 					const parentNode = e.target.parentNode;
-					const selectedCategory = parentNode.getAttribute('data-id');
-					const selectedList = itemsList[index].getAttribute('data-id');
-
+					const selectedCategory = parentNode.hasAttribute('data-id') && parentNode.getAttribute('data-id');
+					const selectedList = itemsList[index].hasAttribute('data-id') && itemsList[index].getAttribute('data-id');
+					const selectedListCols = itemsList[index].hasAttribute('data-coltype') && itemsList[index].getAttribute('data-coltype');
+					
 					itemsList.forEach((list, index) => {
 						list.setAttribute('aria-current', 'false');
 						items[index].setAttribute('aria-current', 'false');
 					});
 
 					if (selectedCategory === selectedList) {
+						(selectedListCols) === '1' ? resetFlyoutDimensions(parentNode) : resetFlyoutDimensions('disabled');
 						parentNode.setAttribute('aria-current', 'true');
 						itemsList[index].setAttribute('aria-current', 'true');
 					}
@@ -399,7 +414,7 @@ export default ({variant = 'desktop'}) => {
 		}
 	}
 	
-	function renderFlyoutMenu(items, type, id) {
+	function renderFlyoutMenu(items, type, id, uuid, suuid) {
 		const $items = [];
 		const listArr = [];
 		let category = "";
@@ -410,7 +425,8 @@ export default ({variant = 'desktop'}) => {
 					category = $('li', {
 						class: `${prefix}-flyout--categories-item`, 
 						'data-id': id,
-						'aria-current': id === 0 ? 'true' : 'false'
+						'aria-current': id === 0 ? 'true' : 'false',
+						'data-parent': `${prefix}-${variant}-submenu-${uuid}-${suuid}`
 					}, 
 						$('p', {class: `${prefix}-flyout--categories-item_header`, 
 							click: (e) => { 
@@ -458,20 +474,20 @@ export default ({variant = 'desktop'}) => {
 		return $items;
 	}
 
-	function renderFlyout({$subcontent, item}) {
+	function renderFlyout({$subcontent, item, uuid, suuid}) {
 		const $flyoutCategories = $('div', {class: `${prefix}-flyout--categories`});
 		const $flyoutList = $('div', {class: `${prefix}-flyout--list`});
 		
 		item.flyout.forEach((item, id) => {
 			$($flyoutCategories,
-				...renderFlyoutMenu(item, 'category', id)
+				...renderFlyoutMenu(item, 'category', id, uuid, suuid)
 			);
 			
 			$($flyoutList,
 				$('div', {class: `${prefix}-flyout--list-items`, 
 				'data-id': id, 'data-coltype': item.cols.length,
 				'aria-current': id === 0 ? 'true' : 'false'}, 
-					...renderFlyoutMenu(item, 'label', id)
+					...renderFlyoutMenu(item, 'label', id, uuid, suuid)
 				)
 			);
 		});
