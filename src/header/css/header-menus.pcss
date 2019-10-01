@@ -250,6 +250,10 @@
 .esri-header-menus-flyout--list {
 	@media (--width-l) {
 		float: left;
+
+		@nest :dir(rtl) & {
+			float: right;
+		}
 	}
 }
 
@@ -404,6 +408,10 @@
 
 			&::before {
 				opacity: 1;
+
+				@nest :dir(rtl) & {
+					right: 10px;
+				}
 			}
 		}
 	}
@@ -423,6 +431,10 @@
 			transition: all .25s ease-out;
 			transform: translateY(-50%);
 			width: 5px;
+
+			@nest :dir(rtl) & {
+				right: 10px;
+			}
 		}
 
 		&:hover {
@@ -571,7 +583,7 @@
 		top: 50%;
 
 		@nest :dir(rtl) & {
-			transform: scaleX(-1);
+			transform: scaleX(-1) rotate(180deg);
 		}
 	}
 }
