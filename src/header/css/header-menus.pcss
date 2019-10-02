@@ -523,7 +523,11 @@
 
 			&::after {
 				opacity: 1;
-				transform: translate(5px, -55%);
+				transform: translate(5px, -60%);
+
+				@nest :dir(rtl) & {
+					transform: translate(-5px, -60%) rotate(180deg);
+				}
 			}
 		}
 
@@ -546,10 +550,10 @@
 				position: absolute;
 				size: 16px;
 				transition: opacity 250ms, transform 250ms;
-				transform: translate(-10px, 25%);
+				transform: translate(-10px, 30%);
 
 				@nest :dir(rtl) & {
-					transform: scaleX(-1);
+					transform: translate(15px, 55%) rotate(180deg);
 				}
 			}
 		}
@@ -558,7 +562,11 @@
 			& .esri-header-menus-flyout--list-items_label {
 				&::after {
 					opacity: 1;
-					transform: translate(5px, 25%);
+					transform: translate(5px, 30%);
+
+					@nest :dir(rtl) & {
+						transform: translate(-5px, 55%) rotate(180deg);
+					}
 				}
 			}
 		}
@@ -583,7 +591,7 @@
 		top: 50%;
 
 		@nest :dir(rtl) & {
-			transform: scaleX(-1) rotate(180deg);
+			transform: translate(15px, -55%) rotate(180deg);
 		}
 	}
 }
