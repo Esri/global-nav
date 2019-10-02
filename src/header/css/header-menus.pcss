@@ -1195,7 +1195,7 @@
 		position: absolute;
 		size: 16px;
 		transition: opacity 250ms, transform 250ms;
-		transform: translate(0, 2px);
+		transform: translate(0, 3px);
 
 		@nest :dir(rtl) & {
 			transform: scaleX(-1);
@@ -1205,10 +1205,10 @@
 	&:hover, &:focus {
 		&::after {
 			opacity: 1;
-			transform: translate(10px, 2px);
+			transform: translate(10px, 3px);
 
 			@nest :dir(rtl) & {
-				transform: scale(-1) translate(10px, 2px);
+				transform: scale(-1) translate(10px, 3px);
 			}
 		}
 	}
