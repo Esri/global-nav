@@ -117,13 +117,13 @@
 }
 
 .esri-header-account-name {
-  @include font-size(-1);
+  @include font-size(-1, 1.25);
   font-weight: 600;
   color: $blk-200;
 }
 
 .esri-header-account-id {
-  @include font-size(-2);
+  @include font-size(-2, 1.25);
 }
 
 .esri-header-account-menu {

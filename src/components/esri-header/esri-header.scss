@@ -10,13 +10,16 @@
 /* Global Header
 /* ========================================================================== */
 .esri-header {
+  position: relative;
+  display: flex;
   align-items: center;
+  justify-content: space-between;
+  height: $esri-header-height;
   color: $blk-100;
   cursor: default;
-  display: flex;
-  justify-content: space-between;
   user-select: none;
-  height: $esri-header-height;
+  z-index: 190;
+
   &.-web {
     width: 1440px;
     max-width: 96vw;

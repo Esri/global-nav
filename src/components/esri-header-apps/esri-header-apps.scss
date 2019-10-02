@@ -1,5 +1,248 @@
-// Cou can use any SASS from Calcite Base and Calcite Colors here.
+@import "../global";
 
 :host {
-  // Declare any CSS variables here as well as styles for the <Host> element.
+  position: relative;
+  display: flex;
+  flex-grow: 0;
+}
+
+.esri-header-apps-control {
+  @include normalize-button();
+  @include unset-button();
+  @include menu-link();
+  position: relative;
+}
+
+.esri-header-apps-image {
+  @include menu-icon();
+}
+
+.esri-header-apps-menu {
+  @include submenu();
+  right: 0;
+  width: 410px;
+  max-width: 100vw;
+  color: $blk-200;
+  background-color: $blk-005;
+}
+
+.esri-header-apps-intro {
+  margin: 0;
+  padding: 1rem 2rem;
+  color: $blk-140;
+  font-size: 14px;
+  text-align: center;
+}
+
+.esri-header-apps-intro-button {
+  @include unset-button();
+  @include font-size(-2);
+  display: block;
+  background: $blk-000;
+  border: 1px solid $blk-020;
+  cursor: pointer;
+  padding: 6px 20px;
+  margin: 0 auto 1rem auto;
+  transition: $transition;
+  &:hover, &:focus {
+    border: 1px solid $ui-blue;
+    color: $ui-blue;
+    outline: none;
+  }
+}
+
+.esri-header-apps-grid {
+  @include unset-ul();
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding: 10px;
+  overflow-x: hidden;
+}
+
+.esri-header-apps-grid--secondary {
+  border-top: 1px solid $blk-020;
+  background-color: $blk-010;
+}
+
+.esri-header-apps__more {
+  @include unset-button();
+  @include font-size(-2);
+  padding: 4px;
+  width: 100%;
+  background-color: $blk-010;
+  border: 0;
+  border-radius: 0;
+  cursor: pointer;
+  transition: $transition;
+  &:hover, &:focus {
+    outline: none;
+    color: $blk-240;
+    background-color: $blk-020;
+  }
+}
+
+.esri-header-apps__more__icon {
+  width: 16px;
+  height: 16px;
+  fill: currentColor;
+  margin: 0 4px;
+  vertical-align: -3px;
+}
+
+.esri-header-apps-drag-here {
+  @include font-size(-2);
+  margin: 12px 32px;
+  padding: 32px;
+  text-align: center;
+  color: $blk-160;
+  border: 2px dashed rgb(208, 208, 208);
+  overflow: hidden;
+}
+
+.app {
+  width: 33.3%;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.app--hover:hover {
+  outline: 1px solid $ui-blue;
+  color: $blk-240;
+}
+
+.app__link {
+  @include unset-a();
+  position: relative;
+  display: block;
+  padding: .5rem;
+  color: $blk-220;
+}
+
+.app__icon {
+  position: relative;
+  width: 48px;
+  height: 48px;
+  margin: 0 auto 10px auto;
+  box-sizing: border-box;
+  @include font-size(2);
+  text-align: center;
+  color: $blk-000;
+  pointer-events: none;
+}
+
+.app__icon--missing {
+  background: transparent;
+  border: 1px dashed $blk-100;
+  border-radius: 6px;
+  cursor: pointer;
+  display: block;
+  height: 48px;
+  margin: 0 auto;
+  margin-bottom: 10px;
+  text-align: center;
+  width: 48px;
+}
+
+.app__image {
+  width: 48px;
+  height: 48px;
+}
+
+.app__abbr {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  width: 32px;
+  height: 32px;
+  font-weight: 600;
+  line-height: 32px;
+  text-shadow: 0 1px 8px rgba(0,0,0,.3);
+}
+
+.app__label {
+  @include font-size(-2);
+  width: 100%;
+  text-align: center;
+  margin: 0;
+}
+
+.app__indicator {
+  position: absolute;
+  top: 4px;
+  right: 40px;
+  min-width: 12px;
+  min-height: 12px;
+  padding: 0;
+  border: 2px solid $blk-000;
+  border-radius: 10px;
+  z-index: 50;
+}
+
+.app__indicator--new {
+  background: rgb(113, 222, 110);
+}
+
+.app__indicator--removed {
+  top: -1px;
+  right: 32px;
+  background: $blk-000;
+  cursor: pointer;
+  padding: 1px;
+  fill: currentColor;
+  color: $blk-200;
+  &:hover, &:focus {
+    border-color: $ui-red;
+    color: $ui-red;
+    outline: none;
+  }
+}
+
+.app__indicator__icon {
+  width: 12px;
+  height: 12px;
+  display: inline-block;
+  vertical-align: -2px;
+}
+
+.app__arrow {
+  width: 0;
+  height: 0;
+  position: absolute;
+}
+
+.app__arrow--left {
+  border-bottom: 5px solid transparent;
+  border-right: 5px solid $ui-blue;
+  border-top: 5px solid transparent;
+  float: left;
+  left: 38px;
+  top: 27px;
+}
+
+.app__arrow--right {
+  border-bottom: 5px solid transparent;
+  border-left: 5px solid $ui-blue;
+  border-top: 5px solid transparent;
+  float: right;
+  right: 38px;
+  top: 27px;
+}
+
+.app__arrow--top {
+  border-bottom: 5px solid $ui-blue;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  right: 70px;
+  top: 0;
+}
+
+.app__arrow--bottom {
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid $ui-blue;
+  right: 70px;
+  top: 59px;
 }

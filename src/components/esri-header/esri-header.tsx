@@ -81,7 +81,18 @@ export class EsriHeader {
             ""
           )}
           {this.apps ? (
-            <esri-header-apps detail={this.apps}></esri-header-apps>
+            <esri-header-apps
+              applicationsText={this.apps.label}
+              confirmText={this.apps.text.confirm}
+              dragAppsHereText={this.apps.text.dragAppsHere}
+              introText={this.apps.text.intro}
+              removedText={this.apps.text.removed}
+              showMoreText={this.apps.text.showMore}
+              disableDragAndDrop={this.apps.disableDragAndDrop}
+              displayIntro={this.apps.displayIntro}
+              primary={this.apps.primary}
+              secondary={this.apps.secondary}
+            ></esri-header-apps>
           ) : (
             ""
           )}
