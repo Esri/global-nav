@@ -11,10 +11,7 @@ import {
 import { bell24 } from "@esri/calcite-ui-icons/js/bell24";
 import { checkCircle32 } from "@esri/calcite-ui-icons/js/checkCircle32";
 import { x16 } from "@esri/calcite-ui-icons/js/x16";
-export type Notification = {
-  text: string;
-  date?: string;
-};
+import { Notification } from "../../utils/interfaces";
 
 @Component({
   tag: "esri-header-notifications",

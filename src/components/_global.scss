@@ -120,6 +120,7 @@ $esri-footer-social-gutter: 7px;
   &:not([aria-expanded="true"]) {
     clip: rect(0,0,0,0);
     opacity: 0;
+    visibility: hidden;
     transition: opacity $transition, visibility 0ms linear 300ms, clip 0ms linear 300ms;
   }
 };
@@ -128,9 +129,31 @@ $esri-footer-social-gutter: 7px;
   display: block;
   fill: currentColor;
   color: $blk-200;
-  margin: 16px;
+  margin: 0;
+  padding: 16px;
   width: 24px;
   height: 24px;
+}
+
+@mixin badge () {
+  position: absolute;
+  top: 35%;
+  left: 75%;
+  padding: 2px 4px;
+  box-sizing: border-box;
+  min-width: 14px;
+  color: $blk-000;
+  font-family: $avenir-family;
+  font-size: 8px;
+  font-weight: 400;
+  line-height: 1.25;
+  text-align: center;
+  background: $ui-blue;
+  border-radius: 12px;
+  box-shadow: 0 0 0 0 rgba(0,94,149, 1);
+  transform: translate(-50%, -50%);
+  transition: all .25s ease-out;
+  z-index: 777;
 }
 
 /* Breakpoints

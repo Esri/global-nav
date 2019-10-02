@@ -34,8 +34,8 @@ export class EsriHeaderCart {
         {
           this.items > 0 ?
           (
-            <a href={this.url} class="esri-header-cart__icon" >
-              <svg class="esri-header-cart__image">
+            <a href={this.url} class="esri-header-cart__control" >
+              <svg class="esri-header-cart__icon">
                 <path d={shoppingCart24} />
               </svg>
               <span
