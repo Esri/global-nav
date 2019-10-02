@@ -106,9 +106,10 @@
   flex-direction: column;
   margin: 0;
   box-sizing: border-box;
+
 }
 
-.app--hover:hover {
+.app--hover:hover, .app--hover:focus-within {
   outline: 1px solid $ui-blue;
   color: $blk-240;
 }
@@ -116,9 +117,13 @@
 .app__link {
   @include unset-a();
   position: relative;
+  height: 100%;
   display: block;
   padding: .5rem;
   color: $blk-220;
+  &:focus {
+    outline: none;
+  }
 }
 
 .app__icon {
@@ -137,13 +142,10 @@
   background: transparent;
   border: 1px dashed $blk-100;
   border-radius: 6px;
-  cursor: pointer;
-  display: block;
-  height: 48px;
-  margin: 0 auto;
-  margin-bottom: 10px;
-  text-align: center;
-  width: 48px;
+  &:focus {
+    outline: none;
+    border-color: $ui-blue;
+  }
 }
 
 .app__image {

@@ -5,29 +5,20 @@
 
 ## Properties
 
-| Property | Attribute | Description                                                                                                                                                                 | Type  | Default |
-| -------- | --------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----- | ------- |
-| `detail` | `detail`  | Be sure to add a jsdoc comment describing your propery for the generated readme file. If your property should be hidden from documentation, you can use the `@internal` tag | `any` | `{}`    |
+| Property          | Attribute           | Description                                     | Type             | Default              |
+| ----------------- | ------------------- | ----------------------------------------------- | ---------------- | -------------------- |
+| `dismissAllLabel` | `dismiss-all-label` | Text for button that clears all notifications   | `string`         | `"Dismiss all"`      |
+| `dismissLabel`    | `dismiss-label`     | Aria label for noticiation X                    | `string`         | `"Dismiss"`          |
+| `emptyMessage`    | `empty-message`     | Text to display when no notifications are found | `string`         | `"No notifications"` |
+| `messages`        | --                  | array of current notification messages          | `Notification[]` | `[]`                 |
+| `open`            | `open`              | Set true to open notifications dropdown         | `boolean`        | `undefined`          |
 
 
 ## Events
 
-| Event  | Description | Type               |
-| ------ | ----------- | ------------------ |
-| `open` |             | `CustomEvent<any>` |
-
-
-## Methods
-
-### `doThing() => Promise<void>`
-
-Add a jsdoc comment describing your method and it's parameters (use `@param`).
-
-#### Returns
-
-Type: `Promise<void>`
-
-
+| Event                                | Description | Type               |
+| ------------------------------------ | ----------- | ------------------ |
+| `header:click:notifications:dismiss` |             | `CustomEvent<any>` |
 
 
 ## Dependencies

@@ -37,9 +37,9 @@ Type: `Promise<void>`
 ### Depends on
 
 - [esri-header-brand](../esri-header-brand)
-- [esri-header-cart](../esri-header-cart)
 - [esri-header-menus](../esri-header-menus)
 - [esri-header-search](../esri-header-search)
+- [esri-header-cart](../esri-header-cart)
 - [esri-header-notifications](../esri-header-notifications)
 - [esri-header-apps](../esri-header-apps)
 - [esri-header-account](../esri-header-account)
@@ -48,9 +48,9 @@ Type: `Promise<void>`
 ```mermaid
 graph TD;
   esri-header --> esri-header-brand
-  esri-header --> esri-header-cart
   esri-header --> esri-header-menus
   esri-header --> esri-header-search
+  esri-header --> esri-header-cart
   esri-header --> esri-header-notifications
   esri-header --> esri-header-apps
   esri-header --> esri-header-account

@@ -191,7 +191,7 @@ export class EsriHeaderApps {
       <li
         class={{
           "app": true,
-          "app--hover": !secondary
+          "app--hover": app.canAccess
         }}
         role="menuitem"
         data-id={app.itemId}
@@ -199,7 +199,7 @@ export class EsriHeaderApps {
         {
           !app.canAccess ? (
             <div class="app__link">
-              <div class="app__icon--missing" tabindex="0" title={this.removedText}></div>
+              <div class="app__icon app__icon--missing" tabindex="0" title={this.removedText}></div>
               <button
                 class="app__indicator app__indicator--removed"
                 aria-label={this.removeText}

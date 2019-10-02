@@ -10,11 +10,10 @@ import {
   UserMenuLink,
 } from './components/esri-header-account/esri-header-account';
 import {
+  Application,
   imgOrSvgDef,
-} from './utils/interfaces';
-import {
   Notification,
-} from './components/esri-header-notifications/esri-header-notifications';
+} from './utils/interfaces';
 
 
 export namespace Components {
@@ -130,13 +129,53 @@ export namespace Components {
   }
   interface EsriHeaderApps {
     /**
-    * Be sure to add a jsdoc comment describing your propery for the generated readme file. If your property should be hidden from documentation, you can use the `@internal` tag
+    * Translated string for app launcher label
     */
-    'detail': any;
+    'applicationsText': string;
     /**
-    * Add a jsdoc comment describing your method and it's parameters (use `@param`).
+    * Translated string for dismissing help message
     */
-    'doThing': () => Promise<void>;
+    'confirmText': string;
+    /**
+    * Disallow dragging and dropping to reorder applications
+    */
+    'disableDragAndDrop': boolean;
+    /**
+    * Show help message upon opening app switcher
+    */
+    'displayIntro': boolean;
+    /**
+    * Translated string for secondary help
+    */
+    'dragAppsHereText': string;
+    /**
+    * Translated string for sign out
+    */
+    'introText': string;
+    /**
+    * Open state of the menu
+    */
+    'open': boolean;
+    /**
+    * Array of applications to appear in top section of app launcher
+    */
+    'primary': Application[];
+    /**
+    * Translated string for removed application
+    */
+    'removeText': string;
+    /**
+    * Translated string for removed application
+    */
+    'removedText': string;
+    /**
+    * Array of applications to appear in bottom hidden section
+    */
+    'secondary': Application[];
+    /**
+    * Translated string for show more
+    */
+    'showMoreText': string;
   }
   interface EsriHeaderBrand {
     'brandText'?: string;
@@ -441,10 +480,54 @@ declare namespace LocalJSX {
   }
   interface EsriHeaderApps extends JSXBase.HTMLAttributes<HTMLEsriHeaderAppsElement> {
     /**
-    * Be sure to add a jsdoc comment describing your propery for the generated readme file. If your property should be hidden from documentation, you can use the `@internal` tag
+    * Translated string for app launcher label
     */
-    'detail'?: any;
-    'onOpen'?: (event: CustomEvent<any>) => void;
+    'applicationsText'?: string;
+    /**
+    * Translated string for dismissing help message
+    */
+    'confirmText'?: string;
+    /**
+    * Disallow dragging and dropping to reorder applications
+    */
+    'disableDragAndDrop'?: boolean;
+    /**
+    * Show help message upon opening app switcher
+    */
+    'displayIntro'?: boolean;
+    /**
+    * Translated string for secondary help
+    */
+    'dragAppsHereText'?: string;
+    /**
+    * Translated string for sign out
+    */
+    'introText'?: string;
+    'onHeader:apps:reorder'?: (event: CustomEvent<any>) => void;
+    /**
+    * Open state of the menu
+    */
+    'open'?: boolean;
+    /**
+    * Array of applications to appear in top section of app launcher
+    */
+    'primary'?: Application[];
+    /**
+    * Translated string for removed application
+    */
+    'removeText'?: string;
+    /**
+    * Translated string for removed application
+    */
+    'removedText'?: string;
+    /**
+    * Array of applications to appear in bottom hidden section
+    */
+    'secondary'?: Application[];
+    /**
+    * Translated string for show more
+    */
+    'showMoreText'?: string;
   }
   interface EsriHeaderBrand extends JSXBase.HTMLAttributes<HTMLEsriHeaderBrandElement> {
     'brandText'?: string;
