@@ -221,6 +221,7 @@ export default ({variant = 'desktop'}) => {
 										state: 'menu',
 										type: 'menu-toggle'
 									});
+									resetFlyoutDimensions('init');
 									resetFlyoutState();
 								});
 
@@ -245,10 +246,26 @@ export default ({variant = 'desktop'}) => {
 
 	function resetFlyoutDimensions(parentNode) {
 		const subMenus = document.querySelectorAll('.esri-header-menus-submenu');
-		const parent = parentNode !== 'disabled' && parentNode.getAttribute('data-parent');
+		const parent = (parentNode !== 'disabled' && parentNode !== 'init') && parentNode.getAttribute('data-parent');
 		const parentElement = document.querySelector(`#${parent}`);
 
-		if (parentNode === 'disabled') {
+		if (parentNode === 'init') {
+			const listItems = [].slice.call(document.querySelectorAll('.esri-header-menus-flyout'));
+
+			if (listItems.length) {
+				listItems.forEach((fly) => {
+					const catItem = [].slice.call(fly.querySelectorAll('.esri-header-menus-flyout--categories-item'));
+					const catItemParent = document.querySelector(`#${catItem[0].getAttribute('data-parent')}`);
+	
+					const listItems = [].slice.call(fly.querySelectorAll('.esri-header-menus-flyout--list-items'));
+					const listColType = listItems[0].getAttribute('data-coltype');
+	
+					if (listColType === '1') {
+						catItemParent.setAttribute('data-single', '');
+					}
+				});
+			}
+		} else if (parentNode === 'disabled') {
 			subMenus.forEach((menu) => {
 				menu.removeAttribute('data-single');
 			});
