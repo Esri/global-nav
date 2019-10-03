@@ -7,7 +7,7 @@ import {
   EventEmitter,
   Method,
   State,
-  Listen,
+  // Listen,
   h
 } from "@stencil/core";
 @Component({
@@ -82,6 +82,7 @@ export class EsriHeader {
           )}
           {this.apps ? (
             <esri-header-apps
+              loading={this.apps.isLoading}
               applicationsText={this.apps.label}
               confirmText={this.apps.text.confirm}
               dragAppsHereText={this.apps.text.dragAppsHere}
@@ -121,9 +122,9 @@ export class EsriHeader {
   //  Event Listeners
   //
   //--------------------------------------------------------------------------
-  @Listen("click") onClick(e: Event) {
-    console.log(e);
-  }
+  // @Listen("click") onClick(e: Event) {
+  //   console.log(e);
+  // }
 
   //--------------------------------------------------------------------------
   //

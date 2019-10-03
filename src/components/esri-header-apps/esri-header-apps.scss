@@ -11,6 +11,10 @@
   @include unset-button();
   @include menu-link();
   position: relative;
+  &[disabled] {
+    opacity: .5;
+    pointer-events: none;
+  }
 }
 
 .esri-header-apps-image {
@@ -219,32 +223,34 @@
   border-bottom: 5px solid transparent;
   border-right: 5px solid $ui-blue;
   border-top: 5px solid transparent;
-  float: left;
-  left: 38px;
-  top: 27px;
+  left: -7px;
+  top: 50%;
+  margin-top: -5px;
 }
 
 .app__arrow--right {
   border-bottom: 5px solid transparent;
   border-left: 5px solid $ui-blue;
   border-top: 5px solid transparent;
-  float: right;
-  right: 38px;
-  top: 27px;
+  right: -7px;
+  top: 50%;
+  margin-top: -5px;
 }
 
 .app__arrow--top {
   border-bottom: 5px solid $ui-blue;
   border-left: 5px solid transparent;
   border-right: 5px solid transparent;
-  right: 70px;
-  top: 0;
+  right: 50%;
+  top: -7px;
+  margin-right: -5px;
 }
 
 .app__arrow--bottom {
   border-left: 5px solid transparent;
   border-right: 5px solid transparent;
   border-top: 5px solid $ui-blue;
-  right: 70px;
-  top: 59px;
+  right: 50%;
+  bottom: -7px;
+  margin-right: -5px;
 }

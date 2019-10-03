@@ -153,6 +153,10 @@ export namespace Components {
     */
     'introText': string;
     /**
+    * Set to true while apps are being fetched
+    */
+    'loading': boolean;
+    /**
     * Open state of the menu
     */
     'open': boolean;
@@ -503,6 +507,10 @@ declare namespace LocalJSX {
     * Translated string for sign out
     */
     'introText'?: string;
+    /**
+    * Set to true while apps are being fetched
+    */
+    'loading'?: boolean;
     'onHeader:apps:reorder'?: (event: CustomEvent<any>) => void;
     /**
     * Open state of the menu
