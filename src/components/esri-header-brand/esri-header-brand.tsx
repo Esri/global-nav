@@ -50,7 +50,6 @@ export class EsriHeaderBrand {
   componentWillUpdate(): void {}
 
   render() {
-    console.log(this)
     const separator = <span class="distributor-image-border"></span>
     return (
       <Host>

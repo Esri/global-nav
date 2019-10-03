@@ -182,7 +182,7 @@ export class EsriHeaderApps {
   /** @internal */
   @State() showSecondaryApps: boolean;
   /** @internal - save the id of the app being moved while using the keyboard reorder feature */
-  @State() keyboardReorder: string | null;
+  @State() showArrows: string | null;
 
   //--------------------------------------------------------------------------
   //
@@ -198,7 +198,7 @@ export class EsriHeaderApps {
   // 4. on drag update (throttle) check the mouseX/Y
   // 5. if position needs to be updated, move the transparent icon to location
   // 6. on drag end, show the icon again, hide the ghost, and emit the update event
-  private renderApp({app, i, secondary}: {
+  private renderApp({ app, i, secondary }: {
     app: Application;
     i: number;
     secondary?: boolean;
@@ -273,13 +273,14 @@ export class EsriHeaderApps {
   private renderAppArrows(app: Application, secondary: boolean) {
     const arr = secondary ? this.secondary : this.primary;
     const index = arr.indexOf(app);
-    const showArrows = this.keyboardReorder && this.keyboardReorder === app.itemId;
+    const showArrows = this.showArrows && this.showArrows === app.itemId;
+    const {top, right, bottom, left} = this.getDirections(index, secondary);
     return showArrows ? (
       <span>
-        { secondary || index > 2 ? <span class="app__arrow app__arrow--top" /> : null }
-        { !secondary || index < arr.length - 1 ? <span class="app__arrow app__arrow--right" /> : null }
-        { !secondary || arr[index + 3] ? <span class="app__arrow app__arrow--bottom" /> : null }
-        { secondary || index > 0 ? <span class="app__arrow app__arrow--left" /> : null }
+        { top ? <span class="app__arrow app__arrow--top" /> : null }
+        { right ? <span class="app__arrow app__arrow--right" /> : null }
+        { bottom ? <span class="app__arrow app__arrow--bottom" /> : null }
+        { left ? <span class="app__arrow app__arrow--left" /> : null }
       </span>
     ) : null;
   }
@@ -291,26 +292,35 @@ export class EsriHeaderApps {
   }
 
   private handleAppKeyUp(e: KeyboardEvent, app: Application, i: number, secondary: boolean) {
-    if (e.key === " " && !this.keyboardReorder) {
-      this.keyboardReorder = app.itemId;
-      this.showSecondaryApps = true;
-    } else {
-      if (e.key.indexOf("Arrow") > -1 && this.keyboardReorder) {
-        if (e.key === "ArrowUp" && (secondary || i > 2)) {
-          this.moveApp(app, -3, secondary);
-        }
-        if (e.key === "ArrowDown" && (!secondary || this.primary[i + 3])) {
-          this.moveApp(app, 3, secondary);
-        }
-        if (e.key === "ArrowRight" && (!secondary || i < this.secondary.length - 1)) {
-          this.moveApp(app, 1, secondary);
-        }
-        if (e.key === "ArrowLeft" && (secondary || i > 0)) {
-          this.moveApp(app, -1, secondary);
-        }
-        this.emitReorder();
+    if (this.showArrows) {
+      const {top, right, bottom, left} = this.getDirections(i, secondary);
+      if (e.key === "ArrowUp" && top) {
+        this.moveApp(app, -3, secondary);
       }
-      this.keyboardReorder = null;
+      if (e.key === "ArrowDown" && bottom) {
+        this.moveApp(app, 3, secondary);
+      }
+      if (e.key === "ArrowRight" && right) {
+        this.moveApp(app, 1, secondary);
+      }
+      if (e.key === "ArrowLeft" && left) {
+        this.moveApp(app, -1, secondary);
+      }
+      this.emitReorder();
+      this.showArrows = null;
+    }
+    if (e.key === " " && !this.showArrows) {
+      this.showArrows = app.itemId;
+      this.showSecondaryApps = true;
+    }
+  }
+
+  private getDirections(i: number, secondary: boolean): any {
+    return {
+      top: secondary || i > 2,
+      right: !secondary || i < this.secondary.length - 1,
+      bottom: !secondary || this.primary[i + 3],
+      left: secondary || i > 0
     }
   }
 

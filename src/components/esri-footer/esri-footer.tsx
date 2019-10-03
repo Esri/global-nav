@@ -6,7 +6,7 @@ import {
   Event,
   EventEmitter,
   Method,
-  State,
+  // State,
   Listen,
   h
 } from "@stencil/core";
@@ -46,7 +46,6 @@ export class EsriFooter {
   componentWillUpdate(): void {}
 
   render() {
-    console.log(this.state);
     return (
       <Host>
         THIS IS THE Footer
@@ -91,7 +90,7 @@ export class EsriFooter {
   //
   //--------------------------------------------------------------------------
 
-  @State() private state: string = "default";
+  // @State() private state: string = "default";
 
   //--------------------------------------------------------------------------
   //
