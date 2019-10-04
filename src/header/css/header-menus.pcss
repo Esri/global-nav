@@ -244,6 +244,10 @@
 		display: table;
 		clear: both;
 	}
+
+	@media (--width-l) {
+		overflow: hidden;
+	}
 }
 
 .esri-header-menus-flyout--categories,
@@ -260,11 +264,6 @@
 .esri-header-menus-flyout--categories-wrapper {
 	position: relative;
 	width: 100%;
-
-	@media (--width-l) {
-		overflow: visible;
-		height: 100%;
-	}
 }
 
 .esri-header-menus-flyout--categories {
@@ -466,8 +465,7 @@
 
 	@media (--width-l) {
 		display: block;
-		min-height: 450px;
-		height: 450px;
+		min-height: auto;
 		width: 70%;
 	}
 }
@@ -477,7 +475,6 @@
 	color: var(--mono-20);
 	display: none;
 	font-size: 14px;
-	height: 450px;
 	list-style-type: none;
 	left: 0;
 	top: 0;
