@@ -1094,6 +1094,8 @@ var createMenus = (function (_ref) {
 
 					if (listColType === '1') {
 						catItemParent.setAttribute('data-single', '');
+					} else if (listColType === '2') {
+						catItemParent.setAttribute('data-double', '');
 					}
 				});
 			}
