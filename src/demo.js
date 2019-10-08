@@ -20,231 +20,6 @@ document.addEventListener("DOMContentLoaded", () => {
 				[
 					{
 						label: 'Products',
-						flyout: [
-							{
-								category: 'CAPABILITIES',
-								cols: [
-									{
-										col: [
-											{
-												heading: '',
-												label: 'Mapping',
-												href: 'https://www.esri.com/en-us/location-intelligence'
-											},
-											{
-												heading: 'GIS & MAPPING PRODUCTS',
-												label: 'ArcGIS Online',
-												href: 'https://www.esri.com/en-us/arcgis-online'
-											},
-											{
-												heading: 'CAPABILITIES',
-												label: 'Mapping',
-												href: 'https://www.esri.com/en-us/location-intelligence'
-											},
-											{
-												heading: 'GIS & MAPPING PRODUCTS',
-												label: 'ArcGIS Online',
-												href: 'https://www.esri.com/en-us/arcgis-online'
-											},
-											{
-												heading: 'CAPABILITIES',
-												label: 'Mapping',
-												href: 'https://www.esri.com/en-us/location-intelligence'
-											},
-											{
-												heading: 'GIS & MAPPING PRODUCTS',
-												label: 'ArcGIS Online',
-												href: 'https://www.esri.com/en-us/arcgis-online'
-											}
-										]
-									}
-								]
-							},
-							{
-								category: 'GEOLOCATION',
-								cols: [
-									{
-										col: [
-											{
-												heading: '',
-												label: 'Mapping',
-												href: 'https://www.esri.com/en-us/location-intelligence'
-											},
-											{
-												heading: 'GIS & MAPPING PRODUCTS',
-												label: 'ArcGIS Online',
-												href: 'https://www.esri.com/en-us/arcgis-online'
-											},
-											{
-												heading: 'CAPABILITIES',
-												label: 'Mapping',
-												href: 'https://www.esri.com/en-us/location-intelligence'
-											},
-											{
-												heading: 'GIS & MAPPING PRODUCTS',
-												label: 'ArcGIS Online',
-												href: 'https://www.esri.com/en-us/arcgis-online'
-											},
-											{
-												heading: 'CAPABILITIES',
-												label: 'Mapping',
-												href: 'https://www.esri.com/en-us/location-intelligence'
-											},
-											{
-												heading: 'GIS & MAPPING PRODUCTS',
-												label: 'ArcGIS Online',
-												href: 'https://www.esri.com/en-us/arcgis-online'
-											}
-										]
-									},
-									{
-										col: [
-											{
-												heading: 'MAPPING NATION',
-												label: 'Mapping',
-												href: 'https://www.esri.com/en-us/location-intelligence'
-											},
-											{
-												heading: 'GIS & MAPPING PRODUCTS',
-												label: 'ArcGIS Online',
-												href: 'https://www.esri.com/en-us/arcgis-online'
-											}
-										]
-									}
-								]
-							},
-							{
-								category: 'ARCGISENTERPRISE',
-								cols: [
-									{
-										col: [
-											{
-												heading: '',
-												label: 'Mapping',
-												href: 'https://www.esri.com/en-us/location-intelligence'
-											},
-											{
-												heading: 'GIS & MAPPING PRODUCTS',
-												label: 'ArcGIS Online',
-												href: 'https://www.esri.com/en-us/arcgis-online'
-											},
-											{
-												heading: 'CAPABILITIES',
-												label: 'Mapping',
-												href: 'https://www.esri.com/en-us/location-intelligence'
-											},
-											{
-												heading: 'GIS & MAPPING PRODUCTS',
-												label: 'ArcGIS Online',
-												href: 'https://www.esri.com/en-us/arcgis-online'
-											},
-											{
-												heading: 'CAPABILITIES',
-												label: 'Mapping',
-												href: 'https://www.esri.com/en-us/location-intelligence'
-											},
-											{
-												heading: 'GIS & MAPPING PRODUCTS',
-												label: 'ArcGIS Online',
-												href: 'https://www.esri.com/en-us/arcgis-online'
-											}
-										]
-									},
-									{
-										col: [
-											{
-												heading: 'MAPPING NATION',
-												label: 'Mapping',
-												href: 'https://www.esri.com/en-us/location-intelligence'
-											},
-											{
-												heading: 'GIS & MAPPING PRODUCTS',
-												label: 'ArcGIS Online',
-												href: 'https://www.esri.com/en-us/arcgis-online'
-											}
-										]
-									}
-								]
-							},
-							{
-								category: 'GIS & MAPPING PRODUCTS',
-								cols: [
-									{
-										col: [
-											{
-												heading: 'CAPABILITIES1',
-												label: 'Mapping',
-												href: 'https://www.esri.com/en-us/location-intelligence'
-											},
-											{
-												heading: 'GIS & MAPPING PRODUCTS',
-												label: 'ArcGIS Online',
-												href: 'https://www.esri.com/en-us/arcgis-online'
-											},
-											{
-												heading: 'CAPABILITIES',
-												label: 'Mapping',
-												href: 'https://www.esri.com/en-us/location-intelligence'
-											},
-											{
-												heading: 'GIS & MAPPING PRODUCTS',
-												label: 'ArcGIS Online',
-												href: 'https://www.esri.com/en-us/arcgis-online'
-											},
-											{
-												heading: 'CAPABILITIES',
-												label: 'Mapping',
-												href: 'https://www.esri.com/en-us/location-intelligence'
-											},
-											{
-												heading: 'GIS & MAPPING PRODUCTS',
-												label: 'ArcGIS Online',
-												href: 'https://www.esri.com/en-us/arcgis-online'
-											}
-										]
-									}
-								]
-							},
-							{
-								category: 'LOCATION-ENABLED PRODUCTS',
-								cols: [
-									{
-										col: [
-											{
-												heading: 'CAPABILITIES21',
-												label: 'Mapping',
-												href: 'https://www.esri.com/en-us/location-intelligence'
-											},
-											{
-												heading: 'GIS & MAPPING PRODUCTS',
-												label: 'ArcGIS Online',
-												href: 'https://www.esri.com/en-us/arcgis-online'
-											},
-											{
-												heading: 'CAPABILITIES',
-												label: 'Mapping',
-												href: 'https://www.esri.com/en-us/location-intelligence'
-											},
-											{
-												heading: 'GIS & MAPPING PRODUCTS',
-												label: 'ArcGIS Online',
-												href: 'https://www.esri.com/en-us/arcgis-online'
-											},
-											{
-												heading: 'CAPABILITIES',
-												label: 'Mapping',
-												href: 'https://www.esri.com/en-us/location-intelligence'
-											},
-											{
-												heading: 'GIS & MAPPING PRODUCTS',
-												label: 'ArcGIS Online',
-												href: 'https://www.esri.com/en-us/arcgis-online'
-											}
-										]
-									}
-								]
-							}
-						],
 						cols: [
 							{
 								type: 'single',
@@ -364,37 +139,37 @@ document.addEventListener("DOMContentLoaded", () => {
 						label: 'Solutions',
 						flyout: [
 							{
-								category: 'CAPABILITIES',
+								category: 'BUSINESS NEEDS',
 								cols: [
 									{
 										col: [
 											{
 												heading: '',
-												label: 'Mapping',
+												label: 'Asset Tracking and Analysis',
 												href: 'https://www.esri.com/en-us/location-intelligence'
 											},
 											{
-												heading: 'GIS & MAPPING PRODUCTS',
+												heading: 'Facility Management',
 												label: 'ArcGIS Online',
 												href: 'https://www.esri.com/en-us/arcgis-online'
 											},
 											{
-												heading: 'CAPABILITIES',
+												heading: 'Field Service Management',
 												label: 'Mapping',
 												href: 'https://www.esri.com/en-us/location-intelligence'
 											},
 											{
-												heading: 'GIS & MAPPING PRODUCTS',
+												heading: 'Logistics and Fulfillment',
 												label: 'ArcGIS Online',
 												href: 'https://www.esri.com/en-us/arcgis-online'
 											},
 											{
-												heading: 'CAPABILITIES',
+												heading: 'Market and Customer Analysis',
 												label: 'Mapping',
 												href: 'https://www.esri.com/en-us/location-intelligence'
 											},
 											{
-												heading: 'GIS & MAPPING PRODUCTS',
+												heading: 'Performance Monitoring',
 												label: 'ArcGIS Online',
 												href: 'https://www.esri.com/en-us/arcgis-online'
 											}
@@ -528,7 +303,7 @@ document.addEventListener("DOMContentLoaded", () => {
 									{
 										col: [
 											{
-												heading: 'CAPABILITIES1',
+												heading: 'SOLUTIONS',
 												label: 'Mapping',
 												href: 'https://www.esri.com/en-us/location-intelligence'
 											},
@@ -567,7 +342,7 @@ document.addEventListener("DOMContentLoaded", () => {
 									{
 										col: [
 											{
-												heading: 'CAPABILITIES21',
+												heading: 'CAPABILITIES',
 												label: 'Mapping',
 												href: 'https://www.esri.com/en-us/location-intelligence'
 											},

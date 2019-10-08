@@ -1094,8 +1094,6 @@ var createMenus = (function (_ref) {
 
 					if (listColType === '1') {
 						catItemParent.setAttribute('data-single', '');
-					} else if (listColType === '2') {
-						catItemParent.setAttribute('data-double', '');
 					}
 				});
 			}
@@ -1234,9 +1232,9 @@ var createMenus = (function (_ref) {
 			items.forEach(function (item, index) {
 				item.addEventListener('click', function (e) {
 					var parentNode = e.target.parentNode;
-					var selectedCategory = parentNode.hasAttribute('data-id') && parentNode.getAttribute('data-id');
-					var selectedList = itemsList[index].hasAttribute('data-id') && itemsList[index].getAttribute('data-id');
-					var selectedListCols = itemsList[index].hasAttribute('data-coltype') && itemsList[index].getAttribute('data-coltype');
+					var selectedCategory = parentNode.getAttribute('data-id');
+					var selectedList = itemsList[index].getAttribute('data-id');
+					var selectedListCols = itemsList[index].getAttribute('data-coltype');
 
 					itemsList.forEach(function (list, index) {
 						list.setAttribute('aria-current', 'false');
@@ -1258,35 +1256,39 @@ var createMenus = (function (_ref) {
 		var listArr = [];
 		var category = "";
 
-		if (type === 'category') {
-			if (items.cols && items.cols.length) {
-				items.cols.forEach(function (column) {
-					category = $assign('li', {
-						class: prefix$4 + '-flyout--categories-item',
-						'data-id': id,
-						'aria-current': id === 0 ? 'true' : 'false',
-						'data-parent': prefix$4 + '-' + variant + '-submenu-' + uuid + '-' + suuid
-					}, $assign('p', { class: prefix$4 + '-flyout--categories-item_header',
-						click: function click(e) {
-							swapFlyoutContent(e);
-						}
-					}, items.category));
-					column.col.forEach(function (col) {
-						listArr.push($assign('a', { href: col.href, class: prefix$4 + '-flyout--categories-details_item', 'data-heading': col.heading ? 'true' : 'false' }, col.heading && $assign('p', { class: prefix$4 + '-flyout--categories-details_heading' }, col.heading), col.label && $assign('p', { class: prefix$4 + '-flyout--categories-details_label' }, col.label)));
+		switch (type) {
+			case 'category':
+				if (items.cols.length) {
+					items.cols.forEach(function (column) {
+						category = $assign('li', {
+							class: prefix$4 + '-flyout--categories-item',
+							'data-id': id,
+							'aria-current': id === 0 ? 'true' : 'false',
+							'data-parent': prefix$4 + '-' + variant + '-submenu-' + uuid + '-' + suuid
+						}, $assign('p', { class: prefix$4 + '-flyout--categories-item_header',
+							click: function click(e) {
+								swapFlyoutContent(e);
+							}
+						}, items.category));
+						column.col.forEach(function (col) {
+							listArr.push($assign('a', { href: col.href, class: prefix$4 + '-flyout--categories-details_item', 'data-heading': col.heading ? 'true' : 'false' }, col.heading && $assign('p', { class: prefix$4 + '-flyout--categories-details_heading' }, col.heading), col.label && $assign('p', { class: prefix$4 + '-flyout--categories-details_label' }, col.label)));
+						});
 					});
-				});
-			}
+				}
 
-			$items.push($assign(category, $assign.apply(undefined, ['div', { class: prefix$4 + '-flyout--categories-details', 'aria-expanded': 'false' }].concat(listArr))));
-		} else if (type === 'label') {
-			if (items.cols && items.cols.length) {
-				items.cols.forEach(function (column) {
-					var $column = $assign('div', { class: prefix$4 + '-flyout--list-items_column' });
-					column.col.forEach(function (col) {
-						$items.push($assign($column, $assign('li', { class: prefix$4 + '-flyout--list-items_name' }, $assign('a', { href: col.href, class: prefix$4 + '-flyout--list-items_anchor', 'data-heading': col.heading ? 'true' : 'false' }, col.heading && $assign('p', { class: prefix$4 + '-flyout--list-items_heading' }, col.heading), col.label && $assign('p', { class: prefix$4 + '-flyout--list-items_label' }, col.label)))));
+				$items.push($assign(category, $assign.apply(undefined, ['div', { class: prefix$4 + '-flyout--categories-details', 'aria-expanded': 'false' }].concat(listArr))));
+				break;
+
+			case 'label':
+				if (items.cols && items.cols.length) {
+					items.cols.forEach(function (column) {
+						var $column = $assign('div', { class: prefix$4 + '-flyout--list-items_column' });
+						column.col.forEach(function (col) {
+							$items.push($assign($column, $assign('li', { class: prefix$4 + '-flyout--list-items_name' }, $assign('a', { href: col.href, class: prefix$4 + '-flyout--list-items_anchor', 'data-heading': col.heading ? 'true' : 'false' }, col.heading && $assign('p', { class: prefix$4 + '-flyout--list-items_heading' }, col.heading), col.label && $assign('p', { class: prefix$4 + '-flyout--list-items_label' }, col.label)))));
+						});
 					});
-				});
-			}
+				}
+				break;
 		}
 
 		return $items;

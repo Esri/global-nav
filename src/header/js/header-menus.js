@@ -262,8 +262,6 @@ export default ({variant = 'desktop'}) => {
 	
 					if (listColType === '1') {
 						catItemParent.setAttribute('data-single', '');
-					} else if (listColType === '2') {
-						catItemParent.setAttribute('data-double', '');
 					}
 				});
 			}
@@ -414,9 +412,9 @@ export default ({variant = 'desktop'}) => {
 			items.forEach((item, index) => {
 				item.addEventListener('click', (e) => {
 					const parentNode = e.target.parentNode;
-					const selectedCategory = parentNode.hasAttribute('data-id') && parentNode.getAttribute('data-id');
-					const selectedList = itemsList[index].hasAttribute('data-id') && itemsList[index].getAttribute('data-id');
-					const selectedListCols = itemsList[index].hasAttribute('data-coltype') && itemsList[index].getAttribute('data-coltype');
+					const selectedCategory = parentNode.getAttribute('data-id');
+					const selectedList = itemsList[index].getAttribute('data-id');
+					const selectedListCols = itemsList[index].getAttribute('data-coltype');
 					
 					itemsList.forEach((list, index) => {
 						list.setAttribute('aria-current', 'false');
@@ -438,56 +436,60 @@ export default ({variant = 'desktop'}) => {
 		const listArr = [];
 		let category = "";
 
-		if (type === 'category') {
-			if (items.cols && items.cols.length) {
-				items.cols.forEach((column) => {
-					category = $('li', {
-						class: `${prefix}-flyout--categories-item`, 
-						'data-id': id,
-						'aria-current': id === 0 ? 'true' : 'false',
-						'data-parent': `${prefix}-${variant}-submenu-${uuid}-${suuid}`
-					}, 
-						$('p', {class: `${prefix}-flyout--categories-item_header`, 
-							click: (e) => { 
-								swapFlyoutContent(e);
-							}
-						}, items.category)
-					);
-					column.col.forEach((col) => {
-						listArr.push(						
-							$('a', {href: col.href, class: `${prefix}-flyout--categories-details_item`, 'data-heading': col.heading ? 'true' : 'false'}, 
-								(col.heading) && $('p', {class: `${prefix}-flyout--categories-details_heading`}, col.heading), 
-								(col.label) && $('p', {class: `${prefix}-flyout--categories-details_label`}, col.label)
-							)
-						);
-					});
-				});
-			}
-
-			$items.push(
-				$(category, 
-					$('div', {class: `${prefix}-flyout--categories-details`, 'aria-expanded': 'false'},
-					...listArr)
-				)
-			);
-		} else if (type === 'label') {
-			if (items.cols && items.cols.length) {
-				items.cols.forEach((column) => {
-					const $column = $('div', {class: `${prefix}-flyout--list-items_column`});
-					column.col.forEach((col) => {
-						$items.push(
-							$($column, 
-								$('li', {class: `${prefix}-flyout--list-items_name`}, 
-									$('a', {href: col.href, class: `${prefix}-flyout--list-items_anchor`, 'data-heading': (col.heading) ? 'true' : 'false'}, 
-										(col.heading) && $('p', {class: `${prefix}-flyout--list-items_heading`}, col.heading), 
-										(col.label) && $('p', {class: `${prefix}-flyout--list-items_label`}, col.label)
+		switch (type) {
+			case 'category':
+					if (items.cols.length) {
+						items.cols.forEach((column) => {
+							category = $('li', {
+								class: `${prefix}-flyout--categories-item`, 
+								'data-id': id,
+								'aria-current': id === 0 ? 'true' : 'false',
+								'data-parent': `${prefix}-${variant}-submenu-${uuid}-${suuid}`
+							}, 
+								$('p', {class: `${prefix}-flyout--categories-item_header`, 
+									click: (e) => { 
+										swapFlyoutContent(e);
+									}
+								}, items.category)
+							);
+							column.col.forEach((col) => {
+								listArr.push(						
+									$('a', {href: col.href, class: `${prefix}-flyout--categories-details_item`, 'data-heading': col.heading ? 'true' : 'false'}, 
+										(col.heading) && $('p', {class: `${prefix}-flyout--categories-details_heading`}, col.heading), 
+										(col.label) && $('p', {class: `${prefix}-flyout--categories-details_label`}, col.label)
 									)
-								)
-							)
-						);
-					});
-				});
-			}
+								);
+							});
+						});
+					}
+		
+					$items.push(
+						$(category, 
+							$('div', {class: `${prefix}-flyout--categories-details`, 'aria-expanded': 'false'},
+							...listArr)
+						)
+					);
+			break;
+
+			case 'label':
+					if (items.cols && items.cols.length) {
+						items.cols.forEach((column) => {
+							const $column = $('div', {class: `${prefix}-flyout--list-items_column`});
+							column.col.forEach((col) => {
+								$items.push(
+									$($column, 
+										$('li', {class: `${prefix}-flyout--list-items_name`}, 
+											$('a', {href: col.href, class: `${prefix}-flyout--list-items_anchor`, 'data-heading': (col.heading) ? 'true' : 'false'}, 
+												(col.heading) && $('p', {class: `${prefix}-flyout--list-items_heading`}, col.heading), 
+												(col.label) && $('p', {class: `${prefix}-flyout--list-items_label`}, col.label)
+											)
+										)
+									)
+								);
+							});
+						});
+					}
+			break;
 		}
 		
 		return $items;
