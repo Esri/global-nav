@@ -197,16 +197,6 @@ export namespace Components {
     'items': number;
     'url': string;
   }
-  interface EsriHeaderClient {
-    /**
-    * Add a jsdoc comment describing your method and it's parameters (use `@param`).
-    */
-    'doThing': () => Promise<void>;
-    /**
-    * Be sure to add a jsdoc comment describing your propery for the generated readme file. If your property should be hidden from documentation, you can use the `@internal` tag
-    */
-    'property': string;
-  }
   interface EsriHeaderInlineSearch {
     /**
     * Add a jsdoc comment describing your method and it's parameters (use `@param`).
@@ -355,12 +345,6 @@ declare global {
     new (): HTMLEsriHeaderCartElement;
   };
 
-  interface HTMLEsriHeaderClientElement extends Components.EsriHeaderClient, HTMLStencilElement {}
-  var HTMLEsriHeaderClientElement: {
-    prototype: HTMLEsriHeaderClientElement;
-    new (): HTMLEsriHeaderClientElement;
-  };
-
   interface HTMLEsriHeaderInlineSearchElement extends Components.EsriHeaderInlineSearch, HTMLStencilElement {}
   var HTMLEsriHeaderInlineSearchElement: {
     prototype: HTMLEsriHeaderInlineSearchElement;
@@ -401,7 +385,6 @@ declare global {
     'esri-header-apps': HTMLEsriHeaderAppsElement;
     'esri-header-brand': HTMLEsriHeaderBrandElement;
     'esri-header-cart': HTMLEsriHeaderCartElement;
-    'esri-header-client': HTMLEsriHeaderClientElement;
     'esri-header-inline-search': HTMLEsriHeaderInlineSearchElement;
     'esri-header-inline-title': HTMLEsriHeaderInlineTitleElement;
     'esri-header-menus': HTMLEsriHeaderMenusElement;
@@ -575,13 +558,6 @@ declare namespace LocalJSX {
     'items'?: number;
     'url'?: string;
   }
-  interface EsriHeaderClient extends JSXBase.HTMLAttributes<HTMLEsriHeaderClientElement> {
-    'onOpen'?: (event: CustomEvent<any>) => void;
-    /**
-    * Be sure to add a jsdoc comment describing your propery for the generated readme file. If your property should be hidden from documentation, you can use the `@internal` tag
-    */
-    'property'?: string;
-  }
   interface EsriHeaderInlineSearch extends JSXBase.HTMLAttributes<HTMLEsriHeaderInlineSearchElement> {
     'onOpen'?: (event: CustomEvent<any>) => void;
     /**
@@ -670,7 +646,6 @@ declare namespace LocalJSX {
     'esri-header-apps': EsriHeaderApps;
     'esri-header-brand': EsriHeaderBrand;
     'esri-header-cart': EsriHeaderCart;
-    'esri-header-client': EsriHeaderClient;
     'esri-header-inline-search': EsriHeaderInlineSearch;
     'esri-header-inline-title': EsriHeaderInlineTitle;
     'esri-header-menus': EsriHeaderMenus;

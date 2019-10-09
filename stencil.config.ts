@@ -10,7 +10,6 @@ export const config: Config = {
         "esri-header",
         "esri-header-account",
         "esri-header-brand",
-        "esri-header-client",
         "esri-header-inline-search",
         "esri-header-inline-title",
         "esri-header-menus",
