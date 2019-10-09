@@ -1,5 +1,164 @@
-// Cou can use any SASS from Calcite Base and Calcite Colors here.
+@import "../global";
 
 :host {
-  // Declare any CSS variables here as well as styles for the <Host> element.
+  display: flex;
+  flex-grow: 0;
+  position: relative;
+}
+
+.esri-header-search-control {
+  @include normalize-button();
+  @include unset-button();
+  @include menu-link();
+  position: relative;
+}
+
+.esri-header-search-image {
+  @include menu-icon();
+}
+
+.esri-header-search-content {
+  position: fixed;
+  top: $esri-header-height;
+  left: 0;
+  right: 0;
+  padding: 24px;
+  z-index: -1;
+  clip: rect(0,0,0,0);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity $transition, visibility 0ms linear 300ms, clip 0ms linear 300ms;
+
+  &[aria-expanded="true"] {
+    visibility: visible;
+    opacity: 1;
+    clip: rect(0,100vw,100vh,0);
+    transition: opacity $transition, clip 0ms linear 0ms;
+  }
+
+  @include width-xl () {
+    padding-left: calc(50% - #{$esri-header-width} / 2 + 20px);
+    padding-right: calc(50% - #{$esri-header-width} / 2 + 20px);
+  }
+}
+
+.esri-header-search-content-form {
+  position: relative;
+  margin-top: calc(35vh - 128px);
+  box-shadow: inset 0 -1px 0 0 $blk-030;
+}
+
+.esri-header-search-content-label {
+  color: $blk-140;
+  overflow: hidden;
+  white-space: nowrap;
+  position: absolute;
+  top: 0;
+  @include font-size(7, 1.5);
+
+  &[data-filled] {
+    top: -24px;
+    animation: esri-search-filled-label $transition-medium;
+    @include font-size(0, 1);
+  }
+}
+
+@keyframes esri-search-filled-label {
+  0% {
+    top: 0;
+    opacity: 0;
+  }
+
+  100% {
+    top: -24px;
+    opacity: 1;
+  }
+}
+
+.esri-header-search-content-input {
+  display: block;
+  width: calc(100% - 64px);
+  color: $blk-220;
+  font-family: inherit;
+  font-weight: inherit;
+  @include font-size(7, 1.5);
+  border-width: 0;
+  background-color: transparent;
+  z-index: 1;
+  &:focus {
+    outline: none;
+  }
+  &::-webkit-search-cancel-button, &::-webkit-search-decoration {
+    appearance: none;
+  }
+}
+
+.esri-header-search-content-measure {
+  box-shadow: inset 0 -1px 0 0 $ui-blue;
+  transition: width $transition;
+  user-select: none;
+  height: 1px;
+  max-width: 100%;
+}
+
+.esri-header-search-content-measure-text {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  max-width: 100%;
+  clip: rect(0,0,0,0);
+  white-space: pre;
+  @include font-size(7);
+}
+
+.esri-header-search-content-submit {
+  @include unset-button();
+  position: absolute;
+  right: 0;
+  bottom: 1px;
+  padding: 18px;
+  color: $ui-blue;
+  background-color: transparent;
+  border-width: 0;
+  cursor: pointer;
+  transition: all $transition;
+  &:focus, &:hover {
+    color: $blk-240;
+    background-color: $blk-010;
+    outline: none;
+  }
+}
+
+.esri-header-search-submit-icon {
+  width: 32px;
+  height: 32px;
+  fill: currentColor;
+  display: block;
+}
+
+.esri-header-search-content-cancel {
+  @include unset-button();
+  position: absolute;
+  right: 0;
+  margin: 10px 18px;
+  padding: 10px 5px;
+  color: $blk-200;
+  cursor: pointer;
+  span {
+    display: block;
+    padding-bottom: 6px;
+    background-image: linear-gradient(90deg, $blk-240 50%, transparent 50%);
+    background-repeat: no-repeat;
+    background-size: 200% 1px;
+    background-position: 100% 100%;
+    transition: background-position 300ms;
+  }
+  &:focus, &:hover {
+    outline: none;
+    span {
+      background-position: 0 100%;
+    }
+  }
 }
