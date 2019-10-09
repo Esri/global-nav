@@ -1076,12 +1076,12 @@ var createMenus = (function (_ref) {
 		}))));
 	});
 
-	function resetFlyoutDimensions(parentNode) {
+	function resetFlyoutDimensions(parent) {
 		var subMenus = document.querySelectorAll('.esri-header-menus-submenu');
-		var parent = parentNode !== 'disabled' && parentNode !== 'init' && parentNode.getAttribute('data-parent');
-		var parentElement = document.querySelector('#' + parent);
+		var parentState = parent !== 'disabled' && parent !== 'init' && parent.getAttribute('data-parent');
+		var parentElement = document.querySelector('#' + parentState);
 
-		if (parentNode === 'init') {
+		if (parent === 'init') {
 			var listItems = [].slice.call(document.querySelectorAll('.esri-header-menus-flyout'));
 
 			if (listItems.length) {
@@ -1097,7 +1097,7 @@ var createMenus = (function (_ref) {
 					}
 				});
 			}
-		} else if (parentNode === 'disabled') {
+		} else if (parent === 'disabled') {
 			subMenus.forEach(function (menu) {
 				menu.removeAttribute('data-single');
 			});
