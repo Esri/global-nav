@@ -3,8 +3,6 @@ import {
   Element,
   Prop,
   Host,
-  Event,
-  EventEmitter,
   Method,
   Listen,
   h
@@ -36,6 +34,8 @@ export class EsriHeaderMenus {
    */
   @Prop() detail: any = {};
 
+  @Prop() open: boolean;
+
   //--------------------------------------------------------------------------
   //
   //  Lifecycle
@@ -63,8 +63,6 @@ export class EsriHeaderMenus {
   //  Events
   //
   //--------------------------------------------------------------------------
-
-  @Event() open: EventEmitter;
 
   //--------------------------------------------------------------------------
   //

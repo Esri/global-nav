@@ -2,10 +2,11 @@
 @import "./node_modules/@esri/calcite-base/dist/_index.scss";
 
 /* Global SASS variables */
-$esri-header-width-m: 320px;
-$esri-header-height: 56px;
-$esri-footer-social-size: 36px;
-$esri-footer-social-gutter: 7px;
+$esri-header-width: 1440px !default;
+$esri-header-width-m: 320px !default;
+$esri-header-height: 56px !default;
+$esri-footer-social-size: 36px !default;
+$esri-footer-social-gutter: 7px !default;
 
 /* Unset Property Sets
 /* ====================================================================== */
@@ -92,6 +93,7 @@ $esri-footer-social-gutter: 7px;
 @mixin menu-link () {
   display: block;
   cursor: pointer;
+  color: $blk-220;
   &:hover, &:focus {
     box-shadow: inset 0 -3px 0 0 $h-bb-030;
     color: $blk-240;
@@ -128,7 +130,6 @@ $esri-footer-social-gutter: 7px;
 @mixin menu-icon () {
   display: block;
   fill: currentColor;
-  color: $blk-200;
   margin: 0;
   padding: 16px;
   width: 24px;

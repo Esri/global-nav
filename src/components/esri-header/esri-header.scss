@@ -21,7 +21,7 @@
   z-index: 190;
 
   &.-web {
-    width: 1440px;
+    width: $esri-header-width;
     max-width: 96vw;
     margin: 0 auto;
 
@@ -36,77 +36,53 @@
       max-width: 100%;
     }
   }
-
-  &, & * {
-    box-sizing: border-box;
-  }
-
-  & li, & label {
-    margin: 0;
-  }
-
-  & input {
-    height: initial
-  }
 }
 
 .esri-header .hidden {
   display: none;
 }
 
+esri-header-menus {
+  flex-grow: 1;
+}
+
+.esri-header-divider {
+  height: 100%;
+  width: 1px;
+  background-color: $blk-020;
+  display: flex;
+  flex-grow: 0;
+}
+
 /* Global Header: Canvas
 /* ========================================================================== */
 
 .esri-header-canvas {
-  border-style: none;
   content: "";
-  inset-block-end: 0;
-  inset-inline: 0;
-  padding: 0;
-  position: absolute;
-  size: 100%;
-  height: 100vh;
-  -webkit-tap-highlight-color: transparent;
-  transition: opacity var(--fast-speed) ease-in-out, visibility 0ms var(--fast-speed);
-  z-index: -1;
-  inset-block-start: var(--header-height);
-
-  &[data-open="false"] {
-    opacity: 0;
-    visibility: hidden;
-  }
-
-  &[data-open="true"] {
-    opacity: 1;
-    transition: opacity var(--fast-speed) ease-in-out;
-  }
-
-  &[data-state="menu"] {
-    background-color: color(var(--mono-0) a(50%));
-  }
-
-  &[data-state="search"] {
-    background-color: color(var(--mono-97) a(98%));
-    box-shadow: inset 0 1px 0 0 var(--mono-88);
-  }
-}
-
-.-app .esri-header-canvas {
-    inset-block-start: calc(var(--header-height) + 3px);
-}
-
-/* Global Header: Barrier
-/* ========================================================================== */
-
-.esri-header-barrier {
-  height: var(--header-height);
-}
-
-/* Global Header: "Is Open" (used to fix scrolling when the menu is open)
-/* ========================================================================== */
-
-[data-header-is-open] {
   position: fixed;
-  size: 100vw 100vh;
-  size: var(--esri-vw) var(--esri-vh);
+  top: $esri-header-height;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;;
+  padding: 0;
+  background-color: rgba(0, 0, 0, .5);
+  border-style: none;
+  -webkit-tap-highlight-color: transparent;
+  transition: opacity $transition, visibility 0ms 150ms;
+  opacity: 0;
+  visibility: hidden;
+  z-index: -1;
+
+  &[data-open] {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity $transition;
+  }
+}
+
+.esri-header-canvas--white {
+  background-color: rgba(250, 250, 250, .95);
+  box-shadow: inset 0 1px 0 0 $blk-010;
 }

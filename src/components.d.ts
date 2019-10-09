@@ -236,6 +236,7 @@ export namespace Components {
     * Add a jsdoc comment describing your method and it's parameters (use `@param`).
     */
     'doThing': () => Promise<void>;
+    'open': boolean;
   }
   interface EsriHeaderNotifications {
     /**
@@ -261,13 +262,33 @@ export namespace Components {
   }
   interface EsriHeaderSearch {
     /**
-    * Be sure to add a jsdoc comment describing your propery for the generated readme file. If your property should be hidden from documentation, you can use the `@internal` tag
+    * Form action url
     */
-    'detail': any;
+    'action': string;
     /**
-    * Add a jsdoc comment describing your method and it's parameters (use `@param`).
+    * Translated cancel text
     */
-    'doThing': () => Promise<void>;
+    'cancelText': string;
+    /**
+    * Translated string for aria label of form
+    */
+    'formText': string;
+    /**
+    * Open state of the search UI
+    */
+    'open': boolean;
+    /**
+    * Translated input label text
+    */
+    'placeholderText': string;
+    /**
+    * Translated aria label for search icon
+    */
+    'searchText': string;
+    /**
+    * Translated submit text
+    */
+    'submitText': string;
   }
 }
 
@@ -430,7 +451,6 @@ declare namespace LocalJSX {
     * Set to `true` to show hamburger menu regardless of screen size
     */
     'collapseMenus'?: boolean;
-    'onOpen'?: (event: CustomEvent<any>) => void;
     /**
     * App mode will show a color bar at the top and float menu items right
     */
@@ -512,6 +532,7 @@ declare namespace LocalJSX {
     */
     'loading'?: boolean;
     'onHeader:apps:reorder'?: (event: CustomEvent<any>) => void;
+    'onHeader:menu:toggle'?: (event: CustomEvent<any>) => void;
     /**
     * Open state of the menu
     */
@@ -580,7 +601,7 @@ declare namespace LocalJSX {
     * Be sure to add a jsdoc comment describing your propery for the generated readme file. If your property should be hidden from documentation, you can use the `@internal` tag
     */
     'detail'?: any;
-    'onOpen'?: (event: CustomEvent<any>) => void;
+    'open'?: boolean;
   }
   interface EsriHeaderNotifications extends JSXBase.HTMLAttributes<HTMLEsriHeaderNotificationsElement> {
     /**
@@ -600,6 +621,7 @@ declare namespace LocalJSX {
     */
     'messages'?: Notification[];
     'onHeader:click:notifications:dismiss'?: (event: CustomEvent<any>) => void;
+    'onHeader:menu:toggle'?: (event: CustomEvent<any>) => void;
     /**
     * Set true to open notifications dropdown
     */
@@ -607,10 +629,34 @@ declare namespace LocalJSX {
   }
   interface EsriHeaderSearch extends JSXBase.HTMLAttributes<HTMLEsriHeaderSearchElement> {
     /**
-    * Be sure to add a jsdoc comment describing your propery for the generated readme file. If your property should be hidden from documentation, you can use the `@internal` tag
+    * Form action url
     */
-    'detail'?: any;
-    'onOpen'?: (event: CustomEvent<any>) => void;
+    'action'?: string;
+    /**
+    * Translated cancel text
+    */
+    'cancelText'?: string;
+    /**
+    * Translated string for aria label of form
+    */
+    'formText'?: string;
+    'onHeader:menu:toggle'?: (event: CustomEvent<any>) => void;
+    /**
+    * Open state of the search UI
+    */
+    'open'?: boolean;
+    /**
+    * Translated input label text
+    */
+    'placeholderText'?: string;
+    /**
+    * Translated aria label for search icon
+    */
+    'searchText'?: string;
+    /**
+    * Translated submit text
+    */
+    'submitText'?: string;
   }
 
   interface IntrinsicElements {

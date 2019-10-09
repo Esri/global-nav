@@ -82,6 +82,7 @@ export class EsriHeaderApps {
             aria-expanded={this.open ? "true" : "false"}
             onClick={() => {
               this.open = !this.open;
+              this.toggleMenu.emit({open: this.open, el: this.el});
             }}
           >
             <svg
@@ -170,6 +171,7 @@ export class EsriHeaderApps {
   //--------------------------------------------------------------------------
 
   @Event({ eventName: "header:apps:reorder" }) reorderApps: EventEmitter;
+  @Event({ eventName: "header:menu:toggle" }) toggleMenu: EventEmitter;
 
   //--------------------------------------------------------------------------
   //
@@ -189,7 +191,6 @@ export class EsriHeaderApps {
   //  Private Methods
   //
   //--------------------------------------------------------------------------
-
   // drag and drop:
   // 1. on drag start, note the x/y coords of all app icons
   //     - alt, store array of app icon dom nodes, iterate

@@ -57,7 +57,8 @@ export class EsriHeaderNotifications {
           aria-expanded={this.open ? "true" : "false"}
           aria-haspopup="true"
           onClick={() => {
-            this.open = !this.open
+            this.open = !this.open;
+            this.toggleMenu.emit({open: this.open, el: this.el});
           }}
         >
           <svg
@@ -160,6 +161,6 @@ export class EsriHeaderNotifications {
     this.emptyMessage = detail.emptyMessage || this.emptyMessage;
   }
 
-  @Event({ eventName: "header:click:notifications:dismiss" })
-  dismissNotifications: EventEmitter;
+  @Event({ eventName: "header:click:notifications:dismiss" }) dismissNotifications: EventEmitter;
+  @Event({ eventName: "header:menu:toggle" }) toggleMenu: EventEmitter;
 }

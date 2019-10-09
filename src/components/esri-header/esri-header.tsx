@@ -3,11 +3,11 @@ import {
   Element,
   Prop,
   Host,
-  Event,
-  EventEmitter,
+  // Event,
+  // EventEmitter,
   Method,
   State,
-  // Listen,
+  Listen,
   h
 } from "@stencil/core";
 @Component({
@@ -48,40 +48,47 @@ export class EsriHeader {
       <Host>
         <div class={`esri-header -${this.theme}`}>
           {this.brand ? (
-            <esri-header-brand {...this.brand}></esri-header-brand>
-          ) : (
-            ""
-          )}
+            <esri-header-brand {...this.brand} />
+          ) : null}
           {this.menus ? (
-            <esri-header-menus detail={this.menus}></esri-header-menus>
-          ) : (
-            ""
-          )}
+            <esri-header-menus
+              ref={el => this.menusElement = el}
+              detail={this.menus}
+            />
+          ) : null}
           {this.search ? (
-            <esri-header-search detail={this.search}></esri-header-search>
-          ) : (
-            ""
-          )}
+            <esri-header-search
+              ref={el => this.searchElement = el}
+              searchText={this.search.label}
+              cancelText={this.search.dialog.cancelLabel}
+              formText={this.search.dialog.label}
+              placeholderText={this.search.dialog.queryLabel}
+              submitText={this.search.dialog.submitLabel}
+              action={this.search.dialog.action}
+            />
+          ) : null}
+          {this.search &&
+          (this.cart || this.notifications || this.apps || this.account) ? (
+            <span class="esri-header-divider" />
+          ) : null}
           {this.cart ? (
             <esri-header-cart
               items={this.cart.items}
               url={this.cart.url}
-            ></esri-header-cart>
-          ) : (
-            ""
-          )}
+            />
+          ) : null}
           {this.notifications ? (
             <esri-header-notifications
+              ref={el => this.notificationsElement = el}
               messages={this.notifications.messages}
               dismissAllLabel={this.notifications.dismissAllLabel}
               dismissLabel={this.notifications.dismissLabel}
               emptyMessage={this.notifications.emptyMessage}
-            ></esri-header-notifications>
-          ) : (
-            ""
-          )}
+            />
+          ) : null}
           {this.apps ? (
             <esri-header-apps
+              ref={el => this.appsElement = el}
               loading={this.apps.isLoading}
               applicationsText={this.apps.label}
               confirmText={this.apps.text.confirm}
@@ -93,12 +100,11 @@ export class EsriHeader {
               displayIntro={this.apps.displayIntro}
               primary={this.apps.primary}
               secondary={this.apps.secondary}
-            ></esri-header-apps>
-          ) : (
-            ""
-          )}
+            />
+          ) : null}
           {this.account ? (
             <esri-header-account
+              ref={el => this.accountElement = el}
               profileText={this.account.label}
               signInText={this.account.controls.signin}
               switchText={this.account.controls.switch}
@@ -108,11 +114,17 @@ export class EsriHeader {
               userGroup={this.account.user.group}
               userImage={this.account.user.image}
               menus={this.account.menus}
-              ></esri-header-account>
-          ) : (
-            ""
-          )}
+            />
+          ) : null}
         </div>
+        <button
+          class={{
+            "esri-header-canvas": true,
+            "esri-header-canvas--white": this.scrimColor === "white"
+          }}
+          tabindex="-1"
+          data-open={!!this.openMenu}
+        />
       </Host>
     );
   }
@@ -122,16 +134,31 @@ export class EsriHeader {
   //  Event Listeners
   //
   //--------------------------------------------------------------------------
-  // @Listen("click") onClick(e: Event) {
-  //   console.log(e);
-  // }
+  @Listen("header:menu:toggle") handleToggleMenu(event: CustomEvent) {
+    const {open, el, color} = event.detail;
+    this.scrimColor = color;
+    [
+      this.menusElement,
+      this.searchElement,
+      this.notificationsElement,
+      this.appsElement,
+      this.accountElement
+    ]
+    .filter(element => element)
+    .forEach(element => {
+      if (element === el) {
+        this.openMenu = open ? element : null;
+      } else {
+        element.open = false;
+      }
+    });
+  }
 
   //--------------------------------------------------------------------------
   //
   //  Events
   //
   //--------------------------------------------------------------------------
-  @Event() open: EventEmitter;
 
   //--------------------------------------------------------------------------
   //
@@ -144,30 +171,20 @@ export class EsriHeader {
    * to the init method, and it will create all sub elements for you.
    */
   @Method() async init(detail): Promise<void> {
-    if (detail.theme) {
-      this.theme = detail.theme;
-    }
-    if (detail.brand) {
-      this.brand = detail.brand;
-    }
-    if (detail.cart) {
-      this.cart = detail.cart;
-    }
-    if (detail.menus) {
-      this.menus = detail.menus;
-    }
-    if (detail.search) {
-      this.search = detail.search;
-    }
-    if (detail.notifications) {
-      this.notifications = detail.notifications;
-    }
-    if (detail.apps) {
-      this.apps = detail.apps;
-    }
-    if (detail.account) {
-      this.account = detail.account;
-    }
+    [
+      "theme",
+      "brand",
+      "cart",
+      "menus",
+      "search",
+      "notifications",
+      "apps",
+      "account"
+    ].forEach(component => {
+      if (detail[component]) {
+        this[component] = detail[component];
+      }
+    });
     return Promise.resolve();
   }
 
@@ -184,8 +201,17 @@ export class EsriHeader {
   @State() private apps;
   @State() private account;
 
+  private menusElement: HTMLEsriHeaderMenusElement;
+  private searchElement: HTMLEsriHeaderSearchElement;
+  private notificationsElement: HTMLEsriHeaderNotificationsElement;
+  private appsElement: HTMLEsriHeaderAppsElement;
+  private accountElement: HTMLEsriHeaderAccountElement;
+
   /** Track the open menu in state  */
-  @State() openMenu: HTMLElement;
+  @State() openMenu: HTMLElement|boolean;
+
+  /** Track the open menu in state  */
+  @State() scrimColor: "white"|undefined;
 
   /** Track viewport width for responsive changes */
   @State() screenSize: number;
