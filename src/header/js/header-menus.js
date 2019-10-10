@@ -152,9 +152,10 @@ export default ({variant = 'desktop'}) => {
 
 							const hasMenuItems = item.menus && item.menus.length;
 							const hasCols = item.cols && item.cols.length;
+							const hasFlyout = item.flyout && item.flyout.length;
 							const hasFeaturedItems = item.tiles && item.tiles.length;
 
-							if (hasMenuItems || hasCols || hasFeaturedItems) {
+							if (hasMenuItems || hasCols || hasFeaturedItems || hasFlyout) {
 								/* Global Navigation: Submenu
 								/* ====================================== */
 								const $subtoggle = $('button', {class: `${prefix}-submenu-toggle`},
@@ -181,7 +182,8 @@ export default ({variant = 'desktop'}) => {
 									{
 										class: `${prefix}-submenu`,
 										id: `${prefix}-${variant}-submenu-${uuid}-${suuid}`,
-										'data-has-structured': hasStructured,
+										'data-has-structured': hasFlyout ? 'false' : hasStructured,
+										'data-has-flyout': hasFlyout ? 'true' : 'false',
 										role: 'group', aria: {hidden: true, expanded: false},
 										data: {
 											filled: (item.menus && item.menus.length > 10) ? item.menus.slice(0, 30).length : '', 
@@ -193,7 +195,9 @@ export default ({variant = 'desktop'}) => {
 									$subtoggle
 								);
 
-								if (hasCols) {
+								if (hasFlyout) {
+									renderFlyout({$subcontent, item, uuid, suuid});
+								} else if (hasCols) {
 									renderMulti({$subcontent, item, uuid, suuid});
 								} else {
 									renderSingle({hasMenuItems, $subcontent, item, uuid, suuid});
@@ -217,6 +221,8 @@ export default ({variant = 'desktop'}) => {
 										state: 'menu',
 										type: 'menu-toggle'
 									});
+									resetFlyoutDimensions('init');
+									resetFlyoutState();
 								});
 
 								$subtoggle.addEventListener('click', () => {
@@ -226,6 +232,7 @@ export default ({variant = 'desktop'}) => {
 										content: $subcontent,
 										type: 'menu-close'
 									});
+									resetFlyoutMenu();
 								});
 							}
 
@@ -236,6 +243,68 @@ export default ({variant = 'desktop'}) => {
 			)
 		);
 	});
+
+	function resetFlyoutDimensions(parent) {
+		const subMenus = document.querySelectorAll('.esri-header-menus-submenu');
+		const parentState = (parent !== 'disabled' && parent !== 'init') && parent.getAttribute('data-parent');
+		const parentElement = document.querySelector(`#${parentState}`);
+
+		if (parent === 'init') {
+			const listItems = [].slice.call(document.querySelectorAll('.esri-header-menus-flyout'));
+
+			if (listItems.length) {
+				listItems.forEach((fly) => {
+					const catItem = [].slice.call(fly.querySelectorAll('.esri-header-menus-flyout--categories-item'));
+					const catItemParent = document.querySelector(`#${catItem[0].getAttribute('data-parent')}`);
+	
+					const listItems = [].slice.call(fly.querySelectorAll('.esri-header-menus-flyout--list-items'));
+					const listColType = listItems[0].getAttribute('data-coltype');
+	
+					if (listColType === '1') {
+						catItemParent.setAttribute('data-single', '');
+					}
+				});
+			}
+		} else if (parent === 'disabled') {
+			subMenus.forEach((menu) => {
+				menu.removeAttribute('data-single');
+			});
+		} else {
+			parentElement.setAttribute('data-single', '');
+		}
+	}
+
+	function resetFlyoutState() {
+		const flyoutCategories = [].slice.call(document.querySelectorAll('.esri-header-menus-flyout--categories-item'));
+		const flyoutList = [].slice.call(document.querySelectorAll('.esri-header-menus-flyout--list-items'));
+
+		if (flyoutList.length) {
+			flyoutList.forEach((list, index) => {
+				flyoutCategories[index].setAttribute('aria-current', 'false');
+				list.setAttribute('aria-current', 'false');
+				if ((list.hasAttribute('data-id') && list.getAttribute('data-id') === '0') && 
+						(flyoutCategories[index].hasAttribute('data-id') && flyoutCategories[index].getAttribute('data-id') === '0')
+					 ) {
+					flyoutCategories[index].setAttribute('aria-current', 'true');
+					list.setAttribute('aria-current', 'true');
+				}
+			});
+		}
+	}
+
+	function resetFlyoutMenu() {
+		const flyoutMenuHeaders = [].slice.call(document.querySelectorAll('.esri-header-menus-flyout--categories-item_header'));
+		const flyoutMenuDetails = [].slice.call(document.querySelectorAll('.esri-header-menus-flyout--categories-details'));
+
+		flyoutMenuHeaders.forEach((header) => {
+			header.setAttribute("aria-current", "false");
+		});
+		
+		flyoutMenuDetails.forEach((detail) => {
+			detail.setAttribute("aria-expanded", "false");
+			detail.style.height = '0';
+		});
+	}
 
 	function renderSingle({hasMenuItems, $subcontent, item, uuid, suuid}) {
 		let columns = '';
@@ -276,6 +345,7 @@ export default ({variant = 'desktop'}) => {
 
 	function renderMulti({$subcontent, item, uuid, suuid}) {
 		const $cols = $('div', {class: `${prefix}-sublist--col-wrapper`});
+
 		if (item.cols) {
 			item.cols.forEach((col) => {
 				let menuType = 'standard';
@@ -307,6 +377,152 @@ export default ({variant = 'desktop'}) => {
 		}
 	}
 
+	function swapFlyoutContent(category) {
+		const categoryList = category.target.parentNode.querySelector('.esri-header-menus-flyout--categories-details[aria-expanded]');
+		const categoryHeader = category.target.parentNode.querySelector('.esri-header-menus-flyout--categories-item_header');
+		const active = categoryList.getAttribute('aria-expanded') === 'false' ? 'true' : 'false';
+		const categoryDetailsItems = [].slice.call(category.target.parentNode.querySelectorAll('.esri-header-menus-flyout--categories-details_item'));
+		const catsComputedStyle = window.getComputedStyle(categoryDetailsItems[0]);
+		const computedHeight = (parseInt(catsComputedStyle.height) * categoryDetailsItems.length);
+		const computedMargin = (parseInt(catsComputedStyle.marginTop) * categoryDetailsItems.length) + parseInt(catsComputedStyle.marginTop);
+		const headers = [].slice.call(document.querySelectorAll('.esri-header-menus-flyout--categories-item_header'));
+		const items = [].slice.call(document.querySelectorAll('.esri-header-menus-flyout--categories-item'));
+		const itemsList = [].slice.call(document.querySelectorAll('.esri-header-menus-flyout--list-items'));
+		const isMobile = (window.innerWidth < 1024);
+
+		if (isMobile) {
+			const categoryListArr = [].slice.call(document.querySelectorAll('.esri-header-menus-flyout--categories-details[aria-expanded]'));
+			categoryListArr.forEach((list) => {
+				list.setAttribute('aria-expanded', 'false');
+				list.style.height = '0';
+			});
+	
+			categoryList.setAttribute('aria-expanded', `${active}`);
+			if (active === 'true') {
+				categoryList.style.height = `${(computedHeight) + (computedMargin)}px`;
+				headers.forEach((head) => {
+					head.setAttribute('aria-current', 'false');
+				});
+				categoryHeader.setAttribute('aria-current', 'true');
+			} else {
+				categoryList.style.height = '0';
+				categoryHeader.setAttribute('aria-current', 'false');
+			}
+		} else {
+			items.forEach((item, index) => {
+				item.addEventListener('click', (e) => {
+					const parentNode = e.target.parentNode;
+					const selectedCategory = parentNode.getAttribute('data-id');
+					const selectedList = itemsList[index].getAttribute('data-id');
+					const selectedListCols = itemsList[index].getAttribute('data-coltype');
+					
+					itemsList.forEach((list, index) => {
+						list.setAttribute('aria-current', 'false');
+						items[index].setAttribute('aria-current', 'false');
+					});
+
+					if (selectedCategory === selectedList) {
+						(selectedListCols) === '1' ? resetFlyoutDimensions(parentNode) : resetFlyoutDimensions('disabled');
+						parentNode.setAttribute('aria-current', 'true');
+						itemsList[index].setAttribute('aria-current', 'true');
+					}
+				});
+			});
+		}
+	}
+	
+	function renderFlyoutMenu(items, type, id, uuid, suuid) {
+		const $items = [];
+		const listArr = [];
+		let category = "";
+
+		switch (type) {
+			case 'category':
+					if (items.cols.length) {
+						items.cols.forEach((column) => {
+							category = $('li', {
+								class: `${prefix}-flyout--categories-item`, 
+								'data-id': id,
+								'aria-current': id === 0 ? 'true' : 'false',
+								'data-parent': `${prefix}-${variant}-submenu-${uuid}-${suuid}`
+							}, 
+								$('h3', {class: `${prefix}-flyout--categories-item_header`, 
+									click: (e) => { 
+										swapFlyoutContent(e);
+									}
+								}, items.category)
+							);
+							column.col.forEach((col) => {
+								listArr.push(						
+									$('a', {href: col.href, class: `${prefix}-flyout--categories-details_item`, 'data-heading': col.heading ? 'true' : 'false'}, 
+										(col.heading) && $('p', {class: `${prefix}-flyout--categories-details_heading`}, col.heading), 
+										(col.label) && $('p', {class: `${prefix}-flyout--categories-details_label`}, col.label)
+									)
+								);
+							});
+						});
+					}
+		
+					$items.push(
+						$(category, 
+							$('div', {class: `${prefix}-flyout--categories-details`, 'aria-expanded': 'false'},
+							...listArr)
+						)
+					);
+			break;
+
+			case 'label':
+					if (items.cols && items.cols.length) {
+						items.cols.forEach((column) => {
+							const $column = $('ul', {class: `${prefix}-flyout--list-items_column`});
+							column.col.forEach((col) => {
+								$items.push(
+									$($column, 
+										$('li', {class: `${prefix}-flyout--list-items_name`}, 
+											$('a', {href: col.href, class: `${prefix}-flyout--list-items_anchor`, 'data-heading': (col.heading) ? 'true' : 'false'}, 
+												(col.heading) && $('p', {class: `${prefix}-flyout--list-items_heading`}, col.heading), 
+												(col.label) && $('p', {class: `${prefix}-flyout--list-items_label`}, col.label)
+											)
+										)
+									)
+								);
+							});
+						});
+					}
+			break;
+		}
+		
+		return $items;
+	}
+
+	function renderFlyout({$subcontent, item, uuid, suuid}) {
+		const $flyoutCategories = $('ul', {class: `${prefix}-flyout--categories`});
+		const $flyoutList = $('div', {class: `${prefix}-flyout--list`});
+		
+		item.flyout.forEach((item, id) => {
+			$($flyoutCategories,
+				...renderFlyoutMenu(item, 'category', id, uuid, suuid)
+			);
+			
+			$($flyoutList,
+				$('div', {class: `${prefix}-flyout--list-items`, 
+				'data-id': id, 'data-coltype': item.cols.length,
+				'aria-current': id === 0 ? 'true' : 'false'}, 
+					...renderFlyoutMenu(item, 'label', id, uuid, suuid)
+				)
+			);
+		});
+
+		$($subcontent,
+			$('div', {class: `${prefix}-flyout`},
+				$('div', {class: `${prefix}-flyout--categories-wrapper`},
+					$flyoutCategories
+				),
+				$flyoutList,
+			)
+		);
+	}
+
 	function renderer(entries) {
 		const $items = [];
 
@@ -318,6 +534,7 @@ export default ({variant = 'desktop'}) => {
 					)
 				);
 			}
+
 			if (entry.href && entry.label) {
 				$items.push(
 					$('li', {class: `${prefix}-entry--menus-subitem`},
