@@ -1265,7 +1265,7 @@ var createMenus = (function (_ref) {
 							'data-id': id,
 							'aria-current': id === 0 ? 'true' : 'false',
 							'data-parent': prefix$4 + '-' + variant + '-submenu-' + uuid + '-' + suuid
-						}, $assign('p', { class: prefix$4 + '-flyout--categories-item_header',
+						}, $assign('h3', { class: prefix$4 + '-flyout--categories-item_header',
 							click: function click(e) {
 								swapFlyoutContent(e);
 							}
@@ -1282,7 +1282,7 @@ var createMenus = (function (_ref) {
 			case 'label':
 				if (items.cols && items.cols.length) {
 					items.cols.forEach(function (column) {
-						var $column = $assign('div', { class: prefix$4 + '-flyout--list-items_column' });
+						var $column = $assign('ul', { class: prefix$4 + '-flyout--list-items_column' });
 						column.col.forEach(function (col) {
 							$items.push($assign($column, $assign('li', { class: prefix$4 + '-flyout--list-items_name' }, $assign('a', { href: col.href, class: prefix$4 + '-flyout--list-items_anchor', 'data-heading': col.heading ? 'true' : 'false' }, col.heading && $assign('p', { class: prefix$4 + '-flyout--list-items_heading' }, col.heading), col.label && $assign('p', { class: prefix$4 + '-flyout--list-items_label' }, col.label)))));
 						});
@@ -1300,7 +1300,7 @@ var createMenus = (function (_ref) {
 		    uuid = _ref5.uuid,
 		    suuid = _ref5.suuid;
 
-		var $flyoutCategories = $assign('div', { class: prefix$4 + '-flyout--categories' });
+		var $flyoutCategories = $assign('ul', { class: prefix$4 + '-flyout--categories' });
 		var $flyoutList = $assign('div', { class: prefix$4 + '-flyout--list' });
 
 		item.flyout.forEach(function (item, id) {

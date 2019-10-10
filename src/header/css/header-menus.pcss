@@ -333,6 +333,7 @@
 	margin: 0;
 	padding: 25px;
 	position: relative;
+	text-transform: uppercase;
 
 	&::after {
 		content: url("../../shared/shared.svg#c-chevron-down" param(--fill #595959));
@@ -492,6 +493,8 @@
 }
 
 .esri-header-menus-flyout--list-items_column {	
+	list-style-type: none;
+
 	&:first-child {
 		padding: 10px 0 0 0;
 	}
@@ -582,7 +585,7 @@
 		position: absolute;
 		size: 16px;
 		transition: opacity 250ms, transform 250ms;
-		transform: translate(-10px, -55%);
+		transform: translate(-10px, -43%);
 		top: 50%;
 
 		@nest :dir(rtl) & {

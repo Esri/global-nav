@@ -446,7 +446,7 @@ export default ({variant = 'desktop'}) => {
 								'aria-current': id === 0 ? 'true' : 'false',
 								'data-parent': `${prefix}-${variant}-submenu-${uuid}-${suuid}`
 							}, 
-								$('p', {class: `${prefix}-flyout--categories-item_header`, 
+								$('h3', {class: `${prefix}-flyout--categories-item_header`, 
 									click: (e) => { 
 										swapFlyoutContent(e);
 									}
@@ -474,7 +474,7 @@ export default ({variant = 'desktop'}) => {
 			case 'label':
 					if (items.cols && items.cols.length) {
 						items.cols.forEach((column) => {
-							const $column = $('div', {class: `${prefix}-flyout--list-items_column`});
+							const $column = $('ul', {class: `${prefix}-flyout--list-items_column`});
 							column.col.forEach((col) => {
 								$items.push(
 									$($column, 
@@ -496,7 +496,7 @@ export default ({variant = 'desktop'}) => {
 	}
 
 	function renderFlyout({$subcontent, item, uuid, suuid}) {
-		const $flyoutCategories = $('div', {class: `${prefix}-flyout--categories`});
+		const $flyoutCategories = $('ul', {class: `${prefix}-flyout--categories`});
 		const $flyoutList = $('div', {class: `${prefix}-flyout--list`});
 		
 		item.flyout.forEach((item, id) => {
