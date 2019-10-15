@@ -1077,7 +1077,7 @@ var createMenus = (function (_ref) {
 	});
 
 	function resetFlyoutDimensions(parent) {
-		var subMenus = document.querySelectorAll('.esri-header-menus-submenu');
+		var subMenus = [].slice.call(document.querySelectorAll('.esri-header-menus-submenu'));
 		var parentState = parent !== 'disabled' && parent !== 'init' && parent.getAttribute('data-parent');
 		var parentElement = document.querySelector('#' + parentState);
 
