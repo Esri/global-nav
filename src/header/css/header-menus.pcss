@@ -238,7 +238,9 @@
 
 .esri-header-menus-flyout {
 	background: var(--mono-94);
-
+	display: -ms-flexbox;
+	display: flex;
+	
 	&::after {
 		content: '';
 		display: table;
@@ -264,6 +266,10 @@
 .esri-header-menus-flyout--categories-wrapper {
 	position: relative;
 	width: 100%;
+
+	@media (--width-l) {
+		width: 30%;
+	}
 }
 
 .esri-header-menus-flyout--categories {
@@ -467,7 +473,7 @@
 	@media (--width-l) {
 		display: block;
 		min-height: 250px;
-		width: 570px;
+		width: 70%;
 	}
 }
 
@@ -781,8 +787,12 @@
 					&[data-single] {
 						width: 650px;
 						
+						& .esri-header-menus-flyout--categories-wrapper {
+							width: 40%;
+						}
+
 						& .esri-header-menus-flyout--list {
-							width: 380px;
+							width: 60%;
 						}
 
 						& .esri-header-menus-flyout--list-items_column {

@@ -245,7 +245,7 @@ export default ({variant = 'desktop'}) => {
 	});
 
 	function resetFlyoutDimensions(parent) {
-		const subMenus = document.querySelectorAll('.esri-header-menus-submenu');
+		const subMenus = [].slice.call(document.querySelectorAll('.esri-header-menus-submenu'));
 		const parentState = (parent !== 'disabled' && parent !== 'init') && parent.getAttribute('data-parent');
 		const parentElement = document.querySelector(`#${parentState}`);
 
