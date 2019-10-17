@@ -1,0 +1,155 @@
+@import "../global";
+
+:host {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+:host([can-access]) {
+  cursor: pointer;
+}
+
+:host(:hover[can-access]),
+:host(:focus-within[can-access]) {
+  outline: 1px solid $ui-blue;
+  color: $blk-240;
+}
+
+.app__link {
+  @include unset-a();
+  position: relative;
+  height: 100%;
+  display: block;
+  padding: .5rem;
+  color: $blk-220;
+  &:focus {
+    outline: none
+  }
+}
+
+.app__icon {
+  position: relative;
+  width: 48px;
+  height: 48px;
+  margin: 0 auto 10px auto;
+  box-sizing: border-box;
+  @include font-size(2);
+  text-align: center;
+  color: $blk-000;
+  pointer-events: none;
+}
+
+.app__icon--missing {
+  background: transparent;
+  border: 1px dashed $blk-100;
+  border-radius: 6px;
+  &:focus {
+    outline: none;
+    border-color: $ui-blue;
+  }
+}
+
+.app__image {
+  width: 48px;
+  height: 48px;
+}
+
+.app__abbr {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  width: 32px;
+  height: 32px;
+  font-weight: 600;
+  line-height: 32px;
+  text-shadow: 0 1px 8px rgba(0,0,0,.3);
+}
+
+.app__label {
+  @include font-size(-2);
+  width: 100%;
+  text-align: center;
+  margin: 0;
+}
+
+.app__indicator {
+  position: absolute;
+  top: 4px;
+  right: 40px;
+  min-width: 12px;
+  min-height: 12px;
+  padding: 0;
+  border: 2px solid $blk-000;
+  border-radius: 10px;
+  z-index: 50;
+}
+
+.app__indicator--new {
+  background: rgb(113, 222, 110);
+}
+
+.app__indicator--removed {
+  top: -1px;
+  right: 32px;
+  background: $blk-000;
+  cursor: pointer;
+  padding: 1px;
+  fill: currentColor;
+  color: $blk-200;
+  &:hover, &:focus {
+    border-color: $ui-red;
+    color: $ui-red;
+    outline: none;
+  }
+}
+
+.app__indicator__icon {
+  width: 12px;
+  height: 12px;
+  display: inline-block;
+  vertical-align: -2px;
+}
+
+.app__arrow {
+  width: 0;
+  height: 0;
+  position: absolute;
+}
+
+.app__arrow--left {
+  border-bottom: 5px solid transparent;
+  border-right: 5px solid $ui-blue;
+  border-top: 5px solid transparent;
+  left: -7px;
+  top: 50%;
+  margin-top: -5px;
+}
+
+.app__arrow--right {
+  border-bottom: 5px solid transparent;
+  border-left: 5px solid $ui-blue;
+  border-top: 5px solid transparent;
+  right: -7px;
+  top: 50%;
+  margin-top: -5px;
+}
+
+.app__arrow--top {
+  border-bottom: 5px solid $ui-blue;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  right: 50%;
+  top: -7px;
+  margin-right: -5px;
+}
+
+.app__arrow--bottom {
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid $ui-blue;
+  right: 50%;
+  bottom: -7px;
+  margin-right: -5px;
+}
