@@ -49,7 +49,7 @@ export class EsriFooterSocial {
     console.log(this.state);
     return (
       <Host>
-        THIS IS THE HEADER
+        Social
       </Host>
     );
   }

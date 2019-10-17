@@ -19,6 +19,31 @@ import {
 export namespace Components {
   interface EsriFooter {
     /**
+    * Be sure to add a jsdoc comment describing your propery for the generated readme file. If your property should be hidden from documentation, you can use the `@internal` tag
+    */
+    'hideMenus': boolean;
+    /**
+    * If using the header programatically, you can pass in the data structure to the init method, and it will create all sub elements for you.
+    */
+    'init': (detail: any) => Promise<void>;
+    'label': string;
+  }
+  interface EsriFooterBrand {
+    /**
+    * Add a jsdoc comment describing your method and it's parameters (use `@param`).
+    */
+    'doThing': () => Promise<void>;
+    'href'?: string;
+    'imgDef'?: string[];
+    /**
+    * Be sure to add a jsdoc comment describing your propery for the generated readme file. If your property should be hidden from documentation, you can use the `@internal` tag
+    */
+    'label'?: string;
+    'path'?: string;
+    'viewBox'?: string;
+  }
+  interface EsriFooterBreadcrumbs {
+    /**
     * Add a jsdoc comment describing your method and it's parameters (use `@param`).
     */
     'doThing': () => Promise<void>;
@@ -27,17 +52,7 @@ export namespace Components {
     */
     'property': string;
   }
-  interface EsriFooterBrand {
-    /**
-    * Be sure to add a jsdoc comment describing your propery for the generated readme file. If your property should be hidden from documentation, you can use the `@internal` tag
-    */
-    'detail': any;
-    /**
-    * Add a jsdoc comment describing your method and it's parameters (use `@param`).
-    */
-    'doThing': () => Promise<void>;
-  }
-  interface EsriFooterBreadcrumbs {
+  interface EsriFooterInfo {
     /**
     * Add a jsdoc comment describing your method and it's parameters (use `@param`).
     */
@@ -56,6 +71,16 @@ export namespace Components {
     * Be sure to add a jsdoc comment describing your propery for the generated readme file. If your property should be hidden from documentation, you can use the `@internal` tag
     */
     'property': string;
+  }
+  interface EsriFooterMenus {
+    /**
+    * Be sure to add a jsdoc comment describing your propery for the generated readme file. If your property should be hidden from documentation, you can use the `@internal` tag
+    */
+    'detail': any;
+    /**
+    * Add a jsdoc comment describing your method and it's parameters (use `@param`).
+    */
+    'doThing': () => Promise<void>;
   }
   interface EsriFooterSocial {
     /**
@@ -127,6 +152,68 @@ export namespace Components {
     */
     'userName': string;
   }
+  interface EsriHeaderApp {
+    /**
+    * abbreviation for placeholder icon
+    */
+    'abbr': string;
+    /**
+    * true if app can move down
+    */
+    'bottom': boolean;
+    /**
+    * set to false for invalid or removed apps
+    */
+    'canAccess': boolean;
+    /**
+    * app icon (>48x48)
+    */
+    'image': string;
+    /**
+    * set to true for recently added apps
+    */
+    'isNew': boolean;
+    /**
+    * Unique id of the app item (required)
+    */
+    'itemId': string;
+    /**
+    * Title of the app
+    */
+    'label': string;
+    /**
+    * true if app can move left
+    */
+    'left': boolean;
+    /**
+    * background image for abbreviation (>48x48)
+    */
+    'placeHolderIcon': string;
+    /**
+    * Translated string for removed application
+    */
+    'removeText': string;
+    /**
+    * Translated string for removed application
+    */
+    'removedText': string;
+    /**
+    * true if app can move right
+    */
+    'right': boolean;
+    /**
+    * true if app is in the lower app section of the launcher
+    */
+    'secondary': boolean;
+    /**
+    * true if app can move up
+    */
+    'top': boolean;
+    /**
+    * href for the app's link
+    */
+    'url': string;
+  }
   interface EsriHeaderApps {
     /**
     * Translated string for app launcher label
@@ -149,7 +236,7 @@ export namespace Components {
     */
     'dragAppsHereText': string;
     /**
-    * Translated string for sign out
+    * Translated string for drang and drop help
     */
     'introText': string;
     /**
@@ -280,6 +367,16 @@ export namespace Components {
     */
     'submitText': string;
   }
+  interface EsriImage {
+    'imgClass'?: string;
+    'imgDef'?: string[];
+    'imgHeight'?: string | number;
+    'imgWidth'?: string | number;
+    'inlineImg'?: boolean;
+    'path'?: string;
+    'viewBox'?: string;
+    'wrapperClass'?: string;
+  }
 }
 
 declare global {
@@ -303,10 +400,22 @@ declare global {
     new (): HTMLEsriFooterBreadcrumbsElement;
   };
 
+  interface HTMLEsriFooterInfoElement extends Components.EsriFooterInfo, HTMLStencilElement {}
+  var HTMLEsriFooterInfoElement: {
+    prototype: HTMLEsriFooterInfoElement;
+    new (): HTMLEsriFooterInfoElement;
+  };
+
   interface HTMLEsriFooterLanguageElement extends Components.EsriFooterLanguage, HTMLStencilElement {}
   var HTMLEsriFooterLanguageElement: {
     prototype: HTMLEsriFooterLanguageElement;
     new (): HTMLEsriFooterLanguageElement;
+  };
+
+  interface HTMLEsriFooterMenusElement extends Components.EsriFooterMenus, HTMLStencilElement {}
+  var HTMLEsriFooterMenusElement: {
+    prototype: HTMLEsriFooterMenusElement;
+    new (): HTMLEsriFooterMenusElement;
   };
 
   interface HTMLEsriFooterSocialElement extends Components.EsriFooterSocial, HTMLStencilElement {}
@@ -325,6 +434,12 @@ declare global {
   var HTMLEsriHeaderAccountElement: {
     prototype: HTMLEsriHeaderAccountElement;
     new (): HTMLEsriHeaderAccountElement;
+  };
+
+  interface HTMLEsriHeaderAppElement extends Components.EsriHeaderApp, HTMLStencilElement {}
+  var HTMLEsriHeaderAppElement: {
+    prototype: HTMLEsriHeaderAppElement;
+    new (): HTMLEsriHeaderAppElement;
   };
 
   interface HTMLEsriHeaderAppsElement extends Components.EsriHeaderApps, HTMLStencilElement {}
@@ -374,14 +489,23 @@ declare global {
     prototype: HTMLEsriHeaderSearchElement;
     new (): HTMLEsriHeaderSearchElement;
   };
+
+  interface HTMLEsriImageElement extends Components.EsriImage, HTMLStencilElement {}
+  var HTMLEsriImageElement: {
+    prototype: HTMLEsriImageElement;
+    new (): HTMLEsriImageElement;
+  };
   interface HTMLElementTagNameMap {
     'esri-footer': HTMLEsriFooterElement;
     'esri-footer-brand': HTMLEsriFooterBrandElement;
     'esri-footer-breadcrumbs': HTMLEsriFooterBreadcrumbsElement;
+    'esri-footer-info': HTMLEsriFooterInfoElement;
     'esri-footer-language': HTMLEsriFooterLanguageElement;
+    'esri-footer-menus': HTMLEsriFooterMenusElement;
     'esri-footer-social': HTMLEsriFooterSocialElement;
     'esri-header': HTMLEsriHeaderElement;
     'esri-header-account': HTMLEsriHeaderAccountElement;
+    'esri-header-app': HTMLEsriHeaderAppElement;
     'esri-header-apps': HTMLEsriHeaderAppsElement;
     'esri-header-brand': HTMLEsriHeaderBrandElement;
     'esri-header-cart': HTMLEsriHeaderCartElement;
@@ -390,25 +514,38 @@ declare global {
     'esri-header-menus': HTMLEsriHeaderMenusElement;
     'esri-header-notifications': HTMLEsriHeaderNotificationsElement;
     'esri-header-search': HTMLEsriHeaderSearchElement;
+    'esri-image': HTMLEsriImageElement;
   }
 }
 
 declare namespace LocalJSX {
   interface EsriFooter extends JSXBase.HTMLAttributes<HTMLEsriFooterElement> {
+    /**
+    * Be sure to add a jsdoc comment describing your propery for the generated readme file. If your property should be hidden from documentation, you can use the `@internal` tag
+    */
+    'hideMenus'?: boolean;
+    'label'?: string;
+    'onOpen'?: (event: CustomEvent<any>) => void;
+  }
+  interface EsriFooterBrand extends JSXBase.HTMLAttributes<HTMLEsriFooterBrandElement> {
+    'href'?: string;
+    'imgDef'?: string[];
+    /**
+    * Be sure to add a jsdoc comment describing your propery for the generated readme file. If your property should be hidden from documentation, you can use the `@internal` tag
+    */
+    'label'?: string;
+    'onOpen'?: (event: CustomEvent<any>) => void;
+    'path'?: string;
+    'viewBox'?: string;
+  }
+  interface EsriFooterBreadcrumbs extends JSXBase.HTMLAttributes<HTMLEsriFooterBreadcrumbsElement> {
     'onOpen'?: (event: CustomEvent<any>) => void;
     /**
     * Be sure to add a jsdoc comment describing your propery for the generated readme file. If your property should be hidden from documentation, you can use the `@internal` tag
     */
     'property'?: string;
   }
-  interface EsriFooterBrand extends JSXBase.HTMLAttributes<HTMLEsriFooterBrandElement> {
-    /**
-    * Be sure to add a jsdoc comment describing your propery for the generated readme file. If your property should be hidden from documentation, you can use the `@internal` tag
-    */
-    'detail'?: any;
-    'onOpen'?: (event: CustomEvent<any>) => void;
-  }
-  interface EsriFooterBreadcrumbs extends JSXBase.HTMLAttributes<HTMLEsriFooterBreadcrumbsElement> {
+  interface EsriFooterInfo extends JSXBase.HTMLAttributes<HTMLEsriFooterInfoElement> {
     'onOpen'?: (event: CustomEvent<any>) => void;
     /**
     * Be sure to add a jsdoc comment describing your propery for the generated readme file. If your property should be hidden from documentation, you can use the `@internal` tag
@@ -422,6 +559,13 @@ declare namespace LocalJSX {
     */
     'property'?: string;
   }
+  interface EsriFooterMenus extends JSXBase.HTMLAttributes<HTMLEsriFooterMenusElement> {
+    /**
+    * Be sure to add a jsdoc comment describing your propery for the generated readme file. If your property should be hidden from documentation, you can use the `@internal` tag
+    */
+    'detail'?: any;
+    'onOpen'?: (event: CustomEvent<any>) => void;
+  }
   interface EsriFooterSocial extends JSXBase.HTMLAttributes<HTMLEsriFooterSocialElement> {
     'onOpen'?: (event: CustomEvent<any>) => void;
     /**
@@ -434,6 +578,7 @@ declare namespace LocalJSX {
     * Set to `true` to show hamburger menu regardless of screen size
     */
     'collapseMenus'?: boolean;
+    'onHeader:menu:toggle'?: (event: CustomEvent<any>) => void;
     /**
     * App mode will show a color bar at the top and float menu items right
     */
@@ -448,6 +593,7 @@ declare namespace LocalJSX {
     'onHeader:click:signin'?: (event: CustomEvent<any>) => void;
     'onHeader:click:signout'?: (event: CustomEvent<any>) => void;
     'onHeader:click:switch'?: (event: CustomEvent<any>) => void;
+    'onHeader:menu:toggle'?: (event: CustomEvent<any>) => void;
     /**
     * Open state of the menu
     */
@@ -485,6 +631,71 @@ declare namespace LocalJSX {
     */
     'userName'?: string;
   }
+  interface EsriHeaderApp extends JSXBase.HTMLAttributes<HTMLEsriHeaderAppElement> {
+    /**
+    * abbreviation for placeholder icon
+    */
+    'abbr'?: string;
+    /**
+    * true if app can move down
+    */
+    'bottom'?: boolean;
+    /**
+    * set to false for invalid or removed apps
+    */
+    'canAccess'?: boolean;
+    /**
+    * app icon (>48x48)
+    */
+    'image'?: string;
+    /**
+    * set to true for recently added apps
+    */
+    'isNew'?: boolean;
+    /**
+    * Unique id of the app item (required)
+    */
+    'itemId'?: string;
+    /**
+    * Title of the app
+    */
+    'label'?: string;
+    /**
+    * true if app can move left
+    */
+    'left'?: boolean;
+    'onHeader:app:edit:start'?: (event: CustomEvent<any>) => void;
+    'onHeader:app:move'?: (event: CustomEvent<any>) => void;
+    'onHeader:app:remove'?: (event: CustomEvent<any>) => void;
+    /**
+    * background image for abbreviation (>48x48)
+    */
+    'placeHolderIcon'?: string;
+    /**
+    * Translated string for removed application
+    */
+    'removeText'?: string;
+    /**
+    * Translated string for removed application
+    */
+    'removedText'?: string;
+    /**
+    * true if app can move right
+    */
+    'right'?: boolean;
+    /**
+    * true if app is in the lower app section of the launcher
+    */
+    'secondary'?: boolean;
+    /**
+    * true if app can move up
+    */
+    'top'?: boolean;
+    /**
+    * href for the app's link
+    */
+    'url'?: string;
+  }
   interface EsriHeaderApps extends JSXBase.HTMLAttributes<HTMLEsriHeaderAppsElement> {
     /**
     * Translated string for app launcher label
@@ -507,7 +718,7 @@ declare namespace LocalJSX {
     */
     'dragAppsHereText'?: string;
     /**
-    * Translated string for sign out
+    * Translated string for drang and drop help
     */
     'introText'?: string;
     /**
@@ -634,15 +845,28 @@ declare namespace LocalJSX {
     */
     'submitText'?: string;
   }
+  interface EsriImage extends JSXBase.HTMLAttributes<HTMLEsriImageElement> {
+    'imgClass'?: string;
+    'imgDef'?: string[];
+    'imgHeight'?: string | number;
+    'imgWidth'?: string | number;
+    'inlineImg'?: boolean;
+    'path'?: string;
+    'viewBox'?: string;
+    'wrapperClass'?: string;
+  }
 
   interface IntrinsicElements {
     'esri-footer': EsriFooter;
     'esri-footer-brand': EsriFooterBrand;
     'esri-footer-breadcrumbs': EsriFooterBreadcrumbs;
+    'esri-footer-info': EsriFooterInfo;
     'esri-footer-language': EsriFooterLanguage;
+    'esri-footer-menus': EsriFooterMenus;
     'esri-footer-social': EsriFooterSocial;
     'esri-header': EsriHeader;
     'esri-header-account': EsriHeaderAccount;
+    'esri-header-app': EsriHeaderApp;
     'esri-header-apps': EsriHeaderApps;
     'esri-header-brand': EsriHeaderBrand;
     'esri-header-cart': EsriHeaderCart;
@@ -651,6 +875,7 @@ declare namespace LocalJSX {
     'esri-header-menus': EsriHeaderMenus;
     'esri-header-notifications': EsriHeaderNotifications;
     'esri-header-search': EsriHeaderSearch;
+    'esri-image': EsriImage;
   }
 }
 

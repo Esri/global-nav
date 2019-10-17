@@ -1,6 +1,5 @@
 import { Config } from "@stencil/core";
 import { sass } from "@stencil/sass";
-import { postcss } from "@stencil/postcss";
 
 export const config: Config = {
   namespace: "esri",
@@ -20,6 +19,7 @@ export const config: Config = {
     {
       components: [
         "esri-header-apps",
+        "esri-header-app",
       ]
     },
     {

@@ -6,17 +6,16 @@ import {
   Event,
   EventEmitter,
   Method,
-  State,
   Listen,
   h
 } from "@stencil/core";
 
 @Component({
-  tag: "esri-footer-language",
-  styleUrl: "esri-footer-language.scss",
+  tag: "esri-footer-menus",
+  styleUrl: "esri-footer-menus.scss",
   shadow: true
 })
-export class EsriFooterLanguage {
+export class EsriFooterMenus {
   //--------------------------------------------------------------------------
   //
   //  Element
@@ -35,7 +34,11 @@ export class EsriFooterLanguage {
    * Be sure to add a jsdoc comment describing your propery for the generated readme file.
    * If your property should be hidden from documentation, you can use the `@internal` tag
    */
-  @Prop() property: string = "default";
+  @Prop() detail: any = {};
+  // label: 'Esri: The Science of Where',
+  // href: 'https://www.esri.com/about-esri',
+  // viewBox: '0 0 114 90',
+  // path: './img/gnav-tsow-frame.svg'
 
   //--------------------------------------------------------------------------
   //
@@ -46,12 +49,7 @@ export class EsriFooterLanguage {
   componentWillUpdate(): void {}
 
   render() {
-    console.log(this.state);
-    return (
-      <Host>
-        Language
-      </Host>
-    );
+    return <Host>Menus</Host>;
   }
 
   //--------------------------------------------------------------------------
@@ -84,14 +82,6 @@ export class EsriFooterLanguage {
   @Method() async doThing(): Promise<void> {
     return Promise.resolve(this.privateMethod());
   }
-
-  //--------------------------------------------------------------------------
-  //
-  //  Private State/Props
-  //
-  //--------------------------------------------------------------------------
-
-  @State() private state: string = "default";
 
   //--------------------------------------------------------------------------
   //

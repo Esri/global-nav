@@ -12,11 +12,11 @@ import {
 } from "@stencil/core";
 
 @Component({
-  tag: "esri-footer-language",
-  styleUrl: "esri-footer-language.scss",
+  tag: "esri-footer-info",
+  styleUrl: "esri-footer-info.scss",
   shadow: true
 })
-export class EsriFooterLanguage {
+export class EsriFooterInfo {
   //--------------------------------------------------------------------------
   //
   //  Element
@@ -49,7 +49,7 @@ export class EsriFooterLanguage {
     console.log(this.state);
     return (
       <Host>
-        Language
+        Info
       </Host>
     );
   }
