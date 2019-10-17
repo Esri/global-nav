@@ -3,8 +3,8 @@ import {
   Element,
   Prop,
   Host,
-  // Event,
-  // EventEmitter,
+  Event,
+  EventEmitter,
   Method,
   State,
   Listen,
@@ -32,7 +32,6 @@ export class EsriHeader {
 
   /** App mode will show a color bar at the top and float menu items right */
   @Prop() theme: "web" | "app" = "web";
-
   /** Set to `true` to show hamburger menu regardless of screen size  */
   @Prop() collapseMenus: boolean;
 
@@ -117,13 +116,15 @@ export class EsriHeader {
             />
           ) : null}
         </div>
-        <button
+        <div
           class={{
             "esri-header-canvas": true,
             "esri-header-canvas--white": this.scrimColor === "white"
           }}
-          tabindex="-1"
           data-open={!!this.openMenu}
+          onClick={() => {
+            this.toggleMenu.emit({open: false});
+          }}
         />
       </Host>
     );
@@ -136,7 +137,16 @@ export class EsriHeader {
   //--------------------------------------------------------------------------
   @Listen("header:menu:toggle") handleToggleMenu(event: CustomEvent) {
     const {open, el, color} = event.detail;
+    const htmlClasses = document.documentElement.classList;
     this.scrimColor = color;
+    // stop scrolling on the body when menus are open
+    if (open) {
+      htmlClasses.add("esri-header-menu-open");
+    } else {
+      htmlClasses.remove("esri-header-menu-open");
+      this.openMenu = null;
+    }
+    // close other open menus
     [
       this.menusElement,
       this.searchElement,
@@ -146,8 +156,8 @@ export class EsriHeader {
     ]
     .filter(element => element)
     .forEach(element => {
-      if (element === el) {
-        this.openMenu = open ? element : null;
+      if (element === el && open) {
+        this.openMenu = element;
       } else {
         element.open = false;
       }
@@ -159,6 +169,7 @@ export class EsriHeader {
   //  Events
   //
   //--------------------------------------------------------------------------
+  @Event({ eventName: "header:menu:toggle" }) toggleMenu: EventEmitter;
 
   //--------------------------------------------------------------------------
   //
@@ -200,7 +211,6 @@ export class EsriHeader {
   @State() private notifications;
   @State() private apps;
   @State() private account;
-
   private menusElement: HTMLEsriHeaderMenusElement;
   private searchElement: HTMLEsriHeaderSearchElement;
   private notificationsElement: HTMLEsriHeaderNotificationsElement;

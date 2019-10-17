@@ -87,6 +87,9 @@
 
 .esri-header-account-control-info {
   padding: 0 12px;
+  @include width-m() {
+    padding: 0;
+  }
 }
 
 .esri-header-account-image {
@@ -260,6 +263,10 @@
     padding-left: 10px;
     width: 50%;
   }
+}
+
+.esri-header-account-content-menu-list {
+  @include unset-ul();
 }
 
 .esri-header-account-content-item {

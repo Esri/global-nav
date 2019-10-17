@@ -77,7 +77,8 @@ export class EsriHeaderAccount {
               aria-haspopup="true"
               id="esri-header-account-control"
               onClick={() => {
-                this.open = !this.open
+                this.open = !this.open;
+                this.toggleMenu.emit({open: this.open, el: this.el});
               }}
             >
               <img class="esri-header-account-image" src={this.userImage} alt=""/>
@@ -99,26 +100,27 @@ export class EsriHeaderAccount {
                   <span class="esri-header-account-content-name">{this.userName}</span>
                   <span class="esri-header-account-content-id">{this.userId}</span>
                 </div>
-                <ul
-                  class="esri-header-account-content-menu"
-                  role="navigation"
+                <nav
                   aria-labelledby="esri-header-account-control"
+                  class="esri-header-account-content-menu"
                 >
-                  {this.menus.map(item => (
-                    <li class="esri-header-account-content-item">
-                      {
-                        item.newContext ?
-                        <a class="esri-header-account-content-link" href={item.href} target="_blank" rel="noopener">
-                          {item.label}
-                        </a>
-                        :
-                        <a class="esri-header-account-content-link" href={item.href}>
-                          {item.label}
-                        </a>
-                      }
-                    </li>
-                  ))}
-                </ul>
+                  <ul class="esri-header-account-content-menu-list">
+                    {this.menus.map(item => (
+                      <li class="esri-header-account-content-item">
+                        {
+                          item.newContext ?
+                          <a class="esri-header-account-content-link" href={item.href} target="_blank" rel="noopener">
+                            {item.label}
+                          </a>
+                          :
+                          <a class="esri-header-account-content-link" href={item.href}>
+                            {item.label}
+                          </a>
+                        }
+                      </li>
+                    ))}
+                  </ul>
+                </nav>
               </div>
               <ul
                 class="esri-header-account-signin-menu"
@@ -177,6 +179,7 @@ export class EsriHeaderAccount {
   @Event({ eventName: "header:click:account" }) account: EventEmitter;
   @Event({ eventName: "header:click:switch" }) switch: EventEmitter;
   @Event({ eventName: "header:click:signout" }) signout: EventEmitter;
+  @Event({ eventName: "header:menu:toggle" }) toggleMenu: EventEmitter;
 
   //--------------------------------------------------------------------------
   //

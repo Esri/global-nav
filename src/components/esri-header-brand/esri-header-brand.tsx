@@ -54,7 +54,7 @@ export class EsriHeaderBrand {
     return (
       <Host>
         { this.href ?
-          <a class="esri-header-brand esri-header-brand--link" href={this.href}>
+          <a class="esri-header-brand esri-header-brand--link" href={this.href} aria-label={this.label}>
             {this.formatImage()}
             {this.formatText()}
             {this.distributorImage ? separator : ""}
