@@ -1,5 +1,24 @@
-// Cou can use any SASS from Calcite Base and Calcite Colors here.
+@import "../global";
 
-:host {
-  // Declare any CSS variables here as well as styles for the <Host> element.
+.esri-footer-brand {
+  padding-bottom: 20px;
+}
+
+.esri-footer-brand-link {
+  cursor: pointer;
+  display: inline-block;
+  color: $blk-160;
+  transition: fill 150ms;
+  vertical-align: top;
+  transition: color $transition;
+  &:focus, &:hover {
+    color: $blk-240;
+  }
+}
+
+.esri-footer-brand-image {
+  display: block;
+  fill: currentColor;
+  width: 122px;
+  height: 122px;
 }

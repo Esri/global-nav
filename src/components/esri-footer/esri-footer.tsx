@@ -6,7 +6,7 @@ import {
   Event,
   EventEmitter,
   Method,
-  // State,
+  State,
   Listen,
   h
 } from "@stencil/core";
@@ -35,7 +35,9 @@ export class EsriFooter {
    * Be sure to add a jsdoc comment describing your propery for the generated readme file.
    * If your property should be hidden from documentation, you can use the `@internal` tag
    */
-  @Prop() property: string = "default";
+
+  @Prop() hideMenus: boolean = false;
+  @Prop() label: string = "";
 
   //--------------------------------------------------------------------------
   //
@@ -48,7 +50,23 @@ export class EsriFooter {
   render() {
     return (
       <Host>
-        THIS IS THE Footer
+        <div class="esri-footer">
+          {this.brand ? (
+            <esri-footer-brand {...this.brand} />
+          ) : null}
+          {this.menu ? (
+            <esri-footer-menus {...this.menu} />
+          ) : null}
+          {this.social ? (
+            <esri-footer-social {...this.social} />
+          ) : null}
+          {this.language ? (
+            <esri-footer-language {...this.language} />
+          ) : null}
+          {this.info ? (
+            <esri-footer-info {...this.info} />
+          ) : null}
+        </div>
       </Host>
     );
   }
@@ -71,17 +89,24 @@ export class EsriFooter {
 
   @Event() open: EventEmitter;
 
-  //--------------------------------------------------------------------------
-  //
-  //  Public Methods
-  //
-  //--------------------------------------------------------------------------
-
   /**
-   * Add a jsdoc comment describing your method and it's parameters (use `@param`).
+   * If using the header programatically, you can pass in the data structure
+   * to the init method, and it will create all sub elements for you.
    */
-  @Method() async doThing(): Promise<void> {
-    return Promise.resolve(this.privateMethod());
+  @Method() async init(detail): Promise<void> {
+    [
+      "brand",
+      "info",
+      "language",
+      "menu",
+      "social"
+    ].forEach(component => {
+      console.log(component, detail[component])
+      if (detail[component]) {
+        this[component] = detail[component];
+      }
+    });
+    return Promise.resolve();
   }
 
   //--------------------------------------------------------------------------
@@ -89,14 +114,9 @@ export class EsriFooter {
   //  Private State/Props
   //
   //--------------------------------------------------------------------------
-
-  // @State() private state: string = "default";
-
-  //--------------------------------------------------------------------------
-  //
-  //  Private Methods
-  //
-  //--------------------------------------------------------------------------
-
-  private privateMethod(): void {}
+  @State() private brand;
+  @State() private info;
+  @State() private language;
+  @State() private menu;
+  @State() private social;
 }

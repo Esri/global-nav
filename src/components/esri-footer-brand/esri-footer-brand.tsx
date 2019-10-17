@@ -34,7 +34,11 @@ export class EsriFooterBrand {
    * Be sure to add a jsdoc comment describing your propery for the generated readme file.
    * If your property should be hidden from documentation, you can use the `@internal` tag
    */
-  @Prop() detail: any = {};
+  @Prop() label?: string;
+  @Prop() href?: string;
+  @Prop() viewBox?: string;
+  @Prop() path?: string;
+  @Prop() imgDef?: string[] = [];
 
   //--------------------------------------------------------------------------
   //
@@ -45,7 +49,35 @@ export class EsriFooterBrand {
   componentWillUpdate(): void {}
 
   render() {
-    return <Host>Brand</Host>;
+    return (
+      <Host>
+        <a
+          class="esri-footer-brand-link"
+          href={this.href}
+          aria-label={this.label}
+        >
+          {this.path && this.imgDef.length === 0 ?
+            <esri-image
+              img-width="114"
+              img-height="114"
+              img-class="esri-footer-brand-image"
+              role="presentation"
+              viewBox={this.viewBox}
+              path={this.path}
+            />
+            :
+            <esri-image
+              img-width="114"
+              img-height="114"
+              img-class="esri-footer-brand-image"
+              role="presentation"
+              viewBox={this.viewBox}
+              imgDef={this.imgDef}
+            />
+          }
+        </a>
+      </Host>
+    );
   }
 
   //--------------------------------------------------------------------------
