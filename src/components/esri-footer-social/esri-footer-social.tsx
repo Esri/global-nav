@@ -3,13 +3,9 @@ import {
   Element,
   Prop,
   Host,
-  Event,
-  EventEmitter,
-  Method,
-  State,
-  Listen,
   h
 } from "@stencil/core";
+import { SocialLink } from "../../utils/interfaces";
 
 @Component({
   tag: "esri-footer-social",
@@ -30,74 +26,41 @@ export class EsriFooterSocial {
   //  Properties
   //
   //--------------------------------------------------------------------------
-
-  /**
-   * Be sure to add a jsdoc comment describing your propery for the generated readme file.
-   * If your property should be hidden from documentation, you can use the `@internal` tag
-   */
-  @Prop() property: string = "default";
+  @Prop() label: string = "Social Media";
+  @Prop() menu: SocialLink[] = [];
 
   //--------------------------------------------------------------------------
   //
   //  Lifecycle
   //
   //--------------------------------------------------------------------------
-
-  componentWillUpdate(): void {}
-
   render() {
-    console.log(this.state);
     return (
       <Host>
-        Social
+        <nav
+          class="esri-footer-social-nav"
+          aria-label={this.label}
+        >
+          {this.menu.map(link => (
+            <a
+              class={`esri-footer-social-link esri-footer-social-link--${link.label.toLowerCase()}`}
+              href={link.href}
+              aria-label={link.label}
+              target="_blank"
+              rel="noopener"
+            >
+              <esri-image
+                img-width="32"
+                img-height="32"
+                img-class="esri-footer-social-image"
+                role="presentation"
+                viewBox={link.image.viewBox}
+                path={link.image.path}
+              />
+            </a>
+          ))}
+        </nav>
       </Host>
     );
   }
-
-  //--------------------------------------------------------------------------
-  //
-  //  Event Listeners
-  //
-  //--------------------------------------------------------------------------
-
-  @Listen("click") onClick(e: Event) {
-    console.log(e);
-  }
-
-  //--------------------------------------------------------------------------
-  //
-  //  Events
-  //
-  //--------------------------------------------------------------------------
-
-  @Event() open: EventEmitter;
-
-  //--------------------------------------------------------------------------
-  //
-  //  Public Methods
-  //
-  //--------------------------------------------------------------------------
-
-  /**
-   * Add a jsdoc comment describing your method and it's parameters (use `@param`).
-   */
-  @Method() async doThing(): Promise<void> {
-    return Promise.resolve(this.privateMethod());
-  }
-
-  //--------------------------------------------------------------------------
-  //
-  //  Private State/Props
-  //
-  //--------------------------------------------------------------------------
-
-  @State() private state: string = "default";
-
-  //--------------------------------------------------------------------------
-  //
-  //  Private Methods
-  //
-  //--------------------------------------------------------------------------
-
-  private privateMethod(): void {}
 }

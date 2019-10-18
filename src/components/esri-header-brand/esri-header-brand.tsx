@@ -3,13 +3,9 @@ import {
   Element,
   Prop,
   Host,
-  Event,
-  EventEmitter,
-  Listen,
   h
 } from "@stencil/core";
-import { imgOrSvgDef } from "../../utils/interfaces";
-import { imgOrSvg } from "../../utils/image";
+import { EsriImageData, InlineSVG } from "../../utils/interfaces";
 
 @Component({
   tag: "esri-header-brand",
@@ -30,14 +26,13 @@ export class EsriHeaderBrand {
   //  Properties
   //
   //--------------------------------------------------------------------------
-  @Prop() detail?: any = {};
   @Prop() href?: string;
-  @Prop() distributorImage?: imgOrSvgDef;
-  @Prop() distributorImageWidth?: number;
-  @Prop() distributorImageHeight?: number;
-  @Prop() image?: imgOrSvgDef;
-  @Prop() width?: number;
-  @Prop() height?: number;
+  @Prop() distributorImage?: EsriImageData;
+  @Prop() distributorImageWidth?: string;
+  @Prop() distributorImageHeight?: string;
+  @Prop() image?: EsriImageData;
+  @Prop() width?: string;
+  @Prop() height?: string;
   @Prop() brandText?: string;
   @Prop() label?: string;
 
@@ -46,9 +41,6 @@ export class EsriHeaderBrand {
   //  Lifecycle
   //
   //--------------------------------------------------------------------------
-
-  componentWillUpdate(): void {}
-
   render() {
     const separator = <span class="distributor-image-border"></span>
     return (
@@ -73,75 +65,36 @@ export class EsriHeaderBrand {
 
   //--------------------------------------------------------------------------
   //
-  //  Event Listeners
-  //
-  //--------------------------------------------------------------------------
-
-  @Listen("click") onClick(e: Event) {
-    console.log(e);
-  }
-
-  //--------------------------------------------------------------------------
-  //
-  //  Events
-  //
-  //--------------------------------------------------------------------------
-
-  @Event() open: EventEmitter;
-
-  //--------------------------------------------------------------------------
-  //
-  //  Public Methods
-  //
-  //--------------------------------------------------------------------------
-
-  //--------------------------------------------------------------------------
-  //
-  //  Private State/Props
-  //
-  //--------------------------------------------------------------------------
-
-
-  //--------------------------------------------------------------------------
-  //
   //  Private Methods
   //
   //--------------------------------------------------------------------------
   private formatDistributorImage() {
+    const {path, viewBox} = this.getImageObj(this.distributorImage);
     return this.distributorImage ? (
-      <span class="distributor-image">
-        {
-          imgOrSvg({
-            imgDef: this.distributorImage,
-            attributes: {
-              alt: '',
-              class: 'esri-header-brand-image',
-              width: this.distributorImageWidth,
-              height: this.distributorImageHeight,
-              fill: 'currentColor'
-            }
-          })
-        }
-      </span>
+      <esri-image
+        imgClass="esri-header-brand-image"
+        wrapperClass="distributor-image"
+        imgWidth={this.distributorImageWidth}
+        imgHeight={this.distributorImageHeight}
+        img-alt=""
+        path={path}
+        viewBox={viewBox}
+      />
     ) : "";
   }
 
   private formatImage() {
+    const {path, viewBox} = this.getImageObj(this.image);
     return this.image ? (
-      <span class="brand-image">
-        {
-          imgOrSvg({
-            imgDef: this.image,
-            attributes: {
-              alt: '',
-              class: 'esri-header-brand-image',
-              width: this.width,
-              height: this.height,
-              fill: 'currentColor'
-            }
-          })
-        }
-      </span>
+      <esri-image
+        img-class="esri-header-brand-image"
+        wrapper-class="brand-image"
+        img-width={this.width}
+        img-height={this.height}
+        img-alt=""
+        path={path}
+        viewBox={viewBox}
+      />
     ) : "";
   }
 
@@ -153,5 +106,17 @@ export class EsriHeaderBrand {
           "-has-image": !!this.image
         }}>{this.brandText}</span>
     ) : "";
+  }
+
+  private getImageObj(img: EsriImageData):InlineSVG {
+    const imageData = {
+      path: img,
+      viewBox: null
+    };
+    if (typeof img !== "string" && !Array.isArray(img)) {
+      imageData.path = img.path;
+      imageData.viewBox = img.viewBox;
+    }
+    return imageData as InlineSVG;
   }
 }

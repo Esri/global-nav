@@ -1,33 +1,97 @@
-// Cou can use any SASS from Calcite Base and Calcite Colors here.
+@import "../global";
 
 :host {
-  // Declare any CSS variables here as well as styles for the <Host> element.
+  display: block !important;
+  padding-top: 5px;
+  background-color: $blk-005;
+  background-image: linear-gradient(90deg, #29bfff, #a231ff, #0deccd, #29bfff);
+  background-repeat: repeat-x;
+  background-size: 133vw 4px;
+  animation: footer-top-border 4s linear infinite;
 }
 
-  @mixin footer-link-styles() {
-    position: relative;
+@keyframes footer-top-border {
+  from {
+    background-position-x: 0;
+  }
 
-    &::after {
-      // TODO: add this as an actual dom element
-      // content: url("../shared.svg#c-arrow-right" param(--fill var(--blue)));
-      inset-block-start: calc(50% - 8px);
-      line-height: 10px;
-      margin-inline-start: -.25em;
-      opacity: 0;
-      position: absolute;
-      size: 16px;
-      transition: margin-left 300ms, margin-right 300ms, opacity 300ms;
+  to {
+    background-position-x: 133vw;
+  }
+}
 
-      &:dir(rtl) {
-        transform: scale(-1);
-        left: -13px;
-      }
-    }
+.esri-footer--wrapper {
+  cursor: default;
+  display: flex;
+  flex-wrap: wrap;
+  user-select: none;
+  position: relative;
+  z-index: auto;
+  padding-top: 24px;
 
-    &:hover, &:focus {
-      &::after {
-        margin-inline-start: .25em;
-        opacity: 1;
-      }
-    }
-  };
+  @media screen and (min-width: #{$esri-header-width}) {
+    padding-left: calc(50% - #{$esri-header-width} / 2);
+    padding-right: calc(50% - #{$esri-header-width} / 2);
+  }
+
+  &[data-hidden="true"] {
+    visibility: hidden;
+  }
+}
+
+.hidden {
+  display: none;
+}
+
+.esri-footer-section--1 {
+  padding: 0 24px;
+
+  @include width-s() {
+    display: flex;
+    flex-basis: 100%;
+  }
+
+  @include width-l() {
+    width: 25%;
+  }
+}
+
+.esri-footer-section--2 {
+  @include width-s() {
+    width: 100%;
+  }
+
+  @include width-m() {
+    width: 75%;
+  }
+
+  @include width-l() {
+    flex-grow: 1;
+  }
+}
+
+.esri-footer-section--3 {
+  box-shadow: inset 0 1px 0 0 $blk-040;
+  flex-basis: 100%;
+  margin-top: 32px;
+  padding: 32px;
+
+  @include width-m() {
+    align-items: center;
+    display: flex;
+  }
+
+  @include width-l() {
+    align-items: center;
+    display: flex;
+  }
+}
+
+@media screen and (min-width: #{$esri-header-width}) {
+  .esri-footer-section--1 {
+    padding-left: 0;
+  }
+  .esri-footer-section--3 {
+    padding: 32px 0;
+  }
+}

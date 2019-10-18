@@ -157,6 +157,34 @@ $esri-footer-social-gutter: 7px !default;
   z-index: 777;
 }
 
+@mixin footer-link-styles() {
+  position: relative;
+
+  &::after {
+    // TODO: add this as an actual dom element
+    // content: url("../shared.svg#c-arrow-right" param(--fill var(--blue)));
+    inset-block-start: calc(50% - 8px);
+    line-height: 10px;
+    margin-inline-start: -.25em;
+    opacity: 0;
+    position: absolute;
+    size: 16px;
+    transition: margin-left 300ms, margin-right 300ms, opacity 300ms;
+
+    &:dir(rtl) {
+      transform: scale(-1);
+      left: -13px;
+    }
+  }
+
+  &:hover, &:focus {
+    &::after {
+      margin-inline-start: .25em;
+      opacity: 1;
+    }
+  }
+};
+
 /* Breakpoints
 /* ========================================================================== */
 @mixin width-xl {
@@ -177,8 +205,3 @@ $esri-footer-social-gutter: 7px !default;
 @mixin width-s {
   @media screen and (max-width: 768px){ @content; }
 }
-
-/* Selectors
-/* ========================================================================== */
-// @custom-selector :--enter :focus, :hover;
-

@@ -50,23 +50,36 @@ export class EsriFooter {
   render() {
     return (
       <Host>
-        <div class="esri-footer">
-          {this.brand ? (
-            <esri-footer-brand {...this.brand} />
-          ) : null}
-          {this.menu ? (
-            <esri-footer-menus {...this.menu} />
-          ) : null}
-          {this.social ? (
-            <esri-footer-social {...this.social} />
-          ) : null}
-          {this.language ? (
-            <esri-footer-language {...this.language} />
-          ) : null}
-          {this.info ? (
-            <esri-footer-info {...this.info} />
-          ) : null}
-        </div>
+        <footer
+          class="esri-footer"
+          role="navigation"
+          aria-label="Esri footer"
+          data-hidden="false"
+        >
+          <div class="esri-footer--wrapper">
+            <div class="esri-footer-section--1">
+              {this.brand ? (
+                <esri-footer-brand {...this.brand} />
+              ) : null}
+              {this.social ? (
+                <esri-footer-social {...this.social} />
+              ) : null}
+            </div>
+            <div class="esri-footer-section--2">
+              {this.menu ? (
+                <esri-footer-menus {...this.menu} />
+              ) : null}
+            </div>
+            <div class="esri-footer-section--3">
+              {this.language ? (
+                <esri-footer-language {...this.language} />
+              ) : null}
+              {this.info ? (
+                <esri-footer-info {...this.info} />
+              ) : null}
+            </div>
+          </div>
+        </footer>
       </Host>
     );
   }
@@ -101,7 +114,6 @@ export class EsriFooter {
       "menu",
       "social"
     ].forEach(component => {
-      console.log(component, detail[component])
       if (detail[component]) {
         this[component] = detail[component];
       }

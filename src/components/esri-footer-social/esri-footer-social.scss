@@ -1,5 +1,79 @@
-// Cou can use any SASS from Calcite Base and Calcite Colors here.
+@import "../global";
 
 :host {
-  // Declare any CSS variables here as well as styles for the <Host> element.
+  @include width-s() {
+    align-self: flex-end;
+    flex-basis: 100%;
+  }
+}
+
+.esri-footer-social-nav {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: -4px;
+  width: 132px;
+  // @media (--gfoot-xs) {
+  // 	margin-inline-start: auto;
+  // 	max-width: calc(var(--footer-social-size) * 3 + var(--footer-social-gutter) * 3);
+  // }
+
+  // @media (--gfoot-s) {
+  // 	justify-content: flex-end;
+  // }
+
+  // @media (--gfoot-ml) {
+  // 	max-width: calc(var(--footer-social-size) * 3 + var(--footer-social-gutter) * 3);
+  // }
+}
+
+.esri-footer-social-link {
+  align-items: center;
+  background-color: $blk-090;
+  box-sizing: border-box;
+  color: $blk-000;
+  display: flex;
+  fill: currentColor;
+  justify-content: center;
+  margin: 8px 4px 0;
+  width: 36px;
+  height: 36px;
+  transition: background-color 150ms;
+
+  &:hover {
+    color: $blk-000;
+    background-color: $blk-120;
+  }
+}
+
+$socialColors: (
+  "facebook": #3d5a96,
+  "geonet": #127bc0,
+  "twitter": #59adeb,
+  "instagram": #da3075,
+  "linkedin": #127cb3,
+  "youtube": #cf2529,
+  "google-plus": #DF4B36,
+  "arc-germany": #4EAF4E,
+  "blogger": #F58220,
+  "email": #8DC63F,
+  "flickr": #2064D9,
+  "gisiq": #3B9DD7,
+  "pintrest": #BD081C,
+  "rss": #FF8000,
+  "tumblr": #35465C,
+  "xing": #115F5F
+);
+
+@each $name, $bg in $socialColors {
+  .esri-footer-social-link--#{$name} {
+    &:hover, &:focus {
+      background-color: $bg;
+    }
+  }
+}
+
+.esri-footer-social-image {
+  width: 20px;
+  height: 20px;
+  display: block;
 }

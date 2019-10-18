@@ -7,13 +7,15 @@
 
 import { HTMLStencilElement, JSXBase } from '@stencil/core/internal';
 import {
+  Application,
+  EsriImageData,
+  ImagePath,
+  Notification,
+  SocialLink,
+} from './utils/interfaces';
+import {
   UserMenuLink,
 } from './components/esri-header-account/esri-header-account';
-import {
-  Application,
-  imgOrSvgDef,
-  Notification,
-} from './utils/interfaces';
 
 
 export namespace Components {
@@ -29,17 +31,9 @@ export namespace Components {
     'label': string;
   }
   interface EsriFooterBrand {
-    /**
-    * Add a jsdoc comment describing your method and it's parameters (use `@param`).
-    */
-    'doThing': () => Promise<void>;
     'href'?: string;
-    'imgDef'?: string[];
-    /**
-    * Be sure to add a jsdoc comment describing your propery for the generated readme file. If your property should be hidden from documentation, you can use the `@internal` tag
-    */
     'label'?: string;
-    'path'?: string;
+    'path'?: string|string[];
     'viewBox'?: string;
   }
   interface EsriFooterBreadcrumbs {
@@ -83,14 +77,8 @@ export namespace Components {
     'doThing': () => Promise<void>;
   }
   interface EsriFooterSocial {
-    /**
-    * Add a jsdoc comment describing your method and it's parameters (use `@param`).
-    */
-    'doThing': () => Promise<void>;
-    /**
-    * Be sure to add a jsdoc comment describing your propery for the generated readme file. If your property should be hidden from documentation, you can use the `@internal` tag
-    */
-    'property': string;
+    'label': string;
+    'menu': SocialLink[];
   }
   interface EsriHeader {
     /**
@@ -270,15 +258,14 @@ export namespace Components {
   }
   interface EsriHeaderBrand {
     'brandText'?: string;
-    'detail'?: any;
-    'distributorImage'?: imgOrSvgDef;
-    'distributorImageHeight'?: number;
-    'distributorImageWidth'?: number;
-    'height'?: number;
+    'distributorImage'?: EsriImageData;
+    'distributorImageHeight'?: string;
+    'distributorImageWidth'?: string;
+    'height'?: string;
     'href'?: string;
-    'image'?: imgOrSvgDef;
+    'image'?: EsriImageData;
     'label'?: string;
-    'width'?: number;
+    'width'?: string;
   }
   interface EsriHeaderCart {
     'items': number;
@@ -368,12 +355,13 @@ export namespace Components {
     'submitText': string;
   }
   interface EsriImage {
+    'imgAlt'?: string;
     'imgClass'?: string;
-    'imgDef'?: string[];
-    'imgHeight'?: string | number;
-    'imgWidth'?: string | number;
+    'imgFill'?: string;
+    'imgHeight'?: string;
+    'imgWidth'?: string;
     'inlineImg'?: boolean;
-    'path'?: string;
+    'path'?: ImagePath;
     'viewBox'?: string;
     'wrapperClass'?: string;
   }
@@ -529,13 +517,8 @@ declare namespace LocalJSX {
   }
   interface EsriFooterBrand extends JSXBase.HTMLAttributes<HTMLEsriFooterBrandElement> {
     'href'?: string;
-    'imgDef'?: string[];
-    /**
-    * Be sure to add a jsdoc comment describing your propery for the generated readme file. If your property should be hidden from documentation, you can use the `@internal` tag
-    */
     'label'?: string;
-    'onOpen'?: (event: CustomEvent<any>) => void;
-    'path'?: string;
+    'path'?: string|string[];
     'viewBox'?: string;
   }
   interface EsriFooterBreadcrumbs extends JSXBase.HTMLAttributes<HTMLEsriFooterBreadcrumbsElement> {
@@ -567,11 +550,8 @@ declare namespace LocalJSX {
     'onOpen'?: (event: CustomEvent<any>) => void;
   }
   interface EsriFooterSocial extends JSXBase.HTMLAttributes<HTMLEsriFooterSocialElement> {
-    'onOpen'?: (event: CustomEvent<any>) => void;
-    /**
-    * Be sure to add a jsdoc comment describing your propery for the generated readme file. If your property should be hidden from documentation, you can use the `@internal` tag
-    */
-    'property'?: string;
+    'label'?: string;
+    'menu'?: SocialLink[];
   }
   interface EsriHeader extends JSXBase.HTMLAttributes<HTMLEsriHeaderElement> {
     /**
@@ -754,16 +734,14 @@ declare namespace LocalJSX {
   }
   interface EsriHeaderBrand extends JSXBase.HTMLAttributes<HTMLEsriHeaderBrandElement> {
     'brandText'?: string;
-    'detail'?: any;
-    'distributorImage'?: imgOrSvgDef;
-    'distributorImageHeight'?: number;
-    'distributorImageWidth'?: number;
-    'height'?: number;
+    'distributorImage'?: EsriImageData;
+    'distributorImageHeight'?: string;
+    'distributorImageWidth'?: string;
+    'height'?: string;
     'href'?: string;
-    'image'?: imgOrSvgDef;
+    'image'?: EsriImageData;
     'label'?: string;
-    'onOpen'?: (event: CustomEvent<any>) => void;
-    'width'?: number;
+    'width'?: string;
   }
   interface EsriHeaderCart extends JSXBase.HTMLAttributes<HTMLEsriHeaderCartElement> {
     'items'?: number;
@@ -846,12 +824,13 @@ declare namespace LocalJSX {
     'submitText'?: string;
   }
   interface EsriImage extends JSXBase.HTMLAttributes<HTMLEsriImageElement> {
+    'imgAlt'?: string;
     'imgClass'?: string;
-    'imgDef'?: string[];
-    'imgHeight'?: string | number;
-    'imgWidth'?: string | number;
+    'imgFill'?: string;
+    'imgHeight'?: string;
+    'imgWidth'?: string;
     'inlineImg'?: boolean;
-    'path'?: string;
+    'path'?: ImagePath;
     'viewBox'?: string;
     'wrapperClass'?: string;
   }
