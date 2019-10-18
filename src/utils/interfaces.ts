@@ -1,9 +1,11 @@
-export interface SvgDef {
-  viewBox: string;
-  path: string[];
+export type ImagePath = string|string[];
+
+export type InlineSVG = {
+  viewBox?: string;
+  path: ImagePath;
 }
 
-export type imgOrSvgDef = string | SvgDef;
+export type EsriImageData = InlineSVG | ImagePath;
 
 export type Application = {
   itemId: string,
@@ -20,3 +22,9 @@ export type Notification = {
   text: string;
   date?: string;
 };
+
+export type SocialLink = {
+  label: string,
+  href: string,
+  image: InlineSVG
+}
