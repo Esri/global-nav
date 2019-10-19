@@ -54,6 +54,7 @@ export class EsriFooterSocial {
                 img-height="32"
                 img-class="esri-footer-social-image"
                 role="presentation"
+                inlineImg={Array.isArray(link.image.path)}
                 viewBox={link.image.viewBox}
                 path={link.image.path}
               />

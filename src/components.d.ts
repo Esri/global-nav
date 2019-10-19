@@ -9,6 +9,7 @@ import { HTMLStencilElement, JSXBase } from '@stencil/core/internal';
 import {
   Application,
   EsriImageData,
+  FooterMenu,
   ImagePath,
   Notification,
   SocialLink,
@@ -68,13 +69,14 @@ export namespace Components {
   }
   interface EsriFooterMenus {
     /**
-    * Be sure to add a jsdoc comment describing your propery for the generated readme file. If your property should be hidden from documentation, you can use the `@internal` tag
-    */
-    'detail': any;
-    /**
     * Add a jsdoc comment describing your method and it's parameters (use `@param`).
     */
     'doThing': () => Promise<void>;
+    /**
+    * Be sure to add a jsdoc comment describing your propery for the generated readme file. If your property should be hidden from documentation, you can use the `@internal` tag
+    */
+    'label': string;
+    'menu': FooterMenu[];
   }
   interface EsriFooterSocial {
     'label': string;
@@ -546,7 +548,8 @@ declare namespace LocalJSX {
     /**
     * Be sure to add a jsdoc comment describing your propery for the generated readme file. If your property should be hidden from documentation, you can use the `@internal` tag
     */
-    'detail'?: any;
+    'label'?: string;
+    'menu'?: FooterMenu[];
     'onOpen'?: (event: CustomEvent<any>) => void;
   }
   interface EsriFooterSocial extends JSXBase.HTMLAttributes<HTMLEsriFooterSocialElement> {

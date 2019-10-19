@@ -12,18 +12,7 @@
   flex-wrap: wrap;
   margin-left: -4px;
   width: 132px;
-  // @media (--gfoot-xs) {
-  // 	margin-inline-start: auto;
-  // 	max-width: calc(var(--footer-social-size) * 3 + var(--footer-social-gutter) * 3);
-  // }
-
-  // @media (--gfoot-s) {
-  // 	justify-content: flex-end;
-  // }
-
-  // @media (--gfoot-ml) {
-  // 	max-width: calc(var(--footer-social-size) * 3 + var(--footer-social-gutter) * 3);
-  // }
+  margin-top: 32px;
 }
 
 .esri-footer-social-link {

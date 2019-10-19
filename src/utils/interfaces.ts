@@ -28,3 +28,13 @@ export type SocialLink = {
   href: string,
   image: InlineSVG
 }
+
+export type FooterLink = {
+  label: string,
+  href: string
+}
+
+export type FooterMenu = {
+  label: string,
+  menu: FooterLink[]
+}

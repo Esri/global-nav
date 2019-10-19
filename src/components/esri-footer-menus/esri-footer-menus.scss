@@ -1,5 +1,131 @@
-// Cou can use any SASS from Calcite Base and Calcite Colors here.
+@import "../global";
 
-:host {
-  // Declare any CSS variables here as well as styles for the <Host> element.
+
+.esri-footer-menu-list {
+  @include unset-ul();
+
+  @include width-m() {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  @include width-l() {
+    display: flex;
+  }
+}
+
+.esri-footer-menu-item {
+  @include unset-l();
+
+  @include width-m() {
+    flex-basis: calc(100% / 3);
+  }
+
+  @include width-l() {
+    flex-basis: calc(100% / 5);
+  }
+}
+
+.esri-footer-menu-link {
+  @include font-size(-4, 1);
+  font-weight: 500;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  transition: min-width 300ms;
+
+  // todo: deal with addition of chevroclude @inlcude width-s() {
+  //   // background-image: url("../../shared/shared.svg#c-chevron-down" param(--fill var(--mono-40)));
+  //   // todo: deal with addition of chevron
+  //   background-position-y: calc(50% + 16px / 2);
+  //   background-repeat: no-repeat;
+  //   background-size: 16px 16px;
+  //   color: var(--mono-20);
+  //   cursor: pointer;
+  //   display: block;
+  //   padding-block: 30px calc(30px - 16px);
+
+  //   &:dir(ltr) {
+  //     background-position-x: 100%;
+  //   }
+
+  //   &:dir(rtl) {
+  //     background-position-x: 0;
+  //   }
+  //   &[aria-expanded="true"] {
+  //     background-image: url("../../shared/shared.svg#c-chevron-up" param(--fill var(--mono-40)));
+  //   }
+  // }
+
+  @include width-m () {
+    min-width: 60%;
+  }
+
+  @include width-l () {
+    min-width: 44%;
+  }
+
+  @include width-ml () {
+    box-shadow: inset 0 -1px 0 0 $blk-030;
+    display: inline-block;
+    height: 25px;
+    margin-block-end: 10px;
+  }
+}
+
+/* Global Footer Submenu */
+/* ========================================================================== */
+
+.esri-footer-menu--sub {
+  @include width-s() {
+    max-height: 200vh;
+    overflow: hidden;
+    transition: max-height var(--smooth-speed) ease-in-out;
+
+    &:not([aria-hidden="false"]) {
+      max-height: 0;
+      transition: max-height var(--smooth-speed), visibility 0s var(--smooth-speed);
+      visibility: hidden;
+    }
+  }
+}
+
+.esri-footer-menu-list--sub {
+  @include unset-l();
+
+  @include width-s() {
+    padding-inline-start: 20px;
+  }
+
+  @include width-m () {
+    padding-block-end: 32px;
+  }
+}
+
+.esri-footer-menu-link--sub {
+  @include unset-a();
+  @include footer-link-styles();
+  @include font-size(-2);
+  padding: 4px 0;
+
+  &:hover, &:focus {
+    color: $ui-blue;
+  }
+
+  @include width-s() {
+    box-shadow: inset 0 -1px 0 0 var(--mono-88);
+    color: var(--mono-35);
+    display: block;
+    padding-block: calc((50px - 16px) / 2);
+  }
+
+  @include width-m () {
+    display: inline-block;
+    font-weight: 300;
+  }
+
+  @include width-l () {
+    display: inline-block;
+    font-weight: 300;
+    padding-block: 8px;
+  }
 }

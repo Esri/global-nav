@@ -14,7 +14,6 @@
   from {
     background-position-x: 0;
   }
-
   to {
     background-position-x: 133vw;
   }
@@ -53,6 +52,7 @@
 
   @include width-l() {
     width: 25%;
+    max-width: 250px;
   }
 }
 
