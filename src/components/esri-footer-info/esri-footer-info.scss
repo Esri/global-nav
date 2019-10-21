@@ -1,5 +1,60 @@
-// Cou can use any SASS from Calcite Base and Calcite Colors here.
+@import "../global";
 
 :host {
-  // Declare any CSS variables here as well as styles for the <Host> element.
+  padding: 0 1rem;
+
+  @include width-m() {
+    flex-grow: 1;
+  }
+
+  @include width-l() {
+    flex-grow: 1;
+  }
+}
+
+.esri-footer-info-list {
+  @include unset-l();
+
+  @include width-m() {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  @include width-l() {
+    display: flex;
+  }
+}
+
+.esri-footer-info-item {
+  @include width-s() {
+    display: inline-block;
+    white-space: nowrap;
+  }
+
+  @include width-l() {
+    width: 20%;
+  }
+}
+
+.esri-footer-info-link {
+  @include unset-a();
+  @include footer-link-styles();
+  @include font-size(-2);
+  display: inline-block;
+  font-weight: 300;
+  padding: 4px 0;
+  transition: font-size 300ms;
+  white-space: nowrap;
+
+  &:hover, &:focus {
+    color: var(--blue);
+  }
+
+  @include width-s() {
+    margin-inline-end: 30px;
+  }
+
+  @include width-m() {
+    margin-inline-end: 35px;
+  }
 }

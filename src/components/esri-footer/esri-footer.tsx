@@ -118,6 +118,7 @@ export class EsriFooter {
         this[component] = detail[component];
       }
     });
+    console.log(detail.info)
     return Promise.resolve();
   }
 

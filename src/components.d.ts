@@ -9,6 +9,7 @@ import { HTMLStencilElement, JSXBase } from '@stencil/core/internal';
 import {
   Application,
   EsriImageData,
+  FooterLink,
   FooterMenu,
   ImagePath,
   Notification,
@@ -55,7 +56,8 @@ export namespace Components {
     /**
     * Be sure to add a jsdoc comment describing your propery for the generated readme file. If your property should be hidden from documentation, you can use the `@internal` tag
     */
-    'property': string;
+    'label': string;
+    'menu': FooterLink[];
   }
   interface EsriFooterLanguage {
     /**
@@ -531,11 +533,12 @@ declare namespace LocalJSX {
     'property'?: string;
   }
   interface EsriFooterInfo extends JSXBase.HTMLAttributes<HTMLEsriFooterInfoElement> {
-    'onOpen'?: (event: CustomEvent<any>) => void;
     /**
     * Be sure to add a jsdoc comment describing your propery for the generated readme file. If your property should be hidden from documentation, you can use the `@internal` tag
     */
-    'property'?: string;
+    'label'?: string;
+    'menu'?: FooterLink[];
+    'onOpen'?: (event: CustomEvent<any>) => void;
   }
   interface EsriFooterLanguage extends JSXBase.HTMLAttributes<HTMLEsriFooterLanguageElement> {
     'onOpen'?: (event: CustomEvent<any>) => void;
