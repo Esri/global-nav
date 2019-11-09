@@ -14,33 +14,28 @@ function $dispatch(target, type, detail) {
 
 function $enableFocusRing(target) {
 	// retooled from https://github.com/jonathantneal/js-focus-ring
-
 	let keyboardThrottleTimeoutID;
 
-	const activeElements = [];
-
-	target.addEventListener('blur', () => {
-		activeElements.forEach((activeElement) => {
-			activeElement.removeAttribute('js-focus');
-			activeElement.removeAttribute('js-focus-ring');
-		});
+	target.addEventListener('blur', (event) => {
+		if (event.target instanceof Element) {
+			event.target.removeAttribute('js-focus');
+			event.target.removeAttribute('js-focus-ring');
+		}
 	}, true);
 
-	target.addEventListener('focus', () => {
+	target.addEventListener('focus', (event) => {
 		const activeElement = document.activeElement;
 
-		if (activeElement instanceof Element) {
+		if (activeElement instanceof Element && 'BODY' !== activeElement.tagName) {
 			activeElement.setAttribute('js-focus', '');
 
 			if (keyboardThrottleTimeoutID) {
 				activeElement.setAttribute('js-focus-ring', '');
 			}
-
-			activeElements.push(activeElement);
 		}
 	}, true);
 
-	target.addEventListener('keydown', () => {
+	window.addEventListener('keydown', () => {
 		keyboardThrottleTimeoutID = clearTimeout(keyboardThrottleTimeoutID) || setTimeout(() => {
 			keyboardThrottleTimeoutID = 0;
 		}, 100);
