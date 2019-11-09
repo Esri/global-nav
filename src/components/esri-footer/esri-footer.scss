@@ -84,6 +84,11 @@
   @include width-l() {
     align-items: center;
     display: flex;
+    esri-footer-language {
+      width: 25%;
+      max-width: 250px;
+      padding: 0 24px 0 0;
+    }
   }
 }
 

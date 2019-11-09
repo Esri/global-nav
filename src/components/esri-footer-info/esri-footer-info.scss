@@ -1,7 +1,7 @@
 @import "../global";
 
 :host {
-  padding: 0 1rem;
+  padding: 0;
 
   @include width-m() {
     flex-grow: 1;
@@ -37,8 +37,7 @@
 }
 
 .esri-footer-info-link {
-  @include unset-a();
-  @include footer-link-styles();
+  // @include footer-link();
   @include font-size(-2);
   display: inline-block;
   font-weight: 300;

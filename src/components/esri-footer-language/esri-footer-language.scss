@@ -1,5 +1,144 @@
-// Cou can use any SASS from Calcite Base and Calcite Colors here.
+@import "../global";
 
-:host {
-  // Declare any CSS variables here as well as styles for the <Host> element.
+.esri-footer-language {
+
+}
+
+.esri-footer-language-control {
+  @include unset-button();
+
+  // background-image: url("../../shared/shared.svg#c-globe" param(--fill $blk-000));
+  // background-position: calc(100% - 12px) 50%;
+  // background-repeat: no-repeat;
+  // background-size: 20px 20px;
+  background-color: $ui-blue;
+  border-style: none;
+  color: $blk-000;
+  display: inline-block;
+  font-size: 16px / 18px;
+  font-weight: 300;
+  padding: 11px 20px;
+  padding-inline-end: 40px;
+  white-space: nowrap;
+
+  &:hover, &:focus {
+    background-color: $ui-blue-hover;
+  }
+}
+
+.esri-footer-language-dialog-barrier {
+  inset: 0;
+  position: fixed;
+  transition: visibility 0ms linear $transition;
+  visibility: hidden;
+
+  &[aria-expanded="true"] {
+    visibility: visible;
+    transition-delay: 0ms;
+  }
+}
+
+.esri-footer-language-dialog-cancel-canvas {
+  @include normalize-button();
+  @include unset-button();
+
+  background-color: rgba(0, 0, 0, .5);
+  inset: 0;
+  pointer-events: none;
+  position: fixed;
+  size: 100%;
+  z-index: 99;
+  opacity: 0;
+  transition: opacity $transition ease-in-out;
+
+  .esri-footer-language-dialog-barrier[aria-expanded="true"] & {
+    opacity: 1;
+  }
+}
+
+.esri-footer-language-dialog {
+  color: var(--mono-0) $blk-000;
+  opacity: 0;
+  padding: var(--g-language-block-padding) var(--g-language-inline-padding);
+  position: fixed;
+  transition: transform var(--fast-speed) ease-in-out, visibility 0ms linear var(--fast-speed), opacity var(--fast-speed) ease-in-out;
+  transform: translate3d(0, 20px, 0);
+  visibility: hidden;
+  z-index: 100;
+
+  &, & * {
+    box-sizing: border-box;
+  }
+
+  .esri-footer-language-dialog-barrier[aria-expanded="true"] & {
+    opacity: 1;
+    transform: translate3d(0,0,0);
+    transition-delay: 0ms;
+    visibility: visible;
+  }
+
+  @media (width > 580px) {
+    inset-start: calc(50% - var(--g-language-height) / 2) calc(50% - var(--g-language-width) / 2);
+    size: var(--g-language-width) var(--g-language-height);
+  }
+
+  @media (width <= 580px) {
+    inset-block-end: 0;
+  }
+}
+
+.esri-footer-language-dialog-message {
+  font-size: 20px / 30px;
+}
+
+.esri-footer-language-dialog-choice {
+  appearance: none;
+  background-color: $blk-000;
+  // background-image: url("../../shared/shared.svg#c-select" param(--fill var(--mono-40)));
+  // background-position: calc(100% - 4px) center;
+  // background-repeat: no-repeat;
+  background-size: 16px;
+  border-radius: 0;
+  border-style: none;
+  border: 1px solid var(--mono-68);
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.075);
+  display: inline;
+  font-family: inherit;
+  font-size: 14px;
+  padding-inline: 16px;
+  margin: 0;
+
+  &:focus {
+    border-color: $ui-blue;
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.075), 0 0 5px rgba(81, 167, 232, 0.5);
+    outline: none;
+  }
+}
+
+.esri-footer-language-dialog-submit {
+  @include normalize-button();
+  @include unset-button();
+
+  color: $blk-000;
+  display: inline;
+  font-size: 13px;
+  vertical-align: middle;
+
+  &:hover, &:focus {
+    color: $ui-blue;
+    // background-color;
+  }
+}
+
+.esri-footer-language-dialog-close-image {
+  display: block;
+  size: var(--g-language-close-size);
+}
+
+.esri-footer-language-dialog-close {
+  @include normalize-button();
+  @include unset-button();
+  cursor: pointer;
+  position: absolute;
+  size: var(--g-language-close-size);
 }
