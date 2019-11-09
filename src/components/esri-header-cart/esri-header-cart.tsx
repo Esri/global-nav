@@ -1,5 +1,5 @@
 import { Component, Element, State, Watch, Prop, Host, Listen, h } from "@stencil/core";
-import { shoppingCart24 } from "@esri/calcite-ui-icons";
+import { shoppingCart24 } from "@esri/calcite-ui-icons/js/shoppingCart24";
 @Component({
   tag: "esri-header-cart",
   styleUrl: "esri-header-cart.scss",
