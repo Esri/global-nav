@@ -27,6 +27,7 @@
 | `header:click:signin`  |             | `CustomEvent<any>` |
 | `header:click:signout` |             | `CustomEvent<any>` |
 | `header:click:switch`  |             | `CustomEvent<any>` |
+| `header:menu:toggle`   |             | `CustomEvent<any>` |
 
 
 ## Methods

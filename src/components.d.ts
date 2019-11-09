@@ -12,6 +12,7 @@ import {
   FooterLink,
   FooterMenu,
   ImagePath,
+  LanguageOption,
   Notification,
   SocialLink,
 } from './utils/interfaces';
@@ -49,25 +50,18 @@ export namespace Components {
     'property': string;
   }
   interface EsriFooterInfo {
-    /**
-    * Add a jsdoc comment describing your method and it's parameters (use `@param`).
-    */
-    'doThing': () => Promise<void>;
-    /**
-    * Be sure to add a jsdoc comment describing your propery for the generated readme file. If your property should be hidden from documentation, you can use the `@internal` tag
-    */
     'label': string;
     'menu': FooterLink[];
   }
   interface EsriFooterLanguage {
-    /**
-    * Add a jsdoc comment describing your method and it's parameters (use `@param`).
-    */
-    'doThing': () => Promise<void>;
-    /**
-    * Be sure to add a jsdoc comment describing your propery for the generated readme file. If your property should be hidden from documentation, you can use the `@internal` tag
-    */
-    'property': string;
+    'buttonLabel': string;
+    'closeLabel': string;
+    'greetingLabel': string;
+    'label': string;
+    'messageLabel': string;
+    'options': LanguageOption[];
+    'optionsLabel': string;
+    'submitLabel': string;
   }
   interface EsriFooterMenus {
     /**
@@ -533,19 +527,18 @@ declare namespace LocalJSX {
     'property'?: string;
   }
   interface EsriFooterInfo extends JSXBase.HTMLAttributes<HTMLEsriFooterInfoElement> {
-    /**
-    * Be sure to add a jsdoc comment describing your propery for the generated readme file. If your property should be hidden from documentation, you can use the `@internal` tag
-    */
     'label'?: string;
     'menu'?: FooterLink[];
-    'onOpen'?: (event: CustomEvent<any>) => void;
   }
   interface EsriFooterLanguage extends JSXBase.HTMLAttributes<HTMLEsriFooterLanguageElement> {
-    'onOpen'?: (event: CustomEvent<any>) => void;
-    /**
-    * Be sure to add a jsdoc comment describing your propery for the generated readme file. If your property should be hidden from documentation, you can use the `@internal` tag
-    */
-    'property'?: string;
+    'buttonLabel'?: string;
+    'closeLabel'?: string;
+    'greetingLabel'?: string;
+    'label'?: string;
+    'messageLabel'?: string;
+    'options'?: LanguageOption[];
+    'optionsLabel'?: string;
+    'submitLabel'?: string;
   }
   interface EsriFooterMenus extends JSXBase.HTMLAttributes<HTMLEsriFooterMenusElement> {
     /**

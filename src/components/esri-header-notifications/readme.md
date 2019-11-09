@@ -19,6 +19,7 @@
 | Event                                | Description | Type               |
 | ------------------------------------ | ----------- | ------------------ |
 | `header:click:notifications:dismiss` |             | `CustomEvent<any>` |
+| `header:menu:toggle`                 |             | `CustomEvent<any>` |
 
 
 ## Dependencies

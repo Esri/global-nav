@@ -13,9 +13,9 @@
 
 ## Events
 
-| Event  | Description | Type               |
-| ------ | ----------- | ------------------ |
-| `open` |             | `CustomEvent<any>` |
+| Event                | Description | Type               |
+| -------------------- | ----------- | ------------------ |
+| `header:menu:toggle` |             | `CustomEvent<any>` |
 
 
 ## Methods
@@ -54,6 +54,8 @@ graph TD;
   esri-header --> esri-header-notifications
   esri-header --> esri-header-apps
   esri-header --> esri-header-account
+  esri-header-brand --> esri-image
+  esri-header-apps --> esri-header-app
   style esri-header fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

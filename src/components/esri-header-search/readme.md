@@ -5,29 +5,22 @@
 
 ## Properties
 
-| Property | Attribute | Description                                                                                                                                                                 | Type  | Default |
-| -------- | --------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----- | ------- |
-| `detail` | `detail`  | Be sure to add a jsdoc comment describing your propery for the generated readme file. If your property should be hidden from documentation, you can use the `@internal` tag | `any` | `{}`    |
+| Property          | Attribute          | Description                              | Type      | Default     |
+| ----------------- | ------------------ | ---------------------------------------- | --------- | ----------- |
+| `action`          | `action`           | Form action url                          | `string`  | `""`        |
+| `cancelText`      | `cancel-text`      | Translated cancel text                   | `string`  | `"Cancel"`  |
+| `formText`        | `form-text`        | Translated string for aria label of form | `string`  | `"Esri"`    |
+| `open`            | `open`             | Open state of the search UI              | `boolean` | `undefined` |
+| `placeholderText` | `placeholder-text` | Translated input label text              | `string`  | `"Search"`  |
+| `searchText`      | `search-text`      | Translated aria label for search icon    | `string`  | `"Search"`  |
+| `submitText`      | `submit-text`      | Translated submit text                   | `string`  | `""`        |
 
 
 ## Events
 
-| Event  | Description | Type               |
-| ------ | ----------- | ------------------ |
-| `open` |             | `CustomEvent<any>` |
-
-
-## Methods
-
-### `doThing() => Promise<void>`
-
-Add a jsdoc comment describing your method and it's parameters (use `@param`).
-
-#### Returns
-
-Type: `Promise<void>`
-
-
+| Event                | Description | Type               |
+| -------------------- | ----------- | ------------------ |
+| `header:menu:toggle` |             | `CustomEvent<any>` |
 
 
 ## Dependencies

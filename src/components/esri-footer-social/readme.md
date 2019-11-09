@@ -5,30 +5,29 @@
 
 ## Properties
 
-| Property   | Attribute  | Description                                                                                                                                                                 | Type     | Default     |
-| ---------- | ---------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- | ----------- |
-| `property` | `property` | Be sure to add a jsdoc comment describing your propery for the generated readme file. If your property should be hidden from documentation, you can use the `@internal` tag | `string` | `"default"` |
+| Property | Attribute | Description | Type           | Default          |
+| -------- | --------- | ----------- | -------------- | ---------------- |
+| `label`  | `label`   |             | `string`       | `"Social Media"` |
+| `menu`   | --        |             | `SocialLink[]` | `[]`             |
 
 
-## Events
+## Dependencies
 
-| Event  | Description | Type               |
-| ------ | ----------- | ------------------ |
-| `open` |             | `CustomEvent<any>` |
+### Used by
 
+ - [esri-footer](../esri-footer)
 
-## Methods
+### Depends on
 
-### `doThing() => Promise<void>`
+- [esri-image](../esri-image)
 
-Add a jsdoc comment describing your method and it's parameters (use `@param`).
-
-#### Returns
-
-Type: `Promise<void>`
-
-
-
+### Graph
+```mermaid
+graph TD;
+  esri-footer-social --> esri-image
+  esri-footer --> esri-footer-social
+  style esri-footer-social fill:#f9f,stroke:#333,stroke-width:4px
+```
 
 ----------------------------------------------
 

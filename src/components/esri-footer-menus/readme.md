@@ -5,9 +5,10 @@
 
 ## Properties
 
-| Property | Attribute | Description                                                                                                                                                                 | Type  | Default |
-| -------- | --------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----- | ------- |
-| `detail` | `detail`  | Be sure to add a jsdoc comment describing your propery for the generated readme file. If your property should be hidden from documentation, you can use the `@internal` tag | `any` | `{}`    |
+| Property | Attribute | Description                                                                                                                                                                 | Type           | Default |
+| -------- | --------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------- | ------- |
+| `label`  | `label`   | Be sure to add a jsdoc comment describing your propery for the generated readme file. If your property should be hidden from documentation, you can use the `@internal` tag | `string`       | `""`    |
+| `menu`   | --        |                                                                                                                                                                             | `FooterMenu[]` | `[]`    |
 
 
 ## Events
@@ -29,6 +30,19 @@ Type: `Promise<void>`
 
 
 
+
+## Dependencies
+
+### Used by
+
+ - [esri-footer](../esri-footer)
+
+### Graph
+```mermaid
+graph TD;
+  esri-footer --> esri-footer-menus
+  style esri-footer-menus fill:#f9f,stroke:#333,stroke-width:4px
+```
 
 ----------------------------------------------
 

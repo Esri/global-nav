@@ -5,16 +5,10 @@
 
 ## Properties
 
-| Property | Attribute | Description                                                                                                                                                                 | Type  | Default |
-| -------- | --------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----- | ------- |
-| `detail` | `detail`  | Be sure to add a jsdoc comment describing your propery for the generated readme file. If your property should be hidden from documentation, you can use the `@internal` tag | `any` | `{}`    |
-
-
-## Events
-
-| Event  | Description | Type               |
-| ------ | ----------- | ------------------ |
-| `open` |             | `CustomEvent<any>` |
+| Property | Attribute | Description                                                                                                                                                                 | Type      | Default     |
+| -------- | --------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------- | ----------- |
+| `detail` | `detail`  | Be sure to add a jsdoc comment describing your propery for the generated readme file. If your property should be hidden from documentation, you can use the `@internal` tag | `any`     | `{}`        |
+| `open`   | `open`    |                                                                                                                                                                             | `boolean` | `undefined` |
 
 
 ## Methods
