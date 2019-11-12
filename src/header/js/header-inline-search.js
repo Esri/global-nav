@@ -60,8 +60,7 @@ export default () => {
 	/* ====================================================================== */
 
 	const $input = $('input', {
-		class: `${prefix}-input`, id: `${prefix}-input`,
-		aria: {labelledby: `${prefix}-input`}
+		class: `${prefix}-input`, id: `${prefix}-input`
 	});
 
 	$input.addEventListener("keyup", (e) => {
@@ -92,7 +91,7 @@ export default () => {
 		} catch (e) {
 			return input;
 		}
-	}; 
+	};
 
 	/* Search: Content
 	/* ====================================================================== */
@@ -226,15 +225,16 @@ export default () => {
 
 			searchState.image = $search.md;
 			searchState.action = detail.dialog && detail.dialog.action;
-
-			$input.setAttribute('placeholder', (detail.dialog && detail.dialog.queryLabel) || "");
+			const queryLabel = (detail.dialog && detail.dialog.queryLabel) || "Search";
+			$input.setAttribute('placeholder', queryLabel);
+			$input.setAttribute('aria-label', queryLabel);
 			$closeBtn.setAttribute('aria-label', (detail.dialog && detail.dialog.cancelLabel) || "");
 
 			if (detail.dialog) {
 				detail.dialog.prefix = 'esri-header-search-dialog';
 			}
 		} else {
-			$control.setAttribute("tabindex", "-1"); 
+			$control.setAttribute("tabindex", "-1");
 		}
 	});
 

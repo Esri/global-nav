@@ -23,10 +23,7 @@ export default () => {
 	/* Apps: Control
 	/* ====================================================================== */
 
-	const $appSwitcherIcon = $('span', {
-		title: "App Launcher",
-		"aria-label": "App Launcher Icon"
-	});
+	const $appSwitcherIcon = $('span');
 
 	const $controlContainer = $('button', {
 		class: `${prefix}-control`, id: `${prefix}-control`,
@@ -662,24 +659,16 @@ export default () => {
 		if (detail.disableDragAndDrop || !isDesktop) ddState.disabled = true;
 		if (detail.text) {
 			ddState.i18n = detail.text || {};
-			if (ddState.i18n.title) {
-				$appSwitcherIcon.setAttribute("title", ddState.i18n.title);
-				$appSwitcherIcon.setAttribute("aria-label", ddState.i18n.title);
-			}
 		}
 
 		if (!detail.isLoading) {
 			$target.appendChild($content);
 			$control.className = `${prefix}-control`;
  			$control.setAttribute("tabindex", "0");
-
 			$($control, {aria: {label: detail.label}});
 
 			const numberOfApps = detail.primary.length;
 			const dropdownWidth = ` dropdown-width-${(numberOfApps < 3 ? numberOfApps : 3)}`;
-			// Variables to Assist with Moving Apps Between Primary and Secondary Groups
-			const primaryAppCount = 6;
-			const primaryAppsOverflowed = false;
 
 			// App Icons
 
