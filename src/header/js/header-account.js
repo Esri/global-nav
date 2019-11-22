@@ -97,7 +97,7 @@ export default () => {
 	// Menu
 	const $contentMenu = $('ul', {
 		class: `${prefix}-content-menu`,
-		role: 'navigation', aria: {labelledby: `${prefix}-control`}
+		aria: {labelledby: `${prefix}-control`}
 	});
 
 	// Switch Control

@@ -30,8 +30,7 @@ export default (data, prefix) => {
 				},
 				$('ul',
 					{
-						class: `${prefix}-menu-list--sub`,
-						role: 'presentation'
+						class: `${prefix}-menu-list--sub`
 					},
 					// Submenu Items
 					...item.menu.map(
@@ -54,8 +53,7 @@ export default (data, prefix) => {
 		},
 		$('ul',
 			{
-				class: `${prefix}-menu-list`,
-				role: 'presentation'
+				class: `${prefix}-menu-list`
 			},
 			...links
 		)

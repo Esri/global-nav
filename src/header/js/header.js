@@ -21,7 +21,7 @@ export default (data) => {
 	/* Canvas
 	/* ====================================================================== */
 
-	const $headerCanvas = $('button', {
+	const $headerCanvas = $('div', {
 		class: 'esri-header-canvas',
 		tabindex: '-1',
 		data: {open: false}

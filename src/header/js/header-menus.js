@@ -44,7 +44,7 @@ export default ({variant = 'desktop'}) => {
 	/* ====================================================================== */
 
 	const createNavLink = (link) => {
-		const $link = $('a',
+		const $link = $('button',
 			{class: `${prefix}-${link.class}`, href: link.props.href || 'javascript:;'},
 			link.icon || "",
 			link.label
@@ -107,7 +107,7 @@ export default ({variant = 'desktop'}) => {
 		if (!tiles.length) return null;
 		return $('ul', {
 			class: `${prefix}-sublist--featured`,
-			role: 'navigation', aria: {labelledby: `${prefix}-link-${variant}-${uuid}-${suuid}`},
+			aria: {labelledby: `${prefix}-link-${variant}-${uuid}-${suuid}`},
 			data: {filled: `${tiles.slice(0, 4).length}`}
 		}, ...tiles.slice(0, 4).map(createTile));
 	};
@@ -130,7 +130,7 @@ export default ({variant = 'desktop'}) => {
 					$('ul',
 						{
 							class: `${prefix}-list`,
-							role: 'navigation', aria: {labelledby: 'esri-header-brand'}
+							aria: {labelledby: 'esri-header-brand'}
 						},
 						...menu.map((item, suuid) => {
 							/* Global Navigation: Menus: Link
@@ -334,7 +334,7 @@ export default ({variant = 'desktop'}) => {
 			$('ul',
 				{
 					class: `${prefix}-sublist`,
-					role: 'navigation', aria: {labelledby: `${prefix}-link-${variant}-${uuid}-${suuid}`}
+					aria: {labelledby: `${prefix}-link-${variant}-${uuid}-${suuid}`}
 				},
 				/* Global Navigation: Menus: Sublink
 				/* ============================== */
@@ -363,7 +363,7 @@ export default ({variant = 'desktop'}) => {
 					$('div', {class: `${prefix}-sublist--col`, 'data-coltype': menuType, 'data-menuborder': menuBorder},
 						$('ul', {
 							class: `${prefix}-sublist`, 'data-menutype': menuType,
-							role: 'navigation', aria: {labelledby: `${prefix}-link-${variant}-${uuid}-${suuid}`}
+							aria: {labelledby: `${prefix}-link-${variant}-${uuid}-${suuid}`}
 						}, ...menuRenderer(col.items))
 					)
 				);
@@ -446,7 +446,7 @@ export default ({variant = 'desktop'}) => {
 								'aria-current': id === 0 ? 'true' : 'false',
 								'data-parent': `${prefix}-${variant}-submenu-${uuid}-${suuid}`
 							}, 
-								$('h3', {class: `${prefix}-flyout--categories-item_header`, 
+								$('button', {class: `${prefix}-flyout--categories-item_header`, 
 									click: (e) => { 
 										swapFlyoutContent(e);
 									}
