@@ -17,7 +17,8 @@ export default (data, prefix) => {
 		(item, index) => $('li', {class: `${prefix}-menu-item`, id: `${prefix}-menu-link--${index}`},
 			$('span',
 				{
-					class: `${prefix}-menu-link`
+					class: `${prefix}-menu-link`,
+					id: `${prefix}-heading-${index}`
 				},
 				item.label
 			),
@@ -34,11 +35,11 @@ export default (data, prefix) => {
 					// Submenu Items
 					...item.menu.map(
 						(subitem) => $('li', {class: `${prefix}-menu-item--sub`},
-							$('a', {class: `${prefix}-menu-link--sub`, href: subitem.href},
+							$('a', {class: `${prefix}-menu-link--sub`, href: subitem.href, 'aria-labeledby' : `${prefix}-menu--sub--${index}`},
 								subitem.label
 							)
 						)
-					)
+					),
 				)
 			)
 		)
