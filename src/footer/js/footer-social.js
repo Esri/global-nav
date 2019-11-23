@@ -18,8 +18,8 @@ export default (data, prefix) => {
 				$renderSvgOrImg({imgDef: item.image.path, imgClass: `${prefix}-social-image`, alt: '', imgWidth: 30, imgHeight:30, viewBox : item.image.viewBox})
 			));
 	});
-
+	console.log(data);
 	return $('div', {class: `${prefix}-social`},
-		$('nav', {class: `${prefix}-social-nav`, aria: {label: data.label}},
+		$('nav', {class: `${prefix}-social-nav`, aria: {label: data.label || 'Social Media'}},
 			$socialIcons));
 };

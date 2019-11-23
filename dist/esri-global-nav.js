@@ -4847,8 +4847,8 @@ var social = (function (data, prefix) {
 			rel: 'noopener'
 		}, $renderSvgOrImg({ imgDef: item.image.path, imgClass: prefix + '-social-image', alt: '', imgWidth: 30, imgHeight: 30, viewBox: item.image.viewBox })));
 	});
-
-	return $assign('div', { class: prefix + '-social' }, $assign('nav', { class: prefix + '-social-nav', aria: { label: data.label } }, $socialIcons));
+	console.log(data);
+	return $assign('div', { class: prefix + '-social' }, $assign('nav', { class: prefix + '-social-nav', aria: { label: data.label || 'Social Media' } }, $socialIcons));
 });
 
 var breadcrumbs = (function (data) {
