@@ -17,8 +17,7 @@ export default (data, prefix) => {
 		(item, index) => $('li', {class: `${prefix}-menu-item`, id: `${prefix}-menu-link--${index}`},
 			$('span',
 				{
-					class: `${prefix}-menu-link`,
-					role: 'heading'
+					class: `${prefix}-menu-link`
 				},
 				item.label
 			),
@@ -46,7 +45,7 @@ export default (data, prefix) => {
 	);
 
 	// Menu
-	const $target = $('div',
+	const $target = $('nav',
 		{
 			class: `${prefix}-menu`,
 			aria: {label: data.label}

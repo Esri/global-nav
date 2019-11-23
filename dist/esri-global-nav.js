@@ -4725,8 +4725,7 @@ var menu = (function (data, prefix) {
 	// Menu Items
 	var links = data.menu.map(function (item, index) {
 		return $assign('li', { class: prefix + '-menu-item', id: prefix + '-menu-link--' + index }, $assign('span', {
-			class: prefix + '-menu-link',
-			role: 'heading'
+			class: prefix + '-menu-link'
 		}, item.label),
 		// Submenu
 		$assign('div', {
@@ -4740,7 +4739,7 @@ var menu = (function (data, prefix) {
 	});
 
 	// Menu
-	var $target = $assign('div', {
+	var $target = $assign('nav', {
 		class: prefix + '-menu',
 		aria: { label: data.label }
 	}, $assign.apply(undefined, ['ul', {
@@ -4890,9 +4889,7 @@ var createFooter = (function (data) {
 	var $footerBreadcrumb = breadcrumbs(data);
 
 	var $footer = $assign('footer', {
-		class: prefix + ' ' + (data.hideMenus ? 'skinny-footer' : ''),
-		role: 'navigation',
-		aria: { label: data.label }
+		class: prefix + ' ' + (data.hideMenus ? 'skinny-footer' : '')
 	},
 
 	/* Append Footer Components

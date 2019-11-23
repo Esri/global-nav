@@ -25,9 +25,7 @@ export default (data) => {
 
 	const $footer = $('footer',
 		{
-			class: `${prefix} ${data.hideMenus ? 'skinny-footer' : ''}`,
-			role: 'navigation',
-			aria: {label: data.label}
+			class: `${prefix} ${data.hideMenus ? 'skinny-footer' : ''}`
 		},
 
 		/* Append Footer Components
