@@ -4735,7 +4735,7 @@ var menu = (function (data, prefix) {
 		}, $assign.apply(undefined, ['ul', {
 			class: prefix + '-menu-list--sub'
 		}].concat(toConsumableArray(item.menu.map(function (subitem) {
-			return $assign('li', { class: prefix + '-menu-item--sub' }, $assign('a', { class: prefix + '-menu-link--sub', href: subitem.href, 'aria-labeledby': prefix + '-menu--sub--' + index }, subitem.label));
+			return $assign('li', { class: prefix + '-menu-item--sub' }, $assign('a', { class: prefix + '-menu-link--sub', href: subitem.href, 'aria-labelledby': prefix + '-menu--sub--' + index }, subitem.label));
 		}))))));
 	});
 

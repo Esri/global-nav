@@ -35,7 +35,7 @@ export default (data, prefix) => {
 					// Submenu Items
 					...item.menu.map(
 						(subitem) => $('li', {class: `${prefix}-menu-item--sub`},
-							$('a', {class: `${prefix}-menu-link--sub`, href: subitem.href, 'aria-labeledby' : `${prefix}-menu--sub--${index}`},
+							$('a', {class: `${prefix}-menu-link--sub`, href: subitem.href, 'aria-labelledby' : `${prefix}-menu--sub--${index}`},
 								subitem.label
 							)
 						)
