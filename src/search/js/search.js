@@ -13,7 +13,7 @@ export default (data) => {
 	}, data.queryLabel);
 
 	const $control = $('input', {
-		class: `${data.prefix}-control`, id: `${data.prefix}-control`,
+		class: `${data.prefix}-control`, id: `${data.prefix}-query-control`,
 		type: 'search', name: 'q',
 		autocapitalize: 'off', autocomplete: 'off', autocorrect: 'off', spellcheck: 'false'
 	});
