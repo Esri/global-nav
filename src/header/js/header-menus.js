@@ -53,7 +53,7 @@ export default ({variant = 'desktop'}) => {
 				link.label
 			);
 		} else {
-			$('button',
+			$link = $('button',
 				{class: `${prefix}-${link.class}`},
 				link.icon || "",
 				link.label
@@ -145,7 +145,6 @@ export default ({variant = 'desktop'}) => {
 						...menu.map((item, suuid) => {
 							/* Global Navigation: Menus: Link
 							/* ====================================================== */
-
 							const $linkIcon = item.icon
 								? $renderSvgOrImg({imgDef: item.icon.path, imgClass: `${prefix}-link-icon`, imgWidth: item.icon.width || '16px', imgHeight: item.icon.height || '16px'})
 								: null;
@@ -173,18 +172,14 @@ export default ({variant = 'desktop'}) => {
 								);
 
 								const hasStructured = hasCols && item.cols.filter((col) => (col.type === 'structured')).length > 0;
-								let multiCols = false;
-								let colsNum = 0;
-
-								if (item.menus && item.menus.length > 10) {
-									((item.menus.length % 3) === 0) ? multiCols = true : multiCols = false;
-								}
+								let hasMultiCols = false;
+								let columns = 0;
 
 								if (hasMenuItems) {
-									if (item.menus.length >= 10 && item.menus.length <= 18) {
-										colsNum = 2;
-									} else if (item.menus.length > 18 && item.menus.length <= 27) {
-										colsNum = 3;
+									const total = item.menus.length;
+									if (total > 10) {
+										hasMultiCols = total % 3 === 0;
+										columns = Math.min(Math.ceil(total / 9), 3);
 									}
 								}
 
@@ -196,10 +191,10 @@ export default ({variant = 'desktop'}) => {
 										'data-has-flyout': hasFlyout ? 'true' : 'false',
 										role: 'group', aria: {hidden: true, expanded: false},
 										data: {
-											filled: (item.menus && item.menus.length > 10) ? item.menus.slice(0, 30).length : '',
-											structuredCols: hasCols ? item.cols.length : '',
-											hasMultiCols: multiCols,
-											columns: colsNum
+											filled: (hasMenuItems && Math.min(item.menus.length, 30)) || '',
+											structuredCols: hasCols || '',
+											hasMultiCols,
+											columns
 										}
 									},
 									$subtoggle
@@ -209,11 +204,9 @@ export default ({variant = 'desktop'}) => {
 									renderFlyout({$subcontent, item, uuid, suuid});
 								} else if (hasCols) {
 									renderMulti({$subcontent, item, uuid, suuid});
-								} else {
+								} else if (hasMenuItems) {
 									renderSingle({hasMenuItems, $subcontent, item, uuid, suuid});
-								}
-
-								if (hasFeaturedItems) {
+								} else if (hasFeaturedItems) {
 									$($subcontent,
 										/* Global Navigation: Menus: Sublink
 										/* ============================== */
