@@ -44,7 +44,7 @@ export default ({variant = 'desktop'}) => {
 	/* ====================================================================== */
 
 	const createNavLink = (link) => {
-		const $link = $('button',
+		const $link = $('a',
 			{class: `${prefix}-${link.class}`, href: link.props.href || 'javascript:;'},
 			link.icon || "",
 			link.label

@@ -894,7 +894,7 @@ var createMenus = (function (_ref) {
  /* ====================================================================== */
 
 	var createNavLink = function createNavLink(link) {
-		var $link = $assign('button', { class: prefix$4 + '-' + link.class, href: link.props.href || 'javascript:;' }, link.icon || "", link.label);
+		var $link = $assign('a', { class: prefix$4 + '-' + link.class, href: link.props.href || 'javascript:;' }, link.icon || "", link.label);
 
 		if (link.id) {
 			$link.setAttribute("id", prefix$4 + '-' + link.id);
