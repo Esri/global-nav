@@ -96,7 +96,7 @@ export default () => {
 		aria: {labelledby: `${prefix}-action-button`}
 	}, $renderSvgOrImg({imgDef: $check.lg, imgClass: `${prefix}-submit-icon`}));
 
-	$submitBtn.addEventListener('click', saveNewTitle); 
+	$submitBtn.addEventListener('click', saveNewTitle);
 
 	/* Title: Content
 	/* ====================================================================== */
@@ -146,7 +146,7 @@ export default () => {
 			titleState.brandText.parentNode.removeChild(titleState.brandText);
 			titleState.pencilIcon.parentNode.removeChild(titleState.pencilIcon);
 		} else {
-			$control.setAttribute("tabindex", "0"); 
+			$control.setAttribute("tabindex", "0");
 		}
 	};
 
@@ -163,6 +163,16 @@ export default () => {
 			if (detail.titleFontSize) titleState.brandText.style.fontSize = `${detail.titleFontSize}px`;
 
 			$($control, titleState.brandText, titleState.pencilIcon);
+
+			// brand cannot exist with an editable title, so empty the brand component
+			// this allows editable header to be activated after initial load (#253)
+			const $brand = document.getElementById('esri-header-brand');
+			if ($brand) {
+				if ($brand.classList.contains('-fit-burger')) {
+					$target.classList.add('-fit-burger');
+				}
+				$brand.parentElement.removeChild($brand);
+			}
 		}
 	});
 
