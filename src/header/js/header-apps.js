@@ -106,7 +106,7 @@ export default () => {
 	/* ====================================================================== */
 
 	const createDefaultAppLayout = ($topAppContainer, currentApp) => {
-		const abbreviationSizes = ["0px", "32px", "24px", "20px", "18px", "16px", "14px"];
+		const abbreviationSizes = ["0px", "32px", "24px", "20px", "18px", "16px", "14px", "12px", "10px", "8px"];
 		const selectNoneClass = ddState.browserIsEdge ? "user-select-none" : "";
 		const canAccessClass = !currentApp.canAccess ? "no-hover" : "with-hover";
 
@@ -141,9 +141,9 @@ export default () => {
 			} else {
 				const stringWidth = Math.round(getTextWidth(currentApp.abbr || "", "avenir") / 5);
 				let abbreviationSize = abbreviationSizes[stringWidth];
-				if (stringWidth > 6) { // Prevent user from exceeding icon width
+				if (stringWidth > 9) { // Prevent user from exceeding icon width
 					currentApp.abbr = currentApp.abbr.substr(0, 4);
-					abbreviationSize = abbreviationSizes[4];
+					abbreviationSize = abbreviationSizes[9];
 				}
 				const surfaceDiv = $("div", {"class": "appIconImage"});
 				surfaceDiv.appendChild(getAccessibleAppArrowContainer());
