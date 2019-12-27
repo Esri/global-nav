@@ -1,4 +1,4 @@
-## Unreleased
+## 1.3.0
 
 ### Added
 - Shopping cart icon functionality
@@ -8,6 +8,9 @@
 - Empty alt tag for user image (#222)
 - align app indicators properly in right to left
 - Disable app launcher drag and drop on Android and iPhone devices
+- don't double label app launcher and icon (#258)
+- first link gets outline style on keyboard interaction (#256)
+- fix aria-label for inline search (#257)
 
 ## 1.2.1
 
