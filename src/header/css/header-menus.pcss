@@ -498,7 +498,9 @@
 	z-index: -1;
 
 	&[aria-current='true'] {
-		display: block;
+		display: -ms-flexbox;
+		display: -ms-inline-flexbox;
+		display: flex;
 		z-index: 1;
 	}
 }
@@ -1415,6 +1417,7 @@
 	@apply --unset-a;
 
 	box-shadow: inset 0 0 0 1px var(--mono-80);
+	border: 0;
 	color: var(--mono-35) var(--mono-100);
 	cursor: pointer;
 	display: block;
@@ -1422,6 +1425,7 @@
 	margin-inline: -.5px;
 	padding: 10px;
 	position: relative;
+	width: 100%;
 
 	&:hover, &:focus {
 		box-shadow: inset 0 0 0 1px var(--blue);
