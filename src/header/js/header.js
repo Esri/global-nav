@@ -21,7 +21,7 @@ export default (data) => {
 	/* Canvas
 	/* ====================================================================== */
 
-	const $headerCanvas = $('button', {
+	const $headerCanvas = $('div', {
 		class: 'esri-header-canvas',
 		tabindex: '-1',
 		data: {open: false}
@@ -419,14 +419,6 @@ export default (data) => {
 				$($desktopMenus.lastChild, {aria: {hidden: false}});
 			}
 		}
-
-		// $header.addItemsToCart = (count) => {
-		// 	$dispatch($shoppingCart, 'header:shoppingcart:add', count);
-		// };
-	
-		// $header.removeItemsFromCart = (count) => {
-		// 	$dispatch($shoppingCart, 'header:shoppingcart:remove', count);
-		// };
 	});
 
 	return $header;

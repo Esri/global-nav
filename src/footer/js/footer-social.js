@@ -20,6 +20,6 @@ export default (data, prefix) => {
 	});
 
 	return $('div', {class: `${prefix}-social`},
-		$('nav', {class: `${prefix}-social-nav`, aria: {label: data.label}},
+		$('nav', {class: `${prefix}-social-nav`, aria: {label: data.label || 'Social Media'}},
 			$socialIcons));
 };

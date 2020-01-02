@@ -40,15 +40,25 @@ export default ({variant = 'desktop'}) => {
 
 	$($target, $content);
 
-	/* Menus: Link 
+	/* Menus: Link
 	/* ====================================================================== */
 
 	const createNavLink = (link) => {
-		const $link = $('a',
-			{class: `${prefix}-${link.class}`, href: link.props.href || 'javascript:;'},
-			link.icon || "",
-			link.label
-		);
+		let $link;
+
+		if (link.props.href) {
+			$link = $('a',
+				{class: `${prefix}-${link.class}`, href: link.props.href},
+				link.icon || "",
+				link.label
+			);
+		} else {
+			$link = $('button',
+				{class: `${prefix}-${link.class}`},
+				link.icon || "",
+				link.label
+			);
+		}
 
 		if (link.id) {
 			$link.setAttribute("id", `${prefix}-${link.id}`);
@@ -83,12 +93,12 @@ export default ({variant = 'desktop'}) => {
 		);
 	};
 
-	const createMenuColumns = (items) => {		
+	const createMenuColumns = (items) => {
 		if (!items.length) return null;
 		return $('div', {class: `${prefix}-sublist--col`}, ...items.map(createColumn));
 	};
 
-	/* Menus: Tile 
+	/* Menus: Tile
 	/* ====================================================================== */
 
 	const createTile = (tile) => {
@@ -107,7 +117,7 @@ export default ({variant = 'desktop'}) => {
 		if (!tiles.length) return null;
 		return $('ul', {
 			class: `${prefix}-sublist--featured`,
-			role: 'navigation', aria: {labelledby: `${prefix}-link-${variant}-${uuid}-${suuid}`},
+			aria: {labelledby: `${prefix}-link-${variant}-${uuid}-${suuid}`},
 			data: {filled: `${tiles.slice(0, 4).length}`}
 		}, ...tiles.slice(0, 4).map(createTile));
 	};
@@ -130,12 +140,11 @@ export default ({variant = 'desktop'}) => {
 					$('ul',
 						{
 							class: `${prefix}-list`,
-							role: 'navigation', aria: {labelledby: 'esri-header-brand'}
+							aria: {labelledby: 'esri-header-brand'}
 						},
 						...menu.map((item, suuid) => {
 							/* Global Navigation: Menus: Link
 							/* ====================================================== */
-
 							const $linkIcon = item.icon
 								? $renderSvgOrImg({imgDef: item.icon.path, imgClass: `${prefix}-link-icon`, imgWidth: item.icon.width || '16px', imgHeight: item.icon.height || '16px'})
 								: null;
@@ -163,18 +172,14 @@ export default ({variant = 'desktop'}) => {
 								);
 
 								const hasStructured = hasCols && item.cols.filter((col) => (col.type === 'structured')).length > 0;
-								let multiCols = false;
-								let colsNum = 0;
-
-								if (item.menus && item.menus.length > 10) {
-									((item.menus.length % 3) === 0) ? multiCols = true : multiCols = false;
-								}
+								let hasMultiCols = false;
+								let columns = 0;
 
 								if (hasMenuItems) {
-									if (item.menus.length >= 10 && item.menus.length <= 18) {
-										colsNum = 2;
-									} else if (item.menus.length > 18 && item.menus.length <= 27) {
-										colsNum = 3;
+									const total = item.menus.length;
+									if (total > 10) {
+										hasMultiCols = total % 3 === 0;
+										columns = Math.min(Math.ceil(total / 9), 3);
 									}
 								}
 
@@ -186,10 +191,10 @@ export default ({variant = 'desktop'}) => {
 										'data-has-flyout': hasFlyout ? 'true' : 'false',
 										role: 'group', aria: {hidden: true, expanded: false},
 										data: {
-											filled: (item.menus && item.menus.length > 10) ? item.menus.slice(0, 30).length : '', 
-											structuredCols: hasCols ? item.cols.length : '', 
-											hasMultiCols: multiCols,
-											columns: colsNum
+											filled: (hasMenuItems && Math.min(item.menus.length, 30)) || '',
+											structuredCols: hasCols || '',
+											hasMultiCols,
+											columns
 										}
 									},
 									$subtoggle
@@ -199,11 +204,9 @@ export default ({variant = 'desktop'}) => {
 									renderFlyout({$subcontent, item, uuid, suuid});
 								} else if (hasCols) {
 									renderMulti({$subcontent, item, uuid, suuid});
-								} else {
+								} else if (hasMenuItems) {
 									renderSingle({hasMenuItems, $subcontent, item, uuid, suuid});
-								}
-
-								if (hasFeaturedItems) {
+								} else if (hasFeaturedItems) {
 									$($subcontent,
 										/* Global Navigation: Menus: Sublink
 										/* ============================== */
@@ -256,10 +259,10 @@ export default ({variant = 'desktop'}) => {
 				listItems.forEach((fly) => {
 					const catItem = [].slice.call(fly.querySelectorAll('.esri-header-menus-flyout--categories-item'));
 					const catItemParent = document.querySelector(`#${catItem[0].getAttribute('data-parent')}`);
-	
+
 					const listItems = [].slice.call(fly.querySelectorAll('.esri-header-menus-flyout--list-items'));
 					const listColType = listItems[0].getAttribute('data-coltype');
-	
+
 					if (listColType === '1') {
 						catItemParent.setAttribute('data-single', '');
 					}
@@ -282,7 +285,7 @@ export default ({variant = 'desktop'}) => {
 			flyoutList.forEach((list, index) => {
 				flyoutCategories[index].setAttribute('aria-current', 'false');
 				list.setAttribute('aria-current', 'false');
-				if ((list.hasAttribute('data-id') && list.getAttribute('data-id') === '0') && 
+				if ((list.hasAttribute('data-id') && list.getAttribute('data-id') === '0') &&
 						(flyoutCategories[index].hasAttribute('data-id') && flyoutCategories[index].getAttribute('data-id') === '0')
 					 ) {
 					flyoutCategories[index].setAttribute('aria-current', 'true');
@@ -299,7 +302,7 @@ export default ({variant = 'desktop'}) => {
 		flyoutMenuHeaders.forEach((header) => {
 			header.setAttribute("aria-current", "false");
 		});
-		
+
 		flyoutMenuDetails.forEach((detail) => {
 			detail.setAttribute("aria-expanded", "false");
 			detail.style.height = '0';
@@ -334,7 +337,7 @@ export default ({variant = 'desktop'}) => {
 			$('ul',
 				{
 					class: `${prefix}-sublist`,
-					role: 'navigation', aria: {labelledby: `${prefix}-link-${variant}-${uuid}-${suuid}`}
+					aria: {labelledby: `${prefix}-link-${variant}-${uuid}-${suuid}`}
 				},
 				/* Global Navigation: Menus: Sublink
 				/* ============================== */
@@ -363,7 +366,7 @@ export default ({variant = 'desktop'}) => {
 					$('div', {class: `${prefix}-sublist--col`, 'data-coltype': menuType, 'data-menuborder': menuBorder},
 						$('ul', {
 							class: `${prefix}-sublist`, 'data-menutype': menuType,
-							role: 'navigation', aria: {labelledby: `${prefix}-link-${variant}-${uuid}-${suuid}`}
+							aria: {labelledby: `${prefix}-link-${variant}-${uuid}-${suuid}`}
 						}, ...menuRenderer(col.items))
 					)
 				);
@@ -396,7 +399,7 @@ export default ({variant = 'desktop'}) => {
 				list.setAttribute('aria-expanded', 'false');
 				list.style.height = '0';
 			});
-	
+
 			categoryList.setAttribute('aria-expanded', `${active}`);
 			if (active === 'true') {
 				categoryList.style.height = `${(computedHeight) + (computedMargin)}px`;
@@ -415,7 +418,7 @@ export default ({variant = 'desktop'}) => {
 					const selectedCategory = parentNode.getAttribute('data-id');
 					const selectedList = itemsList[index].getAttribute('data-id');
 					const selectedListCols = itemsList[index].getAttribute('data-coltype');
-					
+
 					itemsList.forEach((list, index) => {
 						list.setAttribute('aria-current', 'false');
 						items[index].setAttribute('aria-current', 'false');
@@ -430,7 +433,7 @@ export default ({variant = 'desktop'}) => {
 			});
 		}
 	}
-	
+
 	function renderFlyoutMenu(items, type, id, uuid, suuid) {
 		const $items = [];
 		const listArr = [];
@@ -441,30 +444,30 @@ export default ({variant = 'desktop'}) => {
 					if (items.cols.length) {
 						items.cols.forEach((column) => {
 							category = $('li', {
-								class: `${prefix}-flyout--categories-item`, 
+								class: `${prefix}-flyout--categories-item`,
 								'data-id': id,
 								'aria-current': id === 0 ? 'true' : 'false',
 								'data-parent': `${prefix}-${variant}-submenu-${uuid}-${suuid}`
-							}, 
-								$('h3', {class: `${prefix}-flyout--categories-item_header`, 
-									click: (e) => { 
+							},
+								$('button', {class: `${prefix}-flyout--categories-item_header`,
+									click: (e) => {
 										swapFlyoutContent(e);
 									}
 								}, items.category)
 							);
 							column.col.forEach((col) => {
-								listArr.push(						
-									$('a', {href: col.href, class: `${prefix}-flyout--categories-details_item`, 'data-heading': col.heading ? 'true' : 'false'}, 
-										(col.heading) && $('p', {class: `${prefix}-flyout--categories-details_heading`}, col.heading), 
+								listArr.push(
+									$('a', {href: col.href, class: `${prefix}-flyout--categories-details_item`, 'data-heading': col.heading ? 'true' : 'false'},
+										(col.heading) && $('p', {class: `${prefix}-flyout--categories-details_heading`}, col.heading),
 										(col.label) && $('p', {class: `${prefix}-flyout--categories-details_label`}, col.label)
 									)
 								);
 							});
 						});
 					}
-		
+
 					$items.push(
-						$(category, 
+						$(category,
 							$('div', {class: `${prefix}-flyout--categories-details`, 'aria-expanded': 'false'},
 							...listArr)
 						)
@@ -477,10 +480,10 @@ export default ({variant = 'desktop'}) => {
 							const $column = $('ul', {class: `${prefix}-flyout--list-items_column`});
 							column.col.forEach((col) => {
 								$items.push(
-									$($column, 
-										$('li', {class: `${prefix}-flyout--list-items_name`}, 
-											$('a', {href: col.href, class: `${prefix}-flyout--list-items_anchor`, 'data-heading': (col.heading) ? 'true' : 'false'}, 
-												(col.heading) && $('p', {class: `${prefix}-flyout--list-items_heading`}, col.heading), 
+									$($column,
+										$('li', {class: `${prefix}-flyout--list-items_name`},
+											$('a', {href: col.href, class: `${prefix}-flyout--list-items_anchor`, 'data-heading': (col.heading) ? 'true' : 'false'},
+												(col.heading) && $('p', {class: `${prefix}-flyout--list-items_heading`}, col.heading),
 												(col.label) && $('p', {class: `${prefix}-flyout--list-items_label`}, col.label)
 											)
 										)
@@ -491,23 +494,23 @@ export default ({variant = 'desktop'}) => {
 					}
 			break;
 		}
-		
+
 		return $items;
 	}
 
 	function renderFlyout({$subcontent, item, uuid, suuid}) {
 		const $flyoutCategories = $('ul', {class: `${prefix}-flyout--categories`});
 		const $flyoutList = $('div', {class: `${prefix}-flyout--list`});
-		
+
 		item.flyout.forEach((item, id) => {
 			$($flyoutCategories,
 				...renderFlyoutMenu(item, 'category', id, uuid, suuid)
 			);
-			
+
 			$($flyoutList,
-				$('div', {class: `${prefix}-flyout--list-items`, 
+				$('div', {class: `${prefix}-flyout--list-items`,
 				'data-id': id, 'data-coltype': item.cols.length,
-				'aria-current': id === 0 ? 'true' : 'false'}, 
+				'aria-current': id === 0 ? 'true' : 'false'},
 					...renderFlyoutMenu(item, 'label', id, uuid, suuid)
 				)
 			);

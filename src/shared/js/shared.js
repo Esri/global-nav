@@ -107,7 +107,7 @@ function $renderSvgOrImg({imgDef = "", imgClass = "", wrapperClass = "", inlineI
 
 	function svgProps() {
 		return imgProps(
-			{class: `${imgClass}`, role: 'presentation', style: 'transform: rotate(360deg);'},
+			{class: `${imgClass}`, style: 'transform: rotate(360deg);'},
 			{id, alt, viewBox, width: imgWidth, height: imgHeight}
 		);
 	}

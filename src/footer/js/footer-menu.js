@@ -18,7 +18,7 @@ export default (data, prefix) => {
 			$('span',
 				{
 					class: `${prefix}-menu-link`,
-					role: 'heading'
+					id: `${prefix}-heading-${index}`
 				},
 				item.label
 			),
@@ -30,32 +30,30 @@ export default (data, prefix) => {
 				},
 				$('ul',
 					{
-						class: `${prefix}-menu-list--sub`,
-						role: 'presentation'
+						class: `${prefix}-menu-list--sub`
 					},
 					// Submenu Items
 					...item.menu.map(
 						(subitem) => $('li', {class: `${prefix}-menu-item--sub`},
-							$('a', {class: `${prefix}-menu-link--sub`, href: subitem.href},
+							$('a', {class: `${prefix}-menu-link--sub`, href: subitem.href, 'aria-labelledby' : `${prefix}-menu--sub--${index}`},
 								subitem.label
 							)
 						)
-					)
+					),
 				)
 			)
 		)
 	);
 
 	// Menu
-	const $target = $('div',
+	const $target = $('nav',
 		{
 			class: `${prefix}-menu`,
 			aria: {label: data.label}
 		},
 		$('ul',
 			{
-				class: `${prefix}-menu-list`,
-				role: 'presentation'
+				class: `${prefix}-menu-list`
 			},
 			...links
 		)
