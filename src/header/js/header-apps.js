@@ -139,7 +139,7 @@ export default () => {
 				$appImageContainer.appendChild($("img", {"class": "appIconPng", "alt": "", src: currentApp.image}));
 				$appLink.appendChild($appImageContainer);
 			} else {
-				const stringWidth = Math.round(getTextWidth(currentApp.abbr || "", "avenir") / 5);
+				const stringWidth = Math.ceil(getTextWidth(currentApp.abbr || "", "avenir") / 5);
 				let abbreviationSize = abbreviationSizes[stringWidth];
 				if (stringWidth > 9) { // Prevent user from exceeding icon width
 					currentApp.abbr = currentApp.abbr.substr(0, 4);
