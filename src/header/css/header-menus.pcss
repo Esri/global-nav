@@ -334,7 +334,7 @@
 }
 
 .esri-header-menus-flyout--categories-item_header {
-	background: transparent;
+	background-color: transparent;
 	border: 0;
 	box-sizing: border-box;
 	color: var(--mono-35);
@@ -348,6 +348,7 @@
 	text-transform: uppercase;
 	
 	&:hover {
+		background-color: transparent;
 		color: var(--mono-0);
 
 		&::before {
@@ -443,6 +444,10 @@
 		&:hover {
 			background-color: rgba(239, 239, 239, .50);
 			color: var(--mono-0);
+
+			& .esri-header-menus-flyout--categories-item_header {	
+				background-color: transparent;
+			}
 
 			&[aria-current='true'] {
 				background-color: var(--mono-100);
