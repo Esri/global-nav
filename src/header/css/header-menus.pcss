@@ -337,6 +337,7 @@
 	background: transparent;
 	border: 0;
 	box-sizing: border-box;
+	color: var(--mono-35);
 	font-weight: 400;
 	font-size: 12px;
 	line-height: 1.55;
@@ -345,6 +346,10 @@
 	padding: 25px;
 	position: relative;
 	text-transform: uppercase;
+
+	&:hover {
+		color: var(--mono-0);
+	}
 
 	&::after {
 		content: url("../../shared/shared.svg#c-chevron-down" param(--fill #595959));
