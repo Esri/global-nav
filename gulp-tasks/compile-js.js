@@ -21,33 +21,32 @@ const uglifyjs = require("uglify-js");
 const fs = require('fs');
 
 const files = [
-	{rootJs: `./${pkg.main}`, saveAs: `${pkg.gulp_config.build_name}.js`},
+	{rootJs: `./src/esri-global-nav.js`, saveAs: `${pkg.gulp_config.build_name}.js`},
 	{rootJs: `./${pkg.gulp_config.src_path}/demo.js`, saveAs: 'demo.js'},
 	{rootJs: `./${pkg.gulp_config.src_path}/home.js`, saveAs: 'home.js'},
 	{rootJs: `./${pkg.gulp_config.src_path}/app-mode-demo.js`, saveAs: 'app-mode-demo.js'}
-]
+];
 
 function minifyJS(cb) {
 	console.log('minifying js...');
-	files.forEach(file => minifyJSFile(file));
+	files.forEach((file) => minifyJSFile(file));
 	if (cb) {
 		cb();
 	}
 }
 
 function minifyJSFile(file) {
-	fs.readFile(`./dist/${file.saveAs}`, 'utf8', function(err, contents) {
+	fs.readFile(`./dist/${file.saveAs}`, 'utf8', (err, contents) => {
 		const output = uglifyjs.minify(contents).code; 
 
-		fs.writeFile("./dist/" + file.saveAs, output, function(err) {
-			if(err) return console.log(err);
+		fs.writeFile(`./dist/${file.saveAs}`, output, (err) => {
+			if (err) return console.log(err);
 		});
 	});
-
 }
 
 function compileJs(cb) {
-	files.forEach(file => compileJsFile(file));
+	files.forEach((file) => compileJsFile(file));
 	if (cb) {
 		cb();
 	}
