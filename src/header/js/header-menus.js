@@ -207,9 +207,8 @@ export default ({variant = 'desktop'}) => {
 								} else if (hasMenuItems) {
 									renderSingle({hasMenuItems, $subcontent, item, uuid, suuid});
 								}
-								
+
 								if (!hasFlyout && hasFeaturedItems) {
-									console.log('here');
 									$($subcontent,
 										/* Global Navigation: Menus: Sublink
 										/* ============================== */
