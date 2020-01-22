@@ -1017,7 +1017,7 @@ var createMenus = (function (_ref) {
 
 					if (hasMenuItems) {
 						var total = item.menus.length;
-						if (total > 10) {
+						if (total >= 10) {
 							hasMultiCols = total % 3 === 0;
 							columns = Math.min(Math.ceil(total / 9), 3);
 						}

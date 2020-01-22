@@ -415,6 +415,10 @@ document.addEventListener("DOMContentLoaded", () => {
 							{
 								label: 'Contact Esri',
 								href: 'https://www.esri.com/about-esri/contact'
+							},
+							{
+								label: 'Contact Esri',
+								href: 'https://www.esri.com/about-esri/contact'
 							}
 						]
 					},
