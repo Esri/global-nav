@@ -660,7 +660,7 @@ document.addEventListener("DOMContentLoaded", () => {
 			}
 		},
 		footer: {
-			hideMenus: false,
+			hideMenus: true,
 			label: 'Esri',
 			brand: {
 				label: 'Esri: The Science of Where',

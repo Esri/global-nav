@@ -25,7 +25,7 @@ export default (data) => {
 
 	const $footer = $('footer',
 		{
-			class: `${prefix} ${data.hideMenus ? 'skinny-footer' : ''}`
+			class: `${prefix} ${data.hideMenus && 'skinny-footer'}`
 		},
 
 		/* Append Footer Components
@@ -34,11 +34,11 @@ export default (data) => {
 			$footerBreadcrumb,
 		),
 		$('div', {class: `${prefix}--wrapper`},
-			$('div', {class: `${prefix}-section--1 ${data.hideMenus ? 'hidden' : ''}`},
+			$('div', {class: `${prefix}-section--1 ${data.hideMenus && 'hidden'}`},
 				$footerBrand,
 				$footerSocial
 			),
-			$('div', {class: `${prefix}-section--2 ${data.hideMenus ? 'hidden' : ''}`},
+			$('div', {class: `${prefix}-section--2 ${data.hideMenus && 'hidden'}`},
 				$footerMenu
 			),
 			$('div', {class: `${prefix}-section--3`},
@@ -65,6 +65,8 @@ export default (data) => {
 		});
 
 		if (data.hideMenus) {
+			console.log(data.hideMenus);
+			document.querySelector('.esri-footer').setAttribute('data-minimal', true);
 			document.querySelector('.esri-footer-barrier').classList.add('skinny-footer');
 		}
 
