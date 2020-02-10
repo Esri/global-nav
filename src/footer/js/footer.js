@@ -25,7 +25,7 @@ export default (data) => {
 
 	const $footer = $('footer',
 		{
-			class: `${prefix} ${data.hideMenus && 'skinny-footer'}`
+			class: `${prefix} ${data.hideMenus ? 'skinny-footer' : 'false'}`
 		},
 
 		/* Append Footer Components
@@ -65,7 +65,6 @@ export default (data) => {
 		});
 
 		if (data.hideMenus) {
-			console.log(data.hideMenus);
 			document.querySelector('.esri-footer').setAttribute('data-minimal', true);
 			document.querySelector('.esri-footer-barrier').classList.add('skinny-footer');
 		}
