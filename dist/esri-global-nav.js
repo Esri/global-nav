@@ -4896,7 +4896,7 @@ var createFooter = (function (data) {
 	var $footerBreadcrumb = breadcrumbs(data);
 
 	var $footer = $assign('footer', {
-		class: prefix + ' ' + (data.hideMenus ? 'skinny-footer' : 'false')
+		class: prefix + ' ' + (data.hideMenus ? 'skinny-footer' : '')
 	},
 
 	/* Append Footer Components
