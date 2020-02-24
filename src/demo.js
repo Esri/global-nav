@@ -465,6 +465,18 @@ document.addEventListener("DOMContentLoaded", () => {
 							{
 								label: 'Contact Esri',
 								href: 'https://www.esri.com/about-esri/contact'
+							},
+							{
+								label: 'Partners',
+								href: 'https://www.esri.com/partners'
+							},
+							{
+								label: 'Careers',
+								href: 'https://www.esri.com/careers/main'
+							},
+							{
+								label: 'Contact Esri',
+								href: 'https://www.esri.com/about-esri/contact'
 							}
 						],
 						tiles: [
