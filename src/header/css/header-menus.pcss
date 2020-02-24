@@ -1311,6 +1311,12 @@
 						transform: rotate(180deg) translateY(35%);
 					}
 				}
+
+				@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+					&:after {
+						display: none;
+					}
+				}
 			}
 
 			&:hover {
@@ -1329,6 +1335,12 @@
 						@nest :dir(rtl) & {
 							left: -25px;
 							right: auto;
+						}
+					}
+
+					@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+						&:after {
+							display: none;
 						}
 					}
 				}
