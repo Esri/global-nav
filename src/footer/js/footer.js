@@ -34,11 +34,11 @@ export default (data) => {
 			$footerBreadcrumb,
 		),
 		$('div', {class: `${prefix}--wrapper`},
-			$('div', {class: `${prefix}-section--1 ${data.hideMenus && 'hidden'}`},
+			$('div', {class: `${prefix}-section--1 ${data.hideMenus ? 'hidden' : ''}`},
 				$footerBrand,
 				$footerSocial
 			),
-			$('div', {class: `${prefix}-section--2 ${data.hideMenus && 'hidden'}`},
+			$('div', {class: `${prefix}-section--2 ${data.hideMenus ? 'hidden' : ''}`},
 				$footerMenu
 			),
 			$('div', {class: `${prefix}-section--3`},
