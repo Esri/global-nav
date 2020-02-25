@@ -161,6 +161,7 @@ export default ({variant = 'desktop'}) => {
 
 							const hasMenuItems = item.menus && item.menus.length > 0;
 							const hasCols = item.cols ? item.cols.length > 0 : false;
+
 							const hasFlyout = item.flyout && item.flyout.length > 0;
 							const hasFeaturedItems = item.tiles && item.tiles.length > 0;
 
