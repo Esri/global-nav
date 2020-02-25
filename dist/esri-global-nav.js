@@ -4920,6 +4920,7 @@ var createFooter = (function (data) {
 		});
 
 		if (data.hideMenus) {
+			document.querySelector('.esri-footer').setAttribute('data-minimal', true);
 			document.querySelector('.esri-footer-barrier').classList.add('skinny-footer');
 		}
 
