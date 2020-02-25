@@ -1000,7 +1000,7 @@ var createMenus = (function (_ref) {
 				var $li = $assign('li', { class: prefix$4 + '-item' }, $subcontrol);
 
 				var hasMenuItems = item.menus && item.menus.length > 0;
-				var hasCols = item.cols && item.cols.length > 0;
+				var hasCols = item.cols && item.cols.length;
 				var hasFlyout = item.flyout && item.flyout.length > 0;
 				var hasFeaturedItems = item.tiles && item.tiles.length > 0;
 
@@ -4920,6 +4920,7 @@ var createFooter = (function (data) {
 		});
 
 		if (data.hideMenus) {
+			document.querySelector('.esri-footer').setAttribute('data-minimal', true);
 			document.querySelector('.esri-footer-barrier').classList.add('skinny-footer');
 		}
 
