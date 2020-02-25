@@ -488,6 +488,13 @@ document.addEventListener("DOMContentLoaded", () => {
 								icon: [
 									'M8.9 8.9h8V4.1H4.1v12.8h4.8zm-.8 7.2H4.9V4.9h11.2v3.2h-8zm.8 4H4.1v23.8h26.8v-4.8h-22zm21.2 19.8v3.2H4.9V20.9h3.2v19zm-10-35.8v4.8h19v30.2h-5v4.8h9.8V4.1zm23 39h-8.2v-3.2h5V8.1h-19V4.9h22.2z'
 								]
+							},
+							{
+								label: 'The Science of Where',
+								href: 'https://www.esri.com/about-esri',
+								icon: [
+									'M8.9 8.9h8V4.1H4.1v12.8h4.8zm-.8 7.2H4.9V4.9h11.2v3.2h-8zm.8 4H4.1v23.8h26.8v-4.8h-22zm21.2 19.8v3.2H4.9V20.9h3.2v19zm-10-35.8v4.8h19v30.2h-5v4.8h9.8V4.1zm23 39h-8.2v-3.2h5V8.1h-19V4.9h22.2z'
+								]
 							}
 						]
 					}
