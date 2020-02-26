@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
 				distributorImageHeight: 56
 			},
 			cart: {
-				items: 0,
+				items: 999,
 				url: 'https://checkout.esri.com/'
 			},
 			menus: [
@@ -679,7 +679,7 @@ document.addEventListener("DOMContentLoaded", () => {
 			}
 		},
 		footer: {
-			hideMenus: true,
+			hideMenus: false,
 			label: 'Esri',
 			brand: {
 				label: 'Esri: The Science of Where',
