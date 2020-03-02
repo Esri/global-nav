@@ -27,7 +27,7 @@ export default (data) => {
     });
 
     return $('div', {class: `${prefix}`},
-      $('a', {href: 'https://www.esri.com', class: `${prefix}--pin`}),
+      $('a', {href: 'https://www.esri.com/en-us/home', class: `${prefix}--pin`}),
       $('ul', {class: `${prefix}--list`}, $breadCrumbs)
     );
   }

@@ -4877,7 +4877,7 @@ var breadcrumbs = (function (data) {
       }
     });
 
-    return $assign('div', { class: '' + prefix }, $assign('a', { href: 'https://www.esri.com', class: prefix + '--pin' }), $assign('ul', { class: prefix + '--list' }, $breadCrumbs));
+    return $assign('div', { class: '' + prefix }, $assign('a', { href: 'https://www.esri.com/en-us/home', class: prefix + '--pin' }), $assign('ul', { class: prefix + '--list' }, $breadCrumbs));
   }
 });
 
