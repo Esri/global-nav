@@ -4652,10 +4652,12 @@ var language = (function (data, prefix) {
 
 	var $languageDialog = languageDialog(data);
 
+	console.log(data.closeLabel);
+
 	// Language Dialog Close Button
 	var $languageDialogClose = $assign('button', {
 		class: prefix + '-language-dialog-close', id: 'dialog-description',
-		ariaLabel: data.closeLabel
+		'aria-label': data.closeLabel
 	}, $renderSvgOrImg({ imgDef: $close.md, imgClass: prefix + '-language-dialog-close-image' }));
 
 	$languageDialogClose.addEventListener('click', closeDialog);

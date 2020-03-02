@@ -26,11 +26,13 @@ export default (data, prefix) => {
 
 	const $languageDialog = languageDialog(data);
 
+	console.log(data.closeLabel);
+
 	// Language Dialog Close Button
 	const $languageDialogClose = $('button',
 		{
 			class: `${prefix}-language-dialog-close`, id: 'dialog-description',
-			ariaLabel: data.closeLabel
+			'aria-label': data.closeLabel
 		},
 		$renderSvgOrImg({imgDef: $close.md, imgClass: `${prefix}-language-dialog-close-image`})
 	);
