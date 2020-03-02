@@ -42,13 +42,13 @@ export default (data, prefix) => {
 	$($languageDialog, $languageDialogClose);
 
 	// Language Dialog Canvas
-	const $cancelCanvas = $('button', {
-		class: `${prefix}-language-dialog-cancel-canvas`,
-		type: 'button',
-		tabindex: -1
-	});
+	// const $cancelCanvas = $('button', {
+	// 	class: `${prefix}-language-dialog-cancel-canvas`,
+	// 	type: 'button',
+	// 	tabindex: -1
+	// });
 
-	$cancelCanvas.addEventListener('click', closeDialog);
+	// $cancelCanvas.addEventListener('click', closeDialog);
 
 	function openDialog(event) {
 		event.preventDefault();
@@ -69,7 +69,9 @@ export default (data, prefix) => {
 	const $canvas = $('div', {
 		class: `${prefix}-language-dialog-barrier`,
 		aria: {expanded: false}
-	}, $languageDialog, $cancelCanvas);
+	}, $languageDialog);
+
+	$canvas.addEventListener('click', closeDialog);
 
 	$control.addEventListener('click', () => {
 		$dispatch($control, 'footer:click:language', data);
