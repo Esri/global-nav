@@ -4614,7 +4614,12 @@ var languageDialog = (function (data) {
 
 	var $language = $assign('form', {
 		class: data.prefix,
-		aria: { labelledby: data.prefix + '-message', describedby: 'dialog-description' }
+		aria: {
+			labelledby: data.prefix + '-message',
+			describedby: 'dialog-description'
+		},
+		role: 'dialog',
+		tabindex: '-1'
 	}, $assign('p', { class: data.prefix + '-message', id: data.prefix + '-message' }, $assign('strong', data.greetingLabel), ' ', data.messageLabel), $choice, $assign('button', {
 		class: data.prefix + '-submit',
 		type: 'submit',
@@ -4653,8 +4658,6 @@ var language = (function (data, prefix) {
 
 	var $languageDialog = languageDialog(data);
 
-	console.log(data.closeLabel);
-
 	// Language Dialog Close Button
 	var $languageDialogClose = $assign('button', {
 		class: prefix + '-language-dialog-close', id: 'dialog-description',
@@ -4664,15 +4667,6 @@ var language = (function (data, prefix) {
 	$languageDialogClose.addEventListener('click', closeDialog);
 
 	$assign($languageDialog, $languageDialogClose);
-
-	// Language Dialog Canvas
-	// const $cancelCanvas = $('button', {
-	// 	class: `${prefix}-language-dialog-cancel-canvas`,
-	// 	type: 'button',
-	// 	tabindex: -1
-	// });
-
-	// $cancelCanvas.addEventListener('click', closeDialog);
 
 	function openDialog(event) {
 		event.preventDefault();
@@ -4694,8 +4688,6 @@ var language = (function (data, prefix) {
 		class: prefix + '-language-dialog-barrier',
 		aria: { expanded: false }
 	}, $languageDialog);
-
-	$canvas.addEventListener('click', closeDialog);
 
 	$control.addEventListener('click', function () {
 		$dispatch($control, 'footer:click:language', data);

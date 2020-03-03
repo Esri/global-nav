@@ -26,8 +26,6 @@ export default (data, prefix) => {
 
 	const $languageDialog = languageDialog(data);
 
-	console.log(data.closeLabel);
-
 	// Language Dialog Close Button
 	const $languageDialogClose = $('button',
 		{
@@ -40,15 +38,6 @@ export default (data, prefix) => {
 	$languageDialogClose.addEventListener('click', closeDialog);
 
 	$($languageDialog, $languageDialogClose);
-
-	// Language Dialog Canvas
-	// const $cancelCanvas = $('button', {
-	// 	class: `${prefix}-language-dialog-cancel-canvas`,
-	// 	type: 'button',
-	// 	tabindex: -1
-	// });
-
-	// $cancelCanvas.addEventListener('click', closeDialog);
 
 	function openDialog(event) {
 		event.preventDefault();
@@ -70,8 +59,6 @@ export default (data, prefix) => {
 		class: `${prefix}-language-dialog-barrier`,
 		aria: {expanded: false}
 	}, $languageDialog);
-
-	$canvas.addEventListener('click', closeDialog);
 
 	$control.addEventListener('click', () => {
 		$dispatch($control, 'footer:click:language', data);

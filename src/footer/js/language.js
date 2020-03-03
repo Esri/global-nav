@@ -22,7 +22,12 @@ export default (data) => {
 
 	const $language = $('form', {
 			class: data.prefix,
-			aria: {labelledby: `${data.prefix}-message`, describedby: 'dialog-description'}
+			aria: {
+				labelledby: `${data.prefix}-message`, 
+				describedby: 'dialog-description'
+			},
+			role: 'dialog',
+			tabindex: '-1'
 		},
 		$('p', {class: `${data.prefix}-message`, id: `${data.prefix}-message`},
 			$('strong', data.greetingLabel),
