@@ -1252,6 +1252,7 @@ var createMenus = (function (_ref) {
 						selectedListCols === '1' ? resetFlyoutDimensions(parentNode) : resetFlyoutDimensions('disabled');
 						parentNode.setAttribute('aria-current', 'true');
 						itemsList[index].setAttribute('aria-current', 'true');
+						itemsList[index].focus();
 					}
 				});
 			});
@@ -1272,20 +1273,30 @@ var createMenus = (function (_ref) {
 							'data-id': id,
 							'aria-current': id === 0 ? 'true' : 'false',
 							'data-parent': prefix$4 + '-' + variant + '-submenu-' + uuid + '-' + suuid,
-							'tabindex': '0'
+							tabindex: -1
 						}, $assign('button', {
 							class: prefix$4 + '-flyout--categories-item_header',
+							tabindex: 0,
 							click: function click(e) {
 								swapFlyoutContent(e);
 							}
 						}, items.category));
 						column.col.forEach(function (col) {
-							listArr.push($assign('a', { href: col.href, class: prefix$4 + '-flyout--categories-details_item', 'data-heading': col.heading ? 'true' : 'false' }, col.heading && $assign('p', { class: prefix$4 + '-flyout--categories-details_heading' }, col.heading), col.label && $assign('p', { class: prefix$4 + '-flyout--categories-details_label' }, col.label)));
+							listArr.push($assign('a', {
+								href: col.href,
+								class: prefix$4 + '-flyout--categories-details_item',
+								'data-heading': col.heading ? 'true' : 'false',
+								tabindex: -1
+							}, col.heading && $assign('p', { class: prefix$4 + '-flyout--categories-details_heading' }, col.heading), col.label && $assign('p', { class: prefix$4 + '-flyout--categories-details_label' }, col.label)));
 						});
 					});
 				}
 
-				$items.push($assign(category, $assign.apply(undefined, ['div', { class: prefix$4 + '-flyout--categories-details', 'aria-expanded': 'false' }].concat(listArr))));
+				$items.push($assign(category, $assign.apply(undefined, ['div', {
+					class: prefix$4 + '-flyout--categories-details',
+					'aria-expanded': 'false',
+					tabindex: -1
+				}].concat(listArr))));
 				break;
 
 			case 'label':
@@ -1318,7 +1329,8 @@ var createMenus = (function (_ref) {
 			$assign($flyoutList, $assign.apply(undefined, ['div', {
 				class: prefix$4 + '-flyout--list-items',
 				'data-id': id, 'data-coltype': item.cols.length,
-				'aria-current': id === 0 ? 'true' : 'false'
+				'aria-current': id === 0 ? 'true' : 'false',
+				tabindex: 0
 			}].concat(toConsumableArray(renderFlyoutMenu(item, 'label', id, uuid, suuid)))));
 		});
 
