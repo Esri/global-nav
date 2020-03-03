@@ -1000,7 +1000,7 @@ var createMenus = (function (_ref) {
 				var $li = $assign('li', { class: prefix$4 + '-item' }, $subcontrol);
 
 				var hasMenuItems = item.menus && item.menus.length > 0;
-				var hasCols = item.cols ? item.cols.length > 0 : false;
+				var hasCols = item.cols && item.cols.length;
 
 				var hasFlyout = item.flyout && item.flyout.length > 0;
 				var hasFeaturedItems = item.tiles && item.tiles.length > 0;
@@ -1271,7 +1271,8 @@ var createMenus = (function (_ref) {
 							class: prefix$4 + '-flyout--categories-item',
 							'data-id': id,
 							'aria-current': id === 0 ? 'true' : 'false',
-							'data-parent': prefix$4 + '-' + variant + '-submenu-' + uuid + '-' + suuid
+							'data-parent': prefix$4 + '-' + variant + '-submenu-' + uuid + '-' + suuid,
+							'tabindex': '0'
 						}, $assign('button', {
 							class: prefix$4 + '-flyout--categories-item_header',
 							click: function click(e) {
@@ -4613,7 +4614,12 @@ var languageDialog = (function (data) {
 
 	var $language = $assign('form', {
 		class: data.prefix,
-		aria: { labelledby: data.prefix + '-message', describedby: 'dialog-description' }
+		aria: {
+			labelledby: data.prefix + '-message',
+			describedby: 'dialog-description'
+		},
+		role: 'dialog',
+		tabindex: '-1'
 	}, $assign('p', { class: data.prefix + '-message', id: data.prefix + '-message' }, $assign('strong', data.greetingLabel), ' ', data.messageLabel), $choice, $assign('button', {
 		class: data.prefix + '-submit',
 		type: 'submit',
@@ -4655,21 +4661,12 @@ var language = (function (data, prefix) {
 	// Language Dialog Close Button
 	var $languageDialogClose = $assign('button', {
 		class: prefix + '-language-dialog-close', id: 'dialog-description',
-		ariaLabel: data.closeLabel
+		'aria-label': data.closeLabel
 	}, $renderSvgOrImg({ imgDef: $close.md, imgClass: prefix + '-language-dialog-close-image' }));
 
 	$languageDialogClose.addEventListener('click', closeDialog);
 
 	$assign($languageDialog, $languageDialogClose);
-
-	// Language Dialog Canvas
-	var $cancelCanvas = $assign('button', {
-		class: prefix + '-language-dialog-cancel-canvas',
-		type: 'button',
-		tabindex: -1
-	});
-
-	$cancelCanvas.addEventListener('click', closeDialog);
 
 	function openDialog(event) {
 		event.preventDefault();
@@ -4690,7 +4687,7 @@ var language = (function (data, prefix) {
 	var $canvas = $assign('div', {
 		class: prefix + '-language-dialog-barrier',
 		aria: { expanded: false }
-	}, $languageDialog, $cancelCanvas);
+	}, $languageDialog);
 
 	$control.addEventListener('click', function () {
 		$dispatch($control, 'footer:click:language', data);
@@ -4875,7 +4872,7 @@ var breadcrumbs = (function (data) {
       }
     });
 
-    return $assign('div', { class: '' + prefix }, $assign('a', { href: 'https://www.esri.com', class: prefix + '--pin' }), $assign('ul', { class: prefix + '--list' }, $breadCrumbs));
+    return $assign('div', { class: '' + prefix }, $assign('a', { href: 'https://www.esri.com/en-us/home', class: prefix + '--pin' }), $assign('ul', { class: prefix + '--list' }, $breadCrumbs));
   }
 });
 

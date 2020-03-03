@@ -160,7 +160,7 @@ export default ({variant = 'desktop'}) => {
 							const $li = $('li', {class: `${prefix}-item`}, $subcontrol);
 
 							const hasMenuItems = item.menus && item.menus.length > 0;
-							const hasCols = item.cols ? item.cols.length > 0 : false;
+							const hasCols = item.cols && item.cols.length;
 
 							const hasFlyout = item.flyout && item.flyout.length > 0;
 							const hasFeaturedItems = item.tiles && item.tiles.length > 0;
@@ -450,7 +450,8 @@ export default ({variant = 'desktop'}) => {
 							class: `${prefix}-flyout--categories-item`,
 							'data-id': id,
 							'aria-current': id === 0 ? 'true' : 'false',
-							'data-parent': `${prefix}-${variant}-submenu-${uuid}-${suuid}`
+							'data-parent': `${prefix}-${variant}-submenu-${uuid}-${suuid}`,
+							'tabindex': '0'
 						},
 							$('button', {
 								class: `${prefix}-flyout--categories-item_header`,

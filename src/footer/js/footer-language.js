@@ -30,7 +30,7 @@ export default (data, prefix) => {
 	const $languageDialogClose = $('button',
 		{
 			class: `${prefix}-language-dialog-close`, id: 'dialog-description',
-			ariaLabel: data.closeLabel
+			'aria-label': data.closeLabel
 		},
 		$renderSvgOrImg({imgDef: $close.md, imgClass: `${prefix}-language-dialog-close-image`})
 	);
@@ -38,15 +38,6 @@ export default (data, prefix) => {
 	$languageDialogClose.addEventListener('click', closeDialog);
 
 	$($languageDialog, $languageDialogClose);
-
-	// Language Dialog Canvas
-	const $cancelCanvas = $('button', {
-		class: `${prefix}-language-dialog-cancel-canvas`,
-		type: 'button',
-		tabindex: -1
-	});
-
-	$cancelCanvas.addEventListener('click', closeDialog);
 
 	function openDialog(event) {
 		event.preventDefault();
@@ -67,7 +58,7 @@ export default (data, prefix) => {
 	const $canvas = $('div', {
 		class: `${prefix}-language-dialog-barrier`,
 		aria: {expanded: false}
-	}, $languageDialog, $cancelCanvas);
+	}, $languageDialog);
 
 	$control.addEventListener('click', () => {
 		$dispatch($control, 'footer:click:language', data);
