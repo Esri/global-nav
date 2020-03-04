@@ -139,16 +139,21 @@ export default () => {
 				$appImageContainer.appendChild($("img", {"class": "appIconPng", "alt": "", src: currentApp.image}));
 				$appLink.appendChild($appImageContainer);
 			} else {
-				const stringWidth = Math.ceil(getTextWidth(currentApp.abbr || "", "avenir") / 5);
+				let stringWidth = Math.ceil(getTextWidth(currentApp.abbr || "", "avenir") / 5);
 				let abbreviationSize = abbreviationSizes[stringWidth];
 				if (stringWidth > 9) { // Prevent user from exceeding icon width
 					currentApp.abbr = currentApp.abbr.substr(0, 4);
+					stringWidth = 9;
 					abbreviationSize = abbreviationSizes[9];
 				}
 				const surfaceDiv = $("div", {"class": "appIconImage"});
 				surfaceDiv.appendChild(getAccessibleAppArrowContainer());
+				let style = `font-size: ${abbreviationSize};`;
+				if(stringWidth > 6) {
+					style += ` font-weight: 500;`;
+				}
 				const surfaceSpan = $("span", {
-					style: `font-size: ${abbreviationSize}`,
+					style,
 					class: `avenir appIconSvgText ${selectNoneClass}`
 				}, currentApp.abbr);
 				surfaceDiv.appendChild(surfaceSpan);
