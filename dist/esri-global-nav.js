@@ -4655,10 +4655,10 @@ var languageDialog = (function (data) {
 
 var language = (function (data, prefix) {
 	// Language Selection Button
-	var $labelText = document.createTextNode(data.buttonLabel);
+	// const $labelText = document.createTextNode(data.buttonLabel);
 	var $control = document.createElement('button');
 	$control.classList.add(prefix + '-language-control');
-	$control.setAttribute('ariaDescribedby', prefix + '-language');
+	// $control.setAttribute('ariaDescribedby',`${prefix}-language`);
 	$control.innerHTML = data.buttonLabel;
 
 	var $barrier = $assign('div', { class: prefix + '-language' }, $control);
