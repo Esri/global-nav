@@ -32,7 +32,7 @@ export default () => {
 		$cartItems);
 
 	$target.addEventListener('header:update:cart', ({detail}) => {
-		if (detail && detail.items > 0) {
+		if (detail) {
 			$control.setAttribute('href', `${detail.url}`);
 			changeCartCount(detail.items);
 		}
@@ -49,9 +49,8 @@ export default () => {
 	const changeCartCount = (inc, animate) => {
 		let currCount = parseInt($cartItems.innerHTML);
 		currCount = (isNaN(currCount) || currCount < 0) ? 0 : currCount;
-
 		const cartCount = currCount + parseInt(inc);
-		$cartItems.innerHTML = cartCount;
+		(cartCount >= 999) ? $cartItems.innerHTML = '999+' : $cartItems.innerHTML = cartCount;
 
 		if (cartCount > 0) {
 			$target.setAttribute('data-cart-empty', 'false');

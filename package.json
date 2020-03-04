@@ -7,7 +7,7 @@
   "repository": "Esri/global-nav",
   "homepage": "https://github.com/Esri/global-nav#readme",
   "bugs": "https://github.com/Esri/global-nav/issues",
-  "main": "src/esri-global-nav.js",
+  "main": "dist/esri-global-nav.js",
   "scripts": {
     "clean": "git clean -X -d -f",
     "start": "gulp",

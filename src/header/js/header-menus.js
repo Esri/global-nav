@@ -159,10 +159,11 @@ export default ({variant = 'desktop'}) => {
 
 							const $li = $('li', {class: `${prefix}-item`}, $subcontrol);
 
-							const hasMenuItems = item.menus && item.menus.length;
+							const hasMenuItems = item.menus && item.menus.length > 0;
 							const hasCols = item.cols && item.cols.length;
-							const hasFlyout = item.flyout && item.flyout.length;
-							const hasFeaturedItems = item.tiles && item.tiles.length;
+
+							const hasFlyout = item.flyout && item.flyout.length > 0;
+							const hasFeaturedItems = item.tiles && item.tiles.length > 0;
 
 							if (hasMenuItems || hasCols || hasFeaturedItems || hasFlyout) {
 								/* Global Navigation: Submenu
@@ -177,7 +178,7 @@ export default ({variant = 'desktop'}) => {
 
 								if (hasMenuItems) {
 									const total = item.menus.length;
-									if (total > 10) {
+									if (total >= 10) {
 										hasMultiCols = total % 3 === 0;
 										columns = Math.min(Math.ceil(total / 9), 3);
 									}
@@ -206,7 +207,9 @@ export default ({variant = 'desktop'}) => {
 									renderMulti({$subcontent, item, uuid, suuid});
 								} else if (hasMenuItems) {
 									renderSingle({hasMenuItems, $subcontent, item, uuid, suuid});
-								} else if (hasFeaturedItems) {
+								}
+
+								if (!hasFlyout && hasFeaturedItems) {
 									$($subcontent,
 										/* Global Navigation: Menus: Sublink
 										/* ============================== */
@@ -286,8 +289,8 @@ export default ({variant = 'desktop'}) => {
 				flyoutCategories[index].setAttribute('aria-current', 'false');
 				list.setAttribute('aria-current', 'false');
 				if ((list.hasAttribute('data-id') && list.getAttribute('data-id') === '0') &&
-						(flyoutCategories[index].hasAttribute('data-id') && flyoutCategories[index].getAttribute('data-id') === '0')
-					 ) {
+					(flyoutCategories[index].hasAttribute('data-id') && flyoutCategories[index].getAttribute('data-id') === '0')
+				) {
 					flyoutCategories[index].setAttribute('aria-current', 'true');
 					list.setAttribute('aria-current', 'true');
 				}
@@ -441,58 +444,60 @@ export default ({variant = 'desktop'}) => {
 
 		switch (type) {
 			case 'category':
-					if (items.cols.length) {
-						items.cols.forEach((column) => {
-							category = $('li', {
-								class: `${prefix}-flyout--categories-item`,
-								'data-id': id,
-								'aria-current': id === 0 ? 'true' : 'false',
-								'data-parent': `${prefix}-${variant}-submenu-${uuid}-${suuid}`
-							},
-								$('button', {class: `${prefix}-flyout--categories-item_header`,
-									click: (e) => {
-										swapFlyoutContent(e);
-									}
-								}, items.category)
+				if (items.cols.length) {
+					items.cols.forEach((column) => {
+						category = $('li', {
+							class: `${prefix}-flyout--categories-item`,
+							'data-id': id,
+							'aria-current': id === 0 ? 'true' : 'false',
+							'data-parent': `${prefix}-${variant}-submenu-${uuid}-${suuid}`,
+							'tabindex': '0'
+						},
+							$('button', {
+								class: `${prefix}-flyout--categories-item_header`,
+								click: (e) => {
+									swapFlyoutContent(e);
+								}
+							}, items.category)
+						);
+						column.col.forEach((col) => {
+							listArr.push(
+								$('a', {href: col.href, class: `${prefix}-flyout--categories-details_item`, 'data-heading': col.heading ? 'true' : 'false'},
+									(col.heading) && $('p', {class: `${prefix}-flyout--categories-details_heading`}, col.heading),
+									(col.label) && $('p', {class: `${prefix}-flyout--categories-details_label`}, col.label)
+								)
 							);
-							column.col.forEach((col) => {
-								listArr.push(
-									$('a', {href: col.href, class: `${prefix}-flyout--categories-details_item`, 'data-heading': col.heading ? 'true' : 'false'},
-										(col.heading) && $('p', {class: `${prefix}-flyout--categories-details_heading`}, col.heading),
-										(col.label) && $('p', {class: `${prefix}-flyout--categories-details_label`}, col.label)
-									)
-								);
-							});
 						});
-					}
+					});
+				}
 
-					$items.push(
-						$(category,
-							$('div', {class: `${prefix}-flyout--categories-details`, 'aria-expanded': 'false'},
+				$items.push(
+					$(category,
+						$('div', {class: `${prefix}-flyout--categories-details`, 'aria-expanded': 'false'},
 							...listArr)
-						)
-					);
-			break;
+					)
+				);
+				break;
 
 			case 'label':
-					if (items.cols && items.cols.length) {
-						items.cols.forEach((column) => {
-							const $column = $('ul', {class: `${prefix}-flyout--list-items_column`});
-							column.col.forEach((col) => {
-								$items.push(
-									$($column,
-										$('li', {class: `${prefix}-flyout--list-items_name`},
-											$('a', {href: col.href, class: `${prefix}-flyout--list-items_anchor`, 'data-heading': (col.heading) ? 'true' : 'false'},
-												(col.heading) && $('p', {class: `${prefix}-flyout--list-items_heading`}, col.heading),
-												(col.label) && $('p', {class: `${prefix}-flyout--list-items_label`}, col.label)
-											)
+				if (items.cols && items.cols.length) {
+					items.cols.forEach((column) => {
+						const $column = $('ul', {class: `${prefix}-flyout--list-items_column`});
+						column.col.forEach((col) => {
+							$items.push(
+								$($column,
+									$('li', {class: `${prefix}-flyout--list-items_name`},
+										$('a', {href: col.href, class: `${prefix}-flyout--list-items_anchor`, 'data-heading': (col.heading) ? 'true' : 'false'},
+											(col.heading) && $('p', {class: `${prefix}-flyout--list-items_heading`}, col.heading),
+											(col.label) && $('p', {class: `${prefix}-flyout--list-items_label`}, col.label)
 										)
 									)
-								);
-							});
+								)
+							);
 						});
-					}
-			break;
+					});
+				}
+				break;
 		}
 
 		return $items;
@@ -508,9 +513,11 @@ export default ({variant = 'desktop'}) => {
 			);
 
 			$($flyoutList,
-				$('div', {class: `${prefix}-flyout--list-items`,
-				'data-id': id, 'data-coltype': item.cols.length,
-				'aria-current': id === 0 ? 'true' : 'false'},
+				$('div', {
+					class: `${prefix}-flyout--list-items`,
+					'data-id': id, 'data-coltype': item.cols.length,
+					'aria-current': id === 0 ? 'true' : 'false'
+				},
 					...renderFlyoutMenu(item, 'label', id, uuid, suuid)
 				)
 			);
