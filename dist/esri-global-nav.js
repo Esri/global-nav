@@ -1909,7 +1909,7 @@ var createShoppingCart = (function () {
 		var currCount = parseInt($cartItems.innerHTML);
 		currCount = isNaN(currCount) || currCount < 0 ? 0 : currCount;
 		var cartCount = currCount + parseInt(inc);
-		cartCount >= 999 ? $cartItems.innerHTML = '999+' : $cartItems.innerHTML = cartCount;
+		cartCount >= 999 ? $cartItems.innerHTML = '999' : $cartItems.innerHTML = cartCount;
 
 		if (cartCount > 0) {
 			$target.setAttribute('data-cart-empty', 'false');
