@@ -134,7 +134,7 @@ export default ({variant = 'desktop'}) => {
 			...detail.map(
 				(menu, uuid) => $('div',
 					{
-						class: `${prefix}-menu`,
+						class: `${prefix}-menu`
 					},
 					$('ul',
 						{
