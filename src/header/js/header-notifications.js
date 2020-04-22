@@ -43,7 +43,7 @@ export default () => {
 	const $content = $('div',
 		{
 			class: `${prefix}-menu`, id: `${prefix}-menu`,
-			role: 'group', aria: {expanded: false, hidden: true}
+			aria: {expanded: false, hidden: true}
 		},
 		$contentMessages
 	);

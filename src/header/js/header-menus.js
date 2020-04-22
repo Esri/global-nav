@@ -135,7 +135,6 @@ export default ({variant = 'desktop'}) => {
 				(menu, uuid) => $('div',
 					{
 						class: `${prefix}-menu`,
-						role: 'group'
 					},
 					$('ul',
 						{
@@ -190,7 +189,7 @@ export default ({variant = 'desktop'}) => {
 										id: `${prefix}-${variant}-submenu-${uuid}-${suuid}`,
 										'data-has-structured': hasFlyout ? 'false' : hasStructured,
 										'data-has-flyout': hasFlyout ? 'true' : 'false',
-										role: 'group', aria: {hidden: true, expanded: false},
+										aria: {hidden: true, expanded: false},
 										data: {
 											filled: (hasMenuItems && Math.min(item.menus.length, 30)) || '',
 											structuredCols: hasCols || '',
