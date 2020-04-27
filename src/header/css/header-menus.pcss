@@ -273,7 +273,7 @@
 	width: 100%;
 
 	@media (--width-l) {
-		width: 30%;
+		width: 270px;
 	}
 }
 
@@ -350,6 +350,16 @@
 	text-transform: uppercase;
 	text-align: left;
 	width: 100%;
+
+	&[js-focus],
+	&[js-focus-ring] {
+		outline: 0;
+		box-shadow: 
+			inset 0 2px var(--blue), 
+			inset 0 -2px var(--blue),
+			inset -2px 0 var(--blue),
+			inset 2px 0 var(--blue);
+	}
 	
 	&:hover {
 		background-color: transparent;
