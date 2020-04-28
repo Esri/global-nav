@@ -29,6 +29,8 @@ export default () => {
 			content: $content,
 			event
 		});
+		// this must go inside an actual click handler for iOS Safari to bring up the keyboard
+		$input && $input.focus();
 	});
 
 	/* Search: Close Button
@@ -117,9 +119,6 @@ export default () => {
 
 	$target.addEventListener('header:inlineSearch:activated', ({detail}) => {
 		$target.setAttribute('aria-expanded', "true");
-		setTimeout(() => {
-			$input.focus();
-		}, 0);
 	});
 
 	/* Search: On Deactivation
