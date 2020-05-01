@@ -125,8 +125,7 @@ export default () => {
 	// Signin Menu
 	const $contentSigninMenu = $('ul',
 		{
-			class: `${prefix}-signin-menu`,
-			role: 'group'
+			class: `${prefix}-signin-menu`
 		},
 		$('li', {class: `${prefix}-signin-item`},
 			$contentSigninSwitch
