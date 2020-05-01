@@ -430,6 +430,7 @@ export default ({variant = 'desktop'}) => {
 						(selectedListCols) === '1' ? resetFlyoutDimensions(parentNode) : resetFlyoutDimensions('disabled');
 						parentNode.setAttribute('aria-current', 'true');
 						itemsList[index].setAttribute('aria-current', 'true');
+						itemsList[index].focus();
 					}
 				});
 			});
@@ -450,10 +451,11 @@ export default ({variant = 'desktop'}) => {
 							'data-id': id,
 							'aria-current': id === 0 ? 'true' : 'false',
 							'data-parent': `${prefix}-${variant}-submenu-${uuid}-${suuid}`,
-							'tabindex': '0'
+							tabindex: -1
 						},
 							$('button', {
 								class: `${prefix}-flyout--categories-item_header`,
+								tabindex: 0,
 								click: (e) => {
 									swapFlyoutContent(e);
 								}
@@ -461,7 +463,12 @@ export default ({variant = 'desktop'}) => {
 						);
 						column.col.forEach((col) => {
 							listArr.push(
-								$('a', {href: col.href, class: `${prefix}-flyout--categories-details_item`, 'data-heading': col.heading ? 'true' : 'false'},
+								$('a', {
+									href: col.href, 
+									class: `${prefix}-flyout--categories-details_item`, 
+									'data-heading': col.heading ? 'true' : 'false',
+									tabindex: -1
+								},
 									(col.heading) && $('p', {class: `${prefix}-flyout--categories-details_heading`}, col.heading),
 									(col.label) && $('p', {class: `${prefix}-flyout--categories-details_label`}, col.label)
 								)
@@ -472,7 +479,11 @@ export default ({variant = 'desktop'}) => {
 
 				$items.push(
 					$(category,
-						$('div', {class: `${prefix}-flyout--categories-details`, 'aria-expanded': 'false'},
+						$('div', {
+							class: `${prefix}-flyout--categories-details`, 
+							'aria-expanded': 'false',
+							tabindex: -1
+						},
 							...listArr)
 					)
 				);
@@ -515,7 +526,8 @@ export default ({variant = 'desktop'}) => {
 				$('div', {
 					class: `${prefix}-flyout--list-items`,
 					'data-id': id, 'data-coltype': item.cols.length,
-					'aria-current': id === 0 ? 'true' : 'false'
+					'aria-current': id === 0 ? 'true' : 'false',
+					tabindex: 0
 				},
 					...renderFlyoutMenu(item, 'label', id, uuid, suuid)
 				)

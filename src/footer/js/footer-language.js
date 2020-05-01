@@ -11,10 +11,10 @@ import languageDialog from './language';
 
 export default (data, prefix) => {
 	// Language Selection Button
-	const $labelText = document.createTextNode(data.buttonLabel);
+	// const $labelText = document.createTextNode(data.buttonLabel);
 	const $control = document.createElement('button');
 	$control.classList.add(`${prefix}-language-control`);
-	$control.setAttribute('ariaDescribedby',`${prefix}-language`);
+	// $control.setAttribute('ariaDescribedby',`${prefix}-language`);
 	$control.innerHTML = data.buttonLabel;
 
 	const $barrier = $('div', {class: `${prefix}-language`}, $control);
