@@ -149,7 +149,7 @@ export default () => {
 				const surfaceDiv = $("div", {"class": "appIconImage"});
 				surfaceDiv.appendChild(getAccessibleAppArrowContainer());
 				let style = `font-size: ${abbreviationSize};`;
-				if(stringWidth > 6) {
+				if (stringWidth > 6) {
 					style += ` font-weight: 500;`;
 				}
 				const surfaceSpan = $("span", {

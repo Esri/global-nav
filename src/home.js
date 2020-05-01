@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
 			],
 			search: {
 				label: 'Search',
-				// inline: true,
+				inline: true,
 				dialog: {
 					action: 'https://pages.codehub.esri.com/marketing/esri-search-page/',
 					label: 'Esri',
