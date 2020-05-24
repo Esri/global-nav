@@ -8,7 +8,8 @@ document.addEventListener("DOMContentLoaded", () => {
 				href: 'https://www.esri.com/',
 				width: 80,
 				height: 30,
-				distributorImage: './img/dist-logo.jpg',
+				// distributorImage: './img/dist-logo.jpg',
+				brandText: 'User Conference 2020',
 				distributorImageWidth: 120,
 				distributorImageHeight: 56
 			},
