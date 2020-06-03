@@ -10,6 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
 				height: 30,
 				// distributorImage: './img/dist-logo.jpg',
 				brandText: 'User Conference 2020',
+				brandTextLink: 'https://www.esri.com',
 				distributorImageWidth: 120,
 				distributorImageHeight: 56
 			},
