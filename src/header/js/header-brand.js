@@ -32,7 +32,8 @@ export default () => {
 		}
 		if (detail.brandText) {
 			const textClass = detail.image ? `${prefix}-text -has-image` : `${prefix}-text`;
-			const $brandText = $('span', {class: textClass}, detail.brandText);
+			const textLinkClass = detail.brandTextLink ? `${prefix}-text -has-textLink` : `${prefix}-text`;
+			const $brandText = detail.brandTextLink ? $('a', {href: detail.brandTextLink, class: textLinkClass}, detail.brandText) : $('span', {class: textClass}, detail.brandText);
 			$($targetLink, $brandText);
 		}
 	});
