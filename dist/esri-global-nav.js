@@ -1345,7 +1345,11 @@ var createMenus = (function (_ref) {
 			}
 
 			if (entry.href && entry.label) {
-				$items.push($assign('li', { class: prefix$4 + '-entry--menus-subitem' }, $assign('a', { href: entry.href, class: prefix$4 + '-entry-sublink' }, entry.label)));
+				console.log(entry.href);
+				console.log(window.location.hostname);
+				var external = entry.href.indexOf(window.location.hostname) > -1 ? "_top" : "_blank";
+
+				$items.push($assign('li', { class: prefix$4 + '-entry--menus-subitem' }, $assign('a', { href: entry.href, class: prefix$4 + '-entry-sublink', target: external }, entry.label)));
 			}
 		});
 
