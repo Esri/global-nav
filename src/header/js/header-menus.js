@@ -557,9 +557,11 @@ export default ({variant = 'desktop'}) => {
 			}
 
 			if (entry.href && entry.label) {
+				const target = (entry.href.indexOf(window.location.hostname) < 0) && "_blank";
+
 				$items.push(
 					$('li', {class: `${prefix}-entry--menus-subitem`},
-						$('a', {href: entry.href, class: `${prefix}-entry-sublink`}, entry.label),
+						$('a', {href: entry.href, class: `${prefix}-entry-sublink`, target}, entry.label),
 					)
 				);
 			}
