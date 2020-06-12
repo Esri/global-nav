@@ -1378,11 +1378,11 @@ var createMenus = (function (_ref) {
 			var isExternal = href.indexOf(window.location.hostname) < 0;
 			var target = "";
 			if (isRelative || !isExternal) {
-				target = "";
+				target = "_top";
 			} else if (isRelative || isExternal) {
 				target = "_blank";
 			}
-			return target === "" && null;
+			return target;
 		}
 	}
 
