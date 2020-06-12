@@ -45,10 +45,15 @@ export default ({variant = 'desktop'}) => {
 
 	const createNavLink = (link) => {
 		let $link;
+		const target = setUrlTarget(link.props.href);
 
 		if (link.props.href) {
 			$link = $('a',
-				{class: `${prefix}-${link.class}`, href: link.props.href},
+				{
+					class: `${prefix}-${link.class}`, 
+					href: link.props.href,
+					target
+				},
 				link.icon || "",
 				link.label
 			);
@@ -462,12 +467,15 @@ export default ({variant = 'desktop'}) => {
 							}, items.category)
 						);
 						column.col.forEach((col) => {
+							const target = setUrlTarget(col.href);
+
 							listArr.push(
 								$('a', {
 									href: col.href, 
 									class: `${prefix}-flyout--categories-details_item`, 
 									'data-heading': col.heading ? 'true' : 'false',
-									tabindex: -1
+									tabindex: -1,
+									target
 								},
 									(col.heading) && $('p', {class: `${prefix}-flyout--categories-details_heading`}, col.heading),
 									(col.label) && $('p', {class: `${prefix}-flyout--categories-details_label`}, col.label)
@@ -494,10 +502,16 @@ export default ({variant = 'desktop'}) => {
 					items.cols.forEach((column) => {
 						const $column = $('ul', {class: `${prefix}-flyout--list-items_column`});
 						column.col.forEach((col) => {
+							const target = setUrlTarget(col.href);
 							$items.push(
 								$($column,
 									$('li', {class: `${prefix}-flyout--list-items_name`},
-										$('a', {href: col.href, class: `${prefix}-flyout--list-items_anchor`, 'data-heading': (col.heading) ? 'true' : 'false'},
+										$('a', {
+											href: col.href, 
+											class: `${prefix}-flyout--list-items_anchor`, 
+											'data-heading': (col.heading) ? 'true' : 'false',
+											target
+										},
 											(col.heading) && $('p', {class: `${prefix}-flyout--list-items_heading`}, col.heading),
 											(col.label) && $('p', {class: `${prefix}-flyout--list-items_label`}, col.label)
 										)
@@ -557,17 +571,37 @@ export default ({variant = 'desktop'}) => {
 			}
 
 			if (entry.href && entry.label) {
-				const target = (entry.href.indexOf(window.location.hostname) < 0) && "_blank";
+				const target = setUrlTarget(entry.href);
 
 				$items.push(
 					$('li', {class: `${prefix}-entry--menus-subitem`},
-						$('a', {href: entry.href, class: `${prefix}-entry-sublink`, target}, entry.label),
+						$('a', {
+							href: entry.href, 
+							class: `${prefix}-entry-sublink`, 
+							target
+						}, 
+							entry.label),
 					)
 				);
 			}
 		});
 
 		return $items;
+	}
+
+	function setUrlTarget(href) {
+		if (href) {
+			const regX = /^\//;
+			const isRelative = href.search(regX) === 0;
+			const isExternal = href.indexOf(window.location.hostname) < 0;
+			let target = "";
+			if (isRelative || !isExternal) {
+				target = "_top";
+			} else	if (isRelative || isExternal) {
+				target = "_blank";
+			}
+			return target;
+		}
 	}
 
 	function renderStructuredMenu(entries) {
@@ -584,9 +618,14 @@ export default ({variant = 'desktop'}) => {
 			}
 
 			if (entry.href && entry.label) {
+				const target = setUrlTarget(entry.href);
 				$items.push(
 					$('li', {class: `${prefix}-entry--menus-subitem`},
-						$('a', {href: entry.href, class: `${prefix}-entry-sublink`},
+						$('a', {
+							href: entry.href, 
+							class: `${prefix}-entry-sublink`,
+							target
+						},
 							$('p', {class: `${prefix}-entry-sublink--title`}, entry.label),
 							entry.description ? $('p', {class: `${prefix}-sublink--description`}, entry.description) : null
 						)
