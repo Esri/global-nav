@@ -17,6 +17,7 @@ import createNotifications from './header-notifications';
 export default (data) => {
 	let viewportIsSmall;
 	let viewportIsSmallMedium;
+	const someUpdate = 'test';
 
 	/* Canvas
 	/* ====================================================================== */
