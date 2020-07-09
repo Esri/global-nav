@@ -125,8 +125,7 @@ export default () => {
   // Signout Control: On Keydown with a tab, send the focus to the account control
   // Using keydown because that's what tab does with other steps in control
   $contentSigninSignout.addEventListener('keydown', (event) => {
-    const code = event.charCode || event.keyCode;
-    if (code === 9) { // only for tab
+    if (event.key === "Tab") {
       $control.focus();
     }
   });
