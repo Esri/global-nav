@@ -8,6 +8,7 @@
   "homepage": "https://github.com/Esri/global-nav#readme",
   "bugs": "https://github.com/Esri/global-nav/issues",
   "main": "dist/esri-global-nav.js",
+  "types": "src/esri-global-nav.d.ts",
   "scripts": {
     "clean": "git clean -X -d -f",
     "start": "gulp",
