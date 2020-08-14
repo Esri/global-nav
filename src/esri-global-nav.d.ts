@@ -44,16 +44,19 @@ export interface IGlobalNavPartialConfig {
 }
 
 /**
- * Creates the header and footer sections.
- * @param config Configuration for sections
+ * Create both header and footer
  */
-interface globalNavAPI {
-  create: (config: IGlobalNavConfig) => void;
-  createHeader: (config: IGlobalNavPartialConfig) => void;
-  createFooter: (config: IGlobalNavPartialConfig) => void;
-}
+export function create(config: IGlobalNavConfig): void;
 
-export default globalNavAPI;
+/**
+ * Create just a header
+ */
+export function createHeader(config: IGlobalNavPartialConfig): void;
+
+/**
+ * Create just a footer
+ */
+export function createFooter(config: IGlobalNavPartialConfig): void;
 
 // ================================================================================================================== //
 
