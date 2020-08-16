@@ -153,7 +153,7 @@ export interface IGlobalNavMenuData {
       };
     };
     /** Always place menus behind an expandable hamburger menu */
-    collapseMenus?: boolean;
+    collapseMenus?: boolean[];
   };
   footer?: {
     /** CSS namespace used by footer elements (default `esri-footer`) */
