@@ -180,7 +180,7 @@ export interface IGlobalNavMenuData {
     /** Informational Links */
     info?: {
       label: string;
-      menu: Pick<IGlobalNavMenu, "label", "href">[];
+      menu: Pick<IGlobalNavMenu, "label"|"href">[];
     };
     /** Language selection */
     language?: {
@@ -218,7 +218,7 @@ export interface IGlobalNavImageSVG {
 /**
  * Image definition, accepts path to image, or SVG def
  */
-export type IGlobalNavImage = IGlobalNavSVG | string;
+export type IGlobalNavImage = IGlobalNavImageSVG | string;
 
 /**
  * Footer breadcrumb links
