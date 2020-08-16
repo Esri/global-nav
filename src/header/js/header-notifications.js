@@ -58,6 +58,7 @@ export default () => {
 		if (detail.messages && detail.messages.length > 0) {
 			$replaceAll($dismiss, detail.dismissAllLabel);
 			const $badge = $('span', {class: `${prefix}-badge`}, `${detail.messages.length}`);
+			$control.setAttribute('aria-label', detail.label || "Notifications");
 			$replaceAll($control, $icon, $badge);
 			// Update the notifications
 			$replaceAll($contentMessages,
