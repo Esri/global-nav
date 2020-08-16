@@ -82,6 +82,7 @@ export default (data) => {
 				$dispatch($inlineTitle, 'header:update:inlineTitle', detail.brand);
 			} else {
 				$dispatch($brand, 'header:update:brand', detail.brand);
+				$dispatch($inlineTitle, 'header:update:inlineTitle', false);
 			}
 		}
 
