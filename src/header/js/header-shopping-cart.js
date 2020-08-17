@@ -12,13 +12,13 @@ export default () => {
 
 	const $control = $('a',
 		{
-			href: '#', 
-			class: `${prefix}--icon`, 
+			href: '#',
+			class: `${prefix}--icon`,
 			id: `${prefix}--icon`
 		},
 		$renderSvgOrImg({
-			imgDef: $cart.md, 
-			imgClass: `${prefix}--image`, 
+			imgDef: $cart.md,
+			imgClass: `${prefix}--image`,
 			id: `${prefix}--image`
 		})
 	);
@@ -35,6 +35,10 @@ export default () => {
 		if (detail) {
 			$control.setAttribute('href', `${detail.url}`);
 			changeCartCount(detail.items);
+			$target.classList.remove("hidden");
+		} else {
+			$target.classList.add("hidden");
+			return;
 		}
 	});
 

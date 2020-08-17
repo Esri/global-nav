@@ -74,16 +74,18 @@ export default (data) => {
 
 	$header.addEventListener('header:update', ({detail}) => {
 		if (detail.brand) {
-			if (detail.brand.topStripe) {
-				$dispatch($brandStripe, 'header:update:brand', detail.brand);
-				$header.style.marginTop = '3px';
-			}
-			if (detail.brand.editTitle) {
-				$dispatch($inlineTitle, 'header:update:inlineTitle', detail.brand);
-			} else {
-				$dispatch($brand, 'header:update:brand', detail.brand);
-			}
+			detail.brand.root = true;
 		}
+
+		$dispatch($brandStripe, 'header:update:brand', detail.brand);
+		$dispatch($brand, 'header:update:brand', detail.brand);
+		$dispatch($inlineTitle, 'header:update:inlineTitle', detail.brand);
+		$dispatch($search, 'header:update:inlineSearch', detail.search);
+		$dispatch($inlineSearch, 'header:update:inlineSearch', detail.search);
+		$dispatch($client.lastChild, 'header:update:account', detail.account);
+		$dispatch($apps, 'header:update:apps', detail.apps);
+		$dispatch($notifications, 'header:update:notifications', detail.notifications);
+		$dispatch($shoppingCart, 'header:update:cart', detail.cart);
 
 		if (detail.menus) {
 			detail.menus.noBrand = !detail.brand;
@@ -96,38 +98,12 @@ export default (data) => {
 			$dispatch($mobileMenus, 'header:update:collapseMenus', detail.collapseMenus);
 		}
 
-		if (detail.search) {
-			if (detail.search.inline) {
-				$search.querySelector(".esri-header-search-control").classList.add("esri-header-search-control-hidden");
-				$dispatch($inlineSearch, 'header:update:inlineSearch', detail.search);
-			} else {
-				$inlineSearch.querySelector(".esri-header-inlineSearch-control").classList.add("esri-header-search-control-hidden");
-				$dispatch($search, 'header:update:search', detail.search);
-			}
-		}
-
-		if (detail.account) {
-			$dispatch($client.lastChild, 'header:update:account', detail.account);
-		}
-
-		if (detail.account) {
-			$dispatch($client.lastChild, 'header:update:account', detail.account);
-		}
-
-		if (detail.apps) {
-			$dispatch($apps, 'header:update:apps', detail.apps);
-		}
-
-		if (detail.notifications) {
-			$dispatch($notifications, 'header:update:notifications', detail.notifications);
+		if (detail.brand && detail.brand.topStripe) {
+			$header.style.marginTop = '3px';
 		}
 
 		if (!detail.notifications && !detail.apps && !detail.account) {
 			$lineBreak.classList.add('esri-header-lineBreak-hidden');
-		}
-
-		if (detail.cart) {
-			$dispatch($shoppingCart, 'header:update:cart', detail.cart);
 		}
 
 		$header.ownerDocument.defaultView.addEventListener('keydown', ({keyCode}) => {
@@ -412,11 +388,9 @@ export default (data) => {
 		function onViewportIsSmallMediumChange() {
 			if (viewportIsSmallMedium.matches) {
 				$dispatch($header, 'header:breakpoint:sm');
-				$($desktopMenus.lastChild, {aria: {hidden: 'false' === $desktopMenus.lastChild.getAttribute('aria-expanded')}});
 			} else {
 				$dispatch($header, 'header:breakpoint:not:sm');
 				$dispatch($header, 'header:menu:close');
-				$($desktopMenus.lastChild, {aria: {hidden: false}});
 			}
 		}
 	});

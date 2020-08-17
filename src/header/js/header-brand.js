@@ -13,6 +13,13 @@ export default () => {
 	/* Brand: On Update
 	/* ====================================================================== */
 	$target.addEventListener('header:update:brand', ({detail}) => {
+		console.log(detail);
+		if (detail && !detail.editTitle) {
+			$target.classList.remove('hidden');
+		} else {
+			$target.classList.add('hidden');
+			return;
+		}
 		let $targetLink = $('span', {class: prefix, id: prefix});
 		if (detail.href) {
 			$targetLink = $('a', {class: `${prefix}-link`, id: prefix, href: detail.href});
