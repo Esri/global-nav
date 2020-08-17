@@ -45,7 +45,7 @@
 
                 <p>First, you need to import the global nav library into your page. The best way to do this will vary based on your toolchain and build process. For static html pages, you can simply add a link to the JS and CSS files:</p>
 
-<pre><code class="language-markup">&lt;!-- in the HEAD tag --&gt;
+<pre><code tabindex="0" class="language-markup">&lt;!-- in the HEAD tag --&gt;
 &lt;link rel="stylesheet" href="./esri-global-nav.css"&gt;
 &lt;!-- before the end of BODY tag --&gt;
 &lt;script src="./path/to/esri-global-nav.js"&gt;&lt;/script&gt;
@@ -53,11 +53,11 @@
 
                 <p>If you're using a module system for your JS, the library can be imported via CommonJS:</p>
 
-<pre><code class="language-js">var globalNav = require('esri-global-nav')</code></pre>
+<pre><code tabindex="0" class="language-js">var globalNav = require('esri-global-nav')</code></pre>
 
                 <p>Or AMD (Dojo define syntax):</p>
 
-<pre><code class="language-js">define([
+<pre><code tabindex="0" class="language-js">define([
   "esri-global-nav/dist/esri-global-nav.js"
 ], function (globalNav) {
   return {
@@ -79,7 +79,7 @@
 
                 <p>The basic stucture of the options object would look something like this (abbreviated for clarity):</p>
 
-<pre><code class="language-js">{
+<pre><code tabindex="0" class="language-js">{
   header: {
     theme: 'web',
     brand: {
@@ -255,7 +255,7 @@
 
                 <p>After you've defined the structure of your navigation, just call <code class="language-js">globalNav.create</code> to start up your navigation, passing in the options and the containers like so:</p>
 
-<pre><code class="language-js">esriGlobalNav.create({headerElm: '.esri-header-barrier', footerElm: '.esri-footer-barrier', menuData});</code></pre>
+<pre><code tabindex="0" class="language-js">esriGlobalNav.create({headerElm: '.esri-header-barrier', footerElm: '.esri-footer-barrier', menuData});</code></pre>
 
                 <p>For a complete example, you can reference <a href="https://github.com/Esri/global-nav/blob/master/src/demo.js">the demo</a>.</p>
 
@@ -263,7 +263,7 @@
 
                 <p>The global nav dispatches custom events to each of its modules (Header and Footer).</p>
 
-<pre><code class="language-js">globalNav.create(yourGlobalNavStructure);
+<pre><code tabindex="0" class="language-js">globalNav.create(yourGlobalNavStructure);
 var esriHeader = document.querySelector('.esri-header-barrier');
 esriHeader.addEventListener("header:click:search", function () { ... });</code></pre>
 
@@ -282,7 +282,7 @@ esriHeader.addEventListener("header:click:search", function () { ... });</code><
                 <h3>Opening Links in a New Tab</h3>
                 <p>Links, within a menu, can be configured to open in a new tab. As of now, this only works for links within dropdown submenus.</p>
 
-<pre><code class="language-js">yourGlobalNavStructure = {
+<pre><code tabindex="0" class="language-js">yourGlobalNavStructure = {
   theme: 'web',
   menus: [[
     {
@@ -296,7 +296,7 @@ esriHeader.addEventListener("header:click:search", function () { ... });</code><
                 <h3>Adding Data Attributes to Links</h3>
                 <p>Menu links can receive data attributes too. Here, we create a special page link that has an an attribute of "data-id" that's equal to "1" and "data-show-link" that's equal to "true". As of now, this only works for links within dropdown submenus</p>
 
-<pre><code class="language-js">yourGlobalNavStructure = {
+<pre><code tabindex="0" class="language-js">yourGlobalNavStructure = {
   theme: 'web',
   menus: [[
     {
@@ -312,7 +312,7 @@ esriHeader.addEventListener("header:click:search", function () { ... });</code><
 
               <h3>Always Display the Hamburger</h3>
 
-<pre><code class="language-js">
+<pre><code tabindex="0" class="language-js">
 header: {
   collapseMenus: [true, false]
 </code></pre>
@@ -320,7 +320,7 @@ header: {
               <h3>Using Inline Search</h3>
               <p>Inline search is a powerful way to supercharge the search experience for your users. It gives users the ability to view search results & suggestions in a dropdown without having to navigate away from their current content.</p>
 
-<pre><code class="language-js">
+<pre><code tabindex="0" class="language-js">
 //_______________________________________________________________________________
 // - To use inline search, set the parameter inline to true within the search object
 //-------------------------------------------------------------------------------
@@ -383,7 +383,7 @@ event.initCustomEvent('header:search:update:suggestions', true, true, {
               <h3>Using Inline Title</h3>
               <p>Inline title provides users whith a way to edit brand text. It was designed for use within mapping applications like map and scene viwer.</p>
 
-<pre><code class="language-js">
+<pre><code tabindex="0" class="language-js">
 //_______________________________________________________________________________
 // - To use inline title, set the parameter editTitle to true within the brand object
 //-------------------------------------------------------------------------------
@@ -421,7 +421,7 @@ header.addEventListener("header::title:save", (result) => {
               <h3>Configuring the App Launcher</h3>
               <p>To work with the standard set of apps from ArcGIS Online use the AGO Webworker Interface: <a href="https://github.com/ArcGIS/AGO-Webworker-Interface">https://github.com/ArcGIS/AGO-Webworker-Interface</a></p>
 
-<pre><code class="language-js">
+<pre><code tabindex="0" class="language-js">
 //_______________________________________________________________________________
 // - Before apps are loaded, we want to initialize the apps component with a loading state
 // -- Dispatch the event to update apps in the header
@@ -499,7 +499,7 @@ event.initCustomEvent("header:update:apps", true, true, {
 <p>The Global Navigation now features a shopping cart integration system, which gives users the ability to
   view, add, and remove items from their shopping cart. The shopping cart icon displays the number of items
   in the cart, and also uses and interactive animation feature to give visual feedback as items are added, or removed.</p>
-<pre><code class="language-js">
+<pre><code tabindex="0" class="language-js">
     //_________________________________________________________________________________________________
     // - The shopping cart listens for the following events to add, and remove cart items respectively.
     // -- It receives the target element, and the number of items to add/remove from the cart as params.
@@ -514,7 +514,7 @@ event.initCustomEvent("header:update:apps", true, true, {
 <p>The global navigation now features a new column based layout. This new feature supports both single, and structured menu types.
   You can specify up to three columns per menu as well as the type of menu to render in each column.</p>
 
-<pre><code class="language-js">
+<pre><code tabindex="0" class="language-js">
     //____________________________________________________________________________________________
     // - In the 'cols' array you create an object representation of the menu for each column
     // -- You can configure the menu in each column as either a 'single' or 'structured' menu type
