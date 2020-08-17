@@ -4701,7 +4701,7 @@ var language = (function (data, prefix) {
 	var $control = $assign('button', {
 		class: prefix + '-language-control',
 		title: 'Current language, ' + data.buttonLabel
-	}, '' + data.label);
+	}, '' + data.buttonLabel);
 
 	var $barrier = $assign('div', { class: prefix + '-language' }, $control);
 
@@ -4748,7 +4748,7 @@ var language = (function (data, prefix) {
 	});
 
 	$barrier.addEventListener('footer:update:language', function (_ref) {
-		$control.innerHTML = '' + data.label;
+		$control.innerHTML = '' + data.buttonLabel;
 
 		$barrier.ownerDocument.body.appendChild($canvas);
 
