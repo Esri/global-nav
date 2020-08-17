@@ -47,6 +47,11 @@ export default () => {
 	/* ====================================================================== */
 
 	$target.addEventListener('header:update:search', ({detail}) => {
+		if (!detail || detail.inline) {
+			return $target.classList.add("hidden");
+		} else {
+			$target.classList.remove("hidden");
+		}
 		if (!detail.hide) {
 			$($control, {aria: {label: detail.label}});
 			$renderSvgOrImg({imgDef: $search.md, imgClass: `${prefix}-image`, id: `${prefix}-image`, $targetElm: $control});

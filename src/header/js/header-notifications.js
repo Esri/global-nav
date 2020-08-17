@@ -51,6 +51,12 @@ export default () => {
 	/* Notifications: On Update
 	/* ====================================================================== */
 	$target.addEventListener('header:update:notifications', ({detail}) => {
+		if (detail) {
+			$target.classList.remove('hidden');
+		} else {
+			$target.classList.add('hidden');
+			return;
+		}
 		messages = (detail.messages || []).map((item) => item.id);
 
 		const $icon = $renderSvgOrImg({imgDef: $bell.md, imgClass: `${prefix}-image`, id: `${prefix}-image`});

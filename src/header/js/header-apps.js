@@ -655,6 +655,13 @@ export default () => {
 	/* ====================================================================== */
 
 	$target.addEventListener('header:update:apps', ({detail}) => {
+		if (detail) {
+			$target.classList.remove('hidden');
+		} else {
+			$target.classList.add('hidden');
+			return;
+		}
+
 		const $gridIcon = $renderSvgOrImg({imgDef: $grid.md, imgClass: `${prefix}-image`, $targetElm: $appSwitcherIcon});
 		// -- Remove display:none from style to show icon
 		$control.removeAttribute('style');

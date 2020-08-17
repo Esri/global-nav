@@ -6,8 +6,9 @@ const prefix = 'esri-header-menus';
 export default ({variant = 'desktop'}) => {
 	const $target = $('div', {class: prefix, id: `${prefix}-${variant}`});
 	$target.classList.add(`-${variant}`);
+	const isMobile = variant === 'mobile';
 
-	if (variant === 'mobile') {
+	if (isMobile) {
 		const $toggle = $('button', {
 			class: `${prefix}-toggle`, id: `${prefix}-${variant}-toggle`,
 			aria: {controls: `${prefix}-content-${variant}`, expanded: false, haspopup: true, labelledby: 'esri-header-brand'}
@@ -31,11 +32,11 @@ export default ({variant = 'desktop'}) => {
 
 	/* Menus: Content
 	/* ====================================================================== */
-
+	const aria = isMobile ? {hidden: true, expanded: false} : {};
 	const $content = $('div', {
 		class: `${prefix}-content`,
 		id: `${prefix}-content-${variant}`,
-		aria: {hidden: true, expanded: false}
+		aria
 	});
 
 	$($target, $content);
@@ -131,6 +132,12 @@ export default ({variant = 'desktop'}) => {
 	/* ====================================================================== */
 
 	$target.addEventListener('header:update:menus', ({detail}) => {
+		if (detail) {
+			$target.classList.remove('hidden');
+		} else {
+			$target.classList.add('hidden');
+			return;
+		}
 		if (detail.noBrand) {
 			$target.classList.add("-no-brand");
 		}

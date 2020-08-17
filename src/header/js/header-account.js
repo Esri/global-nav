@@ -159,6 +159,13 @@ export default () => {
 	/* ====================================================================== */
 
 	$target.addEventListener('header:update:account', ({detail}) => {
+		if (detail) {
+			$target.classList.remove('hidden');
+		} else {
+			$target.classList.add('hidden');
+			return;
+		}
+
 		$($control, {aria: {label: detail.label}});
 
 		// Update the control text

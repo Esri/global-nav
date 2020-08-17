@@ -152,9 +152,11 @@ export default () => {
 	/* Title: On Update
 	/* ====================================================================== */
 	$target.addEventListener('header:update:inlineTitle', ({detail}) => {
-		if (!detail) {
-			$target.classList.add(`${prefix}--hidden`);
+		if (!detail || (detail.root && !detail.editTitle)) {
+			$target.classList.add('hidden');
 			return;
+		} else {
+			$target.classList.remove('hidden');
 		}
 
 		if (detail.brandText) {

@@ -8,6 +8,12 @@ export default () => {
 	/* Brand: On Update
 	/* ====================================================================== */
 	$target.addEventListener('header:update:brand', ({detail}) => {
+		if (detail) {
+			$target.classList.remove('hidden');
+		} else {
+			$target.classList.add('hidden');
+			return;
+		}
 		$target.style.backgroundColor = detail.topStripe;
 		$target.classList.add('-visible');
 	});
