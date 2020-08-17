@@ -38,10 +38,6 @@
 	}
 }
 
-.esri-header-inline-title--hidden {
-	display: none;
-}
-
 /* Global Header Title: Text
 /* ========================================================================== */
 
@@ -52,6 +48,7 @@
 	overflow: hidden;
 	display: inline-block;
 	text-overflow: ellipsis;
+	vertical-align: -5px;
 	white-space: nowrap;
 
 	@media (--width-s) {
@@ -197,8 +194,9 @@
 	box-shadow: unset;
 	color: var(--mono-35);
 	display: unset;
-	font-size: 16px;
+	font-size: 18px;
 	font-weight: unset;
+	line-height: 1.15;
 	margin: 5px 0;
 	padding: 0 30px 0 9px;
 	width: calc(100% - 59px);
@@ -267,10 +265,17 @@
 /* ========================================================================== */
 
 .esri-header-inline-title-dismiss-icon,
-.esri-header-inline-title-submit-icon,
-.esri-header-inline-title-edit-icon {
+.esri-header-inline-title-submit-icon {
 	@apply --menu-icon-styles;
 	margin: 0;
+}
+
+.esri-header-inline-title-edit-icon {
+	size: 16px;
+	box-sizing: content-box;
+	padding: 4px;
+	margin: 0;
+	vertical-align: -3px;
 }
 
 .esri-header-inline-title-submit-icon {
