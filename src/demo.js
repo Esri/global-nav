@@ -978,7 +978,7 @@ document.addEventListener("DOMContentLoaded", () => {
 				]
 			},
 			language: {
-				label: 'Change Languages',
+				label: 'Change Language',
 				buttonLabel: 'United States (English)',
 				submitLabel: 'Change',
 				greetingLabel: 'Hello!',

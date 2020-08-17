@@ -14,7 +14,7 @@ export default (data, prefix) => {
 	const $control = $('button', {
 		class: `${prefix}-language-control`,
 		title: `Current language, ${data.buttonLabel}`
-	}, 'Change language');
+	}, `${data.label}`);
 
 	const $barrier = $('div', {class: `${prefix}-language`}, $control);
 
@@ -64,7 +64,7 @@ export default (data, prefix) => {
 	});
 
 	$barrier.addEventListener('footer:update:language', ({detail}) => {
-		$control.innerHTML = 'Change Language';
+		$control.innerHTML = `${data.label}`;
 
 		$barrier.ownerDocument.body.appendChild(
 			$canvas
