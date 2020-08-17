@@ -1,3 +1,29 @@
+## 1.4.0
+
+### Added
+- TypeScript definitions for main methods
+- allow conversion to editable title after initial load (#253)
+
+### Fixed
+- fix: cutoff account menu on wide screens (#229)
+- a11y: add accessible label to notification icon (#233)
+- fix: center brand text on mobile (#274)
+- a11y: allow selection of text in header (#292)
+- a11y: hide inline title edit button when not defined (#297)
+- fix: improve styles for inline title editing
+- feat: hide elements that are not in config object (#300)
+- a11y: make scrim text for screen readers (#304)
+- a11y: trap focus within account control (#306)
+- a11y: improve roles for certain menu markup (#293)
+- a11y: add focus style to top nav links (#295)
+- fix: open iOS keyboard when searching
+- fix: shopping cart supports 999+ items (#285)
+- fix: column widths for
+- fix: align distributor image (#267)
+- fix: styles restored for app mode (#261, #262)
+- fix: handle missing tiles when configured (#275)
+- fix: restore cart link when adding initial item (#277)
+
 ## 1.3.0
 
 ### Added
