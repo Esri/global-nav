@@ -13,7 +13,6 @@ export default () => {
 	/* Brand: On Update
 	/* ====================================================================== */
 	$target.addEventListener('header:update:brand', ({detail}) => {
-		console.log(detail);
 		if (detail && !detail.editTitle) {
 			$target.classList.remove('hidden');
 		} else {

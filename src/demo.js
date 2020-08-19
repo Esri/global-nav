@@ -978,8 +978,8 @@ document.addEventListener("DOMContentLoaded", () => {
 				]
 			},
 			language: {
-				label: 'Switch Languages',
-				buttonLabel: 'United States (English)',
+				label: 'Change Language',
+				buttonLabel: 'Change Language',
 				submitLabel: 'Change',
 				greetingLabel: 'Hello!',
 				messageLabel: 'You are seeing the English page. Is this correct?',
