@@ -1,6 +1,6 @@
 {
   "name": "esri-global-nav",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "description": "A centralized microapp for navigation",
   "author": "Esri Web Applications <webapps@esri.com>",
   "license": "Apache-2.0",
@@ -8,6 +8,7 @@
   "homepage": "https://github.com/Esri/global-nav#readme",
   "bugs": "https://github.com/Esri/global-nav/issues",
   "main": "dist/esri-global-nav.js",
+  "types": "src/esri-global-nav.d.ts",
   "scripts": {
     "clean": "git clean -X -d -f",
     "start": "gulp",
@@ -75,6 +76,7 @@
     "postcss-short": "^4.1.0",
     "postcss-svg": "^2.1.0",
     "pre-commit": "^1.2.2",
+    "prismjs": "^1.21.0",
     "require-dir": "^1.2.0",
     "rollup": "^1.1.2",
     "rollup-plugin-babel": "^3.0.7",

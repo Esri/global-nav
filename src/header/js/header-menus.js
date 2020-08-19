@@ -6,8 +6,9 @@ const prefix = 'esri-header-menus';
 export default ({variant = 'desktop'}) => {
 	const $target = $('div', {class: prefix, id: `${prefix}-${variant}`});
 	$target.classList.add(`-${variant}`);
+	const isMobile = variant === 'mobile';
 
-	if (variant === 'mobile') {
+	if (isMobile) {
 		const $toggle = $('button', {
 			class: `${prefix}-toggle`, id: `${prefix}-${variant}-toggle`,
 			aria: {controls: `${prefix}-content-${variant}`, expanded: false, haspopup: true, labelledby: 'esri-header-brand'}
@@ -31,11 +32,11 @@ export default ({variant = 'desktop'}) => {
 
 	/* Menus: Content
 	/* ====================================================================== */
-
+	const aria = isMobile ? {hidden: true, expanded: false} : {};
 	const $content = $('div', {
 		class: `${prefix}-content`,
 		id: `${prefix}-content-${variant}`,
-		aria: {hidden: true, expanded: false}
+		aria
 	});
 
 	$($target, $content);
@@ -50,7 +51,7 @@ export default ({variant = 'desktop'}) => {
 		if (link.props.href) {
 			$link = $('a',
 				{
-					class: `${prefix}-${link.class}`, 
+					class: `${prefix}-${link.class}`,
 					href: link.props.href,
 					target
 				},
@@ -131,6 +132,12 @@ export default ({variant = 'desktop'}) => {
 	/* ====================================================================== */
 
 	$target.addEventListener('header:update:menus', ({detail}) => {
+		if (detail) {
+			$target.classList.remove('hidden');
+		} else {
+			$target.classList.add('hidden');
+			return;
+		}
 		if (detail.noBrand) {
 			$target.classList.add("-no-brand");
 		}
@@ -471,8 +478,8 @@ export default ({variant = 'desktop'}) => {
 
 							listArr.push(
 								$('a', {
-									href: col.href, 
-									class: `${prefix}-flyout--categories-details_item`, 
+									href: col.href,
+									class: `${prefix}-flyout--categories-details_item`,
 									'data-heading': col.heading ? 'true' : 'false',
 									tabindex: -1,
 									target
@@ -488,7 +495,7 @@ export default ({variant = 'desktop'}) => {
 				$items.push(
 					$(category,
 						$('div', {
-							class: `${prefix}-flyout--categories-details`, 
+							class: `${prefix}-flyout--categories-details`,
 							'aria-expanded': 'false',
 							tabindex: -1
 						},
@@ -507,8 +514,8 @@ export default ({variant = 'desktop'}) => {
 								$($column,
 									$('li', {class: `${prefix}-flyout--list-items_name`},
 										$('a', {
-											href: col.href, 
-											class: `${prefix}-flyout--list-items_anchor`, 
+											href: col.href,
+											class: `${prefix}-flyout--list-items_anchor`,
 											'data-heading': (col.heading) ? 'true' : 'false',
 											target
 										},
@@ -576,10 +583,10 @@ export default ({variant = 'desktop'}) => {
 				$items.push(
 					$('li', {class: `${prefix}-entry--menus-subitem`},
 						$('a', {
-							href: entry.href, 
-							class: `${prefix}-entry-sublink`, 
+							href: entry.href,
+							class: `${prefix}-entry-sublink`,
 							target
-						}, 
+						},
 							entry.label),
 					)
 				);
@@ -622,7 +629,7 @@ export default ({variant = 'desktop'}) => {
 				$items.push(
 					$('li', {class: `${prefix}-entry--menus-subitem`},
 						$('a', {
-							href: entry.href, 
+							href: entry.href,
 							class: `${prefix}-entry-sublink`,
 							target
 						},

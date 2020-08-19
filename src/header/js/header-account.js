@@ -122,6 +122,14 @@ export default () => {
 		$dispatch($contentSigninSignout, 'header:click:signout', {event});
 	});
 
+  // Signout Control: On Keydown with a tab, send the focus to the account control
+  // Using keydown because that's what tab does with other steps in control
+  $contentSigninSignout.addEventListener('keydown', (event) => {
+    if (event.key === "Tab") {
+      $control.focus();
+    }
+  });
+
 	// Signin Menu
 	const $contentSigninMenu = $('ul',
 		{
@@ -151,6 +159,13 @@ export default () => {
 	/* ====================================================================== */
 
 	$target.addEventListener('header:update:account', ({detail}) => {
+		if (detail) {
+			$target.classList.remove('hidden');
+		} else {
+			$target.classList.add('hidden');
+			return;
+		}
+
 		$($control, {aria: {label: detail.label}});
 
 		// Update the control text

@@ -1,3 +1,5 @@
+import prismjs from "prismjs";
+
 document.addEventListener("DOMContentLoaded", () => {
 	const menuData = {
 		header: {

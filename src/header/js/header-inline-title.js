@@ -7,7 +7,6 @@ const titleState = {};
 export default () => {
 	/* Title: Control
 	/* ====================================================================== */
-
 	const $control = $('button',
 		{
 			class: `${prefix}-control`, id: `${prefix}-control`,
@@ -153,6 +152,13 @@ export default () => {
 	/* Title: On Update
 	/* ====================================================================== */
 	$target.addEventListener('header:update:inlineTitle', ({detail}) => {
+		if (!detail || (detail.root && !detail.editTitle)) {
+			$target.classList.add('hidden');
+			return;
+		} else {
+			$target.classList.remove('hidden');
+		}
+
 		if (detail.brandText) {
 			resetState();
 
