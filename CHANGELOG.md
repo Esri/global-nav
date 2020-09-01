@@ -1,8 +1,10 @@
-## 1.4.1
+## 1.4.2
 
 ### Fixed
 - fix: TypeScript definitions now part of `dist`
 - a11y: improve color contrast for footer links
+
+## 1.4.1
 
 ### Fixed
 - a11y: improve labelling of language switcher
