@@ -1,6 +1,10 @@
 ## 1.4.1
 
 ### Fixed
+- fix: TypeScript definitions now part of `dist`
+- a11y: improve color contrast for footer links
+
+### Fixed
 - a11y: improve labelling of language switcher
 - fix: remove errant `console.log`
 
