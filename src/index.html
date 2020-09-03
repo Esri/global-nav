@@ -183,7 +183,7 @@
     }
   },
 
-  // Object representing the structure of the entire footer (optional)
+  // Object representing the structure of the entire footer
   footer: {
     hideMenus: false,
     label: 'Esri',
@@ -256,6 +256,10 @@
                 <p>After you've defined the structure of your navigation, just call <code class="language-js">globalNav.create</code> to start up your navigation, passing in the options and the containers like so:</p>
 
 <pre><code tabindex="0" class="language-js">esriGlobalNav.create({headerElm: '.esri-header-barrier', footerElm: '.esri-footer-barrier', menuData});</code></pre>
+
+                <p>If you only need the header, and no footer, or vice versa, you can leverage the <code>createHeader</code> and <code>createFooter</code> methods:</p>
+
+                <pre><code tabindex="0" class="language-js">esriGlobalNav.createHeader({targetElm: '.esri-header-barrier', menuData});</code></pre>
 
                 <p>For a complete example, you can reference <a href="https://github.com/Esri/global-nav/blob/master/src/demo.js">the demo</a>.</p>
 

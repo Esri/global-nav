@@ -1,3 +1,8 @@
+## Unreleased
+
+### Fixed
+- fix: solved footer rendering when no brand is passed (#315)
+
 ## 1.4.2
 
 ### Fixed
