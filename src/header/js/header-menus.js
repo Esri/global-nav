@@ -47,13 +47,14 @@ export default ({variant = 'desktop'}) => {
 	const createNavLink = (link) => {
 		let $link;
 		const target = setUrlTarget(link.props.href);
-
+		const rel = (target === "_blank") ? 'noopener' : null;
 		if (link.props.href) {
 			$link = $('a',
 				{
 					class: `${prefix}-${link.class}`,
 					href: link.props.href,
-					target
+					target,
+					rel
 				},
 				link.icon || "",
 				link.label
@@ -475,14 +476,15 @@ export default ({variant = 'desktop'}) => {
 						);
 						column.col.forEach((col) => {
 							const target = setUrlTarget(col.href);
-
+							const rel = (target === '_blank') ? 'noopener' : null;
 							listArr.push(
 								$('a', {
 									href: col.href,
 									class: `${prefix}-flyout--categories-details_item`,
 									'data-heading': col.heading ? 'true' : 'false',
 									tabindex: -1,
-									target
+									target,
+									rel
 								},
 									(col.heading) && $('p', {class: `${prefix}-flyout--categories-details_heading`}, col.heading),
 									(col.label) && $('p', {class: `${prefix}-flyout--categories-details_label`}, col.label)
@@ -510,6 +512,7 @@ export default ({variant = 'desktop'}) => {
 						const $column = $('ul', {class: `${prefix}-flyout--list-items_column`});
 						column.col.forEach((col) => {
 							const target = setUrlTarget(col.href);
+							const rel = (target === '_blank') ? 'noopener' : null;
 							$items.push(
 								$($column,
 									$('li', {class: `${prefix}-flyout--list-items_name`},
@@ -517,7 +520,8 @@ export default ({variant = 'desktop'}) => {
 											href: col.href,
 											class: `${prefix}-flyout--list-items_anchor`,
 											'data-heading': (col.heading) ? 'true' : 'false',
-											target
+											target,
+											rel
 										},
 											(col.heading) && $('p', {class: `${prefix}-flyout--list-items_heading`}, col.heading),
 											(col.label) && $('p', {class: `${prefix}-flyout--list-items_label`}, col.label)
@@ -579,13 +583,15 @@ export default ({variant = 'desktop'}) => {
 
 			if (entry.href && entry.label) {
 				const target = setUrlTarget(entry.href);
+				const rel = (target === '_blank') ? 'noopener' : null;
 
 				$items.push(
 					$('li', {class: `${prefix}-entry--menus-subitem`},
 						$('a', {
 							href: entry.href,
 							class: `${prefix}-entry-sublink`,
-							target
+							target,
+							rel
 						},
 							entry.label),
 					)
@@ -626,12 +632,14 @@ export default ({variant = 'desktop'}) => {
 
 			if (entry.href && entry.label) {
 				const target = setUrlTarget(entry.href);
+				const rel = (target === '_blank') ? 'noopener' : null;
 				$items.push(
 					$('li', {class: `${prefix}-entry--menus-subitem`},
 						$('a', {
 							href: entry.href,
 							class: `${prefix}-entry-sublink`,
-							target
+							target,
+							rel
 						},
 							$('p', {class: `${prefix}-entry-sublink--title`}, entry.label),
 							entry.description ? $('p', {class: `${prefix}-sublink--description`}, entry.description) : null
