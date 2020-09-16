@@ -169,6 +169,10 @@ html[dir="rtl"] .dropdown-menu.dropdown-right {
 
 .esri-header-apps .dropdown-width-3 {
 	min-width: 480px;
+
+	@media (width <= 480px) {
+		min-width: 79vw;
+	}
 }
 
 .esri-header-apps .dropdown-width-4 {
@@ -184,6 +188,10 @@ html[dir="rtl"] .dropdown-menu.dropdown-right {
 	height: 110px;
 	margin: 0;
 	width: 150px;
+
+	@media (width <= 480px) {
+		width: calc(50% - 1rem);
+	}
 }
 
 .esri-header-apps .app-li-icon {

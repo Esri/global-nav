@@ -9,5 +9,6 @@ dist/*
 !dist/esri-global-nav.js
 !dist/esri-global-nav.css
 !dist/img/
+!dist/esri-global-nav.d.ts
 package-lock.json
 /package-lock.json

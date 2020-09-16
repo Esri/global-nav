@@ -1,3 +1,14 @@
+## Unreleased
+
+### Fixed
+- fix: solved footer rendering when no brand is passed (#315)
+
+## 1.4.2
+
+### Fixed
+- fix: TypeScript definitions now part of `dist`
+- a11y: improve color contrast for footer links
+
 ## 1.4.1
 
 ### Fixed
