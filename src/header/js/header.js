@@ -80,7 +80,7 @@ export default (data) => {
 		$dispatch($brandStripe, 'header:update:brand', detail.brand);
 		$dispatch($brand, 'header:update:brand', detail.brand);
 		$dispatch($inlineTitle, 'header:update:inlineTitle', detail.brand);
-		$dispatch($search, 'header:update:inlineSearch', detail.search);
+		$dispatch($search, 'header:update:search', detail.search);
 		$dispatch($inlineSearch, 'header:update:inlineSearch', detail.search);
 		$dispatch($client.lastChild, 'header:update:account', detail.account);
 		$dispatch($apps, 'header:update:apps', detail.apps);
