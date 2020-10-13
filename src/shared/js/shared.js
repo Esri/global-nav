@@ -78,12 +78,12 @@ function $renderSvgOrImg({imgDef = "", imgClass = "", wrapperClass = "", inlineI
 			renderImgTag();
 		}
 	} else {
-		const $img = $assign(document.createElementNS('https://www.w3.org/2000/svg', 'svg'),
+		const $img = $assign(document.createElementNS('http://www.w3.org/2000/svg', 'svg'),
 			svgProps(),
 			$assign(document.createDocumentFragment(),
 				...imgDef.map(
 					(d) => $assign(
-						document.createElementNS('https://www.w3.org/2000/svg', 'path'),
+						document.createElementNS('http://www.w3.org/2000/svg', 'path'),
 						{d}
 					)
 				)
