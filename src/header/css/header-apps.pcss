@@ -157,6 +157,11 @@ html[dir="rtl"] .dropdown-menu.dropdown-right {
 		min-width: calc(79vw - 1.5em);
 		left: -63vw;
 	}
+
+	/* Accommodate screens that are shorter than 560px to not crop the appswitcher */
+	@media (max-height: 560px) {
+		max-height: calc(100vh - 56px);
+	}
 }
 
 .esri-header-apps .dropdown-width-1 {
