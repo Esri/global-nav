@@ -4953,8 +4953,7 @@ var social = (function (data, prefix) {
 });
 
 var breadcrumbs = (function (data) {
-  // const showBreadCrumbs = data.showBreadcrumb;
-  var showBreadCrumbs = true;
+  var showBreadCrumbs = data.showBreadcrumb;
 
   if (showBreadCrumbs) {
     var prefix = 'esri-footer-breadcrumb';

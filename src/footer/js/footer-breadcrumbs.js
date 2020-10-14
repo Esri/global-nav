@@ -1,8 +1,7 @@
 import {$assign as $} from '../../shared/js/shared';
 
 export default (data) => {
-  // const showBreadCrumbs = data.showBreadcrumb;
-  const showBreadCrumbs = true;
+  const showBreadCrumbs = data.showBreadcrumb;
 
   if (showBreadCrumbs) {
     const prefix =  'esri-footer-breadcrumb';
