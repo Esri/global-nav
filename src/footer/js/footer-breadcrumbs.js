@@ -2,7 +2,7 @@ import {$assign as $} from '../../shared/js/shared';
 
 export default (data) => {
   const showBreadCrumbs = data.showBreadcrumb;
-
+  const breadcrumbPin = data.breadcrumbPin || 'Esri Home';
   if (showBreadCrumbs) {
     const prefix =  'esri-footer-breadcrumb';
     const $breadCrumbs = document.createDocumentFragment();
@@ -27,7 +27,7 @@ export default (data) => {
     });
 
     return $('div', {class: `${prefix}`},
-      $('a', {href: 'https://www.esri.com/en-us/home', class: `${prefix}--pin`}, 'Esri Home'),
+      $('a', {href: 'https://www.esri.com/en-us/home', class: `${prefix}--pin`}, breadcrumbPin),
       $('ul', {class: `${prefix}--list`}, $breadCrumbs)
     );
   }
