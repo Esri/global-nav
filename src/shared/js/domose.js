@@ -25,7 +25,7 @@ function $assign(id) {
     // $assign(element, { class: 'btn', click: () => { /* listener */ } });
     // $assign('button', { aria: { label: 'title' } }, child);
     // $assign('div', child1, child2, 'a new text node');
-    // $assign(document.createElementNS('http://www.w3.org/2000/svg', 'svg'));
+    // $assign(document.createElementNS('https://www.w3.org/2000/svg', 'svg'));
 
     const element = id instanceof Node ? id : document.createElement(id);
 

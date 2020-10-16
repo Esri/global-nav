@@ -49,7 +49,7 @@ document.addEventListener("DOMContentLoaded", () => {
 				primary: [
 					{
 						abbr: "APP",
-						image: "http://www.arcgis.com/home/js/arcgisonline/sharing/dijit/css/images/app-icons/appstudio.png",
+						image: "https://www.arcgis.com/home/js/arcgisonline/sharing/dijit/css/images/app-icons/appstudio.png",
 						label: "AppStudio for ArcGIS",
 						url: "//appstudiodev.arcgis.com/apps.html",
 						canAccess: true,
@@ -57,7 +57,7 @@ document.addEventListener("DOMContentLoaded", () => {
 					},
 					{
 						abbr: "Studio",
-						placeHolderIcon: "http://www.arcgis.com/home/js/arcgisonline/sharing/dijit/css/images/app-icons/svg-app-icon.svg",
+						placeHolderIcon: "https://www.arcgis.com/home/js/arcgisonline/sharing/dijit/css/images/app-icons/svg-app-icon.svg",
 						image: null,
 						label: "Studio for ArcGIS",
 						url: "//appstudiodev.arcgis.com/apps.html",
@@ -66,7 +66,7 @@ document.addEventListener("DOMContentLoaded", () => {
 					},
 					{
 						abbr: "Test",
-						placeHolderIcon: "http://www.arcgis.com/home/js/arcgisonline/sharing/dijit/css/images/app-icons/svg-app-circle.svg",
+						placeHolderIcon: "https://www.arcgis.com/home/js/arcgisonline/sharing/dijit/css/images/app-icons/svg-app-circle.svg",
 						image: null,
 						label: "Test App",
 						url: "//appstudiodev.arcgis.com/apps.html",
@@ -78,7 +78,7 @@ document.addEventListener("DOMContentLoaded", () => {
 				secondary: [
 					{
 						abbr: "APP",
-						image: "http://www.arcgis.com/home/js/arcgisonline/sharing/dijit/css/images/app-icons/appstudio.png",
+						image: "https://www.arcgis.com/home/js/arcgisonline/sharing/dijit/css/images/app-icons/appstudio.png",
 						label: "AppStudio for ArcGIS",
 						url: "//appstudiodev.arcgis.com/apps.html",
 						canAccess: true,
@@ -86,7 +86,7 @@ document.addEventListener("DOMContentLoaded", () => {
 					},
 					{
 						abbr: "Studio",
-						placeHolderIcon: "http://www.arcgis.com/home/js/arcgisonline/sharing/dijit/css/images/app-icons/svg-app-icon.svg",
+						placeHolderIcon: "https://www.arcgis.com/home/js/arcgisonline/sharing/dijit/css/images/app-icons/svg-app-icon.svg",
 						image: null,
 						label: "Studio for ArcGIS",
 						url: "//appstudiodev.arcgis.com/apps.html",
@@ -407,7 +407,7 @@ document.addEventListener("DOMContentLoaded", () => {
 					},
 					{
 						label: 'Site Map',
-						href: 'http://www.esri.com/site-map'
+						href: 'https://www.esri.com/site-map'
 					},
 					{
 						label: 'Terms and Conditions',
