@@ -121,26 +121,23 @@
 }
 
 .esri-footer-breadcrumb--pin {
-	background: url("../../shared/shared.svg#c-map-pin" param(--fill var(--mono-40))) no-repeat;
-	background-size: 16px 16px;
-	background-position: 0%, 50%;
 	box-sizing: border-box;
+	color: var(--breadcrumb--link-idle);
 	float: left;
-	max-width: 15px;
-	margin-top: 8px;
-	padding-right: 25px;
-	width: 5%;
-	height: 16px;
+	font-size: 14px;
+	padding-right: 10px;
+	text-decoration: none;
 
 	@nest :dir(rtl) & {
 		float: right;
-		padding-left: 25px;
+		padding-left: 10px;
 	}
 }
 
 .esri-footer-breadcrumb--pin:hover {
-	background: url("../../shared/shared.svg#c-map-pin" param(--fill var(--blue))) no-repeat;
+	color: var(--blue);
 	cursor: pointer;
+	text-decoration: underline;
 }
 
 .esri-footer-breadcrumb--items {
