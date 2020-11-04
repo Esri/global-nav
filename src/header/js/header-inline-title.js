@@ -82,7 +82,10 @@ export default () => {
 
 	const $closeBtn = $('button', {
 		class: `${prefix}-action-button ${prefix}-dismiss-button`,
-		aria: {labelledby: `${prefix}-action-button`}
+		aria: {
+			labelledby: `${prefix}-action-button`,
+			label: 'dismiss'
+		}
 	}, $renderSvgOrImg({imgDef: $close.md, imgClass: `${prefix}-dismiss-icon`}));
 
 	$closeBtn.addEventListener('click', deactivateInput);
@@ -92,7 +95,10 @@ export default () => {
 
 	const $submitBtn = $('button', {
 		class: `${prefix}-action-button ${prefix}-submit-button`,
-		aria: {labelledby: `${prefix}-action-button`}
+		aria: {
+			labelledby: `${prefix}-action-button`,
+			label: 'submit'
+		}
 	}, $renderSvgOrImg({imgDef: $check.lg, imgClass: `${prefix}-submit-icon`}));
 
 	$submitBtn.addEventListener('click', saveNewTitle);
@@ -112,7 +118,7 @@ export default () => {
 	/* Title: Target
 	/* ====================================================================== */
 
-	const $target = $('span', {
+	const $target = $('div', {
 		class: prefix,
 		id: prefix,
 		aria: {expanded: false}
@@ -145,7 +151,7 @@ export default () => {
 			titleState.brandText.parentNode.removeChild(titleState.brandText);
 			titleState.pencilIcon.parentNode.removeChild(titleState.pencilIcon);
 		} else {
-			$control.setAttribute("tabindex", "0");
+			$control.setAttribute("tabindex", "-1");
 		}
 	};
 
