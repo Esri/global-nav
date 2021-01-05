@@ -26,7 +26,6 @@ export default (data) => {
 				labelledby: `${data.prefix}-message`, 
 				describedby: 'dialog-description'
 			},
-			role: 'dialog',
 			tabindex: '-1'
 		},
 		$('p', {class: `${data.prefix}-message`, id: `${data.prefix}-message`},
