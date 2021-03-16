@@ -135,6 +135,7 @@
 .esri-header-account-id {
 	display: block;
 	user-select: text;
+	padding-bottom: 3px;
 	white-space: nowrap;
 	@media (--width-m) {
 		display: none;
@@ -309,6 +310,7 @@
 	font-size: 16px / 20px;
 	padding: 5px 0;
 	position: relative;
+	max-width: calc(100% - 24px);
 
 	&::after {
 		content: url("../../shared/shared.svg#c-arrow-right" param(--fill var(--blue)));

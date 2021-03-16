@@ -129,9 +129,6 @@ export default () => {
 				blur: isDesktop ? deactivateAccessibilityMode.bind(null, currentApp) : () => {},
 				class: "appLink"
 			});
-			if (currentApp.isNew) {
-				$appLink.appendChild($("div", {"class": "app-indicator app-indicator-new"}));
-			}
 			// Check if App has Icon
 			if (currentApp.image) {
 				const $appImageContainer = $("div", {"class": `appIconImage ${selectNoneClass}`});
@@ -162,6 +159,9 @@ export default () => {
 			}
 			$listItem.appendChild($appLink);
 			const p = $("p", {style: "margin:0 auto; text-align:center", class: selectNoneClass}, currentApp.label);
+			if (currentApp.isNew) { // New app -> green circle indicator
+				$appLink.appendChild($("div", {"class": "app-indicator app-indicator-new"}));
+			}
 			$appLink.appendChild(p);
 		}
 

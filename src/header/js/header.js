@@ -301,7 +301,7 @@ export default (data) => {
 	/* ====================================================================== */
 
 	$header.addEventListener('header:inlineTitle:deactivated', ({detail}) => {
-		if (!viewportIsSmall.matches) {
+		if (!viewportIsSmallMedium.matches) {
 			$desktopMenus.querySelector('.esri-header-menus-content').classList.remove('hidden');
 		}
 	});

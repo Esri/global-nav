@@ -133,7 +133,7 @@
 	}
 
 	&[aria-expanded="true"] {
-		animation: slide-to-the-right .3s ease-in-out;
+		animation: slide-to-the-right .3s ease;
 		box-shadow: inset 0 -3px 0 0 var(--blue);
 		height: 55px;
 		opacity: 1;
@@ -141,7 +141,7 @@
 		flex: 1;
 
 		@nest :dir(rtl) & {
-			animation: slide-to-the-left .3s ease-in-out;
+			animation: slide-to-the-left .3s ease;
 
 			@media (--width-s) {
 				margin: 0;
@@ -285,9 +285,4 @@
 .esri-header-inline-title-edit-icon {
 	display: inline-block;
 	margin: 0 0 0 10px;
-
-	@nest :dir(rtl) & {
-		transform: scale(-1,1)!important;
-		margin: 0 10px 0 0px;
-	}
 }

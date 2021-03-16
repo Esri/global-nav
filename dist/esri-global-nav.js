@@ -4601,7 +4601,7 @@ var createHeader = (function (data) {
  /* ====================================================================== */
 
 	$header.addEventListener('header:inlineTitle:deactivated', function (_ref13) {
-		if (!viewportIsSmall.matches) {
+		if (!viewportIsSmallMedium.matches) {
 			$desktopMenus.querySelector('.esri-header-menus-content').classList.remove('hidden');
 		}
 	});
