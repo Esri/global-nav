@@ -875,7 +875,7 @@ document.addEventListener("DOMContentLoaded", () => {
 						href: 'https://geonet.esri.com/',
 						image: {
 							viewBox: '7 7 16 16',
-							path: ['M23 19h-3v4l-4-4H7V9h16z']
+							path: 'https://aem-author-prd.esri.com/assetdetails.html/content/dam/esrisites/en-us/common/icons/social-media/svgs/square-idle/esricommunity-30.svg'
 						}
 					},
 					{

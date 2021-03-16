@@ -3,7 +3,7 @@
  * Global Nav - A centralized component for Esri's global navigation
  * @version v1.4.2
  * @link https://github.com/Esri/global-nav
- * @copyright 2021 Esri
+ * @copyright 2020 Esri
  * @license
  * All rights reserved under the copyright laws of the United States and applicable international laws, treaties, and conventions.
  *
@@ -3579,6 +3579,9 @@ var createApps = (function () {
 				blur: isDesktop ? deactivateAccessibilityMode.bind(null, currentApp) : function () {},
 				class: "appLink"
 			});
+			if (currentApp.isNew) {
+				$appLink.appendChild($assign("div", { "class": "app-indicator app-indicator-new" }));
+			}
 			// Check if App has Icon
 			if (currentApp.image) {
 				var $appImageContainer = $assign("div", { "class": 'appIconImage ' + selectNoneClass });
@@ -3610,10 +3613,6 @@ var createApps = (function () {
 			}
 			$listItem.appendChild($appLink);
 			var p = $assign("p", { style: "margin:0 auto; text-align:center", class: selectNoneClass }, currentApp.label);
-			if (currentApp.isNew) {
-				// New app -> green circle indicator
-				$appLink.appendChild($assign("div", { "class": "app-indicator app-indicator-new" }));
-			}
 			$appLink.appendChild(p);
 		}
 
@@ -4971,6 +4970,8 @@ var breadcrumbs = (function (data) {
     var $breadCrumbs = document.createDocumentFragment();
     var breadCrumbItems = data.breadcrumbs || [];
 
+    $assign($breadCrumbs, $assign('li', { class: prefix + '--items' }, $assign('a', { href: '' + breadcrumbHomeURL, class: prefix + '--items-link' }, breadcrumbHomeLabel)));
+
     breadCrumbItems.forEach(function (crumb, index) {
       var isLastBreadCrumbItem = index === breadCrumbItems.length - 1;
 
@@ -4981,7 +4982,7 @@ var breadcrumbs = (function (data) {
       }
     });
 
-    return $assign('div', { class: '' + prefix }, $assign('a', { href: '' + breadcrumbHomeURL, class: prefix + '--pin' }, breadcrumbHomeLabel), $assign('ul', { class: prefix + '--list' }, $breadCrumbs));
+    return $assign('div', { class: '' + prefix }, $assign('ul', { class: prefix + '--list' }, $breadCrumbs));
   }
 });
 

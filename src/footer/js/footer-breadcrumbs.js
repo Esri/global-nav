@@ -10,6 +10,12 @@ export default (data) => {
     const $breadCrumbs = document.createDocumentFragment();
     const breadCrumbItems = data.breadcrumbs || [];
 
+    $($breadCrumbs,
+      $('li', {class: `${prefix}--items`},
+        $('a', {href: `${breadcrumbHomeURL}`, class: `${prefix}--items-link`}, breadcrumbHomeLabel)
+      )
+    );
+
     breadCrumbItems.forEach((crumb, index) => {
       const isLastBreadCrumbItem = (index === breadCrumbItems.length - 1);
 
@@ -29,7 +35,6 @@ export default (data) => {
     });
 
     return $('div', {class: `${prefix}`},
-      $('a', {href: `${breadcrumbHomeURL}`, class: `${prefix}--pin`}, breadcrumbHomeLabel),
       $('ul', {class: `${prefix}--list`}, $breadCrumbs)
     );
   }
