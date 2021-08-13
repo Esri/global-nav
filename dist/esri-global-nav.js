@@ -895,9 +895,10 @@ var prefix$4 = 'esri-header-menus';
 
 var createMenus = (function (_ref) {
 	var _ref$variant = _ref.variant,
-	    variant = _ref$variant === undefined ? 'desktop' : _ref$variant;
+	    variant = _ref$variant === undefined ? 'desktop' : _ref$variant,
+	    collapseMenus = _ref.collapseMenus;
 
-	var $target = $assign('div', { class: prefix$4, id: prefix$4 + '-' + variant });
+	var $target = $assign('div', { class: prefix$4 + ' ' + (collapseMenus ? '-always-hamburger' : ''), id: prefix$4 + '-' + variant });
 	$target.classList.add('-' + variant);
 	var isMobile = variant === 'mobile';
 
@@ -4338,8 +4339,8 @@ var createHeader = (function (data) {
 	var $brand = createBrand();
 	var $inlineTitle = createInlineTitle();
 	var $account = createAccount();
-	var $mobileMenus = createMenus({ variant: 'mobile' });
-	var $desktopMenus = createMenus({ variant: 'desktop' });
+	var $mobileMenus = createMenus({ variant: 'mobile', collapseMenus: data.collapseMenus });
+	var $desktopMenus = createMenus({ variant: 'desktop', collapseMenus: data.collapseMenus });
 	var $search = createSearch();
 	var $shoppingCart = createShoppingCart();
 	var $inlineSearch = createInlineSearch();
@@ -4349,6 +4350,7 @@ var createHeader = (function (data) {
 	var $client = $assign('div', { class: 'esri-header-client' }, $account);
 
 	var $lineBreak = $assign('div', { class: 'esri-header-lineBreak' });
+	console.log({ data: data });
 	var $headerContent = $assign('div', { class: 'esri-header -' + (data.theme || 'web') + ' ' + (data.collapseMenus ? '-always-hamburger' : '') }, $brandStripe, $brand, $mobileMenus, $inlineTitle, $desktopMenus, $search, $inlineSearch, $lineBreak, $shoppingCart, $notifications, $apps, $client);
 	var $header = $assign('div', { class: 'esri-header-canvas' }, $headerCanvas, { class: 'esri-header-wrap' }, $headerContent);
 
@@ -4659,7 +4661,7 @@ var createHeader = (function (data) {
 			$replaceAll($style, ':root{--esri-vw:' + width + 'px;--esri-vh:' + height + 'px}[data-header-is-open]{width:' + width + 'px;height:' + height + 'px;overflow-y:' + overflowY + '}');
 
 			viewportIsSmallMedium = $headerWindow.matchMedia('(max-width: 1023px)');
-			if (viewportIsSmallMedium.matches) {
+			if (viewportIsSmallMedium.matches || data.collapseMenus) {
 				$desktopMenus.querySelector('.esri-header-menus-content').classList.add('hidden');
 				$mobileMenus.querySelector('.esri-header-menus-content').classList.remove('hidden');
 			} else {
@@ -4669,7 +4671,7 @@ var createHeader = (function (data) {
 		}
 
 		function onViewportIsSmallChange() {
-			if (viewportIsSmall.matches) {
+			if (viewportIsSmall.matches || data.collapseMenus) {
 				$dispatch($header, 'header:breakpoint:s');
 				$mobileMenus.lastChild.appendChild($account);
 				$notifications.classList.add('hidden');
@@ -4683,7 +4685,7 @@ var createHeader = (function (data) {
 		}
 
 		function onViewportIsSmallMediumChange() {
-			if (viewportIsSmallMedium.matches) {
+			if (viewportIsSmallMedium.matches || data.collapseMenus) {
 				$dispatch($header, 'header:breakpoint:sm');
 			} else {
 				$dispatch($header, 'header:breakpoint:not:sm');
