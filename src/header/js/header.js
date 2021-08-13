@@ -51,7 +51,6 @@ export default (data) => {
 	);
 
 	const $lineBreak = $('div', {class: 'esri-header-lineBreak'});
-	console.log({data});
 	const $headerContent = $('div', {class: `esri-header -${data.theme || 'web'} ${data.collapseMenus ? '-always-hamburger' : ''}`},
 		$brandStripe,
 		$brand,
