@@ -338,7 +338,7 @@ export default (data) => {
 			/* On Match Media Change
 			/* ============================================================== */
 
-			viewportIsSmall = $headerWindow.matchMedia('(max-width: 767px)');
+			viewportIsSmall = $headerWindow.matchMedia('(max-width: 768px)');
 			viewportIsSmallMedium = $headerWindow.matchMedia('(max-width: 1023px)');
 
 			viewportIsSmall.addListener(onViewportIsSmallChange);
