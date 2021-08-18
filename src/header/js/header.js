@@ -38,8 +38,8 @@ export default (data) => {
 	const $brand = createBrand();
 	const $inlineTitle = createInlineTitle();
 	const $account = createAccount();
-	const $mobileMenus = createMenus({variant: 'mobile'});
-	const $desktopMenus = createMenus({variant: 'desktop'});
+	const $mobileMenus = createMenus({variant: 'mobile', collapseMenus: data.collapseMenus});
+	const $desktopMenus = createMenus({variant: 'desktop', collapseMenus: data.collapseMenus});
 	const $search = createSearch();
 	const $shoppingCart = createShoppingCart();
 	const $inlineSearch = createInlineSearch();
@@ -52,19 +52,19 @@ export default (data) => {
 
 	const $lineBreak = $('div', {class: 'esri-header-lineBreak'});
 	const $headerContent = $('div', {class: `esri-header -${data.theme || 'web'} ${data.collapseMenus ? '-always-hamburger' : ''}`},
-			$brandStripe,
-			$brand,
-			$mobileMenus,
-			$inlineTitle,
-			$desktopMenus,
-			$search,
-			$inlineSearch,
-			$lineBreak,
-			$shoppingCart,
-			$notifications,
-			$apps,
-			$client)
-	;
+		$brandStripe,
+		$brand,
+		$mobileMenus,
+		$inlineTitle,
+		$desktopMenus,
+		$search,
+		$inlineSearch,
+		$lineBreak,
+		$shoppingCart,
+		$notifications,
+		$apps,
+		$client)
+		;
 	const $header = $('div', {class: `esri-header-canvas`}, $headerCanvas, {class: `esri-header-wrap`}, $headerContent);
 
 	$enableFocusRing($header);
@@ -232,7 +232,7 @@ export default (data) => {
 	/* ====================================================================== */
 
 	$header.addEventListener('header:menu:close', ({detail}) => {
-		const currentDetail = detail || searchDetail || inlineTitleDetail || accountDetail || appsDetail || notificationsDetail || menusDetail ||  menuDetail;
+		const currentDetail = detail || searchDetail || inlineTitleDetail || accountDetail || appsDetail || notificationsDetail || menusDetail || menuDetail;
 
 		if (currentDetail) {
 			// Close the Detail
@@ -241,7 +241,7 @@ export default (data) => {
 
 			const isBurger = currentDetail.control.closest('.-always-hamburger') !== null;
 			const canvasShouldClose = (!viewportIsSmallMedium.matches && !isBurger)
-			|| ('menu-close' !== currentDetail.type && 'account-close' !== currentDetail.type);
+				|| ('menu-close' !== currentDetail.type && 'account-close' !== currentDetail.type);
 
 			if (inlineTitleDetail && inlineTitleDetail.control === currentDetail.control) {
 				$dispatch(inlineTitleDetail.content, 'header:inlineTitle:deactivated', currentDetail);
@@ -338,7 +338,7 @@ export default (data) => {
 			/* On Match Media Change
 			/* ============================================================== */
 
-			viewportIsSmall = $headerWindow.matchMedia('(max-width: 767px)');
+			viewportIsSmall = $headerWindow.matchMedia('(max-width: 768px)');
 			viewportIsSmallMedium = $headerWindow.matchMedia('(max-width: 1023px)');
 
 			viewportIsSmall.addListener(onViewportIsSmallChange);
@@ -362,7 +362,7 @@ export default (data) => {
 			);
 
 			viewportIsSmallMedium = $headerWindow.matchMedia('(max-width: 1023px)');
-			if (viewportIsSmallMedium.matches) {
+			if (viewportIsSmallMedium.matches || data.collapseMenus) {
 				$desktopMenus.querySelector('.esri-header-menus-content').classList.add('hidden');
 				$mobileMenus.querySelector('.esri-header-menus-content').classList.remove('hidden');
 			} else {
@@ -372,7 +372,7 @@ export default (data) => {
 		}
 
 		function onViewportIsSmallChange() {
-			if (viewportIsSmall.matches) {
+			if (viewportIsSmall.matches || data.collapseMenus) {
 				$dispatch($header, 'header:breakpoint:s');
 				$mobileMenus.lastChild.appendChild($account);
 				$notifications.classList.add('hidden');
@@ -386,7 +386,7 @@ export default (data) => {
 		}
 
 		function onViewportIsSmallMediumChange() {
-			if (viewportIsSmallMedium.matches) {
+			if (viewportIsSmallMedium.matches || data.collapseMenus) {
 				$dispatch($header, 'header:breakpoint:sm');
 			} else {
 				$dispatch($header, 'header:breakpoint:not:sm');

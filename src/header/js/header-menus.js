@@ -3,8 +3,8 @@ import {$hamburger} from '../../shared/js/iconPaths';
 
 const prefix = 'esri-header-menus';
 
-export default ({variant = 'desktop'}) => {
-	const $target = $('div', {class: prefix, id: `${prefix}-${variant}`});
+export default ({variant = 'desktop', collapseMenus}) => {
+	const $target = $('div', {class: `${prefix} ${collapseMenus ? '-always-hamburger' : ''}`, id: `${prefix}-${variant}`});
 	$target.classList.add(`-${variant}`);
 	const isMobile = variant === 'mobile';
 
