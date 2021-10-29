@@ -351,9 +351,9 @@ export default (data) => {
 		}
 
 		function onresize() {
-			const width = $headerDocument.documentElement.clientWidth;
 			const height = $headerDocument.documentElement.clientHeight;
 			const scrollHeight = $headerDocument.documentElement.scrollHeight;
+			const width = scrollHeight > height ? window.innerWidth : $headerDocument.documentElement.clientWidth;
 
 			overflowY = getComputedStyle($headerDocument.documentElement).overflowY.replace('visible', scrollHeight > height ? 'scroll' : 'visible');
 
