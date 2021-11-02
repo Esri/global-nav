@@ -38,8 +38,8 @@ export default (data) => {
 	const $brand = createBrand();
 	const $inlineTitle = createInlineTitle();
 	const $account = createAccount();
-	const $mobileMenus = createMenus({variant: 'mobile', collapseMenus: data.collapseMenus});
-	const $desktopMenus = createMenus({variant: 'desktop', collapseMenus: data.collapseMenus});
+	const $mobileMenus = createMenus({variant: 'mobile'});
+	const $desktopMenus = createMenus({variant: 'desktop'});
 	const $search = createSearch();
 	const $shoppingCart = createShoppingCart();
 	const $inlineSearch = createInlineSearch();
@@ -362,7 +362,7 @@ export default (data) => {
 			);
 
 			viewportIsSmallMedium = $headerWindow.matchMedia('(max-width: 1023px)');
-			if (viewportIsSmallMedium.matches || data.collapseMenus) {
+			if (viewportIsSmallMedium.matches) {
 				$desktopMenus.querySelector('.esri-header-menus-content').classList.add('hidden');
 				$mobileMenus.querySelector('.esri-header-menus-content').classList.remove('hidden');
 			} else {
@@ -372,7 +372,7 @@ export default (data) => {
 		}
 
 		function onViewportIsSmallChange() {
-			if (viewportIsSmall.matches || data.collapseMenus) {
+			if (viewportIsSmall.matches) {
 				$dispatch($header, 'header:breakpoint:s');
 				$mobileMenus.lastChild.appendChild($account);
 				$notifications.classList.add('hidden');
@@ -386,7 +386,7 @@ export default (data) => {
 		}
 
 		function onViewportIsSmallMediumChange() {
-			if (viewportIsSmallMedium.matches || data.collapseMenus) {
+			if (viewportIsSmallMedium.matches) {
 				$dispatch($header, 'header:breakpoint:sm');
 			} else {
 				$dispatch($header, 'header:breakpoint:not:sm');
