@@ -9,6 +9,7 @@ import createSearch from './header-search';
 import createInlineSearch from './header-inline-search';
 import createShoppingCart from './header-shopping-cart';
 import createApps from './header-apps';
+import createAppSwitcher from './header-app-switcher';
 import createNotifications from './header-notifications';
 
 /* Header
@@ -45,6 +46,7 @@ export default (data) => {
 	const $inlineSearch = createInlineSearch();
 	const $notifications = createNotifications();
 	const $apps = createApps();
+	const $appSwitcher = createAppSwitcher();
 
 	const $client = $('div', {class: 'esri-header-client'},
 		$account
@@ -63,6 +65,7 @@ export default (data) => {
 		$shoppingCart,
 		$notifications,
 		$apps,
+		$appSwitcher,
 		$client)
 		;
 	const $header = $('div', {class: `esri-header-canvas`}, $headerCanvas, {class: `esri-header-wrap`}, $headerContent);
@@ -84,6 +87,7 @@ export default (data) => {
 		$dispatch($inlineSearch, 'header:update:inlineSearch', detail.search);
 		$dispatch($client.lastChild, 'header:update:account', detail.account);
 		$dispatch($apps, 'header:update:apps', detail.apps);
+		$dispatch($appSwitcher, 'header:update:appSwitcher', detail.appSwitcher);
 		$dispatch($notifications, 'header:update:notifications', detail.notifications);
 		$dispatch($shoppingCart, 'header:update:cart', detail.cart);
 
