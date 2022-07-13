@@ -393,11 +393,13 @@ export default (data) => {
 				$mobileMenus.lastChild.appendChild($account);
 				$notifications.classList.add('hidden');
 				$apps.classList.add('hidden');
+				$appSwitcher.classList.add('hidden');
 			} else {
 				$dispatch($header, 'header:breakpoint:not:s');
 				$client.appendChild($account);
 				$notifications.classList.remove('hidden');
 				$apps.classList.remove('hidden');
+				$appSwitcher.classList.remove('hidden');
 			}
 		}
 
