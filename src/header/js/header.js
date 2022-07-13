@@ -244,7 +244,7 @@ export default (data) => {
 	/* ====================================================================== */
 
 	$header.addEventListener('header:menu:close', ({detail}) => {
-		const currentDetail = detail || searchDetail || inlineTitleDetail || accountDetail || appsDetail || notificationsDetail || menusDetail || menuDetail;
+		const currentDetail = detail || searchDetail || inlineTitleDetail || accountDetail || appsDetail || appSwitcherDetail || notificationsDetail || menusDetail || menuDetail;
 
 		if (currentDetail) {
 			// Close the Detail
@@ -267,6 +267,10 @@ export default (data) => {
 				if (!menusDetail) {
 					$dispatch(searchDetail.content, 'header:inlineSearch:deactivated', currentDetail);
 				}
+			}
+
+			if (appSwitcherDetail && currentDetail === appSwitcherDetail) {
+				$dispatch($appSwitcher, 'header:appSwitcher:close', appSwitcherDetail);
 			}
 
 			if (canvasShouldClose) {
