@@ -251,7 +251,7 @@ export default (data) => {
 			$(currentDetail.control, {aria: {expanded: false}});
 			$(currentDetail.content, {aria: {expanded: false, hidden: true}});
 
-			const isBurger = currentDetail.control.closest('.-always-hamburger') !== null;
+			const isBurger = currentDetail.control.closest && currentDetail.control.closest('.-always-hamburger') !== null;
 			const canvasShouldClose = (!viewportIsSmallMedium.matches && !isBurger)
 				|| ('menu-close' !== currentDetail.type && 'account-close' !== currentDetail.type);
 
