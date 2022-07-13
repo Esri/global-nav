@@ -22,14 +22,16 @@ export default () => {
 		$appSwitcher.user = detail.user;
 		$appSwitcher.api = 4;
 		$target.appendChild($appSwitcher);
-		$appSwitcher.addEventListener('arcgisAppSwitcherToggle', (isExpanded) => {
-				$dispatch($target, `header:menu:${isExpanded ? 'open' : 'close'}`, {
-					state: 'menu',
-					target: $target,
-					type: 'root-toggle',
-					control: `${prefix}-button`,
-					content: `${prefix}-content`
-				});
+		$appSwitcher.addEventListener('arcgisAppSwitcherToggle', ({detail}) => {
+			const isExpanded = detail;
+			$appSwitcher.shouldExpand = isExpanded;
+			$dispatch($target, `header:menu:${isExpanded ? 'open' : 'close'}`, {
+				state: 'menu',
+				target: $target,
+				type: 'root-toggle',
+				control: `${prefix}-button`,
+				content: `${prefix}-content`
+			});
 		});
 
 		$target.addEventListener('header:appSwitcher:close', () => {
