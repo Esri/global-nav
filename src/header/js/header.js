@@ -165,7 +165,7 @@ export default (data) => {
 	let notificationsDetail = null;
 
 	$header.addEventListener('header:menu:open', ({detail}) => {
-		const menuWrapper = detail.control.closest('.esri-header-menus');
+		const menuWrapper = detail.control.closest && detail.control.closest('.esri-header-menus');
 		const hasMobileClass = menuWrapper && menuWrapper.classList.contains('-mobile');
 		const isMenuMobile = ('menu-toggle' === detail.type && viewportIsSmallMedium.matches) || hasMobileClass;
 		const isAccountMobile = ($account === detail.target && viewportIsSmall.matches);
