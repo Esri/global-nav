@@ -160,6 +160,7 @@ export default (data) => {
 	let menusDetail = null;
 	let menuDetail = null;
 	let appsDetail = null;
+	let appSwitcherDetail = null;
 	let inlineTitleDetail = null;
 	let notificationsDetail = null;
 
@@ -216,6 +217,13 @@ export default (data) => {
 		} else if (appsDetail) {
 			$dispatch($apps, 'header:menu:close', appsDetail);
 			appsDetail = null;
+		}
+
+		if ($appSwitcher === detail.target) {
+			appSwitcherDetail = detail;
+		} else if (appSwitcherDetail) {
+			$dispatch($appSwitcher, 'header:appSwitcher:close', appSwitcherDetail);
+			appSwitcherDetail = null;
 		}
 
 		if ($notifications === detail.target) {
