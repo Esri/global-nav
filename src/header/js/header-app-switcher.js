@@ -23,7 +23,7 @@ export default () => {
 		$appSwitcher.api = 4;
 		$target.appendChild($appSwitcher);
 		$appSwitcher.addEventListener('arcgisAppSwitcherToggle', (isExpanded) => {
-				$dispatch('app-switcher-button', `header:menu:${isExpanded ? 'open' : 'close'}`, {
+				$dispatch($target, `header:menu:${isExpanded ? 'open' : 'close'}`, {
 					state: 'menu',
 					target: $target,
 					type: 'root-toggle',
