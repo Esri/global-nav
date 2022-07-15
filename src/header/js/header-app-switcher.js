@@ -24,7 +24,7 @@ export default () => {
 			return;
 		}
 
-		$target.innerHMTL = "";
+		$target.innerHTML = "";
 
 		const $appSwitcher = $('arcgis-app-switcher');
 		assignAppSwitcherProps($appSwitcher, detail);
