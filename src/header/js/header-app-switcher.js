@@ -3,6 +3,15 @@ import {
 	$dispatch
 } from "../../shared/js/shared";
 
+function assignAppSwitcherProps($appSwitcher, detail) {
+	const props = ['api', 'portal', 'user', 'showInAppLauncher', 'newMapViewerEnabled', 'notebookServerEnabled', 'trackViewerEnabled'];
+	props.forEach((prop) => {
+		if (detail.hasOwnProperty(prop)) {
+			$appSwitcher[prop] = detail[prop];
+		}
+	});
+}
+
 export default () => {
 	/* Apps: Target
 	/* ====================================================================== */
@@ -18,9 +27,7 @@ export default () => {
 		$target.innerHMTL = "";
 
 		const $appSwitcher = $('arcgis-app-switcher');
-		$appSwitcher.portal = detail.portal;
-		$appSwitcher.user = detail.user;
-		$appSwitcher.api = 4;
+		assignAppSwitcherProps($appSwitcher, detail);
 		$target.appendChild($appSwitcher);
 		$appSwitcher.addEventListener('arcgisAppSwitcherToggle', ({detail}) => {
 			const isExpanded = detail;
