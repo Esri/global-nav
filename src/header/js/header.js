@@ -9,6 +9,7 @@ import createSearch from './header-search';
 import createInlineSearch from './header-inline-search';
 import createShoppingCart from './header-shopping-cart';
 import createApps from './header-apps';
+import createAppSwitcher from './header-app-switcher';
 import createNotifications from './header-notifications';
 
 /* Header
@@ -45,6 +46,7 @@ export default (data) => {
 	const $inlineSearch = createInlineSearch();
 	const $notifications = createNotifications();
 	const $apps = createApps();
+	const $appSwitcher = createAppSwitcher();
 
 	const $client = $('div', {class: 'esri-header-client'},
 		$account
@@ -63,6 +65,7 @@ export default (data) => {
 		$shoppingCart,
 		$notifications,
 		$apps,
+		$appSwitcher,
 		$client)
 		;
 	const $header = $('div', {class: `esri-header-canvas`}, $headerCanvas, {class: `esri-header-wrap`}, $headerContent);
@@ -84,6 +87,7 @@ export default (data) => {
 		$dispatch($inlineSearch, 'header:update:inlineSearch', detail.search);
 		$dispatch($client.lastChild, 'header:update:account', detail.account);
 		$dispatch($apps, 'header:update:apps', detail.apps);
+		$dispatch($appSwitcher, 'header:update:appSwitcher', detail.appSwitcher);
 		$dispatch($notifications, 'header:update:notifications', detail.notifications);
 		$dispatch($shoppingCart, 'header:update:cart', detail.cart);
 
@@ -156,11 +160,12 @@ export default (data) => {
 	let menusDetail = null;
 	let menuDetail = null;
 	let appsDetail = null;
+	let appSwitcherDetail = null;
 	let inlineTitleDetail = null;
 	let notificationsDetail = null;
 
 	$header.addEventListener('header:menu:open', ({detail}) => {
-		const menuWrapper = detail.control.closest('.esri-header-menus');
+		const menuWrapper = detail.control.closest && detail.control.closest('.esri-header-menus');
 		const hasMobileClass = menuWrapper && menuWrapper.classList.contains('-mobile');
 		const isMenuMobile = ('menu-toggle' === detail.type && viewportIsSmallMedium.matches) || hasMobileClass;
 		const isAccountMobile = ($account === detail.target && viewportIsSmall.matches);
@@ -214,6 +219,13 @@ export default (data) => {
 			appsDetail = null;
 		}
 
+		if ($appSwitcher === detail.target) {
+			appSwitcherDetail = detail;
+		} else if (appSwitcherDetail) {
+			$dispatch($appSwitcher, 'header:appSwitcher:close', appSwitcherDetail);
+			appSwitcherDetail = null;
+		}
+
 		if ($notifications === detail.target) {
 			notificationsDetail = detail;
 		} else if (notificationsDetail) {
@@ -232,14 +244,14 @@ export default (data) => {
 	/* ====================================================================== */
 
 	$header.addEventListener('header:menu:close', ({detail}) => {
-		const currentDetail = detail || searchDetail || inlineTitleDetail || accountDetail || appsDetail || notificationsDetail || menusDetail || menuDetail;
+		const currentDetail = detail || searchDetail || inlineTitleDetail || accountDetail || appsDetail || appSwitcherDetail || notificationsDetail || menusDetail || menuDetail;
 
 		if (currentDetail) {
 			// Close the Detail
 			$(currentDetail.control, {aria: {expanded: false}});
 			$(currentDetail.content, {aria: {expanded: false, hidden: true}});
 
-			const isBurger = currentDetail.control.closest('.-always-hamburger') !== null;
+			const isBurger = currentDetail.control.closest && currentDetail.control.closest('.-always-hamburger') !== null;
 			const canvasShouldClose = (!viewportIsSmallMedium.matches && !isBurger)
 				|| ('menu-close' !== currentDetail.type && 'account-close' !== currentDetail.type);
 
@@ -255,6 +267,10 @@ export default (data) => {
 				if (!menusDetail) {
 					$dispatch(searchDetail.content, 'header:inlineSearch:deactivated', currentDetail);
 				}
+			}
+
+			if (appSwitcherDetail && currentDetail === appSwitcherDetail) {
+				$dispatch($appSwitcher, 'header:appSwitcher:close', appSwitcherDetail);
 			}
 
 			if (canvasShouldClose) {
@@ -377,11 +393,13 @@ export default (data) => {
 				$mobileMenus.lastChild.appendChild($account);
 				$notifications.classList.add('hidden');
 				$apps.classList.add('hidden');
+				$appSwitcher.classList.add('hidden');
 			} else {
 				$dispatch($header, 'header:breakpoint:not:s');
 				$client.appendChild($account);
 				$notifications.classList.remove('hidden');
 				$apps.classList.remove('hidden');
+				$appSwitcher.classList.remove('hidden');
 			}
 		}
 

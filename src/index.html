@@ -499,6 +499,27 @@ event.initCustomEvent("header:update:apps", true, true, {
   ]
 )};</code></pre>
 
+<h3>Configuring the App Switcher Component</h3>
+<p>This is only for the standard set of apps from ArcGIS Online</p>
+<p>This component requires your app to already have both the ArcGIS API for JavaScript and arcgis-app-components loaded</p>
+
+<pre><code tabindex="0" class="language-js">
+//_______________________________________________________________________________
+// - When you have the portal and user objects available update the header with them
+//-------------------------------------------------------------------------------
+
+var event = new CustomEvent("header:update:appSwitcher", { detail: {
+	portal: portal,
+	user: portal.portalUser,
+	api: 3,
+	newMapViewerEnabled: true,
+	notebookServerEnabled: true,
+	trackViewerEnabled: true
+} });
+
+document.querySelector(".esri-header-app-switcher").dispatchEvent(event);
+</code></pre>
+
 <h3>Configuring the shopping cart</h3>
 <p>The Global Navigation now features a shopping cart integration system, which gives users the ability to
   view, add, and remove items from their shopping cart. The shopping cart icon displays the number of items
