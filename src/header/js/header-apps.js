@@ -68,7 +68,7 @@ export default () => {
 	/* Apps: Target
 	/* ====================================================================== */
 
-	const $target = $('div', {class: prefix},
+	const $target = $('div', {class: `${prefix} a11y-${prefix}`},
 		$control
 	);
 

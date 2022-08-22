@@ -5,7 +5,7 @@ const prefix = 'esri-header-notifications';
 let messages = [];
 
 export default () => {
-	const $target = $('div', {class: prefix});
+	const $target = $('div', {class: `${prefix} a11y-${prefix}`});
 
 	// /* Notifications: Control
 	// /* ====================================================================== */

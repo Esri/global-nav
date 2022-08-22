@@ -112,7 +112,16 @@ export default (data) => {
 
 		$header.ownerDocument.defaultView.addEventListener('keydown', ({keyCode}) => {
 			if (27 === keyCode) {
+				// prior to closing with escape, save a reference to the menu to we can refocus it
+				const currentFocus = document.activeElement;
+				const menu = currentFocus.closest(".a11y-esri-header-notifications,.a11y-esri-header-apps,.a11y-esri-header-account");
 				$dispatch($header, 'header:menu:close');
+				if (menu) {
+					const toggle = menu.querySelector("button");
+					if (toggle) {
+						toggle.focus();
+					}
+				}
 			}
 		});
 	});

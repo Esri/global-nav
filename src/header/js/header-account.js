@@ -3,7 +3,7 @@ import {$assign as $, $dispatch, $replaceAll, $renderSvgOrImg} from '../../share
 const prefix = 'esri-header-account';
 
 export default () => {
-	const $target = $('div', {class: prefix});
+	const $target = $('div', {class: `${prefix} a11y-${prefix}`});
 
 	/* Account: Control: Signin
 	/* ====================================================================== */
