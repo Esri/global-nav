@@ -60,11 +60,11 @@ export default () => {
 		messages = (detail.messages || []).map((item) => item.id);
 
 		const $icon = $renderSvgOrImg({imgDef: $bell.md, imgClass: `${prefix}-image`, id: `${prefix}-image`});
+		$control.setAttribute('aria-label', detail.label || "Notifications");
 
 		if (detail.messages && detail.messages.length > 0) {
 			$replaceAll($dismiss, detail.dismissAllLabel);
 			const $badge = $('span', {class: `${prefix}-badge`}, `${detail.messages.length}`);
-			$control.setAttribute('aria-label', detail.label || "Notifications");
 			$replaceAll($control, $icon, $badge);
 			// Update the notifications
 			$replaceAll($contentMessages,
