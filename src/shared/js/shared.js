@@ -120,6 +120,25 @@ function $renderSvgOrImg({imgDef = "", imgClass = "", wrapperClass = "", inlineI
 	}
 }
 
+/* Perform an action when an element is added to the DOM
+/* ========================================================================== */
+
+function onElementInserted(element, callback) {
+	const onMutationsObserved = (mutations, ob) => {
+		mutations.forEach((mutation) => {
+			if (mutation.addedNodes.length) {
+				const includesElement = [...mutation.addedNodes].some((node) => node === element);
+				if (includesElement) {
+					ob.disconnect();
+					callback();
+				}
+			}
+		});
+	};
+	const observer = new window.MutationObserver(onMutationsObserved);
+	observer.observe(document.body, {childList: true, subtree: true});
+};
+
 
 export {
 	$assign,
@@ -127,5 +146,6 @@ export {
 	$enableFocusRing,
 	$fetch,
 	$replaceAll,
-	$renderSvgOrImg
+	$renderSvgOrImg,
+	onElementInserted
 };

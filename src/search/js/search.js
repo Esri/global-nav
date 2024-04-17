@@ -1,4 +1,4 @@
-import {$assign as $, $dispatch} from '../../shared/js/shared';
+import {$assign as $, $dispatch, onElementInserted} from '../../shared/js/shared';
 
 /* Search
 /* ========================================================================== */
@@ -107,15 +107,12 @@ export default (data) => {
 		});
 	}
 
-	/* On DOMNodeInserted
+	/* On Element Ready
 	/* ====================================================================== */
 
-	$search.addEventListener('DOMNodeInserted', function onDOMNodeInserted() {
+	onElementInserted($search, () => {
 		// If Search now has a parent node
 		if ($search.parentNode) {
-			// Unbind the DOMNodeInserted method
-			$search.removeEventListener('DOMNodeInserted', onDOMNodeInserted);
-
 			// Update Search
 			$dispatch($search, `${data.prefix}:update`, data);
 		}

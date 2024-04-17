@@ -1,4 +1,4 @@
-import {$assign as $, $dispatch, $enableFocusRing} from '../../shared/js/shared';
+import {$assign as $, $dispatch, $enableFocusRing, onElementInserted} from '../../shared/js/shared';
 
 import brand from './footer-brand';
 import language from './footer-language';
@@ -48,13 +48,10 @@ export default (data) => {
 		)
 	);
 
-	/* On DOMNodeInserted
+	/* on Element Ready
 	/* ====================================================================== */
 
-	$footer.addEventListener('DOMNodeInserted', function onDOMNodeInserted() {
-		// Unbind Node Inserted
-		$footer.removeEventListener('DOMNodeInserted', onDOMNodeInserted);
-
+	onElementInserted($footer, () => {
 		// Scroll to Footer on focus
 		$footer.addEventListener('focusin', () => {
 			const scrollY = $footer.ownerDocument.documentElement.scrollHeight - $footer.scrollHeight;
