@@ -1,8 +1,28 @@
-## Unreleased
+## 1.5.1
 
 ### Fixed
 - fix: removed usage of DOM insertion events (#342)
+
+## 1.5.0
+
+### Enhancements
+- mobile styles for app launcher
+
+### Fixes
 - fix: solved footer rendering when no brand is passed (#315)
+- fix: adjust app switcher max-height on shorter screens
+- fix: missing search in certain case
+- fix: add rel noopener to _blank links (#327)
+- fix: update all links to use https:// (#325)
+- fix: remove pin and replace with link (#326)
+- fix: limit link width
+- fix: inline search animation
+- fix: app launcher accessibility issue
+- fix: menu items appearing after inline edit save (#343)
+- fix: solve windows issue with 767px wide viewport (#347)
+- fix: Update flyout label contrast (#344)
+- fix: overlay mask width not full width
+- fix: PostCSS compile errors via missing colon
 
 ## 1.4.2
 
