@@ -1,4 +1,4 @@
-import {$assign as $, $dispatch, $enableFocusRing, $replaceAll} from '../../shared/js/shared';
+import {$assign as $, $dispatch, $enableFocusRing, $replaceAll, onElementInserted} from '../../shared/js/shared';
 
 import createAccount from './header-account';
 import createBrand from './header-brand';
@@ -331,10 +331,10 @@ export default (data) => {
 		}
 	});
 
-	/* on domnodeinserted
+	/* on Element Ready
 	/* ====================================================================== */
 
-	$header.addEventListener('DOMNodeInserted', function onload() {
+	onElementInserted($header, () => {
 		// Get Document and Window
 		const $headerDocument = $header.ownerDocument;
 		const $headerWindow = $headerDocument.defaultView;
@@ -344,9 +344,6 @@ export default (data) => {
 		let overflowY;
 
 		if ($header.parentNode) {
-			// Unbind Node Inserted
-			$header.removeEventListener('DOMNodeInserted', onload);
-
 			// Update Header
 			$dispatch($header, 'header:update', data);
 

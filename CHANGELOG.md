@@ -1,6 +1,7 @@
 ## Unreleased
 
 ### Fixed
+- fix: removed usage of DOM insertion events (#342)
 - fix: solved footer rendering when no brand is passed (#315)
 
 ## 1.4.2
