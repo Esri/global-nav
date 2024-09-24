@@ -1,3 +1,8 @@
+## 1.5.2
+
+### Fixed
+- fix: removed haspopup in menu
+
 ## 1.5.1
 
 ### Fixed
