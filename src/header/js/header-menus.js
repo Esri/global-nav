@@ -11,7 +11,7 @@ export default ({variant = 'desktop'}) => {
 	if (isMobile) {
 		const $toggle = $('button', {
 			class: `${prefix}-toggle`, id: `${prefix}-${variant}-toggle`,
-			aria: {controls: `${prefix}-content-${variant}`, expanded: false, haspopup: true, labelledby: 'esri-header-brand'}
+			aria: {controls: `${prefix}-content-${variant}`, expanded: false, labelledby: 'esri-header-brand'}
 		});
 		$renderSvgOrImg({imgDef: $hamburger.md, imgClass: `${prefix}-image`, id: `${prefix}-image`, $targetElm: $toggle});
 
