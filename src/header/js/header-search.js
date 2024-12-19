@@ -39,17 +39,17 @@ export default () => {
 	/* Search: Target
 	/* ====================================================================== */
 
-	const $target = $('div', {class: prefix},
-		$control, $content
-	);
+	const $target = $('div', {class: prefix});
 
 	/* Search: On Update
 	/* ====================================================================== */
 
 	$target.addEventListener('header:update:search', ({detail}) => {
 		if (!detail || detail.inline) {
+			$target.innerHTML = "";
 			return $target.classList.add("hidden");
 		} else {
+			$($target, $control, $content);
 			$target.classList.remove("hidden");
 		}
 		if (!detail.hide) {

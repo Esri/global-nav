@@ -27,16 +27,16 @@ export default () => {
 		{class: `${prefix}--items`, id: `${prefix}--items`}
 	);
 
-	$($target,
-		$control,
-		$cartItems);
-
 	$target.addEventListener('header:update:cart', ({detail}) => {
 		if (detail) {
 			$control.setAttribute('href', `${detail.url}`);
 			changeCartCount(detail.items);
+			$($target,
+				$control,
+				$cartItems);
 			$target.classList.remove("hidden");
 		} else {
+			$target.innerHTML = "";
 			$target.classList.add("hidden");
 			return;
 		}
