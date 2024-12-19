@@ -116,7 +116,7 @@ export default () => {
 		class: prefix,
 		id: prefix,
 		aria: {expanded: false}
-	}, $control, $content);
+	});
 
 	/* Title: On Active Edit
 	/* ====================================================================== */
@@ -154,9 +154,11 @@ export default () => {
 	$target.addEventListener('header:update:inlineTitle', ({detail}) => {
 		if (!detail || (detail.root && !detail.editTitle)) {
 			$target.classList.add('hidden');
+			$target.innerHTML = "";
 			return;
 		} else {
 			$target.classList.remove('hidden');
+			$($target, $control, $content);
 		}
 
 		if (detail.brandText) {
