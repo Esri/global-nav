@@ -70,7 +70,7 @@ export default () => {
 		if (!searchState.value || searchState.value === " ") {
 			searchState.isDisabled = false;
 			return $suggestions.innerHTML = "";
-		} else if (e.keyCode === 13 && searchState.value && !searchState.isDisabled) {
+		} else if (e.keyCode === 13 && searchState.value && !searchState.isDisabled && !searchState.preventNavigation) {
 			return window.location.href = `${searchState.action}?q=${encodeURIComponent(searchState.value)}`;
 		}
 
@@ -230,6 +230,7 @@ export default () => {
 
 			searchState.image = $search.md;
 			searchState.action = detail.dialog && detail.dialog.action;
+			searchState.preventNavigation = detail.preventNavigation;
 			const queryLabel = (detail.dialog && detail.dialog.queryLabel) || "Search";
 			$input.setAttribute('placeholder', queryLabel);
 			$input.setAttribute('aria-label', queryLabel);
