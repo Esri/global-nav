@@ -76,6 +76,7 @@ export default () => {
 		} else if (e.keyCode === 13 && searchState.value && !searchState.isDisabled) {
 			if (searchState.preventNavigation) {
 				handleClose(e);
+				$target.classList.add('hidden');
 			} else {
 				return window.location.href = `${searchState.action}?q=${encodeURIComponent(searchState.value)}`;
 			}
