@@ -41,7 +41,8 @@ export default () => {
 		aria: {labelledby: `${prefix}-close-button`}
 	}, $renderSvgOrImg({imgDef: $close.md, imgClass: `${prefix}-dismiss-icon`}));
 
-	$closeBtn.addEventListener('click', (event) => {
+
+	function handleClose(event) {
 		$dispatch($control, 'header:inlineSearch:deactivated', {event});
 
 		setTimeout(() => {
@@ -56,7 +57,9 @@ export default () => {
 			content: $content,
 			event
 		});
-	});
+	}
+
+	$closeBtn.addEventListener('click', handleClose);
 
 	/* Search: Input
 	/* ====================================================================== */
@@ -71,7 +74,12 @@ export default () => {
 			searchState.isDisabled = false;
 			return $suggestions.innerHTML = "";
 		} else if (e.keyCode === 13 && searchState.value && !searchState.isDisabled) {
-			return window.location.href = `${searchState.action}?q=${encodeURIComponent(searchState.value)}`;
+			if (searchState.preventNavigation) {
+				handleClose(e);
+				$target.classList.add('hidden');
+			} else {
+				return window.location.href = `${searchState.action}?q=${encodeURIComponent(searchState.value)}`;
+			}
 		}
 
 		$dispatch($control, 'header:search:typing', {
@@ -230,6 +238,7 @@ export default () => {
 
 			searchState.image = $search.md;
 			searchState.action = detail.dialog && detail.dialog.action;
+			searchState.preventNavigation = detail.preventNavigation;
 			const queryLabel = (detail.dialog && detail.dialog.queryLabel) || "Search";
 			$input.setAttribute('placeholder', queryLabel);
 			$input.setAttribute('aria-label', queryLabel);
