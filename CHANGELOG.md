@@ -1,3 +1,8 @@
+## 1.6.0
+
+### Fixed
+- feat: adds ability to turn off redirect after inline search
+
 ## 1.5.2
 
 ### Fixed
