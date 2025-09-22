@@ -41,7 +41,8 @@ export default () => {
 		aria: {labelledby: `${prefix}-close-button`}
 	}, $renderSvgOrImg({imgDef: $close.md, imgClass: `${prefix}-dismiss-icon`}));
 
-	$closeBtn.addEventListener('click', (event) => {
+
+	function handleClose(event) {
 		$dispatch($control, 'header:inlineSearch:deactivated', {event});
 
 		setTimeout(() => {
@@ -56,7 +57,9 @@ export default () => {
 			content: $content,
 			event
 		});
-	});
+	}
+
+	$closeBtn.addEventListener('click', handleClose);
 
 	/* Search: Input
 	/* ====================================================================== */
@@ -70,8 +73,12 @@ export default () => {
 		if (!searchState.value || searchState.value === " ") {
 			searchState.isDisabled = false;
 			return $suggestions.innerHTML = "";
-		} else if (e.keyCode === 13 && searchState.value && !searchState.isDisabled && !searchState.preventNavigation) {
-			return window.location.href = `${searchState.action}?q=${encodeURIComponent(searchState.value)}`;
+		} else if (e.keyCode === 13 && searchState.value && !searchState.isDisabled) {
+			if (searchState.preventNavigation) {
+				handleClose(e);
+			} else {
+				return window.location.href = `${searchState.action}?q=${encodeURIComponent(searchState.value)}`;
+			}
 		}
 
 		$dispatch($control, 'header:search:typing', {
