@@ -24,6 +24,8 @@
 	--green-dark: #338033;
 	--red: #de2900;
 	--red-dark: #ab3c16;
+	--transparent-dark: var(--calcite-color-border-ghost, rgba(0, 0, 0, .3));
+	--transparent-scrim: var(--calcite-color-transparent-scrim, rgba(255, 255, 255, .85));
 
 	/* Sizing
 	/* ====================================================================== */
@@ -136,24 +138,24 @@
 		display: block;
 		cursor: pointer;
 		&:hover {
-			box-shadow: inset 0 -3px 0 0 color(var(--blue) a(50%));
-			color: var(--mono-0);
+			box-shadow: inset 0 -3px 0 0 var(--calcite-color-brand-hover, rgba(0, 154, 242, .5));
+			color: var(--calcite-color-text-1, #000000);
 			fill: currentColor;
 		}
 
 		&:matches(:active, [aria-expanded="true"]) {
-			box-shadow: inset 0 -3px 0 0 var(--blue);
-			color: var(--mono-0);
+			box-shadow: inset 0 -3px 0 0 var(--calcite-color-brand, #0079c1);
+			color: var(--calcite-color-text-1, #000000);
 			fill: currentColor;
 		}
 
 		&.-is-active {
-			box-shadow: inset 0 -3px 0 0 var(--blue);
+			box-shadow: inset 0 -3px 0 0 var(--calcite-color-brand, #0079c1);
 		}
 	};
 
 	--submenu-styles: {
-		box-shadow: inset 0 0 0 1px var(--mono-88);
+		box-shadow: inset 0 0 0 1px var(--calcite-color-border-3, #e0e0e0);
 		position: absolute 100% * *;
 		transition: opacity var(--fast-speed) ease-in-out;
 
@@ -168,7 +170,7 @@
 		position: relative;
 
 		&::after {
-			content: url("../shared.svg#c-arrow-right" param(--fill var(--blue)));
+			content: url("../shared.svg#c-arrow-right" param(--fill var(--calcite-color-brand, #0079c1)));
 			inset-block-start: calc(50% - 8px);
 			line-height: 10px;
 			margin-inline-start: -.25em;

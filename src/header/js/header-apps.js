@@ -112,7 +112,7 @@ export default () => {
 
 		const $listItem = $("li", {
 			alt: "",
-			"class": `block link-off-black appLinkContainer grabbable ${canAccessClass}`,
+			"class": `block appLinkContainer grabbable ${canAccessClass}`,
 			mousedown: isDesktop ? interactWithAppLi.bind(null, currentApp) : $dispatchCloseAppLauncher,
 			keyup: !ddState.disabled && isDesktop ? activateAccessibilityMode.bind(null, currentApp) : () => {},
 			keydown: isDesktop ? preventBrowserKeyboardDefaults : () => {},
