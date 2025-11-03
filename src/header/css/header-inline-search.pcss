@@ -137,8 +137,23 @@
 	width: 100%;
 }
 
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+	-webkit-box-shadow: 0 0 0 30px var(--calcite-color-foreground-1, #ffffff)
+		inset !important;
+	margin-inline-start: 1px;
+	background: transparent;
+}
+
+/*Change text in autofill textbox*/
+input:-webkit-autofill {
+	-webkit-text-fill-color: var(--calcite-color-text-2, #595959) !important;
+}
+
 .esri-header-inlineSearch-input::placeholder {
-	opacity: .7;
+	opacity: 0.7;
 }
 
 .esri-header-inlineSearch-input:focus {
@@ -203,7 +218,7 @@
 	margin-top: 18px;
 }
 
-.esri-header-inlineSearch-suggestions-footer{
+.esri-header-inlineSearch-suggestions-footer {
 	background: #429cd2;
 	padding: 0 22px;
 	text-decoration: none;
@@ -229,8 +244,12 @@
 	color: var(--calcite-color-text-2, #595959);
 }
 
-.esri-header-inlineSearch-suggestion a:hover .esri-header-inlineSearch-suggestion-secondary-text,
-.esri-header-inlineSearch-suggestion a:focus .esri-header-inlineSearch-suggestion-secondary-text,
+.esri-header-inlineSearch-suggestion
+	a:hover
+	.esri-header-inlineSearch-suggestion-secondary-text,
+.esri-header-inlineSearch-suggestion
+	a:focus
+	.esri-header-inlineSearch-suggestion-secondary-text,
 .esri-header-inlineSearch-suggestion a:hover,
 .esri-header-inlineSearch-suggestion a:focus {
 	color: var(--calcite-color-text-1, #000000);

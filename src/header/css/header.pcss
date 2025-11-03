@@ -34,28 +34,30 @@
 		}
 	}
 
-	&, & * {
+	&,
+	& * {
 		box-sizing: border-box;
 	}
 
-	& li, & label {
+	& li,
+	& label {
 		margin: 0;
 	}
 
 	& input {
-		height: initial
+		height: initial;
 	}
 }
 
-.esri-header .hidden{
-  display:none;
+.esri-header .hidden {
+	display: none;
 }
 
 /* Global Header: Canvas
 /* ========================================================================== */
 
 .esri-header-canvas {
-	color: rgba(0,0,0,0);
+	color: rgba(0, 0, 0, 0);
 	border-style: none;
 	content: "";
 	inset-block-end: 0;
@@ -65,7 +67,8 @@
 	size: 100%;
 	height: 100vh;
 	-webkit-tap-highlight-color: transparent;
-	transition: opacity var(--fast-speed) ease-in-out, visibility 0ms var(--fast-speed);
+	transition: opacity var(--fast-speed) ease-in-out,
+		visibility 0ms var(--fast-speed);
 	z-index: -1;
 	inset-block-start: var(--header-height);
 
@@ -80,17 +83,20 @@
 	}
 
 	&[data-state="menu"] {
-		background-color: rgba(0,0,0,.5);
+		background-color: rgba(0, 0, 0, 0.5);
 	}
 
 	&[data-state="search"] {
-		background-color: var(--transparent-scrim);
+		background-color: var(
+			--calcite-color-transparent-scrim,
+			rgba(255, 255, 255, 0.85)
+		);
 		box-shadow: inset 0 1px 0 0 var(--calcite-color-border-3, #e0e0e0);
 	}
 }
 
 .-app .esri-header-canvas {
-		inset-block-start: calc(var(--header-height) + 3px);
+	inset-block-start: calc(var(--header-height) + 3px);
 }
 
 /* Global Header: Barrier
