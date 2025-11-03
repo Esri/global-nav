@@ -17,6 +17,22 @@
 	/* Normalize Property Sets
 	/* ====================================================================== */
 
+	--normalize-button: {
+		-webkit-appearance: button; /* stylelint-disable-line property-no-vendor-prefix */
+		margin: 0;
+		overflow: visible;
+		text-transform: none;
+
+		&::-moz-focus-inner {
+			border-style: none;
+			padding: 0;
+		}
+
+		&:-moz-focusring {
+			outline: 1px dotted ButtonText;
+		}
+	};
+
 	--normalize-input-type-search: {
 		-webkit-appearance: textfield; /* stylelint-disable-line property-no-vendor-prefix */
 		margin: 0;
