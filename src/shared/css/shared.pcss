@@ -1,30 +1,4 @@
 :root {
-	/* Colors
-	/* ====================================================================== */
-
-	--mono-0: #000000;
-	--mono-10: #151515;
-	--mono-20: #323232;
-	--mono-35: #595959;
-	--mono-40: #6e6e6e;
-	--mono-45: #707070;
-	--mono-55: #828282;
-	--mono-68: #adadad;
-	--mono-80: #cccccc;
-	--mono-87: #dddddd;
-	--mono-88: #e0e0e0;
-	--mono-91: #e9e9e9;
-	--mono-93: #eeeeee;
-	--mono-94: #efefef;
-	--mono-97: #f8f8f8;
-	--mono-100: #ffffff;
-	--blue: #0079c1;
-	--blue-dark: #005e95;
-	--green: #5a9359;
-	--green-dark: #338033;
-	--red: #de2900;
-	--red-dark: #ab3c16;
-
 	/* Sizing
 	/* ====================================================================== */
 
@@ -136,24 +110,24 @@
 		display: block;
 		cursor: pointer;
 		&:hover {
-			box-shadow: inset 0 -3px 0 0 color(var(--blue) a(50%));
-			color: var(--mono-0);
+			box-shadow: inset 0 -3px 0 0 var(--calcite-color-brand-hover, rgba(0, 154, 242, .5));
+			color: var(--calcite-color-text-1, #000000);
 			fill: currentColor;
 		}
 
 		&:matches(:active, [aria-expanded="true"]) {
-			box-shadow: inset 0 -3px 0 0 var(--blue);
-			color: var(--mono-0);
+			box-shadow: inset 0 -3px 0 0 var(--calcite-color-brand, #0079c1);
+			color: var(--calcite-color-text-1, #000000);
 			fill: currentColor;
 		}
 
 		&.-is-active {
-			box-shadow: inset 0 -3px 0 0 var(--blue);
+			box-shadow: inset 0 -3px 0 0 var(--calcite-color-brand, #0079c1);
 		}
 	};
 
 	--submenu-styles: {
-		box-shadow: inset 0 0 0 1px var(--mono-88);
+		box-shadow: inset 0 0 0 1px var(--calcite-color-border-3, #e0e0e0);
 		position: absolute 100% * *;
 		transition: opacity var(--fast-speed) ease-in-out;
 
@@ -168,7 +142,7 @@
 		position: relative;
 
 		&::after {
-			content: url("../shared.svg#c-arrow-right" param(--fill var(--blue)));
+			content: url("../shared.svg#c-arrow-right" param(--fill var(--calcite-color-brand, #0079c1)));
 			inset-block-start: calc(50% - 8px);
 			line-height: 10px;
 			margin-inline-start: -.25em;

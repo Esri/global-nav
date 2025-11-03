@@ -10,7 +10,7 @@
 	flex: 0 0 auto;
 	height: 100%;
 	text-decoration: none;
-	color: var(--mono-35);
+	color: var(--calcite-color-text-2, #595959);
 
 	&.-fit-burger{
 		position: relative;
@@ -44,7 +44,7 @@
 .esri-header-inline-title-text {
 	font-size: 18px;
 	font-weight: 400;
-	color: var(--mono-20);
+	color: var(--calcite-color-inverse, #323232);
 	overflow: hidden;
 	display: inline-block;
 	text-overflow: ellipsis;
@@ -134,7 +134,7 @@
 
 	&[aria-expanded="true"] {
 		animation: slide-to-the-right .3s ease;
-		box-shadow: inset 0 -3px 0 0 var(--blue);
+		box-shadow: inset 0 -3px 0 0 var(--calcite-color-brand, #0079c1);
 		height: 55px;
 		opacity: 1;
 		padding-block: 14px 0;
@@ -192,7 +192,7 @@
 
 	border-width: 0;
 	box-shadow: unset;
-	color: var(--mono-35);
+	color: var(--calcite-color-text-2, #595959);
 	display: unset;
 	font-size: 18px;
 	font-weight: unset;
@@ -207,7 +207,7 @@
 }
 
 .esri-header-inline-title-input:focus {
-	border-color: var(--mono-87);
+	border-color: var(--calcite-color-border-2, #dddddd);
 	box-shadow: none;
 }
 
@@ -254,11 +254,11 @@
 }
 
 .esri-header-inline-title-dismiss-button:hover .esri-header-inline-title-dismiss-icon {
-	fill: var(--mono-0);
+	fill: var(--calcite-color-text-1, #000000);
 }
 
 .esri-header-inline-title-submit-button:hover .esri-header-inline-title-submit-icon {
-	fill: var(--green-dark);
+	fill: var(--calcite-color-status-success-press, #338033);
 }
 
 /* Global Header Title: Icons
@@ -276,10 +276,11 @@
 	padding: 4px;
 	margin: 0;
 	vertical-align: -3px;
+	fill: var(--calcite-color-text-1);
 }
 
 .esri-header-inline-title-submit-icon {
-	fill: var(--green);
+	fill: var(--calcite-color-status-success, #5a9359);
 }
 
 .esri-header-inline-title-edit-icon {

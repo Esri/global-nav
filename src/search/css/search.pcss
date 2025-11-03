@@ -50,7 +50,7 @@
 	/* ====================================================================== */
 
 	--g-search-form-styles: {
-		box-shadow: inset 0 -1px 0 0 var(--mono-80);
+		box-shadow: inset 0 -1px 0 0 var(--calcite-color-border-1, #cccccc);
 		position: relative;
 
 		@media (--g-search-s) {
@@ -72,7 +72,7 @@
 
 		background-color: transparent;
 		border-width: 0;
-		color: var(--mono-20);
+		color: var(--calcite-color-inverse, #151515);
 		font-family: inherit;
 		font-weight: inherit;
 		padding: 0;
@@ -96,7 +96,7 @@
 		@apply --g-search-measure-size-styles;
 		@apply --g-search-text-styles;
 
-		box-shadow: inset 0 -1px 0 0 var(--blue);
+		box-shadow: inset 0 -1px 0 0 var(--calcite-color-brand, #0079c1);
 		transition: width var(--g-search-measure-speed);
 		user-select: none;
 	};
@@ -115,13 +115,13 @@
 		@apply --g-search-text-styles;
 		@apply --g-search-size-styles;
 
-		color: var(--mono-55);
+		color: var(--calcite-color-text-3, #828282);
 		overflow: hidden;
 		white-space: nowrap;
 
 		&[data-filled] {
 			animation: esri-search-filled-label 300ms;
-			color: var(--mono-40);
+			color: var(--calcite-color-text-3, #6e6e6e);
 			inset-block-start: calc(-1 * var(--g-search-label-height) + 3px);
 			position: absolute;
 
@@ -150,7 +150,7 @@
 		position: absolute;
 
 		&::before {
-			content: url("../../shared/shared.svg#c-search" param(--fill var(--mono-35)));
+			content: url("../../shared/shared.svg#c-search" param(--fill var(--calcite-color-text-2, #595959)));
 			display: block;
 
 			@media (--g-search-s) {
@@ -166,12 +166,12 @@
 
 		&[data-filled] {
 			&::before {
-				content: url("../../shared/shared.svg#c-search" param(--fill var(--blue)));
+				content: url("../../shared/shared.svg#c-search" param(--fill var(--calcite-color-brand, #0079c1)));
 			}
 
 			&:hover, &:focus {
 				&::before {
-					content: url("../../shared/shared.svg#c-search" param(--fill var(--blue-dark)));
+					content: url("../../shared/shared.svg#c-search" param(--fill var(--calcite-color-brand-press, #005e95)));
 				}
 			}
 		}
@@ -185,7 +185,7 @@
 
 		background-color: transparent;
 		border-width: 0;
-		color: var(--mono-35);
+		color: var(--calcite-color-text-2, #595959);
 		cursor: pointer;
 		font-family: inherit;
 		font-size: 14px / 20px;
@@ -202,7 +202,7 @@
 		}
 
 		& span {
-			background-image: linear-gradient(90deg, var(--mono-0) 50%, transparent 50%);
+			background-image: linear-gradient(90deg, var(--calcite-color-text-1, #000000) 50%, transparent 50%);
 			background-repeat: no-repeat;
 			background-size: 200% 1px;
 			display: block;
@@ -220,7 +220,7 @@
 		}
 
 		&:hover, &:focus {
-			color: var(--mono-0);
+			color: var(--calcite-color-text-1, #000000);
 
 			& span {
 				background-position: 0 100%;

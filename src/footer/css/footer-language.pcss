@@ -36,13 +36,13 @@
 .esri-footer-language-control {
 	@apply --unset-button;
 
-	background-image: url("../../shared/shared.svg#c-globe" param(--fill var(--mono-100)));
+	background-image: url("../../shared/shared.svg#c-globe" param(--fill #ffffff)));
 	background-position: calc(100% - 12px) 50%;
 	background-repeat: no-repeat;
 	background-size: 20px 20px;
-	background-color: var(--blue);
+	background-color: var(--calcite-color-brand, #0079c1);
 	border-style: none;
-	color: var(--mono-100);
+	color: var(--calcite-color-foreground-1, #ffffff);
 	display: inline-block;
 	font-size: 16px / 18px;
 	font-weight: 300;
@@ -56,7 +56,7 @@
 	}
 
 	&:hover, &:focus {
-		background-color: var(--blue-dark);
+		background-color: var(--calcite-color-brand-press, #005e95);
 	}
 }
 
@@ -80,7 +80,7 @@
 	@apply --normalize-button;
 	@apply --unset-button;
 
-	background-color: color(var(--mono-0) a(50%));
+	background-color: color(var(--calcite-color-text-1, #000000) a(50%));
 	inset: 0;
 	pointer-events: none;
 	position: fixed;
@@ -97,7 +97,7 @@
 /* Global Footer Language: Dialog */
 /* ========================================================================== */
 .esri-footer-language-dialog {
-	color: var(--mono-0) var(--mono-100);
+	color: var(--calcite-color-text-1, #000000) var(--calcite-color-foreground-1, #ffffff);
 	opacity: 0;
 	padding: var(--g-language-block-padding) var(--g-language-inline-padding);
 	position: fixed;
@@ -133,14 +133,14 @@
 
 .esri-footer-language-dialog-choice {
 	appearance: none;
-	background-color: var(--mono-100);
-	background-image: url("../../shared/shared.svg#c-select" param(--fill var(--mono-40)));
+	background-color: var(--calcite-color-foreground-1, #ffffff);
+	background-image: url("../../shared/shared.svg#c-select" param(--fill var(--calcite-color-text-2, #6e6e6e)));
 	background-position: calc(100% - 4px) center;
 	background-repeat: no-repeat;
 	background-size: 16px;
 	border-radius: 0;
 	border-style: none;
-	border: 1px solid var(--mono-68);
+	border: 1px solid var(--calcite-color-border-input, #adadad);
 	box-shadow: inset 0 1px 2px rgba(0,0,0,0.075);
 	display: inline;
 	font-family: inherit;
@@ -153,7 +153,7 @@
 	}
 
 	&:focus {
-		border-color: var(--blue);
+		border-color: var(--calcite-color-brand, #0079c1);
 		box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.075), 0 0 5px rgba(81, 167, 232, 0.5);
 		outline: none;
 	}
@@ -171,7 +171,7 @@
 	@apply --normalize-button;
 	@apply --unset-button;
 
-	color: var(--mono-100) var(--blue);
+	color: var(--calcite-color-foreground-1, #ffffff) var(--calcite-color-brand, #0079c1);
 	display: inline;
 	font-size: 13px;
 	vertical-align: middle;
@@ -191,7 +191,7 @@
 	}
 
 	&:hover, &:focus {
-		background-color: color(var(--blue) b(50%));
+		background-color: color(var(--calcite-color-brand, #0079c1) b(50%));
 	}
 }
 

@@ -14,7 +14,8 @@ function compilePostCss() {
 		.pipe(postcss([
 			require('postcss-partial-import')(),
 			require('postcss-custom-properties')({
-				warnings: false
+				warnings: false,
+				preserve: true
 			}),
 			require('postcss-apply')(),
 			require('postcss-image-set-polyfill')(),

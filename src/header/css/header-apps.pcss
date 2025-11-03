@@ -9,7 +9,7 @@
 }
 
 .esri-header-apps a {
-	color: var(--mono-20);
+	color: var(--calcite-color-inverse, #323232);
 	text-decoration: none;
 }
 
@@ -53,7 +53,7 @@
 }
 
 .esri-header-apps-control:active, .esri-header-apps-control[aria-expanded="true"] {
-	box-shadow: inset 0 -3px 0 0 var(--blue);
+	box-shadow: inset 0 -3px 0 0 var(--calcite-color-brand, #0079c1);
 }
 
 .esri-header-apps-content[aria-expanded="true"] nav {
@@ -63,6 +63,10 @@
 .esri-header-apps-content {
 	height: 0;
 	position: relative;
+}
+
+.esri-header-apps-content .dropdown-menu {
+	border-color: var(--calcite-color-border-3,#e0e0e0);
 }
 
 .esri-header-apps-control.disabled-grid-icon {
@@ -109,7 +113,7 @@
 }
 
 .esri-header-apps .dropdown-menu {
-	background: var(--mono-97);
+	background: var(--calcite-color-background, #f8f8f8);
 	box-shadow: 0 0 16px 0 rgba(0, 0, 0, .05);
 	display: none;
 	overflow: auto;
@@ -127,10 +131,10 @@ html[dir="rtl"] .dropdown-menu.dropdown-right {
 }
 
 .esri-header-apps .dropdown-link {
-	background-color: var(--mono-100);
-	border-top: 1px solid var(--mono-94);
+	background-color: var(--calcite-color-foreground-1, #ffffff);
+	border-top: 1px solid var(--calcite-color-foreground-2, #efefef);
 	box-sizing: border-box;
-	color: var(--mono-40);
+	color: var(--calcite-color-text-2, #6e6e6e);
 	cursor: pointer;
 	display: block;
 	font-size: .875rem;
@@ -143,8 +147,8 @@ html[dir="rtl"] .dropdown-menu.dropdown-right {
 /* End Calcite */
 
 .esri-header-apps .app-switcher-dropdown-menu {
-	background: #eeeeef;
-	border-top: 1px solid var(--mono-88);
+	background: var(--calcite-color-background-1);
+	border-top: 1px solid var(--calcite-color-border-3, #e0e0e0);
 	cursor: default;
 	max-height: 90vh;
 	max-width: 600px;
@@ -185,7 +189,7 @@ html[dir="rtl"] .dropdown-menu.dropdown-right {
 }
 
 .esri-header-apps .app-switcher-svg {
-	fill: var(--mono-40);
+	fill: var(--calcite-color-text-2, #6e6e6e);
 }
 
 .esri-header-apps .appLinkContainer {
@@ -227,7 +231,7 @@ html[dir="rtl"] .dropdown-menu.dropdown-right {
 .esri-header-apps .appIconImage {
 	background-repeat: no-repeat;
 	background-size: contain;
-	color: var(--mono-100);
+	color: var(--calcite-color-foreground-1, #ffffff);
 	display: block;
 	font-size: 18px;
 	height: 48px;
@@ -259,28 +263,28 @@ html[dir="rtl"] .dropdown-menu.dropdown-right {
 }
 
 .esri-header-apps .appContainer.primary {
-	background: var(--mono-97);
+	background: var(--calcite-color-background, #f8f8f8);
 }
 
 /* Secondary App Container */
 
 .esri-header-apps .appContainer.secondary {
-	background: var(--mono-94);
+	background: var(--calcite-color-foreground-2, #efefef);
 }
 
 .esri-header-apps .appContainer.secondary hr {
 	border: none;
-	border-top: 1px solid var(--mono-87);
+	border-top: 1px solid var(--calcite-color-border-2, #dddddd);
 	margin: 0;
 }
 
 .esri-header-apps .appIconSvgText {
-	color: var(--mono-100);
+	color: var(--calcite-color-foreground-1, #ffffff);
 	font-size: 17px;
 	font-weight: 600;
 	line-height: 48px;
 	position: absolute;
-	text-shadow: 0 1px 8px var(--mono-40);
+	text-shadow: 0 1px 8px var(--calcite-color-text-2, #6e6e6e);
 	transform: translate3d(0, 0, 0);
 	width: 48px;
 	white-space: nowrap;
@@ -289,7 +293,7 @@ html[dir="rtl"] .dropdown-menu.dropdown-right {
 }
 
 .esri-header-apps .default-svg-fill {
-	fill: var(--mono-40);
+	fill: var(--calcite-color-text-2, #6e6e6e);
 }
 
 .esri-header-apps .down-carrot-svg {
@@ -298,13 +302,13 @@ html[dir="rtl"] .dropdown-menu.dropdown-right {
 }
 
 .esri-header-apps .intro-container {
-	background: var(--mono-97);
+	background: var(--calcite-color-background, #f8f8f8);
 	text-align: center;
 }
 
 .esri-header-apps .drag-and-drop-intro {
-	background: var(--mono-97);
-	color: var(--mono-40);
+	background: var(--calcite-color-background, #f8f8f8);
+	color: var(--calcite-color-text-2, #6e6e6e);
 	font-size: 14px;
 	margin: 0;
 	padding: 17px 76px 10px;
@@ -312,17 +316,17 @@ html[dir="rtl"] .dropdown-menu.dropdown-right {
 
 .esri-header-apps .dismiss-intro-button {
 	@apply --unset-button;
-	background: var(--mono-100);
-	border: 1px solid var(--mono-88);
-	color: var(--mono-40);
+	background: var(--calcite-color-foreground-1, #ffffff);
+	border: 1px solid var(--calcite-color-border-3, #e0e0e0);
+	color: var(--calcite-color-text-2, #6e6e6e);
 	cursor: pointer;
 	font-size: 14px;
 	padding: 6px 20px;
 }
 
 .esri-header-apps .dismiss-intro-button:hover {
-	border: 1px solid var(--blue);
-	color: var(--blue);
+	border: 1px solid var(--calcite-color-brand, #0079c1);
+	color: var(--calcite-color-brand, #0079c1);
 }
 
 /* Extra support for preventing highlighting while dragging */
@@ -349,9 +353,9 @@ html[dir="rtl"] .dropdown-menu.dropdown-right {
 }
 
 .esri-header-apps .sortable-drag-class {
-	background: var(--mono-100);
+	background: var(--calcite-color-foreground-1, #ffffff);
 	opacity: 1;
-	outline: 1px solid var(--blue);
+	outline: 1px solid var(--calcite-color-brand, #0079c1);
 }
 
 .esri-header-apps .sortable-drag-class img {
@@ -381,21 +385,21 @@ html[dir="rtl"] .dropdown-menu.dropdown-right {
 }
 
 .esri-header-apps .on-drag-over {
-	border-color: var(--blue);
+	border-color: var(--calcite-color-brand, #0079c1);
 }
 
 .esri-header-apps .show-more-button {
-	background: var(--mono-94);
+	background: var(--calcite-color-foreground-2, #efefef);
 	border: 0;
 	border-radius: 0;
-	color: var(--mono-40);
+	color: var(--calcite-color-text-2, #6e6e6e);
 	cursor: pointer;
 	font-size: 13px;
 	font-family: inherit;
 	padding: 4px;
 	width: 100%;
 	&:hover, &:focus {
-		color: var(--mono-0);
+		color: var(--calcite-color-text-1, #000000);
 	}
 }
 
@@ -404,17 +408,17 @@ html[dir="rtl"] .dropdown-menu.dropdown-right {
 }
 
 .esri-header-apps .secondary-dropdown-menu {
-	background: var(--mono-94);
+	background: var(--calcite-color-foreground-2, #efefef);
 }
 
 .esri-header-apps .secondary-dropdown-menu hr {
 	border: none;
-	border-top: 1px solid var(--mono-87);
+	border-top: 1px solid var(--calcite-color-border-2, #dddddd);
 	margin: 0;
 }
 
 .esri-header-apps .app-indicator {
-	border: 2px solid var(--mono-100);
+	border: 2px solid var(--calcite-color-foreground-1, #ffffff);
 	border-radius: 10px;
 	clear: both;
 	height: 18px;
@@ -431,7 +435,7 @@ html[dir="rtl"] .dropdown-menu.dropdown-right {
 }
 
 .esri-header-apps .app-indicator-removed {
-	background: var(--mono-100);
+	background: var(--calcite-color-foreground-1, #ffffff);
 	border-radius: 10px;
 	cursor: pointer;
 	line-height: 2px;
@@ -441,16 +445,16 @@ html[dir="rtl"] .dropdown-menu.dropdown-right {
 }
 
 .esri-header-apps .app-indicator.app-indicator-removed:hover {
-	border-color: var(--red);
+	border-color: var(--calcite-color-status-danger, #de2900);
 }
 
 .esri-header-apps .app-indicator.app-indicator-removed:hover svg {
-	fill: var(--red);
+	fill: var(--calcite-color-status-danger, #de2900);
 }
 
 .esri-header-apps .missing-app-icon {
-	background: var(--mono-94);
-	border: 1px dashed var(--mono-20);
+	background: var(--calcite-color-foreground-2, #efefef);
+	border: 1px dashed var(--calcite-color-inverse, #323232);
 	border-radius: 6px;
 	cursor: pointer;
 	display: block;
@@ -462,7 +466,7 @@ html[dir="rtl"] .dropdown-menu.dropdown-right {
 }
 
 .esri-header-apps .appContainer-secondary div.missing-app-icon {
-	background: var(--mono-97);
+	background: var(--calcite-color-background, #f8f8f8);
 }
 
 /* Drag and Drop Cursor */
@@ -500,11 +504,11 @@ html[dir="rtl"] .dropdown-menu.dropdown-right {
 /*    FOCUS STYLE      */
 
 .esri-header-apps .top-nav-link .app-switcher-svg:hover, .top-nav-link:focus .app-switcher-svg {
-	fill: var(--blue);
+	fill: var(--calcite-color-brand, #0079c1);
 }
 
 .esri-header-apps .dropdown.is-active .dropdown-menu {
-	border-top: 1px solid var(--mono-94);
+	border-top: 1px solid var(--calcite-color-foreground-2, #efefef);
 	box-shadow: inherit;
 	display: block;
 }
@@ -521,8 +525,8 @@ html[dir="rtl"] .dropdown-menu.dropdown-right {
 
 .esri-header-apps .appLinkContainer.with-hover:hover,
 .esri-header-apps .appLinkContainer.with-hover:focus {
-	outline: 1px solid var(--blue);
-	color: var(--mono-0);
+	outline: 1px solid var(--calcite-color-brand, #0079c1);
+	color: var(--calcite-color-text-1, #000000);
 }
 
 /* Accessible Arrows */
@@ -543,7 +547,7 @@ html[dir="rtl"] .dropdown-menu.dropdown-right {
 
 .esri-header-apps .app-arrow-left {
 	border-bottom: 5px solid transparent;
-	border-right: 5px solid var(--blue);
+	border-right: 5px solid var(--calcite-color-brand, #0079c1);
 	border-top: 5px solid transparent;
 	float: left;
 	left: 38px;
@@ -552,7 +556,7 @@ html[dir="rtl"] .dropdown-menu.dropdown-right {
 
 .esri-header-apps .app-arrow-right {
 	border-bottom: 5px solid transparent;
-	border-left: 5px solid var(--blue-dark);
+	border-left: 5px solid var(--calcite-color-brand-press, #005e95);
 	border-top: 5px solid transparent;
 	float: right;
 	right: 38px;
@@ -560,7 +564,7 @@ html[dir="rtl"] .dropdown-menu.dropdown-right {
 }
 
 .esri-header-apps .app-arrow-top {
-	border-bottom: 5px solid var(--blue);
+	border-bottom: 5px solid var(--calcite-color-brand, #0079c1);
 	border-left: 5px solid transparent;
 	border-right: 5px solid transparent;
 	right: 70px;
@@ -570,7 +574,7 @@ html[dir="rtl"] .dropdown-menu.dropdown-right {
 .esri-header-apps .app-arrow-bottom {
 	border-left: 5px solid transparent;
 	border-right: 5px solid transparent;
-	border-top: 5px solid var(--blue);
+	border-top: 5px solid var(--calcite-color-brand, #0079c1);
 	right: 70px;
 	top: 59px;
 }

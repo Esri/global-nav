@@ -10,7 +10,7 @@
 	flex: 0 0 auto;
 	height: 100%;
 	text-decoration: none;
-	color: var(--mono-35);
+	color: var(--calcite-color-text-2, #595959);
 
 	&.-fit-burger{
 		position: relative;
@@ -41,12 +41,12 @@
 /* ========================================================================== */
 
 .esri-header-brand-image {
-	fill: var(--mono-20);
+	fill: var(--calcite-color-inverse, #323232);
 	height: 32px;
 	vertical-align: -10px;
 
 	@nest :matches(:hover, :focus) > & {
-		fill: var(--mono-0);
+		fill: var(--calcite-color-text-1, #000000);
 	}
 }
 
@@ -59,7 +59,7 @@
 
 .distributor-image-border {
 	display: inline;
-	border-right: solid 1px var(--mono-88);
+	border-right: solid 1px var(--calcite-color-border-3, #e0e0e0);
 	height: 56px;
 	margin-inline-end: 10px;
 }
@@ -70,7 +70,7 @@
 .esri-header-brand-text {
 	font-size: 18px;
 	font-weight: 400;
-	color: var(--mono-20);
+	color: var(--calcite-color-inverse, #323232);
 	position: relative;
 
 	@media (--width-l) {
@@ -84,7 +84,7 @@
 		text-decoration: none;
 
 		&:before {
-			box-shadow: inset 1px 0 0 0 var(--mono-88);
+			box-shadow: inset 1px 0 0 0 var(--calcite-color-border-3, #e0e0e0);
 			display: inline-block;
 			content: '';
 			height: 30px;
