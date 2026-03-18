@@ -1,3 +1,11 @@
+## 1.6.1
+
+### Fixed
+- fix: add new `menuLabel` property to set aria label for mobile menu toggle
+- fix: close inline search when user tabs out
+- fix: close mobile menu when user tabs out
+- fix: change inline search placeholder to mean contrast requirements
+
 ## 1.6.0
 
 ### Fixed
