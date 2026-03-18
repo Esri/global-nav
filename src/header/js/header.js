@@ -79,7 +79,6 @@ export default (data) => {
 		if (detail.brand) {
 			detail.brand.root = true;
 		}
-
 		$dispatch($brandStripe, 'header:update:brand', detail.brand);
 		$dispatch($brand, 'header:update:brand', detail.brand);
 		$dispatch($inlineTitle, 'header:update:inlineTitle', detail.brand);
@@ -95,6 +94,7 @@ export default (data) => {
 			detail.menus.noBrand = !detail.brand;
 			$dispatch($desktopMenus, 'header:update:menus', detail.menus);
 			$dispatch($mobileMenus, 'header:update:menus', detail.menus);
+			$dispatch($mobileMenus, 'header:update:menuLabel', detail.menuLabel);
 		}
 
 		if (detail.collapseMenus) {
@@ -251,6 +251,14 @@ export default (data) => {
 
 	/* On Header Menu Close
 	/* ====================================================================== */
+
+	window.addEventListener('focusin', (e) => {
+		const mobileHeader = document.querySelector(".esri-header-menus.-mobile");
+		const mobileToggle = mobileHeader && mobileHeader.querySelector("#esri-header-menus-mobile-toggle");
+		if (mobileToggle && mobileToggle.getAttribute("aria-expanded") === "true" && !e.target.closest(".esri-header-menus")) {
+			$dispatch($headerCanvas, 'header:menu:close');
+		}
+	});
 
 	$header.addEventListener('header:menu:close', ({detail}) => {
 		const currentDetail = detail || searchDetail || inlineTitleDetail || accountDetail || appsDetail || appSwitcherDetail || notificationsDetail || menusDetail || menuDetail;
