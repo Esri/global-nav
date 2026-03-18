@@ -7,11 +7,11 @@ export default ({variant = 'desktop'}) => {
 	const $target = $('div', {class: prefix, id: `${prefix}-${variant}`});
 	$target.classList.add(`-${variant}`);
 	const isMobile = variant === 'mobile';
-
+	let $toggle;
 	if (isMobile) {
-		const $toggle = $('button', {
+		$toggle = $('button', {
 			class: `${prefix}-toggle`, id: `${prefix}-${variant}-toggle`,
-			aria: {controls: `${prefix}-content-${variant}`, expanded: false, labelledby: 'esri-header-brand'}
+			aria: {controls: `${prefix}-content-${variant}`, expanded: false, label: "Menu"}
 		});
 		$renderSvgOrImg({imgDef: $hamburger.md, imgClass: `${prefix}-image`, id: `${prefix}-image`, $targetElm: $toggle});
 
@@ -131,6 +131,11 @@ export default ({variant = 'desktop'}) => {
 
 	/* Menus: On Update
 	/* ====================================================================== */
+	$target.addEventListener('header:update:menuLabel', ({detail}) => {
+		if ($toggle) {
+			$toggle.setAttribute("aria-label", detail || "Menu");
+		}
+	});
 
 	$target.addEventListener('header:update:menus', ({detail}) => {
 		if (detail) {

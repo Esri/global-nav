@@ -21,6 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
 					}
 				]
 			],
+			menuLabel: "ArcGIS Menu",
 			search: {
 				label: 'Search',
 				inline: true,

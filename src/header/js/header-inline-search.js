@@ -46,7 +46,7 @@ export default () => {
 		$dispatch($control, 'header:inlineSearch:deactivated', {event});
 
 		setTimeout(() => {
-			$control.focus();
+			event && $control.focus();
 		}, 0);
 
 		$dispatch($control, 'header:menu:toggle', {
@@ -131,6 +131,11 @@ export default () => {
 
 	/* Search: On Deactivation
 	/* ====================================================================== */
+	window.addEventListener('focusin', (e) => {
+		if (!e.target.closest(".esri-header-inlineSearch") && $target.getAttribute("aria-expanded") === "true") {
+			handleClose();
+		}
+	});
 
 	$target.addEventListener('header:inlineSearch:deactivated', ({detail}) => {
 		$target.setAttribute('aria-expanded', "false");
