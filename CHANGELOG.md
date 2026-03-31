@@ -1,3 +1,9 @@
+
+## 1.6.2
+
+### Fixed
+- fix: set search placeholder for sites with no default
+
 ## 1.6.1
 
 ### Fixed
