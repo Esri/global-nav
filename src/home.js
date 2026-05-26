@@ -25,6 +25,24 @@ document.addEventListener("DOMContentLoaded", () => {
 			search: {
 				label: 'Search',
 				inline: true,
+				searchType: {
+					selected: "semantic",
+					param: "mode",
+					options: [
+						{
+							id: "keyword",
+							title: "Search by keyword",
+							description: "Best for when you are looking for specific items or groups",
+							icon: "text"
+						},
+						{
+							id: "semantic",
+							title: "Search by semantics",
+							description: "Best for descriptive and exploratory searches. Use natural language to find conceptually related items.",
+							icon: "effects"
+						}
+					]
+				},
 				preventNavigation: true,
 				dialog: {
 					action: 'https://pages.codehub.esri.com/marketing/esri-search-page/',
