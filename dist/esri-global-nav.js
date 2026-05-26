@@ -1,1 +1,5286 @@
-((e,t)=>{"object"==typeof exports&&"undefined"!=typeof module?module.exports=t():"function"==typeof define&&define.amd?define(t):e.esriGlobalNav=t()})(this,function(){function le(e){var t=e instanceof Node?e:document.createElement(e);return[].slice.call(arguments,1).forEach(function(e){e instanceof Node?t.appendChild(e):"string"==typeof e?t.innerHTML=e:function e(t,n,a){for(var i in n)"function"==typeof n[i]?t.addEventListener(a+i,n[i]):Object(n[i])===n[i]?e(t,n[i],a+i+"-"):t.setAttribute(a+i,n[i])}(t,e,"")}),t}function de(e){for(;e.lastChild;)e.removeChild(e.lastChild);var t,n;return e.appendChild((t=arguments,n=document.createDocumentFragment(),[].slice.call(t,1).forEach(function(e){e instanceof Node?n.appendChild(e):n.appendChild(document.createTextNode(e))}),n)),e}Element.prototype.closest||(Element.prototype.matches||(Element.prototype.matches=Element.prototype.msMatchesSelector||Element.prototype.webkitMatchesSelector),Element.prototype.closest=function(e){var t=this;if(document.documentElement.contains(this))do{if(t.matches(e))return t}while(null!==(t=t.parentElement));return null});var se="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e};"function"==typeof Symbol&&Symbol.asyncIterator&&(e.prototype[Symbol.asyncIterator]=function(){return this}),e.prototype.next=function(e){return this._invoke("next",e)},e.prototype.throw=function(e){return this._invoke("throw",e)},e.prototype.return=function(e){return this._invoke("return",e)};function d(e){this.value=e}function e(i){var r,s;function o(e,t){try{var n=i[e](t),a=n.value;a instanceof d?Promise.resolve(a.value).then(function(e){o("next",e)},function(e){o("throw",e)}):l(n.done?"return":"normal",n.value)}catch(e){l("throw",e)}}function l(e,t){switch(e){case"return":r.resolve({value:t,done:!0});break;case"throw":r.reject(t);break;default:r.resolve({value:t,done:!1})}(r=r.next)?o(r.key,r.arg):s=null}this._invoke=function(n,a){return new Promise(function(e,t){e={key:n,arg:a,resolve:e,reject:t,next:null};s?s=s.next=e:(r=s=e,o(n,a))})},"function"!=typeof i.return&&(this.return=void 0)}var ce=function(e){if(Array.isArray(e)){for(var t=0,n=Array(e.length);t<e.length;t++)n[t]=e[t];return n}return Array.from(e)};function ue(e,t,n){var a=document.createEvent("CustomEvent");a.initCustomEvent(t,!0,!0,n),e.dispatchEvent(a)}function pe(e){var n=void 0;e.addEventListener("blur",function(e){e.target instanceof Element&&(e.target.removeAttribute("js-focus"),e.target.removeAttribute("js-focus-ring"))},!0),e.addEventListener("focus",function(e){var t=document.activeElement;t instanceof Element&&"BODY"!==t.tagName&&(t.setAttribute("js-focus",""),n)&&t.setAttribute("js-focus-ring","")},!0),window.addEventListener("keydown",function(){n=clearTimeout(n)||setTimeout(function(){n=0},100)},!0)}function he(e){var t=e.imgDef,n=void 0===t?"":t,t=e.imgClass,a=void 0===t?"":t,t=e.wrapperClass,i=e.inlineImg,i=void 0!==i&&i,r=e.id,s=e.alt,o=e.imgWidth,l=e.imgHeight,d=e.viewBox,e=e.$targetElm,c=le("span",{class:void 0===t?"":t});return"string"==typeof n?n.indexOf(".svg")!==n.length-4||i?h():function(e,t,n){var a=2<arguments.length&&void 0!==n?n:function(){},i=new XMLHttpRequest;i.addEventListener("readystatechange",function(){4===i.readyState&&(200===i.status?t(i.responseText):a())}),i.open("GET",e),i.send()}(n,function(e){c.innerHTML=e,le(c.firstElementChild,p())},function(){h()}):(t=le(document.createElementNS("http://www.w3.org/2000/svg","svg"),p(),le.apply(void 0,[document.createDocumentFragment()].concat(ce(n.map(function(e){return le(document.createElementNS("http://www.w3.org/2000/svg","path"),{d:e})}))))),c.appendChild(t)),e&&(e.innerHTML="",e.appendChild(c)),c;function u(e,t){for(var n in t)null!=t[n]&&(e[n]=t[n]);return e}function p(){return u({class:""+a,style:"transform: rotate(360deg);"},{id:r,alt:s,viewBox:d,width:o,height:l})}function h(){c.appendChild(le("img",u({style:(o?"width:"+o+"px":"")+"; "+(l?"height:"+l+"px":"")},{id:r,alt:s,src:n,class:a})))}}function me(n,a){new window.MutationObserver(function(e,t){e.forEach(function(e){e.addedNodes.length&&[].concat(ce(e.addedNodes)).some(function(e){return e===n})&&(t.disconnect(),a())})}).observe(document.body,{childList:!0,subtree:!0})}function ge(){function t(){ue(n,"header:inlineTitle:deactivated",{event:event}),setTimeout(function(){n.focus()},0),ue(n,"header:menu:toggle",{state:"menu",target:d,type:"inlineTitle",control:n,content:l,event:event})}function e(e){u.newValue=a.value,e.keyCode&&13!==e.keyCode||(u.newValue&&" "!==u.newValue&&u.newValue!==u.text&&ue(n,"header:title:submit",{title:u.newValue}),t())}var n=le("button",{class:c+"-control",id:c+"-control",tabindex:"-1",aria:{expanded:!1,controls:c+"-content"}}),a=(n.addEventListener("header:menu:open",function(e){ue(n,"header:inlineTitle:activated",{event:e})}),n.addEventListener("click",function(e){ue(n,"header:click:inlineTitle",{event:e}),ue(n,"header:menu:toggle",{state:"menu",target:d,type:"inlineTitle",control:n,content:l,event:e})}),le("input",{class:c+"-input",id:c+"-input",aria:{labelledby:c+"-input"}}));a.addEventListener("keyup",e);(o=le("button",{class:c+"-action-button "+c+"-dismiss-button",aria:{labelledby:c+"-action-button"}},he({imgDef:Le.md,imgClass:c+"-dismiss-icon"}))).addEventListener("click",t);var i=le("button",{class:c+"-action-button "+c+"-submit-button",aria:{labelledby:c+"-action-button"}},he({imgDef:m.lg,imgClass:c+"-submit-icon"})),r=(i.addEventListener("click",e),le("div",{class:"esri-header-lineBreak "+c+"-lineBreak"})),s=le("div",{class:"esri-header-lineBreak "+c+"-lineBreak lineBreak-right"}),o=le("span",{class:c+"-actionButton-container"},o,i),l=le("div",{class:c+"-content",id:c+"-content",aria:{expanded:!1,labelledby:c+"-control"}},r,a,o,s),d=le("span",{class:c,id:c,aria:{expanded:!1}});return d.addEventListener("header:inlineTitle:activated",function(e){a.value=u.text,d.setAttribute("aria-expanded","true"),setTimeout(function(){a.selectionStart=u.text.length,a.focus()},100)}),d.addEventListener("header:inlineTitle:deactivated",function(e){d.setAttribute("aria-expanded","false"),a.value=""}),d.addEventListener("header:update:inlineTitle",function(e){var t,e=e.detail;!e||e.root&&!e.editTitle?(d.classList.add("hidden"),d.innerHTML=""):(d.classList.remove("hidden"),le(d,n,l),e.brandText&&(u.brandText&&u.pencilIcon?(u.brandText.parentNode.removeChild(u.brandText),u.pencilIcon.parentNode.removeChild(u.pencilIcon)):n.setAttribute("tabindex","0"),t=e.maxViewWidth||30,u.text=e.brandText,u.pencilIcon=he({imgDef:g.sm,imgClass:c+"-edit-icon"}),u.brandText=le("span",{class:c+"-text",style:"max-width: "+t+"vw;"},e.brandText),e.titleFontSize&&(u.brandText.style.fontSize=e.titleFontSize+"px"),le(n,u.brandText,u.pencilIcon),t=document.getElementById("esri-header-brand"))&&(t.classList.contains("-fit-burger")&&d.classList.add("-fit-burger"),t.parentElement.removeChild(t)))}),d}function fe(e){function A(e){return e.length?le.apply(void 0,["div",{class:N+"-sublist--col"}].concat(ce(e.map(i)))):null}function C(e){var t=he({imgDef:e.icon,imgClass:N+"-sublink-image",imgWidth:e.width,imgHeight:e.height});return le("li",{class:N+"-subitem--featured"},S({class:"sublink--featured",props:e,icon:t,label:le("span",{class:N+"-sublink-text"},e.label)}))}var k=void 0===(e=e.variant)?"desktop":e,a=le("div",{class:N,id:N+"-"+k});a.classList.add("-"+k);var t=void 0,e=((e="mobile"===k)&&(t=le("button",{class:N+"-toggle",id:N+"-"+k+"-toggle",aria:{controls:N+"-content-"+k,expanded:!1,label:"Menu"}}),he({imgDef:s.md,imgClass:N+"-image",id:N+"-image",$targetElm:t}),t.addEventListener("click",function(e){ue(t,"header:menu:toggle",{control:t,content:n,root:!0,state:"menu",target:a,type:"root-toggle",event:e})}),le(a,t)),e?{hidden:!0,expanded:!1}:{}),n=le("div",{class:N+"-content",id:N+"-content-"+k,aria:e}),S=(le(a,n),function(e){var t=void 0,n=l(e.props.href),t=e.props.href?le("a",{class:N+"-"+e.class,href:e.props.href,target:n,rel:"_blank"===n?"noopener":null},e.icon||"",e.label):le("button",{class:N+"-"+e.class},e.icon||"",e.label);if(e.id&&t.setAttribute("id",N+"-"+e.id),e.props.data)for(var a in e.props.data)t.setAttribute("data-"+a,e.props.data[a]);return e.props.newContext&&le(t,{target:"_blank",rel:"noopener"}),t}),i=function(e){var t=e.heading?N+"-subitem--heading":"";return le("li",{class:N+"-subitem "+t},e.heading?le("p",{class:N+"-heading--label"},e.heading):"",S({class:"sublink",props:e,label:e.label}))};function D(e){var t,n=[].slice.call(document.querySelectorAll(".esri-header-menus-submenu")),a="disabled"!==e&&"init"!==e&&e.getAttribute("data-parent"),a=document.querySelector("#"+a);"init"===e?(t=[].slice.call(document.querySelectorAll(".esri-header-menus-flyout"))).length&&t.forEach(function(e){var t=[].slice.call(e.querySelectorAll(".esri-header-menus-flyout--categories-item")),t=document.querySelector("#"+t[0].getAttribute("data-parent"));"1"===[].slice.call(e.querySelectorAll(".esri-header-menus-flyout--list-items"))[0].getAttribute("data-coltype")&&t.setAttribute("data-single","")}):"disabled"===e?n.forEach(function(e){e.removeAttribute("data-single")}):a.setAttribute("data-single","")}function T(t,e,n,a,i){var r=[],s=[],o="";switch(e){case"category":t.cols.length&&t.cols.forEach(function(e){o=le("li",{class:N+"-flyout--categories-item","data-id":n,"aria-current":0===n?"true":"false","data-parent":N+"-"+k+"-submenu-"+a+"-"+i,tabindex:-1},le("button",{class:N+"-flyout--categories-item_header",tabindex:0,click:function(e){var t,n,a,i,r,s,o;t=(e=e).target.parentNode.querySelector(".esri-header-menus-flyout--categories-details[aria-expanded]"),n=e.target.parentNode.querySelector(".esri-header-menus-flyout--categories-item_header"),a="false"===t.getAttribute("aria-expanded")?"true":"false",e=[].slice.call(e.target.parentNode.querySelectorAll(".esri-header-menus-flyout--categories-details_item")),i=window.getComputedStyle(e[0]),r=parseInt(i.height)*e.length,e=parseInt(i.marginTop)*e.length+parseInt(i.marginTop),i=[].slice.call(document.querySelectorAll(".esri-header-menus-flyout--categories-item_header")),s=[].slice.call(document.querySelectorAll(".esri-header-menus-flyout--categories-item")),o=[].slice.call(document.querySelectorAll(".esri-header-menus-flyout--list-items")),window.innerWidth<1024?([].slice.call(document.querySelectorAll(".esri-header-menus-flyout--categories-details[aria-expanded]")).forEach(function(e){e.setAttribute("aria-expanded","false"),e.style.height="0"}),t.setAttribute("aria-expanded",a),"true"==a?(t.style.height=r+e+"px",i.forEach(function(e){e.setAttribute("aria-current","false")}),n.setAttribute("aria-current","true")):(t.style.height="0",n.setAttribute("aria-current","false"))):s.forEach(function(e,i){e.addEventListener("click",function(e){var e=e.target.parentNode,t=e.getAttribute("data-id"),n=o[i].getAttribute("data-id"),a=o[i].getAttribute("data-coltype");o.forEach(function(e,t){e.setAttribute("aria-current","false"),s[t].setAttribute("aria-current","false")}),t===n&&(D("1"===a?e:"disabled"),e.setAttribute("aria-current","true"),o[i].setAttribute("aria-current","true"),o[i].focus())})})}},t.category)),e.col.forEach(function(e){var t=l(e.href);s.push(le("a",{href:e.href,class:N+"-flyout--categories-details_item","data-heading":e.heading?"true":"false",tabindex:-1,target:t,rel:"_blank"===t?"noopener":null},e.heading&&le("p",{class:N+"-flyout--categories-details_heading"},e.heading),e.label&&le("p",{class:N+"-flyout--categories-details_label"},e.label)))})}),r.push(le(o,le.apply(void 0,["div",{class:N+"-flyout--categories-details","aria-expanded":"false",tabindex:-1}].concat(s))));break;case"label":t.cols&&t.cols.length&&t.cols.forEach(function(e){var n=le("ul",{class:N+"-flyout--list-items_column"});e.col.forEach(function(e){var t=l(e.href);r.push(le(n,le("li",{class:N+"-flyout--list-items_name"},le("a",{href:e.href,class:N+"-flyout--list-items_anchor","data-heading":e.heading?"true":"false",target:t,rel:"_blank"===t?"noopener":null},e.heading&&le("p",{class:N+"-flyout--list-items_heading"},e.heading),e.label&&le("p",{class:N+"-flyout--list-items_label"},e.label)))))})})}return r}function _(e){var n=[];return e.map(function(e){var t;e.heading&&n.push(le("li",{class:N+"-entry--heading"},le("p",{class:N+"-entry--heading-label"},e.heading))),e.href&&e.label&&(t=l(e.href),n.push(le("li",{class:N+"-entry--menus-subitem"},le("a",{href:e.href,class:N+"-entry-sublink",target:t,rel:"_blank"===t?"noopener":null},e.label))))}),n}function l(e){var t,n;if(e)return t=0===e.search(/^\//),e=e.indexOf(window.location.hostname)<0,n="",t||!e?n="_top":(t||e)&&(n="_blank"),n}function M(e){var n=[];return e.forEach(function(e){var t;e.heading&&n.push(le("li",{class:N+"-entry--heading"},le("p",{class:N+"-entry--heading-label"},e.heading))),e.href&&e.label&&(t=l(e.href),n.push(le("li",{class:N+"-entry--menus-subitem"},le("a",{href:e.href,class:N+"-entry-sublink",target:t,rel:"_blank"===t?"noopener":null},le("p",{class:N+"-entry-sublink--title"},e.label),e.description?le("p",{class:N+"-sublink--description"},e.description):null))))}),n}return a.addEventListener("header:update:menuLabel",function(e){e=e.detail;t&&t.setAttribute("aria-label",e||"Menu")}),a.addEventListener("header:update:menus",function(e){e=e.detail;e?(a.classList.remove("hidden"),e.noBrand&&a.classList.add("-no-brand"),de.apply(void 0,[n].concat(ce(e.map(function(e,x){return le("div",{class:N+"-menu"},le.apply(void 0,["ul",{class:N+"-list",aria:{labelledby:"esri-header-brand"}}].concat(ce(e.map(function(e,t){var n,a,i,r,s,o,l,d,c,u,p,h,m,g,f,v=e.icon?he({imgDef:e.icon.path,imgClass:N+"-link-icon",imgWidth:e.icon.width||"16px",imgHeight:e.icon.height||"16px"}):null,b=S({class:"link "+(e.hideLabelInDesktop?"-hide-label":"")+" "+(e.active?"-is-active":""),id:"link-"+k+"-"+x+"-"+t,props:e,icon:v,label:le("span",{class:N+"-link-label"},e.label)}),v=le("li",{class:N+"-item"},b),y=e.menus&&0<e.menus.length,L=e.cols&&e.cols.length,E=e.flyout&&0<e.flyout.length,w=e.tiles&&0<e.tiles.length;return(y||L||w||E)&&(n=le("button",{class:N+"-submenu-toggle"},e.label),u=L&&0<e.cols.filter(function(e){return"structured"===e.type}).length,p=!1,s=0,y&&10<=(c=e.menus.length)&&(p=c%3==0,s=Math.min(Math.ceil(c/9),3)),a=le("div",{class:N+"-submenu",id:N+"-"+k+"-submenu-"+x+"-"+t,"data-has-structured":E?"false":u,"data-has-flyout":E?"true":"false",aria:{hidden:!0,expanded:!1},data:{filled:y&&Math.min(e.menus.length,30)||"",structuredCols:L||"",hasMultiCols:p,columns:s}},n),E?(u=(c={$subcontent:a,item:e,uuid:x,suuid:t}).$subcontent,p=c.item,h=c.uuid,m=c.suuid,g=le("ul",{class:N+"-flyout--categories"}),f=le("div",{class:N+"-flyout--list"}),p.flyout.forEach(function(e,t){le.apply(void 0,[g].concat(ce(T(e,"category",t,h,m)))),le(f,le.apply(void 0,["div",{class:N+"-flyout--list-items","data-id":t,"data-coltype":e.cols.length,"aria-current":0===t?"true":"false",tabindex:0}].concat(ce(T(e,"label",t,h,m)))))}),le(u,le("div",{class:N+"-flyout"},le("div",{class:N+"-flyout--categories-wrapper"},g),f))):L?(p=(s={$subcontent:a,item:e,uuid:x,suuid:t}).$subcontent,u=s.item,o=s.uuid,l=s.suuid,d=le("div",{class:N+"-sublist--col-wrapper"}),u.cols&&(u.cols.forEach(function(e){var t="standard",n=_,a=e.border||"false";"structured"===e.type&&(t="structured",n=M),le(d,le("div",{class:N+"-sublist--col","data-coltype":t,"data-menuborder":a},le.apply(void 0,["ul",{class:N+"-sublist","data-menutype":t,aria:{labelledby:N+"-link-"+k+"-"+o+"-"+l}}].concat(ce(n(e.items))))))}),le(p,le("div",{class:N+"-sublist"},d)))):y&&(s=(L={hasMenuItems:y,$subcontent:a,item:e,uuid:x,suuid:t}).hasMenuItems,u=L.$subcontent,p=L.item,y=L.uuid,L=L.suuid,i="",10<=p.menus.length&&p.menus.length<=18?(r=Math.ceil(p.menus.length/2),i=le("div",{class:N+"-sublist--col-wrapper "+N+"-columns-2"},A(p.menus.slice(0,r)),A(p.menus.slice(r,p.menus.length)))):18<p.menus.length&&p.menus.length<=27?(r=Math.ceil(p.menus.length/3),i=le("div",{class:N+"-sublist--col-wrapper "+N+"-columns-3"},A(p.menus.slice(0,r)),A(p.menus.slice(r,2*r)),A(p.menus.slice(2*r,p.menus.length)))):s&&(i=le("div",{class:N+"-sublist--col-wrapper"},A(p.menus.slice(0,p.menus.length)))),le(u,le("ul",{class:N+"-sublist",aria:{labelledby:N+"-link-"+k+"-"+y+"-"+L}},le(i)))),!E&&w&&le(a,(r=e.tiles,s=x,p=t,r.length?le.apply(void 0,["ul",{class:N+"-sublist--featured",aria:{labelledby:N+"-link-"+k+"-"+s+"-"+p},data:{filled:""+r.slice(0,4).length}}].concat(ce(r.slice(0,4).map(C)))):null)),le(v,a),b.addEventListener("click",function(e){var n,t;ue(b,"header:menu:toggle",{control:b,content:a,submenu:!0,state:"menu",type:"menu-toggle"}),D("init"),n=[].slice.call(document.querySelectorAll(".esri-header-menus-flyout--categories-item")),(t=[].slice.call(document.querySelectorAll(".esri-header-menus-flyout--list-items"))).length&&t.forEach(function(e,t){n[t].setAttribute("aria-current","false"),e.setAttribute("aria-current","false"),e.hasAttribute("data-id")&&"0"===e.getAttribute("data-id")&&n[t].hasAttribute("data-id")&&"0"===n[t].getAttribute("data-id")&&(n[t].setAttribute("aria-current","true"),e.setAttribute("aria-current","true"))})}),n.addEventListener("click",function(){var e,t;ue(n,"header:menu:close",{control:b,submenu:!0,content:a,type:"menu-close"}),e=[].slice.call(document.querySelectorAll(".esri-header-menus-flyout--categories-item_header")),t=[].slice.call(document.querySelectorAll(".esri-header-menus-flyout--categories-details")),e.forEach(function(e){e.setAttribute("aria-current","false")}),t.forEach(function(e){e.setAttribute("aria-expanded","false"),e.style.height="0"})})),v})))))}))))):a.classList.add("hidden")}),a.addEventListener("header:update:collapseMenus",function(e){var t,n,e=e.detail;e&&-1<e.indexOf(!0)&&(t=document.getElementById("esri-header-brand")||document.getElementById("esri-header-inline-title"),document.querySelector(".esri-header-menus-toggle").classList.add("-visible"),t.classList.add("-fit-burger"),document.getElementById("esri-header-menus-mobile").classList.add("-always-hamburger"),n=[].slice.call(a.querySelectorAll(".esri-header-menus-menu")),e.forEach(function(e,t){e&&n[t].classList.add("-collapsed")}))}),a}function ve(){var n=le("button",{class:p+"-control",id:p+"-control",aria:{expanded:!1,controls:p+"-content"}}),a=(n.addEventListener("header:menu:open",function(e){ue(n,"header:inlineSearch:activated",{event:e})}),n.addEventListener("click",function(e){ue(n,"header:click:inlineSearch",{event:e}),ue(n,"header:menu:toggle",{state:"menu",target:d,type:"inlineSearch",control:n,content:s,event:e}),i&&i.focus()}),le("button",{class:p+"-close-button",id:p+"-close-button",aria:{labelledby:p+"-close-button"}},he({imgDef:Le.md,imgClass:p+"-dismiss-icon"})));function t(e){ue(n,"header:inlineSearch:deactivated",{event:e}),setTimeout(function(){e&&n.focus()},0),ue(n,"header:menu:toggle",{state:"menu",target:d,type:"inlineSearch",control:n,content:s,event:e})}function o(t,e){try{return t.replace(new RegExp("(\\b)("+e.join("|").replace(/\+|\*|\(|\)\[/g,"")+")(\\b)","ig"),"$1<strong>$2</strong>$3")}catch(e){return t}}a.addEventListener("click",t);var i=le("input",{class:p+"-input",id:p+"-input"}),l=(i.addEventListener("keyup",function(e){if(h.value=e.target.value,!h.value||" "===h.value)return h.isDisabled=!1,l.innerHTML="";if(13===e.keyCode&&h.value&&!h.isDisabled){if(!h.preventNavigation)return window.location.href=h.action+"?q="+encodeURIComponent(h.value);t(e),d.classList.add("hidden")}ue(n,"header:search:typing",{search:h.value})}),le("div",{class:p+"-suggestions",id:p+"-suggestions",aria:{expanded:!1,labelledby:p+"-suggestions"}})),e=le("div",{class:"esri-header-lineBreak "+p+"-lineBreak"}),r=le("div",{class:"esri-header-lineBreak "+p+"-lineBreak lineBreak-right"}),s=le("div",{class:p+"-content",id:p+"-content",aria:{expanded:!1,labelledby:p+"-control"}},e,i,a,l,r),d=le("div",{class:p,aria:{expanded:!1}},n,s),c=(d.addEventListener("header:inlineSearch:activated",function(e){d.setAttribute("aria-expanded","true")}),window.addEventListener("focusin",function(e){e.target.closest(".esri-header-inlineSearch")||"true"!==d.getAttribute("aria-expanded")||t()}),d.addEventListener("header:inlineSearch:deactivated",function(e){d.setAttribute("aria-expanded","false"),l.innerHTML="",i.value=""}),d.addEventListener("header:search:populateSuggestions",function(e){e=e.detail;l.innerHTML="",h.isDisabled=e.disabled,Array.isArray(e)?c(e,h.value.split(" ")):e.suggestions&&e.suggestions.length&&u(e,h.value.split(" "))}),function(e,a){var i=le("ul",{class:p+"-simple-suggestion-list"});e.forEach(function(e){var t=e.icon?le("img",{src:e.icon,class:p+"-suggestion-icon",alt:""}):"",n=le("span"),e=(n.innerHTML=o(e.text,a),le("li",{class:p+"-suggestion"},e.href?le("a",{href:e.href},t,n):le("span",{class:"inactive"},t,n))),t=(i.appendChild(e),le("div",{class:p+"-simple-suggestion-section"},i));l.appendChild(t)})}),u=function(e,r){var s=(e.minIconWidth||"0")+"px";e.suggestions.forEach(function(e,t){var n=e.header?le("p",{class:p+"-suggestion-header"},e.header):le("p"),t=(e.header||0<t)&&!e.hideHR?le("hr"):le("span"),a=le("ul",{class:p+"-suggestion-list"}),i=e.footer?le("a",{href:e.footer.href,class:p+"-suggestion-footer"},e.footer.text):le("span"),e=(e.links.forEach(function(e){var t=le("span",{class:p+"-suggestion-text"}),n=(t.innerHTML=o(e.text,r),t.appendChild(e.secondary?le("div",{class:p+"-suggestion-secondary-text"},e.secondary):le("span")),e.icon?he({inlineImg:!0,alt:"",imgDef:"searchIcon"===e.icon?Ee.sm:e.icon,imgWidth:e.iconSize||"22",imgHeight:"searchIcon"===e.icon?"15px":e.iconSize,imgClass:p+"-suggestion-icon",wrapperClass:p+"-suggestion-icon-wrapper"}):le("span",{class:p+"-suggestion-icon-wrapper",style:"min-width: "+s+";"})),e=(n.style.minWidth=s,e.htmlIcon&&(n.innerHTML=e.htmlIcon),le("li",{class:p+"-suggestion"},e.href?le("a",{href:e.href},n,t):le("span",{class:"inactive"},n,t)));a.appendChild(e)}),le("div",{class:p+"-suggestion-section"},n,t,a,i));l.appendChild(e)}),l.appendChild(le("div",{class:p+"-suggestions-bottom-padding"}))};return d.addEventListener("header:update:inlineSearch",function(e){var t,e=e.detail;e&&e.inline?(d.classList.remove("hidden"),e.hide?n.setAttribute("tabindex","-1"):(le(n,{aria:{label:e.label}}),he({imgDef:Ee.md,imgClass:p+"-image",id:p+"-image",alt:"",$targetElm:n}),h.image=Ee.md,h.action=e.dialog&&e.dialog.action,h.preventNavigation=e.preventNavigation,t=e.dialog&&e.dialog.queryLabel||"Search",i.setAttribute("placeholder",t),i.setAttribute("aria-label",t),a.setAttribute("aria-label",e.dialog&&e.dialog.cancelLabel||""),e.dialog&&(e.dialog.prefix="esri-header-search-dialog"))):d.classList.add("hidden")}),d}var be="esri-header-account",ye="esri-header-brand",Se={md:["M18 16v-5.087A5.91 5.91 0 0 0 13.59 5.2a2 2 0 1 0-3.18 0A5.91 5.91 0 0 0 6 10.913V16a3 3 0 0 1-3 3v1h18v-1a3 3 0 0 1-3-3zM12 3a1 1 0 1 1-1 1 1.001 1.001 0 0 1 1-1zM5.643 19A3.992 3.992 0 0 0 7 16v-5.087A4.919 4.919 0 0 1 11.913 6h.174A4.919 4.919 0 0 1 17 10.913V16a3.992 3.992 0 0 0 1.357 3zM13 21h1a2 2 0 0 1-4 0h1a1 1 0 0 0 2 0z"]},Le={sm:["M8.718 8l5.303 5.303-.707.707L8.01 8.707 2.707 14.01 2 13.303 7.303 8 2 2.697l.707-.707L8.01 7.293l5.304-5.303.707.707z"],md:["M13.207 12.5l7.778 7.778-.707.707-7.778-7.778-7.778 7.778-.707-.707 7.778-7.778-7.778-7.778.707-.707 7.778 7.778 7.778-7.778.707.707z"],lg:["M16.707 16l10.607 10.606-.708.707L16 16.707 5.394 27.313l-.708-.707L15.293 16 4.686 5.394l.708-.707L16 15.293 26.606 4.687l.708.707z"]},m={sm:["M2 8.689l.637-.636L5.5 10.727l8.022-7.87.637.637L5.5 12z"],md:["M4.581 13.276l.637-.636 3.288 3.098 10.073-9.92.637.637L8.506 17.01z"],lg:["M24 4.685l-16.327 17.315-7.673-9.054.761-.648 6.95 8.203 15.561-16.501.728.685z"]},ee={md:["M11.5 18.05a1.45 1.45 0 1 0 1.45 1.45 1.45 1.45 0 0 0-1.45-1.45zM12 20h-1v-1h1zM3.5 2.05A1.45 1.45 0 1 0 4.95 3.5 1.45 1.45 0 0 0 3.5 2.05zM4 4H3V3h1zm7.5 6.05a1.45 1.45 0 1 0 1.45 1.45 1.45 1.45 0 0 0-1.45-1.45zM12 12h-1v-1h1zm-8.5-1.95a1.45 1.45 0 1 0 1.45 1.45 1.45 1.45 0 0 0-1.45-1.45zM4 12H3v-1h1zm-.5 6.05a1.45 1.45 0 1 0 1.45 1.45 1.45 1.45 0 0 0-1.45-1.45zM4 20H3v-1h1zM19.5 4.95a1.45 1.45 0 1 0-1.45-1.45 1.45 1.45 0 0 0 1.45 1.45zM19 3h1v1h-1zm.5 7.05a1.45 1.45 0 1 0 1.45 1.45 1.45 1.45 0 0 0-1.45-1.45zM20 12h-1v-1h1zm-8.5-9.95a1.45 1.45 0 1 0 1.45 1.45 1.45 1.45 0 0 0-1.45-1.45zM12 4h-1V3h1zm7.5 14.05a1.45 1.45 0 1 0 1.45 1.45 1.45 1.45 0 0 0-1.45-1.45zM20 20h-1v-1h1z"]},s={md:["M21 6H3V5h18zm0 6H3v1h18zm0 7H3v1h18z"]},g={sm:["M15.721 4.007a.965.965 0 0 0-.03-1.385l-1.413-1.414a.965.965 0 0 0-1.385-.03L2.841 11.23l-1.756 4.097a.371.371 0 0 0 .488.487L5.67 14.06l8.607-8.609zM2.624 14.276l.554-1.294.74.74zm2.338-.924L3.55 11.937l8.007-8.008 1.414 1.415zm8.716-8.716l-1.414-1.414 1.09-1.09a.306.306 0 0 1 .433 0l.981.98a.306.306 0 0 1 0 .434z"]},Ee={sm:["M9.85 9.153a5 5 0 1 0-.69.69l4.631 4.631.69-.69zm-1.02-.326A3.973 3.973 0 0 1 6 10a4.002 4.002 0 1 1 2.83-1.172z"],md:["M21.995 21.288l-6.855-6.855a7.517 7.517 0 1 0-.707.707l6.855 6.855zm-17.092-7.19a6.501 6.501 0 1 1 9.6-.45l-.854.855a6.501 6.501 0 0 1-8.746-.405z"]},De={sm:["M5.35 14.5a.85.85 0 1 1-.85-.85.851.851 0 0 1 .85.85zm7.15-.85a.85.85 0 1 0 .85.85.851.851 0 0 0-.85-.85zM15.109 4l-1.19 5.99-9.213 1.024-.727.643a.197.197 0 0 0-.054.217.195.195 0 0 0 .183.126H13v1H4.108a1.196 1.196 0 0 1-.792-2.092l.65-.574-.916-7.126a.249.249 0 0 0-.244-.217L.177 2.966l.046-.898 2.609.02a1.167 1.167 0 0 1 1.1 1L4.065 4zM13.89 5H4.208l.718 4.982 8.155-.905z"],md:["M19.93 19.07A1.497 1.497 0 0 0 18.5 18H6.416a.5.5 0 0 1-.422-.768l.793-1.25 14.11-1.01L23.141 6H5.345L5.06 4.37a1.51 1.51 0 0 0-1.307-1.23L2.543 3H1.24l-.097.847 2.497.286a.502.502 0 0 1 .435.41l1.9 10.853-.826 1.301A1.497 1.497 0 0 0 6 18.94v.153a1.5 1.5 0 1 0 1 0V19h11.5a.497.497 0 0 1 .356.15 1.502 1.502 0 1 0 1.074-.08zM5.52 7h16.34l-1.757 7.027-13.188.942zM7.1 20.2v.6a.3.3 0 0 1-.3.3h-.6a.3.3 0 0 1-.3-.3v-.6a.3.3 0 0 1 .3-.3h.6a.3.3 0 0 1 .3.3zm13 .6a.3.3 0 0 1-.3.3h-.6a.3.3 0 0 1-.3-.3v-.6a.3.3 0 0 1 .3-.3h.6a.3.3 0 0 1 .3.3z"],lg:["M27.964 25.259a1.591 1.591 0 0 0-.428-.794A1.574 1.574 0 0 0 26.415 24H6.54a.625.625 0 0 1-.476-1.032 142.875 142.875 0 0 0 1.692-1.992l19.161-2.017L29.11 8H6.72l-.14-1.375a2.56 2.56 0 0 0-2.186-2.277L4 4.29h-.001L1.979 4H1v1h.904l2.347.338a1.56 1.56 0 0 1 1.333 1.389l1.398 13.62c-.171.205-.598.71-1.677 1.97A1.626 1.626 0 0 0 6.541 25h19.874a.58.58 0 0 1 .198.04 2.015 2.015 0 1 0 1.351.219zM27.89 9l-1.808 9.041-18.136 1.91L6.823 9zm.21 18.3a.8.8 0 0 1-.8.8h-.6a.8.8 0 0 1-.8-.8v-.6a.8.8 0 0 1 .8-.8h.6a.8.8 0 0 1 .8.8zM6 27a2 2 0 1 0 2-2 2.002 2.002 0 0 0-2 2zm.9-.3a.8.8 0 0 1 .8-.8h.6a.8.8 0 0 1 .8.8v.6a.8.8 0 0 1-.8.8h-.6a.8.8 0 0 1-.8-.8z"]},c="esri-header-inline-title",u={},we="esri-header-branding-stripe",N="esri-header-menus",Te=function(n){var a=le("label",{class:n.prefix+"-label",for:n.prefix+"-query-control"},n.queryLabel),i=le("input",{class:n.prefix+"-control",id:n.prefix+"-query-control",type:"search",name:"q",autocapitalize:"off",autocomplete:"off",autocorrect:"off",spellcheck:"false"}),r=document.createTextNode(""),s=le("div",{class:n.prefix+"-measure-text",aria:{hidden:!0}},r),o=le("div",{class:n.prefix+"-measure"},s),l=le("button",{class:n.prefix+"-submit",type:"submit",aria:{label:n.submitLabel}}),d=le("form",{class:n.prefix+"-form",action:n.action,role:"search",aria:{label:n.label}},a,i,o,l),c=(d.addEventListener(n.prefix+":focus",function(){i.focus()}),!1),u="";function e(e){e&&"reset"===e.type&&(i.value="");var t=i.value,e=(t!==u&&(u=t,ue(d,n.prefix+":input",{value:u,event:e})),c&&!t?(c=!1,a.removeAttribute("data-filled"),l.removeAttribute("data-filled")):!c&&t&&(c=!0,le(a,{data:{filled:""}}),le(l,{data:{filled:""}})),r.nodeValue=t,s.scrollWidth+"px");o.style.width=e}function t(e){ue(d,n.prefix+":submit",{value:i.value,event:e})}return me(d,function(){d.parentNode&&ue(d,n.prefix+":update",n)}),d.addEventListener(n.prefix+":update",function(){d.ownerDocument.defaultView.matchMedia(n.matchMedia||"(max-width: 720px)").addListener(e),i.addEventListener("input",e),d.addEventListener("reset",e),d.addEventListener("submit",t),d.addEventListener(n.prefix+":unload",onunload)}),d},xe="esri-header-search",p="esri-header-inlineSearch",h={},Ae="esri-header-shopping-cart";function _e(){function s(){b.showMoreButton&&b.showMoreButton.classList.remove("hide"),f.setAttribute("aria-expanded","false")}function l(e){setTimeout(function(){ue(m,"header:menu:toggle",{state:"menu",target:g,type:"root-toggle",control:m,content:p,event:e})},1)}function o(e,t){var n,a,i,r=["0px","32px","24px","20px","18px","16px","14px","12px","10px","8px"],s=b.browserIsEdge?"user-select-none":"",o=le("li",{alt:"",class:"block link-off-black appLinkContainer grabbable "+(t.canAccess?"with-hover":"no-hover"),mousedown:K?u.bind(null,t):l,keyup:!b.disabled&&K?q.bind(null,t):function(){},keydown:K?T:function(){},role:"menuitem","data-id":t.itemId||t.uid||t.title});t.canAccess?(n=le("a",{href:t.url,target:"_blank",blur:K?D.bind(null,t):function(){},class:"appLink"}),t.image?((a=le("div",{class:"appIconImage "+s})).appendChild(N()),a.appendChild(le("img",{class:"appIconPng",alt:"",src:t.image})),n.appendChild(a)):(i=r[a=Math.ceil(c(t.abbr||"","avenir")/5)],9<a&&(t.abbr=t.abbr.substr(0,4),i=r[a=9]),(r=le("div",{class:"appIconImage"})).appendChild(N()),i="font-size: "+i+";",6<a&&(i+=" font-weight: 500;"),a=le("span",{style:i,class:"avenir appIconSvgText "+s},t.abbr),r.appendChild(a),r.appendChild(le("img",{src:t.placeHolderIcon,alt:"",class:s})),n.appendChild(r)),o.appendChild(n),i=le("p",{style:"margin:0 auto; text-align:center",class:s},t.label),t.isNew&&n.appendChild(le("div",{class:"app-indicator app-indicator-new"})),n.appendChild(i)):d(t,o,s),e.appendChild(o)}function d(e,t,n){var a=le("div",{class:"app-indicator app-indicator-removed",tabindex:0,click:r.bind(null,e.uid,t),keyup:r.bind(null,e.uid,t),keydown:T}),i=(a.innerHTML=W(),le("div",{class:"missing-app-icon appIconImage",tabindex:0,blur:D.bind(null,e),title:b.i18n.removed}));i.appendChild(N()),t.appendChild(a),t.appendChild(i),t.appendChild(le("p",{style:"margin:0 auto; text-align:center",class:n},e.label))}function c(e,t){var n=(c.canvas||(c.canvas=document.createElement("canvas"))).getContext("2d");return n.font=t,n.measureText(e).width}function u(e,t){var n;0===t.button&&(b.startClientX=t.clientX,b.startClientY=t.clientY,b.startApp=e,b.dragEventWasCanceled=!1,b.startElement=t.currentTarget,b.disabled?e.canAccess&&b.dropdownNav.addEventListener("mouseup",R):(setTimeout(function(e){b.startElement.classList.remove("sortable-drag-class")},1),e.isNew&&(n=b.primarySortable.toArray(),b.duplicateValueIndex&&n.splice(b.duplicateValueIndex,1),L(n,b.secondarySortable.toArray(),{targetUid:t.currentTarget.getAttribute("data-id"),isNew:!0,targetValue:null})),t.currentTarget&&t.currentTarget.classList.remove("sortable-drag-class"),b.listenForMouseOverElement=t.currentTarget.parentNode,b.listenForMouseOverElement.addEventListener("mousemove",C),e.canAccess?b.dropdownNav.addEventListener("mouseup",a):(b.dropdownNav.addEventListener("mouseup",V),t.target.classList.className!==(n="app-indicator app-indicator-removed")&&t.target.parentNode.className!==n&&t.target.parentNode.parentNode.className!==n||(b.removeStartApp=!0))))}function t(e,t,n){!b.disabled&&e&&(e.canAccess?(a(),window.open(e.url,"_blank")):(n?(b.removeStartApp=!1,r):B)(e.itemId||e.title,t))}function B(e,t,n){b.dropdownWrapper.classList.remove("dragging"),b.removedAppWithFoucs||n&&!S(n.keyCode)?b.removedAppWithFoucs=null:b.removedAppWithFoucs={uid:e,el:t}}function n(e,t){var n=e.item.children[1]&&"A"===e.item.children[1].nodeName?e.item.children[1]:e.item.children[0];t?(b.recentlyRemovedHref=n.href,n.removeAttribute("href")):setTimeout(function(){n.href=b.recentlyRemovedHref},1)}function O(e){b.dragAndDropIntro.classList.add("hide"),L(b.primarySortable.toArray(),b.secondarySortable.toArray())}function q(e,t){if("app-indicator app-indicator-removed"!==t.target.className&&t.keyCode===y.SPACE){if(b.activeAccessibleListElement)return D(e,t);var n=(e.canAccess?t.target.firstChild:t.target).firstChild,t=t.target.parentNode,a=t.parentNode,i=$(t),r=b.primarySortable.toArray().length,s=(E(),M(i,a,r));b.activeAccessibleListElement=t,b.activeAccessibleListElementEvent=Y.bind(null,e,I(s,a),t,a,i),t.addEventListener("keydown",b.activeAccessibleListElementEvent),j(n,i,a,r)}return!1}var p=le("div",{class:Z+"-content",id:Z+"-content",aria:{expanded:!1,labelledby:Z+"-control"}}),h=le("span"),e=le("button",{class:Z+"-control",id:Z+"-control",style:"display: none;",tabindex:"-1"},h),a=function(e){b&&!b.loading&&(i(),A(),s(),l(e))},m=e,g=(e.addEventListener("click",a),le("div",{class:Z+" a11y-"+Z},m)),f=le("div",{class:Z+" secondary-dropdown-menu",aria:{expanded:!1}},le("hr")),v=le("div",{class:Z+" bottom-container"}),b={maxDragErrorTollerance:1},y={DOWN_ARROW:40,UP_ARROW:38,RIGHT_ARROW:39,LEFT_ARROW:37,SPACE:32},L=function(e,t,n){ue(m,"header:apps:reorder",{icons:{primaryApps:e,secondaryApps:t,revisions:n||{}}})},E=function(){f.setAttribute("aria-expanded","true"),b.showMoreButton.classList.add("hide")},w=function(e){e===b.bottomAppContainer&&1===b.secondarySortable.toArray().length?x(!1):b.secondarySortable.toArray().length||x(!0)},W=function(){return'<svg xmlns="https://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 32 32"  class="default-svg-fill"><path d="M18.404 16l9.9 9.9-2.404 2.404-9.9-9.9-9.9 9.9L3.696 25.9l9.9-9.9-9.9-9.898L6.1 3.698l9.9 9.899 9.9-9.9 2.404 2.406-9.9 9.898z"/></svg>'},R=function e(t){b.dropdownNav.removeEventListener("mouseup",e,!1),k(t.clientX,t.clientY)||a()},r=function(e,t,n){n&&!S(n.keyCode)||((n=t).parentNode&&n.parentNode.removeChild(n),setTimeout(function(){L(b.primarySortable.toArray(),b.secondarySortable.toArray()),w(b.bottomAppContainer)},0))},V=function(e){b.dragEventWasCanceled=!0},x=function(e){b.bottomAppContainer.classList[e?"add":"remove"]("drag-apps-here-box"),b.dragAppsHereText.classList[e?"remove":"add"]("hide")},i=function(){b.dropdownNav&&b.dropdownNav.removeEventListener&&b.dropdownNav.removeEventListener("mouseup",a,!1)},A=function(){b.listenForMouseOverElement&&b.listenForMouseOverElement.removeEventListener("mousemove",C,!1)},C=function(e){k(e.clientX,e.clientY)&&(b.simulatedDragEvent=!0,b.dropdownWrapper.classList.add("dragging"),A())},k=function(e,t){return!b.dragEventWasCanceled&&!b.disabled&&(Math.abs(e-b.startClientX)>b.maxDragErrorTollerance||Math.abs(t-b.startClientY)>b.maxDragErrorTollerance)},S=function(e){return!e||13===e},D=function(e,t){t=t.target||t,e=(e.canAccess?t.firstChild:t).firstChild;e&&(e.classList.remove("arrow-keys-enabled"),e.classList.add("arrow-keys-disabled")),b.activeAccessibleListElement&&(b.activeAccessibleListElement.removeEventListener("keydown",b.activeAccessibleListElementEvent,!1),b.activeAccessibleListElement=null)},P=function(e){return e.keyCode===y.DOWN_ARROW?"bottom":e.keyCode===y.UP_ARROW?"top":e.keyCode===y.RIGHT_ARROW?J?"left":"right":e.keyCode===y.LEFT_ARROW?J?"right":"left":void 0},T=function(e){e.keyCode!==y.SPACE&&e.keyCode!==y.DOWN_ARROW&&e.keyCode!==y.UP_ARROW||e.preventDefault()},Y=function(e,t,n,a,i,r){var s=P(r);"bottom"===s&&-1<t.indexOf("bottom")&&_(n,i,a,3,e,r),"top"===s&&-1<t.indexOf("top")&&_(n,i,a,-3,e,r),"right"===s&&-1<t.indexOf("right")&&_(n,i,a,1,e,r),"left"===s&&-1<t.indexOf("left")&&_(n,i,a,-1,e,r)},_=function(e,t,n,a,i,r){var s=t+a,o=n===b.bottomAppContainer?n.children.length-1:n.children.length,l=n===b.topAppContainer;l&&s<o||!l&&s<=o&&0<s?(o=a<0?n.children[s]:n.children[s].nextSibling,n.insertBefore(e,o)):l?(X(e,t,a),w(b.bottomAppContainer)):(F(e,t,a),w(b.topAppContainer)),D(i,r),(i.canAccess&&!i.isNew?e.children[0]:e.children[1]).focus(),setTimeout(function(){i.isNew?L(b.primarySortable.toArray(),b.secondarySortable.toArray(),{targetUid:i.itemId||i.title,isNew:!0,targetValue:null}):L(b.primarySortable.toArray(),b.secondarySortable.toArray())},0)},F=function(e,t,n){var a=b.topAppContainer;b.topAppContainer.children.length;return Math.abs(n),a.appendChild(e)},X=function(e,t,n){var a=b.bottomAppContainer,i=b.bottomAppContainer.children.length-1,t=(t+1)%3||3;return i?1===Math.abs(n)?a.insertBefore(e,a.children[1]):2===t&&1<i?a.insertBefore(e,a.children[2]):3===t&&2==i?a.insertBefore(e,a.children[3]):void a.insertBefore(e,a.children[1]):a.appendChild(e)},M=function(e,t,n){return e+(t===b.bottomAppContainer?n+1:1)},$=function(e){var t=e.parentNode;return Array.prototype.indexOf.call(t.children,e)},N=function(){return le("span",{class:"arrow-keys-disabled"})},j=function(e,t,n,a){e&&(e.classList.add("arrow-keys-enabled"),e.classList.remove("arrow-keys-disabled"));t=M(t,n,a);e.innerHTML=U(I(t,n),n)},U=function(e){return e.reduce(function(e,t){return e+G(t)},"")},G=function(e){return'<div class="app-arrow app-arrow-'+e+'"></div>'},I=function(e,t){var n=[],a=b.topAppContainer.children.length,i=b.bottomAppContainer.children.length,r=a+i;return 0<e-1&&n.push("left"),(e+1<=r||!i)&&e!==a&&n.push("right"),0<e-3&&n.push("top"),(e-a+2<i||t===b.topAppContainer)&&n.push("bottom"),n},H={group:"Apps",sort:!0,disabled:!K,animation:150,forceFallback:!0,delay:0,fallbackTolerance:0,ghostClass:"sortable-ghost-class",dragClass:"sortable-drag-class",onStart:function(e){b.dragAppsHereText.classList.add("hide"),i(),n(e,!0)},onEnd:function(e){return e.preventDefault(),A(),n(e,!1),b.dropdownWrapper.classList.remove("dragging"),b.bottomAppContainer.classList.remove("on-drag-over"),b.secondarySortable.toArray().length&&x(!1),!1},onMove:function(e,t){e.to===b.bottomAppContainer?b.bottomAppContainer.classList.add("on-drag-over"):b.bottomAppContainer.classList.remove("on-drag-over")},store:{get:function(e){return e.options.group.name&&e.options.group.name.split("!")||[]},set:function(e){b.simulatedDragEvent?L(e.toArray(),b.secondarySortable.toArray()):t(b.startApp,b.startElement,b.removeStartApp),b.startElement&&b.startElement.classList.remove("sortable-drag-class"),b.simulatedDragEvent=!1}}},z={group:"Apps",sort:!0,disabled:!K,animation:150,forceFallback:!0,delay:0,fallbackTolerance:0,ghostClass:"sortable-ghost-class",dragClass:"sortable-drag-class",onStart:function(e){i(),n(e,!0)},onEnd:function(e){e.preventDefault(),A(),n(e,!1),b.dropdownWrapper.classList.remove("dragging"),b.secondarySortable.toArray().length||x(!0)},store:{get:function(e){return e.options.group.name&&e.options.group.name.split("!")||[]},set:function(e){b.simulatedDragEvent?L(b.primarySortable.toArray(),e.toArray()):t(b.startApp,b.startElement,b.removeStartApp),b.startElement&&b.startElement.classList.remove("sortable-drag-class"),b.simulatedDragEvent=!1}}};return g.addEventListener("header:update:apps",function(e){var t,n,a,i,r,e=e.detail;e?(g.classList.remove("hidden"),he({imgDef:ee.md,imgClass:Z+"-image",$targetElm:h}),m.removeAttribute("style"),e.primary&&(e.ieVersion&&("edge"===(t=e.ieVersion)?b.browserIsEdge=!0:"ie11"===t&&(z.ghostClass=H.ghostClass="sortable-ghost-class-with-pointer-events")),!e.disableDragAndDrop&&K||(b.disabled=!0),e.text&&(b.i18n=e.text||{}),e.isLoading?(b.loading=!0,m.className=Z+"-control disabled-grid-icon",m.setAttribute("tabindex","-1"),de(g,m)):(g.appendChild(p),m.className=Z+"-control",m.setAttribute("tabindex","0"),le(m,{aria:{label:e.label}}),n=" dropdown-width-"+((t=e.primary.length)<3?t:3),b.topAppContainer=le("ul",{class:Z+" appContainer primary",role:"menu"}),b.bottomAppContainer=le("ul",{class:Z+" appContainer secondary",role:"menu"}),b.dropdownWrapper&&(p.innerHTML="",v.lastChild)&&v.removeChild(v.lastChild),b.dragAppsHereText=le("p",{class:"hide"},b.i18n.dragAppsHere),b.bottomAppContainer.appendChild(b.dragAppsHereText),e.secondary.length||x(!0),b.primarySortable=Q.create(b.topAppContainer,H),b.secondarySortable=Q.create(b.bottomAppContainer,z),e.primary.forEach(function(e,t){o(b.topAppContainer,e)}),e.secondary.forEach(function(e,t){o(b.bottomAppContainer,e)}),v.appendChild(b.bottomAppContainer),f.appendChild(v),a=le("div",{class:""}),i=le("p",{class:Z+" drag-and-drop-intro"},b.i18n.intro),r=le("button",{class:Z+" dismiss-intro-button",click:O},b.i18n.confirm),b.dragAndDropIntro=e.displayIntro&&!b.disabled?le("div",{class:Z+" intro-container"},i,r):"",(e=le("span")).innerHTML=' <svg xmlns="https://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 32 32" class="down-carrot-svg default-svg-fill"><path d="M28 9v5L16 26 4 14V9l12 12L28 9z"></path></svg>',b.showMoreButton=le("button",{class:Z+" show-more-button",click:E},b.i18n.showMore,e),b.dropdownWrapper=le("div",{},b.dragAndDropIntro,b.topAppContainer,b.showMoreButton,f),b.dropdownNav=le("nav",{class:Z+" dropdown-menu dropdown-right app-switcher-dropdown-menu "+n,role:"menu"},b.dropdownWrapper),a.appendChild(b.dropdownNav),p.appendChild(a),de(g,m,p),b.loading=!1,s()))):g.classList.add("hidden")}),g}(function(e){var t;t=function(){if("undefined"==typeof window||!window.document)return function(){throw new Error("Sortable.js requires a window with a document")};function h(e){function t(n,a){return"function"==typeof(n=void 0!==n&&!0!==n?n:i.name)?n:function(e,t){t=t.options.group.name;return a?n:n&&(n.join?-1<n.indexOf(t):t==n)}}var i={},n=e.group;n&&"object"==(void 0===n?"undefined":se(n))||(n={name:n}),i.name=n.name,i.checkPull=t(n.pull,!0),i.checkPut=t(n.put),i.revertClone=n.revertClone,e.group=i}var f,v,b,y,L,E,m,g,w,x,A,C,k,l,a,S,D,d,r,T,e,_={},R=/\s+/g,V=/left|right|inline/,M="Sortable"+(new Date).getTime(),N=window,p=N.document,P=N.parseInt,I=N.setTimeout,t=N.jQuery||N.Zepto,n=N.Polymer,Y=!1,F="draggable"in p.createElement("div"),X=!navigator.userAgent.match(/(?:Trident.*rv[ :]?11\.|msie)/i)&&((e=p.createElement("x")).style.cssText="pointer-events:auto","auto"===e.style.pointerEvents),$=!1,H=Math.abs,j=Math.min,U=[],s=[],G=ne(function(e,t,n){if(n&&t.scroll){var a,i,r,s,o,l=n[M],d=t.scrollSensitivity,c=t.scrollSpeed,u=e.clientX,p=e.clientY,h=window.innerWidth,m=window.innerHeight;if(w!==n&&(g=t.scroll,w=n,x=t.scrollFn,!0===g)){g=n;do{if(g.offsetWidth<g.scrollWidth||g.offsetHeight<g.scrollHeight)break}while(g=g.parentNode)}g&&(t=(a=g).getBoundingClientRect(),i=(H(t.right-u)<=d)-(H(t.left-u)<=d),r=(H(t.bottom-p)<=d)-(H(t.top-p)<=d)),!i&&!r&&(r=(m-p<=d)-(p<=d),(i=(h-u<=d)-(u<=d))||r)&&(a=N),_.vx===i&&_.vy===r&&_.el===a||(_.el=a,_.vx=i,_.vy=r,clearInterval(_.pid),a&&(_.pid=setInterval(function(){if(o=r?r*c:0,s=i?i*c:0,"function"==typeof x)return x.call(l,s,o,e);a===N?N.scrollTo(N.pageXOffset+s,N.pageYOffset+o):(a.scrollTop+=o,a.scrollLeft+=s)},24)))}},30);try{window.addEventListener("test",null,Object.defineProperty({},"passive",{get:function(){Y={capture:!1,passive:!1}}}))}catch(e){}function z(e,t){if(!e||!e.nodeType||1!==e.nodeType)throw"Sortable: `el` must be HTMLElement, and not "+{}.toString.call(e);this.el=e,this.options=t=ae({},t),e[M]=this;var n,a,i={group:Math.random(),sort:!0,disabled:!1,store:null,handle:null,scroll:!0,scrollSensitivity:30,scrollSpeed:10,draggable:/[uo]l/i.test(e.nodeName)?"li":">*",ghostClass:"sortable-ghost",chosenClass:"sortable-chosen",dragClass:"sortable-drag",ignore:"a, img",filter:null,preventOnFilter:!0,animation:0,setData:function(e,t){e.setData("Text",t.textContent)},dropBubble:!1,dragoverBubble:!1,dataIdAttr:"data-id",delay:0,forceFallback:!1,fallbackClass:"sortable-fallback",fallbackOnBody:!1,fallbackTolerance:0,fallbackOffset:{x:0,y:0},supportPointer:!1!==z.supportPointer};for(n in i)n in t||(t[n]=i[n]);for(a in h(t),this)"_"===a.charAt(0)&&"function"==typeof this[a]&&(this[a]=this[a].bind(this));this.nativeDraggable=!t.forceFallback&&F,c(e,"mousedown",this._onTapStart),c(e,"touchstart",this._onTapStart),t.supportPointer&&c(e,"pointerdown",this._onTapStart),this.nativeDraggable&&(c(e,"dragover",this),c(e,"dragenter",this)),s.push(this._onDragOver),t.store&&this.sort(t.store.get(this))}function Q(e,t){"clone"!==e.lastPullMode&&(t=!0),y&&y.state!==t&&(O(y,"display",t?"none":""),t||y.state&&(e.options.group.revertClone?(L.insertBefore(y,E),e._animate(f,y)):L.insertBefore(y,f)),y.state=t)}function B(e,t,n){if(e){n=n||p;do{if(">*"===t&&e.parentNode===n||te(e,t))return e}while(i=void 0,e=(i=(a=e).host)&&i.nodeType?i:a.parentNode)}var a,i;return null}function c(e,t,n){e.addEventListener(t,n,Y)}function i(e,t,n){e.removeEventListener(t,n,Y)}function u(e,t,n){var a;e&&(e.classList?e.classList[n?"add":"remove"](t):(a=(" "+e.className+" ").replace(R," ").replace(" "+t+" "," "),e.className=(a+(n?" "+t:"")).replace(R," ")))}function O(e,t,n){var a=e&&e.style;if(a){if(void 0===n)return p.defaultView&&p.defaultView.getComputedStyle?n=p.defaultView.getComputedStyle(e,""):e.currentStyle&&(n=e.currentStyle),void 0===t?n:n[t];a[t=t in a?t:"-webkit-"+t]=n+("string"==typeof n?"":"px")}}function Z(e,t,n){if(e){var a=e.getElementsByTagName(t),i=0,r=a.length;if(n)for(;i<r;i++)n(a[i],i);return a}return[]}function q(e,t,n,a,i,r,s,o){e=e||t[M];var l=p.createEvent("Event"),d=e.options,c="on"+n.charAt(0).toUpperCase()+n.substr(1);l.initEvent(n,!0,!0),l.to=i||t,l.from=r||t,l.item=a||t,l.clone=y,l.oldIndex=s,l.newIndex=o,t.dispatchEvent(l),d[c]&&d[c].call(e,l)}function J(e,t,n,a,i,r,s,o){var l,d=e[M],c=d.options.onMove,u=p.createEvent("Event");return u.initEvent("move",!0,!0),u.to=t,u.from=e,u.dragged=n,u.draggedRect=a,u.related=i||t,u.relatedRect=r||t.getBoundingClientRect(),u.willInsertAfter=o,e.dispatchEvent(u),l=c?c.call(d,u,s):l}function K(e){e.draggable=!1}function ee(){$=!1}function W(e,t){var n=0;if(!e||!e.parentNode)return-1;for(;e=e&&e.previousElementSibling;)"TEMPLATE"===e.nodeName.toUpperCase()||">*"!==t&&!te(e,t)||n++;return n}function te(e,t){var n,a;if(e)return n=(t=t.split(".")).shift().toUpperCase(),a=new RegExp("\\s("+t.join("|")+")(?=\\s)","g"),!(""!==n&&e.nodeName.toUpperCase()!=n||t.length&&((" "+e.className+" ").match(a)||[]).length!=t.length)}function ne(e,t){var n,a;return function(){void 0===n&&(n=arguments,a=this,I(function(){1===n.length?e.call(a,n[0]):e.apply(a,n),n=void 0},t))}}function ae(e,t){if(e&&t)for(var n in t)t.hasOwnProperty(n)&&(e[n]=t[n]);return e}function ie(e){return n&&n.dom?n.dom(e).cloneNode(!0):t?t(e).clone(!0)[0]:e.cloneNode(!0)}function o(e){return I(e,0)}function re(e){return clearTimeout(e)}return z.prototype={constructor:z,_onTapStart:function(e){for(var t,n=this,a=this.el,i=this.options,r=i.preventOnFilter,s=e.type,o=e.touches&&e.touches[0],l=(o||e).target,d=e.target.shadowRoot&&e.path&&e.path[0]||l,c=i.filter,u=a.getElementsByTagName("input"),p=u.length;p--;){var h=u[p];h.checked&&U.push(h)}if(!f&&!(/mousedown|pointerdown/.test(s)&&0!==e.button||i.disabled)&&!d.isContentEditable&&(l=B(l,i.draggable,a))&&m!==l){if(t=W(l,i.draggable),"function"==typeof c){if(c.call(this,e,l,this))return q(n,d,"filter",l,a,a,t),void(r&&e.preventDefault())}else if(c=c&&c.split(",").some(function(e){if(e=B(d,e.trim(),a))return q(n,e,"filter",l,a,a,t),!0}))return void(r&&e.preventDefault());i.handle&&!B(d,i.handle,a)||this._prepareDragStart(e,o,l,t)}},_prepareDragStart:function(e,t,n,a){var i=this,r=i.el,s=i.options,o=r.ownerDocument;n&&!f&&n.parentNode===r&&(d=e,L=r,v=(f=n).parentNode,E=f.nextSibling,m=n,S=s.group,l=a,this._lastX=(t||e).clientX,this._lastY=(t||e).clientY,f.style["will-change"]="all",r=function(){i._disableDelayedDrag(),f.draggable=i.nativeDraggable,u(f,s.chosenClass,!0),i._triggerDragStart(e,t),q(i,L,"choose",f,L,L,l)},s.ignore.split(",").forEach(function(e){Z(f,e.trim(),K)}),c(o,"mouseup",i._onDrop),c(o,"touchend",i._onDrop),c(o,"touchcancel",i._onDrop),c(o,"selectstart",i),s.supportPointer&&c(o,"pointercancel",i._onDrop),s.delay?(c(o,"mouseup",i._disableDelayedDrag),c(o,"touchend",i._disableDelayedDrag),c(o,"touchcancel",i._disableDelayedDrag),c(o,"mousemove",i._disableDelayedDrag),c(o,"touchmove",i._disableDelayedDrag),s.supportPointer&&c(o,"pointermove",i._disableDelayedDrag),i._dragStartTimer=I(r,s.delay)):r())},_disableDelayedDrag:function(){var e=this.el.ownerDocument;clearTimeout(this._dragStartTimer),i(e,"mouseup",this._disableDelayedDrag),i(e,"touchend",this._disableDelayedDrag),i(e,"touchcancel",this._disableDelayedDrag),i(e,"mousemove",this._disableDelayedDrag),i(e,"touchmove",this._disableDelayedDrag),i(e,"pointermove",this._disableDelayedDrag)},_triggerDragStart:function(e,t){(t=t||("touch"==e.pointerType?e:null))?(d={target:f,clientX:t.clientX,clientY:t.clientY},this._onDragStart(d,"touch")):this.nativeDraggable?(c(f,"dragend",this),c(L,"dragstart",this._onDragStart)):this._onDragStart(d,!0);try{p.selection?o(function(){p.selection.empty()}):window.getSelection().removeAllRanges()}catch(e){}},_dragStarted:function(){var e;L&&f?(e=this.options,u(f,e.ghostClass,!0),u(f,e.dragClass,!1),q(z.active=this,L,"start",f,L,L,l)):this._nulling()},_emulateDragOver:function(){if(r&&(this._lastX!==r.clientX||this._lastY!==r.clientY)){this._lastX=r.clientX,this._lastY=r.clientY,X||O(b,"display","none");var e=p.elementFromPoint(r.clientX,r.clientY),t=e,n=s.length;if(t=e&&e.shadowRoot?e=e.shadowRoot.elementFromPoint(r.clientX,r.clientY):t)do{if(t[M]){for(;n--;)s[n]({clientX:r.clientX,clientY:r.clientY,target:e,rootEl:t});break}}while(t=(e=t).parentNode);X||O(b,"display","")}},_onTouchMove:function(e){if(d){var t=this.options,n=t.fallbackTolerance,t=t.fallbackOffset,a=e.touches?e.touches[0]:e,i=a.clientX-d.clientX+t.x,t=a.clientY-d.clientY+t.y,i=e.touches?"translate3d("+i+"px,"+t+"px,0)":"translate("+i+"px,"+t+"px)";if(!z.active){if(n&&j(H(a.clientX-this._lastX),H(a.clientY-this._lastY))<n)return;this._dragStarted()}this._appendGhost(),T=!0,r=a,O(b,"webkitTransform",i),O(b,"mozTransform",i),O(b,"msTransform",i),O(b,"transform",i),e.preventDefault()}},_appendGhost:function(){var e,t,n;b||(e=f.getBoundingClientRect(),n=O(f),t=this.options,u(b=f.cloneNode(!0),t.ghostClass,!1),u(b,t.fallbackClass,!0),u(b,t.dragClass,!0),O(b,"top",e.top-P(n.marginTop,10)),O(b,"left",e.left-P(n.marginLeft,10)),O(b,"width",e.width),O(b,"height",e.height),O(b,"opacity","0.8"),O(b,"position","fixed"),O(b,"zIndex","100000"),O(b,"pointerEvents","none"),t.fallbackOnBody&&p.body.appendChild(b)||L.appendChild(b),n=b.getBoundingClientRect(),O(b,"width",2*e.width-n.width),O(b,"height",2*e.height-n.height))},_onDragStart:function(e,t){var n=this,a=e.dataTransfer,i=n.options;n._offUpEvents(),S.checkPull(n,n,f,e)&&((y=ie(f)).draggable=!1,y.style["will-change"]="",O(y,"display","none"),u(y,n.options.chosenClass,!1),n._cloneId=o(function(){L.insertBefore(y,f),q(n,L,"clone",f)})),u(f,i.dragClass,!0),t?("touch"===t?(c(p,"touchmove",n._onTouchMove),c(p,"touchend",n._onDrop),c(p,"touchcancel",n._onDrop),i.supportPointer&&(c(p,"pointermove",n._onTouchMove),c(p,"pointerup",n._onDrop))):(c(p,"mousemove",n._onTouchMove),c(p,"mouseup",n._onDrop)),n._loopId=setInterval(n._emulateDragOver,50)):(a&&(a.effectAllowed="move",i.setData)&&i.setData.call(n,a,f),c(p,"drop",n),n._dragStartId=o(n._dragStarted))},_onDragOver:function(e){var t,n,a,i,r,s,o,l,d=this.el,c=this.options,u=c.group,p=z.active,h=S===u,m=!1,g=c.sort;if(void 0!==e.preventDefault&&(e.preventDefault(),c.dragoverBubble||e.stopPropagation()),!f.animated&&(T=!0,p)&&!c.disabled&&(h?g||(a=!L.contains(f)):D===this||(p.lastPullMode=S.checkPull(this,p,f,e))&&u.checkPut(this,p,f,e))&&(void 0===e.rootEl||e.rootEl===this.el)&&(G(e,c,this.el),!$))if(u=B(e.target,c.draggable,d),c=f.getBoundingClientRect(),D!==this&&(D=this,m=!0),a)Q(p,!0),v=L,y||E?L.insertBefore(f,y||E):g||L.appendChild(f);else if(0===d.children.length||d.children[0]===b||d===e.target&&((e,t)=>(e=e.lastElementChild.getBoundingClientRect(),5<t.clientY-(e.top+e.height)||5<t.clientX-(e.left+e.width)))(d,e)){if(u=0!==d.children.length&&d.children[0]!==b&&d===e.target?d.lastElementChild:u){if(u.animated)return;t=u.getBoundingClientRect()}Q(p,h),!1!==J(L,d,f,c,u,t,e)&&(f.contains(d)||(d.appendChild(f),v=d),this._animate(c,f),u)&&this._animate(t,u)}else u&&!u.animated&&u!==f&&void 0!==u.parentNode[M]&&(A!==u&&(C=O(A=u),k=O(u.parentNode)),a=(t=u.getBoundingClientRect()).right-t.left,g=t.bottom-t.top,r=V.test(C.cssFloat+C.display)||"flex"==k.display&&0===k["flex-direction"].indexOf("row"),l=u.offsetWidth>f.offsetWidth,n=u.offsetHeight>f.offsetHeight,a=.5<(r?(e.clientX-t.left)/a:(e.clientY-t.top)/g),i=u.nextElementSibling,o=!1,r?o=(r=f.offsetTop)===(s=u.offsetTop)?u.previousElementSibling===f&&!l||a&&l:u.previousElementSibling===f||f.previousElementSibling===u?.5<(e.clientY-t.top)/g:r<s:m||(o=i!==f&&!n||a&&n),!1!==(l=J(L,d,f,c,u,t,e,o)))&&(1!==l&&-1!==l||(o=1===l),$=!0,I(ee,30),Q(p,h),f.contains(d)||(o&&!i?d.appendChild(f):u.parentNode.insertBefore(f,o?i:u)),v=f.parentNode,this._animate(c,f),this._animate(t,u))},_animate:function(e,t){var n,a=this.options.animation;a&&(n=t.getBoundingClientRect(),1===e.nodeType&&(e=e.getBoundingClientRect()),O(t,"transition","none"),O(t,"transform","translate3d("+(e.left-n.left)+"px,"+(e.top-n.top)+"px,0)"),t.offsetWidth,O(t,"transition","all "+a+"ms"),O(t,"transform","translate3d(0,0,0)"),clearTimeout(t.animated),t.animated=I(function(){O(t,"transition",""),O(t,"transform",""),t.animated=!1},a))},_offUpEvents:function(){var e=this.el.ownerDocument;i(p,"touchmove",this._onTouchMove),i(p,"pointermove",this._onTouchMove),i(e,"mouseup",this._onDrop),i(e,"touchend",this._onDrop),i(e,"pointerup",this._onDrop),i(e,"touchcancel",this._onDrop),i(e,"pointercancel",this._onDrop),i(e,"selectstart",this)},_onDrop:function(e){var t=this.el,n=this.options;clearInterval(this._loopId),clearInterval(_.pid),clearTimeout(this._dragStartTimer),re(this._cloneId),re(this._dragStartId),i(p,"mouseover",this),i(p,"mousemove",this._onTouchMove),this.nativeDraggable&&(i(p,"drop",this),i(t,"dragstart",this._onDragStart)),this._offUpEvents(),e&&(T&&(e.preventDefault(),n.dropBubble||e.stopPropagation()),b&&b.parentNode&&b.parentNode.removeChild(b),L!==v&&"clone"===z.active.lastPullMode||y&&y.parentNode&&y.parentNode.removeChild(y),f)&&(this.nativeDraggable&&i(f,"dragend",this),K(f),f.style["will-change"]="",u(f,this.options.ghostClass,!1),u(f,this.options.chosenClass,!1),q(this,L,"unchoose",f,v,L,l),L!==v?0<=(a=W(f,n.draggable))&&(q(null,v,"add",f,v,L,l,a),q(this,L,"remove",f,v,L,l,a),q(null,v,"sort",f,v,L,l,a),q(this,L,"sort",f,v,L,l,a)):f.nextSibling!==E&&0<=(a=W(f,n.draggable))&&(q(this,L,"update",f,v,L,l,a),q(this,L,"sort",f,v,L,l,a)),z.active)&&(q(this,L,"end",f,v,L,l,a=null!=a&&-1!==a?a:l),this.save()),this._nulling()},_nulling:function(){L=f=v=b=E=y=m=g=w=d=r=T=a=A=C=D=S=z.active=null,U.forEach(function(e){e.checked=!0}),U.length=0},handleEvent:function(e){switch(e.type){case"drop":case"dragend":this._onDrop(e);break;case"dragover":case"dragenter":var t;f&&(this._onDragOver(e),(t=e).dataTransfer&&(t.dataTransfer.dropEffect="move"),t.preventDefault());break;case"mouseover":this._onDrop(e);break;case"selectstart":e.preventDefault()}},toArray:function(){for(var e,t=[],n=this.el.children,a=0,i=n.length,r=this.options;a<i;a++)B(e=n[a],r.draggable,this.el)&&t.push(e.getAttribute(r.dataIdAttr)||(e=>{for(var t=e.tagName+e.className+e.src+e.href+e.textContent,n=t.length,a=0;n--;)a+=t.charCodeAt(n);return a.toString(36)})(e));return t},sort:function(e){var n={},a=this.el;this.toArray().forEach(function(e,t){t=a.children[t];B(t,this.options.draggable,a)&&(n[e]=t)},this),e.forEach(function(e){n[e]&&(a.removeChild(n[e]),a.appendChild(n[e]))})},save:function(){var e=this.options.store;e&&e.set(this)},closest:function(e,t){return B(e,t||this.options.draggable,this.el)},option:function(e,t){var n=this.options;if(void 0===t)return n[e];n[e]=t,"group"===e&&h(n)},destroy:function(){var e=this.el;e[M]=null,i(e,"mousedown",this._onTapStart),i(e,"touchstart",this._onTapStart),i(e,"pointerdown",this._onTapStart),this.nativeDraggable&&(i(e,"dragover",this),i(e,"dragenter",this)),Array.prototype.forEach.call(e.querySelectorAll("[draggable]"),function(e){e.removeAttribute("draggable")}),s.splice(s.indexOf(this._onDragOver),1),this._onDrop(),this.el=e=null}},c(p,"touchmove",function(e){z.active&&e.preventDefault()}),z.utils={on:c,off:i,css:O,find:Z,is:function(e,t){return!!B(e,t,e)},extend:ae,throttle:ne,closest:B,toggleClass:u,clone:ie,index:W,nextTick:o,cancelNextTick:re},z.create=function(e,t){return new z(e,t)},z.version="1.7.0",z},e.exports=t()})(t={exports:{}});var t,Q=t.exports,Z="esri-header-apps",J="rtl"===document.dir,K=!/iPhone|iPad|iPod|Android/i.test(window.navigator.userAgent);function Me(){var i="esri-header-app-switcher",r=le("div",{class:i});return r.addEventListener("header:update:appSwitcher",function(e){var t,n,a,e=e.detail;e&&(r.innerHTML="",t=le("arcgis-app-switcher"),n=t,a=e,["api","portal","user","showInAppLauncher","newMapViewerEnabled","notebookServerEnabled","trackViewerEnabled"].forEach(function(e){a.hasOwnProperty(e)&&(n[e]=a[e])}),r.appendChild(t),t.addEventListener("arcgisAppSwitcherToggle",function(e){e=e.detail;t.shouldExpand=e,ue(r,"header:menu:"+(e?"open":"close"),{state:"menu",target:r,type:"root-toggle",control:i+"-button",content:i+"-content"})}),r.addEventListener("header:appSwitcher:close",function(){t.shouldExpand=!1}))}),r}function n(B){var t,i,n,O,q,W,R,V,e,a,P,Y,F,X,$,j,U,G,Q,Z,r,s,o,l,d,c,J,u,p,h,m,K,ee,g,f=void 0,v=void 0,b=le("div",{class:"esri-header-canvas",tabindex:"-1",data:{open:!1}}),te=(b.addEventListener("click",function(){ue(b,"header:menu:close")}),(t=le("div",{class:we,id:we})).addEventListener("header:update:brand",function(e){e=e.detail;e?(t.classList.remove("hidden"),t.style.backgroundColor=e.topStripe,t.classList.add("-visible")):t.classList.add("hidden")}),t),ne=((i=le("div",{class:ye})).addEventListener("click",function(e){ue(i,"header:click:brand",{event:e})}),i.addEventListener("header:update:brand",function(e){var t,n,a,e=e.detail;!e||e.editTitle?i.classList.add("hidden"):(i.classList.remove("hidden"),t=le("span",{class:ye,id:ye}),e.href&&(t=le("a",{class:ye+"-link",id:ye,href:e.href})),le(i,t),e.distributorImage&&(n=le("span",{class:"distributor-image"}),he({imgDef:e.distributorImage,imgClass:ye+"-image",alt:"",imgWidth:e.distributorImageWidth,imgHeight:e.distributorImageHeight,$targetElm:n}),le(t,n,le("span",{class:"distributor-image-border"}))),e.image&&(n=le("span",{class:"brand-image"}),le(t,{aria:{label:e.label}}),he({imgDef:e.image,imgClass:ye+"-image",alt:"",imgWidth:e.width,imgHeight:e.height,$targetElm:n}),le(t,n)),e.brandText&&(n=e.image?ye+"-text -has-image":ye+"-text",a=e.brandTextLink?ye+"-text -has-textLink":ye+"-text",a=e.brandTextLink?le("a",{href:e.brandTextLink,class:a},e.brandText):le("span",{class:n},e.brandText),le(t,a)))}),i),ae=ge(),y=(n=le("div",{class:be+" a11y-"+be}),O=document.createTextNode(""),(q=le("button",{class:be+"-control "+be+"-control--signin"},O)).addEventListener("click",function(e){ue(q,"header:click:signin",{event:e})}),W=le("span"),R=document.createTextNode(""),k=le("span",{class:be+"-name"},R),V=document.createTextNode(""),e=le("span",{class:be+"-id"},V),(a=le("button",{class:be+"-control "+be+"-control--signedin",id:be+"-control",aria:{controls:be+"-menu",expanded:!1,haspopup:!0}},W,k,e)).addEventListener("click",function(e){ue(a,"header:click:account",{event:e}),ue(a,"header:menu:toggle",{account:!0,control:a,content:s,state:"menu",target:n,type:"account-toggle"})}),P=document.createTextNode(""),(Y=le("button",{class:be+"-content-toggle"},P)).addEventListener("click",function(){ue(Y,"header:menu:close",{control:a,content:s,type:"account-close"})}),F=le("span"),X=document.createTextNode(""),$=document.createTextNode(""),j=document.createTextNode(""),k=le("div",{class:be+"-content-info"},F,le("span",{class:be+"-content-name"},X),le("span",{class:be+"-content-id"},$),le("span",{class:be+"-content-group"},j)),U=le("ul",{class:be+"-content-menu",aria:{labelledby:be+"-control"}}),G=document.createTextNode(""),(Q=le("button",{class:be+"-signin-control -switch"},G)).addEventListener("click",function(e){ue(Q,"header:click:switch",{event:e})}),Z=document.createTextNode(""),(r=le("button",{class:be+"-signin-control -logout"},Z)).addEventListener("click",function(e){ue(r,"header:click:signout",{event:e})}),r.addEventListener("keydown",function(e){"Tab"===e.key&&a.focus()}),e=le("ul",{class:be+"-signin-menu"},le("li",{class:be+"-signin-item"},Q),le("li",{class:be+"-signin-item"},r)),s=le("div",{class:be+"-menu",id:be+"-menu",role:"group",aria:{expanded:!1,hidden:!0}},Y,k,U,e),n.addEventListener("header:update:account",function(e){e=e.detail;e?(n.classList.remove("hidden"),le(a,{aria:{label:e.label}}),P.nodeValue=e.label,O.nodeValue=e.controls.signin,G.nodeValue=e.controls.switch,Z.nodeValue=e.controls.signout,e.user?(R.nodeValue=X.nodeValue=e.user.name,V.nodeValue=$.nodeValue=e.user.id,j.nodeValue=e.user.group,he({imgDef:e.user.image,alt:"",imgClass:be+"-image",$targetElm:W}),he({imgDef:e.user.image,alt:"",imgClass:be+"-content-image",$targetElm:F}),de.apply(void 0,[U].concat(ce(e.menus.map(function(e){return le("li",{class:be+"-content-item"},e.newContext?le("a",{class:be+"-content-link",href:e.href,target:"_blank",rel:"noopener"},e.label):le("a",{class:be+"-content-link",href:e.href},e.label))})))),de(n,a,s)):de(n,q)):n.classList.add("hidden")}),n),L=fe({variant:"mobile"}),E=fe({variant:"desktop"}),ie=((o=le("button",{class:xe+"-control",id:xe+"-control",aria:{expanded:!1,controls:xe+"-content"}})).addEventListener("click",function(e){ue(o,"header:click:search",{event:e}),ue(o,"header:menu:toggle",{control:o,content:l,state:"search",target:d,type:"search-toggle",event:e})}),l=le("div",{class:xe+"-content",id:xe+"-content",aria:{expanded:!1,labelledby:xe+"-control"}}),(d=le("div",{class:xe})).addEventListener("header:update:search",function(e){var t,n=e.detail;if(!n||n.inline)return d.innerHTML="",d.classList.add("hidden");le(d,o,l),d.classList.remove("hidden"),n.hide?o.setAttribute("tabindex","-1"):(le(o,{aria:{label:n.label}}),he({imgDef:Ee.md,imgClass:xe+"-image",id:xe+"-image",$targetElm:o}),n.dialog&&(n.dialog.prefix="esri-header-search-dialog",t=Te(n.dialog),(e=le("button",{class:"esri-header-search-dialog-cancel",type:"reset"},le("span",n.dialog.cancelLabel))).addEventListener("click",function(e){ue(o,"header:menu:close",{control:o,content:l,state:"search",type:"search-close",event:e})}),le(t,e),de(l,t),o.addEventListener("click",function(e){"true"===o.getAttribute("aria-expanded")&&ue(t,n.dialog.prefix+":focus",{event:e})})))}),d),re=((c=le("div",{class:Ae,"data-cart-empty":"true"})).addEventListener("click",function(e){ue(c,"header:click:shoppingCart",{event:e})}),J=le("a",{href:"#",class:Ae+"--icon",id:Ae+"--icon"},he({imgDef:De.md,imgClass:Ae+"--image",id:Ae+"--image"})),u=le("div",{class:Ae+"--items",id:Ae+"--items"}),c.addEventListener("header:update:cart",function(e){e=e.detail;e?(J.setAttribute("href",""+e.url),p(e.items),le(c,J,u),c.classList.remove("hidden")):(c.innerHTML="",c.classList.add("hidden"))}),c.addEventListener("header:shoppingcart:add",function(e){e=e.detail;p(e,!0)}),c.addEventListener("header:shoppingcart:remove",function(e){e=e.detail;p(-e,!0)}),p=function(e,t){var n=parseInt(u.innerHTML),n=(isNaN(n)||n<0?0:n)+parseInt(e);u.innerHTML=999<=n?"999":n,0<n?(c.setAttribute("data-cart-empty","false"),t&&(u.setAttribute("data-cart-updated","true"),setTimeout(function(){u.setAttribute("data-cart-updated","false")},1e3))):(u.setAttribute("data-cart-updated","true"),setTimeout(function(){c.setAttribute("data-cart-empty","true")},1e3))},c),w=ve(),x=(h=le("div",{class:Ce+" a11y-"+Ce}),(m=le("button",{class:Ce+"-control",id:Ce+"-control",aria:{controls:Ce+"-menu",expanded:!1,haspopup:!0}})).addEventListener("click",function(e){ue(m,"header:click:notifications",{event:e}),ue(m,"header:menu:toggle",{notifications:!0,control:m,content:g,state:"menu",target:h,type:"notifications-toggle"})}),(K=le("button",{class:Ce+"-dismiss-all"})).addEventListener("click",function(e){ue(m,"header:click:notifications:dismiss",ke)}),ee=le("ul",{class:Ce+"-messages"}),g=le("div",{class:Ce+"-menu",id:Ce+"-menu",aria:{expanded:!1,hidden:!0}},ee),h.addEventListener("header:update:notifications",function(e){var t,n=e.detail;n?(h.classList.remove("hidden"),ke=(n.messages||[]).map(function(e){return e.id}),e=he({imgDef:Se.md,imgClass:Ce+"-image",id:Ce+"-image"}),m.setAttribute("aria-label",n.label||"Notifications"),n.messages&&0<n.messages.length?(de(K,n.dismissAllLabel),t=le("span",{class:Ce+"-badge"},""+n.messages.length),de(m,e,t),de.apply(void 0,[ee].concat(ce(n.messages.map(function(t){var e=le("button",{class:Ce+"-message-dismiss",aria:{label:n.dismissLabel}},he({imgDef:Le.sm,imgClass:Ce+"-dismiss-icon"}));return e.addEventListener("click",function(e){ue(m,"header:click:notifications:dismiss",[t.id])}),le("li",{class:Ce+"-message"},le("span",{class:Ce+"-message-text"},t.text,le("span",{class:Ce+"-message-date"},t.date)),e)})))),de(g,ee,K)):(de(m,e),t=he({imgDef:n.emptyMessage.image.path,imgClass:Ce+"-empty-image",viewBox:n.emptyMessage.image.viewBox}),e=le("p",{class:Ce+"-empty-text"},n.emptyMessage.text),t=le("div",{class:Ce+"-empty"},t,e),de(g,t)),de(h,m,g)):h.classList.add("hidden")}),h),A=_e(),C=Me(),se=le("div",{class:"esri-header-client"},y),oe=le("div",{class:"esri-header-lineBreak"}),k=le("div",{class:"esri-header -"+(B.theme||"web")+" "+(B.collapseMenus?"-always-hamburger":"")},te,ne,L,ae,E,ie,w,oe,re,x,A,C,se),S=le("div",{class:"esri-header-canvas"},b,{class:"esri-header-wrap"},k),D=(pe(S),S.addEventListener("header:update",function(e){e=e.detail;e.brand&&(e.brand.root=!0),ue(te,"header:update:brand",e.brand),ue(ne,"header:update:brand",e.brand),ue(ae,"header:update:inlineTitle",e.brand),ue(ie,"header:update:search",e.search),ue(w,"header:update:inlineSearch",e.search),ue(se.lastChild,"header:update:account",e.account),ue(A,"header:update:apps",e.apps),ue(C,"header:update:appSwitcher",e.appSwitcher),ue(x,"header:update:notifications",e.notifications),ue(re,"header:update:cart",e.cart),e.menus&&(e.menus.noBrand=!e.brand,ue(E,"header:update:menus",e.menus),ue(L,"header:update:menus",e.menus),ue(L,"header:update:menuLabel",e.menuLabel)),e.collapseMenus&&(ue(E,"header:update:collapseMenus",e.collapseMenus),ue(L,"header:update:collapseMenus",e.collapseMenus)),e.brand&&e.brand.topStripe&&(S.style.marginTop="3px"),e.notifications||e.apps||e.account||oe.classList.add("esri-header-lineBreak-hidden"),S.ownerDocument.defaultView.addEventListener("keydown",function(e){27===e.keyCode&&(e=document.activeElement.closest(".a11y-esri-header-notifications,.a11y-esri-header-apps,.a11y-esri-header-account"),ue(S,"header:menu:close"),e)&&(e=e.querySelector("button"))&&e.focus()})}),S.addEventListener("header:search:typing",function(e){e=e.detail;ue(w,"header::search:typing",e.search)}),S.addEventListener("header:search:update:suggestions",function(e){e=e.detail;ue(w,"header:search:populateSuggestions",e)}),S.addEventListener("header:title:submit",function(e){e=e.detail;ue(w,"header::title:save",e.title)}),S.addEventListener("header:apps:reorder",function(e){e=e.detail;ue(A,"header::apps:reorder",e.icons)}),S.addEventListener("header:menu:toggle",function(e){var e=e.detail,t="true"!==e.control.getAttribute("aria-expanded");ue(e.control,t?"header:menu:open":"header:menu:close",e)}),null),T=null,_=null,M=null,N=null,I=null,H=null,z=null;return S.addEventListener("header:menu:open",function(e){var e=e.detail,t=e.control.closest&&e.control.closest(".esri-header-menus"),t=t&&t.classList.contains("-mobile"),t="menu-toggle"===e.type&&v.matches||t,n=y===e.target&&f.matches;le(e.control,{aria:{expanded:!0}}),le(e.content,{aria:{expanded:!0,hidden:!1}}),M&&M.control!==e.control&&ue(M.control,"header:menu:close",M),"menu-toggle"===e.type&&(M=e),ie===e.target||w===e.target?T=e:T&&(ue(ie,"header:menu:close",T),T=null),E===e.target||L===e.target?_=e:!_||n||t||(ue(E,"header:menu:close",_),ue(L,"header:menu:close",_),_=null),ae===e.target?H=e:H&&(ue(ae,"header:menu:close",H),H=null),y===e.target?D=e:D&&(ue(y,"header:menu:close",D),D=null),A===e.target?N=e:N&&(ue(A,"header:menu:close",N),N=null),C===e.target?I=e:I&&(ue(C,"header:appSwitcher:close",I),I=null),x===e.target?z=e:z&&(ue(x,"header:menu:close",z),z=null),le(b,{data:{open:!0,state:e.state}}),le(S.ownerDocument.documentElement,{data:{"header-is-open":!0}})}),window.addEventListener("focusin",function(e){var t=document.querySelector(".esri-header-menus.-mobile"),t=t&&t.querySelector("#esri-header-menus-mobile-toggle");t&&"true"===t.getAttribute("aria-expanded")&&!e.target.closest(".esri-header-menus")&&ue(b,"header:menu:close")}),S.addEventListener("header:menu:close",function(e){var t,e=e.detail||T||H||D||N||I||z||_||M;e&&(le(e.control,{aria:{expanded:!1}}),le(e.content,{aria:{expanded:!1,hidden:!0}}),t=e.control.closest&&null!==e.control.closest(".-always-hamburger"),t=!v.matches&&!t||"menu-close"!==e.type&&"account-close"!==e.type,H&&H.control===e.control&&ue(H.content,"header:inlineTitle:deactivated",e),T&&T.control===e.control&&ue(T.content.lastChild,"reset"),!T||T.target!==w||"inlineSearch"!==e.type&&!f.matches||_||ue(T.content,"header:inlineSearch:deactivated",e),I&&e===I&&ue(C,"header:appSwitcher:close",I),t)&&(le(b,{data:{open:!1}}),S.ownerDocument.documentElement.removeAttribute("data-header-is-open"))}),S.addEventListener("header:inlineSearch:activated",function(e){E.querySelector(".esri-header-menus-menu").classList.add("hidden"),oe.classList.add("hidden"),L.querySelector(".esri-header-menus-toggle").classList.add("hidden"),f&&ne.classList.add("hidden")}),S.addEventListener("header:inlineSearch:deactivated",function(e){E.querySelector(".esri-header-menus-menu").classList.remove("hidden"),oe.classList.remove("hidden"),L.querySelector(".esri-header-menus-toggle").classList.remove("hidden"),ne.classList.remove("hidden")}),S.addEventListener("header:inlineTitle:activated",function(e){f.matches||(E.querySelector(".esri-header-menus-content").classList.add("hidden"),L.querySelector(".esri-header-menus-toggle").classList.add("hidden"))}),S.addEventListener("header:inlineTitle:deactivated",function(e){v.matches||E.querySelector(".esri-header-menus-content").classList.remove("hidden")}),me(S,function(){var a=S.ownerDocument,i=a.defaultView,r=le("style"),s=void 0;function e(){var e=a.documentElement.clientHeight,t=a.documentElement.scrollHeight,n=e<t?window.innerWidth:a.documentElement.clientWidth;s=getComputedStyle(a.documentElement).overflowY.replace("visible",e<t?"scroll":"visible"),de(r,":root{--esri-vw:"+n+"px;--esri-vh:"+e+"px}[data-header-is-open]{width:"+n+"px;height:"+e+"px;overflow-y:"+s+"}"),(v=i.matchMedia("(max-width: 1023px)")).matches?(E.querySelector(".esri-header-menus-content").classList.add("hidden"),L.querySelector(".esri-header-menus-content").classList.remove("hidden")):(E.querySelector(".esri-header-menus-content").classList.remove("hidden"),L.querySelector(".esri-header-menus-content").classList.add("hidden"))}function t(){f.matches?(ue(S,"header:breakpoint:s"),L.lastChild.appendChild(y),x.classList.add("hidden"),A.classList.add("hidden"),C.classList.add("hidden")):(ue(S,"header:breakpoint:not:s"),se.appendChild(y),x.classList.remove("hidden"),A.classList.remove("hidden"),C.classList.remove("hidden"))}function n(){v.matches?ue(S,"header:breakpoint:sm"):(ue(S,"header:breakpoint:not:sm"),ue(S,"header:menu:close"))}S.parentNode&&(ue(S,"header:update",B),le(a.head,r),i.addEventListener("orientationchange",e),i.addEventListener("resize",e),f=i.matchMedia("(max-width: 768px)"),v=i.matchMedia("(max-width: 1023px)"),f.addListener(t),v.addListener(n),t(),n(),e())}),S}function f(t,e){var n=le("button",{class:e+"-language-control",title:"Current language, "+t.buttonLabel},""+t.buttonLabel),a=le("div",{class:e+"-language"},n),i=(n.addEventListener("click",function(e){e.preventDefault(),le(o,{aria:{expanded:!0}})}),t.prefix=e+"-language-dialog",l(t)),r=le("button",{class:e+"-language-dialog-close",id:"dialog-description","aria-label":t.closeLabel},he({imgDef:Le.md,imgClass:e+"-language-dialog-close-image"}));function s(e){e.preventDefault(),le(o,{aria:{expanded:!1}})}r.addEventListener("click",s),le(i,r);var o=le("div",{class:e+"-language-dialog-barrier",aria:{expanded:!1}},i);return n.addEventListener("click",function(){ue(n,"footer:click:language",t)}),a.addEventListener("footer:update:language",function(e){n.innerHTML=""+t.buttonLabel,a.ownerDocument.body.appendChild(o),a.ownerDocument.defaultView.addEventListener("keydown",function(){27===(0<arguments.length&&void 0!==arguments[0]?arguments[0]:event).keyCode&&s(event)})}),a}function v(e,n){var t=matchMedia("(max-width: 719px)"),a=!1,i=(t.addListener(r),e.menu.map(function(e,t){return le("li",{class:n+"-menu-item",id:n+"-menu-link--"+t},le("span",{class:n+"-menu-link",id:n+"-heading-"+t},e.label),le("div",{class:n+"-menu--sub",id:n+"-menu--sub--"+t,aria:{labelledby:n+"-menu-link--"+t}},le.apply(void 0,["ul",{class:n+"-menu-list--sub"}].concat(ce(e.menu.map(function(e){return le("li",{class:n+"-menu-item--sub"},le("a",{class:n+"-menu-link--sub",href:e.href,"aria-labelledby":n+"-menu--sub--"+t},e.label))}))))))})),e=le("nav",{class:n+"-menu",aria:{label:e.label}},le.apply(void 0,["ul",{class:n+"-menu-list"}].concat(ce(i))));return r(),e;function r(){a!==t.matches&&(a=t.matches,i.forEach(function(e){var t,n;a?(t=e.firstChild,n="true"!==t.nextElementSibling.getAttribute("aria-hidden"),le(t,{tabindex:0,role:"button",aria:{expanded:!n,haspopup:!n}}),t.addEventListener("click",s),t.addEventListener("keypress",o),le(t.nextElementSibling,{aria:{hidden:!0}})):((n=e.firstChild).removeAttribute("aria-controls"),n.removeAttribute("aria-expanded"),n.removeAttribute("aria-haspopup"),n.removeAttribute("role"),n.removeAttribute("tabindex"),n.addEventListener("click",s),n.addEventListener("keypress",o),n.nextElementSibling.removeAttribute("aria-hidden"))}))}function s(e){var e=e.currentTarget,t=e.nextElementSibling,n="true"!==t.getAttribute("aria-hidden");le(e,{aria:{expanded:!n,haspopup:!n}}),le(t,{aria:{hidden:n}}),le(e,n?{aria:{controls:0}}:{aria:{controls:t.id}})}function o(e){13!==e.keyCode&&32!==e.keyCode||(e.preventDefault(),ue(e.currentTarget,"click"))}}function a(e){var n,a,i,t=e.prefix||"esri-footer",r=((e,t)=>{if(e)return le("div",{class:t+"-brand"},le("a",{class:t+"-brand-link",href:e.href,aria:{label:e.label}},he({imgDef:e.path,imgClass:t+"-brand-image"})))})(e.brand,t),s=le("div",{class:(n=t)+"-info",aria:{label:(c=e.info).label}},le.apply(void 0,["ul",{class:n+"-info-list"}].concat(ce(c.menu.map(function(e,t){return le("li",{class:n+"-info-item",id:n+"-info-link--"+t},le("a",{class:n+"-info-link",href:e.href},e.label))}))))),o=e.language?f(e.language,t):le("div",{class:"esri-footer-language"}),l=v(e.menu,t),d=(c=e.social,a=t,i=document.createDocumentFragment(),c.menu.forEach(function(e){var t=e.platform||e.label.toLowerCase().replace(" ","-");le(i,le("a",{class:a+"-social-item "+a+"-social-link -"+t,href:e.href,aria:{label:e.label},target:"_blank",rel:"noopener"},he({imgDef:e.image.path,imgClass:a+"-social-image",alt:"",imgWidth:30,imgHeight:30,viewBox:e.image.viewBox})))}),le("div",{class:a+"-social"},le("nav",{class:a+"-social-nav",aria:{label:c.label||"Social Media"}},i))),c=(e=>{var n,a,i,t=e.showBreadcrumb,r=e.breadcrumbHomeURL,s=e.breadcrumbHomeLabel;if(t)return n="esri-footer-breadcrumb",a=document.createDocumentFragment(),(i=e.breadcrumbs||[]).forEach(function(e,t){t=t===i.length-1;le(a,le("li",{class:n+"--items"},"/",t?le("p",{href:e.href,class:n+"--items-current"},""+e.label):le("a",{href:e.href,class:n+"--items-link"},""+e.label)))}),le("div",{class:n},le("a",{href:""+r,class:n+"--pin"},s),le("ul",{class:n+"--list"},a))})(e),u=le("footer",{class:t+" "+(e.hideMenus?"skinny-footer":"")},le("div",{class:t+"-section--0"},c),le("div",{class:t+"--wrapper"},le("div",{class:t+"-section--1 "+(e.hideMenus?"hidden":"")},r,d),le("div",{class:t+"-section--2 "+(e.hideMenus?"hidden":"")},l),le("div",{class:t+"-section--3"},o,s)));return me(u,function(){u.addEventListener("focusin",function(){var e=u.ownerDocument.documentElement.scrollHeight-u.scrollHeight;e>u.ownerDocument.defaultView.pageYOffset&&u.ownerDocument.defaultView.scrollTo(0,e)}),e.hideMenus&&(document.querySelector(".esri-footer").setAttribute("data-minimal",!0),document.querySelector(".esri-footer-barrier").classList.add("skinny-footer")),ue(u,"footer:update",e)}),pe(u),u.addEventListener("footer:update",function(e){e=e.detail;function t(){var e=window.pageYOffset<0;le(u,{data:{hidden:e}})}e.brand&&ue(r,"footer:update:brand",e.brand),e.info&&ue(s,"footer:update:info",e.info),e.language&&ue(o,"footer:update:language",e.language),e.menu&&ue(l,"footer:update:menu",e.menu),e.social&&ue(d,"footer:update:social",e.social),u.ownerDocument.defaultView.addEventListener("scroll",t),t()}),u}var Ce="esri-header-notifications",ke=[],l=function(e){var t=le.apply(void 0,["select",{class:e.prefix+"-choice",autofocus:"",aria:{label:e.optionsLabel}}].concat(ce(e.options.map(function(e){var t=document.createElement("option");return t.value=e.value,t.innerHTML=e.label,t})))),e=le("form",{class:e.prefix,aria:{labelledby:e.prefix+"-message",describedby:"dialog-description"},role:"dialog",tabindex:"-1"},le("p",{class:e.prefix+"-message",id:e.prefix+"-message"},le("strong",e.greetingLabel)," ",e.messageLabel),t,le("button",{class:e.prefix+"-submit",type:"submit",aria:{label:e.submitLabel+" "+e.optionsLabel}},e.submitLabel));return e.addEventListener("submit",function(e){e.preventDefault(),window.location.href=t.value}),e};function i(e){var t=e.targetElm,e=e.menuData,e=(document.querySelector(t).classList.add("esri-header-barrier"),n(e.header));document.querySelector(t).appendChild(e),window.esriHeader.node=e}function r(e){var t=e.targetElm,e=e.menuData,e=(document.querySelector(t).classList.add("esri-footer-barrier"),a(e.footer));document.querySelector(t).appendChild(e),window.esriFooter.node=e}return window.esriHeader={create:n},window.esriFooter={create:a},{createHeader:i,createFooter:r,create:function(e){var t=e.headerElm,n=e.footerElm,e=e.menuData;i({menuData:e,targetElm:t}),r({menuData:e,targetElm:n})}}});
+
+/**
+ * Global Nav - A centralized component for Esri's global navigation
+ * @version v1.6.2
+ * @link https://github.com/Esri/global-nav
+ * @copyright 2026 Esri
+ * @license
+ * All rights reserved under the copyright laws of the United States and applicable international laws, treaties, and conventions.
+ *
+ * This material is licensed for use under the Esri Master License Agreement (MLA), and is bound by the terms of that agreement.
+ * You may redistribute and use this code without modification, provided you adhere to the terms of the MLA and include this copyright notice.
+ *
+ * See use restrictions at http://www.esri.com/legal/pdfs/mla_e204_e300/english
+ */
+(function (global, factory) {
+	typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
+	typeof define === 'function' && define.amd ? define(factory) :
+	(global.esriGlobalNav = factory());
+}(this, (function () { 'use strict';
+
+/**
+ * Element.closest() polyfill
+ * https://developer.mozilla.org/en-US/docs/Web/API/Element/closest#Polyfill
+ */
+if (!Element.prototype.closest) {
+	if (!Element.prototype.matches) {
+		Element.prototype.matches = Element.prototype.msMatchesSelector || Element.prototype.webkitMatchesSelector;
+	}
+	Element.prototype.closest = function (s) {
+		var el = this;
+		var ancestor = this;
+		if (!document.documentElement.contains(el)) return null;
+		do {
+			if (ancestor.matches(s)) return ancestor;
+			ancestor = ancestor.parentElement;
+		} while (ancestor !== null);
+		return null;
+	};
+}
+
+//  Taken from: https://raw.githubusercontent.com/jonathantneal/domose/master/domose.js
+
+/* Speculative DOM Functionality
+/* ========================================================================== */
+
+function assignSource(element, source, prefix) {
+    for (var key in source) {
+        if ('function' === typeof source[key]) {
+            // add functions as event listeners
+            element.addEventListener(prefix + key, source[key]);
+        } else if (Object(source[key]) === source[key]) {
+            // assign objects as source
+            assignSource(element, source[key], prefix + key + '-');
+        } else {
+            // otherwise, set attributes
+            element.setAttribute(prefix + key, source[key]);
+        }
+    }
+}
+
+/* Assign an element with attributes, events, and children
+/* ========================================================================== */
+
+function $assign(id) {
+    // $assign(element, { class: 'btn', click: () => { /* listener */ } });
+    // $assign('button', { aria: { label: 'title' } }, child);
+    // $assign('div', child1, child2, 'a new text node');
+    // $assign(document.createElementNS('https://www.w3.org/2000/svg', 'svg'));
+
+    var element = id instanceof Node ? id : document.createElement(id);
+
+    [].slice.call(arguments, 1).forEach(function (source) {
+        if (source instanceof Node) {
+            // append sources that are nodes
+            element.appendChild(source);
+        } else if ('string' === typeof source) {
+            // append strings as text nodes
+            element.innerHTML = source;
+        } else {
+            assignSource(element, source, '');
+        }
+    });
+
+    return element;
+}
+
+/* Replace all the children of a parent node with new children
+/* ========================================================================== */
+
+function $replaceAll(parentNode) {
+    // $replaceAll(element);
+    // $replaceAll(element, child1, child2);
+
+    while (parentNode.lastChild) {
+        parentNode.removeChild(parentNode.lastChild);
+    }
+
+    parentNode.appendChild(asFragment(arguments));
+
+    return parentNode;
+}
+
+/* Emerging DOM Functionality
+/* ========================================================================== */
+
+function asFragment(nodes) {
+    var fragment = document.createDocumentFragment();
+
+    [].slice.call(nodes, 1).forEach(function (node) {
+        if (node instanceof Node) {
+            fragment.appendChild(node);
+        } else {
+            fragment.appendChild(document.createTextNode(node));
+        }
+    });
+
+    return fragment;
+}
+
+/* Remove a child node from its parent
+/* ========================================================================== */
+
+function $remove(childNode) {
+    // $remove(element);
+
+    if (childNode.parentNode) {
+        childNode.parentNode.removeChild(childNode);
+    }
+
+    return childNode;
+}
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) {
+  return typeof obj;
+} : function (obj) {
+  return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
+};
+
+
+
+
+
+var asyncGenerator = function () {
+  function AwaitValue(value) {
+    this.value = value;
+  }
+
+  function AsyncGenerator(gen) {
+    var front, back;
+
+    function send(key, arg) {
+      return new Promise(function (resolve, reject) {
+        var request = {
+          key: key,
+          arg: arg,
+          resolve: resolve,
+          reject: reject,
+          next: null
+        };
+
+        if (back) {
+          back = back.next = request;
+        } else {
+          front = back = request;
+          resume(key, arg);
+        }
+      });
+    }
+
+    function resume(key, arg) {
+      try {
+        var result = gen[key](arg);
+        var value = result.value;
+
+        if (value instanceof AwaitValue) {
+          Promise.resolve(value.value).then(function (arg) {
+            resume("next", arg);
+          }, function (arg) {
+            resume("throw", arg);
+          });
+        } else {
+          settle(result.done ? "return" : "normal", result.value);
+        }
+      } catch (err) {
+        settle("throw", err);
+      }
+    }
+
+    function settle(type, value) {
+      switch (type) {
+        case "return":
+          front.resolve({
+            value: value,
+            done: true
+          });
+          break;
+
+        case "throw":
+          front.reject(value);
+          break;
+
+        default:
+          front.resolve({
+            value: value,
+            done: false
+          });
+          break;
+      }
+
+      front = front.next;
+
+      if (front) {
+        resume(front.key, front.arg);
+      } else {
+        back = null;
+      }
+    }
+
+    this._invoke = send;
+
+    if (typeof gen.return !== "function") {
+      this.return = undefined;
+    }
+  }
+
+  if (typeof Symbol === "function" && Symbol.asyncIterator) {
+    AsyncGenerator.prototype[Symbol.asyncIterator] = function () {
+      return this;
+    };
+  }
+
+  AsyncGenerator.prototype.next = function (arg) {
+    return this._invoke("next", arg);
+  };
+
+  AsyncGenerator.prototype.throw = function (arg) {
+    return this._invoke("throw", arg);
+  };
+
+  AsyncGenerator.prototype.return = function (arg) {
+    return this._invoke("return", arg);
+  };
+
+  return {
+    wrap: function (fn) {
+      return function () {
+        return new AsyncGenerator(fn.apply(this, arguments));
+      };
+    },
+    await: function (value) {
+      return new AwaitValue(value);
+    }
+  };
+}();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var toConsumableArray = function (arr) {
+  if (Array.isArray(arr)) {
+    for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) arr2[i] = arr[i];
+
+    return arr2;
+  } else {
+    return Array.from(arr);
+  }
+};
+
+/* Dispatch an Custom Event with a detail
+/* ========================================================================== */
+
+function $dispatch(target, type, detail) {
+	// an event
+	var event = document.createEvent('CustomEvent');
+
+	event.initCustomEvent(type, true, true, detail);
+
+	target.dispatchEvent(event);
+}
+
+function $enableFocusRing(target) {
+	// retooled from https://github.com/jonathantneal/js-focus-ring
+	var keyboardThrottleTimeoutID = void 0;
+
+	target.addEventListener('blur', function (event) {
+		if (event.target instanceof Element) {
+			event.target.removeAttribute('js-focus');
+			event.target.removeAttribute('js-focus-ring');
+		}
+	}, true);
+
+	target.addEventListener('focus', function (event) {
+		var activeElement = document.activeElement;
+
+		if (activeElement instanceof Element && 'BODY' !== activeElement.tagName) {
+			activeElement.setAttribute('js-focus', '');
+
+			if (keyboardThrottleTimeoutID) {
+				activeElement.setAttribute('js-focus-ring', '');
+			}
+		}
+	}, true);
+
+	window.addEventListener('keydown', function () {
+		keyboardThrottleTimeoutID = clearTimeout(keyboardThrottleTimeoutID) || setTimeout(function () {
+			keyboardThrottleTimeoutID = 0;
+		}, 100);
+	}, true);
+}
+
+function $fetch(url, callback) {
+	var onError = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : function () {};
+
+	var xhr = new XMLHttpRequest();
+
+	xhr.addEventListener('readystatechange', function () {
+		if (4 === xhr.readyState) {
+			if (200 === xhr.status) {
+				callback(xhr.responseText); // eslint-disable-line callback-return
+			} else {
+				onError();
+			}
+		}
+	});
+
+	xhr.open('GET', url);
+	xhr.send();
+
+	return xhr;
+}
+
+function $renderSvgOrImg(_ref) {
+	var _ref$imgDef = _ref.imgDef,
+	    imgDef = _ref$imgDef === undefined ? "" : _ref$imgDef,
+	    _ref$imgClass = _ref.imgClass,
+	    imgClass = _ref$imgClass === undefined ? "" : _ref$imgClass,
+	    _ref$wrapperClass = _ref.wrapperClass,
+	    wrapperClass = _ref$wrapperClass === undefined ? "" : _ref$wrapperClass,
+	    _ref$inlineImg = _ref.inlineImg,
+	    inlineImg = _ref$inlineImg === undefined ? false : _ref$inlineImg,
+	    id = _ref.id,
+	    alt = _ref.alt,
+	    imgWidth = _ref.imgWidth,
+	    imgHeight = _ref.imgHeight,
+	    viewBox = _ref.viewBox,
+	    $targetElm = _ref.$targetElm;
+
+	var $imgWrapper = $assign('span', { class: wrapperClass });
+
+	if (typeof imgDef === 'string') {
+		if (imgDef.indexOf('.svg') === imgDef.length - 4 && !inlineImg) {
+			$fetch(imgDef, function (svgContents) {
+				$imgWrapper.innerHTML = svgContents;
+				var $img = $imgWrapper.firstElementChild;
+				$assign($img, svgProps());
+			}, function () {
+				renderImgTag();
+			});
+		} else {
+			renderImgTag();
+		}
+	} else {
+		var $img = $assign(document.createElementNS('http://www.w3.org/2000/svg', 'svg'), svgProps(), $assign.apply(undefined, [document.createDocumentFragment()].concat(toConsumableArray(imgDef.map(function (d) {
+			return $assign(document.createElementNS('http://www.w3.org/2000/svg', 'path'), { d: d });
+		})))));
+		$imgWrapper.appendChild($img);
+	}
+
+	if ($targetElm) {
+		$targetElm.innerHTML = '';
+		$targetElm.appendChild($imgWrapper);
+	}
+
+	return $imgWrapper;
+
+	function imgProps(props, mixins) {
+		for (var mixin in mixins) {
+			if (mixins[mixin] !== undefined && mixins[mixin] !== null) props[mixin] = mixins[mixin];
+		}
+		return props;
+	}
+
+	function svgProps() {
+		return imgProps({ class: '' + imgClass, style: 'transform: rotate(360deg);' }, { id: id, alt: alt, viewBox: viewBox, width: imgWidth, height: imgHeight });
+	}
+
+	function renderImgTag() {
+		$imgWrapper.appendChild($assign('img', imgProps({ style: (imgWidth ? 'width:' + imgWidth + 'px' : '') + '; ' + (imgHeight ? 'height:' + imgHeight + 'px' : '') }, { id: id, alt: alt, src: imgDef, class: imgClass })));
+	}
+}
+
+/* Perform an action when an element is added to the DOM
+/* ========================================================================== */
+
+function onElementInserted(element, callback) {
+	var onMutationsObserved = function onMutationsObserved(mutations, ob) {
+		mutations.forEach(function (mutation) {
+			if (mutation.addedNodes.length) {
+				var includesElement = [].concat(toConsumableArray(mutation.addedNodes)).some(function (node) {
+					return node === element;
+				});
+				if (includesElement) {
+					ob.disconnect();
+					callback();
+				}
+			}
+		});
+	};
+	var observer = new window.MutationObserver(onMutationsObserved);
+	observer.observe(document.body, { childList: true, subtree: true });
+}
+
+var prefix = 'esri-header-account';
+
+var createAccount = (function () {
+	var $target = $assign('div', { class: prefix + ' a11y-' + prefix });
+
+	/* Account: Control: Signin
+ /* ====================================================================== */
+
+	var $controlSigninText = document.createTextNode('');
+	var $controlSignin = $assign('button', { class: prefix + '-control ' + prefix + '-control--signin' }, $controlSigninText);
+
+	// On Click
+	$controlSignin.addEventListener('click', function (event) {
+		$dispatch($controlSignin, 'header:click:signin', { event: event });
+	});
+
+	/* Account: Control
+ /* ====================================================================== */
+
+	var $controlImage = $assign('span');
+
+	var $controlNameText = document.createTextNode('');
+	var $controlName = $assign('span', { class: prefix + '-name' }, $controlNameText);
+
+	var $controlIdText = document.createTextNode('');
+	var $controlId = $assign('span', { class: prefix + '-id' }, $controlIdText);
+
+	var $control = $assign('button', {
+		class: prefix + '-control ' + prefix + '-control--signedin', id: prefix + '-control',
+		aria: { controls: prefix + '-menu', expanded: false, haspopup: true }
+	}, $controlImage, $controlName, $controlId);
+
+	// On Click
+	$control.addEventListener('click', function (event) {
+		$dispatch($control, 'header:click:account', { event: event });
+
+		$dispatch($control, 'header:menu:toggle', {
+			account: true,
+			control: $control,
+			content: $content,
+			state: 'menu',
+			target: $target,
+			type: 'account-toggle'
+		});
+	});
+
+	/* Account: Content
+ /* ====================================================================== */
+
+	// Toggle
+	var $contentToggleText = document.createTextNode('');
+	var $contentToggle = $assign('button', { class: prefix + '-content-toggle' }, $contentToggleText);
+
+	$contentToggle.addEventListener('click', function () {
+		$dispatch($contentToggle, 'header:menu:close', {
+			control: $control,
+			content: $content,
+			type: 'account-close'
+		});
+	});
+
+	// Image
+	var $contentImage = $assign('span');
+
+	// Info
+	var $contentInfoNameText = document.createTextNode('');
+	var $contentInfoIdText = document.createTextNode('');
+	var $contentInfoGroupText = document.createTextNode('');
+	var $contentInfo = $assign('div', { class: prefix + '-content-info' }, $contentImage, $assign('span', { class: prefix + '-content-name' }, $contentInfoNameText), $assign('span', { class: prefix + '-content-id' }, $contentInfoIdText), $assign('span', { class: prefix + '-content-group' }, $contentInfoGroupText));
+
+	// Menu
+	var $contentMenu = $assign('ul', {
+		class: prefix + '-content-menu',
+		aria: { labelledby: prefix + '-control' }
+	});
+
+	// Switch Control
+	var $contentSigninSwitchText = document.createTextNode('');
+	var $contentSigninSwitch = $assign('button', { class: prefix + '-signin-control -switch' }, $contentSigninSwitchText);
+
+	// Switch Control: On Click
+	$contentSigninSwitch.addEventListener('click', function (event) {
+		$dispatch($contentSigninSwitch, 'header:click:switch', { event: event });
+	});
+
+	// Signout Control
+	var $contentSigninSignoutText = document.createTextNode('');
+	var $contentSigninSignout = $assign('button', { class: prefix + '-signin-control -logout' }, $contentSigninSignoutText);
+
+	// Signout Control: On Click
+	$contentSigninSignout.addEventListener('click', function (event) {
+		$dispatch($contentSigninSignout, 'header:click:signout', { event: event });
+	});
+
+	// Signout Control: On Keydown with a tab, send the focus to the account control
+	// Using keydown because that's what tab does with other steps in control
+	$contentSigninSignout.addEventListener('keydown', function (event) {
+		if (event.key === "Tab") {
+			$control.focus();
+		}
+	});
+
+	// Signin Menu
+	var $contentSigninMenu = $assign('ul', {
+		class: prefix + '-signin-menu'
+	}, $assign('li', { class: prefix + '-signin-item' }, $contentSigninSwitch), $assign('li', { class: prefix + '-signin-item' }, $contentSigninSignout));
+
+	// Content
+	var $content = $assign('div', {
+		class: prefix + '-menu', id: prefix + '-menu',
+		role: 'group', aria: { expanded: false, hidden: true }
+	}, $contentToggle, $contentInfo, $contentMenu, $contentSigninMenu);
+
+	/* Account: On Update
+ /* ====================================================================== */
+
+	$target.addEventListener('header:update:account', function (_ref) {
+		var detail = _ref.detail;
+
+		if (detail) {
+			$target.classList.remove('hidden');
+		} else {
+			$target.classList.add('hidden');
+			return;
+		}
+
+		$assign($control, { aria: { label: detail.label } });
+
+		// Update the control text
+		$contentToggleText.nodeValue = detail.label;
+		$controlSigninText.nodeValue = detail.controls.signin;
+		$contentSigninSwitchText.nodeValue = detail.controls.switch;
+		$contentSigninSignoutText.nodeValue = detail.controls.signout;
+
+		// If there is a user object
+		if (detail.user) {
+			// Update the account text + image
+			$controlNameText.nodeValue = $contentInfoNameText.nodeValue = detail.user.name;
+			$controlIdText.nodeValue = $contentInfoIdText.nodeValue = detail.user.id;
+			$contentInfoGroupText.nodeValue = detail.user.group;
+
+			$renderSvgOrImg({ imgDef: detail.user.image, alt: "", imgClass: prefix + '-image', $targetElm: $controlImage });
+			$renderSvgOrImg({ imgDef: detail.user.image, alt: "", imgClass: prefix + '-content-image', $targetElm: $contentImage });
+
+			// Update the content menu
+			$replaceAll.apply(undefined, [$contentMenu].concat(toConsumableArray(detail.menus.map(function (item) {
+				return $assign('li', { class: prefix + '-content-item' }, item.newContext ? $assign('a', { class: prefix + '-content-link', href: item.href, target: "_blank", rel: 'noopener' }, item.label) : $assign('a', { class: prefix + '-content-link', href: item.href }, item.label));
+			}))));
+
+			// Use the control and content
+			$replaceAll($target, $control, $content);
+		} else {
+			// Otherwise, use the signin control
+			$replaceAll($target, $controlSignin);
+		}
+	});
+
+	return $target;
+});
+
+var prefix$1 = 'esri-header-brand';
+
+var createBrand = (function () {
+	var $target = $assign('div', { class: prefix$1 });
+
+	// On Click
+	$target.addEventListener('click', function (event) {
+		$dispatch($target, 'header:click:brand', { event: event });
+	});
+
+	/* Brand: On Update
+ /* ====================================================================== */
+	$target.addEventListener('header:update:brand', function (_ref) {
+		var detail = _ref.detail;
+
+		if (detail && !detail.editTitle) {
+			$target.classList.remove('hidden');
+		} else {
+			$target.classList.add('hidden');
+			return;
+		}
+		var $targetLink = $assign('span', { class: prefix$1, id: prefix$1 });
+		if (detail.href) {
+			$targetLink = $assign('a', { class: prefix$1 + '-link', id: prefix$1, href: detail.href });
+		}
+		$assign($target, $targetLink);
+
+		if (detail.distributorImage) {
+			var $distributorImage = $assign('span', { class: 'distributor-image' });
+			$renderSvgOrImg({ imgDef: detail.distributorImage, imgClass: prefix$1 + '-image', alt: '', imgWidth: detail.distributorImageWidth, imgHeight: detail.distributorImageHeight, $targetElm: $distributorImage });
+			$assign($targetLink, $distributorImage, $assign('span', { class: 'distributor-image-border' }));
+		}
+		if (detail.image) {
+			var $brandImage = $assign('span', { class: 'brand-image' });
+			$assign($targetLink, { aria: { label: detail.label } });
+			$renderSvgOrImg({ imgDef: detail.image, imgClass: prefix$1 + '-image', alt: '', imgWidth: detail.width, imgHeight: detail.height, $targetElm: $brandImage });
+			$assign($targetLink, $brandImage);
+		}
+		if (detail.brandText) {
+			var textClass = detail.image ? prefix$1 + '-text -has-image' : prefix$1 + '-text';
+			var textLinkClass = detail.brandTextLink ? prefix$1 + '-text -has-textLink' : prefix$1 + '-text';
+			var $brandText = detail.brandTextLink ? $assign('a', { href: detail.brandTextLink, class: textLinkClass }, detail.brandText) : $assign('span', { class: textClass }, detail.brandText);
+			$assign($targetLink, $brandText);
+		}
+	});
+
+	return $target;
+});
+
+/* Standard Set of Icons from Calicte Web - https://esri.github.io/calcite-ui-icons
+/* ========================================================================== */
+var $bell = {
+  md: ["M18 16v-5.087A5.91 5.91 0 0 0 13.59 5.2a2 2 0 1 0-3.18 0A5.91 5.91 0 0 0 6 10.913V16a3 3 0 0 1-3 3v1h18v-1a3 3 0 0 1-3-3zM12 3a1 1 0 1 1-1 1 1.001 1.001 0 0 1 1-1zM5.643 19A3.992 3.992 0 0 0 7 16v-5.087A4.919 4.919 0 0 1 11.913 6h.174A4.919 4.919 0 0 1 17 10.913V16a3.992 3.992 0 0 0 1.357 3zM13 21h1a2 2 0 0 1-4 0h1a1 1 0 0 0 2 0z"]
+};
+
+var $close = {
+  sm: ["M8.718 8l5.303 5.303-.707.707L8.01 8.707 2.707 14.01 2 13.303 7.303 8 2 2.697l.707-.707L8.01 7.293l5.304-5.303.707.707z"],
+  md: ["M13.207 12.5l7.778 7.778-.707.707-7.778-7.778-7.778 7.778-.707-.707 7.778-7.778-7.778-7.778.707-.707 7.778 7.778 7.778-7.778.707.707z"],
+  lg: ["M16.707 16l10.607 10.606-.708.707L16 16.707 5.394 27.313l-.708-.707L15.293 16 4.686 5.394l.708-.707L16 15.293 26.606 4.687l.708.707z"]
+};
+
+var $check = {
+  sm: ["M2 8.689l.637-.636L5.5 10.727l8.022-7.87.637.637L5.5 12z"],
+  md: ["M4.581 13.276l.637-.636 3.288 3.098 10.073-9.92.637.637L8.506 17.01z"],
+  lg: ["M24 4.685l-16.327 17.315-7.673-9.054.761-.648 6.95 8.203 15.561-16.501.728.685z"]
+};
+
+var $grid = {
+  md: ["M11.5 18.05a1.45 1.45 0 1 0 1.45 1.45 1.45 1.45 0 0 0-1.45-1.45zM12 20h-1v-1h1zM3.5 2.05A1.45 1.45 0 1 0 4.95 3.5 1.45 1.45 0 0 0 3.5 2.05zM4 4H3V3h1zm7.5 6.05a1.45 1.45 0 1 0 1.45 1.45 1.45 1.45 0 0 0-1.45-1.45zM12 12h-1v-1h1zm-8.5-1.95a1.45 1.45 0 1 0 1.45 1.45 1.45 1.45 0 0 0-1.45-1.45zM4 12H3v-1h1zm-.5 6.05a1.45 1.45 0 1 0 1.45 1.45 1.45 1.45 0 0 0-1.45-1.45zM4 20H3v-1h1zM19.5 4.95a1.45 1.45 0 1 0-1.45-1.45 1.45 1.45 0 0 0 1.45 1.45zM19 3h1v1h-1zm.5 7.05a1.45 1.45 0 1 0 1.45 1.45 1.45 1.45 0 0 0-1.45-1.45zM20 12h-1v-1h1zm-8.5-9.95a1.45 1.45 0 1 0 1.45 1.45 1.45 1.45 0 0 0-1.45-1.45zM12 4h-1V3h1zm7.5 14.05a1.45 1.45 0 1 0 1.45 1.45 1.45 1.45 0 0 0-1.45-1.45zM20 20h-1v-1h1z"]
+};
+
+var $hamburger = {
+  md: ["M21 6H3V5h18zm0 6H3v1h18zm0 7H3v1h18z"]
+};
+
+var $pencil = {
+  sm: ["M15.721 4.007a.965.965 0 0 0-.03-1.385l-1.413-1.414a.965.965 0 0 0-1.385-.03L2.841 11.23l-1.756 4.097a.371.371 0 0 0 .488.487L5.67 14.06l8.607-8.609zM2.624 14.276l.554-1.294.74.74zm2.338-.924L3.55 11.937l8.007-8.008 1.414 1.415zm8.716-8.716l-1.414-1.414 1.09-1.09a.306.306 0 0 1 .433 0l.981.98a.306.306 0 0 1 0 .434z"]
+};
+
+var $search = {
+  sm: ["M9.85 9.153a5 5 0 1 0-.69.69l4.631 4.631.69-.69zm-1.02-.326A3.973 3.973 0 0 1 6 10a4.002 4.002 0 1 1 2.83-1.172z"],
+  md: ["M21.995 21.288l-6.855-6.855a7.517 7.517 0 1 0-.707.707l6.855 6.855zm-17.092-7.19a6.501 6.501 0 1 1 9.6-.45l-.854.855a6.501 6.501 0 0 1-8.746-.405z"]
+};
+
+var $cart = {
+  sm: ["M5.35 14.5a.85.85 0 1 1-.85-.85.851.851 0 0 1 .85.85zm7.15-.85a.85.85 0 1 0 .85.85.851.851 0 0 0-.85-.85zM15.109 4l-1.19 5.99-9.213 1.024-.727.643a.197.197 0 0 0-.054.217.195.195 0 0 0 .183.126H13v1H4.108a1.196 1.196 0 0 1-.792-2.092l.65-.574-.916-7.126a.249.249 0 0 0-.244-.217L.177 2.966l.046-.898 2.609.02a1.167 1.167 0 0 1 1.1 1L4.065 4zM13.89 5H4.208l.718 4.982 8.155-.905z"],
+  md: ["M19.93 19.07A1.497 1.497 0 0 0 18.5 18H6.416a.5.5 0 0 1-.422-.768l.793-1.25 14.11-1.01L23.141 6H5.345L5.06 4.37a1.51 1.51 0 0 0-1.307-1.23L2.543 3H1.24l-.097.847 2.497.286a.502.502 0 0 1 .435.41l1.9 10.853-.826 1.301A1.497 1.497 0 0 0 6 18.94v.153a1.5 1.5 0 1 0 1 0V19h11.5a.497.497 0 0 1 .356.15 1.502 1.502 0 1 0 1.074-.08zM5.52 7h16.34l-1.757 7.027-13.188.942zM7.1 20.2v.6a.3.3 0 0 1-.3.3h-.6a.3.3 0 0 1-.3-.3v-.6a.3.3 0 0 1 .3-.3h.6a.3.3 0 0 1 .3.3zm13 .6a.3.3 0 0 1-.3.3h-.6a.3.3 0 0 1-.3-.3v-.6a.3.3 0 0 1 .3-.3h.6a.3.3 0 0 1 .3.3z"],
+  lg: ["M27.964 25.259a1.591 1.591 0 0 0-.428-.794A1.574 1.574 0 0 0 26.415 24H6.54a.625.625 0 0 1-.476-1.032 142.875 142.875 0 0 0 1.692-1.992l19.161-2.017L29.11 8H6.72l-.14-1.375a2.56 2.56 0 0 0-2.186-2.277L4 4.29h-.001L1.979 4H1v1h.904l2.347.338a1.56 1.56 0 0 1 1.333 1.389l1.398 13.62c-.171.205-.598.71-1.677 1.97A1.626 1.626 0 0 0 6.541 25h19.874a.58.58 0 0 1 .198.04 2.015 2.015 0 1 0 1.351.219zM27.89 9l-1.808 9.041-18.136 1.91L6.823 9zm.21 18.3a.8.8 0 0 1-.8.8h-.6a.8.8 0 0 1-.8-.8v-.6a.8.8 0 0 1 .8-.8h.6a.8.8 0 0 1 .8.8zM6 27a2 2 0 1 0 2-2 2.002 2.002 0 0 0-2 2zm.9-.3a.8.8 0 0 1 .8-.8h.6a.8.8 0 0 1 .8.8v.6a.8.8 0 0 1-.8.8h-.6a.8.8 0 0 1-.8-.8z"]
+};
+
+var prefix$2 = 'esri-header-inline-title';
+var titleState = {};
+
+var createInlineTitle = (function () {
+	/* Title: Control
+ /* ====================================================================== */
+	var $control = $assign('button', {
+		class: prefix$2 + '-control', id: prefix$2 + '-control',
+		tabindex: "-1",
+		aria: { expanded: false, controls: prefix$2 + '-content' }
+	});
+
+	$control.addEventListener('header:menu:open', function (event) {
+		$dispatch($control, 'header:inlineTitle:activated', { event: event });
+	});
+
+	$control.addEventListener('click', function (event) {
+		$dispatch($control, 'header:click:inlineTitle', { event: event });
+		$dispatch($control, 'header:menu:toggle', {
+			state: 'menu',
+			target: $target,
+			type: 'inlineTitle',
+			control: $control,
+			content: $content,
+			event: event
+		});
+	});
+
+	/* Title: Deactivates and Closes input
+ /* ====================================================================== */
+
+	var deactivateInput = function deactivateInput() {
+		$dispatch($control, 'header:inlineTitle:deactivated', { event: event });
+
+		setTimeout(function () {
+			$control.focus();
+		}, 0);
+
+		$dispatch($control, 'header:menu:toggle', {
+			state: 'menu',
+			target: $target,
+			type: 'inlineTitle',
+			control: $control,
+			content: $content,
+			event: event
+		});
+	};
+
+	/* Title: Save New Title and Emit Submit Event
+ /* ====================================================================== */
+
+	var saveNewTitle = function saveNewTitle(e) {
+		titleState.newValue = $input.value;
+
+		if (!e.keyCode || e.keyCode === 13) {
+			if (titleState.newValue && titleState.newValue !== " " && titleState.newValue !== titleState.text) {
+				$dispatch($control, 'header:title:submit', {
+					title: titleState.newValue
+				});
+			}
+			deactivateInput();
+		}
+	};
+
+	/* Title: Input
+ /* ====================================================================== */
+
+	var $input = $assign('input', {
+		class: prefix$2 + '-input', id: prefix$2 + '-input',
+		aria: { labelledby: prefix$2 + '-input' }
+	});
+
+	$input.addEventListener("keyup", saveNewTitle);
+
+	/* Title: Close Button
+ /* ====================================================================== */
+
+	var $closeBtn = $assign('button', {
+		class: prefix$2 + '-action-button ' + prefix$2 + '-dismiss-button',
+		aria: { labelledby: prefix$2 + '-action-button' }
+	}, $renderSvgOrImg({ imgDef: $close.md, imgClass: prefix$2 + '-dismiss-icon' }));
+
+	$closeBtn.addEventListener('click', deactivateInput);
+
+	/* Title: Submit Button
+ /* ====================================================================== */
+
+	var $submitBtn = $assign('button', {
+		class: prefix$2 + '-action-button ' + prefix$2 + '-submit-button',
+		aria: { labelledby: prefix$2 + '-action-button' }
+	}, $renderSvgOrImg({ imgDef: $check.lg, imgClass: prefix$2 + '-submit-icon' }));
+
+	$submitBtn.addEventListener('click', saveNewTitle);
+
+	/* Title: Content
+ /* ====================================================================== */
+
+	var $lineBreak = $assign('div', { class: 'esri-header-lineBreak ' + prefix$2 + '-lineBreak' });
+	var $lineBreakRight = $assign('div', { class: 'esri-header-lineBreak ' + prefix$2 + '-lineBreak lineBreak-right' });
+	var $actionButtons = $assign("span", { class: prefix$2 + '-actionButton-container' }, $closeBtn, $submitBtn);
+
+	var $content = $assign('div', {
+		class: prefix$2 + '-content', id: prefix$2 + '-content',
+		aria: { expanded: false, labelledby: prefix$2 + '-control' }
+	}, $lineBreak, $input, $actionButtons, $lineBreakRight);
+
+	/* Title: Target
+ /* ====================================================================== */
+
+	var $target = $assign('span', {
+		class: prefix$2,
+		id: prefix$2,
+		aria: { expanded: false }
+	});
+
+	/* Title: On Active Edit
+ /* ====================================================================== */
+
+	$target.addEventListener('header:inlineTitle:activated', function (_ref) {
+		$input.value = titleState.text;
+		$target.setAttribute('aria-expanded', "true");
+		setTimeout(function () {
+			$input.selectionStart = titleState.text.length;
+			$input.focus();
+		}, 100);
+	});
+
+	/* Title: On Deactive Edit
+ /* ====================================================================== */
+
+	$target.addEventListener('header:inlineTitle:deactivated', function (_ref2) {
+		$target.setAttribute('aria-expanded', "false");
+		$input.value = '';
+	});
+
+	/* Title: Reset Title State
+ /* ====================================================================== */
+	var resetState = function resetState() {
+		if (titleState.brandText && titleState.pencilIcon) {
+			titleState.brandText.parentNode.removeChild(titleState.brandText);
+			titleState.pencilIcon.parentNode.removeChild(titleState.pencilIcon);
+		} else {
+			$control.setAttribute("tabindex", "0");
+		}
+	};
+
+	/* Title: On Update
+ /* ====================================================================== */
+	$target.addEventListener('header:update:inlineTitle', function (_ref3) {
+		var detail = _ref3.detail;
+
+		if (!detail || detail.root && !detail.editTitle) {
+			$target.classList.add('hidden');
+			$target.innerHTML = "";
+			return;
+		} else {
+			$target.classList.remove('hidden');
+			$assign($target, $control, $content);
+		}
+
+		if (detail.brandText) {
+			resetState();
+
+			var maxTitleWidth = detail.maxViewWidth || 30;
+			titleState.text = detail.brandText;
+			titleState.pencilIcon = $renderSvgOrImg({ imgDef: $pencil.sm, imgClass: prefix$2 + '-edit-icon' });
+			titleState.brandText = $assign('span', { class: prefix$2 + '-text', style: 'max-width: ' + maxTitleWidth + 'vw;' }, detail.brandText);
+			if (detail.titleFontSize) titleState.brandText.style.fontSize = detail.titleFontSize + 'px';
+
+			$assign($control, titleState.brandText, titleState.pencilIcon);
+
+			// brand cannot exist with an editable title, so empty the brand component
+			// this allows editable header to be activated after initial load (#253)
+			var $brand = document.getElementById('esri-header-brand');
+			if ($brand) {
+				if ($brand.classList.contains('-fit-burger')) {
+					$target.classList.add('-fit-burger');
+				}
+				$brand.parentElement.removeChild($brand);
+			}
+		}
+	});
+
+	return $target;
+});
+
+var prefix$3 = 'esri-header-branding-stripe';
+
+var createBrandStripe = (function () {
+	var $target = $assign('div', { class: prefix$3, id: prefix$3 });
+
+	/* Brand: On Update
+ /* ====================================================================== */
+	$target.addEventListener('header:update:brand', function (_ref) {
+		var detail = _ref.detail;
+
+		if (detail) {
+			$target.classList.remove('hidden');
+		} else {
+			$target.classList.add('hidden');
+			return;
+		}
+		$target.style.backgroundColor = detail.topStripe;
+		$target.classList.add('-visible');
+	});
+
+	return $target;
+});
+
+var prefix$4 = 'esri-header-menus';
+
+var createMenus = (function (_ref) {
+	var _ref$variant = _ref.variant,
+	    variant = _ref$variant === undefined ? 'desktop' : _ref$variant;
+
+	var $target = $assign('div', { class: prefix$4, id: prefix$4 + '-' + variant });
+	$target.classList.add('-' + variant);
+	var isMobile = variant === 'mobile';
+	var $toggle = void 0;
+	if (isMobile) {
+		$toggle = $assign('button', {
+			class: prefix$4 + '-toggle', id: prefix$4 + '-' + variant + '-toggle',
+			aria: { controls: prefix$4 + '-content-' + variant, expanded: false, label: "Menu" }
+		});
+		$renderSvgOrImg({ imgDef: $hamburger.md, imgClass: prefix$4 + '-image', id: prefix$4 + '-image', $targetElm: $toggle });
+
+		$toggle.addEventListener('click', function (event) {
+			$dispatch($toggle, 'header:menu:toggle', {
+				control: $toggle,
+				content: $content,
+				root: true,
+				state: 'menu',
+				target: $target,
+				type: 'root-toggle',
+				event: event
+			});
+		});
+
+		$assign($target, $toggle);
+	}
+
+	/* Menus: Content
+ /* ====================================================================== */
+	var aria = isMobile ? { hidden: true, expanded: false } : {};
+	var $content = $assign('div', {
+		class: prefix$4 + '-content',
+		id: prefix$4 + '-content-' + variant,
+		aria: aria
+	});
+
+	$assign($target, $content);
+
+	/* Menus: Link
+ /* ====================================================================== */
+
+	var createNavLink = function createNavLink(link) {
+		var $link = void 0;
+		var target = setUrlTarget(link.props.href);
+		var rel = target === "_blank" ? 'noopener' : null;
+		if (link.props.href) {
+			$link = $assign('a', {
+				class: prefix$4 + '-' + link.class,
+				href: link.props.href,
+				target: target,
+				rel: rel
+			}, link.icon || "", link.label);
+		} else {
+			$link = $assign('button', { class: prefix$4 + '-' + link.class }, link.icon || "", link.label);
+		}
+
+		if (link.id) {
+			$link.setAttribute("id", prefix$4 + '-' + link.id);
+		}
+
+		if (link.props.data) {
+			for (var key in link.props.data) {
+				$link.setAttribute('data-' + key, link.props.data[key]);
+			}
+		}
+
+		if (link.props.newContext) {
+			$assign($link, {
+				target: '_blank',
+				rel: 'noopener'
+			});
+		}
+
+		return $link;
+	};
+
+	/* Menus: Column
+ /* ====================================================================== */
+
+	var createColumn = function createColumn(childitem) {
+		var headingClass = childitem.heading ? prefix$4 + '-subitem--heading' : "";
+
+		return $assign('li', { class: prefix$4 + '-subitem ' + headingClass }, childitem.heading ? $assign('p', { class: prefix$4 + '-heading--label' }, childitem.heading) : '', createNavLink({ class: "sublink", props: childitem, label: childitem.label }));
+	};
+
+	var createMenuColumns = function createMenuColumns(items) {
+		if (!items.length) return null;
+		return $assign.apply(undefined, ['div', { class: prefix$4 + '-sublist--col' }].concat(toConsumableArray(items.map(createColumn))));
+	};
+
+	/* Menus: Tile
+ /* ====================================================================== */
+
+	var createTile = function createTile(tile) {
+		var icon = $renderSvgOrImg({ imgDef: tile.icon, imgClass: prefix$4 + '-sublink-image', imgWidth: tile.width, imgHeight: tile.height });
+		return $assign('li', { class: prefix$4 + '-subitem--featured' }, createNavLink({
+			class: "sublink--featured",
+			props: tile,
+			icon: icon,
+			label: $assign('span', { class: prefix$4 + '-sublink-text' }, tile.label)
+		}));
+	};
+
+	var createMenuTiles = function createMenuTiles(tiles, uuid, suuid) {
+		if (!tiles.length) return null;
+		return $assign.apply(undefined, ['ul', {
+			class: prefix$4 + '-sublist--featured',
+			aria: { labelledby: prefix$4 + '-link-' + variant + '-' + uuid + '-' + suuid },
+			data: { filled: '' + tiles.slice(0, 4).length }
+		}].concat(toConsumableArray(tiles.slice(0, 4).map(createTile))));
+	};
+
+	/* Menus: On Update
+ /* ====================================================================== */
+	$target.addEventListener('header:update:menuLabel', function (_ref2) {
+		var detail = _ref2.detail;
+
+		if ($toggle) {
+			$toggle.setAttribute("aria-label", detail || "Menu");
+		}
+	});
+
+	$target.addEventListener('header:update:menus', function (_ref3) {
+		var detail = _ref3.detail;
+
+		if (detail) {
+			$target.classList.remove('hidden');
+		} else {
+			$target.classList.add('hidden');
+			return;
+		}
+		if (detail.noBrand) {
+			$target.classList.add("-no-brand");
+		}
+		$replaceAll.apply(undefined, [$content].concat(toConsumableArray(detail.map(function (menu, uuid) {
+			return $assign('div', {
+				class: prefix$4 + '-menu'
+			}, $assign.apply(undefined, ['ul', {
+				class: prefix$4 + '-list',
+				aria: { labelledby: 'esri-header-brand' }
+			}].concat(toConsumableArray(menu.map(function (item, suuid) {
+				/* Global Navigation: Menus: Link
+    /* ====================================================== */
+				var $linkIcon = item.icon ? $renderSvgOrImg({ imgDef: item.icon.path, imgClass: prefix$4 + '-link-icon', imgWidth: item.icon.width || '16px', imgHeight: item.icon.height || '16px' }) : null;
+
+				var $subcontrol = createNavLink({
+					class: 'link ' + (item.hideLabelInDesktop ? '-hide-label' : '') + ' ' + (item.active ? '-is-active' : ''),
+					id: 'link-' + variant + '-' + uuid + '-' + suuid,
+					props: item,
+					icon: $linkIcon,
+					label: $assign('span', { class: prefix$4 + '-link-label' }, item.label)
+				});
+
+				var $li = $assign('li', { class: prefix$4 + '-item' }, $subcontrol);
+
+				var hasMenuItems = item.menus && item.menus.length > 0;
+				var hasCols = item.cols && item.cols.length;
+
+				var hasFlyout = item.flyout && item.flyout.length > 0;
+				var hasFeaturedItems = item.tiles && item.tiles.length > 0;
+
+				if (hasMenuItems || hasCols || hasFeaturedItems || hasFlyout) {
+					/* Global Navigation: Submenu
+     /* ====================================== */
+					var $subtoggle = $assign('button', { class: prefix$4 + '-submenu-toggle' }, item.label);
+
+					var hasStructured = hasCols && item.cols.filter(function (col) {
+						return col.type === 'structured';
+					}).length > 0;
+					var hasMultiCols = false;
+					var columns = 0;
+
+					if (hasMenuItems) {
+						var total = item.menus.length;
+						if (total >= 10) {
+							hasMultiCols = total % 3 === 0;
+							columns = Math.min(Math.ceil(total / 9), 3);
+						}
+					}
+
+					var $subcontent = $assign('div', {
+						class: prefix$4 + '-submenu',
+						id: prefix$4 + '-' + variant + '-submenu-' + uuid + '-' + suuid,
+						'data-has-structured': hasFlyout ? 'false' : hasStructured,
+						'data-has-flyout': hasFlyout ? 'true' : 'false',
+						aria: { hidden: true, expanded: false },
+						data: {
+							filled: hasMenuItems && Math.min(item.menus.length, 30) || '',
+							structuredCols: hasCols || '',
+							hasMultiCols: hasMultiCols,
+							columns: columns
+						}
+					}, $subtoggle);
+
+					if (hasFlyout) {
+						renderFlyout({ $subcontent: $subcontent, item: item, uuid: uuid, suuid: suuid });
+					} else if (hasCols) {
+						renderMulti({ $subcontent: $subcontent, item: item, uuid: uuid, suuid: suuid });
+					} else if (hasMenuItems) {
+						renderSingle({ hasMenuItems: hasMenuItems, $subcontent: $subcontent, item: item, uuid: uuid, suuid: suuid });
+					}
+
+					if (!hasFlyout && hasFeaturedItems) {
+						$assign($subcontent,
+						/* Global Navigation: Menus: Sublink
+      /* ============================== */
+						createMenuTiles(item.tiles, uuid, suuid));
+					}
+
+					$assign($li, $subcontent);
+
+					$subcontrol.addEventListener('click', function (e) {
+						$dispatch($subcontrol, 'header:menu:toggle', {
+							control: $subcontrol,
+							content: $subcontent,
+							submenu: true,
+							state: 'menu',
+							type: 'menu-toggle'
+						});
+						resetFlyoutDimensions('init');
+						resetFlyoutState();
+					});
+
+					$subtoggle.addEventListener('click', function () {
+						$dispatch($subtoggle, 'header:menu:close', {
+							control: $subcontrol,
+							submenu: true,
+							content: $subcontent,
+							type: 'menu-close'
+						});
+						resetFlyoutMenu();
+					});
+				}
+
+				return $li;
+			})))));
+		}))));
+	});
+
+	function resetFlyoutDimensions(parent) {
+		var subMenus = [].slice.call(document.querySelectorAll('.esri-header-menus-submenu'));
+		var parentState = parent !== 'disabled' && parent !== 'init' && parent.getAttribute('data-parent');
+		var parentElement = document.querySelector('#' + parentState);
+
+		if (parent === 'init') {
+			var listItems = [].slice.call(document.querySelectorAll('.esri-header-menus-flyout'));
+
+			if (listItems.length) {
+				listItems.forEach(function (fly) {
+					var catItem = [].slice.call(fly.querySelectorAll('.esri-header-menus-flyout--categories-item'));
+					var catItemParent = document.querySelector('#' + catItem[0].getAttribute('data-parent'));
+
+					var listItems = [].slice.call(fly.querySelectorAll('.esri-header-menus-flyout--list-items'));
+					var listColType = listItems[0].getAttribute('data-coltype');
+
+					if (listColType === '1') {
+						catItemParent.setAttribute('data-single', '');
+					}
+				});
+			}
+		} else if (parent === 'disabled') {
+			subMenus.forEach(function (menu) {
+				menu.removeAttribute('data-single');
+			});
+		} else {
+			parentElement.setAttribute('data-single', '');
+		}
+	}
+
+	function resetFlyoutState() {
+		var flyoutCategories = [].slice.call(document.querySelectorAll('.esri-header-menus-flyout--categories-item'));
+		var flyoutList = [].slice.call(document.querySelectorAll('.esri-header-menus-flyout--list-items'));
+
+		if (flyoutList.length) {
+			flyoutList.forEach(function (list, index) {
+				flyoutCategories[index].setAttribute('aria-current', 'false');
+				list.setAttribute('aria-current', 'false');
+				if (list.hasAttribute('data-id') && list.getAttribute('data-id') === '0' && flyoutCategories[index].hasAttribute('data-id') && flyoutCategories[index].getAttribute('data-id') === '0') {
+					flyoutCategories[index].setAttribute('aria-current', 'true');
+					list.setAttribute('aria-current', 'true');
+				}
+			});
+		}
+	}
+
+	function resetFlyoutMenu() {
+		var flyoutMenuHeaders = [].slice.call(document.querySelectorAll('.esri-header-menus-flyout--categories-item_header'));
+		var flyoutMenuDetails = [].slice.call(document.querySelectorAll('.esri-header-menus-flyout--categories-details'));
+
+		flyoutMenuHeaders.forEach(function (header) {
+			header.setAttribute("aria-current", "false");
+		});
+
+		flyoutMenuDetails.forEach(function (detail) {
+			detail.setAttribute("aria-expanded", "false");
+			detail.style.height = '0';
+		});
+	}
+
+	function renderSingle(_ref4) {
+		var hasMenuItems = _ref4.hasMenuItems,
+		    $subcontent = _ref4.$subcontent,
+		    item = _ref4.item,
+		    uuid = _ref4.uuid,
+		    suuid = _ref4.suuid;
+
+		var columns = '';
+
+		if (item.menus.length >= 10 && item.menus.length <= 18) {
+			var multi = Math.ceil(item.menus.length / 2);
+			columns = $assign('div', { class: prefix$4 + '-sublist--col-wrapper ' + prefix$4 + '-columns-2' }, createMenuColumns(item.menus.slice(0, multi)), createMenuColumns(item.menus.slice(multi, item.menus.length)));
+		} else if (item.menus.length > 18 && item.menus.length <= 27) {
+			var _multi = Math.ceil(item.menus.length / 3);
+			columns = $assign('div', { class: prefix$4 + '-sublist--col-wrapper ' + prefix$4 + '-columns-3' }, createMenuColumns(item.menus.slice(0, _multi)), createMenuColumns(item.menus.slice(_multi, _multi * 2)), createMenuColumns(item.menus.slice(_multi * 2, item.menus.length)));
+		} else {
+			if (hasMenuItems) {
+				columns = $assign('div', { class: prefix$4 + '-sublist--col-wrapper' }, createMenuColumns(item.menus.slice(0, item.menus.length)));
+			}
+		}
+
+		$assign($subcontent, $assign('ul', {
+			class: prefix$4 + '-sublist',
+			aria: { labelledby: prefix$4 + '-link-' + variant + '-' + uuid + '-' + suuid }
+		},
+		/* Global Navigation: Menus: Sublink
+  /* ============================== */
+		$assign(columns)));
+	}
+
+	function renderMulti(_ref5) {
+		var $subcontent = _ref5.$subcontent,
+		    item = _ref5.item,
+		    uuid = _ref5.uuid,
+		    suuid = _ref5.suuid;
+
+		var $cols = $assign('div', { class: prefix$4 + '-sublist--col-wrapper' });
+
+		if (item.cols) {
+			item.cols.forEach(function (col) {
+				var menuType = 'standard';
+				var menuRenderer = renderer;
+				var menuBorder = col.border || 'false';
+
+				switch (col.type) {
+					case 'structured':
+						menuType = 'structured';
+						menuRenderer = renderStructuredMenu;
+						break;
+				}
+
+				$assign($cols, $assign('div', { class: prefix$4 + '-sublist--col', 'data-coltype': menuType, 'data-menuborder': menuBorder }, $assign.apply(undefined, ['ul', {
+					class: prefix$4 + '-sublist', 'data-menutype': menuType,
+					aria: { labelledby: prefix$4 + '-link-' + variant + '-' + uuid + '-' + suuid }
+				}].concat(toConsumableArray(menuRenderer(col.items))))));
+			});
+
+			$assign($subcontent, $assign('div', { class: prefix$4 + '-sublist' }, $cols));
+		}
+	}
+
+	function swapFlyoutContent(category) {
+		var categoryList = category.target.parentNode.querySelector('.esri-header-menus-flyout--categories-details[aria-expanded]');
+		var categoryHeader = category.target.parentNode.querySelector('.esri-header-menus-flyout--categories-item_header');
+		var active = categoryList.getAttribute('aria-expanded') === 'false' ? 'true' : 'false';
+		var categoryDetailsItems = [].slice.call(category.target.parentNode.querySelectorAll('.esri-header-menus-flyout--categories-details_item'));
+		var catsComputedStyle = window.getComputedStyle(categoryDetailsItems[0]);
+		var computedHeight = parseInt(catsComputedStyle.height) * categoryDetailsItems.length;
+		var computedMargin = parseInt(catsComputedStyle.marginTop) * categoryDetailsItems.length + parseInt(catsComputedStyle.marginTop);
+		var headers = [].slice.call(document.querySelectorAll('.esri-header-menus-flyout--categories-item_header'));
+		var items = [].slice.call(document.querySelectorAll('.esri-header-menus-flyout--categories-item'));
+		var itemsList = [].slice.call(document.querySelectorAll('.esri-header-menus-flyout--list-items'));
+		var isMobile = window.innerWidth < 1024;
+
+		if (isMobile) {
+			var categoryListArr = [].slice.call(document.querySelectorAll('.esri-header-menus-flyout--categories-details[aria-expanded]'));
+			categoryListArr.forEach(function (list) {
+				list.setAttribute('aria-expanded', 'false');
+				list.style.height = '0';
+			});
+
+			categoryList.setAttribute('aria-expanded', '' + active);
+			if (active === 'true') {
+				categoryList.style.height = computedHeight + computedMargin + 'px';
+				headers.forEach(function (head) {
+					head.setAttribute('aria-current', 'false');
+				});
+				categoryHeader.setAttribute('aria-current', 'true');
+			} else {
+				categoryList.style.height = '0';
+				categoryHeader.setAttribute('aria-current', 'false');
+			}
+		} else {
+			items.forEach(function (item, index) {
+				item.addEventListener('click', function (e) {
+					var parentNode = e.target.parentNode;
+					var selectedCategory = parentNode.getAttribute('data-id');
+					var selectedList = itemsList[index].getAttribute('data-id');
+					var selectedListCols = itemsList[index].getAttribute('data-coltype');
+
+					itemsList.forEach(function (list, index) {
+						list.setAttribute('aria-current', 'false');
+						items[index].setAttribute('aria-current', 'false');
+					});
+
+					if (selectedCategory === selectedList) {
+						selectedListCols === '1' ? resetFlyoutDimensions(parentNode) : resetFlyoutDimensions('disabled');
+						parentNode.setAttribute('aria-current', 'true');
+						itemsList[index].setAttribute('aria-current', 'true');
+						itemsList[index].focus();
+					}
+				});
+			});
+		}
+	}
+
+	function renderFlyoutMenu(items, type, id, uuid, suuid) {
+		var $items = [];
+		var listArr = [];
+		var category = "";
+
+		switch (type) {
+			case 'category':
+				if (items.cols.length) {
+					items.cols.forEach(function (column) {
+						category = $assign('li', {
+							class: prefix$4 + '-flyout--categories-item',
+							'data-id': id,
+							'aria-current': id === 0 ? 'true' : 'false',
+							'data-parent': prefix$4 + '-' + variant + '-submenu-' + uuid + '-' + suuid,
+							tabindex: -1
+						}, $assign('button', {
+							class: prefix$4 + '-flyout--categories-item_header',
+							tabindex: 0,
+							click: function click(e) {
+								swapFlyoutContent(e);
+							}
+						}, items.category));
+						column.col.forEach(function (col) {
+							var target = setUrlTarget(col.href);
+							var rel = target === '_blank' ? 'noopener' : null;
+							listArr.push($assign('a', {
+								href: col.href,
+								class: prefix$4 + '-flyout--categories-details_item',
+								'data-heading': col.heading ? 'true' : 'false',
+								tabindex: -1,
+								target: target,
+								rel: rel
+							}, col.heading && $assign('p', { class: prefix$4 + '-flyout--categories-details_heading' }, col.heading), col.label && $assign('p', { class: prefix$4 + '-flyout--categories-details_label' }, col.label)));
+						});
+					});
+				}
+
+				$items.push($assign(category, $assign.apply(undefined, ['div', {
+					class: prefix$4 + '-flyout--categories-details',
+					'aria-expanded': 'false',
+					tabindex: -1
+				}].concat(listArr))));
+				break;
+
+			case 'label':
+				if (items.cols && items.cols.length) {
+					items.cols.forEach(function (column) {
+						var $column = $assign('ul', { class: prefix$4 + '-flyout--list-items_column' });
+						column.col.forEach(function (col) {
+							var target = setUrlTarget(col.href);
+							var rel = target === '_blank' ? 'noopener' : null;
+							$items.push($assign($column, $assign('li', { class: prefix$4 + '-flyout--list-items_name' }, $assign('a', {
+								href: col.href,
+								class: prefix$4 + '-flyout--list-items_anchor',
+								'data-heading': col.heading ? 'true' : 'false',
+								target: target,
+								rel: rel
+							}, col.heading && $assign('p', { class: prefix$4 + '-flyout--list-items_heading' }, col.heading), col.label && $assign('p', { class: prefix$4 + '-flyout--list-items_label' }, col.label)))));
+						});
+					});
+				}
+				break;
+		}
+
+		return $items;
+	}
+
+	function renderFlyout(_ref6) {
+		var $subcontent = _ref6.$subcontent,
+		    item = _ref6.item,
+		    uuid = _ref6.uuid,
+		    suuid = _ref6.suuid;
+
+		var $flyoutCategories = $assign('ul', { class: prefix$4 + '-flyout--categories' });
+		var $flyoutList = $assign('div', { class: prefix$4 + '-flyout--list' });
+
+		item.flyout.forEach(function (item, id) {
+			$assign.apply(undefined, [$flyoutCategories].concat(toConsumableArray(renderFlyoutMenu(item, 'category', id, uuid, suuid))));
+
+			$assign($flyoutList, $assign.apply(undefined, ['div', {
+				class: prefix$4 + '-flyout--list-items',
+				'data-id': id, 'data-coltype': item.cols.length,
+				'aria-current': id === 0 ? 'true' : 'false',
+				tabindex: 0
+			}].concat(toConsumableArray(renderFlyoutMenu(item, 'label', id, uuid, suuid)))));
+		});
+
+		$assign($subcontent, $assign('div', { class: prefix$4 + '-flyout' }, $assign('div', { class: prefix$4 + '-flyout--categories-wrapper' }, $flyoutCategories), $flyoutList));
+	}
+
+	function renderer(entries) {
+		var $items = [];
+
+		entries.map(function (entry) {
+			if (entry.heading) {
+				$items.push($assign('li', { class: prefix$4 + '-entry--heading' }, $assign('p', { class: prefix$4 + '-entry--heading-label' }, entry.heading)));
+			}
+
+			if (entry.href && entry.label) {
+				var target = setUrlTarget(entry.href);
+				var rel = target === '_blank' ? 'noopener' : null;
+
+				$items.push($assign('li', { class: prefix$4 + '-entry--menus-subitem' }, $assign('a', {
+					href: entry.href,
+					class: prefix$4 + '-entry-sublink',
+					target: target,
+					rel: rel
+				}, entry.label)));
+			}
+		});
+
+		return $items;
+	}
+
+	function setUrlTarget(href) {
+		if (href) {
+			var regX = /^\//;
+			var isRelative = href.search(regX) === 0;
+			var isExternal = href.indexOf(window.location.hostname) < 0;
+			var target = "";
+			if (isRelative || !isExternal) {
+				target = "_top";
+			} else if (isRelative || isExternal) {
+				target = "_blank";
+			}
+			return target;
+		}
+	}
+
+	function renderStructuredMenu(entries) {
+		var $items = [];
+
+		entries.forEach(function (entry) {
+			if (entry.heading) {
+				$items.push($assign('li', { class: prefix$4 + '-entry--heading' }, $assign('p', { class: prefix$4 + '-entry--heading-label' }, entry.heading)));
+			}
+
+			if (entry.href && entry.label) {
+				var target = setUrlTarget(entry.href);
+				var rel = target === '_blank' ? 'noopener' : null;
+				$items.push($assign('li', { class: prefix$4 + '-entry--menus-subitem' }, $assign('a', {
+					href: entry.href,
+					class: prefix$4 + '-entry-sublink',
+					target: target,
+					rel: rel
+				}, $assign('p', { class: prefix$4 + '-entry-sublink--title' }, entry.label), entry.description ? $assign('p', { class: prefix$4 + '-sublink--description' }, entry.description) : null)));
+			}
+		});
+
+		return $items;
+	}
+
+	$target.addEventListener('header:update:collapseMenus', function (_ref7) {
+		var detail = _ref7.detail;
+
+		if (detail && detail.indexOf(true) > -1) {
+			var $brand = document.getElementById('esri-header-brand') || document.getElementById('esri-header-inline-title');
+			document.querySelector('.esri-header-menus-toggle').classList.add('-visible');
+			$brand.classList.add('-fit-burger');
+			document.getElementById('esri-header-menus-mobile').classList.add('-always-hamburger');
+
+			var menus = [].slice.call($target.querySelectorAll('.esri-header-menus-menu'));
+			detail.forEach(function (collapse, i) {
+				if (collapse) {
+					menus[i].classList.add('-collapsed');
+				}
+			});
+		}
+	});
+
+	return $target;
+});
+
+/* Search
+/* ========================================================================== */
+
+var esriSearch = (function (data) {
+	/* Elements
+ /* ====================================================================== */
+
+	var $label = $assign('label', {
+		class: data.prefix + '-label',
+		for: data.prefix + '-query-control'
+	}, data.queryLabel);
+
+	var $control = $assign('input', {
+		class: data.prefix + '-control', id: data.prefix + '-query-control',
+		type: 'search', name: 'q',
+		autocapitalize: 'off', autocomplete: 'off', autocorrect: 'off', spellcheck: 'false'
+	});
+
+	var $measureTextNode = document.createTextNode('');
+
+	var $measureText = $assign('div', {
+		class: data.prefix + '-measure-text',
+		aria: { hidden: true }
+	}, $measureTextNode);
+
+	var $measure = $assign('div', { class: data.prefix + '-measure' }, $measureText);
+
+	var $submit = $assign('button', {
+		class: data.prefix + '-submit', type: 'submit',
+		aria: { label: data.submitLabel }
+	});
+
+	var $search = $assign('form', {
+		class: data.prefix + '-form', action: data.action,
+		role: 'search', aria: { label: data.label }
+	}, $label, $control, $measure, $submit);
+
+	/* Focus Event
+ /* ====================================================================== */
+
+	$search.addEventListener(data.prefix + ':focus', function () {
+		$control.focus();
+	});
+
+	/* On Input
+ /* ====================================================================== */
+
+	var controlIsFilled = false;
+	var controlValue = '';
+
+	function oninput(event) {
+		/* Conditionally Reset Control Value
+  /* ================================================================== */
+
+		if (event && 'reset' === event.type) {
+			$control.value = '';
+		}
+
+		/* Update New Control Value
+  /* ================================================================== */
+
+		var newControlValue = $control.value;
+
+		if (newControlValue !== controlValue) {
+			controlValue = newControlValue;
+
+			$dispatch($search, data.prefix + ':input', {
+				value: controlValue,
+				event: event
+			});
+		}
+
+		/* Update Label and Submit UI
+  /* ================================================================== */
+
+		if (controlIsFilled && !newControlValue) {
+			controlIsFilled = false;
+
+			$label.removeAttribute('data-filled');
+			$submit.removeAttribute('data-filled');
+		} else if (!controlIsFilled && newControlValue) {
+			controlIsFilled = true;
+
+			$assign($label, { data: { filled: '' } });
+			$assign($submit, { data: { filled: '' } });
+		}
+
+		/* Update Measure UI
+  /* ================================================================== */
+
+		$measureTextNode.nodeValue = newControlValue;
+
+		var currentWidth = $measureText.scrollWidth + 'px';
+
+		$measure.style.width = currentWidth;
+	}
+
+	/* On Submit
+ /* ====================================================================== */
+
+	function onsubmit(event) {
+		$dispatch($search, data.prefix + ':submit', {
+			value: $control.value,
+			event: event
+		});
+	}
+
+	/* On Element Ready
+ /* ====================================================================== */
+
+	onElementInserted($search, function () {
+		// If Search now has a parent node
+		if ($search.parentNode) {
+			// Update Search
+			$dispatch($search, data.prefix + ':update', data);
+		}
+	});
+
+	/* On Update
+ /* ====================================================================== */
+
+	$search.addEventListener(data.prefix + ':update', function () {
+		/* Bind Media Event
+  /* ====================================================================== */
+
+		var media = $search.ownerDocument.defaultView.matchMedia(data.matchMedia || '(max-width: 720px)');
+
+		media.addListener(oninput);
+
+		/* Bind Other Events
+  /* ================================================================== */
+
+		$control.addEventListener('input', oninput);
+
+		$search.addEventListener('reset', oninput);
+		$search.addEventListener('submit', onsubmit);
+		$search.addEventListener(data.prefix + ':unload', onunload);
+	});
+
+	return $search;
+});
+
+var prefix$5 = 'esri-header-search';
+
+var createSearch = (function () {
+	/* Search: Control
+ /* ====================================================================== */
+
+	var $control = $assign('button', {
+		class: prefix$5 + '-control', id: prefix$5 + '-control',
+		aria: { expanded: false, controls: prefix$5 + '-content' }
+	});
+
+	$control.addEventListener('click', function (event) {
+		$dispatch($control, 'header:click:search', { event: event });
+
+		$dispatch($control, 'header:menu:toggle', {
+			control: $control,
+			content: $content,
+			state: 'search',
+			target: $target,
+			type: 'search-toggle',
+			event: event
+		});
+	});
+
+	/* Search: Content
+ /* ====================================================================== */
+
+	var $content = $assign('div', {
+		class: prefix$5 + '-content', id: prefix$5 + '-content',
+		aria: { expanded: false, labelledby: prefix$5 + '-control' }
+	});
+
+	/* Search: Target
+ /* ====================================================================== */
+
+	var $target = $assign('div', { class: prefix$5 });
+
+	/* Search: On Update
+ /* ====================================================================== */
+
+	$target.addEventListener('header:update:search', function (_ref) {
+		var detail = _ref.detail;
+
+		if (!detail || detail.inline) {
+			$target.innerHTML = "";
+			return $target.classList.add("hidden");
+		} else {
+			$assign($target, $control, $content);
+			$target.classList.remove("hidden");
+		}
+		if (!detail.hide) {
+			$assign($control, { aria: { label: detail.label } });
+			$renderSvgOrImg({ imgDef: $search.md, imgClass: prefix$5 + '-image', id: prefix$5 + '-image', $targetElm: $control });
+
+			if (detail.dialog) {
+				detail.dialog.prefix = 'esri-header-search-dialog';
+
+				var $dialog = esriSearch(detail.dialog);
+
+				var $dialogCancelButton = $assign('button', {
+					class: 'esri-header-search-dialog-cancel',
+					type: 'reset'
+				}, $assign('span', detail.dialog.cancelLabel));
+
+				$dialogCancelButton.addEventListener('click', function (event) {
+					$dispatch($control, 'header:menu:close', {
+						control: $control,
+						content: $content,
+						state: 'search',
+						type: 'search-close',
+						event: event
+					});
+				});
+
+				$assign($dialog, $dialogCancelButton);
+
+				$replaceAll($content, $dialog);
+
+				$control.addEventListener('click', function (event) {
+					if ('true' === $control.getAttribute('aria-expanded')) {
+						$dispatch($dialog, detail.dialog.prefix + ':focus', { event: event });
+					}
+				});
+			}
+		} else {
+			$control.setAttribute("tabindex", "-1");
+		}
+	});
+
+	return $target;
+});
+
+var prefix$6 = 'esri-header-inlineSearch';
+var searchState = {};
+
+var createInlineSearch = (function () {
+	/* Search: Control
+ /* ====================================================================== */
+
+	var $control = $assign('button', {
+		class: prefix$6 + '-control', id: prefix$6 + '-control',
+		aria: { expanded: false, controls: prefix$6 + '-content' }
+	});
+
+	$control.addEventListener('header:menu:open', function (event) {
+		$dispatch($control, 'header:inlineSearch:activated', { event: event });
+	});
+
+	$control.addEventListener('click', function (event) {
+		$dispatch($control, 'header:click:inlineSearch', { event: event });
+		$dispatch($control, 'header:menu:toggle', {
+			state: 'menu',
+			target: $target,
+			type: 'inlineSearch',
+			control: $control,
+			content: $content,
+			event: event
+		});
+		// this must go inside an actual click handler for iOS Safari to bring up the keyboard
+		$input && $input.focus();
+	});
+
+	/* Search: Close Button
+ /* ====================================================================== */
+
+	var $closeBtn = $assign('button', {
+		class: prefix$6 + '-close-button', id: prefix$6 + '-close-button',
+		aria: { labelledby: prefix$6 + '-close-button' }
+	}, $renderSvgOrImg({ imgDef: $close.md, imgClass: prefix$6 + '-dismiss-icon' }));
+
+	function handleClose(event) {
+		$dispatch($control, 'header:inlineSearch:deactivated', { event: event });
+
+		setTimeout(function () {
+			event && $control.focus();
+		}, 0);
+
+		$dispatch($control, 'header:menu:toggle', {
+			state: 'menu',
+			target: $target,
+			type: 'inlineSearch',
+			control: $control,
+			content: $content,
+			event: event
+		});
+	}
+
+	$closeBtn.addEventListener('click', handleClose);
+
+	/* Search: Input
+ /* ====================================================================== */
+
+	var $input = $assign('input', {
+		class: prefix$6 + '-input', id: prefix$6 + '-input'
+	});
+
+	$input.addEventListener("keyup", function (e) {
+		searchState.value = e.target.value;
+		if (!searchState.value || searchState.value === " ") {
+			searchState.isDisabled = false;
+			return $suggestions.innerHTML = "";
+		} else if (e.keyCode === 13 && searchState.value && !searchState.isDisabled) {
+			if (searchState.preventNavigation) {
+				handleClose(e);
+				$target.classList.add('hidden');
+			} else {
+				var param = searchTypeParam && selectedSearchType ? '&' + searchTypeParam + '=' + selectedSearchType : "";
+				return window.location.href = searchState.action + '?q=' + encodeURIComponent(searchState.value) + param;
+			}
+		}
+
+		$dispatch($control, 'header:search:typing', {
+			search: searchState.value
+		});
+	});
+
+	/* Search: Suggestions
+ /* ====================================================================== */
+
+	var $suggestions = $assign('div', {
+		class: prefix$6 + '-suggestions', id: prefix$6 + '-suggestions',
+		aria: { expanded: false, labelledby: prefix$6 + '-suggestions' }
+	});
+
+	var boldKeywords = function boldKeywords(input, keywords) {
+		try {
+			return input.replace(new RegExp('(\\b)(' + keywords.join('|').replace(/\+|\*|\(|\)\[/g, '') + ')(\\b)', 'ig'), '$1<strong>$2</strong>$3');
+		} catch (e) {
+			return input;
+		}
+	};
+
+	/* Search: Content
+ /* ====================================================================== */
+
+	var $lineBreak = $assign('div', { class: 'esri-header-lineBreak ' + prefix$6 + '-lineBreak' });
+	var $lineBreakRight = $assign('div', { class: 'esri-header-lineBreak ' + prefix$6 + '-lineBreak lineBreak-right' });
+	var searchTypeParam = void 0;
+	var selectedSearchType = "";
+	var searchTypeOptions = [];
+	var $searchTypeToggleSpan = $assign('span', {});
+	var $searchTypeToggleIcon = $assign('calcite-icon', { icon: "chevron-down", scale: "s", class: "esri-header-search-type-toggle-icon" });
+	var $searchTypeToggle = $assign('calcite-chip', { "icon": "text", class: 'esri-header-search-type-toggle', id: "search-type-toggle", hidden: true }, $searchTypeToggleSpan, $searchTypeToggleIcon);
+	var $searchTypePopoverContents = $assign('div', { class: "esri-header-search-type-popover-contents" });
+	var $searchTypePopover = $assign('calcite-popover', { "pointer-disabled": true, "reference-element": "search-type-toggle", placement: "bottom-start" }, $searchTypePopoverContents);
+
+	var $content = $assign('div', {
+		class: prefix$6 + '-content', id: prefix$6 + '-content',
+		aria: { expanded: false, labelledby: prefix$6 + '-control' }
+	}, $lineBreak, $searchTypeToggle, $input, $closeBtn, $suggestions, $lineBreakRight);
+
+	/* Search: Target
+ /* ====================================================================== */
+
+	var $target = $assign('div', {
+		class: prefix$6,
+		aria: { expanded: false }
+	}, $control, $content, $searchTypePopover);
+
+	/* Search: On Activation
+ /* ====================================================================== */
+
+	$target.addEventListener('header:inlineSearch:activated', function (_ref) {
+		$target.setAttribute('aria-expanded', "true");
+	});
+
+	/* Search: On Deactivation
+ /* ====================================================================== */
+	window.addEventListener('focusin', function (e) {
+		if (!e.target.closest(".esri-header-inlineSearch") && $target.getAttribute("aria-expanded") === "true") {
+			handleClose();
+		}
+	});
+
+	$target.addEventListener('header:inlineSearch:deactivated', function (_ref2) {
+		$target.setAttribute('aria-expanded', "false");
+		$suggestions.innerHTML = '';
+		$input.value = '';
+		if ($searchTypePopover) {
+			$searchTypePopover.open = false;
+		}
+	});
+
+	$target.addEventListener('calciteListItemSelect', function (event) {
+		selectedSearchType = event.target.value;
+		var option = searchTypeOptions.find(function (option) {
+			return option.id === selectedSearchType;
+		});
+		$searchTypeToggle.setAttribute("icon", option.icon);
+		$searchTypeToggleSpan.textContent = option.title;
+		$searchTypePopover.open = false;
+		$dispatch($control, 'header:searchType:update', {
+			id: event.target.value
+		});
+	});
+
+	/* Search: On Populate Suggestions
+ /* ====================================================================== */
+
+	$target.addEventListener('header:search:populateSuggestions', function (_ref3) {
+		var detail = _ref3.detail;
+
+		$suggestions.innerHTML = '';
+		searchState.isDisabled = detail.disabled;
+
+		if (Array.isArray(detail)) {
+			createSuggestionsList(detail, searchState.value.split(" "));
+		} else if (!detail.suggestions || !detail.suggestions.length) {
+			// No Results State
+			return;
+		} else {
+			createSuggestionsSections(detail, searchState.value.split(" "));
+		}
+	});
+
+	var createSuggestionsList = function createSuggestionsList(detail, searchValueArray) {
+		var $ul = $assign('ul', { class: prefix$6 + '-simple-suggestion-list' });
+		detail.forEach(function (l) {
+			var $icon = l.icon ? $assign('img', { src: l.icon, class: prefix$6 + '-suggestion-icon', alt: "" }) : "";
+			var $span = $assign('span');
+			$span.innerHTML = boldKeywords(l.text, searchValueArray);
+
+			var $li = $assign('li', {
+				class: prefix$6 + '-suggestion'
+			}, l.href ? $assign('a', { href: l.href }, $icon, $span) : $assign('span', { class: "inactive" }, $icon, $span));
+
+			$ul.appendChild($li);
+
+			var $section = $assign('div', {
+				class: prefix$6 + '-simple-suggestion-section'
+			}, $ul);
+
+			$suggestions.appendChild($section);
+		});
+	};
+
+	var createSuggestionsSections = function createSuggestionsSections(detail, searchValueArray) {
+		var minIconWidth = (detail.minIconWidth || "0") + 'px';
+		detail.suggestions.forEach(function (s, ind) {
+			var $header = s.header ? $assign('p', { class: prefix$6 + '-suggestion-header' }, s.header) : $assign('p');
+			var $hr = (s.header || ind > 0) && !s.hideHR ? $assign('hr') : $assign('span');
+			var $ul = $assign('ul', { class: prefix$6 + '-suggestion-list' });
+			var $footer = !s.footer ? $assign('span') : $assign('a', {
+				href: s.footer.href,
+				class: prefix$6 + '-suggestion-footer'
+			}, s.footer.text);
+
+			s.links.forEach(function (l) {
+				var $span = $assign('span', { class: prefix$6 + '-suggestion-text' });
+				$span.innerHTML = boldKeywords(l.text, searchValueArray);
+				$span.appendChild(l.secondary ? $assign('div', { class: prefix$6 + '-suggestion-secondary-text' }, l.secondary) : $assign('span'));
+				var $icon = !l.icon ? $assign('span', { class: prefix$6 + '-suggestion-icon-wrapper', style: 'min-width: ' + minIconWidth + ';' }) : $renderSvgOrImg({
+					inlineImg: true,
+					alt: "",
+					imgDef: l.icon === 'searchIcon' ? $search.sm : l.icon,
+					imgWidth: l.iconSize || "22",
+					imgHeight: l.icon === 'searchIcon' ? "15px" : l.iconSize,
+					imgClass: prefix$6 + '-suggestion-icon',
+					wrapperClass: prefix$6 + '-suggestion-icon-wrapper'
+				});
+				$icon.style.minWidth = minIconWidth;
+
+				if (l.htmlIcon) $icon.innerHTML = l.htmlIcon;
+
+				var $li = $assign('li', {
+					class: prefix$6 + '-suggestion'
+				}, l.href ? $assign('a', { href: l.href }, $icon, $span) : $assign('span', { class: "inactive" }, $icon, $span));
+
+				$ul.appendChild($li);
+			});
+
+			var $section = $assign('div', {
+				class: prefix$6 + '-suggestion-section'
+			}, $header, $hr, $ul, $footer);
+
+			$suggestions.appendChild($section);
+		});
+
+		$suggestions.appendChild($assign('div', { class: prefix$6 + '-suggestions-bottom-padding' }));
+	};
+
+	var createSearchTypes = function createSearchTypes(detail) {
+		$searchTypeToggle.hidden = false;
+		var $searchTypeList = $assign('calcite-list', {});
+		$searchTypePopoverContents.appendChild($searchTypeList);
+		selectedSearchType = detail.searchType.selected;
+		searchTypeParam = detail.seartchType.param;
+		searchTypeOptions = detail.searchType.options;
+		detail.searchType.options.forEach(function (option) {
+			var $option = $assign('calcite-list-item', { "icon-start": option.icon, value: option.id, label: option.title, description: option.description });
+			$searchTypeList.appendChild($option);
+			if (option.id === detail.searchType.selected) {
+				$searchTypeToggle.setAttribute("icon", option.icon);
+				$searchTypeToggleSpan.textContent = option.title;
+			}
+		});
+	};
+
+	/* Search: On Update
+ /* ====================================================================== */
+
+	$target.addEventListener('header:update:inlineSearch', function (_ref4) {
+		var detail = _ref4.detail;
+
+		if (detail && detail.inline) {
+			$target.classList.remove('hidden');
+		} else {
+			$target.classList.add('hidden');
+			return;
+		}
+		if (detail && detail.searchType) {
+			createSearchTypes(detail);
+		}
+		if (!detail.hide) {
+			$assign($control, { aria: { label: detail.label } });
+			$renderSvgOrImg({ imgDef: $search.md, imgClass: prefix$6 + '-image', id: prefix$6 + '-image', alt: "", $targetElm: $control });
+
+			searchState.image = $search.md;
+			searchState.action = detail.dialog && detail.dialog.action;
+			searchState.preventNavigation = detail.preventNavigation;
+			var queryLabel = detail.dialog && detail.dialog.queryLabel || "Search";
+			$input.setAttribute('placeholder', queryLabel);
+			$input.setAttribute('aria-label', queryLabel);
+			$closeBtn.setAttribute('aria-label', detail.dialog && detail.dialog.cancelLabel || "");
+
+			if (detail.dialog) {
+				detail.dialog.prefix = 'esri-header-search-dialog';
+			}
+		} else {
+			$control.setAttribute("tabindex", "-1");
+		}
+	});
+
+	return $target;
+});
+
+var prefix$7 = 'esri-header-shopping-cart';
+
+var createShoppingCart = (function () {
+	var $target = $assign('div', { class: prefix$7, 'data-cart-empty': 'true' });
+
+	$target.addEventListener('click', function (event) {
+		$dispatch($target, 'header:click:shoppingCart', { event: event });
+	});
+
+	var $control = $assign('a', {
+		href: '#',
+		class: prefix$7 + '--icon',
+		id: prefix$7 + '--icon'
+	}, $renderSvgOrImg({
+		imgDef: $cart.md,
+		imgClass: prefix$7 + '--image',
+		id: prefix$7 + '--image'
+	}));
+
+	var $cartItems = $assign('div', { class: prefix$7 + '--items', id: prefix$7 + '--items' });
+
+	$target.addEventListener('header:update:cart', function (_ref) {
+		var detail = _ref.detail;
+
+		if (detail) {
+			$control.setAttribute('href', '' + detail.url);
+			changeCartCount(detail.items);
+			$assign($target, $control, $cartItems);
+			$target.classList.remove("hidden");
+		} else {
+			$target.innerHTML = "";
+			$target.classList.add("hidden");
+			return;
+		}
+	});
+
+	$target.addEventListener('header:shoppingcart:add', function (_ref2) {
+		var detail = _ref2.detail;
+
+		changeCartCount(detail, true);
+	});
+
+	$target.addEventListener('header:shoppingcart:remove', function (_ref3) {
+		var detail = _ref3.detail;
+
+		changeCartCount(-detail, true);
+	});
+
+	var changeCartCount = function changeCartCount(inc, animate) {
+		var currCount = parseInt($cartItems.innerHTML);
+		currCount = isNaN(currCount) || currCount < 0 ? 0 : currCount;
+		var cartCount = currCount + parseInt(inc);
+		cartCount >= 999 ? $cartItems.innerHTML = '999' : $cartItems.innerHTML = cartCount;
+
+		if (cartCount > 0) {
+			$target.setAttribute('data-cart-empty', 'false');
+			if (animate) {
+				$cartItems.setAttribute('data-cart-updated', 'true');
+				setTimeout(function () {
+					$cartItems.setAttribute('data-cart-updated', 'false');
+				}, 1000);
+			}
+		} else {
+			$cartItems.setAttribute('data-cart-updated', 'true');
+			setTimeout(function () {
+				$target.setAttribute('data-cart-empty', 'true');
+			}, 1000);
+		}
+	};
+
+	return $target;
+});
+
+function createCommonjsModule(fn, module) {
+	return module = { exports: {} }, fn(module, module.exports), module.exports;
+}
+
+var Sortable = createCommonjsModule(function (module) {
+	/**!
+  * Sortable
+  * @author	RubaXa   <trash@rubaxa.org>
+  * @license MIT
+  */
+
+	(function sortableModule(factory) {
+		"use strict";
+
+		if (typeof undefined === "function" && undefined.amd) {
+			undefined(factory);
+		} else {
+			module.exports = factory();
+		}
+	})(function sortableFactory() {
+		"use strict";
+
+		if (typeof window === "undefined" || !window.document) {
+			return function sortableError() {
+				throw new Error("Sortable.js requires a window with a document");
+			};
+		}
+
+		var dragEl,
+		    parentEl,
+		    ghostEl,
+		    cloneEl,
+		    rootEl,
+		    nextEl,
+		    lastDownEl,
+		    scrollEl,
+		    scrollParentEl,
+		    scrollCustomFn,
+		    lastEl,
+		    lastCSS,
+		    lastParentCSS,
+		    oldIndex,
+		    newIndex,
+		    activeGroup,
+		    putSortable,
+		    autoScroll = {},
+		    tapEvt,
+		    touchEvt,
+		    moved,
+
+
+		/** @const */
+		R_SPACE = /\s+/g,
+		    R_FLOAT = /left|right|inline/,
+		    expando = 'Sortable' + new Date().getTime(),
+		    win = window,
+		    document = win.document,
+		    parseInt = win.parseInt,
+		    setTimeout = win.setTimeout,
+		    $ = win.jQuery || win.Zepto,
+		    Polymer = win.Polymer,
+		    captureMode = false,
+		    passiveMode = false,
+		    supportDraggable = 'draggable' in document.createElement('div'),
+		    supportCssPointerEvents = function (el) {
+			// false when IE11
+			if (!!navigator.userAgent.match(/(?:Trident.*rv[ :]?11\.|msie)/i)) {
+				return false;
+			}
+			el = document.createElement('x');
+			el.style.cssText = 'pointer-events:auto';
+			return el.style.pointerEvents === 'auto';
+		}(),
+		    _silent = false,
+		    abs = Math.abs,
+		    min = Math.min,
+		    savedInputChecked = [],
+		    touchDragOverListeners = [],
+		    _autoScroll = _throttle(function ( /**Event*/evt, /**Object*/options, /**HTMLElement*/rootEl) {
+			// Bug: https://bugzilla.mozilla.org/show_bug.cgi?id=505521
+			if (rootEl && options.scroll) {
+				var _this = rootEl[expando],
+				    el,
+				    rect,
+				    sens = options.scrollSensitivity,
+				    speed = options.scrollSpeed,
+				    x = evt.clientX,
+				    y = evt.clientY,
+				    winWidth = window.innerWidth,
+				    winHeight = window.innerHeight,
+				    vx,
+				    vy,
+				    scrollOffsetX,
+				    scrollOffsetY;
+
+				// Delect scrollEl
+				if (scrollParentEl !== rootEl) {
+					scrollEl = options.scroll;
+					scrollParentEl = rootEl;
+					scrollCustomFn = options.scrollFn;
+
+					if (scrollEl === true) {
+						scrollEl = rootEl;
+
+						do {
+							if (scrollEl.offsetWidth < scrollEl.scrollWidth || scrollEl.offsetHeight < scrollEl.scrollHeight) {
+								break;
+							}
+							/* jshint boss:true */
+						} while (scrollEl = scrollEl.parentNode);
+					}
+				}
+
+				if (scrollEl) {
+					el = scrollEl;
+					rect = scrollEl.getBoundingClientRect();
+					vx = (abs(rect.right - x) <= sens) - (abs(rect.left - x) <= sens);
+					vy = (abs(rect.bottom - y) <= sens) - (abs(rect.top - y) <= sens);
+				}
+
+				if (!(vx || vy)) {
+					vx = (winWidth - x <= sens) - (x <= sens);
+					vy = (winHeight - y <= sens) - (y <= sens);
+
+					/* jshint expr:true */
+					(vx || vy) && (el = win);
+				}
+
+				if (autoScroll.vx !== vx || autoScroll.vy !== vy || autoScroll.el !== el) {
+					autoScroll.el = el;
+					autoScroll.vx = vx;
+					autoScroll.vy = vy;
+
+					clearInterval(autoScroll.pid);
+
+					if (el) {
+						autoScroll.pid = setInterval(function () {
+							scrollOffsetY = vy ? vy * speed : 0;
+							scrollOffsetX = vx ? vx * speed : 0;
+
+							if ('function' === typeof scrollCustomFn) {
+								return scrollCustomFn.call(_this, scrollOffsetX, scrollOffsetY, evt);
+							}
+
+							if (el === win) {
+								win.scrollTo(win.pageXOffset + scrollOffsetX, win.pageYOffset + scrollOffsetY);
+							} else {
+								el.scrollTop += scrollOffsetY;
+								el.scrollLeft += scrollOffsetX;
+							}
+						}, 24);
+					}
+				}
+			}
+		}, 30),
+		    _prepareGroup = function _prepareGroup(options) {
+			function toFn(value, pull) {
+				if (value === void 0 || value === true) {
+					value = group.name;
+				}
+
+				if (typeof value === 'function') {
+					return value;
+				} else {
+					return function (to, from) {
+						var fromGroup = from.options.group.name;
+
+						return pull ? value : value && (value.join ? value.indexOf(fromGroup) > -1 : fromGroup == value);
+					};
+				}
+			}
+
+			var group = {};
+			var originalGroup = options.group;
+
+			if (!originalGroup || (typeof originalGroup === "undefined" ? "undefined" : _typeof(originalGroup)) != 'object') {
+				originalGroup = { name: originalGroup };
+			}
+
+			group.name = originalGroup.name;
+			group.checkPull = toFn(originalGroup.pull, true);
+			group.checkPut = toFn(originalGroup.put);
+			group.revertClone = originalGroup.revertClone;
+
+			options.group = group;
+		};
+
+		// Detect support a passive mode
+		try {
+			window.addEventListener('test', null, Object.defineProperty({}, 'passive', {
+				get: function get$$1() {
+					// `false`, because everything starts to work incorrectly and instead of d'n'd,
+					// begins the page has scrolled.
+					passiveMode = false;
+					captureMode = {
+						capture: false,
+						passive: passiveMode
+					};
+				}
+			}));
+		} catch (err) {}
+
+		/**
+   * @class  Sortable
+   * @param  {HTMLElement}  el
+   * @param  {Object}       [options]
+   */
+		function Sortable(el, options) {
+			if (!(el && el.nodeType && el.nodeType === 1)) {
+				throw 'Sortable: `el` must be HTMLElement, and not ' + {}.toString.call(el);
+			}
+
+			this.el = el; // root element
+			this.options = options = _extend({}, options);
+
+			// Export instance
+			el[expando] = this;
+
+			// Default options
+			var defaults$$1 = {
+				group: Math.random(),
+				sort: true,
+				disabled: false,
+				store: null,
+				handle: null,
+				scroll: true,
+				scrollSensitivity: 30,
+				scrollSpeed: 10,
+				draggable: /[uo]l/i.test(el.nodeName) ? 'li' : '>*',
+				ghostClass: 'sortable-ghost',
+				chosenClass: 'sortable-chosen',
+				dragClass: 'sortable-drag',
+				ignore: 'a, img',
+				filter: null,
+				preventOnFilter: true,
+				animation: 0,
+				setData: function setData(dataTransfer, dragEl) {
+					dataTransfer.setData('Text', dragEl.textContent);
+				},
+				dropBubble: false,
+				dragoverBubble: false,
+				dataIdAttr: 'data-id',
+				delay: 0,
+				forceFallback: false,
+				fallbackClass: 'sortable-fallback',
+				fallbackOnBody: false,
+				fallbackTolerance: 0,
+				fallbackOffset: { x: 0, y: 0 },
+				supportPointer: Sortable.supportPointer !== false
+			};
+
+			// Set default options
+			for (var name in defaults$$1) {
+				!(name in options) && (options[name] = defaults$$1[name]);
+			}
+
+			_prepareGroup(options);
+
+			// Bind all private methods
+			for (var fn in this) {
+				if (fn.charAt(0) === '_' && typeof this[fn] === 'function') {
+					this[fn] = this[fn].bind(this);
+				}
+			}
+
+			// Setup drag mode
+			this.nativeDraggable = options.forceFallback ? false : supportDraggable;
+
+			// Bind events
+			_on(el, 'mousedown', this._onTapStart);
+			_on(el, 'touchstart', this._onTapStart);
+			options.supportPointer && _on(el, 'pointerdown', this._onTapStart);
+
+			if (this.nativeDraggable) {
+				_on(el, 'dragover', this);
+				_on(el, 'dragenter', this);
+			}
+
+			touchDragOverListeners.push(this._onDragOver);
+
+			// Restore sorting
+			options.store && this.sort(options.store.get(this));
+		}
+
+		Sortable.prototype = /** @lends Sortable.prototype */{
+			constructor: Sortable,
+
+			_onTapStart: function _onTapStart( /** Event|TouchEvent */evt) {
+				var _this = this,
+				    el = this.el,
+				    options = this.options,
+				    preventOnFilter = options.preventOnFilter,
+				    type = evt.type,
+				    touch = evt.touches && evt.touches[0],
+				    target = (touch || evt).target,
+				    originalTarget = evt.target.shadowRoot && evt.path && evt.path[0] || target,
+				    filter = options.filter,
+				    startIndex;
+
+				_saveInputCheckedState(el);
+
+				// Don't trigger start event when an element is been dragged, otherwise the evt.oldindex always wrong when set option.group.
+				if (dragEl) {
+					return;
+				}
+
+				if (/mousedown|pointerdown/.test(type) && evt.button !== 0 || options.disabled) {
+					return; // only left button or enabled
+				}
+
+				// cancel dnd if original target is content editable
+				if (originalTarget.isContentEditable) {
+					return;
+				}
+
+				target = _closest(target, options.draggable, el);
+
+				if (!target) {
+					return;
+				}
+
+				if (lastDownEl === target) {
+					// Ignoring duplicate `down`
+					return;
+				}
+
+				// Get the index of the dragged element within its parent
+				startIndex = _index(target, options.draggable);
+
+				// Check filter
+				if (typeof filter === 'function') {
+					if (filter.call(this, evt, target, this)) {
+						_dispatchEvent(_this, originalTarget, 'filter', target, el, el, startIndex);
+						preventOnFilter && evt.preventDefault();
+						return; // cancel dnd
+					}
+				} else if (filter) {
+					filter = filter.split(',').some(function (criteria) {
+						criteria = _closest(originalTarget, criteria.trim(), el);
+
+						if (criteria) {
+							_dispatchEvent(_this, criteria, 'filter', target, el, el, startIndex);
+							return true;
+						}
+					});
+
+					if (filter) {
+						preventOnFilter && evt.preventDefault();
+						return; // cancel dnd
+					}
+				}
+
+				if (options.handle && !_closest(originalTarget, options.handle, el)) {
+					return;
+				}
+
+				// Prepare `dragstart`
+				this._prepareDragStart(evt, touch, target, startIndex);
+			},
+
+			_prepareDragStart: function _prepareDragStart( /** Event */evt, /** Touch */touch, /** HTMLElement */target, /** Number */startIndex) {
+				var _this = this,
+				    el = _this.el,
+				    options = _this.options,
+				    ownerDocument = el.ownerDocument,
+				    dragStartFn;
+
+				if (target && !dragEl && target.parentNode === el) {
+					tapEvt = evt;
+
+					rootEl = el;
+					dragEl = target;
+					parentEl = dragEl.parentNode;
+					nextEl = dragEl.nextSibling;
+					lastDownEl = target;
+					activeGroup = options.group;
+					oldIndex = startIndex;
+
+					this._lastX = (touch || evt).clientX;
+					this._lastY = (touch || evt).clientY;
+
+					dragEl.style['will-change'] = 'all';
+
+					dragStartFn = function dragStartFn() {
+						// Delayed drag has been triggered
+						// we can re-enable the events: touchmove/mousemove
+						_this._disableDelayedDrag();
+
+						// Make the element draggable
+						dragEl.draggable = _this.nativeDraggable;
+
+						// Chosen item
+						_toggleClass(dragEl, options.chosenClass, true);
+
+						// Bind the events: dragstart/dragend
+						_this._triggerDragStart(evt, touch);
+
+						// Drag start event
+						_dispatchEvent(_this, rootEl, 'choose', dragEl, rootEl, rootEl, oldIndex);
+					};
+
+					// Disable "draggable"
+					options.ignore.split(',').forEach(function (criteria) {
+						_find(dragEl, criteria.trim(), _disableDraggable);
+					});
+
+					_on(ownerDocument, 'mouseup', _this._onDrop);
+					_on(ownerDocument, 'touchend', _this._onDrop);
+					_on(ownerDocument, 'touchcancel', _this._onDrop);
+					_on(ownerDocument, 'selectstart', _this);
+					options.supportPointer && _on(ownerDocument, 'pointercancel', _this._onDrop);
+
+					if (options.delay) {
+						// If the user moves the pointer or let go the click or touch
+						// before the delay has been reached:
+						// disable the delayed drag
+						_on(ownerDocument, 'mouseup', _this._disableDelayedDrag);
+						_on(ownerDocument, 'touchend', _this._disableDelayedDrag);
+						_on(ownerDocument, 'touchcancel', _this._disableDelayedDrag);
+						_on(ownerDocument, 'mousemove', _this._disableDelayedDrag);
+						_on(ownerDocument, 'touchmove', _this._disableDelayedDrag);
+						options.supportPointer && _on(ownerDocument, 'pointermove', _this._disableDelayedDrag);
+
+						_this._dragStartTimer = setTimeout(dragStartFn, options.delay);
+					} else {
+						dragStartFn();
+					}
+				}
+			},
+
+			_disableDelayedDrag: function _disableDelayedDrag() {
+				var ownerDocument = this.el.ownerDocument;
+
+				clearTimeout(this._dragStartTimer);
+				_off(ownerDocument, 'mouseup', this._disableDelayedDrag);
+				_off(ownerDocument, 'touchend', this._disableDelayedDrag);
+				_off(ownerDocument, 'touchcancel', this._disableDelayedDrag);
+				_off(ownerDocument, 'mousemove', this._disableDelayedDrag);
+				_off(ownerDocument, 'touchmove', this._disableDelayedDrag);
+				_off(ownerDocument, 'pointermove', this._disableDelayedDrag);
+			},
+
+			_triggerDragStart: function _triggerDragStart( /** Event */evt, /** Touch */touch) {
+				touch = touch || (evt.pointerType == 'touch' ? evt : null);
+
+				if (touch) {
+					// Touch device support
+					tapEvt = {
+						target: dragEl,
+						clientX: touch.clientX,
+						clientY: touch.clientY
+					};
+
+					this._onDragStart(tapEvt, 'touch');
+				} else if (!this.nativeDraggable) {
+					this._onDragStart(tapEvt, true);
+				} else {
+					_on(dragEl, 'dragend', this);
+					_on(rootEl, 'dragstart', this._onDragStart);
+				}
+
+				try {
+					if (document.selection) {
+						// Timeout neccessary for IE9
+						_nextTick(function () {
+							document.selection.empty();
+						});
+					} else {
+						window.getSelection().removeAllRanges();
+					}
+				} catch (err) {}
+			},
+
+			_dragStarted: function _dragStarted() {
+				if (rootEl && dragEl) {
+					var options = this.options;
+
+					// Apply effect
+					_toggleClass(dragEl, options.ghostClass, true);
+					_toggleClass(dragEl, options.dragClass, false);
+
+					Sortable.active = this;
+
+					// Drag start event
+					_dispatchEvent(this, rootEl, 'start', dragEl, rootEl, rootEl, oldIndex);
+				} else {
+					this._nulling();
+				}
+			},
+
+			_emulateDragOver: function _emulateDragOver() {
+				if (touchEvt) {
+					if (this._lastX === touchEvt.clientX && this._lastY === touchEvt.clientY) {
+						return;
+					}
+
+					this._lastX = touchEvt.clientX;
+					this._lastY = touchEvt.clientY;
+
+					if (!supportCssPointerEvents) {
+						_css(ghostEl, 'display', 'none');
+					}
+
+					var target = document.elementFromPoint(touchEvt.clientX, touchEvt.clientY);
+					var parent = target;
+					var i = touchDragOverListeners.length;
+
+					if (target && target.shadowRoot) {
+						target = target.shadowRoot.elementFromPoint(touchEvt.clientX, touchEvt.clientY);
+						parent = target;
+					}
+
+					if (parent) {
+						do {
+							if (parent[expando]) {
+								while (i--) {
+									touchDragOverListeners[i]({
+										clientX: touchEvt.clientX,
+										clientY: touchEvt.clientY,
+										target: target,
+										rootEl: parent
+									});
+								}
+
+								break;
+							}
+
+							target = parent; // store last element
+						}
+						/* jshint boss:true */
+						while (parent = parent.parentNode);
+					}
+
+					if (!supportCssPointerEvents) {
+						_css(ghostEl, 'display', '');
+					}
+				}
+			},
+
+			_onTouchMove: function _onTouchMove( /**TouchEvent*/evt) {
+				if (tapEvt) {
+					var options = this.options,
+					    fallbackTolerance = options.fallbackTolerance,
+					    fallbackOffset = options.fallbackOffset,
+					    touch = evt.touches ? evt.touches[0] : evt,
+					    dx = touch.clientX - tapEvt.clientX + fallbackOffset.x,
+					    dy = touch.clientY - tapEvt.clientY + fallbackOffset.y,
+					    translate3d = evt.touches ? 'translate3d(' + dx + 'px,' + dy + 'px,0)' : 'translate(' + dx + 'px,' + dy + 'px)';
+
+					// only set the status to dragging, when we are actually dragging
+					if (!Sortable.active) {
+						if (fallbackTolerance && min(abs(touch.clientX - this._lastX), abs(touch.clientY - this._lastY)) < fallbackTolerance) {
+							return;
+						}
+
+						this._dragStarted();
+					}
+
+					// as well as creating the ghost element on the document body
+					this._appendGhost();
+
+					moved = true;
+					touchEvt = touch;
+
+					_css(ghostEl, 'webkitTransform', translate3d);
+					_css(ghostEl, 'mozTransform', translate3d);
+					_css(ghostEl, 'msTransform', translate3d);
+					_css(ghostEl, 'transform', translate3d);
+
+					evt.preventDefault();
+				}
+			},
+
+			_appendGhost: function _appendGhost() {
+				if (!ghostEl) {
+					var rect = dragEl.getBoundingClientRect(),
+					    css = _css(dragEl),
+					    options = this.options,
+					    ghostRect;
+
+					ghostEl = dragEl.cloneNode(true);
+
+					_toggleClass(ghostEl, options.ghostClass, false);
+					_toggleClass(ghostEl, options.fallbackClass, true);
+					_toggleClass(ghostEl, options.dragClass, true);
+
+					_css(ghostEl, 'top', rect.top - parseInt(css.marginTop, 10));
+					_css(ghostEl, 'left', rect.left - parseInt(css.marginLeft, 10));
+					_css(ghostEl, 'width', rect.width);
+					_css(ghostEl, 'height', rect.height);
+					_css(ghostEl, 'opacity', '0.8');
+					_css(ghostEl, 'position', 'fixed');
+					_css(ghostEl, 'zIndex', '100000');
+					_css(ghostEl, 'pointerEvents', 'none');
+
+					options.fallbackOnBody && document.body.appendChild(ghostEl) || rootEl.appendChild(ghostEl);
+
+					// Fixing dimensions.
+					ghostRect = ghostEl.getBoundingClientRect();
+					_css(ghostEl, 'width', rect.width * 2 - ghostRect.width);
+					_css(ghostEl, 'height', rect.height * 2 - ghostRect.height);
+				}
+			},
+
+			_onDragStart: function _onDragStart( /**Event*/evt, /**boolean*/useFallback) {
+				var _this = this;
+				var dataTransfer = evt.dataTransfer;
+				var options = _this.options;
+
+				_this._offUpEvents();
+
+				if (activeGroup.checkPull(_this, _this, dragEl, evt)) {
+					cloneEl = _clone(dragEl);
+
+					cloneEl.draggable = false;
+					cloneEl.style['will-change'] = '';
+
+					_css(cloneEl, 'display', 'none');
+					_toggleClass(cloneEl, _this.options.chosenClass, false);
+
+					// #1143: IFrame support workaround
+					_this._cloneId = _nextTick(function () {
+						rootEl.insertBefore(cloneEl, dragEl);
+						_dispatchEvent(_this, rootEl, 'clone', dragEl);
+					});
+				}
+
+				_toggleClass(dragEl, options.dragClass, true);
+
+				if (useFallback) {
+					if (useFallback === 'touch') {
+						// Bind touch events
+						_on(document, 'touchmove', _this._onTouchMove);
+						_on(document, 'touchend', _this._onDrop);
+						_on(document, 'touchcancel', _this._onDrop);
+
+						if (options.supportPointer) {
+							_on(document, 'pointermove', _this._onTouchMove);
+							_on(document, 'pointerup', _this._onDrop);
+						}
+					} else {
+						// Old brwoser
+						_on(document, 'mousemove', _this._onTouchMove);
+						_on(document, 'mouseup', _this._onDrop);
+					}
+
+					_this._loopId = setInterval(_this._emulateDragOver, 50);
+				} else {
+					if (dataTransfer) {
+						dataTransfer.effectAllowed = 'move';
+						options.setData && options.setData.call(_this, dataTransfer, dragEl);
+					}
+
+					_on(document, 'drop', _this);
+
+					// #1143: Бывает элемент с IFrame внутри блокирует `drop`,
+					// поэтому если вызвался `mouseover`, значит надо отменять весь d'n'd.
+					// Breaking Chrome 62+
+					// _on(document, 'mouseover', _this);
+
+					_this._dragStartId = _nextTick(_this._dragStarted);
+				}
+			},
+
+			_onDragOver: function _onDragOver( /**Event*/evt) {
+				var el = this.el,
+				    target,
+				    dragRect,
+				    targetRect,
+				    revert,
+				    options = this.options,
+				    group = options.group,
+				    activeSortable = Sortable.active,
+				    isOwner = activeGroup === group,
+				    isMovingBetweenSortable = false,
+				    canSort = options.sort;
+
+				if (evt.preventDefault !== void 0) {
+					evt.preventDefault();
+					!options.dragoverBubble && evt.stopPropagation();
+				}
+
+				if (dragEl.animated) {
+					return;
+				}
+
+				moved = true;
+
+				if (activeSortable && !options.disabled && (isOwner ? canSort || (revert = !rootEl.contains(dragEl)) // Reverting item into the original list
+				: putSortable === this || (activeSortable.lastPullMode = activeGroup.checkPull(this, activeSortable, dragEl, evt)) && group.checkPut(this, activeSortable, dragEl, evt)) && (evt.rootEl === void 0 || evt.rootEl === this.el) // touch fallback
+				) {
+						// Smart auto-scrolling
+						_autoScroll(evt, options, this.el);
+
+						if (_silent) {
+							return;
+						}
+
+						target = _closest(evt.target, options.draggable, el);
+						dragRect = dragEl.getBoundingClientRect();
+
+						if (putSortable !== this) {
+							putSortable = this;
+							isMovingBetweenSortable = true;
+						}
+
+						if (revert) {
+							_cloneHide(activeSortable, true);
+							parentEl = rootEl; // actualization
+
+							if (cloneEl || nextEl) {
+								rootEl.insertBefore(dragEl, cloneEl || nextEl);
+							} else if (!canSort) {
+								rootEl.appendChild(dragEl);
+							}
+
+							return;
+						}
+
+						if (el.children.length === 0 || el.children[0] === ghostEl || el === evt.target && _ghostIsLast(el, evt)) {
+							//assign target only if condition is true
+							if (el.children.length !== 0 && el.children[0] !== ghostEl && el === evt.target) {
+								target = el.lastElementChild;
+							}
+
+							if (target) {
+								if (target.animated) {
+									return;
+								}
+
+								targetRect = target.getBoundingClientRect();
+							}
+
+							_cloneHide(activeSortable, isOwner);
+
+							if (_onMove(rootEl, el, dragEl, dragRect, target, targetRect, evt) !== false) {
+								if (!dragEl.contains(el)) {
+									el.appendChild(dragEl);
+									parentEl = el; // actualization
+								}
+
+								this._animate(dragRect, dragEl);
+								target && this._animate(targetRect, target);
+							}
+						} else if (target && !target.animated && target !== dragEl && target.parentNode[expando] !== void 0) {
+							if (lastEl !== target) {
+								lastEl = target;
+								lastCSS = _css(target);
+								lastParentCSS = _css(target.parentNode);
+							}
+
+							targetRect = target.getBoundingClientRect();
+
+							var width = targetRect.right - targetRect.left,
+							    height = targetRect.bottom - targetRect.top,
+							    floating = R_FLOAT.test(lastCSS.cssFloat + lastCSS.display) || lastParentCSS.display == 'flex' && lastParentCSS['flex-direction'].indexOf('row') === 0,
+							    isWide = target.offsetWidth > dragEl.offsetWidth,
+							    isLong = target.offsetHeight > dragEl.offsetHeight,
+							    halfway = (floating ? (evt.clientX - targetRect.left) / width : (evt.clientY - targetRect.top) / height) > 0.5,
+							    nextSibling = target.nextElementSibling,
+							    after = false;
+
+							if (floating) {
+								var elTop = dragEl.offsetTop,
+								    tgTop = target.offsetTop;
+
+								if (elTop === tgTop) {
+									after = target.previousElementSibling === dragEl && !isWide || halfway && isWide;
+								} else if (target.previousElementSibling === dragEl || dragEl.previousElementSibling === target) {
+									after = (evt.clientY - targetRect.top) / height > 0.5;
+								} else {
+									after = tgTop > elTop;
+								}
+							} else if (!isMovingBetweenSortable) {
+								after = nextSibling !== dragEl && !isLong || halfway && isLong;
+							}
+
+							var moveVector = _onMove(rootEl, el, dragEl, dragRect, target, targetRect, evt, after);
+
+							if (moveVector !== false) {
+								if (moveVector === 1 || moveVector === -1) {
+									after = moveVector === 1;
+								}
+
+								_silent = true;
+								setTimeout(_unsilent, 30);
+
+								_cloneHide(activeSortable, isOwner);
+
+								if (!dragEl.contains(el)) {
+									if (after && !nextSibling) {
+										el.appendChild(dragEl);
+									} else {
+										target.parentNode.insertBefore(dragEl, after ? nextSibling : target);
+									}
+								}
+
+								parentEl = dragEl.parentNode; // actualization
+
+								this._animate(dragRect, dragEl);
+								this._animate(targetRect, target);
+							}
+						}
+					}
+			},
+
+			_animate: function _animate(prevRect, target) {
+				var ms = this.options.animation;
+
+				if (ms) {
+					var currentRect = target.getBoundingClientRect();
+
+					if (prevRect.nodeType === 1) {
+						prevRect = prevRect.getBoundingClientRect();
+					}
+
+					_css(target, 'transition', 'none');
+					_css(target, 'transform', 'translate3d(' + (prevRect.left - currentRect.left) + 'px,' + (prevRect.top - currentRect.top) + 'px,0)');
+
+					target.offsetWidth; // repaint
+
+					_css(target, 'transition', 'all ' + ms + 'ms');
+					_css(target, 'transform', 'translate3d(0,0,0)');
+
+					clearTimeout(target.animated);
+					target.animated = setTimeout(function () {
+						_css(target, 'transition', '');
+						_css(target, 'transform', '');
+						target.animated = false;
+					}, ms);
+				}
+			},
+
+			_offUpEvents: function _offUpEvents() {
+				var ownerDocument = this.el.ownerDocument;
+
+				_off(document, 'touchmove', this._onTouchMove);
+				_off(document, 'pointermove', this._onTouchMove);
+				_off(ownerDocument, 'mouseup', this._onDrop);
+				_off(ownerDocument, 'touchend', this._onDrop);
+				_off(ownerDocument, 'pointerup', this._onDrop);
+				_off(ownerDocument, 'touchcancel', this._onDrop);
+				_off(ownerDocument, 'pointercancel', this._onDrop);
+				_off(ownerDocument, 'selectstart', this);
+			},
+
+			_onDrop: function _onDrop( /**Event*/evt) {
+				var el = this.el,
+				    options = this.options;
+
+				clearInterval(this._loopId);
+				clearInterval(autoScroll.pid);
+				clearTimeout(this._dragStartTimer);
+
+				_cancelNextTick(this._cloneId);
+				_cancelNextTick(this._dragStartId);
+
+				// Unbind events
+				_off(document, 'mouseover', this);
+				_off(document, 'mousemove', this._onTouchMove);
+
+				if (this.nativeDraggable) {
+					_off(document, 'drop', this);
+					_off(el, 'dragstart', this._onDragStart);
+				}
+
+				this._offUpEvents();
+
+				if (evt) {
+					if (moved) {
+						evt.preventDefault();
+						!options.dropBubble && evt.stopPropagation();
+					}
+
+					ghostEl && ghostEl.parentNode && ghostEl.parentNode.removeChild(ghostEl);
+
+					if (rootEl === parentEl || Sortable.active.lastPullMode !== 'clone') {
+						// Remove clone
+						cloneEl && cloneEl.parentNode && cloneEl.parentNode.removeChild(cloneEl);
+					}
+
+					if (dragEl) {
+						if (this.nativeDraggable) {
+							_off(dragEl, 'dragend', this);
+						}
+
+						_disableDraggable(dragEl);
+						dragEl.style['will-change'] = '';
+
+						// Remove class's
+						_toggleClass(dragEl, this.options.ghostClass, false);
+						_toggleClass(dragEl, this.options.chosenClass, false);
+
+						// Drag stop event
+						_dispatchEvent(this, rootEl, 'unchoose', dragEl, parentEl, rootEl, oldIndex);
+
+						if (rootEl !== parentEl) {
+							newIndex = _index(dragEl, options.draggable);
+
+							if (newIndex >= 0) {
+								// Add event
+								_dispatchEvent(null, parentEl, 'add', dragEl, parentEl, rootEl, oldIndex, newIndex);
+
+								// Remove event
+								_dispatchEvent(this, rootEl, 'remove', dragEl, parentEl, rootEl, oldIndex, newIndex);
+
+								// drag from one list and drop into another
+								_dispatchEvent(null, parentEl, 'sort', dragEl, parentEl, rootEl, oldIndex, newIndex);
+								_dispatchEvent(this, rootEl, 'sort', dragEl, parentEl, rootEl, oldIndex, newIndex);
+							}
+						} else {
+							if (dragEl.nextSibling !== nextEl) {
+								// Get the index of the dragged element within its parent
+								newIndex = _index(dragEl, options.draggable);
+
+								if (newIndex >= 0) {
+									// drag & drop within the same list
+									_dispatchEvent(this, rootEl, 'update', dragEl, parentEl, rootEl, oldIndex, newIndex);
+									_dispatchEvent(this, rootEl, 'sort', dragEl, parentEl, rootEl, oldIndex, newIndex);
+								}
+							}
+						}
+
+						if (Sortable.active) {
+							/* jshint eqnull:true */
+							if (newIndex == null || newIndex === -1) {
+								newIndex = oldIndex;
+							}
+
+							_dispatchEvent(this, rootEl, 'end', dragEl, parentEl, rootEl, oldIndex, newIndex);
+
+							// Save sorting
+							this.save();
+						}
+					}
+				}
+
+				this._nulling();
+			},
+
+			_nulling: function _nulling() {
+				rootEl = dragEl = parentEl = ghostEl = nextEl = cloneEl = lastDownEl = scrollEl = scrollParentEl = tapEvt = touchEvt = moved = newIndex = lastEl = lastCSS = putSortable = activeGroup = Sortable.active = null;
+
+				savedInputChecked.forEach(function (el) {
+					el.checked = true;
+				});
+				savedInputChecked.length = 0;
+			},
+
+			handleEvent: function handleEvent( /**Event*/evt) {
+				switch (evt.type) {
+					case 'drop':
+					case 'dragend':
+						this._onDrop(evt);
+						break;
+
+					case 'dragover':
+					case 'dragenter':
+						if (dragEl) {
+							this._onDragOver(evt);
+							_globalDragOver(evt);
+						}
+						break;
+
+					case 'mouseover':
+						this._onDrop(evt);
+						break;
+
+					case 'selectstart':
+						evt.preventDefault();
+						break;
+				}
+			},
+
+			/**
+    * Serializes the item into an array of string.
+    * @returns {String[]}
+    */
+			toArray: function toArray$$1() {
+				var order = [],
+				    el,
+				    children = this.el.children,
+				    i = 0,
+				    n = children.length,
+				    options = this.options;
+
+				for (; i < n; i++) {
+					el = children[i];
+					if (_closest(el, options.draggable, this.el)) {
+						order.push(el.getAttribute(options.dataIdAttr) || _generateId(el));
+					}
+				}
+
+				return order;
+			},
+
+			/**
+    * Sorts the elements according to the array.
+    * @param  {String[]}  order  order of the items
+    */
+			sort: function sort(order) {
+				var items = {},
+				    rootEl = this.el;
+
+				this.toArray().forEach(function (id, i) {
+					var el = rootEl.children[i];
+
+					if (_closest(el, this.options.draggable, rootEl)) {
+						items[id] = el;
+					}
+				}, this);
+
+				order.forEach(function (id) {
+					if (items[id]) {
+						rootEl.removeChild(items[id]);
+						rootEl.appendChild(items[id]);
+					}
+				});
+			},
+
+			/**
+    * Save the current sorting
+    */
+			save: function save() {
+				var store = this.options.store;
+				store && store.set(this);
+			},
+
+			/**
+    * For each element in the set, get the first element that matches the selector by testing the element itself and traversing up through its ancestors in the DOM tree.
+    * @param   {HTMLElement}  el
+    * @param   {String}       [selector]  default: `options.draggable`
+    * @returns {HTMLElement|null}
+    */
+			closest: function closest(el, selector) {
+				return _closest(el, selector || this.options.draggable, this.el);
+			},
+
+			/**
+    * Set/get option
+    * @param   {string} name
+    * @param   {*}      [value]
+    * @returns {*}
+    */
+			option: function option(name, value) {
+				var options = this.options;
+
+				if (value === void 0) {
+					return options[name];
+				} else {
+					options[name] = value;
+
+					if (name === 'group') {
+						_prepareGroup(options);
+					}
+				}
+			},
+
+			/**
+    * Destroy
+    */
+			destroy: function destroy() {
+				var el = this.el;
+
+				el[expando] = null;
+
+				_off(el, 'mousedown', this._onTapStart);
+				_off(el, 'touchstart', this._onTapStart);
+				_off(el, 'pointerdown', this._onTapStart);
+
+				if (this.nativeDraggable) {
+					_off(el, 'dragover', this);
+					_off(el, 'dragenter', this);
+				}
+
+				// Remove draggable attributes
+				Array.prototype.forEach.call(el.querySelectorAll('[draggable]'), function (el) {
+					el.removeAttribute('draggable');
+				});
+
+				touchDragOverListeners.splice(touchDragOverListeners.indexOf(this._onDragOver), 1);
+
+				this._onDrop();
+
+				this.el = el = null;
+			}
+		};
+
+		function _cloneHide(sortable, state) {
+			if (sortable.lastPullMode !== 'clone') {
+				state = true;
+			}
+
+			if (cloneEl && cloneEl.state !== state) {
+				_css(cloneEl, 'display', state ? 'none' : '');
+
+				if (!state) {
+					if (cloneEl.state) {
+						if (sortable.options.group.revertClone) {
+							rootEl.insertBefore(cloneEl, nextEl);
+							sortable._animate(dragEl, cloneEl);
+						} else {
+							rootEl.insertBefore(cloneEl, dragEl);
+						}
+					}
+				}
+
+				cloneEl.state = state;
+			}
+		}
+
+		function _closest( /**HTMLElement*/el, /**String*/selector, /**HTMLElement*/ctx) {
+			if (el) {
+				ctx = ctx || document;
+
+				do {
+					if (selector === '>*' && el.parentNode === ctx || _matches(el, selector)) {
+						return el;
+					}
+					/* jshint boss:true */
+				} while (el = _getParentOrHost(el));
+			}
+
+			return null;
+		}
+
+		function _getParentOrHost(el) {
+			var parent = el.host;
+
+			return parent && parent.nodeType ? parent : el.parentNode;
+		}
+
+		function _globalDragOver( /**Event*/evt) {
+			if (evt.dataTransfer) {
+				evt.dataTransfer.dropEffect = 'move';
+			}
+			evt.preventDefault();
+		}
+
+		function _on(el, event, fn) {
+			el.addEventListener(event, fn, captureMode);
+		}
+
+		function _off(el, event, fn) {
+			el.removeEventListener(event, fn, captureMode);
+		}
+
+		function _toggleClass(el, name, state) {
+			if (el) {
+				if (el.classList) {
+					el.classList[state ? 'add' : 'remove'](name);
+				} else {
+					var className = (' ' + el.className + ' ').replace(R_SPACE, ' ').replace(' ' + name + ' ', ' ');
+					el.className = (className + (state ? ' ' + name : '')).replace(R_SPACE, ' ');
+				}
+			}
+		}
+
+		function _css(el, prop, val) {
+			var style = el && el.style;
+
+			if (style) {
+				if (val === void 0) {
+					if (document.defaultView && document.defaultView.getComputedStyle) {
+						val = document.defaultView.getComputedStyle(el, '');
+					} else if (el.currentStyle) {
+						val = el.currentStyle;
+					}
+
+					return prop === void 0 ? val : val[prop];
+				} else {
+					if (!(prop in style)) {
+						prop = '-webkit-' + prop;
+					}
+
+					style[prop] = val + (typeof val === 'string' ? '' : 'px');
+				}
+			}
+		}
+
+		function _find(ctx, tagName, iterator) {
+			if (ctx) {
+				var list = ctx.getElementsByTagName(tagName),
+				    i = 0,
+				    n = list.length;
+
+				if (iterator) {
+					for (; i < n; i++) {
+						iterator(list[i], i);
+					}
+				}
+
+				return list;
+			}
+
+			return [];
+		}
+
+		function _dispatchEvent(sortable, rootEl, name, targetEl, toEl, fromEl, startIndex, newIndex) {
+			sortable = sortable || rootEl[expando];
+
+			var evt = document.createEvent('Event'),
+			    options = sortable.options,
+			    onName = 'on' + name.charAt(0).toUpperCase() + name.substr(1);
+
+			evt.initEvent(name, true, true);
+
+			evt.to = toEl || rootEl;
+			evt.from = fromEl || rootEl;
+			evt.item = targetEl || rootEl;
+			evt.clone = cloneEl;
+
+			evt.oldIndex = startIndex;
+			evt.newIndex = newIndex;
+
+			rootEl.dispatchEvent(evt);
+
+			if (options[onName]) {
+				options[onName].call(sortable, evt);
+			}
+		}
+
+		function _onMove(fromEl, toEl, dragEl, dragRect, targetEl, targetRect, originalEvt, willInsertAfter) {
+			var evt,
+			    sortable = fromEl[expando],
+			    onMoveFn = sortable.options.onMove,
+			    retVal;
+
+			evt = document.createEvent('Event');
+			evt.initEvent('move', true, true);
+
+			evt.to = toEl;
+			evt.from = fromEl;
+			evt.dragged = dragEl;
+			evt.draggedRect = dragRect;
+			evt.related = targetEl || toEl;
+			evt.relatedRect = targetRect || toEl.getBoundingClientRect();
+			evt.willInsertAfter = willInsertAfter;
+
+			fromEl.dispatchEvent(evt);
+
+			if (onMoveFn) {
+				retVal = onMoveFn.call(sortable, evt, originalEvt);
+			}
+
+			return retVal;
+		}
+
+		function _disableDraggable(el) {
+			el.draggable = false;
+		}
+
+		function _unsilent() {
+			_silent = false;
+		}
+
+		/** @returns {HTMLElement|false} */
+		function _ghostIsLast(el, evt) {
+			var lastEl = el.lastElementChild,
+			    rect = lastEl.getBoundingClientRect();
+
+			// 5 — min delta
+			// abs — нельзя добавлять, а то глюки при наведении сверху
+			return evt.clientY - (rect.top + rect.height) > 5 || evt.clientX - (rect.left + rect.width) > 5;
+		}
+
+		/**
+   * Generate id
+   * @param   {HTMLElement} el
+   * @returns {String}
+   * @private
+   */
+		function _generateId(el) {
+			var str = el.tagName + el.className + el.src + el.href + el.textContent,
+			    i = str.length,
+			    sum = 0;
+
+			while (i--) {
+				sum += str.charCodeAt(i);
+			}
+
+			return sum.toString(36);
+		}
+
+		/**
+   * Returns the index of an element within its parent for a selected set of
+   * elements
+   * @param  {HTMLElement} el
+   * @param  {selector} selector
+   * @return {number}
+   */
+		function _index(el, selector) {
+			var index = 0;
+
+			if (!el || !el.parentNode) {
+				return -1;
+			}
+
+			while (el && (el = el.previousElementSibling)) {
+				if (el.nodeName.toUpperCase() !== 'TEMPLATE' && (selector === '>*' || _matches(el, selector))) {
+					index++;
+				}
+			}
+
+			return index;
+		}
+
+		function _matches( /**HTMLElement*/el, /**String*/selector) {
+			if (el) {
+				selector = selector.split('.');
+
+				var tag = selector.shift().toUpperCase(),
+				    re = new RegExp('\\s(' + selector.join('|') + ')(?=\\s)', 'g');
+
+				return (tag === '' || el.nodeName.toUpperCase() == tag) && (!selector.length || ((' ' + el.className + ' ').match(re) || []).length == selector.length);
+			}
+
+			return false;
+		}
+
+		function _throttle(callback, ms) {
+			var args, _this;
+
+			return function () {
+				if (args === void 0) {
+					args = arguments;
+					_this = this;
+
+					setTimeout(function () {
+						if (args.length === 1) {
+							callback.call(_this, args[0]);
+						} else {
+							callback.apply(_this, args);
+						}
+
+						args = void 0;
+					}, ms);
+				}
+			};
+		}
+
+		function _extend(dst, src) {
+			if (dst && src) {
+				for (var key in src) {
+					if (src.hasOwnProperty(key)) {
+						dst[key] = src[key];
+					}
+				}
+			}
+
+			return dst;
+		}
+
+		function _clone(el) {
+			if (Polymer && Polymer.dom) {
+				return Polymer.dom(el).cloneNode(true);
+			} else if ($) {
+				return $(el).clone(true)[0];
+			} else {
+				return el.cloneNode(true);
+			}
+		}
+
+		function _saveInputCheckedState(root) {
+			var inputs = root.getElementsByTagName('input');
+			var idx = inputs.length;
+
+			while (idx--) {
+				var el = inputs[idx];
+				el.checked && savedInputChecked.push(el);
+			}
+		}
+
+		function _nextTick(fn) {
+			return setTimeout(fn, 0);
+		}
+
+		function _cancelNextTick(id) {
+			return clearTimeout(id);
+		}
+
+		// Fixed #973:
+		_on(document, 'touchmove', function (evt) {
+			if (Sortable.active) {
+				evt.preventDefault();
+			}
+		});
+
+		// Export utils
+		Sortable.utils = {
+			on: _on,
+			off: _off,
+			css: _css,
+			find: _find,
+			is: function is(el, selector) {
+				return !!_closest(el, selector, el);
+			},
+			extend: _extend,
+			throttle: _throttle,
+			closest: _closest,
+			toggleClass: _toggleClass,
+			clone: _clone,
+			index: _index,
+			nextTick: _nextTick,
+			cancelNextTick: _cancelNextTick
+		};
+
+		/**
+   * Create sortable instance
+   * @param {HTMLElement}  el
+   * @param {Object}      [options]
+   */
+		Sortable.create = function (el, options) {
+			return new Sortable(el, options);
+		};
+
+		// Export
+		Sortable.version = '1.7.0';
+		return Sortable;
+	});
+});
+
+/* Apps
+/* ========================================================================== */
+
+var prefix$8 = 'esri-header-apps';
+var isRightToLeft = document.dir === "rtl";
+var isDesktop = function (global) {
+	return !/iPhone|iPad|iPod|Android/i.test(global.navigator.userAgent);
+}(window);
+
+var createApps = (function () {
+	/* Apps: Content
+ /* ====================================================================== */
+
+	var $content = $assign('div', {
+		class: prefix$8 + '-content',
+		id: prefix$8 + '-content',
+		aria: { expanded: false, labelledby: prefix$8 + '-control' }
+	});
+
+	/* Apps: Control
+ /* ====================================================================== */
+
+	var $appSwitcherIcon = $assign('span');
+
+	var $controlContainer = $assign('button', {
+		class: prefix$8 + '-control', id: prefix$8 + '-control',
+		style: "display: none;",
+		tabindex: "-1"
+	}, $appSwitcherIcon);
+
+	var resetStateOfBottomContainer = function resetStateOfBottomContainer() {
+		if (ddState.showMoreButton) {
+			ddState.showMoreButton.classList.remove("hide");
+		}
+		$secondaryDropdownMenu.setAttribute('aria-expanded', "false");
+	};
+
+	var $closeAppLauncher = function $closeAppLauncher(event) {
+		if (!ddState || ddState.loading) return;
+		removeMouseUpListener();
+		removeMouseOverListener();
+
+		resetStateOfBottomContainer();
+
+		$dispatchCloseAppLauncher(event);
+	};
+
+	var $dispatchCloseAppLauncher = function $dispatchCloseAppLauncher(event) {
+		setTimeout(function () {
+			$dispatch($control, 'header:menu:toggle', {
+				state: 'menu',
+				target: $target,
+				type: 'root-toggle',
+				control: $control,
+				content: $content,
+				event: event
+			});
+		}, 1);
+	};
+
+	var $control = $controlContainer;
+
+	$controlContainer.addEventListener('click', $closeAppLauncher);
+
+	/* Apps: Target
+ /* ====================================================================== */
+
+	var $target = $assign('div', { class: prefix$8 + ' a11y-' + prefix$8 }, $control);
+
+	/* Apps: Secondary Set of Apps
+ /* ====================================================================== */
+
+	var $secondaryDropdownMenu = $assign('div', {
+		class: prefix$8 + ' secondary-dropdown-menu',
+		aria: { expanded: false }
+	}, $assign('hr'));
+
+	var $bottomContainer = $assign('div', {
+		class: prefix$8 + ' bottom-container'
+	});
+
+	/* Apps: Parameters that Control the State of Drag & Drop
+ /* ====================================================================== */
+
+	var ddState = {
+		maxDragErrorTollerance: 1
+	};
+
+	/* Apps: Key Codes used for Accessibility
+ /* ====================================================================== */
+
+	var keys = {
+		DOWN_ARROW: 40,
+		UP_ARROW: 38,
+		RIGHT_ARROW: 39,
+		LEFT_ARROW: 37,
+		SPACE: 32
+	};
+
+	/* Apps: Helper Functions for Update
+ /* ====================================================================== */
+
+	var createDefaultAppLayout = function createDefaultAppLayout($topAppContainer, currentApp) {
+		var abbreviationSizes = ["0px", "32px", "24px", "20px", "18px", "16px", "14px", "12px", "10px", "8px"];
+		var selectNoneClass = ddState.browserIsEdge ? "user-select-none" : "";
+		var canAccessClass = !currentApp.canAccess ? "no-hover" : "with-hover";
+
+		var $listItem = $assign("li", {
+			alt: "",
+			"class": 'block link-off-black appLinkContainer grabbable ' + canAccessClass,
+			mousedown: isDesktop ? interactWithAppLi.bind(null, currentApp) : $dispatchCloseAppLauncher,
+			keyup: !ddState.disabled && isDesktop ? activateAccessibilityMode.bind(null, currentApp) : function () {},
+			keydown: isDesktop ? preventBrowserKeyboardDefaults : function () {},
+			"role": "menuitem",
+			"data-id": currentApp.itemId || currentApp.uid || currentApp.title
+		});
+
+		if (!currentApp.canAccess) {
+			createMissingAppIcon(currentApp, $listItem, selectNoneClass);
+		} else {
+			var $appLink = $assign("a", {
+				href: currentApp.url,
+				target: "_blank",
+				blur: isDesktop ? deactivateAccessibilityMode.bind(null, currentApp) : function () {},
+				class: "appLink"
+			});
+			// Check if App has Icon
+			if (currentApp.image) {
+				var $appImageContainer = $assign("div", { "class": 'appIconImage ' + selectNoneClass });
+				$appImageContainer.appendChild(getAccessibleAppArrowContainer());
+				$appImageContainer.appendChild($assign("img", { "class": "appIconPng", "alt": "", src: currentApp.image }));
+				$appLink.appendChild($appImageContainer);
+			} else {
+				var stringWidth = Math.ceil(getTextWidth(currentApp.abbr || "", "avenir") / 5);
+				var abbreviationSize = abbreviationSizes[stringWidth];
+				if (stringWidth > 9) {
+					// Prevent user from exceeding icon width
+					currentApp.abbr = currentApp.abbr.substr(0, 4);
+					stringWidth = 9;
+					abbreviationSize = abbreviationSizes[9];
+				}
+				var surfaceDiv = $assign("div", { "class": "appIconImage" });
+				surfaceDiv.appendChild(getAccessibleAppArrowContainer());
+				var style = 'font-size: ' + abbreviationSize + ';';
+				if (stringWidth > 6) {
+					style += ' font-weight: 500;';
+				}
+				var surfaceSpan = $assign("span", {
+					style: style,
+					class: 'avenir appIconSvgText ' + selectNoneClass
+				}, currentApp.abbr);
+				surfaceDiv.appendChild(surfaceSpan);
+				surfaceDiv.appendChild($assign("img", { "src": currentApp.placeHolderIcon, "alt": "", "class": selectNoneClass }));
+				$appLink.appendChild(surfaceDiv);
+			}
+			$listItem.appendChild($appLink);
+			var p = $assign("p", { style: "margin:0 auto; text-align:center", class: selectNoneClass }, currentApp.label);
+			if (currentApp.isNew) {
+				// New app -> green circle indicator
+				$appLink.appendChild($assign("div", { "class": "app-indicator app-indicator-new" }));
+			}
+			$appLink.appendChild(p);
+		}
+
+		$topAppContainer.appendChild($listItem);
+	};
+
+	var createMissingAppIcon = function createMissingAppIcon(currentApp, $listItem, selectNoneClass) {
+		var $appLink = $assign("div", {
+			"class": "app-indicator app-indicator-removed",
+			"tabindex": 0,
+			click: removeAppFromDropdown.bind(null, currentApp.uid, $listItem),
+			keyup: removeAppFromDropdown.bind(null, currentApp.uid, $listItem),
+			keydown: preventBrowserKeyboardDefaults
+		});
+		$appLink.innerHTML = getRemoveAppX();
+
+		// Displaying Warnings in association with removed apps
+		// - Requires access to orgUrlKey and isAdmin like functionality
+		// - To be implemented after discussion
+		var $missingIcon = $assign("div", {
+			"class": "missing-app-icon appIconImage",
+			"tabindex": 0,
+			"blur": deactivateAccessibilityMode.bind(null, currentApp),
+			title: ddState.i18n.removed
+			// keyup: isDesktop ? showRemovedAppWarning.bind(null, currentApp.uid, $listItem) : () => {},
+			// onclick: isDesktop ? showRemovedAppWarning.bind(null, currentApp.uid, $listItem) : () => {}
+		});
+		$missingIcon.appendChild(getAccessibleAppArrowContainer());
+		$listItem.appendChild($appLink);
+		$listItem.appendChild($missingIcon);
+		$listItem.appendChild($assign("p", { style: "margin:0 auto; text-align:center", class: selectNoneClass }, currentApp.label));
+	};
+
+	var saveAppOrderToUserProperties = function saveAppOrderToUserProperties(primaryApps, secondaryApps, appRevisions) {
+		$dispatch($control, 'header:apps:reorder', {
+			icons: {
+				primaryApps: primaryApps,
+				secondaryApps: secondaryApps,
+				revisions: appRevisions || {}
+			}
+		});
+	};
+
+	var expandSecondaryDropdown = function expandSecondaryDropdown() {
+		$secondaryDropdownMenu.setAttribute('aria-expanded', "true");
+		ddState.showMoreButton.classList.add("hide");
+	};
+
+	var hideOrShowDropAppsHereMessage = function hideOrShowDropAppsHereMessage(containerAppWasDroppedIn) {
+		if (containerAppWasDroppedIn === ddState.bottomAppContainer && ddState.secondarySortable.toArray().length === 1) {
+			showDragAppsHereBox(false);
+		} else if (!ddState.secondarySortable.toArray().length) {
+			showDragAppsHereBox(true);
+		}
+	};
+
+	var getTextWidth = function getTextWidth(text, font) {
+		// Adds support for app abbreviations in all languages
+		var canvas = getTextWidth.canvas || (getTextWidth.canvas = document.createElement("canvas"));
+		var context = canvas.getContext("2d");
+		context.font = font;
+		var metrics = context.measureText(text);
+		return metrics.width;
+	};
+
+	var getRemoveAppX = function getRemoveAppX() {
+		return '<svg xmlns="https://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 32 32"  class="default-svg-fill"><path d="M18.404 16l9.9 9.9-2.404 2.404-9.9-9.9-9.9 9.9L3.696 25.9l9.9-9.9-9.9-9.898L6.1 3.698l9.9 9.899 9.9-9.9 2.404 2.406-9.9 9.898z"/></svg>';
+	};
+
+	var getDownChevron = function getDownChevron() {
+		return ' <svg xmlns="https://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 32 32" class="down-carrot-svg default-svg-fill"><path d="M28 9v5L16 26 4 14V9l12 12L28 9z"></path></svg>';
+	};
+
+	var interactWithAppLi = function interactWithAppLi(app, e) {
+		if (e.button === 0) {
+			ddState.startClientX = e.clientX;
+			ddState.startClientY = e.clientY;
+			ddState.startApp = app;
+			ddState.dragEventWasCanceled = false;
+			ddState.startElement = e.currentTarget;
+
+			if (ddState.disabled) {
+				if (app.canAccess) {
+					ddState.dropdownNav.addEventListener("mouseup", closeAppLauncherOnClick);
+				}
+				return;
+			}
+
+			setTimeout(function (e) {
+				ddState.startElement.classList.remove("sortable-drag-class");
+			}, 1);
+
+			if (app.isNew) {
+				var primaryApps = ddState.primarySortable.toArray();
+				// -- Bug occurs where duplicate value gets added to array when clicked
+				if (ddState.duplicateValueIndex) {
+					primaryApps.splice(ddState.duplicateValueIndex, 1);
+				}
+
+				saveAppOrderToUserProperties(primaryApps, ddState.secondarySortable.toArray(), { targetUid: e.currentTarget.getAttribute("data-id"), isNew: true, targetValue: null });
+			}
+
+			if (e.currentTarget) {
+				e.currentTarget.classList.remove("sortable-drag-class");
+			}
+
+			ddState.listenForMouseOverElement = e.currentTarget.parentNode;
+			ddState.listenForMouseOverElement.addEventListener("mousemove", simulateDragEvent);
+
+			if (app.canAccess) {
+				ddState.dropdownNav.addEventListener("mouseup", $closeAppLauncher);
+			} else {
+				ddState.dropdownNav.addEventListener("mouseup", deactivateDraggingStyles);
+				var removedAppClass = "app-indicator app-indicator-removed";
+				if (e.target.classList.className === removedAppClass || e.target.parentNode.className === removedAppClass || e.target.parentNode.parentNode.className === removedAppClass) {
+					ddState.removeStartApp = true;
+				}
+			}
+		}
+	};
+
+	var closeAppLauncherOnClick = function closeAppLauncherOnClick(e) {
+		ddState.dropdownNav.removeEventListener("mouseup", closeAppLauncherOnClick, false);
+		if (!dragEventWasSimulated(e.clientX, e.clientY)) {
+			$closeAppLauncher();
+		}
+	};
+
+	var generateCustomLinkClick = function generateCustomLinkClick(app, el, removeApp) {
+		if (ddState.disabled || !app) return;
+		if (app.canAccess) {
+			$closeAppLauncher();
+			window.open(app.url, "_blank");
+		} else if (removeApp) {
+			ddState.removeStartApp = false;
+			removeAppFromDropdown(app.itemId || app.title, el);
+		} else {
+			showRemovedAppWarning(app.itemId || app.title, el);
+		}
+	};
+
+	var removeAppFromDropdown = function removeAppFromDropdown(uid, el, e) {
+		if (!e || verifyKeyPress(e.keyCode)) {
+			$remove(el);
+			setTimeout(function () {
+				saveAppOrderToUserProperties(ddState.primarySortable.toArray(), ddState.secondarySortable.toArray());
+				hideOrShowDropAppsHereMessage(ddState.bottomAppContainer);
+			}, 0);
+		}
+	};
+
+	var showRemovedAppWarning = function showRemovedAppWarning(uid, el, e) {
+		ddState.dropdownWrapper.classList.remove("dragging");
+		if (!ddState.removedAppWithFoucs && (!e || verifyKeyPress(e.keyCode))) {
+			ddState.removedAppWithFoucs = { uid: uid, el: el };
+		} else {
+			ddState.removedAppWithFoucs = null;
+		}
+	};
+
+	var deactivateDraggingStyles = function deactivateDraggingStyles(e) {
+		ddState.dragEventWasCanceled = true;
+	};
+
+	var showDragAppsHereBox = function showDragAppsHereBox(show) {
+		ddState.bottomAppContainer.classList[show ? "add" : "remove"]("drag-apps-here-box");
+		ddState.dragAppsHereText.classList[show ? "remove" : "add"]("hide");
+	};
+
+	var disableLinkHref = function disableLinkHref(e, disable) {
+		var link = e.item.children[1] && e.item.children[1].nodeName === "A" ? e.item.children[1] : e.item.children[0];
+		if (disable) {
+			ddState.recentlyRemovedHref = link.href;
+			link.removeAttribute("href");
+		} else {
+			setTimeout(function () {
+				link.href = ddState.recentlyRemovedHref;
+			}, 1);
+		}
+	};
+
+	var dismissIntro = function dismissIntro(e) {
+		ddState.dragAndDropIntro.classList.add("hide");
+		saveAppOrderToUserProperties(ddState.primarySortable.toArray(), ddState.secondarySortable.toArray());
+	};
+
+	var removeMouseUpListener = function removeMouseUpListener() {
+		if (ddState.dropdownNav && ddState.dropdownNav.removeEventListener) {
+			ddState.dropdownNav.removeEventListener('mouseup', $closeAppLauncher, false);
+		}
+	};
+
+	var removeMouseOverListener = function removeMouseOverListener() {
+		if (ddState.listenForMouseOverElement) {
+			ddState.listenForMouseOverElement.removeEventListener('mousemove', simulateDragEvent, false);
+		}
+	};
+
+	var simulateDragEvent = function simulateDragEvent(e) {
+		if (dragEventWasSimulated(e.clientX, e.clientY)) {
+			ddState.simulatedDragEvent = true;
+			ddState.dropdownWrapper.classList.add("dragging");
+			removeMouseOverListener();
+		}
+	};
+
+	var applyDragAndDropAdjustmentsForIE = function applyDragAndDropAdjustmentsForIE(ieVersion) {
+		if (ieVersion === "edge") {
+			ddState.browserIsEdge = true;
+		} else if (ieVersion === "ie11") {
+			primarySortableOptions.ghostClass = "sortable-ghost-class-with-pointer-events";
+			secondarySortableOptions.ghostClass = "sortable-ghost-class-with-pointer-events";
+		}
+	};
+
+	var dragEventWasSimulated = function dragEventWasSimulated(clientX, clientY) {
+		return !ddState.dragEventWasCanceled && !ddState.disabled && (Math.abs(clientX - ddState.startClientX) > ddState.maxDragErrorTollerance || Math.abs(clientY - ddState.startClientY) > ddState.maxDragErrorTollerance);
+	};
+
+	var verifyKeyPress = function verifyKeyPress(keyCode) {
+		return !keyCode || keyCode === 13;
+	};
+
+	/* Apps: Helper functions for Arrow Key Accessibility
+ /* ====================================================================== */
+
+	var activateAccessibilityMode = function activateAccessibilityMode(app, e) {
+		if (e.target.className !== "app-indicator app-indicator-removed") {
+			if (e.keyCode === keys.SPACE) {
+				if (ddState.activeAccessibleListElement) {
+					return deactivateAccessibilityMode(app, e);
+				}
+				var arrowSpan = app.canAccess ? e.target.firstChild.firstChild : e.target.firstChild;
+				var li = e.target.parentNode;
+				var ul = li.parentNode;
+				var liIndex = getIndexOfListItem(li);
+				var numOfPrimaryApps = ddState.primarySortable.toArray().length;
+
+				expandSecondaryDropdown();
+
+				var combinedIndex = getCombinedIndexOfApp(liIndex, ul, numOfPrimaryApps);
+				ddState.activeAccessibleListElement = li;
+				ddState.activeAccessibleListElementEvent = moveAppWithArrowKeys.bind(null, app, getArrayOfDirections(combinedIndex, ul), li, ul, liIndex);
+				li.addEventListener("keydown", ddState.activeAccessibleListElementEvent);
+
+				populateAccessibleArrows(arrowSpan, liIndex, ul, numOfPrimaryApps);
+			}
+		}
+		return false;
+	};
+
+	var deactivateAccessibilityMode = function deactivateAccessibilityMode(app, e) {
+		var target = e.target || e;
+		var arrowSpan = app.canAccess ? target.firstChild.firstChild : target.firstChild;
+		if (arrowSpan) {
+			arrowSpan.classList.remove("arrow-keys-enabled");
+			arrowSpan.classList.add("arrow-keys-disabled");
+		}
+		if (ddState.activeAccessibleListElement) {
+			ddState.activeAccessibleListElement.removeEventListener("keydown", ddState.activeAccessibleListElementEvent, false);
+			ddState.activeAccessibleListElement = null;
+		}
+	};
+
+	var getArrowKeyDirection = function getArrowKeyDirection(e) {
+		if (e.keyCode === keys.DOWN_ARROW) return "bottom";
+		if (e.keyCode === keys.UP_ARROW) return "top";
+		if (e.keyCode === keys.RIGHT_ARROW) return isRightToLeft ? "left" : "right";
+		if (e.keyCode === keys.LEFT_ARROW) return isRightToLeft ? "right" : "left";
+	};
+
+	var preventBrowserKeyboardDefaults = function preventBrowserKeyboardDefaults(e) {
+		if (e.keyCode === keys.SPACE || e.keyCode === keys.DOWN_ARROW || e.keyCode === keys.UP_ARROW) {
+			e.preventDefault();
+		}
+	};
+
+	var moveAppWithArrowKeys = function moveAppWithArrowKeys(app, directions, li, ul, liIndex, e) {
+		var direction = getArrowKeyDirection(e);
+
+		if (direction === "bottom" && directions.indexOf("bottom") > -1) {
+			moveAppByNumberOfSpaces(li, liIndex, ul, 3, app, e);
+		}
+		if (direction === "top" && directions.indexOf("top") > -1) {
+			moveAppByNumberOfSpaces(li, liIndex, ul, -3, app, e);
+		}
+		if (direction === "right" && directions.indexOf("right") > -1) {
+			moveAppByNumberOfSpaces(li, liIndex, ul, 1, app, e);
+		}
+		if (direction === "left" && directions.indexOf("left") > -1) {
+			moveAppByNumberOfSpaces(li, liIndex, ul, -1, app, e);
+		}
+	};
+
+	var moveAppByNumberOfSpaces = function moveAppByNumberOfSpaces(li, liIndex, ul, spaces, app, e) {
+		var newPosition = liIndex + spaces;
+		var ulLength = ul === ddState.bottomAppContainer ? ul.children.length - 1 : ul.children.length;
+		var ulIsPrimaryApps = ul === ddState.topAppContainer;
+
+		if (ulIsPrimaryApps && newPosition < ulLength || !ulIsPrimaryApps && newPosition <= ulLength && newPosition > 0) {
+			var node = spaces < 0 ? ul.children[newPosition] : ul.children[newPosition].nextSibling;
+			ul.insertBefore(li, node);
+		} else if (ulIsPrimaryApps) {
+			moveAppToSecondaryList(li, liIndex, spaces);
+			hideOrShowDropAppsHereMessage(ddState.bottomAppContainer);
+		} else {
+			moveAppToPrimaryList(li, liIndex, spaces);
+			hideOrShowDropAppsHereMessage(ddState.topAppContainer);
+		}
+
+		deactivateAccessibilityMode(app, e);
+		if (app.canAccess && !app.isNew) {
+			li.children[0].focus();
+		} else {
+			li.children[1].focus();
+		}
+
+		setTimeout(function () {
+			if (app.isNew) {
+				saveAppOrderToUserProperties(ddState.primarySortable.toArray(), ddState.secondarySortable.toArray(), { targetUid: app.itemId || app.title, isNew: true, targetValue: null });
+			} else {
+				saveAppOrderToUserProperties(ddState.primarySortable.toArray(), ddState.secondarySortable.toArray());
+			}
+		}, 0);
+	};
+
+	var moveAppToPrimaryList = function moveAppToPrimaryList(li, liIndex, spaces) {
+		var list = ddState.topAppContainer;
+		var appPositionInRow = liIndex % 3 || 3;
+		var numOfAppsInLastRow = numOfPrimaryApps % 3 || 3;
+		var numOfPrimaryApps = ddState.topAppContainer.children.length;
+
+		if (Math.abs(spaces) === 1 || numOfAppsInLastRow === 3) return list.appendChild(li);
+		if (appPositionInRow === 2 && numOfAppsInLastRow > 1) {
+			return list.insertBefore(li, list.children[numOfPrimaryApps - (numOfAppsInLastRow - 1)]);
+		}
+		if (appPositionInRow === 1 && numOfPrimaryApps) {
+			return list.insertBefore(li, list.children[numOfPrimaryApps - numOfAppsInLastRow]);
+		}
+		list.appendChild(li);
+	};
+
+	var moveAppToSecondaryList = function moveAppToSecondaryList(li, liIndex, spaces) {
+		var list = ddState.bottomAppContainer;
+		var numOfSecondaryApps = ddState.bottomAppContainer.children.length - 1;
+		var appPositionInRow = (liIndex + 1) % 3 || 3;
+
+		if (!numOfSecondaryApps) return list.appendChild(li);
+
+		if (Math.abs(spaces) === 1) return list.insertBefore(li, list.children[1]);
+		if (appPositionInRow === 2 && numOfSecondaryApps > 1) return list.insertBefore(li, list.children[2]);
+		if (appPositionInRow === 3 && numOfSecondaryApps === 2) return list.insertBefore(li, list.children[3]);
+		list.insertBefore(li, list.children[1]);
+	};
+
+	var getCombinedIndexOfApp = function getCombinedIndexOfApp(ind, ul, numOfPrimaryApps) {
+		return ind + (ul === ddState.bottomAppContainer ? numOfPrimaryApps + 1 : 1);
+	};
+
+	var getIndexOfListItem = function getIndexOfListItem(li) {
+		var ul = li.parentNode;
+		return Array.prototype.indexOf.call(ul.children, li);
+	};
+
+	var getAccessibleAppArrowContainer = function getAccessibleAppArrowContainer() {
+		return $assign("span", { "class": "arrow-keys-disabled" });
+	};
+
+	var populateAccessibleArrows = function populateAccessibleArrows(arrowSpan, liIndex, ul, numOfPrimaryApps) {
+		if (arrowSpan) {
+			arrowSpan.classList.add("arrow-keys-enabled");
+			arrowSpan.classList.remove("arrow-keys-disabled");
+		}
+
+		var combinedIndex = getCombinedIndexOfApp(liIndex, ul, numOfPrimaryApps);
+		arrowSpan.innerHTML = getAccessibleArrows(getArrayOfDirections(combinedIndex, ul), ul);
+	};
+
+	var getAccessibleArrows = function getAccessibleArrows(arrayOfDirections) {
+		return arrayOfDirections.reduce(function (prev, direction) {
+			return prev + getAccessibleArrow(direction);
+		}, "");
+	};
+
+	var getAccessibleArrow = function getAccessibleArrow(direction) {
+		return '<div class="app-arrow app-arrow-' + direction + '"></div>';
+	};
+
+	var getArrayOfDirections = function getArrayOfDirections(n, ul) {
+		var dirs = [];
+		var numOfPrimaryApps = ddState.topAppContainer.children.length;
+		var numOfSecondaryApps = ddState.bottomAppContainer.children.length;
+		var total = numOfPrimaryApps + numOfSecondaryApps;
+
+		if (n - 1 > 0) dirs.push("left");
+		if ((n + 1 <= total || !numOfSecondaryApps) && n !== numOfPrimaryApps) dirs.push("right");
+		if (n - 3 > 0) dirs.push("top");
+		if (n - numOfPrimaryApps + 2 < numOfSecondaryApps || ul === ddState.topAppContainer) dirs.push("bottom");
+		return dirs;
+	};
+
+	/* Apps: Primary Sortable Options
+ /* ====================================================================== */
+
+	var primarySortableOptions = {
+		group: "Apps", // or { name: "...", pull: [true, false, clone], put: [true, false, array] }
+		sort: true, // sorting inside list
+		disabled: !isDesktop, // Disables the sortable if set to true.
+		animation: 150, // ms, animation speed moving items when sorting, `0` — without animation
+		forceFallback: true,
+		delay: 0,
+		fallbackTolerance: 0,
+		ghostClass: "sortable-ghost-class",
+		dragClass: "sortable-drag-class",
+		onStart: function onStart(e) {
+			ddState.dragAppsHereText.classList.add("hide");
+			removeMouseUpListener();
+			disableLinkHref(e, true);
+		},
+		onEnd: function onEnd(e) {
+			e.preventDefault();
+			removeMouseOverListener();
+			disableLinkHref(e, false);
+			ddState.dropdownWrapper.classList.remove("dragging");
+			ddState.bottomAppContainer.classList.remove("on-drag-over");
+			if (ddState.secondarySortable.toArray().length) {
+				showDragAppsHereBox(false);
+			}
+			return false;
+		},
+		onMove: function onMove(e, oe) {
+			if (e.to === ddState.bottomAppContainer) {
+				ddState.bottomAppContainer.classList.add("on-drag-over");
+			} else {
+				ddState.bottomAppContainer.classList.remove("on-drag-over");
+			}
+		},
+		store: {
+			get: function get(sortable) {
+				return sortable.options.group.name && sortable.options.group.name.split("!") || [];
+			},
+			set: function set(sortable) {
+				if (!ddState.simulatedDragEvent) {
+					generateCustomLinkClick(ddState.startApp, ddState.startElement, ddState.removeStartApp);
+				} else {
+					saveAppOrderToUserProperties(sortable.toArray(), ddState.secondarySortable.toArray());
+				}
+				if (ddState.startElement) ddState.startElement.classList.remove("sortable-drag-class");
+				ddState.simulatedDragEvent = false;
+			}
+		}
+	};
+
+	/* Apps: Secondary Sortable Options
+ /* ====================================================================== */
+
+	var secondarySortableOptions = {
+		group: "Apps",
+		sort: true,
+		disabled: !isDesktop,
+		animation: 150,
+		forceFallback: true,
+		delay: 0,
+		fallbackTolerance: 0,
+		ghostClass: "sortable-ghost-class",
+		dragClass: "sortable-drag-class",
+		onStart: function onStart(e) {
+			removeMouseUpListener();
+			disableLinkHref(e, true);
+		},
+		onEnd: function onEnd(e) {
+			e.preventDefault();
+			removeMouseOverListener();
+			disableLinkHref(e, false);
+			ddState.dropdownWrapper.classList.remove("dragging");
+			if (!ddState.secondarySortable.toArray().length) {
+				showDragAppsHereBox(true);
+			}
+		},
+		store: {
+			get: function get(sortable) {
+				return sortable.options.group.name && sortable.options.group.name.split('!') || [];
+			},
+			set: function set(sortable) {
+				if (!ddState.simulatedDragEvent) {
+					generateCustomLinkClick(ddState.startApp, ddState.startElement, ddState.removeStartApp);
+				} else {
+					saveAppOrderToUserProperties(ddState.primarySortable.toArray(), sortable.toArray());
+				}
+				if (ddState.startElement) ddState.startElement.classList.remove("sortable-drag-class");
+				ddState.simulatedDragEvent = false;
+			}
+		}
+	};
+
+	/* Apps: On Update
+ /* ====================================================================== */
+
+	$target.addEventListener('header:update:apps', function (_ref) {
+		var detail = _ref.detail;
+
+		if (detail) {
+			$target.classList.remove('hidden');
+		} else {
+			$target.classList.add('hidden');
+			return;
+		}
+
+		var $gridIcon = $renderSvgOrImg({ imgDef: $grid.md, imgClass: prefix$8 + '-image', $targetElm: $appSwitcherIcon });
+		// -- Remove display:none from style to show icon
+		$control.removeAttribute('style');
+
+		if (!detail.primary) return;
+		if (detail.ieVersion) applyDragAndDropAdjustmentsForIE(detail.ieVersion);
+		if (detail.disableDragAndDrop || !isDesktop) ddState.disabled = true;
+		if (detail.text) {
+			ddState.i18n = detail.text || {};
+		}
+
+		if (!detail.isLoading) {
+			$target.appendChild($content);
+			$control.className = prefix$8 + '-control';
+			$control.setAttribute("tabindex", "0");
+			$assign($control, { aria: { label: detail.label } });
+
+			var numberOfApps = detail.primary.length;
+			var dropdownWidth = ' dropdown-width-' + (numberOfApps < 3 ? numberOfApps : 3);
+
+			// App Icons
+
+			ddState.topAppContainer = $assign("ul", {
+				class: prefix$8 + ' appContainer primary',
+				role: "menu"
+			});
+
+			ddState.bottomAppContainer = $assign("ul", {
+				class: prefix$8 + ' appContainer secondary',
+				role: "menu"
+			});
+
+			if (ddState.dropdownWrapper) {
+				// Destroy dropdown content to start from clean slate
+				$content.innerHTML = "";
+				if ($bottomContainer.lastChild) $bottomContainer.removeChild($bottomContainer.lastChild);
+			}
+
+			ddState.dragAppsHereText = $assign("p", { "class": "hide" }, ddState.i18n.dragAppsHere);
+			ddState.bottomAppContainer.appendChild(ddState.dragAppsHereText);
+
+			if (!detail.secondary.length) showDragAppsHereBox(true);
+
+			ddState.primarySortable = Sortable.create(ddState.topAppContainer, primarySortableOptions);
+			ddState.secondarySortable = Sortable.create(ddState.bottomAppContainer, secondarySortableOptions);
+
+			detail.primary.forEach(function (a, i) {
+				createDefaultAppLayout(ddState.topAppContainer, a, i);
+			});
+			detail.secondary.forEach(function (a, i) {
+				createDefaultAppLayout(ddState.bottomAppContainer, a, i);
+			});
+
+			$bottomContainer.appendChild(ddState.bottomAppContainer);
+			$secondaryDropdownMenu.appendChild($bottomContainer);
+
+			var $dropdown = $assign('div', {
+				class: ''
+			});
+
+			var $dragAndDropIntroText = $assign('p', {
+				class: prefix$8 + ' drag-and-drop-intro'
+			}, ddState.i18n.intro);
+			var $dismissIntroButton = $assign('button', {
+				class: prefix$8 + ' dismiss-intro-button',
+				click: dismissIntro
+			}, ddState.i18n.confirm);
+			ddState.dragAndDropIntro = detail.displayIntro && !ddState.disabled ? $assign('div', { class: prefix$8 + ' intro-container' }, $dragAndDropIntroText, $dismissIntroButton) : "";
+
+			var $showMoreChevron = $assign('span');
+			$showMoreChevron.innerHTML = getDownChevron();
+			ddState.showMoreButton = $assign('button', {
+				class: prefix$8 + ' show-more-button',
+				click: expandSecondaryDropdown
+			}, ddState.i18n.showMore, $showMoreChevron);
+
+			ddState.dropdownWrapper = $assign('div', {}, ddState.dragAndDropIntro, ddState.topAppContainer, ddState.showMoreButton, $secondaryDropdownMenu);
+
+			ddState.dropdownNav = $assign('nav', {
+				class: prefix$8 + ' dropdown-menu dropdown-right app-switcher-dropdown-menu ' + dropdownWidth,
+				role: "menu"
+			}, ddState.dropdownWrapper);
+
+			$dropdown.appendChild(ddState.dropdownNav);
+			$content.appendChild($dropdown);
+			$replaceAll($target, $control, $content);
+			ddState.loading = false;
+			resetStateOfBottomContainer();
+		} else {
+			ddState.loading = true;
+			$control.className = prefix$8 + '-control disabled-grid-icon';
+			$control.setAttribute("tabindex", "-1");
+			$replaceAll($target, $control);
+		}
+	});
+
+	return $target;
+});
+
+function assignAppSwitcherProps($appSwitcher, detail) {
+	var props = ['api', 'portal', 'user', 'showInAppLauncher', 'newMapViewerEnabled', 'notebookServerEnabled', 'trackViewerEnabled'];
+	props.forEach(function (prop) {
+		if (detail.hasOwnProperty(prop)) {
+			$appSwitcher[prop] = detail[prop];
+		}
+	});
+}
+
+var createAppSwitcher = (function () {
+	/* Apps: Target
+ /* ====================================================================== */
+
+	var prefix = 'esri-header-app-switcher';
+	var $target = $assign("div", { class: prefix });
+
+	$target.addEventListener('header:update:appSwitcher', function (_ref) {
+		var detail = _ref.detail;
+
+		if (!detail) {
+			return;
+		}
+
+		$target.innerHTML = "";
+
+		var $appSwitcher = $assign('arcgis-app-switcher');
+		assignAppSwitcherProps($appSwitcher, detail);
+		$target.appendChild($appSwitcher);
+		$appSwitcher.addEventListener('arcgisAppSwitcherToggle', function (_ref2) {
+			var detail = _ref2.detail;
+
+			var isExpanded = detail;
+			$appSwitcher.shouldExpand = isExpanded;
+			$dispatch($target, 'header:menu:' + (isExpanded ? 'open' : 'close'), {
+				state: 'menu',
+				target: $target,
+				type: 'root-toggle',
+				control: prefix + '-button',
+				content: prefix + '-content'
+			});
+		});
+
+		$target.addEventListener('header:appSwitcher:close', function () {
+			$appSwitcher.shouldExpand = false;
+		});
+	});
+
+	return $target;
+});
+
+var prefix$9 = 'esri-header-notifications';
+var messages = [];
+
+var createNotifications = (function () {
+	var $target = $assign('div', { class: prefix$9 + ' a11y-' + prefix$9 });
+
+	// /* Notifications: Control
+	// /* ====================================================================== */
+	var $control = $assign('button', {
+		class: prefix$9 + '-control', id: prefix$9 + '-control',
+		aria: { controls: prefix$9 + '-menu', expanded: false, haspopup: true }
+	});
+
+	$control.addEventListener('click', function (event) {
+		$dispatch($control, 'header:click:notifications', { event: event });
+		$dispatch($control, 'header:menu:toggle', {
+			notifications: true,
+			control: $control,
+			content: $content,
+			state: 'menu',
+			target: $target,
+			type: 'notifications-toggle'
+		});
+	});
+
+	// /* Notifications: Control
+	// /* ====================================================================== */
+	var $dismiss = $assign('button', { class: prefix$9 + '-dismiss-all' });
+	$dismiss.addEventListener('click', function (event) {
+		$dispatch($control, 'header:click:notifications:dismiss', messages);
+	});
+
+	/* Notifications: Content
+ /* ====================================================================== */
+	var $contentMessages = $assign('ul', {
+		class: prefix$9 + '-messages'
+	});
+	var $content = $assign('div', {
+		class: prefix$9 + '-menu', id: prefix$9 + '-menu',
+		aria: { expanded: false, hidden: true }
+	}, $contentMessages);
+
+	/* Notifications: On Update
+ /* ====================================================================== */
+	$target.addEventListener('header:update:notifications', function (_ref) {
+		var detail = _ref.detail;
+
+		if (detail) {
+			$target.classList.remove('hidden');
+		} else {
+			$target.classList.add('hidden');
+			return;
+		}
+		messages = (detail.messages || []).map(function (item) {
+			return item.id;
+		});
+
+		var $icon = $renderSvgOrImg({ imgDef: $bell.md, imgClass: prefix$9 + '-image', id: prefix$9 + '-image' });
+		$control.setAttribute('aria-label', detail.label || "Notifications");
+
+		if (detail.messages && detail.messages.length > 0) {
+			$replaceAll($dismiss, detail.dismissAllLabel);
+			var $badge = $assign('span', { class: prefix$9 + '-badge' }, '' + detail.messages.length);
+			$replaceAll($control, $icon, $badge);
+			// Update the notifications
+			$replaceAll.apply(undefined, [$contentMessages].concat(toConsumableArray(detail.messages.map(function (item) {
+				var $dismissBtn = $assign('button', {
+					class: prefix$9 + '-message-dismiss',
+					aria: { label: detail.dismissLabel }
+				}, $renderSvgOrImg({ imgDef: $close.sm, imgClass: prefix$9 + '-dismiss-icon' }));
+				$dismissBtn.addEventListener('click', function (event) {
+					$dispatch($control, 'header:click:notifications:dismiss', [item.id]);
+				});
+				return $assign('li', { class: prefix$9 + '-message' }, $assign('span', { class: prefix$9 + '-message-text' }, item.text, $assign('span', { class: prefix$9 + '-message-date' }, item.date)), $dismissBtn);
+			}))));
+			$replaceAll($content, $contentMessages, $dismiss);
+		} else {
+			$replaceAll($control, $icon);
+			var $emptyImage = $renderSvgOrImg({ imgDef: detail.emptyMessage.image.path, imgClass: prefix$9 + '-empty-image', viewBox: detail.emptyMessage.image.viewBox });
+			var $emptyText = $assign('p', { class: prefix$9 + '-empty-text' }, detail.emptyMessage.text);
+			var $empty = $assign('div', { class: prefix$9 + '-empty' }, $emptyImage, $emptyText);
+			$replaceAll($content, $empty);
+		}
+
+		$replaceAll($target, $control, $content);
+	});
+
+	return $target;
+});
+
+/* Header
+/* ====================================================================== */
+
+var createHeader = (function (data) {
+	var viewportIsSmall = void 0;
+	var viewportIsSmallMedium = void 0;
+
+	/* Canvas
+ /* ====================================================================== */
+
+	var $headerCanvas = $assign('div', {
+		class: 'esri-header-canvas',
+		tabindex: '-1',
+		data: { open: false }
+	});
+
+	$headerCanvas.addEventListener('click', function () {
+		$dispatch($headerCanvas, 'header:menu:close');
+	});
+
+	/* Elements
+ /* ====================================================================== */
+
+	var $brandStripe = createBrandStripe();
+	var $brand = createBrand();
+	var $inlineTitle = createInlineTitle();
+	var $account = createAccount();
+	var $mobileMenus = createMenus({ variant: 'mobile' });
+	var $desktopMenus = createMenus({ variant: 'desktop' });
+	var $search = createSearch();
+	var $shoppingCart = createShoppingCart();
+	var $inlineSearch = createInlineSearch();
+	var $notifications = createNotifications();
+	var $apps = createApps();
+	var $appSwitcher = createAppSwitcher();
+
+	var $client = $assign('div', { class: 'esri-header-client' }, $account);
+
+	var $lineBreak = $assign('div', { class: 'esri-header-lineBreak' });
+	var $headerContent = $assign('div', { class: 'esri-header -' + (data.theme || 'web') + ' ' + (data.collapseMenus ? '-always-hamburger' : '') }, $brandStripe, $brand, $mobileMenus, $inlineTitle, $desktopMenus, $search, $inlineSearch, $lineBreak, $shoppingCart, $notifications, $apps, $appSwitcher, $client);
+	var $header = $assign('div', { class: 'esri-header-canvas' }, $headerCanvas, { class: 'esri-header-wrap' }, $headerContent);
+
+	$enableFocusRing($header);
+
+	/* On Header Update
+ /* ====================================================================== */
+
+	$header.addEventListener('header:update', function (_ref) {
+		var detail = _ref.detail;
+
+		if (detail.brand) {
+			detail.brand.root = true;
+		}
+		$dispatch($brandStripe, 'header:update:brand', detail.brand);
+		$dispatch($brand, 'header:update:brand', detail.brand);
+		$dispatch($inlineTitle, 'header:update:inlineTitle', detail.brand);
+		$dispatch($search, 'header:update:search', detail.search);
+		$dispatch($inlineSearch, 'header:update:inlineSearch', detail.search);
+		$dispatch($client.lastChild, 'header:update:account', detail.account);
+		$dispatch($apps, 'header:update:apps', detail.apps);
+		$dispatch($appSwitcher, 'header:update:appSwitcher', detail.appSwitcher);
+		$dispatch($notifications, 'header:update:notifications', detail.notifications);
+		$dispatch($shoppingCart, 'header:update:cart', detail.cart);
+
+		if (detail.menus) {
+			detail.menus.noBrand = !detail.brand;
+			$dispatch($desktopMenus, 'header:update:menus', detail.menus);
+			$dispatch($mobileMenus, 'header:update:menus', detail.menus);
+			$dispatch($mobileMenus, 'header:update:menuLabel', detail.menuLabel);
+		}
+
+		if (detail.collapseMenus) {
+			$dispatch($desktopMenus, 'header:update:collapseMenus', detail.collapseMenus);
+			$dispatch($mobileMenus, 'header:update:collapseMenus', detail.collapseMenus);
+		}
+
+		if (detail.brand && detail.brand.topStripe) {
+			$header.style.marginTop = '3px';
+		}
+
+		if (!detail.notifications && !detail.apps && !detail.account) {
+			$lineBreak.classList.add('esri-header-lineBreak-hidden');
+		}
+
+		$header.ownerDocument.defaultView.addEventListener('keydown', function (_ref2) {
+			var keyCode = _ref2.keyCode;
+
+			if (27 === keyCode) {
+				// prior to closing with escape, save a reference to the menu to we can refocus it
+				var currentFocus = document.activeElement;
+				var menu = currentFocus.closest(".a11y-esri-header-notifications,.a11y-esri-header-apps,.a11y-esri-header-account");
+				$dispatch($header, 'header:menu:close');
+				if (menu) {
+					var toggle = menu.querySelector("button");
+					if (toggle) {
+						toggle.focus();
+					}
+				}
+			}
+		});
+	});
+
+	/* On Inline Search
+ /* ====================================================================== */
+
+	$header.addEventListener('header:search:typing', function (_ref3) {
+		var detail = _ref3.detail;
+
+		$dispatch($inlineSearch, 'header::search:typing', detail.search);
+	});
+
+	$header.addEventListener('header:search:update:suggestions', function (_ref4) {
+		var detail = _ref4.detail;
+
+		$dispatch($inlineSearch, 'header:search:populateSuggestions', detail);
+	});
+
+	/* On Save Title
+ /* ====================================================================== */
+
+	$header.addEventListener('header:title:submit', function (_ref5) {
+		var detail = _ref5.detail;
+
+		$dispatch($inlineSearch, 'header::title:save', detail.title);
+	});
+
+	/* On Drag & Drop Apps
+ /* ====================================================================== */
+
+	$header.addEventListener('header:apps:reorder', function (_ref6) {
+		var detail = _ref6.detail;
+
+		$dispatch($apps, 'header::apps:reorder', detail.icons);
+	});
+
+	/* On Header Menu Toggle
+ /* ====================================================================== */
+
+	$header.addEventListener('header:menu:toggle', function (_ref7) {
+		var detail = _ref7.detail;
+
+		var submenuShouldOpen = 'true' !== detail.control.getAttribute('aria-expanded');
+		var eventType = submenuShouldOpen ? 'header:menu:open' : 'header:menu:close';
+
+		$dispatch(detail.control, eventType, detail);
+	});
+
+	/* On Header Menu Open
+ /* ====================================================================== */
+
+	var accountDetail = null;
+	var searchDetail = null;
+	var menusDetail = null;
+	var menuDetail = null;
+	var appsDetail = null;
+	var appSwitcherDetail = null;
+	var inlineTitleDetail = null;
+	var notificationsDetail = null;
+
+	$header.addEventListener('header:menu:open', function (_ref8) {
+		var detail = _ref8.detail;
+
+		var menuWrapper = detail.control.closest && detail.control.closest('.esri-header-menus');
+		var hasMobileClass = menuWrapper && menuWrapper.classList.contains('-mobile');
+		var isMenuMobile = 'menu-toggle' === detail.type && viewportIsSmallMedium.matches || hasMobileClass;
+		var isAccountMobile = $account === detail.target && viewportIsSmall.matches;
+
+		// Update Control, Content
+		$assign(detail.control, { aria: { expanded: true } });
+		$assign(detail.content, { aria: { expanded: true, hidden: false } });
+
+		if (menuDetail && menuDetail.control !== detail.control) {
+			$dispatch(menuDetail.control, 'header:menu:close', menuDetail);
+		}
+
+		if ('menu-toggle' === detail.type) {
+			menuDetail = detail;
+		}
+
+		if ($search === detail.target || $inlineSearch === detail.target) {
+			searchDetail = detail;
+		} else if (searchDetail) {
+			$dispatch($search, 'header:menu:close', searchDetail);
+			searchDetail = null;
+		}
+
+		if ($desktopMenus === detail.target || $mobileMenus === detail.target) {
+			menusDetail = detail;
+		} else if (menusDetail && !isAccountMobile && !isMenuMobile) {
+			$dispatch($desktopMenus, 'header:menu:close', menusDetail);
+			$dispatch($mobileMenus, 'header:menu:close', menusDetail);
+			menusDetail = null;
+		}
+
+		if ($inlineTitle === detail.target) {
+			inlineTitleDetail = detail;
+		} else if (inlineTitleDetail) {
+			$dispatch($inlineTitle, 'header:menu:close', inlineTitleDetail);
+			inlineTitleDetail = null;
+		}
+
+		if ($account === detail.target) {
+			accountDetail = detail;
+		} else if (accountDetail) {
+			$dispatch($account, 'header:menu:close', accountDetail);
+			accountDetail = null;
+		}
+
+		if ($apps === detail.target) {
+			appsDetail = detail;
+		} else if (appsDetail) {
+			$dispatch($apps, 'header:menu:close', appsDetail);
+			appsDetail = null;
+		}
+
+		if ($appSwitcher === detail.target) {
+			appSwitcherDetail = detail;
+		} else if (appSwitcherDetail) {
+			$dispatch($appSwitcher, 'header:appSwitcher:close', appSwitcherDetail);
+			appSwitcherDetail = null;
+		}
+
+		if ($notifications === detail.target) {
+			notificationsDetail = detail;
+		} else if (notificationsDetail) {
+			$dispatch($notifications, 'header:menu:close', notificationsDetail);
+			notificationsDetail = null;
+		}
+
+		// Update Canvas
+		$assign($headerCanvas, { data: { open: true, state: detail.state } });
+
+		// Update Document Root
+		$assign($header.ownerDocument.documentElement, { data: { 'header-is-open': true } });
+	});
+
+	/* On Header Menu Close
+ /* ====================================================================== */
+
+	window.addEventListener('focusin', function (e) {
+		var mobileHeader = document.querySelector(".esri-header-menus.-mobile");
+		var mobileToggle = mobileHeader && mobileHeader.querySelector("#esri-header-menus-mobile-toggle");
+		if (mobileToggle && mobileToggle.getAttribute("aria-expanded") === "true" && !e.target.closest(".esri-header-menus")) {
+			$dispatch($headerCanvas, 'header:menu:close');
+		}
+	});
+
+	$header.addEventListener('header:menu:close', function (_ref9) {
+		var detail = _ref9.detail;
+
+		var currentDetail = detail || searchDetail || inlineTitleDetail || accountDetail || appsDetail || appSwitcherDetail || notificationsDetail || menusDetail || menuDetail;
+
+		if (currentDetail) {
+			// Close the Detail
+			$assign(currentDetail.control, { aria: { expanded: false } });
+			$assign(currentDetail.content, { aria: { expanded: false, hidden: true } });
+
+			var isBurger = currentDetail.control.closest && currentDetail.control.closest('.-always-hamburger') !== null;
+			var canvasShouldClose = !viewportIsSmallMedium.matches && !isBurger || 'menu-close' !== currentDetail.type && 'account-close' !== currentDetail.type;
+
+			if (inlineTitleDetail && inlineTitleDetail.control === currentDetail.control) {
+				$dispatch(inlineTitleDetail.content, 'header:inlineTitle:deactivated', currentDetail);
+			}
+
+			if (searchDetail && searchDetail.control === currentDetail.control) {
+				$dispatch(searchDetail.content.lastChild, 'reset');
+			}
+
+			if (searchDetail && searchDetail.target === $inlineSearch && (currentDetail.type === "inlineSearch" || viewportIsSmall.matches)) {
+				if (!menusDetail) {
+					$dispatch(searchDetail.content, 'header:inlineSearch:deactivated', currentDetail);
+				}
+			}
+
+			if (appSwitcherDetail && currentDetail === appSwitcherDetail) {
+				$dispatch($appSwitcher, 'header:appSwitcher:close', appSwitcherDetail);
+			}
+
+			if (canvasShouldClose) {
+				// Close the Canvas
+				$assign($headerCanvas, { data: { open: false } });
+
+				// Update Document Root
+				$header.ownerDocument.documentElement.removeAttribute('data-header-is-open');
+			}
+		}
+	});
+
+	/* on Inline Search Activated
+ /* ====================================================================== */
+
+	$header.addEventListener('header:inlineSearch:activated', function (_ref10) {
+		$desktopMenus.querySelector('.esri-header-menus-menu').classList.add('hidden');
+		$lineBreak.classList.add('hidden');
+		$mobileMenus.querySelector('.esri-header-menus-toggle').classList.add('hidden');
+		if (viewportIsSmall) $brand.classList.add('hidden');
+	});
+
+	/* on Inline Search Deactivated
+ /* ====================================================================== */
+
+	$header.addEventListener('header:inlineSearch:deactivated', function (_ref11) {
+		$desktopMenus.querySelector('.esri-header-menus-menu').classList.remove('hidden');
+		$lineBreak.classList.remove('hidden');
+		$mobileMenus.querySelector('.esri-header-menus-toggle').classList.remove('hidden');
+		$brand.classList.remove('hidden');
+	});
+
+	/* on Inline Title Activated
+ /* ====================================================================== */
+
+	$header.addEventListener('header:inlineTitle:activated', function (_ref12) {
+		if (!viewportIsSmall.matches) {
+			$desktopMenus.querySelector('.esri-header-menus-content').classList.add('hidden');
+			$mobileMenus.querySelector('.esri-header-menus-toggle').classList.add('hidden');
+		}
+	});
+
+	/* on Inline Title Deactivated
+ /* ====================================================================== */
+
+	$header.addEventListener('header:inlineTitle:deactivated', function (_ref13) {
+		if (!viewportIsSmallMedium.matches) {
+			$desktopMenus.querySelector('.esri-header-menus-content').classList.remove('hidden');
+		}
+	});
+
+	/* on Element Ready
+ /* ====================================================================== */
+
+	onElementInserted($header, function () {
+		// Get Document and Window
+		var $headerDocument = $header.ownerDocument;
+		var $headerWindow = $headerDocument.defaultView;
+
+		var $style = $assign('style');
+
+		var overflowY = void 0;
+
+		if ($header.parentNode) {
+			// Update Header
+			$dispatch($header, 'header:update', data);
+
+			/* On Resize
+   /* ============================================================== */
+
+			$assign($headerDocument.head, $style);
+
+			$headerWindow.addEventListener('orientationchange', onresize);
+			$headerWindow.addEventListener('resize', onresize);
+
+			/* On Match Media Change
+   /* ============================================================== */
+
+			viewportIsSmall = $headerWindow.matchMedia('(max-width: 768px)');
+			viewportIsSmallMedium = $headerWindow.matchMedia('(max-width: 1023px)');
+
+			viewportIsSmall.addListener(onViewportIsSmallChange);
+			viewportIsSmallMedium.addListener(onViewportIsSmallMediumChange);
+
+			onViewportIsSmallChange();
+			onViewportIsSmallMediumChange();
+
+			onresize();
+		}
+
+		function onresize() {
+			var height = $headerDocument.documentElement.clientHeight;
+			var scrollHeight = $headerDocument.documentElement.scrollHeight;
+			var width = scrollHeight > height ? window.innerWidth : $headerDocument.documentElement.clientWidth;
+
+			overflowY = getComputedStyle($headerDocument.documentElement).overflowY.replace('visible', scrollHeight > height ? 'scroll' : 'visible');
+
+			$replaceAll($style, ':root{--esri-vw:' + width + 'px;--esri-vh:' + height + 'px}[data-header-is-open]{width:' + width + 'px;height:' + height + 'px;overflow-y:' + overflowY + '}');
+
+			viewportIsSmallMedium = $headerWindow.matchMedia('(max-width: 1023px)');
+			if (viewportIsSmallMedium.matches) {
+				$desktopMenus.querySelector('.esri-header-menus-content').classList.add('hidden');
+				$mobileMenus.querySelector('.esri-header-menus-content').classList.remove('hidden');
+			} else {
+				$desktopMenus.querySelector('.esri-header-menus-content').classList.remove('hidden');
+				$mobileMenus.querySelector('.esri-header-menus-content').classList.add('hidden');
+			}
+		}
+
+		function onViewportIsSmallChange() {
+			if (viewportIsSmall.matches) {
+				$dispatch($header, 'header:breakpoint:s');
+				$mobileMenus.lastChild.appendChild($account);
+				$notifications.classList.add('hidden');
+				$apps.classList.add('hidden');
+				$appSwitcher.classList.add('hidden');
+			} else {
+				$dispatch($header, 'header:breakpoint:not:s');
+				$client.appendChild($account);
+				$notifications.classList.remove('hidden');
+				$apps.classList.remove('hidden');
+				$appSwitcher.classList.remove('hidden');
+			}
+		}
+
+		function onViewportIsSmallMediumChange() {
+			if (viewportIsSmallMedium.matches) {
+				$dispatch($header, 'header:breakpoint:sm');
+			} else {
+				$dispatch($header, 'header:breakpoint:not:sm');
+				$dispatch($header, 'header:menu:close');
+			}
+		}
+	});
+
+	return $header;
+});
+
+// Create branding and social sections
+var brand = (function (data, prefix) {
+	if (!data) {
+		return;
+	}
+	return $assign('div', { class: prefix + '-brand' }, $assign('a', {
+		class: prefix + '-brand-link',
+		href: data.href,
+		aria: { label: data.label }
+	}, $renderSvgOrImg({ imgDef: data.path, imgClass: prefix + '-brand-image' })));
+});
+
+/* Language
+/* ========================================================================== */
+
+var languageDialog = (function (data) {
+	var $choice = $assign.apply(undefined, ['select', {
+		class: data.prefix + '-choice',
+		autofocus: '',
+		aria: { label: data.optionsLabel }
+	}].concat(toConsumableArray(data.options.map(function (option) {
+		var opt = document.createElement('option');
+		opt.value = option.value;
+		opt.innerHTML = option.label;
+		return opt;
+	}))));
+
+	var $language = $assign('form', {
+		class: data.prefix,
+		aria: {
+			labelledby: data.prefix + '-message',
+			describedby: 'dialog-description'
+		},
+		role: 'dialog',
+		tabindex: '-1'
+	}, $assign('p', { class: data.prefix + '-message', id: data.prefix + '-message' }, $assign('strong', data.greetingLabel), ' ', data.messageLabel), $choice, $assign('button', {
+		class: data.prefix + '-submit',
+		type: 'submit',
+		aria: { label: data.submitLabel + ' ' + data.optionsLabel }
+	}, data.submitLabel));
+
+	$language.addEventListener('submit', function (event) {
+		event.preventDefault();
+
+		window.location.href = $choice.value;
+	});
+
+	return $language;
+});
+
+/* Global Footer: Tooling
+/* ========================================================================== */
+
+/* Global Footer
+/* ========================================================================== */
+
+var language = (function (data, prefix) {
+	// Language Selection Button
+	var $control = $assign('button', {
+		class: prefix + '-language-control',
+		title: 'Current language, ' + data.buttonLabel
+	}, '' + data.buttonLabel);
+
+	var $barrier = $assign('div', { class: prefix + '-language' }, $control);
+
+	$control.addEventListener('click', openDialog);
+
+	// Language Dialog
+	data.prefix = prefix + '-language-dialog';
+
+	var $languageDialog = languageDialog(data);
+
+	// Language Dialog Close Button
+	var $languageDialogClose = $assign('button', {
+		class: prefix + '-language-dialog-close', id: 'dialog-description',
+		'aria-label': data.closeLabel
+	}, $renderSvgOrImg({ imgDef: $close.md, imgClass: prefix + '-language-dialog-close-image' }));
+
+	$languageDialogClose.addEventListener('click', closeDialog);
+
+	$assign($languageDialog, $languageDialogClose);
+
+	function openDialog(event) {
+		event.preventDefault();
+
+		$assign($canvas, {
+			aria: { expanded: true }
+		});
+	}
+
+	function closeDialog(event) {
+		event.preventDefault();
+
+		$assign($canvas, {
+			aria: { expanded: false }
+		});
+	}
+
+	var $canvas = $assign('div', {
+		class: prefix + '-language-dialog-barrier',
+		aria: { expanded: false }
+	}, $languageDialog);
+
+	$control.addEventListener('click', function () {
+		$dispatch($control, 'footer:click:language', data);
+	});
+
+	$barrier.addEventListener('footer:update:language', function (_ref) {
+		$control.innerHTML = '' + data.buttonLabel;
+
+		$barrier.ownerDocument.body.appendChild($canvas);
+
+		$barrier.ownerDocument.defaultView.addEventListener('keydown', function () {
+			var _ref2 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : event,
+			    keyCode = _ref2.keyCode;
+
+			if (27 === keyCode) {
+				closeDialog(event);
+			}
+		});
+	});
+
+	return $barrier;
+});
+
+/* Global Footer
+/* ========================================================================== */
+
+// Create navigation
+var menu = (function (data, prefix) {
+	// ...
+	var media = matchMedia('(max-width: 719px)');
+
+	var mediaMatches = false;
+
+	media.addListener(onchange);
+
+	// Menu Items
+	var links = data.menu.map(function (item, index) {
+		return $assign('li', { class: prefix + '-menu-item', id: prefix + '-menu-link--' + index }, $assign('span', {
+			class: prefix + '-menu-link',
+			id: prefix + '-heading-' + index
+		}, item.label),
+		// Submenu
+		$assign('div', {
+			class: prefix + '-menu--sub', id: prefix + '-menu--sub--' + index,
+			aria: { labelledby: prefix + '-menu-link--' + index }
+		}, $assign.apply(undefined, ['ul', {
+			class: prefix + '-menu-list--sub'
+		}].concat(toConsumableArray(item.menu.map(function (subitem) {
+			return $assign('li', { class: prefix + '-menu-item--sub' }, $assign('a', { class: prefix + '-menu-link--sub', href: subitem.href, 'aria-labelledby': prefix + '-menu--sub--' + index }, subitem.label));
+		}))))));
+	});
+
+	// Menu
+	var $target = $assign('nav', {
+		class: prefix + '-menu',
+		aria: { label: data.label }
+	}, $assign.apply(undefined, ['ul', {
+		class: prefix + '-menu-list'
+	}].concat(toConsumableArray(links))));
+
+	onchange();
+
+	return $target;
+
+	// ...
+	function onchange() {
+		if (mediaMatches !== media.matches) {
+			mediaMatches = media.matches;
+
+			links.forEach(function (link) {
+				if (mediaMatches) {
+					transformAsTouch(link.firstChild);
+				} else {
+					detransformAsTouch(link.firstChild);
+				}
+			});
+		}
+	}
+
+	// ...
+	function transformAsTouch(link) {
+		var isVisible = 'true' !== link.nextElementSibling.getAttribute('aria-hidden');
+
+		$assign(link, {
+			tabindex: 0,
+			role: 'button', aria: { expanded: !isVisible, haspopup: !isVisible }
+		});
+
+		link.addEventListener('click', onclick);
+		link.addEventListener('keypress', onkeypress);
+
+		$assign(link.nextElementSibling, { aria: { hidden: true } });
+	}
+
+	// ...
+	function detransformAsTouch(link) {
+		link.removeAttribute('aria-controls');
+		link.removeAttribute('aria-expanded');
+		link.removeAttribute('aria-haspopup');
+		link.removeAttribute('role');
+		link.removeAttribute('tabindex');
+
+		link.addEventListener('click', onclick);
+		link.addEventListener('keypress', onkeypress);
+
+		link.nextElementSibling.removeAttribute('aria-hidden');
+	}
+
+	// ...
+	function onclick(event) {
+		var currentTarget = event.currentTarget;
+		var nextTarget = currentTarget.nextElementSibling;
+		var isVisible = 'true' !== nextTarget.getAttribute('aria-hidden');
+
+		$assign(currentTarget, { aria: { expanded: !isVisible, haspopup: !isVisible } });
+
+		$assign(nextTarget, { aria: { hidden: isVisible } });
+
+		if (isVisible) {
+			$assign(currentTarget, { aria: { controls: 0 } });
+		} else {
+			$assign(currentTarget, { aria: { controls: nextTarget.id } });
+		}
+	}
+
+	// ...
+	function onkeypress(event) {
+		if (event.keyCode === 13 || event.keyCode === 32) {
+			event.preventDefault();
+
+			$dispatch(event.currentTarget, 'click');
+		}
+	}
+});
+
+/* Global Footer: Tooling
+/* ========================================================================== */
+
+/* Global Footer
+/* ========================================================================== */
+
+var info = (function (data, prefix) {
+	return $assign('div', { class: prefix + '-info', aria: { label: data.label } }, $assign.apply(undefined, ['ul', { class: prefix + '-info-list' }].concat(toConsumableArray(data.menu.map(function (item, index) {
+		return $assign('li', { class: prefix + '-info-item', id: prefix + '-info-link--' + index }, $assign('a', { class: prefix + '-info-link', href: item.href }, item.label));
+	})))));
+});
+
+var social = (function (data, prefix) {
+	var $socialIcons = document.createDocumentFragment();
+
+	data.menu.forEach(function (item) {
+		var platform = item.platform || item.label.toLowerCase().replace(' ', '-');
+		$assign($socialIcons, $assign('a', {
+			class: prefix + '-social-item ' + prefix + '-social-link -' + platform,
+			href: item.href,
+			aria: { label: item.label },
+			target: '_blank',
+			rel: 'noopener'
+		}, $renderSvgOrImg({ imgDef: item.image.path, imgClass: prefix + '-social-image', alt: '', imgWidth: 30, imgHeight: 30, viewBox: item.image.viewBox })));
+	});
+
+	return $assign('div', { class: prefix + '-social' }, $assign('nav', { class: prefix + '-social-nav', aria: { label: data.label || 'Social Media' } }, $socialIcons));
+});
+
+var breadcrumbs = (function (data) {
+  var showBreadCrumbs = data.showBreadcrumb;
+  var breadcrumbHomeURL = data.breadcrumbHomeURL;
+  var breadcrumbHomeLabel = data.breadcrumbHomeLabel;
+
+  if (showBreadCrumbs) {
+    var prefix = 'esri-footer-breadcrumb';
+    var $breadCrumbs = document.createDocumentFragment();
+    var breadCrumbItems = data.breadcrumbs || [];
+
+    breadCrumbItems.forEach(function (crumb, index) {
+      var isLastBreadCrumbItem = index === breadCrumbItems.length - 1;
+
+      if (isLastBreadCrumbItem) {
+        $assign($breadCrumbs, $assign('li', { class: prefix + '--items' }, '/', $assign('p', { href: crumb.href, class: prefix + '--items-current' }, '' + crumb.label)));
+      } else {
+        $assign($breadCrumbs, $assign('li', { class: prefix + '--items' }, '/', $assign('a', { href: crumb.href, class: prefix + '--items-link' }, '' + crumb.label)));
+      }
+    });
+
+    return $assign('div', { class: '' + prefix }, $assign('a', { href: '' + breadcrumbHomeURL, class: prefix + '--pin' }, breadcrumbHomeLabel), $assign('ul', { class: prefix + '--list' }, $breadCrumbs));
+  }
+});
+
+/* Global Footer
+/* ========================================================================== */
+
+var createFooter = (function (data) {
+	var prefix = data.prefix || 'esri-footer';
+
+	/* Footer Components
+ /* ====================================================================== */
+
+	var $footerBrand = brand(data.brand, prefix);
+	var $footerInfo = info(data.info, prefix);
+	var $footerLanguage = data.language ? language(data.language, prefix) : $assign('div', { class: 'esri-footer-language' });
+	var $footerMenu = menu(data.menu, prefix);
+	var $footerSocial = social(data.social, prefix);
+	var $footerBreadcrumb = breadcrumbs(data);
+
+	var $footer = $assign('footer', {
+		class: prefix + ' ' + (data.hideMenus ? 'skinny-footer' : '')
+	},
+
+	/* Append Footer Components
+ /* ================================================================== */
+	$assign('div', { class: prefix + '-section--0' }, $footerBreadcrumb), $assign('div', { class: prefix + '--wrapper' }, $assign('div', { class: prefix + '-section--1 ' + (data.hideMenus ? 'hidden' : '') }, $footerBrand, $footerSocial), $assign('div', { class: prefix + '-section--2 ' + (data.hideMenus ? 'hidden' : '') }, $footerMenu), $assign('div', { class: prefix + '-section--3' }, $footerLanguage, $footerInfo)));
+
+	/* on Element Ready
+ /* ====================================================================== */
+
+	onElementInserted($footer, function () {
+		// Scroll to Footer on focus
+		$footer.addEventListener('focusin', function () {
+			var scrollY = $footer.ownerDocument.documentElement.scrollHeight - $footer.scrollHeight;
+
+			if (scrollY > $footer.ownerDocument.defaultView.pageYOffset) {
+				$footer.ownerDocument.defaultView.scrollTo(0, scrollY);
+			}
+		});
+
+		if (data.hideMenus) {
+			document.querySelector('.esri-footer').setAttribute('data-minimal', true);
+			document.querySelector('.esri-footer-barrier').classList.add('skinny-footer');
+		}
+
+		// Update Header
+		$dispatch($footer, 'footer:update', data);
+	});
+
+	$enableFocusRing($footer);
+
+	/* On Footer Update
+ /* ====================================================================== */
+
+	$footer.addEventListener('footer:update', function (_ref) {
+		var detail = _ref.detail;
+
+		if (detail.brand) {
+			$dispatch($footerBrand, 'footer:update:brand', detail.brand);
+		}
+
+		if (detail.info) {
+			$dispatch($footerInfo, 'footer:update:info', detail.info);
+		}
+
+		if (detail.language) {
+			$dispatch($footerLanguage, 'footer:update:language', detail.language);
+		}
+
+		if (detail.menu) {
+			$dispatch($footerMenu, 'footer:update:menu', detail.menu);
+		}
+
+		if (detail.social) {
+			$dispatch($footerSocial, 'footer:update:social', detail.social);
+		}
+
+		$footer.ownerDocument.defaultView.addEventListener('scroll', onscroll);
+
+		onscroll();
+
+		function onscroll() {
+			var hidden = 0 > window.pageYOffset;
+
+			$assign($footer, { data: { hidden: hidden } });
+		}
+	});
+
+	return $footer;
+});
+
+window.esriHeader = { create: createHeader };
+window.esriFooter = { create: createFooter };
+
+function buildHeader(_ref) {
+	var targetElm = _ref.targetElm,
+	    menuData = _ref.menuData;
+
+	document.querySelector(targetElm).classList.add('esri-header-barrier');
+	var $esriHeader = createHeader(menuData.header);
+	var $headerBarrier = document.querySelector(targetElm);
+	$headerBarrier.appendChild($esriHeader);
+
+	window.esriHeader.node = $esriHeader;
+}
+
+function buildFooter(_ref2) {
+	var targetElm = _ref2.targetElm,
+	    menuData = _ref2.menuData;
+
+	document.querySelector(targetElm).classList.add('esri-footer-barrier');
+	var $esriFooter = createFooter(menuData.footer);
+	var $footerBarrier = document.querySelector(targetElm);
+	$footerBarrier.appendChild($esriFooter);
+
+	window.esriFooter.node = $esriFooter;
+}
+
+var esriGlobalNav = {
+	createHeader: buildHeader,
+	createFooter: buildFooter,
+	create: function create(_ref3) {
+		var headerElm = _ref3.headerElm,
+		    footerElm = _ref3.footerElm,
+		    menuData = _ref3.menuData;
+
+		buildHeader({ menuData: menuData, targetElm: headerElm });
+		buildFooter({ menuData: menuData, targetElm: footerElm });
+	}
+};
+
+return esriGlobalNav;
+
+})));
+//# sourceMappingURL=esri-global-nav.js.map

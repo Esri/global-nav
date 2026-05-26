@@ -72,9 +72,11 @@
 		height: 55px;
 		margin: 0 0 0 10px;
 		opacity: 1;
-		padding-block: 14px 0;
+		padding-block: 0;
 		position: relative;
 		width: calc(100% - 10px);
+		display: flex;
+		align-items: center;
 
 		@nest :dir(rtl) & {
 			margin: 0 10px 0 0;
@@ -89,6 +91,21 @@
 			width: 100%;
 		}
 	}
+}
+
+.esri-header-search-type-toggle {
+	line-height: 1.75;
+	margin: 0 .5rem;
+	cursor: pointer;
+}
+
+.esri-header-search-type-toggle-icon {
+	vertical-align: -.175rem;
+	margin-inline-start: .5rem;
+}
+
+.esri-header-search-type-popover-contents {
+	width: 300px;
 }
 
 @keyframes slide-to-the-left {

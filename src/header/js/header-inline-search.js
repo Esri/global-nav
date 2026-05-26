@@ -78,7 +78,8 @@ export default () => {
 				handleClose(e);
 				$target.classList.add('hidden');
 			} else {
-				return window.location.href = `${searchState.action}?q=${encodeURIComponent(searchState.value)}`;
+				const param = searchTypeParam && selectedSearchType ? `&${searchTypeParam}=${selectedSearchType}` : "";
+				return window.location.href = `${searchState.action}?q=${encodeURIComponent(searchState.value)}${param}`;
 			}
 		}
 
@@ -108,11 +109,19 @@ export default () => {
 
 	const $lineBreak = $('div', {class: `esri-header-lineBreak ${prefix}-lineBreak`});
 	const $lineBreakRight = $('div', {class: `esri-header-lineBreak ${prefix}-lineBreak lineBreak-right`});
+	let searchTypeParam;
+	let selectedSearchType = "";
+	let searchTypeOptions = [];
+	const $searchTypeToggleSpan = $('span', {});
+	const $searchTypeToggleIcon = $('calcite-icon', {icon: "chevron-down", scale: "s", class: "esri-header-search-type-toggle-icon"});
+	const $searchTypeToggle = $('calcite-chip', {"icon": "text", class: `esri-header-search-type-toggle`, id: "search-type-toggle", hidden: true}, $searchTypeToggleSpan, $searchTypeToggleIcon);
+	const $searchTypePopoverContents = $('div', {class: "esri-header-search-type-popover-contents"});
+	const $searchTypePopover = $('calcite-popover', {"pointer-disabled": true, "reference-element": "search-type-toggle", placement: "bottom-start"}, $searchTypePopoverContents);
 
 	const $content = $('div', {
 		class: `${prefix}-content`, id: `${prefix}-content`,
 		aria: {expanded: false, labelledby: `${prefix}-control`}
-	}, $lineBreak, $input, $closeBtn, $suggestions, $lineBreakRight);
+	}, $lineBreak, $searchTypeToggle, $input, $closeBtn, $suggestions, $lineBreakRight);
 
 	/* Search: Target
 	/* ====================================================================== */
@@ -120,7 +129,7 @@ export default () => {
 	const $target = $('div', {
 		class: prefix,
 		aria: {expanded: false}
-	}, $control, $content);
+	}, $control, $content, $searchTypePopover);
 
 	/* Search: On Activation
 	/* ====================================================================== */
@@ -141,6 +150,20 @@ export default () => {
 		$target.setAttribute('aria-expanded', "false");
 		$suggestions.innerHTML = '';
 		$input.value = '';
+		if ($searchTypePopover) {
+			$searchTypePopover.open = false;
+		}
+	});
+
+	$target.addEventListener('calciteListItemSelect', (event) => {
+		selectedSearchType = event.target.value;
+		const option = searchTypeOptions.find((option) => option.id === selectedSearchType);
+		$searchTypeToggle.setAttribute("icon", option.icon);
+		$searchTypeToggleSpan.textContent = option.title;
+		$searchTypePopover.open = false;
+		$dispatch($control, 'header:searchType:update', {
+			id: event.target.value
+		});
 	});
 
 	/* Search: On Populate Suggestions
@@ -227,6 +250,24 @@ export default () => {
 		$suggestions.appendChild($('div', {class: `${prefix}-suggestions-bottom-padding`}));
 	};
 
+	const createSearchTypes = (detail) => {
+		$searchTypeToggle.hidden = false;
+		const $searchTypeList = $('calcite-list', {});
+		$searchTypePopoverContents.appendChild($searchTypeList);
+		selectedSearchType = detail.searchType.selected;
+		searchTypeParam = detail.seartchType.param;
+		searchTypeOptions = detail.searchType.options;
+		detail.searchType.options.forEach((option) => {
+			const $option = $('calcite-list-item', {"icon-start": option.icon, value: option.id, label: option.title, description: option.description});
+			$searchTypeList.appendChild($option);
+			if (option.id === detail.searchType.selected) {
+				$searchTypeToggle.setAttribute("icon", option.icon);
+				$searchTypeToggleSpan.textContent = option.title;
+			}
+		});
+	};
+
+
 	/* Search: On Update
 	/* ====================================================================== */
 
@@ -236,6 +277,9 @@ export default () => {
 		} else {
 			$target.classList.add('hidden');
 			return;
+		}
+		if (detail && detail.searchType) {
+			createSearchTypes(detail);
 		}
 		if (!detail.hide) {
 			$($control, {aria: {label: detail.label}});
