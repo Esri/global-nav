@@ -33,12 +33,14 @@ document.addEventListener("DOMContentLoaded", () => {
 							id: "keyword",
 							title: "Search by keyword",
 							description: "Best for when you are looking for specific items or groups",
+							placeholder: "Search items",
 							icon: "text"
 						},
 						{
 							id: "semantic",
 							title: "Search by semantics",
 							description: "Best for descriptive and exploratory searches. Use natural language to find conceptually related items.",
+							placeholder: "Describe what you're searching for",
 							icon: "effects"
 						}
 					]

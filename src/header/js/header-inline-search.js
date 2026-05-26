@@ -162,6 +162,9 @@ export default () => {
 		$searchTypeToggle.setAttribute("icon", option.icon);
 		$searchTypeToggleSpan.textContent = option.title;
 		$searchTypePopover.open = false;
+		if (option.placeholder) {
+			$input.placeholder = option.placeholder;
+		}
 		$dispatch($control, 'header:searchType:update', {
 			id: event.target.value
 		});
@@ -267,6 +270,9 @@ export default () => {
 			if (option.id === detail.searchType.selected) {
 				$searchTypeToggle.setAttribute("icon", option.icon);
 				$searchTypeToggleSpan.textContent = option.title;
+				if (option.placeholder) {
+					$input.placeholder = option.placeholder;
+				}
 			}
 		});
 	};
@@ -282,9 +288,6 @@ export default () => {
 			$target.classList.add('hidden');
 			return;
 		}
-		if (detail && detail.searchType) {
-			createSearchTypes(detail);
-		}
 		if (!detail.hide) {
 			$($control, {aria: {label: detail.label}});
 			$renderSvgOrImg({imgDef: $search.md, imgClass: `${prefix}-image`, id: `${prefix}-image`, alt: "", $targetElm: $control});
@@ -299,6 +302,10 @@ export default () => {
 
 			if (detail.dialog) {
 				detail.dialog.prefix = 'esri-header-search-dialog';
+			}
+
+			if (detail && detail.searchType) {
+				createSearchTypes(detail);
 			}
 		} else {
 			$control.setAttribute("tabindex", "-1");

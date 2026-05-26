@@ -1,3 +1,8 @@
+## 1.7.1
+
+### Fixed
+- Allow setting placeholder via search type
+
 ## 1.7.0
 
 ### Enhancements
