@@ -1,3 +1,7 @@
+## 1.7.0
+
+### Enhancements
+- feat: added searchType dropdown selection for inline search
 
 ## 1.6.2
 
