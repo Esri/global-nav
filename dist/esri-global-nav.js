@@ -1852,7 +1852,8 @@ var createInlineSearch = (function () {
 	var $searchTypeToggleSpan = $assign('span', {});
 	var $searchTypeToggleIcon = $assign('calcite-icon', { icon: "chevron-down", scale: "s", class: "esri-header-search-type-toggle-icon" });
 	var $searchTypeToggle = $assign('calcite-chip', { "icon": "text", class: 'esri-header-search-type-toggle', id: "search-type-toggle", hidden: true }, $searchTypeToggleSpan, $searchTypeToggleIcon);
-	var $searchTypePopoverContents = $assign('div', { class: "esri-header-search-type-popover-contents" });
+	var $searchTypeList = $assign('calcite-list', {});
+	var $searchTypePopoverContents = $assign('div', { class: "esri-header-search-type-popover-contents" }, $searchTypeList);
 	var $searchTypePopover = $assign('calcite-popover', { "pointer-disabled": true, "reference-element": "search-type-toggle", placement: "bottom-start" }, $searchTypePopoverContents);
 
 	var $content = $assign('div', {
@@ -1995,9 +1996,8 @@ var createInlineSearch = (function () {
 			$searchTypeToggle.hidden = true;
 			return;
 		}
+		$searchTypeList.innerHTML = "";
 		$searchTypeToggle.hidden = false;
-		var $searchTypeList = $assign('calcite-list', {});
-		$searchTypePopoverContents.appendChild($searchTypeList);
 		selectedSearchType = detail.searchType.selected;
 		searchTypeParam = detail.searchType.param;
 		searchTypeOptions = detail.searchType.options;

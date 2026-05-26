@@ -115,7 +115,8 @@ export default () => {
 	const $searchTypeToggleSpan = $('span', {});
 	const $searchTypeToggleIcon = $('calcite-icon', {icon: "chevron-down", scale: "s", class: "esri-header-search-type-toggle-icon"});
 	const $searchTypeToggle = $('calcite-chip', {"icon": "text", class: `esri-header-search-type-toggle`, id: "search-type-toggle", hidden: true}, $searchTypeToggleSpan, $searchTypeToggleIcon);
-	const $searchTypePopoverContents = $('div', {class: "esri-header-search-type-popover-contents"});
+	const $searchTypeList = $('calcite-list', {});
+	const $searchTypePopoverContents = $('div', {class: "esri-header-search-type-popover-contents"}, $searchTypeList);
 	const $searchTypePopover = $('calcite-popover', {"pointer-disabled": true, "reference-element": "search-type-toggle", placement: "bottom-start"}, $searchTypePopoverContents);
 
 	const $content = $('div', {
@@ -255,9 +256,8 @@ export default () => {
 			$searchTypeToggle.hidden = true;
 			return;
 		}
+		$searchTypeList.innerHTML = "";
 		$searchTypeToggle.hidden = false;
-		const $searchTypeList = $('calcite-list', {});
-		$searchTypePopoverContents.appendChild($searchTypeList);
 		selectedSearchType = detail.searchType.selected;
 		searchTypeParam = detail.searchType.param;
 		searchTypeOptions = detail.searchType.options;
