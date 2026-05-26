@@ -1991,11 +1991,15 @@ var createInlineSearch = (function () {
 	};
 
 	var createSearchTypes = function createSearchTypes(detail) {
+		if (!detail.searchType) {
+			$searchTypeToggle.hidden = true;
+			return;
+		}
 		$searchTypeToggle.hidden = false;
 		var $searchTypeList = $assign('calcite-list', {});
 		$searchTypePopoverContents.appendChild($searchTypeList);
 		selectedSearchType = detail.searchType.selected;
-		searchTypeParam = detail.seartchType.param;
+		searchTypeParam = detail.searchType.param;
 		searchTypeOptions = detail.searchType.options;
 		detail.searchType.options.forEach(function (option) {
 			var $option = $assign('calcite-list-item', { "icon-start": option.icon, value: option.id, label: option.title, description: option.description });
