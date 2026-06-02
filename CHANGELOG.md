@@ -1,3 +1,8 @@
+## 1.7.2
+
+### Fixed
+- Fix selected text from client side update
+
 ## 1.7.1
 
 ### Fixed
