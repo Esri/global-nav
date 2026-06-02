@@ -112,7 +112,8 @@ export default () => {
 	let searchTypeParam;
 	let selectedSearchType = "";
 	let searchTypeOptions = [];
-	const $searchTypeToggleSpan = $('span', {});
+	// This has to have text within it as a placeholder to work around a calcite peculiarity
+	const $searchTypeToggleSpan = $('span', "---");
 	const $searchTypeToggleIcon = $('calcite-icon', {icon: "chevron-down", scale: "s", class: "esri-header-search-type-toggle-icon"});
 	const $searchTypeToggle = $('calcite-chip', {"icon": "text", class: `esri-header-search-type-toggle`, id: "search-type-toggle", hidden: true}, $searchTypeToggleSpan, $searchTypeToggleIcon);
 	const $searchTypeList = $('calcite-list', {});
