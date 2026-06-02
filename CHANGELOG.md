@@ -1,3 +1,8 @@
+## 1.7.1
+
+### Fixed
+- fix: solve issue with client side updates to inline search type dropdown
+
 ## 1.7.0
 
 ### Enhancements
